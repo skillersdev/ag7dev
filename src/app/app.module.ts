@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { ManageuserComponent } from './pages/manageuser/manageuser.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 
@@ -23,6 +24,7 @@ import { ManageuserComponent } from './pages/manageuser/manageuser.component';
     DashboardComponent,
     LoginComponent,
     ManageuserComponent,
+    SignupComponent,
   
   ],
   imports: [
