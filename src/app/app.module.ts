@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { ManageuserComponent } from './pages/manageuser/manageuser.component';
 import { SignupComponent } from './signup/signup.component';
+import { ManagepackagesComponent } from './pages/managepackages/managepackages.component';
 
 
 
@@ -25,6 +26,7 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     ManageuserComponent,
     SignupComponent,
+    ManagepackagesComponent,
   
   ],
   imports: [

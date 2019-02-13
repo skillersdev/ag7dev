@@ -1,8 +1,8 @@
 export class AppSettings{
 
-	public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
+	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
 	//public static LOCAL_API_BASE = "http://localhost/ssp_ver1/test/";
-	//public static API_BASE = "http://preview56.24x7a2z.com/sspandian/api";
+	public static API_BASE = "http://preview56.24x7a2z.com/bluberrydemo/api";
 
 	//public static API_BASE = "http://erp.buyperungayam.com/api";
 
