@@ -12,11 +12,9 @@
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                        <li role="seperator" class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                        <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                        <li>
+                            <a href="javascript:void(0);" [routerLink]="['/profile']"><i class="material-icons">person</i>Profile</a>
+                        </li>
                         <li role="seperator" class="divider"></li>
                                   <li><a href="" (click)=logout()><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
@@ -31,30 +29,32 @@
                  <li class="active">
                     <a [routerLink]="['/dashboard']">
                         <i class="material-icons col-red" >home</i>
-                        <span>Home</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
-               
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/manageuser']" >
+                        <i class="material-icons  col-amber">supervisor_account</i>
+                        <span>Manage User</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/managepackages']" >
+                        <i class="material-icons  col-blue">view_list</i>
+                        <span>Manage Packages</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/managepayments']" >
+                        <i class="material-icons  col-green">view_module</i>
+                        <span>Manage Payments</span>
+                    </a>
+                </li>
 
                 
-                <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons  col-amber">view_list</i>
-                        <span>Masters </span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="javascript:void(0);" [routerLink]="['/manageuser']" >Manage User</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" [routerLink]="['/managepackages']" >Manage Packages</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" [routerLink]="['/managepayments']" >Manage Payments</a>
-                        </li>
-                        
-                    </ul>
-                </li>
+                
                 <li>
                     <a href="pages/helper-classes.html">
                         <i class="material-icons">layers</i>
