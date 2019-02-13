@@ -14,6 +14,7 @@ import { LoginService } from './services/login.service';
 import { ManageuserComponent } from './pages/manageuser/manageuser.component';
 import { SignupComponent } from './signup/signup.component';
 import { ManagepackagesComponent } from './pages/managepackages/managepackages.component';
+import { ManagepaymentsComponent } from './pages/managepayments/managepayments.component';
 
 
 
@@ -27,6 +28,7 @@ import { ManagepackagesComponent } from './pages/managepackages/managepackages.c
     ManageuserComponent,
     SignupComponent,
     ManagepackagesComponent,
+    ManagepaymentsComponent,
   
   ],
   imports: [

@@ -7,6 +7,7 @@ import { ManageuserComponent } from './pages/manageuser/manageuser.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ManagepackagesComponent } from './pages/managepackages/managepackages.component';
+import { ManagepaymentsComponent } from './pages/managepayments/managepayments.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
 	  path: 'managepackages',
 	  component: ManagepackagesComponent
+  },
+  {
+	  path: 'managepayments',
+	  component: ManagepaymentsComponent
   },
   
 
