@@ -17,7 +17,7 @@ import { ManagepackagesComponent } from './pages/managepackages/managepackages.c
 import { ManagepaymentsComponent } from './pages/managepayments/managepayments.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AdduserComponent} from './pages/manageuser/adduser.component';
-
+import {AddpackageComponent} from './pages/managepackages/addpackages.component';
 
 
 @NgModule({
@@ -33,6 +33,7 @@ import {AdduserComponent} from './pages/manageuser/adduser.component';
     ManagepaymentsComponent,
     ProfileComponent,
     AdduserComponent,
+    AddpackageComponent,
   
   ],
   imports: [

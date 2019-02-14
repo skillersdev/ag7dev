@@ -37,5 +37,8 @@ export class ManagepackagesComponent implements OnInit {
  logout(){
    this.loginService.logout();
  }
-
+ navigateAddpackage()
+ {
+   this.router.navigate(['/addpackage']);
+ }
 }

@@ -16,22 +16,9 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Packages
+                                Manage Packages
+                                <button type="button" (click)="navigateAddpackage()" class="btn btn-success waves-effect pull-right">Add package</button>
                             </h2>
-                            <!-- <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul> -->
-                            <div><button type="button" class="btn btn-success waves-effect pull-right">Add Package</button></div>
-                            
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -40,20 +27,20 @@
                                         <tr>
                                             <th>Package Name</th>
                                             <th>Package Price</th>
-                                            <th>Package Details</th>
-                                            <th>Minimum voucher</th>
-                                            <th>Created date</th>
-                                            <th>Actions</th>
+                                            <th>Indirect Bonus</th>
+                                            <th>Pay via Voucher</th>
+                                            <th>Minimum Payout for User</th>
+                                            <th>Signup Bonus</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Package Name</th>
                                             <th>Package Price</th>
-                                            <th>Package Details</th>
-                                            <th>Minimum voucher</th>
-                                            <th>Created date</th>
-                                            <th>Actions</th>
+                                            <th>Indirect Bonus</th>
+                                            <th>Pay via Voucher</th>
+                                            <th>Minimum Payout for User</th>
+                                            <th>Signup Bonus</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -64,8 +51,8 @@
                                             <td>61</td>
                                             <td>2011/04/25</td>
                                             <td>
-                                                <i class="material-icons">create</i>
-                                                <i class="material-icons">delete</i>
+                                                <a href="#"><i class="material-icons">edit</i></a>
+                                                <a href="#"><i class="material-icons">delete</i></a>
                                             </td>
                                         </tr>
                                         <tr>
