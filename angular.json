@@ -23,8 +23,10 @@
               "src/assets"
             ],
             "styles": [
-             
+             "src/assets/css/style.css",
+             "src/assets/css/materialize.css"
             ],
+            
             "scripts": [
 
               "src/assets/plugins/jquery/jquery.min.js",
