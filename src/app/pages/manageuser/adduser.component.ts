@@ -14,10 +14,9 @@ import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-manageuser',
-  templateUrl: './manageuser.component.html',
-  styleUrls: ['./manageuser.component.css']
+  templateUrl: './adduser.component.html'
 })
-export class ManageuserComponent implements OnInit {
+export class AdduserComponent implements OnInit {
 
   currentUser:any;
   currentUserID:any;
@@ -41,9 +40,6 @@ export class ManageuserComponent implements OnInit {
     this.loginService.logout();
   }
 
-  navigateAdduser()
-  {
-    this.router.navigate(['/adduser']);
-  }
+
 
 }

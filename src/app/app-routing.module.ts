@@ -9,6 +9,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { ManagepackagesComponent } from './pages/managepackages/managepackages.component';
 import { ManagepaymentsComponent } from './pages/managepayments/managepayments.component';
 import { ProfileComponent } from './profile/profile.component';
+import {AdduserComponent} from './pages/manageuser/adduser.component';
 
 const routes: Routes = [
   {
@@ -44,7 +45,10 @@ const routes: Routes = [
 	  path: 'profile',
 	  component: ProfileComponent
   },
-  
+  {
+    path:'adduser',
+    component:AdduserComponent
+  }
   
 
 ];
