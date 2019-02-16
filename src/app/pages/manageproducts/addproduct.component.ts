@@ -40,6 +40,8 @@ export class AddproductComponent implements OnInit {
     this.loginService.logout();
   }
 
-
+  back(){
+    this.router.navigate(['/manageproducts']);
+  }
 
 }

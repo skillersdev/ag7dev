@@ -14,9 +14,9 @@ import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-manageuser',
-  templateUrl: './addcategory.component.html'
+  templateUrl: './addcontact.component.html'
 })
-export class AddcategoryComponent implements OnInit {
+export class AddcontactComponent implements OnInit {
 
   currentUser:any;
   currentUserID:any;
@@ -39,9 +39,9 @@ export class AddcategoryComponent implements OnInit {
   logout(){
     this.loginService.logout();
   }
-
   back(){
-    this.router.navigate(['/managecategory']);
+    this.router.navigate(['/managecontacts']);
   }
+
 
 }

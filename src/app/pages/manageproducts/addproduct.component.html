@@ -24,52 +24,76 @@
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Category</b></p>
-                                                <select class="form-control show-tick">
-                                                    <option>Category1</option>
-                                                    <option>Category2</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick">
+                                                            <option>Category1</option>
+                                                            <option>Category2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
                                                 <div class="col-md-6">
                                                     <p><b>SubCategory</b></p>
-                                                    <select class="form-control show-tick">
-                                                        <option>Sub Category1</option>
-                                                        <option>Sub Category2</option>
-                                                    </select>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick">
+                                                                <option>Sub Category1</option>
+                                                                <option>Sub Category2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>     
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Prodcut Name</b></p>
-                                                <input type="text" class="form-control" placeholder="Enter Sub category">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter Sub category">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Prodcut Price</b></p>
-                                                <input type="number" class="form-control" name="number">     
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" class="form-control" name="number">     
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Currency Type</b></p>
-                                                <select class="form-control show-tick">
-                                                    <option>$(Dollar)</option>
-                                                    <option>Rupees</option>
-                                                    <option>Euro</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick">
+                                                            <option>$(Dollar)</option>
+                                                            <option>Rupees</option>
+                                                            <option>Euro</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>  
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Select Website</b></p>
-                                                <select class="form-control show-tick">
-                                                    <option>Website | Price-USD3</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick">
+                                                            <option>Website | Price-USD3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>      
                                                                     
                                         <button type="button" class="btn btn-primary m-t-15 waves-effect">Add Product</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </div>
                                 </div>
                             </div>

@@ -31,31 +31,55 @@
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>User Name</b></p>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter Username">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>User Full Name</b></p>
-                                                <input type="text" class="form-control" placeholder="Enter User Full Name">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter User Full Name">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
+                                            <p> <b>Password</b></p>
                                             <div class="col-md-6">
-                                                <p> <b>Password</b></p>
-                                                <input type="text" class="form-control" placeholder="Password">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Password">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Confirm Password</b></p>
-                                                <input type="text" class="form-control" placeholder="Confirm Password">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Confirm Password">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Email</b></p>
-                                                <input type="text" class="form-control" placeholder="Enter Email">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter Email">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Sponsor/Referral Name</b></p>
-                                                <input type="text" class="form-control" placeholder="Referal Name">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Referal Name">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>                                        
                                         <div class="row clearfix">
@@ -69,9 +93,13 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Select Package To Update/Edit</b></p>
-                                                <select class="form-control show-tick">
-                                                    <option>Website | Price-USD3</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick">
+                                                            <option>Website | Price-USD3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
@@ -88,7 +116,11 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Country</b></p>
-                                                <input type="text" class="form-control" placeholder="col-md-12">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="col-md-12">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
@@ -101,14 +133,19 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p><b>Current Status</b></p>
-                                                <select class="form-control show-tick">
-                                                    <option>Active</option>
-                                                    <option>Inactive</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick">
+                                                            <option>Active</option>
+                                                            <option>Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>                                       
                                         <button type="button" class="btn btn-primary m-t-15 waves-effect">Add User</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
                                     </div>
                                 </div>
                             </div>

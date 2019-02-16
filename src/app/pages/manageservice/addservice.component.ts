@@ -14,9 +14,9 @@ import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-manageuser',
-  templateUrl: './addcategory.component.html'
+  templateUrl: './addservice.component.html'
 })
-export class AddcategoryComponent implements OnInit {
+export class AddserviceComponent implements OnInit {
 
   currentUser:any;
   currentUserID:any;
@@ -41,7 +41,7 @@ export class AddcategoryComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/managecategory']);
+    this.router.navigate(['/manageservices']);
   }
 
 }

@@ -39,7 +39,9 @@ export class AddsubcategoryComponent implements OnInit {
   logout(){
     this.loginService.logout();
   }
-
+  back(){
+    this.router.navigate(['/managesubcategory']);
+  }
 
 
 }

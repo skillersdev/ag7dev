@@ -40,6 +40,8 @@ export class AdduserComponent implements OnInit {
     this.loginService.logout();
   }
 
-
+  back(){
+    this.router.navigate(['/manageuser']);
+  }
 
 }

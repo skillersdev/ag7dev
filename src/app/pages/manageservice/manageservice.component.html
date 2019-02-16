@@ -1,0 +1,70 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                  Manage Service
+                </h2>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                              Service Lists
+                              <button type="button" (click)="navigateAddservice()" class="btn btn-success waves-effect pull-right">Add Service</button>                 
+                          </h2>
+                      </div>
+                      <div class="body table-responsive">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>WEBSITE</th>
+                                      <th>TITLE</th>
+                                      <th>SERVICE</th>
+                                      <th>ACTION</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <th scope="row">1</th>
+                                      <td>Website | Price-USD3</td>
+                                      <td>Manage service</td>
+                                      <td>Service1</td>
+                                      <td>
+                                        <a href="#"><i class="material-icons">edit</i></a>
+                                        <a href="#"><i class="material-icons">delete</i></a>
+                                    </td>                                      
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td>Service1 website</td>
+                                    <td>product srvice</td>
+                                    <td>Service2</td>
+                                    <td>
+                                      <a href="#"><i class="material-icons">edit</i></a>
+                                      <a href="#"><i class="material-icons">delete</i></a>
+                                  </td>                                     
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                    <td>Service2 website</td>
+                                    <td>product srvice</td>
+                                    <td>Service3</td> 
+                                  <td>
+                                    <a href="#"><i class="material-icons">edit</i></a>
+                                    <a href="#"><i class="material-icons">delete</i></a>
+                                </td>                                     
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->

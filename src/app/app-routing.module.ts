@@ -18,6 +18,10 @@ import { ManageproductsComponent } from './pages/manageproducts/manageproducts.c
 import { AddcategoryComponent } from './pages/managecategory/addcategory.component';
 import { AddsubcategoryComponent } from './pages/managesubcategory/addsubcategory.component';
 import { AddproductComponent } from './pages/manageproducts/addproduct.component';
+import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
+import { ManagecontactsComponent } from './pages/managecontacts/managecontacts.component';
+import { AddserviceComponent } from './pages/manageservice/addservice.component';
+import { AddcontactComponent } from './pages/managecontacts/addcontact.component';
 
 
 const routes: Routes = [
@@ -90,6 +94,22 @@ const routes: Routes = [
     path:'addproduct',
     component:AddproductComponent
   },
+  {
+    path:'manageservices',
+    component:ManageserviceComponent
+  },
+  {
+    path:'managecontacts',
+    component:ManagecontactsComponent
+  },
+  {
+    path:'addcontact',
+    component:AddcontactComponent
+  },
+  {
+    path:'addservice',
+    component:AddserviceComponent
+  }
 ];
 
 @NgModule({

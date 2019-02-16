@@ -41,7 +41,9 @@ export class AddpackageComponent implements OnInit {
   logout(){
     this.loginService.logout();
   }
-
+  back(){
+    this.router.navigate(['/managepackages']);
+  }
 
 
 }
