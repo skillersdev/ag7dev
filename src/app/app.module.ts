@@ -19,7 +19,12 @@ import { ProfileComponent } from './profile/profile.component';
 import {AdduserComponent} from './pages/manageuser/adduser.component';
 import {AddpackageComponent} from './pages/managepackages/addpackages.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
-
+import { ManagecategoryComponent } from './pages/managecategory/managecategory.component';
+import { ManagesubcategoryComponent } from './pages/managesubcategory/managesubcategory.component';
+import { ManageproductsComponent } from './pages/manageproducts/manageproducts.component';
+import { AddcategoryComponent } from './pages/managecategory/addcategory.component';
+import { AddsubcategoryComponent } from './pages/managesubcategory/addsubcategory.component';
+import { AddproductComponent } from './pages/manageproducts/addproduct.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { AdmindashboardComponent } from './admindashboard/admindashboard.compone
     AdduserComponent,
     AddpackageComponent,
     AdmindashboardComponent,
-  
+    ManagecategoryComponent,
+    ManagesubcategoryComponent,
+    ManageproductsComponent,
+    AddcategoryComponent,
+    AddsubcategoryComponent,
+    AddproductComponent
   ],
   imports: [
     BrowserModule,

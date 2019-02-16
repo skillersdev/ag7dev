@@ -1,0 +1,76 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>
+                  Manage Products 
+                  
+                    <!-- <small>Table</small> -->
+                </h2>
+            </div>
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                              Product List
+                              <button type="button" (click)="navigateAddproduct()" class="btn btn-success waves-effect pull-right">Add Product</button>                 
+                          </h2>
+                      </div>
+                      <div class="body table-responsive">
+                          <table class="table table-striped">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>PRODUCT</th>
+                                      <th>CATEGORY</th>
+                                      <th>PRICE</th>
+                                      <th>CREATED DATE</th>
+                                      <th>ACTION</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <th scope="row">1</th>
+                                      <td>Product 1</td>
+                                      <td>Category 1</td>
+                                      <td>100 $</td>
+                                      <td>14/02/19</td>
+                                      <td>
+                                        <a href="#"><i class="material-icons">edit</i></a>
+                                        <a href="#"><i class="material-icons">delete</i></a>
+                                    </td>                                      
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Product 2</td>
+                                    <td>Category 1</td>
+                                    <td>10 $</td>
+                                    <td>14/02/19</td> 
+                                    <td>
+                                      <a href="#"><i class="material-icons">edit</i></a>
+                                      <a href="#"><i class="material-icons">delete</i></a>
+                                  </td>                                     
+                                </tr>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Product 3</td>
+                                  <td>Category 1</td>
+                                  <td>20 $</td>
+                                  <td>14/02/19</td> 
+                                  <td>
+                                    <a href="#"><i class="material-icons">edit</i></a>
+                                    <a href="#"><i class="material-icons">delete</i></a>
+                                </td>                                     
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->

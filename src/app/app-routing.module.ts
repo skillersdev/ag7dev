@@ -12,6 +12,13 @@ import { ProfileComponent } from './profile/profile.component';
 import {AdduserComponent} from './pages/manageuser/adduser.component';
 import {AddpackageComponent} from './pages/managepackages/addpackages.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { ManagecategoryComponent } from './pages/managecategory/managecategory.component';
+import { ManagesubcategoryComponent } from './pages/managesubcategory/managesubcategory.component';
+import { ManageproductsComponent } from './pages/manageproducts/manageproducts.component';
+import { AddcategoryComponent } from './pages/managecategory/addcategory.component';
+import { AddsubcategoryComponent } from './pages/managesubcategory/addsubcategory.component';
+import { AddproductComponent } from './pages/manageproducts/addproduct.component';
+
 
 const routes: Routes = [
   {
@@ -58,8 +65,31 @@ const routes: Routes = [
   {
     path:'admindashboard',
     component:AdmindashboardComponent
-  }
-
+  },
+  {
+    path:'managecategory',
+    component:ManagecategoryComponent
+  },
+  {
+    path:'managesubcategory',
+    component:ManagesubcategoryComponent
+  },
+  {
+    path:'manageproducts',
+    component:ManageproductsComponent
+  },
+  {
+    path:'addcategory',
+    component:AddcategoryComponent
+  },
+  {
+    path:'addsubcategory',
+    component:AddsubcategoryComponent
+  },
+  {
+    path:'addproduct',
+    component:AddproductComponent
+  },
 ];
 
 @NgModule({
