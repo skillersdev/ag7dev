@@ -12,6 +12,8 @@ import { ProfileComponent } from './profile/profile.component';
 import {AdduserComponent} from './pages/manageuser/adduser.component';
 import {AddpackageComponent} from './pages/managepackages/addpackages.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { MarketmanagersComponent } from './pages/marketmanagers/marketmanagers.component';
+import { AccountinfoComponent } from './pages/accountinfo/accountinfo.component';
 import { ManagecategoryComponent } from './pages/managecategory/managecategory.component';
 import { ManagesubcategoryComponent } from './pages/managesubcategory/managesubcategory.component';
 import { ManageproductsComponent } from './pages/manageproducts/manageproducts.component';
@@ -70,6 +72,14 @@ const routes: Routes = [
     path:'admindashboard',
     component:AdmindashboardComponent
   },
+ {
+    path:'managemarketers',
+    component:MarketmanagersComponent
+  },
+  {
+    path:'accountinfo',
+    component:AccountinfoComponent
+  },
   {
     path:'managecategory',
     component:ManagecategoryComponent
@@ -110,6 +120,8 @@ const routes: Routes = [
     path:'addservice',
     component:AddserviceComponent
   }
+  
+
 ];
 
 @NgModule({
