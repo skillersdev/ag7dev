@@ -16,7 +16,7 @@
                             <a href="javascript:void(0);" [routerLink]="['/profile']"><i class="material-icons">person</i>Profile</a>
                         </li>
                         <li role="seperator" class="divider"></li>
-                                  <li><a href="" (click)=logout()><i class="material-icons">input</i>Sign Out</a></li>
+                        <li><a href="" (click)=logout()><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
                 </div>
             </div>
@@ -26,58 +26,70 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
-                 <li class="active">
+                <li class="active">
                     <a [routerLink]="['/dashboard']">
-                        <i class="material-icons col-red" >home</i>
+                        <i class="material-icons col-red">home</i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/manageuser']" >
+                    <a href="javascript:void(0);" [routerLink]="['/manageuser']">
                         <i class="material-icons  col-amber">supervisor_account</i>
                         <span>Manage User</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/managepackages']" >
+                    <a href="javascript:void(0);" [routerLink]="['/managepackages']">
                         <i class="material-icons  col-blue">view_list</i>
                         <span>Manage Packages</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/managepayments']" >
+                    <a href="javascript:void(0);" [routerLink]="['/managepayments']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Payments</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/managecategory']" >
+                    <a href="javascript:void(0);" [routerLink]="['/managemarketers']">
+                        <i class="material-icons  col-pink">work</i>
+                        <span>Manage Marketers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/accountinfo']">
+                        <i class="material-icons  col-pink">account_circle</i>
+                        <span>Account Info</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" [routerLink]="['/managecategory']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Category</span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/managesubcategory']" >
+                    <a href="javascript:void(0);" [routerLink]="['/managesubcategory']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Subcategory </span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/manageproducts']" >
+                    <a href="javascript:void(0);" [routerLink]="['/manageproducts']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Products </span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/manageservices']" >
+                    <a href="javascript:void(0);" [routerLink]="['/manageservices']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Services </span>
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" [routerLink]="['/managecontacts']" >
+                    <a href="javascript:void(0);" [routerLink]="['/managecontacts']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Contacts</span>
                     </a>
@@ -282,7 +294,7 @@
                             <a href="pages/maps/jvectormap.html">jVectorMap</a>
                         </li>
                     </ul>
-                </li> 
+                </li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">trending_down</i>
