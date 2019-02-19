@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentUserID', '1');
           localStorage.setItem('currentUsername', usernme);
           localStorage.setItem('currentUsergroup', '1');
-          this.router.navigate(['./dashboard']);
+          this.router.navigate(['./admindashboard']);
         }
         else if((usernme=='marketer')&&(userpass=='12345'))
         {
