@@ -31,7 +31,6 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { ManagecontactsComponent } from './pages/managecontacts/managecontacts.component';
 import { AddserviceComponent } from './pages/manageservice/addservice.component';
 import { AddcontactComponent } from './pages/managecontacts/addcontact.component';
-import { WebsiteComponent } from './pages/website/website.component';
 
 @NgModule({
   declarations: [
@@ -59,8 +58,7 @@ import { WebsiteComponent } from './pages/website/website.component';
     AddsubcategoryComponent,
     AddproductComponent,
     ManageserviceComponent,
-    ManagecontactsComponent,
-    WebsiteComponent
+    ManagecontactsComponent
   ],
   imports: [
     BrowserModule,

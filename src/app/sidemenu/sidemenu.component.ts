@@ -12,10 +12,12 @@ declare var $ :any;
   styleUrls: ['./sidemenu.component.css']
 })
 export class SidemenuComponent implements OnInit {
-
+  model: any = {};
   constructor(private loginService: LoginService,private router: Router,private http:Http) { }
 
   ngOnInit() {
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    console.log("manjatah da",this.model.usergroup);
   }
 
     logout(){
