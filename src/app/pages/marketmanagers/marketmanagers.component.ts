@@ -16,5 +16,9 @@ export class MarketmanagersComponent implements OnInit {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
   }
+  redirectWebsite()
+  {
+    window.open("http://roodabatoz.com/newsite/marketerpage/","_blank");
+  }
 
 }
