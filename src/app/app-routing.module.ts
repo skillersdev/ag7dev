@@ -24,6 +24,8 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { ManagecontactsComponent } from './pages/managecontacts/managecontacts.component';
 import { AddserviceComponent } from './pages/manageservice/addservice.component';
 import { AddcontactComponent } from './pages/managecontacts/addcontact.component';
+import { ManagetransferComponent } from './pages/managetransfer/managetransfer.component';
+import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component';
 
 
 const routes: Routes = [
@@ -119,7 +121,16 @@ const routes: Routes = [
   {
     path:'addservice',
     component:AddserviceComponent
-  }
+  },
+  {
+    path:'transferinfo',
+    component:ManagetransferComponent
+  },
+  {
+    path:'packageinfo',
+    component:PackageinfoComponent
+  },
+  
   
 
 ];

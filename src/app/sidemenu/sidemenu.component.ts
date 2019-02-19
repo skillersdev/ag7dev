@@ -17,7 +17,7 @@ export class SidemenuComponent implements OnInit {
 
   ngOnInit() {
     this.model.usergroup=localStorage.getItem('currentUsergroup');
-    console.log("manjatah da",this.model.usergroup);
+    
   }
 
     logout(){
