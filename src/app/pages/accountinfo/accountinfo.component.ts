@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes,Router,RouterModule}  from '@angular/router';
+
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-accountinfo',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountinfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService,private router: Router) { }
 
   ngOnInit() {
+    this.loginService.localStorageData();
+     this.loginService.viewsActivate();
   }
 
 }
