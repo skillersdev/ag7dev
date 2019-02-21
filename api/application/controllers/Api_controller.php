@@ -2103,86 +2103,11 @@ class Api_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $role_id=1;
-        if($role_id!=""){
-            $parentmodule =array();
-            $parentmodulelist=array();
-            $parentmodulestore=array();
-            $allchild=array();
-            $count=0;
-
-            $module_list=$this->db->query("select id,menu_name,menu_url, icon, parent,module_id,sort_order from ".$this->db->dbprefix('sidebar_menu_master')." where is_deleted='0' AND parent='0'")->result_array();
-
-            if(count($module_list)>0){
-
-
-                 foreach ($module_list as $key => $module) {
-
-                     $parentlist=$this->db->query("select id,menu_name,menu_url,icon,parent,module_id,sort_order from ".$this->db->dbprefix('sidebar_menu_master')." where is_deleted='0' AND parent='".$module['id']."' ORDER BY sort_order ASC ")->result_array();
-                     
-                      if($parentlist)
-                      { 
-                        $allchild = [];
-                        foreach ($parentlist as $key => $value) 
-                         {
-
-                            
-                             $accessrights=$this->db->query("select * from ".$this->db->dbprefix('security_access')." where user_role_id='".$role_id."' AND module_id='".$value['module_id']."' AND mod_read='1'")->result_array();
-                             
-                                 if($accessrights)
-                                 {
-                                    $allchild[]= $value;
-                                 }
-
-                         }
-                         
-                         if($allchild)
-                            {
-                                $parentmodule[$count]['id']= $module['id'];
-                                $parentmodule[$count]['menu_name']= $module['menu_name'];
-                                $parentmodule[$count]['menu_url']= $module['menu_url'];
-                                $parentmodule[$count]['icon']= $module['icon'];
-                                $parentmodule[$count]['childlist']= $allchild;
-                                $count++;
-
-                            }
-                            else
-                            {
-                                $parentmodule[$count]= false;
-                            }
-
-                      } 
-
-                 }
-                  //var_dump($parentmodule); die();
-                 foreach ($parentmodule as $key => $parentchk) 
-                {
-                    if($parentchk!=false)
-                    {
-                        $parentmodulelist[] = $parentchk;
-                    }
-                }
-
-
-                $response['message']="";
-                $response['result']=$parentmodulelist;
-
-
-                             
-            }else{
-                
-                $response['status']="failure";            
-                $response['message']="";
-                $response['result']=$parentmodulelist;
-            }
-       }else{
-            $response['status']="failure";            
+       
+            //$response['status']="failure";            
             $response['message']="Invalid Attempt!!.. Access denied..";
-       } 
-
-       // echo "<pre>";
-       // print_r($response);
-       // exit;
-
+      
+            print_r($response);die;
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }

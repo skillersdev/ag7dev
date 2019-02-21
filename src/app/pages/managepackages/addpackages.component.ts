@@ -8,6 +8,7 @@ import { SidemenuComponent } from '../../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
+import { CommonService } from '../../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -24,9 +25,10 @@ export class AddpackageComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  insertpackageRestApiUrl: string = AppSettings.Addpackage; 
   model: any = {};
   alldata: any = {};
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -44,6 +46,13 @@ export class AddpackageComponent implements OnInit {
   back(){
     this.router.navigate(['/managepackages']);
   }
-
+  addpackages()
+  {    
+    this.CommonService.insertdata(this.insertpackageRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+        console.log("location",package_det);
+        
+    });
+  }
 
 }

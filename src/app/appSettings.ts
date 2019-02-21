@@ -1,8 +1,8 @@
 export class AppSettings{
 
 	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
-	//public static LOCAL_API_BASE = "http://localhost/ssp_ver1/test/";
-	public static API_BASE = "http://preview56.24x7a2z.com/bluberrydemo/api";
+	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
+	//public static API_BASE = "http://preview56.24x7a2z.com/bluberrydemo/api";
 
 	//public static API_BASE = "http://erp.buyperungayam.com/api";
 
@@ -14,7 +14,7 @@ export class AppSettings{
 
 	//department   API starts here
 	public static getDeptcommon = AppSettings.API_BASE + "/department"; //common api
-	public static insertDept = AppSettings.API_BASE + "/department/insert"; //common api
+	public static Addpackage = AppSettings.API_BASE + "/api/menu"; //common api
 	public static updateDept = AppSettings.API_BASE + "/department/updatedept"; //common api
 	
 	public static getDept = AppSettings.API_BASE + "/department/getdepartment"; //get list of departments

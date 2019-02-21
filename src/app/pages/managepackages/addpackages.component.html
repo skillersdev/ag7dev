@@ -28,12 +28,14 @@
                                         </h2> -->
                                     </div>
                                     <div class="body">
+                                        <form class="form-horizontal" #form="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Package Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="text" class="form-control" placeholder="Enter PackageName">
+                                                        <input type="text" id="packagename" name="packagename" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.packagename"
+                                                        #packagename="ngModel">
                                                     </div>
                                                 </div>
                                             </div>
@@ -41,7 +43,8 @@
                                                 <p><b>Package Details</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="text" class="form-control" placeholder="Enter User Full Name">
+                                                        <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter User Full Name" [(ngModel)]="model.fullname"
+                                                        #fullname="ngModel"> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -51,7 +54,8 @@
                                                 <p> <b>Package Price</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control" name="packageprice"  [(ngModel)]="model.packageprice"
+                                                        #packageprice="ngModel" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,7 +63,8 @@
                                                 <p><b>Package Tax</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control" name="packagetax" [(ngModel)]="model.packagetax"
+                                                        #packagetax="ngModel" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -69,7 +74,8 @@
                                                 <p><b>Select Currency</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <select class="form-control show-tick">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.currency"
+                                                        #currency="ngModel" name="currency">
                                                             <option>US-Dollar-USD</option>
                                                             <option>Australian Dollar</option>
                                                         </select>
@@ -80,7 +86,8 @@
                                                 <p><b>Indirect Ref Bonus</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="text" class="form-control" name="number" required>
+                                                        <input type="text" class="form-control" required  [(ngModel)]="model.indirect_ref_bonus"
+                                                        #indirect_ref_bonus="ngModel" name="indirect_ref_bonus">
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +97,8 @@
                                                 <p><b>Pay via voucher</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">                
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control" required  [(ngModel)]="model.pay_via_voucher"
+                                                        #pay_via_voucher="ngModel" name="pay_via_voucher">
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,7 +106,8 @@
                                                 <p><b>Minimum Payout for User</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control" name="payoutforuser" required [(ngModel)]="model.payoutforuser"
+                                                        #payoutforuser="ngModel">
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -116,7 +125,8 @@
                                                 <p><b>Minimum Voucher</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control" [(ngModel)]="model.minimumvoucher"
+                                                        #minimumvoucher="ngModel" name="minimumvoucher" required>
                                                     </div>
                                                 </div>
                                             </div>                                           
@@ -126,7 +136,8 @@
                                                 <p><b>Maximum voucher to transfer</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" class="form-control" name="number" required>
+                                                        <input type="number" class="form-control"  [(ngModel)]="model.maximumvoucher_transfer"
+                                                        #maximumvoucher_transfer="ngModel" name="maximumvoucher_transfer" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +145,8 @@
                                                 <p><b>Maximum voucher to be generate/renewal</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" name="minimuvoucher" id="minimuvoucher">
+                                                        <input type="text" class="form-control"  [(ngModel)]="model.maximumvoucher_generate"
+                                                        #maximumvoucher_generate="ngModel" name="maximumvoucher_generate" id="maximumvoucher_generate">
                                                     </div>
                                                 </div>
                                             </div>                                          
@@ -144,20 +156,24 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" class="form-control" name="number" required placeholder="stage{{i+1}}bonus amount">
+                                                        <input type="number" class="form-control" [(ngModel)]="item"
+                                                        name="stagebonus{{i}}" required placeholder="stage{{i+1}}bonus amount">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" class="form-control" name="number" required placeholder="stage{{i+1}}upgradation amount">
+                                                        <input type="number" class="form-control" [(ngModel)]="item"
+                                                        name="upgradation{{i}}" required required placeholder="stage{{i+1}}upgradation amount">
                                                     </div>
                                                 </div>
                                             </div>                    
-                                        </div>                                           
-                                        <button type="button" class="btn btn-primary m-t-15 waves-effect">Add Package</button>&nbsp;
+                                        </div>
+                                    </form>                                           
+                                        <button type="button" (click)="addpackages()" class="btn btn-primary m-t-15 waves-effect">Add Package</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                       
                                     </div>
                                 </div>
                             </div>

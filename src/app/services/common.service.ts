@@ -1,0 +1,89 @@
+import { Injectable } from '@angular/core';
+import { Http, Response,  RequestOptions, URLSearchParams, Headers } from '@angular/http';
+import {Observable} from 'rxjs';
+import { map } from "rxjs/operators";
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+
+//BEGIN-REGION - USERSERVICE
+@Injectable()
+export class CommonService 
+{
+    constructor(private _http: Http) {
+    }
+
+    private _serverError(err: any) 
+    {
+        console.log('sever error:', err); 
+        if(err instanceof Response) {
+          return Observable.throw(err.json().error || 'backend server error');
+        }
+        return Observable.throw(err || 'backend server error');
+    }
+
+    getdata(apiUrl:any) 
+    {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.get(apiUrl, options).pipe(map((allusers: Response) => allusers.json()));         
+    }
+
+    editdata(apiUrl:any, idx:any) 
+    {
+    	let headers = new Headers(); 
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.get(apiUrl + "/" + idx , options).pipe(map((resultdata: Response) => resultdata.json()));
+    }
+
+    getdatabyid(apiUrl:any, idx:any) 
+    {
+    	let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.get(apiUrl + "/" + idx , options).pipe(map((resultdata: Response) => resultdata.json()));
+    }
+
+    updatedata(apiUrl:any, resultdata:any) 
+     {
+    	let headers = new Headers();        
+        headers.append('Content-Type', 'application/json; charset=utf-8');        
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        let url = apiUrl;
+        return this._http.put(url , resultdata, options).pipe(map((resultdata: Response) => resultdata.json()));
+    }
+
+    insertdata(apiUrl:any, model:any)
+     {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+        headers.append('Access-Control-Allow-Methods','*');
+        return this._http.post(apiUrl, model,{headers: headers}).pipe(map((model: Response) => model.json()));
+    }
+
+    deletedata(apiUrl:any, idx:any) 
+    {
+    	let headers = new Headers();
+	    headers.append('Content-Type', 'application/json; charset=utf-8'); 
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.post(apiUrl + idx , options,{headers: headers}).pipe(map((resultdata: Response) => resultdata.json()));
+    }        
+}

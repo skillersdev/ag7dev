@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-    'hostname' => '90.0.0.103',
-	'username' => 'devusr',
-	'password' => 'PhPssDev',
-	'database' => 'php17080701_gems_bihar_v1',
+    'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'roodadae_mlm',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => 'gems_',
+	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
