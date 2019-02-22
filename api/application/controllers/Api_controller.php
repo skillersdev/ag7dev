@@ -2099,16 +2099,15 @@ class Api_controller extends CI_Controller {
   
   //side bar menu api starts here
   public function gems_fetch_sidebar_menu_master(){
-        $this->output->set_content_type('application/json');
-        $response=array();
-        $response['status']="success";
-        $role_id=1;
-       
-            //$response['status']="failure";            
-            $response['message']="Invalid Attempt!!.. Access denied..";
-      
-            print_r($response);die;
-        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+       $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        $this->db->insert('package_info', $model);
+       // print_r($model);die;
+
+        echo json_encode($model,JSON_UNESCAPED_SLASHES);
         die();
     }
   //side bar menu api ends here

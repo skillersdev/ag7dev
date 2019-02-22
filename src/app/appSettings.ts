@@ -14,7 +14,7 @@ export class AppSettings{
 
 	//department   API starts here
 	public static getDeptcommon = AppSettings.API_BASE + "/department"; //common api
-	public static Addpackage = AppSettings.API_BASE + "/api/menu"; //common api
+	public static Addpackage = AppSettings.API_BASE + "/menu"; //common api
 	public static updateDept = AppSettings.API_BASE + "/department/updatedept"; //common api
 	
 	public static getDept = AppSettings.API_BASE + "/department/getdepartment"; //get list of departments

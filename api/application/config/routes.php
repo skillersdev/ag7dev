@@ -59,7 +59,7 @@ $route['api'] = 'Api_controller/index';
 $route['api/login'] = 'Api_controller/gems_admin_login';
 
 //sidebar mennu
-$route['api/menu'] = 'Api_controller/gems_fetch_sidebar_menu_master';
+$route['menu'] = 'Api_controller/gems_fetch_sidebar_menu_master';
 $route['api/menumodule'] = 'Api_controller/gems_fetch_sidebar_menu_module_list';
 
 $route['api/module/getmodulebypath'] = 'Api_controller/gems_get_module_by_path';
