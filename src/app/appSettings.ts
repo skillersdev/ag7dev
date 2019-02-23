@@ -1,7 +1,9 @@
 export class AppSettings{
 
 	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
-	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
+	//public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
+	public static API_BASE = "http://localhost/ag7dev1/trunk/api";
+	
 	//public static API_BASE = "http://preview56.24x7a2z.com/bluberrydemo/api";
 
 	//public static API_BASE = "http://erp.buyperungayam.com/api";
@@ -9,6 +11,10 @@ export class AppSettings{
 
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
 	public static getDashboardinfo = AppSettings.API_BASE + "/dashboard/dashboardinfo"; //dashboard api
+
+	//User Login Api Starts here
+	public static Userlogin=AppSettings.API_BASE + "/login"; //common api
+	//User Login Api Ends here
 	
 	
 
@@ -83,9 +89,7 @@ export class AppSettings{
 	public static getsecurityaccess=AppSettings.API_BASE + "/securityaccess/getsecurityaccess/"; // Getsecurityaccess
 	//Security manage access api ends here
 
-	//User Login Api Starts here
-	public static Userlogin=AppSettings.API_BASE + "/user/login"; //common api
-	//User Login Api Ends here
+
 
 	//Manage Product Api Starts here
 	public static Productcommon=AppSettings.API_BASE + "/product"; //common api
