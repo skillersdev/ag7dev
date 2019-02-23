@@ -8,26 +8,20 @@ class Api_controller extends CI_Controller {
 		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
 	}
 
-	public function gems_admin_login(){
+	public function checklogin(){
 		$this->output->set_content_type('application/json');
 		$response=array('status'=>"success");
         
-        if($this->input->post('login_username',FALSE)!="" && $this->input->post('login_password',FALSE) ){
+        if($this->input->post('user_name')!="" && $this->input->post('user_password') !="" ){
 
-        	//var_dump($this->input->post('login_password',FALSE)); die();
-            
-            $res=$this->db->query("select id,concat_ws(' ',firstname,lastname)as admin_name,role_type_id from ".$this->db->dbprefix('admin_master')." where admin_username='".$this->input->post('login_username',FALSE)."' and admin_password=md5('".$this->input->post('login_password',FALSE)."') and status=1");
+        	
+            $res=$this->db->query("select * from affiliateuser where username='".$this->input->post('user_name')."' AND password='".$this->input->post('user_password')."' and active=1");
 
 
             if($res->num_rows()>0){
                 $result=$res->result_array();
                 $result=$result[0];
-
-                $data=array('last_visited_date'=>date('Y-m-d H:i:s'));
-                $this->db->where('id',$result['id']);
-                $this->db->update($this->db->dbprefix('admin_master'),$data);
-                
-                $response['result']=array('id'=>$result['id'],'admin_name'=>$result['admin_name'],'role_type_id'=>$result['role_type_id']);
+                $response['result']=array('id'=>$result['id'],'username'=>$result['username'],'user_type'=>$result['user_type']);
                 
             }else{
                 $response['status']="failure";
@@ -45,6 +39,24 @@ class Api_controller extends CI_Controller {
     }
     
     
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     public function gems_create_zone_master(){
         
         $this->output->set_content_type('application/json');

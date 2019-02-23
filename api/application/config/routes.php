@@ -55,8 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 // ****************************************************************** API CODE ROUTE STARTS HERE - AUG 10, 2017******************************************************************
 
-$route['api'] = 'Api_controller/index';
-$route['api/login'] = 'Api_controller/gems_admin_login';
+$route['common'] = 'Api_controller/index';
+$route['login'] = 'Api_controller/checklogin';
 
 //sidebar mennu
 $route['menu'] = 'Api_controller/gems_fetch_sidebar_menu_master';
