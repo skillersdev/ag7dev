@@ -8,6 +8,8 @@ import { SidemenuComponent } from '../../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
+import { CommonService } from '../../services/common.service';
+import swal from 'sweetalert';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -24,14 +26,25 @@ export class ManagepackagesComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  packagelist:Array<Object>;
+  getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
+  DeletepackageRestApiUrl:string = AppSettings.deletepackage; 
   model: any = {};
   alldata: any = {};
 
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { }
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { }
 
   ngOnInit() {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
+      this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+             
+        });
  }
  
  logout(){
@@ -40,5 +53,46 @@ export class ManagepackagesComponent implements OnInit {
  navigateAddpackage()
  {
    this.router.navigate(['/addpackage']);
+ }
+ editpackage(id:any)
+ {
+   console.log("here"+id);
+   this.router.navigate(['/editpackage', id]);
+ }
+ deletepackage(id:any)
+ {
+   let idx = id;
+      let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        self.removepackage(idx);
+        swal(
+          'Deleted!',
+          'Package Data has been deleted.',
+          'success'
+        )
+      },function(dismiss) {
+  // dismiss can be "cancel" | "close" | "outside"
+});
+ }
+ removepackage(idx:any)
+ {
+   this.CommonService.deletedata(this.DeletepackageRestApiUrl,idx)
+        .subscribe(resultdata =>{
+           this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+             
+        });
+      });
  }
 }

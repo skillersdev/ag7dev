@@ -33,18 +33,17 @@ export class CommonService
         });
         return this._http.get(apiUrl, options).pipe(map((allusers: Response) => allusers.json()));         
     }
-
     editdata(apiUrl:any, idx:any) 
     {
-    	let headers = new Headers(); 
-        headers.append('Content-Type', 'application/json; charset=utf-8');
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let params = '';
         let options = new RequestOptions({
-            params: new URLSearchParams()
-        });
-        return this._http.get(apiUrl + "/" + idx , options).pipe(map((resultdata: Response) => resultdata.json()));
+        // Have to make a URLSearchParams with a query string
+        params: new URLSearchParams()
+          });
+        return this._http.post(apiUrl + idx , options,{headers: headers}).pipe(map((resultdata: Response) => resultdata.json()));
     }
-
     getdatabyid(apiUrl:any, idx:any) 
     {
     	let headers = new Headers();
@@ -56,16 +55,12 @@ export class CommonService
         return this._http.get(apiUrl + "/" + idx , options).pipe(map((resultdata: Response) => resultdata.json()));
     }
 
-    updatedata(apiUrl:any, resultdata:any) 
+    updatedata(apiUrl:any, model:any) 
      {
-    	let headers = new Headers();        
-        headers.append('Content-Type', 'application/json; charset=utf-8');        
-        let params = '';
-        let options = new RequestOptions({
-            params: new URLSearchParams()
-        });
-        let url = apiUrl;
-        return this._http.put(url , resultdata, options).pipe(map((resultdata: Response) => resultdata.json()));
+    	let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var body ='model='+JSON.stringify(model);
+        return this._http.post(apiUrl, body,{headers: headers}).pipe(map((model: Response) => model.json()));
     }
 
     insertdata(apiUrl:any, model:any)

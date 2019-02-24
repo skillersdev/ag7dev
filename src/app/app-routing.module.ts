@@ -11,6 +11,7 @@ import { ManagepaymentsComponent } from './pages/managepayments/managepayments.c
 import { ProfileComponent } from './profile/profile.component';
 import {AdduserComponent} from './pages/manageuser/adduser.component';
 import {AddpackageComponent} from './pages/managepackages/addpackages.component';
+import {EditpackageComponent} from './pages/managepackages/editpackages.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { MarketmanagersComponent } from './pages/marketmanagers/marketmanagers.component';
 import { AccountinfoComponent } from './pages/accountinfo/accountinfo.component';
@@ -70,6 +71,11 @@ const routes: Routes = [
     path:'addpackage',
     component:AddpackageComponent
   },
+  {
+    path:'editpackage/:id',
+    component:EditpackageComponent
+  },
+  
   {
     path:'admindashboard',
     component:AdmindashboardComponent

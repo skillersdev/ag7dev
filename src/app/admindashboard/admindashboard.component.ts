@@ -33,7 +33,7 @@ ngOnInit() {
   this.loginService.viewsActivate();
 }
 
-logout(){
+logout() {
   this.loginService.logout();
 }
 
