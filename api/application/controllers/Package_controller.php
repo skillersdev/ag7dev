@@ -1,60 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Api_controller extends CI_Controller {
+class Package_controller extends CI_Controller {
 
 	public function index() {
 		$this->output->set_content_type('application/json');
 		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
 	}
 
-	public function checklogin()
-  {
-		$this->output->set_content_type('application/json');
-		$response=array('status'=>"success");
-        
-        if($this->input->post('user_name')!="" && $this->input->post('user_password') !="" ){
-
-        	
-            $res=$this->db->query("select * from affiliateuser where username='".$this->input->post('user_name')."' AND password='".$this->input->post('user_password')."' and active=1");
-
-
-            if($res->num_rows()>0){
-                $result=$res->result_array();
-                $result=$result[0];
-                $response['result']=array('id'=>$result['id'],'username'=>$result['username'],'user_type'=>$result['user_type']);
-                
-            }else{
-                $response['status']="failure";
-                $response['message']="Sorry!!, Invalid User credentials submitted. Please try again.";        
-            }
-            
-        }else{
-            $response['status']="failure";            
-            $response['message']="Sorry!!, Invalid Attempt!!.. Permission denied.";
-        }
-        
-        echo json_encode($response,JSON_UNESCAPED_SLASHES);
-        die();
-        
-  }
-    public function add_package_master(){
+   public function add_package_master(){
        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
 
-        $result=$this->db->insert('package_info', $model);
-        if($result){
-          $response=array('status'=>"success");
-          $response['message']="Package has been Inserted successfully";
-        }
-        else{
-           $response=array('status'=>"error");
-          $response['message']="Error while on inserting packge info";
-      }
-        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        $model = json_decode($this->input->post('model',FALSE));
+
+        $this->db->insert('package_info', $model);
+       // print_r($model);die;
+
+        echo json_encode($model,JSON_UNESCAPED_SLASHES);
         die();
-        
     }
-    
+  
   public function get_package_list()
   {
      $this->output->set_content_type('application/json');
@@ -76,7 +42,7 @@ class Api_controller extends CI_Controller {
           }
         }else{
             $response['status']="failure";
-            $response['message']="No  records found..";
+            $response['message']="No User records found..";
         }
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -163,4 +129,6 @@ class Api_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
+
+  
 }
