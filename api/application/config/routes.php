@@ -59,7 +59,12 @@ $route['common'] = 'Api_controller/index';
 $route['login'] = 'Api_controller/checklogin';
 
 //sidebar mennu
-$route['menu'] = 'Api_controller/gems_fetch_sidebar_menu_master';
+$route['addpackage'] = 'Api_controller/add_package_master';
+$route['getpackage'] = 'Api_controller/get_package_list';
+$route['editpackage/(:num)'] = 'Api_controller/editpackage/$1';
+$route['updatepackage'] = 'Api_controller/updatepackage';
+$route['deletepackage/(:num)'] = 'Api_controller/deletepackage/$1';
+
 $route['api/menumodule'] = 'Api_controller/gems_fetch_sidebar_menu_module_list';
 
 $route['api/module/getmodulebypath'] = 'Api_controller/gems_get_module_by_path';
