@@ -27,6 +27,7 @@ import { AddserviceComponent } from './pages/manageservice/addservice.component'
 import { AddcontactComponent } from './pages/managecontacts/addcontact.component';
 import { ManagetransferComponent } from './pages/managetransfer/managetransfer.component';
 import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component';
+import { EdituserComponent } from './pages/manageuser/edituser.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path:'adduser',
     component:AdduserComponent
+  },
+  {
+    path:'edituser/:id',
+    component:EdituserComponent
   },
   {
     path:'addpackage',

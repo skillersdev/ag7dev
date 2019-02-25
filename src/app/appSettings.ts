@@ -17,6 +17,14 @@ export class AppSettings{
 	public static Updatepackage= AppSettings.API_BASE+"/updatepackage";
 	public static deletepackage=AppSettings.API_BASE+"/deletepackage/";
 	/*End */
+
+	/*User Api list*/
+	public static Adduser=AppSettings.API_BASE+"/adduser";
+	public static getuserslist= AppSettings.API_BASE + "/getuserslist";		
+	public static Edituser = AppSettings.API_BASE+"/edituser/";
+	public static Updateuser= AppSettings.API_BASE+"/updateuser";
+	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
+	/* */
 	//User Login Api Starts here
 	public static Userlogin=AppSettings.API_BASE + "/user/login"; //common api
 	//User Login Api Ends here

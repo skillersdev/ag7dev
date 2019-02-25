@@ -29,7 +29,6 @@
                                         <th>User Name</th>
                                         <th>Sponsor</th>
                                         <th>Earnings</th>
-                                        <th>Tot Marketer</th>
                                         <th>Country</th>
                                         <th>Reg Date</th>
                                         <th>Status</th>
@@ -40,57 +39,21 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>sridhar</td>
-                                        <td>skillers</td>
-                                        <td>omid</td>
-                                        <td>15</td>
-                                        <td>10</td>
-                                        <td>India</td>
-                                        <td>2019/02/13</td>
-                                        <td>Active</td>
-                                        <td>2</td>
+                                    <tr *ngFor="let item of userlist let idx=index">
+                                        <td>{{idx+1}}</td>
+                                        <td>{{item.fname}}</td>
+                                        <td>{{item.username}}</td>
+                                        <td>{{item.referedby}}</td>
+                                        <td>{{item.tamount}}</td>
+                                        <td>{{item.country}}</td>
+                                        <td>{{item.doj}}</td>
+                                        <td>{{item.status}}</td>
+                                        <td>{{item.pcktaken}}</td>
                                         <td>
-                                            <a href="#"><i class="material-icons">edit</i></a>
-                                            <a href="#"><i class="material-icons">delete</i></a>
+                                            <a href="javascript:void(0);" (click)="edituser(item.id)"><i class="material-icons">edit</i></a>
+                                            <a href="javascript:void(0);" (click)="deleteuser(item.id)"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>mani</td>
-                                        <td>skillersmani</td>
-                                        <td>sridhar</td>
-                                        <td>3</td>
-                                        <td>2</td>
-                                        <td>India</td>
-                                        <td>2019/02/14</td>
-                                        <td>Active</td>
-                                        <td>1</td>
-                                        <td>
-                                            <a href="#"><i class="material-icons">edit</i></a>
-                                            <a href="#"><i class="material-icons">delete</i></a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>3</td>
-                                        <td>gaythri</td>
-                                        <td>skillersgs</td>
-                                        <td>sridhar</td>
-                                        <td>10</td>
-                                        <td>2</td>
-                                        <td>India</td>
-                                        <td>2019/02/14</td>
-                                        <td>Active</td>
-                                        <td>1</td>
-                                        <td>
-                                            <a href="#"><i class="material-icons">edit</i></a>
-                                            <a href="#"><i class="material-icons">delete</i></a>
-                                        </td>
-                                    </tr>
-
 
                                 </tbody>
                             </table>
