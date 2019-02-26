@@ -14,7 +14,17 @@ class User_controller extends CI_Controller {
         $response['message']="User inserted successfully";
 
         $model = json_decode($this->input->post('model',FALSE));
+
+        
         $this->db->insert('affiliateuser', $model);
+
+        if($model->user_type==2)
+        {
+          $last_inserted_user_id = $this->db->insert_id();
+          $package_id =isset($model->pcktaken)?$model->pcktaken:0;
+          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id) values('".$last_inserted_user_id."','".$package_id."')");
+        }
+
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();

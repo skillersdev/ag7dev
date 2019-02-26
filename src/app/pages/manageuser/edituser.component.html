@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add User
+                            Edit User
                         </h2>
                     </div>
                     <div class="body">
@@ -97,7 +97,8 @@
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken">
-                                                            <option>Website | Price-USD3</option>
+                                                            <option [ngValue]="select">Select</option>
+                                                            <option value="1">Website | Price-USD3</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -119,7 +120,7 @@
                                                     <p><b>Country</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" name="country" class="form-control" placeholder="col-md-12" [(ngModel)]="model.country" #country="ngModel">
+                                                            <input type="text" name="country" class="form-control" placeholder="Country" [(ngModel)]="model.country" #country="ngModel">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,18 +128,23 @@
                                             <div class="row clearfix">
                                                 <div class="col-md-6">
                                                     <p><b>User Type</b></p>
-                                                    <input type="radio" name="gender" id="admin" class="with-gap" [(ngModel)]="model.user_type" #user_type="ngModel">
-                                                    <label for="male">Admin</label>
-                                                    <input type="radio" name="gender" id="marketer" class="with-gap" [(ngModel)]="model.user_type" #user_type="ngModel">
-                                                    <label for="female" class="m-l-20">Marketer</label>
+                                                    <!-- <input type="radio" name="gender" id="admin" class="with-gap radio-col-blue">
+                                                    <label for="male">Admin</label> -->
+                                                    <input name="user_type" type="radio" id="radio_30" [(ngModel)]="model.user_type" class="with-gap radio-col-pink" checked="model.user_type==1" value="1" />
+                                                    <label for="radio_30">Admin</label>
+                                                    <!-- <input type="radio" name="gender" id="marketer" class="with-gap radio-col-blue"> -->
+                                                    <input name="user_type" type="radio" id="radio_31" [(ngModel)]="model.user_type" class="with-gap radio-col-pink" checked="model.user_type==2" value="2" />
+                                                    <label for="radio_31">Marketer</label>
+                                                    <!-- <label for="female" class="m-l-20">Marketer</label> -->
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><b>Current Status</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <select class="form-control show-tick" [(ngModel)]="model.active" #active="ngModel" name="active">
-                                                            <option>Active</option>
-                                                            <option>Inactive</option>
+                                                            <option [ngValue]="select">Select</option>
+                                                            <option value="0">Active</option>
+                                                            <option value="1">Inactive</option>
                                                         </select>
                                                         </div>
                                                     </div>

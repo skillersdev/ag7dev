@@ -12,7 +12,6 @@ import { CommonService} from '../../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
-import { Settings } from 'http2';
 
 @Component({
   selector: 'app-manageuser',
