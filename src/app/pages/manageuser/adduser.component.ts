@@ -36,6 +36,7 @@ export class AdduserComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+      this.model.active=1;
   }
   
   logout(){

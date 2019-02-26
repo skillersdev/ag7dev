@@ -15,10 +15,13 @@ class User_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
+        date_default_timezone_set('Asia/Kolkata');
+        
+        $model->doj = date("Y-m-d H:i:s");
         
         $this->db->insert('affiliateuser', $model);
 
-        if($model->user_type==2)
+        if(isset($model->user_type)&&($model->user_type==2))
         {
           $last_inserted_user_id = $this->db->insert_id();
           $package_id =isset($model->pcktaken)?$model->pcktaken:0;
@@ -39,7 +42,7 @@ class User_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("id,username,password,fname,address,email,referedby,mobile,active,DATE_FORMAT(doj,'%d/%m/%Y%r')as doj,country,tamount,payment,signupcode,level,pcktaken,launch,getpayment,renew,iba_status,user_type,DATE_FORMAT(expiry,'%d/%m/%Y%r')as expiry")->where('is_deleted','0')->get('affiliateuser');
+        $res=$this->db->select("id,username,password,fname,address,email,referedby,mobile,active,DATE_FORMAT(doj,'%d/%m/%Y')as doj,country,tamount,payment,signupcode,level,pcktaken,launch,getpayment,renew,iba_status,user_type,DATE_FORMAT(expiry,'%d/%m/%Y')as expiry")->where('is_deleted','0')->get('affiliateuser');
 
 
         if($res->num_rows()>0)
@@ -47,7 +50,7 @@ class User_controller extends CI_Controller {
           foreach($res->result_array() as $key=>$value)
           {               
             $status=($value['active']=='0')?'Active':'Inactive';
-            $result[]=array('id'=>$value['id'],'username'=>$value['username'],'password'=>$value['password'],'fname'=>$value['fname'],'address'=>$value['address'],'email'=>$value['email'],'referedby'=>$value['referedby'],'mobile'=>$value['mobile'],'active'=>$status,'doj'=>$value['doj'],'country'=>$value['country'],'tamount'=>$value['tamount'],'payment'=>$value['payment'],'signupcode'=>$value['signupcode'],'level'=>$value['level'],'pcktaken'=>$value['pcktaken'],'launch'=>$value['launch'],'getpayment'=>$value['getpayment'],'renew'=>$value['renew'],'iba_status'=>$value['iba_status'],'user_type'=>$value['user_type'],'created_date'=>$value['expiry']);
+            $result[]=array('id'=>$value['id'],'username'=>$value['username'],'password'=>$value['password'],'fname'=>$value['fname'],'address'=>$value['address'],'email'=>$value['email'],'referedby'=>$value['referedby'],'mobile'=>$value['mobile'],'active'=>$status,'doj'=>$value['doj'],'country'=>$value['country'],'tamount'=>$value['tamount'],'payment'=>$value['payment'],'signupcode'=>$value['signupcode'],'level'=>$value['level'],'pcktaken'=>$value['pcktaken'],'launch'=>$value['launch'],'getpayment'=>$value['getpayment'],'renew'=>$value['renew'],'iba_status'=>$value['iba_status'],'user_type'=>$value['user_type'],'created_date'=>$value['expiry'],'status'=>$value['active']);
           }
         }else{
             $response['status']="failure";
