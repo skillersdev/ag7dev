@@ -26,7 +26,9 @@ export class AdduserComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  packagelist:Array<Object>;
   alldata: any = {};
+  getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser; 
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -37,6 +39,14 @@ export class AdduserComponent implements OnInit {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
       this.model.active=1;
+      this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+            console.log(this.packagelist); 
+        });
   }
   
   logout(){
