@@ -24,6 +24,7 @@ export class AppSettings{
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
+	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	/* */
 	//User Login Api Starts here
 	public static Userlogin=AppSettings.API_BASE + "/user/login"; //common api

@@ -19,14 +19,14 @@
                         </h2>
                     </div>
                     <div class="body">
-                        <div class="row clearfix">                                    
+                        <div class="row clearfix">
                             <form class="" #form="ngForm">
                                 <div class="row clearfix">
                                     <div class="col-md-6">
                                         <p><b>User Name</b></p>
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" name="username" placeholder="Enter Username" [(ngModel)]="model.username" #username="ngModel">
+                                                <input type="text" class="form-control" name="username" placeholder="Enter Username" [(ngModel)]="model.username" #username="ngModel" (blur)="checkUserexist($event)">
                                             </div>
                                         </div>
                                     </div>
@@ -40,8 +40,8 @@
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-md-6">                                        
-                                    <p> <b>Password</b></p>
+                                    <div class="col-md-6">
+                                        <p> <b>Password</b></p>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Password">
@@ -133,7 +133,7 @@
                                         <label for="radio_31">Marketer</label>
                                         <!-- <label for="female" class="m-l-20">Marketer</label> -->
                                     </div>
-                                      <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <p><b>Address</b></p>
                                         <div class="form-group">
                                             <div class="form-line">
@@ -141,7 +141,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </form>
                             <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="updateuser()">Update User</button>&nbsp; &nbsp;&nbsp;&nbsp;

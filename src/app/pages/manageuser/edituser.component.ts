@@ -26,6 +26,7 @@ export class EdituserComponent implements OnInit {
   currentAllUsers:any;
   FetchuserRestApiUrl: string = AppSettings.Edituser; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
+  checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   model: any = {};
   packagelist:Array<Object>;
   alldata: any = {};
@@ -81,6 +82,19 @@ export class EdituserComponent implements OnInit {
         )
          this.router.navigate(['/manageuser']);
         
+    });
+  }
+  checkUserexist(event:any)
+  {
+    //console.log(event.target.value);
+    this.model.username=event.target.value;
+    //this.model.username=event.target.va;
+    this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model)
+    .subscribe(package_det =>{
+      if(package_det.exist==1)
+      {
+        swal('',package_det.message,'error')
+      }  
     });
   }
 }

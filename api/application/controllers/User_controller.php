@@ -62,6 +62,27 @@ class User_controller extends CI_Controller {
     
 
   }
+  public function check_user_exist(){
+    $model = json_decode($this->input->post('model',FALSE));
+    //print_r($model->username);die;   
+    $response['exist']=0;
+    $username = trim($model->username);
+    if(isset($model->Id)){
+        $res=$this->db->select("username")->like('username',$username)->where(['is_deleted'=>'0','id!='=>$model->Id])->get('affiliateuser');    
+    }
+    else{
+        $res=$this->db->select("username")->like('username',$username)->where('is_deleted','0')->get('affiliateuser');
+    }
+
+    if(count($res->result_array())>0)
+    {
+       
+        $response['exist']=1;
+        $response['message']="User name already exists";
+    }
+    echo json_encode($response,JSON_UNESCAPED_SLASHES);
+    die();
+  }
   
    public function edituser($id)
     {

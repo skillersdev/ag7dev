@@ -47,7 +47,7 @@ export class CommonService
     getdatabyid(apiUrl:any, idx:any) 
     {
     	let headers = new Headers();
-        headers.append('Content-Type', 'application/json; charset=utf-8');
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let params = '';
         let options = new RequestOptions({
             params: new URLSearchParams()
@@ -65,6 +65,14 @@ export class CommonService
 
     insertdata(apiUrl:any, model:any)
      {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var body ='model='+JSON.stringify(model);
+        return this._http.post(apiUrl, body,{headers: headers}).pipe(map((model: Response) => model.json()));
+    }
+    
+    checkexistdata(apiUrl:any, model:any)
+    {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body ='model='+JSON.stringify(model);

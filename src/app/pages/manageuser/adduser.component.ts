@@ -29,6 +29,7 @@ export class AdduserComponent implements OnInit {
   packagelist:Array<Object>;
   alldata: any = {};
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
+  checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser; 
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -66,6 +67,18 @@ export class AdduserComponent implements OnInit {
           package_det.status
         )
         this.router.navigate(['/manageuser']); 
+    });
+  }
+  checkUserexist(event:any)
+  {
+    //console.log(event.target.value);
+    this.model.username=event.target.value;
+    this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model)
+    .subscribe(package_det =>{
+      if(package_det.exist==1)
+      {
+        swal('',package_det.message,'error')
+      }  
     });
   }
 

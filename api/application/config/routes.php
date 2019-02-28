@@ -72,6 +72,7 @@ $route['getuserslist'] = 'User_controller/get_users_detail';
 $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['updateuser'] = 'User_controller/updateuser';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
+$route['checkuserexist'] = 'User_controller/check_user_exist';
 /**/
 ?>
 
