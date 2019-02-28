@@ -56,7 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // ****************************************************************** API CODE ROUTE STARTS HERE - AUG 10, 2017******************************************************************
 
 $route['common'] = 'Api_controller/index';
-$route['login'] = 'Api_controller/checklogin';
+$route['checkuser'] = 'Login_controller/checklogin';
 
 /******Package Module API List*********/
 $route['addpackage'] = 'Package_controller/add_package_master';

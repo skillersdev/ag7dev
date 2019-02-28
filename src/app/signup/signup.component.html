@@ -5,7 +5,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_up" method="POST">
+                <form id="sign_up" #signup="ngForm">
                     <!-- <div class="msg">Signup as a new marketer</div> -->
 
                     <div class="input-group">
@@ -13,8 +13,9 @@
                             <i class="material-icons">assignment_ind</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="fname" placeholder="Enter Full Name" required autofocus>
+                            <input type="text" class="form-control" [(ngModel)]="model.fname" #fname="ngModel" name="fname" placeholder="Enter Full Name" required autofocus>
                         </div>
+                        <span [hidden]="fname.valid || fname.pristine" class="text-danger">Name is required</span>
                     </div>
 
                     <div class="input-group">
@@ -22,8 +23,9 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="uname" placeholder="Enter User Name" required autofocus>
+                            <input type="text" class="form-control" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter User Name" (blur)="checkUserexist($event)" required autofocus>
                         </div>
+                        <span [hidden]="username.valid || username.pristine" class="text-danger">Username is required</span>
                     </div>
                       
                     
@@ -32,7 +34,11 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>
+                            <input type="password" class="form-control" [(ngModel)]="model.password" #password="ngModel" name="password" minlength="6" (blur)="passwordMatch()" placeholder="Password" required>
+                        </div>
+                        <div *ngIf="password.errors && (password.dirty || password.touched)" class="">
+                            <span *ngIf="password.errors.required" class="text-danger">Password is required</span>
+                            <span [hidden]="!password.errors.minlength" class="text-danger"> *Password should consist minimum six characters. </span>
                         </div>
                     </div>
                     <div class="input-group">
@@ -40,7 +46,14 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <input type="password" class="form-control" [(ngModel)]="model.confirmp" #confirmp="ngModel" name="confirmp" minlength="6" placeholder="Confirm Password" (blur)="passwordMatch()" required>
+                        </div>
+                        <div *ngIf="confirmp.errors && (confirmp.dirty || confirmp.touched)" class="">
+                            <span *ngIf="confirmp.errors.required" class="text-danger">Confirm Password is required</span>
+                            <span [hidden]="!confirmp.errors.minlength" class="text-danger"> *Confirm Password should consist minimum six characters. </span>
+                        </div>
+                        <div *ngIf="model.passwordmatch">
+                            <span class="text-danger"> *Passwors and confirm password is not match. </span>
                         </div>
                     </div>
 
@@ -49,14 +62,12 @@
                             <i class="material-icons">view_comfys</i>
                         </span>
                         <div class="form-line">
-                            <select class="form-control">
-                                <option>Select Package</option>
-                                <option value="1">Website Pakage</option>
-                                <option value="2">Sample1 Package</option>
-                                <option value="3">Sample2 Package</option>
+                            <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
+                                <option [ngValue]="select">select website</option>    
+                                <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
                             </select>
-
                         </div>
+                        <span [hidden]="pcktaken.valid || pcktaken.pristine" class="text-danger">Package  is required</span>
                     </div>
 
                     <div class="input-group">
@@ -64,14 +75,14 @@
                                 <i class="material-icons">group</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="referby" placeholder="Enter Sponsor/Referral Username" required autofocus>
+                                <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Sponsor/Referral Username" required autofocus>
                             </div>
                         </div>
                     
 
                     
 
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" [disabled]="!signup.form.valid || model.passwordmatch" type="submit" (click)="adduser()">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
                         <a [routerLink]="['/']" >You already have a membership?</a>

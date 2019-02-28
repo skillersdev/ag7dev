@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
+import { CommonService } from '../services/common.service';
 declare let swal: any;
 declare var jquery:any;
 declare var $ :any;
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   users :any= []; //storing the data from the API
   userRestApiUrl: string = AppSettings.Userlogin; //API common URL
 
-  constructor(private loginService: LoginService,private router: Router,private http:Http) {
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) {
 
     document.body.className="login-page";
 
@@ -64,25 +65,30 @@ export class LoginComponent implements OnInit {
     else 
     {
       if(usernme!=null && userpass!=null){
-        if((usernme=='admin')&&(userpass=='12345'))
-        {
-          localStorage.setItem('currentUser', usernme);
-          localStorage.setItem('currentUserID', '1');
-          localStorage.setItem('currentUsername', usernme);
-          localStorage.setItem('currentUsergroup', '1');
-          this.router.navigate(['./admindashboard']);
-        }
-        else if((usernme=='marketer')&&(userpass=='12345'))
-        {
-          localStorage.setItem('currentUser', usernme);
-          localStorage.setItem('currentUserID', '2');
-          localStorage.setItem('currentUsername', usernme);
-          localStorage.setItem('currentUsergroup', '2');
-          this.router.navigate(['./dashboard']);
-        }
-        else{
-          this.router.navigate(['/']);
-        }
+          this.CommonService.checkexistdata(this.userRestApiUrl,this.model).subscribe(data=>{
+              if(data.exist==1)
+              {
+                let user_det = data.result[0];
+                localStorage.setItem('currentUser', user_det.username);
+                localStorage.setItem('currentUserID', user_det.id);
+                localStorage.setItem('currentUsergroup',user_det.user_type);
+                if(user_det.user_type==1)
+                {
+                  this.router.navigate(['./admindashboard']);
+                  swal('', data.message, 'success');
+                }
+                else{
+                  this.router.navigate(['./dashboard']);
+                  swal('', data.message, 'success');
+                }
+              }
+              else
+              {
+                swal('Oops...', data.message, 'error');
+                this.router.navigate(['./signup']);
+              }
+          });
+        
       }
     }
 	

@@ -27,6 +27,6 @@ export class AppSettings{
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	/* */
 	//User Login Api Starts here
-	public static Userlogin=AppSettings.API_BASE + "/user/login"; //common api
+	public static Userlogin=AppSettings.API_BASE + "/checkuser"; //common api
 	//User Login Api Ends here
 }
