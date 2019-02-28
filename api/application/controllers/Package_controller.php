@@ -10,14 +10,15 @@ class Package_controller extends CI_Controller {
 
    public function add_package_master(){
        $this->output->set_content_type('application/json');
-        $response=array('status'=>"success");
+      
+        $response=array('status'=>"success",'message'=>"Package Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
 
         $this->db->insert('package_info', $model);
        // print_r($model);die;
 
-        echo json_encode($model,JSON_UNESCAPED_SLASHES);
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
   

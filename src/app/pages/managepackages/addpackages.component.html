@@ -25,25 +25,27 @@
                                     <div class="header">
                                         <!-- <h2 class="font-bold col-teal">
                                             Add Package
-                                        </h2> --> 
+                                        </h2> -->
                                     </div>
                                     <div class="body">
-                                        <form class="form-horizontal" #form="ngForm">
+                                        <form class="form-horizontal" #addpackage="ngForm">
                                             <div class="row clearfix">
                                                 <div class="col-md-6">
                                                     <p><b>Package Name</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel">
+                                                            <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required>
                                                         </div>
+                                                        <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><b>Package Details</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" id="package_details" name="package_details" placeholder="Enter User Full Name" [(ngModel)]="model.package_details" #package_details="ngModel">
+                                                            <input type="text" class="form-control" id="package_details" name="package_details" placeholder="Enter User Full Name" [(ngModel)]="model.package_details" #package_details="ngModel" required>
                                                         </div>
+                                                        <span [hidden]="package_details.valid || package_details.pristine" class="text-danger">Package Detail is required</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -52,16 +54,24 @@
                                                     <p> <b>Package Price</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="package_price" [(ngModel)]="model.package_price" #package_price="ngModel" required>
+                                                            <input type="text" class="form-control" pattern="[0-9/.]*" name="package_price" [(ngModel)]="model.package_price" #package_price="ngModel" required number>
                                                         </div>
+                                                    </div>
+                                                    <div *ngIf="package_price.errors && (package_price.dirty || package_price.touched)" class="">
+                                                        <span *ngIf="package_price.errors.required" class="text-danger">Price is required</span>
+                                                        <span [hidden]="!package_price.hasError('pattern')" class="text-danger"> *Price should have numbers only. </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><b>Package Tax</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="package_tax" [(ngModel)]="model.package_tax" #package_tax="ngModel" required>
+                                                            <input type="text" class="form-control" pattern="[0-9/.]*" name="package_tax" [(ngModel)]="model.package_tax" #package_tax="ngModel" required>
                                                         </div>
+                                                    </div>
+                                                    <div *ngIf="package_tax.errors && (package_tax.dirty || package_tax.touched)" class="">
+                                                        <span *ngIf="package_tax.errors.required" class="text-danger">Tax is required</span>
+                                                        <span [hidden]="!package_tax.hasError('pattern')" class="text-danger"> *Tax should have numbers only. </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,19 +80,21 @@
                                                     <p><b>Select Currency</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <select class="form-control show-tick" [(ngModel)]="model.currency" #currency="ngModel" name="currency">
+                                                            <select class="form-control show-tick" [(ngModel)]="model.currency" #currency="ngModel" name="currency" required> 
                                                             <option>US-Dollar-USD</option>
                                                             <option>Australian Dollar</option>
                                                         </select>
                                                         </div>
+                                                        <span [hidden]="currency.valid || currency.pristine" class="text-danger">currency is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><b>Indirect Ref Bonus</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" required [(ngModel)]="model.indirect_ref_amount" #indirect_ref_amount="ngModel" name="indirect_ref_amount">
+                                                            <input type="text" class="form-control" required [(ngModel)]="model.indirect_ref_amount" #indirect_ref_amount="ngModel" name="indirect_ref_amount" required>
                                                         </div>
+                                                        <span [hidden]="indirect_ref_amount.valid || indirect_ref_amount.pristine" class="text-danger">currency is required</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +103,11 @@
                                                     <p><b>Pay via voucher</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" required [(ngModel)]="model.pay_via_voucher" #pay_via_voucher="ngModel" name="pay_via_voucher">
+                                                            <input type="text" pattern="[0-9/.]*" class="form-control" required [(ngModel)]="model.pay_via_voucher" #pay_via_voucher="ngModel" name="pay_via_voucher" required>
+                                                        </div>
+                                                        <div *ngIf="pay_via_voucher.errors && (pay_via_voucher.dirty || pay_via_voucher.touched)" class="">
+                                                            <span *ngIf="pay_via_voucher.errors.required" class="text-danger">Voucher is required</span>
+                                                            <span [hidden]="!pay_via_voucher.hasError('pattern')" class="text-danger"> *Voucher should have numbers only. </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -99,7 +115,11 @@
                                                     <p><b>Minimum Payout for User</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="payout_for_user" required [(ngModel)]="model.payout_for_user" #payout_for_user="ngModel">
+                                                            <input type="text" class="form-control" name="payout_for_user" required [(ngModel)]="model.payout_for_user" #payout_for_user="ngModel" pattern="[0-9/.]*">
+                                                        </div>
+                                                        <div *ngIf="payout_for_user.errors && (payout_for_user.dirty || payout_for_user.touched)" class="">
+                                                            <span *ngIf="payout_for_user.errors.required" class="text-danger">Payout is required</span>
+                                                            <span [hidden]="!payout_for_user.hasError('pattern')" class="text-danger"> *Payout should have numbers only. </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,7 +129,11 @@
                                                     <p><b>Signup for Bonus</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="sign_up_bonus" [(ngModel)]="model.sign_up_bonus" #sign_up_bonus="ngModel" required>
+                                                            <input type="text" class="form-control" pattern="[0-9/.]*" name="sign_up_bonus" [(ngModel)]="model.sign_up_bonus" #sign_up_bonus="ngModel" required>
+                                                        </div>
+                                                        <div *ngIf="sign_up_bonus.errors && (sign_up_bonus.dirty || sign_up_bonus.touched)" class="">
+                                                            <span *ngIf="sign_up_bonus.errors.required" class="text-danger">Bonus is required</span>
+                                                            <span [hidden]="!sign_up_bonus.hasError('pattern')" class="text-danger"> *Bonus should have numbers only. </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -117,7 +141,11 @@
                                                     <p><b>Minimum Voucher</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" [(ngModel)]="model.minimum_voucher" #minimum_voucher="ngModel" name="minimum_voucher" required>
+                                                            <input type="text" class="form-control" [(ngModel)]="model.minimum_voucher" #minimum_voucher="ngModel" name="minimum_voucher" required pattern="[0-9/.]*">
+                                                        </div>
+                                                        <div *ngIf="minimum_voucher.errors && (minimum_voucher.dirty || minimum_voucher.touched)" class="">
+                                                            <span *ngIf="minimum_voucher.errors.required" class="text-danger">Voucher is required</span>
+                                                            <span [hidden]="!minimum_voucher.hasError('pattern')" class="text-danger"> *Voucher should have numbers only. </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,16 +155,18 @@
                                                     <p><b>Maximum voucher to transfer</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" [(ngModel)]="model.maximum_transfer" #maximum_transfer="ngModel" name="maximum_transfer" required>
+                                                            <input type="text" class="form-control" [(ngModel)]="model.maximum_transfer" #maximum_transfer="ngModel" name="maximum_transfer" required pattern="[0-9/.]*">
                                                         </div>
+                                                        <span [hidden]="maximum_transfer.valid || maximum_transfer.pristine" class="text-danger">voucher is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <p><b>Maximum voucher to be generate/renewal</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" [(ngModel)]="model.maximum_generated_voucher" #maximum_generated_voucher="ngModel" name="maximum_generated_voucher" id="maximum_generated_voucher">
+                                                            <input type="text" class="form-control" [(ngModel)]="model.maximum_generated_voucher" #maximum_generated_voucher="ngModel" name="maximum_generated_voucher" id="maximum_generated_voucher" required>
                                                         </div>
+                                                        <span [hidden]="maximum_generated_voucher.valid || maximum_generated_voucher.pristine" class="text-danger">Renewal Voucher is required</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,7 +188,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <button type="button" (click)="addpackages()" class="btn btn-primary m-t-15 waves-effect">Add Package</button>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="submit" [disabled]="!addpackage.form.valid" (click)="addpackages()" class="btn btn-primary m-t-15 waves-effect">Add Package</button>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
 
                                     </div>
