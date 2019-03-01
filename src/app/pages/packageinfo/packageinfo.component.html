@@ -26,25 +26,15 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Webpack</td>
-                                      <td>14/02/19</td>
-                                      <td>1/02/19</td>
-                                      <td>Active</td>
+                                  <tr *ngFor="let data of packagelist let i=index">
+                                      <th scope="row">{{i+1}}</th>
+                                      <td>{{data.package_name}}</td>
+                                      <td>{{data.renew_date}}</td>
+                                      <td>{{data.Delivered_date}}</td>
+                                      <td>{{data.status}}</td>
                                       <td><a href="#">website</a></td>
-                                      <td>Renew</td>
-                                                                        
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Sample pack1</td>
-                                    <td>14/02/19</td>
-                                    <td>1/02/19</td>
-                                    <td>Inactive</td>
-                                    <td><a href="#">websitelink</a></td> 
-                                    <td>Renew</td>
-                                </tr>                               
+                                      <td>Renew</td>                                                         
+                                  </tr>                   
                               </tbody>
                           </table>
                           </div>

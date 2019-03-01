@@ -61,6 +61,7 @@ export class SignupComponent implements OnInit {
   {
     delete this.model.passwordmatch;
     delete this.model.confirmp;
+    this.model.user_type=2;
     this.CommonService.insertdata(this.AddUserRestApiUrl,this.model)
     .subscribe(user_det =>{       
          swal(

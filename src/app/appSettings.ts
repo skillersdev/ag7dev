@@ -26,6 +26,13 @@ export class AppSettings{
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	/* */
+
+    /*Package vs User*/
+    public static getPackageInfo= AppSettings.API_BASE+"/getpackagelist/";		
+    
+
+    /**/
+
 	//User Login Api Starts here
 	public static Userlogin=AppSettings.API_BASE + "/checkuser"; //common api
 	//User Login Api Ends here
