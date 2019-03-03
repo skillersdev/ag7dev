@@ -73,7 +73,15 @@ $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['updateuser'] = 'User_controller/updateuser';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
 $route['checkuserexist'] = 'User_controller/check_user_exist';
+$route['checkusercredit'] = 'User_controller/check_user_credit';
+/*Trasnfer History*/
+ $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/
+
+/**/
+
+/*Package vs info API*/
+$route['getpackagelist/(:num)'] = 'Package_controller/get_package_info/$1';
 ?>
 
 

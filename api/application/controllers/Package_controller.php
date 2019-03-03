@@ -131,5 +131,45 @@ class Package_controller extends CI_Controller {
          die();
     }
 
+   public function get_package_info($id)
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $package=array();
+        $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where user_id='".$id."'");
+
+
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+
+                foreach ($in_array as $key => $value) 
+                {
+                    $res1=$this->db->query("select * from ".$this->db->dbprefix('package_info')." where id='".$value['package_id']."'");
+                    $in_array_1=$res1->result_array(); 
+
+                    $package['package_name'] = $in_array_1[0]['package_name'];
+
+                    $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
+
+                    $package['Delivered_date'] = ($value['activated_date']!=NULL)?date_format($value['activated_date'],"Y/m/d"):'--';
+
+                    $package['renew_date'] = ($value['renew_date']!=NULL)?date_format($value['renew_date'],"Y/m/d"):'--';
+                    array_push($result,$package);
+                    
+                }
+                
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }  
   
 }

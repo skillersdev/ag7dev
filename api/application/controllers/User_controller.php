@@ -83,6 +83,55 @@ class User_controller extends CI_Controller {
     echo json_encode($response,JSON_UNESCAPED_SLASHES);
     die();
   }
+
+  public function check_user_credit(){
+    $model = json_decode($this->input->post('model',FALSE));
+    $user_id = trim($model->user_id);
+    $share_amount_from_user = $model->share_amt;
+    $res=$this->db->select("username,tamount,pcktaken")->like('id',$user_id)->where(['is_deleted'=>'0'])->get('affiliateuser');    
+    
+
+    if(count($res->result_array())>0)
+    {
+        $data =$res->result_array();  
+        $response['total_amount']=$data[0]['tamount'];
+        $curret_user_name=$data[0]['username'];
+
+        /*Check Maximum trasnfer*/
+        $package_id=$data[0]['pcktaken'];  
+        $pack_det=$this->db->select("maximum_transfer")->like('id',$package_id)->where(['is_deleted'=>'0'])->get('package_info');
+        if(count($pack_det->result_array())>0)
+        { 
+            $pck_data =$pack_det->result_array(); 
+
+            $response['maximum_transfer']=$pck_data[0]['maximum_transfer']; 
+
+            $current_user_transfer_det=$this->db->select_sum("amt")->like('transfer_from',$curret_user_name)->get('transfer_history'); 
+            $trasnfer_data = $current_user_transfer_det->result_array();
+
+            $total_transfer_amount = ($trasnfer_data[0]['amt']!='')?$trasnfer_data[0]['amt']:0;
+
+            if($total_transfer_amount>=$response['maximum_transfer'])
+            {
+                $response['status']=1;
+                $response['message']="Already Exceeded your maximum transfer";
+                echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                die();
+            }
+            else if($share_amount_from_user>$response['maximum_transfer'])
+            {
+                $response['status']=1;
+                $response['message']="Share amount should not greater than maximum transfer amount";
+                echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                die();
+            }
+        }
+
+        /**/
+    }
+    echo json_encode($response,JSON_UNESCAPED_SLASHES);
+    die();
+  }
   
    public function edituser($id)
     {

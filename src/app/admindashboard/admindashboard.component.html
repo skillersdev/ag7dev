@@ -68,20 +68,30 @@
                             </ul>
                         </div>
                         <div class="body">
+                            <form name="transferform" #transfer=ngForm>
                             <div class="row clearfix">
+                               
                                 <div class="col-md-6">
                                     <p><b>Select Marketer</b></p>
-                                    <select class="form-control show-tick">
-                                        <option>Select Marketer</option>  
-                                      <option>Website | Price-USD3</option>
+                                    <select class="form-control show-tick" [(ngModel)]="model.username" #username="ngModel" required name="username">
+                                        <option>Select Marketer</option>
+                                        <option *ngFor="let item of userlist let idx=index">{{item.username}}</option>  
                                     </select>
+                                    <span [hidden]="username.valid || username.pristine" class="text-danger">marketer is required</span>
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>Enter Amount to share</b></p>
-                                            <input type="text" class="form-control" placeholder="Enter Amount to share">
-                                </div>                                
+                                    <input type="text" class="form-control" placeholder="Enter Amount to share" [(ngModel)]="model.share_amt" #share_amt="ngModel" name="share_amt" required>
+                                    <div *ngIf="share_amt.errors && (share_amt.dirty || share_amt.touched)" class="">
+                                    <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
+                                    <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
+                                </div>
+                                </div> 
+                                
+                                 <button type="submit"  (click)="transferamount()" [disabled]="!transfer.form.valid" class="btn btn-success m-t-15 waves-effect">Transfer</button> 
+                                                           
                             </div>
-                            <button type="button" class="btn btn-success m-t-15 waves-effect">Transfer</button>&nbsp;
+                            </form>   
                         </div>
                     </div>
                 </div>
