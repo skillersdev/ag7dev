@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
      this.entered = 0;
+     
   }
 
    enterlogin()
@@ -82,6 +83,8 @@ export class LoginComponent implements OnInit {
                   swal('', data.message, 'success');
                 }
               }
+              /*No Single Package is not yet activated*/
+             
               else
               {
                 swal('Oops...', data.message, 'error');

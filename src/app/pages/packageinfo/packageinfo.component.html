@@ -33,7 +33,10 @@
                                       <td>{{data.Delivered_date}}</td>
                                       <td>{{data.status}}</td>
                                       <td><a href="#">website</a></td>
-                                      <td>Renew</td>                                                         
+                                      <td>
+                                        <span *ngIf="data.package_status==2">Renew</span>
+                                        <span *ngIf="data.package_status==1">Activate</span>
+                                      </td>                                                         
                                   </tr>                   
                               </tbody>
                           </table>

@@ -158,6 +158,7 @@ class Package_controller extends CI_Controller {
                     $package['Delivered_date'] = ($value['activated_date']!=NULL)?date_format($value['activated_date'],"Y/m/d"):'--';
 
                     $package['renew_date'] = ($value['renew_date']!=NULL)?date_format($value['renew_date'],"Y/m/d"):'--';
+                    $package['package_status']=$value['package_status'];
                     array_push($result,$package);
                     
                 }

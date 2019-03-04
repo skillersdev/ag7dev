@@ -26,6 +26,8 @@ export class AppSettings{
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	public static checkusercredit=AppSettings.API_BASE+"/checkusercredit";
+	public static packageisactivated=AppSettings.API_BASE+"/checkpackage/";
+
 	/* */
 
 	/*trasnfer history*/

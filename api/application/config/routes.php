@@ -74,6 +74,8 @@ $route['updateuser'] = 'User_controller/updateuser';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
 $route['checkuserexist'] = 'User_controller/check_user_exist';
 $route['checkusercredit'] = 'User_controller/check_user_credit';
+$route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
+
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/

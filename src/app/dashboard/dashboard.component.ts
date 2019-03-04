@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   alldata: any = {};
   transferdata: any = {};
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
+  checkpackageisactivated:string = AppSettings.packageisactivated; 
   checkUserCreditRestApiUrl:string = AppSettings.checkusercredit;
   inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
  
@@ -41,8 +42,17 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
- 
-
+    let id=localStorage.getItem('currentUserID');
+      this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
+         if(data.exist==2)
+          {
+           
+           this.router.navigate(['./packageinfo']); 
+          }
+      });
+    //  setTimeout(() => {
+    //     this.router.navigate(['./packageinfo']);
+    // }, 5000); 
   }
 
   logout(){
