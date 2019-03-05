@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
               else
               {
                 swal('Oops...', data.message, 'error');
-                this.router.navigate(['./signup']);
+                this.router.navigate(['/']);
               }
           });
         

@@ -10,8 +10,72 @@
                       <div class="header">
                           <h2>Package Info                         
                           </h2>
+                          <span class="col-red">(* Activate the packages to access the application)</span>
                       </div>
                       <div class="body">
+                        <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Package Activation</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                 <form class="form-horizontal" #addpackage="ngForm">
+                                    <div class="col-md-12">
+                                        <p><b>Package Name</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required>
+                                            </div>
+                                            <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p><b>Package price</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required>
+                                            </div>
+                                            <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary">Pay with paypal</button>
+                                      <button type="button" (click)="pay_via_voucher()" class="btn btn-primary">Pay with voucher</button>
+                                    </div>
+                                 </form>
+                                </div>
+                                 <form *ngIf="payment_details" class="form-horizontal" #voucher="ngForm">
+                                    <div class="col-md-12">
+                                        <p><b>User Name</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="user_name " name="user_name" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.user_name" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                            </div>
+                                            <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p><b>Password</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="password" id="password" name="password" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.password" #password="ngModel" required>
+                                            </div>
+                                            <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary" >Pay</button>
+                                      <button type="button" class="btn btn-primary"  data-dismiss="modal">Cancel</button>
+                                    </div>
+                                 </form>
+                              </div>
+                            </div>
+                          </div>
                           <div class="table-responsive">
                               <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                               <thead>
@@ -35,7 +99,7 @@
                                       <td><a href="#">website</a></td>
                                       <td>
                                         <span *ngIf="data.package_status==2">Renew</span>
-                                        <span *ngIf="data.package_status==1">Activate</span>
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Activate</span></a>
                                       </td>                                                         
                                   </tr>                   
                               </tbody>
