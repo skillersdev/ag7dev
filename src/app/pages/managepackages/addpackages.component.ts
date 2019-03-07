@@ -41,7 +41,7 @@ export class AddpackageComponent implements OnInit {
       this.loginService.viewsActivate();
       this.stage_of_packages=[]; 
       this.stage_upgradation_data=[];this.stage_bonus_data=[];
-      for (var _i = 0; _i < 100; _i++) {
+      for (var _i = 0; _i < 30; _i++) {
         this.stage_of_packages.push({'id':_i,'stage_bonus_amount':0,'stage_upgradation_amount':0});
       }
   }

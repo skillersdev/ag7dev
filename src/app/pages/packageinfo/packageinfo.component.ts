@@ -45,5 +45,10 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
+  onGoToPage2(package_name:any)
+  {
+    this.model.package_name = package_name;
+
+  }
 
 }
