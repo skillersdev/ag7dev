@@ -36,10 +36,10 @@ class Login_controller extends CI_Controller {
     else{
          $response['result']=array();
         $response['exist']=0;
-        $response['message']="Invalid user";
+        $response['message']="Enter valid user credentials";
     }
     echo json_encode($response,JSON_UNESCAPED_SLASHES);
-    die();
+    die(); 
   }
   
   public function check_user_package($id)

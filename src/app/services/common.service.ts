@@ -76,6 +76,7 @@ export class CommonService
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body ='model='+JSON.stringify(model);
+        console.log(apiUrl);
         return this._http.post(apiUrl, body,{headers: headers}).pipe(map((model: Response) => model.json()));
     }
 

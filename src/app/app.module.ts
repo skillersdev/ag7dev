@@ -36,6 +36,7 @@ import { AddcontactComponent } from './pages/managecontacts/addcontact.component
 import { ManagetransferComponent } from './pages/managetransfer/managetransfer.component';
 import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component';
 import { EdituserComponent } from './pages/manageuser/edituser.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { EdituserComponent } from './pages/manageuser/edituser.component';
     ManagecontactsComponent,
     ManagetransferComponent,
     PackageinfoComponent,
-    EdituserComponent
+    EdituserComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,

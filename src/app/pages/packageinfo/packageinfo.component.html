@@ -38,7 +38,7 @@
                                                 <p><b>Package price</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required>
+                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
                                                     </div>
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
@@ -101,7 +101,7 @@
                                         <td><a href="#">website</a></td>
                                         <td>
                                             <span *ngIf="data.package_status==2">Renew</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name)" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Activate</span></a>
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price)" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Yet to activate</span></a>
                                         </td>
                                     </tr>
                                 </tbody>

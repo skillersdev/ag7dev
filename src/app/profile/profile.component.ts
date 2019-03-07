@@ -6,6 +6,7 @@ import { SidemenuComponent } from '../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
+import { CommonService } from '../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -22,11 +23,15 @@ export class ProfileComponent implements OnInit {
   currentUsername:any;
   currentUsergroup:any;
   currentUserStatus:any;
-  currentAllUsers:any;
+  currentAllUsers:any;   
+  updateuserprofileRestApiUrl: string = AppSettings.Updateuserprofile;
+  updatepasswordRestApiUrl: string = AppSettings.Updatepassword;
+  FetchuserRestApiUrl: string = AppSettings.Edituser;  
   model: any = {};
   alldata: any = {};
+  resultdata:any={};
  
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -34,10 +39,58 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+    // this.model.fname = localStorage.getItem('user_fname');
+    // this.model.email = localStorage.getItem('email');
+    // this.model.address = localStorage.getItem('address');
+    this.model.id = localStorage.getItem('currentUserID');
+     this.CommonService.editdata(this.FetchuserRestApiUrl,this.model.id)
+        .subscribe(resultdata =>{   
+          this.model = resultdata.result;
+        });
   }
 
   logout(){
     this.loginService.logout();
   }
+  update_profile()
+  {
+     this.CommonService.updatedata(this.updateuserprofileRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.router.navigate(['/profile']);
+        
+    });
+  }
+  passwordMatch()
+   {
+     this.model.passwordmatch=false;
+     if((this.model.password!='')&&(this.model.confirmp!=''))
+     {
+        console.log(this.model);
+       if(this.model.password!=this.model.confirmp)
+       {
+         this.model.passwordmatch = true;
 
+       }
+     }
+   }
+   updatepassword()
+   {
+     this.resultdata.password =this.model.password;
+     this.resultdata.id =localStorage.getItem('currentUserID');
+     this.CommonService.updatedata(this.updatepasswordRestApiUrl,this.resultdata)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.router.navigate(['/profile']);
+        
+    });
+   }
 }

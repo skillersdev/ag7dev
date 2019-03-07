@@ -73,14 +73,17 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('currentUser', user_det.username);
                 localStorage.setItem('currentUserID', user_det.id);
                 localStorage.setItem('currentUsergroup',user_det.user_type);
+                localStorage.setItem('user_fname',user_det.fname);
+                localStorage.setItem('email',user_det.email);
+                localStorage.setItem('address',user_det.address);
                 if(user_det.user_type==1)
                 {
                   this.router.navigate(['./admindashboard']);
-                  swal('', data.message, 'success');
+                  // swal('', data.message, 'success');
                 }
                 else{
                   this.router.navigate(['./dashboard']);
-                  swal('', data.message, 'success');
+                  // swal('', data.message, 'success');
                 }
               }
               /*No Single Package is not yet activated*/

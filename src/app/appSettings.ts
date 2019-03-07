@@ -23,10 +23,12 @@ export class AppSettings{
 	public static getuserslist= AppSettings.API_BASE + "/getuserslist";		
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";
+	public static Updateuserprofile= AppSettings.API_BASE+"/updateuserprofile";	
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	public static checkusercredit=AppSettings.API_BASE+"/checkusercredit";
 	public static packageisactivated=AppSettings.API_BASE+"/checkpackage/";
+	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";	
 
 	/* */
 
@@ -43,5 +45,6 @@ export class AppSettings{
 
 	//User Login Api Starts here
 	public static Userlogin=AppSettings.API_BASE + "/checkuser"; //common api
+	public static passwordreset=AppSettings.API_BASE + "/resetpassword"; //common api 
 	//User Login Api Ends here
 }

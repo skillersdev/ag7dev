@@ -186,6 +186,64 @@ class User_controller extends CI_Controller {
 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
+    public function updateuserprofile()
+    {
+       $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+       // print_r($model);die();
+
+        if (isset($model)) {
+        
+            $this->db->where('id',$model->Id);
+            $result=$this->db->update('affiliateuser', $model);
+          //  pr($this->db->last_query());die();
+
+            if ($result) {
+                $response['message']="Profile has been updated successfully";
+            }
+            else
+            {
+                $response['status']="failure";
+                $response['message']="Profile has not been updated fully";
+            }
+            
+
+        } else {
+            $response['status']="failure";
+            $response['message']="Enter valid details and continue!!..";
+        }
+
+        die(json_encode($response, JSON_UNESCAPED_SLASHES)); 
+    }
+    public function updatepassword()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $model = json_decode($this->input->post('model',FALSE));
+        if (isset($model)) {
+        
+            $this->db->where('id',$model->id);
+            $result=$this->db->update('affiliateuser', $model);
+            if ($result) {
+                $response['message']="Password has been updated successfully";
+            }
+            else
+            {
+                $response['status']="failure";
+                $response['message']="Password has not been updated fully";
+            }
+            
+
+        } else {
+            $response['status']="failure";
+            $response['message']="Enter valid Password and continue!!..";
+        }
+
+        die(json_encode($response, JSON_UNESCAPED_SLASHES)); 
+    }
     public function deleteuser($id)
     {
       $this->output->set_content_type('application/json');
@@ -211,6 +269,61 @@ class User_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
+    
+    public function resetpassword()
+    {
+        $model = json_decode($this->input->post('model',FALSE));
+   
+        $response['exist']=0;
+        $email = trim($model->email);
+   
+        $res=$this->db->select("*")->like(array('email'=>$email))->where(['is_deleted'=>'0'])->get('affiliateuser');  
+        if(count($res->result_array())>0)
+        {
+           
+            $user_det = $res->result_array();
+            $password = $user_det[0]['password'];
 
+            $config = Array(
+                'protocol' => 'mail',
+                'smtp_host' => 'ssl://smtp.googlemail.com',
+                'smtp_port' => 587,
+                'smtp_user' => 'my mail',
+                'smtp_pass' => 'my password',
+                'smtp_crypto'=>'tls'
+                'mailtype'  => 'html', 
+                'wordwrap'  => TRUE;
+                'charset'   => 'iso-8859-1'
+            );
+
+            $this->load->library('email',$config);
+            $this->email->from('admin@gmail.com', 'admin');
+            $this->email->to('mr.mani99@gmail.com');
+             
+            $this->email->subject('Your Password is:'.$password);
+            $this->email->message('Testing the email class.');
+            if($this->email->send()) 
+            {
+                $response['exist']=1;
+                $response['message']="Password sent to your mail id"; 
+            }
+            
+         else 
+         {
+            $response['exist']=0;
+            $response['message']="Mail not sent successfully"; 
+         }
+            
+            
+        }
+        else{
+             $response['result']=array();
+            $response['exist']=0;
+            $response['message']="Email id is not an registered";
+        }
+
+    echo json_encode($response,JSON_UNESCAPED_SLASHES);
+    die();
+    }
   
 }

@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['common'] = 'Api_controller/index';
 $route['checkuser'] = 'Login_controller/checklogin';
+$route['resetpassword'] = 'User_controller/resetpassword';
 
 /******Package Module API List*********/
 $route['addpackage'] = 'Package_controller/add_package_master';
@@ -71,10 +72,12 @@ $route['adduser'] = 'User_controller/add_user_master';
 $route['getuserslist'] = 'User_controller/get_users_detail';
 $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['updateuser'] = 'User_controller/updateuser';
+$route['updateuserprofile'] = 'User_controller/updateuserprofile';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
 $route['checkuserexist'] = 'User_controller/check_user_exist';
 $route['checkusercredit'] = 'User_controller/check_user_credit';
 $route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
+$route['updatepassword'] = 'User_controller/updatepassword';
 
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';

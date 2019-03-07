@@ -153,6 +153,8 @@ class Package_controller extends CI_Controller {
 
                     $package['package_name'] = $in_array_1[0]['package_name'];
 
+                    $package['package_price'] = $in_array_1[0]['package_price'];
+
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
 
                     $package['Delivered_date'] = ($value['activated_date']!=NULL)?date_format($value['activated_date'],"Y/m/d"):'--';
