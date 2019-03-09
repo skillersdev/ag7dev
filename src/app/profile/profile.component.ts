@@ -25,14 +25,16 @@ export class ProfileComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;   
   updateuserprofileRestApiUrl: string = AppSettings.Updateuserprofile;
+  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
   updatepasswordRestApiUrl: string = AppSettings.Updatepassword;
   FetchuserRestApiUrl: string = AppSettings.Edituser;  
   model: any = {};
   alldata: any = {};
   resultdata:any={};
+  image_url = AppSettings.IMAGE_BASE;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
-      document.body.className="theme-red";
+      document.body.className="theme-red"; 
 
   }
 
@@ -92,5 +94,21 @@ export class ProfileComponent implements OnInit {
          this.router.navigate(['/profile']);
         
     });
+   }
+   fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.image_url = response.data;
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
    }
 }

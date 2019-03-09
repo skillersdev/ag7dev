@@ -22,16 +22,15 @@
                                     <div class="panel panel-default panel-post">
                                         <div class="panel-heading">
                                             <div class="media">
-                                                <div class="media-left">
+                                                <div class="">
                                                     <a href="#">
-                                                        <img src="assets/images/user-lg.jpg" />
+                                                        <img width="17%" height="auto" src="{{image_url}}{{model.image_url}}" />
                                                     </a>
                                                 </div>
                                                 <div class="media-body">
                                                     <h4 class="media-heading">
-                                                        <a href="#">Marc K. Hammond</a>
+                                                        <a href="#">{{model.fname}}</a> 
                                                     </h4>
-                                                    Registered on - 26 Oct 2018
                                                 </div>
                                             </div>
                                         </div>
@@ -56,6 +55,14 @@
                                             <div class="col-sm-10">
                                                 <div class="form-line">
                                                     <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel" value="example@example.com" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Email" class="col-sm-2 control-label">Upload Photo</label>
+                                            <div class="col-sm-10">
+                                                <div class="form-line">
+                                                     <input name="file" type="file" (change)=fileEvent($event)/>
                                                 </div>
                                             </div>
                                         </div>

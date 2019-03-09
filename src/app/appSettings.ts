@@ -2,7 +2,7 @@ export class AppSettings{
 
 	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
 	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
-	//public static API_BASE = "http://preview56.24x7a2z.com/bluberrydemo/api";
+	public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
 
 	//public static API_BASE = "http://erp.buyperungayam.com/api";
 
@@ -28,7 +28,8 @@ export class AppSettings{
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
 	public static checkusercredit=AppSettings.API_BASE+"/checkusercredit";
 	public static packageisactivated=AppSettings.API_BASE+"/checkpackage/";
-	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";	
+	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";
+	public static uploadprofileimage=AppSettings.API_BASE+"/uploadimage";
 
 	/* */
 

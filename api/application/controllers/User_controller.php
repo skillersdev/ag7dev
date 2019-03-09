@@ -270,6 +270,44 @@ class User_controller extends CI_Controller {
          die();
     }
     
+    public function uploadimage()
+    {
+       $path = 'user_profile/';
+        $Response=[];
+     
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+             
+            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
+            {
+
+              $generatedName = md5($_FILES['file']['tmp_name']).$ext;
+
+              $filePath = $path.$generatedName;
+              $product_image=$filePath;
+           
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+              {
+                $Response['status']="success"; 
+                $Response['data']=$product_image;
+              }
+            }
+            else 
+            {
+                $Response['status']="fail"; 
+                $Response['data']="Upload only valid format images";
+            }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
     public function resetpassword()
     {
         $model = json_decode($this->input->post('model',FALSE));
@@ -284,35 +322,31 @@ class User_controller extends CI_Controller {
             $user_det = $res->result_array();
             $password = $user_det[0]['password'];
 
-            $config = Array(
-                'protocol' => 'mail',
-                'smtp_host' => 'ssl://smtp.googlemail.com',
-                'smtp_port' => 587,
-                'smtp_user' => 'my mail',
-                'smtp_pass' => 'my password',
-                'smtp_crypto'=>'tls'
-                'mailtype'  => 'html', 
-                'wordwrap'  => TRUE;
-                'charset'   => 'iso-8859-1'
-            );
+            // $config = Array(
+            //     'protocol' => 'mail',
+            //     'smtp_host' => 'ssl://smtp.googlemail.com',
+            //     'smtp_port' => 587,
+            //     'smtp_user' => 'my mail',
+            //     'smtp_pass' => 'my password',
+            //     'smtp_crypto'=>'tls'
+            //     'mailtype'  => 'html', 
+            //     'wordwrap'  => TRUE;
+            //     'charset'   => 'iso-8859-1'
+            // );
 
-            $this->load->library('email',$config);
-            $this->email->from('admin@gmail.com', 'admin');
-            $this->email->to('mr.mani99@gmail.com');
+            // $this->load->library('email',$config);
+            // $this->email->from('admin@gmail.com', 'admin');
+            // $this->email->to('mr.mani99@gmail.com');
              
-            $this->email->subject('Your Password is:'.$password);
-            $this->email->message('Testing the email class.');
-            if($this->email->send()) 
-            {
-                $response['exist']=1;
-                $response['message']="Password sent to your mail id"; 
-            }
+            // $this->email->subject('Your Password is:'.$password);
+            // $this->email->message('Testing the email class.');
+            // if($this->email->send()) 
+            // {
+            //     $response['exist']=1;
+            //     $response['message']="Password sent to your mail id"; 
+            // }
             
-         else 
-         {
-            $response['exist']=0;
-            $response['message']="Mail not sent successfully"; 
-         }
+        
             
             
         }
