@@ -37,6 +37,9 @@ import { ManagetransferComponent } from './pages/managetransfer/managetransfer.c
 import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component';
 import { EdituserComponent } from './pages/manageuser/edituser.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ManageearningsComponent } from './pages/manageearnings/manageearnings.component';
+import { AddearningsComponent } from './pages/manageearnings/addearnings.component';
+import { EditearningsComponent } from './pages/manageearnings/editearnings.component';
 
 @NgModule({
   declarations: [
@@ -69,10 +72,13 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     ManagetransferComponent,
     PackageinfoComponent,
     EdituserComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    ManageearningsComponent,
+    AddearningsComponent,
+    EditearningsComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,                          
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

@@ -33,6 +33,9 @@ export class AppSettings{
 
 	/* */
 
+	/**Earnings*/
+	public static getearningslist=AppSettings.API_BASE+"/earningslist";
+
 	/*trasnfer history*/
 	public static inserttransferprocess=AppSettings.API_BASE+"/addtransferdetails";
 	

@@ -81,8 +81,9 @@
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <select class="form-control show-tick" [(ngModel)]="model.currency" #currency="ngModel" name="currency" required> 
-                                                            <option>US-Dollar-USD</option>
-                                                            <option>Australian Dollar</option>
+                                                            <option value="">Select any currency</option>
+                                                            <option value="US-Dollar-USD">US-Dollar-USD</option>
+                                                            <option value="Australian Dollar">Australian Dollar</option>
                                                         </select>
                                                         </div>
                                                         <span [hidden]="currency.valid || currency.pristine" class="text-danger">currency is required</span>
@@ -175,14 +176,14 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" [(ngModel)]="item.stage_bonus_amount" name="stage_bonus_amount{{i}}" required placeholder="stage {{i+1}} bonus amount">
+                                                            <input type="number" class="form-control" [(ngModel)]="item.stage_bonus_amount" name="stage_bonus_amount{{i}}"  placeholder="stage {{i+1}} bonus amount">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" [(ngModel)]="item. 	stage_upgradation_amount" name="stage_upgradation_amount{{i}}" required required placeholder="stage {{i+1}}  upgradation amount">
+                                                            <input type="number" class="form-control" [(ngModel)]="item.stage_upgradation_amount" name="stage_upgradation_amount{{i}}"  required placeholder="stage {{i+1}}  upgradation amount">
                                                         </div>
                                                     </div>
                                                 </div>

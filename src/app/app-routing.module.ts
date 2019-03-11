@@ -30,6 +30,10 @@ import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component'
 import { EdituserComponent } from './pages/manageuser/edituser.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
+import { ManageearningsComponent } from './pages/manageearnings/manageearnings.component';
+import { AddearningsComponent } from './pages/manageearnings/addearnings.component';
+import { EditearningsComponent } from './pages/manageearnings/editearnings.component';
+
 const routes: Routes = [
   {
 	  path: '',
@@ -144,6 +148,10 @@ const routes: Routes = [
   {
     path:'forgotpassword',
     component:ForgotpasswordComponent
+  },
+  {
+    path:'manageearnings',
+    component:ManageearningsComponent
   },
   
   

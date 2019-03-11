@@ -84,6 +84,8 @@ $route['uploadimage'] = 'User_controller/uploadimage';
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/
 
+/*Earnings list*/
+$route['earningslist'] = 'Package_controller/getearningslist';
 /**/
 
 /*Package vs info API*/

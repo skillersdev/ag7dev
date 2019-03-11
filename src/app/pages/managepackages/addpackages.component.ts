@@ -41,7 +41,7 @@ export class AddpackageComponent implements OnInit {
       this.loginService.viewsActivate();
       this.stage_of_packages=[]; 
       this.stage_upgradation_data=[];this.stage_bonus_data=[];
-      for (var _i = 0; _i < 30; _i++) {
+      for (var _i = 1; _i < 30; _i++) {
         this.stage_of_packages.push({'id':_i,'stage_bonus_amount':0,'stage_upgradation_amount':0});
       }
   }
@@ -57,12 +57,14 @@ export class AddpackageComponent implements OnInit {
     this.stage_of_packages.filter((data:any,id:any) =>{    
       // if((data.stage_upgradation_amount!='')&&(data.stage_bonus_amount!=''))
       // {   
-        this.stage_bonus_data.push({'id':id,'stage_bonus_amount':data.stage_bonus_amount});
-        this.stage_upgradation_data.push({'id':id,'stage_upgradation_amount':data.stage_upgradation_amount});
+        this.stage_bonus_data.push(data.stage_bonus_amount);
+        this.stage_upgradation_data.push(data.stage_upgradation_amount);
       // }
     }); 
-    this.model.stage_bonus_amount = JSON.stringify(this.stage_bonus_data);
-    this.model.stage_upgradation_amount = JSON.stringify(this.stage_upgradation_data);
+    // console.log(this.stage_of_packages);
+     console.log(this.stage_bonus_data);
+     this.model.stage_bonus_data = this.stage_bonus_data;
+    this.model.stage_upgradation_data = this.stage_upgradation_data;
     this.CommonService.insertdata(this.insertpackageRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

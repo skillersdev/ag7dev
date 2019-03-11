@@ -51,7 +51,12 @@
                         <span>Manage Packages</span>
                     </a>
                 </li>
-
+                 <li  *ngIf="model.usergroup==1">
+                    <a href="javascript:void(0);" [routerLink]="['/manageearnings']">
+                        <i class="material-icons  col-blue">view_list</i>
+                        <span>Manage Earnings</span>
+                    </a>
+                </li>
                 <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managepayments']">
                         <i class="material-icons  col-green">view_module</i>

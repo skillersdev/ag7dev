@@ -15,8 +15,34 @@ class Package_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
-        $this->db->insert('package_info', $model);
-       // print_r($model);die;
+       // $array = json_encode($model->stage_bonus_amount);
+        $inc=1;
+        foreach ($model->stage_bonus_data as $key => $value) 
+        {
+           $level_columnn[]="level".$inc;
+           $level_value[]="'".$value."'";
+           $stage_column[]="stage".$inc."_up";
+           $stage_column_value[]="'".$model->stage_upgradation_data[$key]."'";
+           $inc++;
+        }
+
+        $level_field=implode(',', $level_columnn);
+        $level_field_value=implode(',', $level_value);
+        $stage_field_column=implode(',',$stage_column);
+        $stage_field_value=implode(',',$stage_column_value);
+        //$this->db->insert('package_info', $model);
+        $this->db->query("insert into ".$this->db->dbprefix('packages')." (name,price,currency,details,tax,sbonus,minimum_voucher,maximum_transfer,maximum_register,cdate,active,".$level_field.",".$stage_field_column.",indirect_ref_amt,pay_via_voucher) values (
+                '".$model->package_name."','".$model->package_price."','".$model->currency."',
+                '".$model->package_details."',
+                '".$model->package_tax."',
+                '".$model->sign_up_bonus."',
+                '".$model->minimum_voucher."',
+                '".$model->maximum_transfer."',
+                NOW(),
+                '1',
+                ".$level_field_value.",
+                ".$stage_field_value.",
+                '".$model->indirect_ref_amount."','".$model->pay_via_voucher."')");
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
@@ -31,7 +57,7 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("id,package_name,package_price,currency,pay_via_voucher, sign_up_bonus,maximum_transfer,package_details,package_tax,indirect_ref_amount,payout_for_user,minimum_voucher,maximum_generated_voucher,stage_bonus_amount,stage_upgradation_amount,DATE_FORMAT(created_date,'%d/%m/%Y%r')as created_date")->where('is_deleted','0')->get('package_info');
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%d/%m/%Y%r')as cdate")->where('is_deleted','0')->get('packages');
 
 
         if($res->num_rows()>0)
@@ -39,7 +65,7 @@ class Package_controller extends CI_Controller {
           foreach($res->result_array() as $key=>$value)
           {               
 
-            $result[]=array('id'=>$value['id'],'package_name'=>$value['package_name'],'package_price'=>$value['package_price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sign_up_bonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['package_details'],'package_tax'=>$value['package_tax'],'indirect_ref_amount'=>$value['indirect_ref_amount'],'payout_for_user'=>$value['payout_for_user'],'minimum_voucher'=>$value['minimum_voucher'],'maximum_generated_voucher'=>$value['maximum_generated_voucher'],'stage_bonus_amount'=>$value['stage_bonus_amount'],'stage_upgradation_amount'=>$value['stage_upgradation_amount'],'created_date'=>$value['created_date']);
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate']);
           }
         }else{
             $response['status']="failure";
@@ -60,11 +86,23 @@ class Package_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
-            $res=$this->db->query("select * from ".$this->db->dbprefix('package_info')." where id='".$id."'");
+            $res=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$id."'");
 
             if($res->num_rows()>0){
                 $in_array=$res->result_array();
                 $result=$in_array[0];
+                $inc=1;
+                for($i=1;$i<=30;$i++) 
+                {
+                   //$level_columnn[]="level".$inc;
+                   $level_value[]=$result['level'.$i];
+                   $stage_column[]=$result['stage'.$i.'_up'];
+                   //$stage_column_value[]="'".$model->stage_upgradation_data[$key]."'";
+                   $inc++;
+                }
+                $response['level']=$level_value;
+                $response['stage']=$stage_column;
+               // print_r($level_value);die;
             }else{
                 $response['status']="failure";
                 $response['message']=" No Package record found!!";
@@ -80,13 +118,36 @@ class Package_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
-       // print_r($model);die();
+         $array = json_encode($model->stage_bonus_data);
+        $inc=1;
+
+        foreach ($model->stage_bonus_data as $key => $value) 
+        {
+           $data=($value!='')?"'".$value."'":0;
+           $level_columnn[]="level".$inc."=".$data;
+           //print_r($level_columnn);die;
+           $level_value[]="'".$value."'";
+           $data1=($model->stage_upgradation_data[$key]!='')?$model->stage_upgradation_data[$key]:0;
+           $stage_column[]="stage".$inc."_up=".$data1;
+           $stage_column_value[]="'".$model->stage_upgradation_data[$key]."'";
+           $inc++;
+        }
+
+        $level_field=implode(',', $level_columnn);
+        $level_field_value=implode(',', $level_value);
+        $stage_field_column=implode(',',$stage_column);
+        $stage_field_value=implode(',',$stage_column_value);
+//       print_r($level_field);die();
 
         if (isset($model)) {
         
-            $this->db->where('id',$model->id);
-            $result=$this->db->update('package_info', $model);
-          //  pr($this->db->last_query());die();
+          //   $this->db->where('id',$model->id);
+          //   $result=$this->db->update('package_info', $model);
+          // //  pr($this->db->last_query());die();
+            
+
+              $result=$this->db->query("update ".$this->db->dbprefix('packages')." set  name='".$model->name."',price='".$model->price."',currency='".$model->currency."',
+              details='".$model->details."',tax='".$model->tax."',sbonus='".$model->sbonus."',minimum_voucher='".$model->minimum_voucher."',maximum_transfer='".$model->maximum_transfer."',".$level_field.",".$stage_field_column.",indirect_ref_amt='".$model->indirect_ref_amt."',pay_via_voucher='".$model->pay_via_voucher."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Package has been updated successfully";
@@ -112,13 +173,13 @@ class Package_controller extends CI_Controller {
         $response['status']="success";
         
 
-        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('package_info')." where id='".$id."' ");
-        
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('packages')." where id='".$id."' ");
+        //print_r($res_chk);die;
         if($res_chk->num_rows()>0){
 
             $data=array('is_deleted'=>'1');
             $this->db->where('id',$id);
-            $this->db->update($this->db->dbprefix('package_info'),$data);
+            $this->db->update($this->db->dbprefix('packages'),$data);
 
             $response['status']="success";
             $response['message']="package record has been deleted successfully";
@@ -174,5 +235,42 @@ class Package_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }  
+
+     public function getearningslist()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $results=array();
+        $html="";
+        global $api_path;        
+
+        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y%r')as created_at")->where('active','0')->get('earning_settings');
+
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+
+             $res_chk=$this->db->query("select * from ".$this->db->dbprefix('packages')." 
+              where id='".$value['id']."'");
+
+             $data = $res_chk->result();
+            // print_r($data);die;
+              $pck_name = $data[0]->name;
+
+            $results[]=array('id'=>$value['id'],'package_name'=>$pck_name,'downline_count'=>$value['downline_count'],'earning_amt'=>$value['earning_amt'],'status'=>$value['active'],'date'=>$value['created_at']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$results;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+
+  }
   
 }

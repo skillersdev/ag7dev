@@ -34,7 +34,7 @@
                                                     <p><b>Package Name</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel">
+                                                            <input type="text" id="name" name="name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.name" #name="ngModel">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -42,7 +42,7 @@
                                                     <p><b>Package Details</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" id="package_details" name="package_details" placeholder="Enter User Full Name" [(ngModel)]="model.package_details" #package_details="ngModel">
+                                                            <input type="text" class="form-control" id="details" name="details" placeholder="Enter User Full Name" [(ngModel)]="model.details" #details="ngModel">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -52,7 +52,7 @@
                                                     <p> <b>Package Price</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="package_price" [(ngModel)]="model.package_price" #package_price="ngModel" required>
+                                                            <input type="number" class="form-control" name="package_price" [(ngModel)]="model.price" #price="ngModel" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -60,7 +60,7 @@
                                                     <p><b>Package Tax</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="package_tax" [(ngModel)]="model.package_tax" #package_tax="ngModel" required>
+                                                            <input type="number" class="form-control" name="tax" [(ngModel)]="model.tax" #tax="ngModel" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,7 +109,7 @@
                                                     <p><b>Signup for Bonus</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="number" class="form-control" name="sign_up_bonus" [(ngModel)]="model.sign_up_bonus" #sign_up_bonus="ngModel" required>
+                                                            <input type="number" class="form-control" name="sbonus" [(ngModel)]="model.sbonus" #sbonus="ngModel" required>
                                                         </div>
                                                     </div>
                                                 </div>
