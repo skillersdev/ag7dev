@@ -31,6 +31,7 @@ export class AddearningsComponent implements OnInit {
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser; 
+  AddEarningsRestApiUrl:string = AppSettings.Addearnings; 
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -57,9 +58,9 @@ export class AddearningsComponent implements OnInit {
   back(){
     this.router.navigate(['/manageuser']);
   }
-  adduser()
+  addearnigs()
   {
-    this.CommonService.insertdata(this.AddUserRestApiUrl,this.model)
+    this.CommonService.insertdata(this.AddEarningsRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
           package_det.status,

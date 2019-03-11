@@ -86,6 +86,12 @@ $route['uploadimage'] = 'User_controller/uploadimage';
 
 /*Earnings list*/
 $route['earningslist'] = 'Package_controller/getearningslist';
+$route['editearnings/(:num)']= 'Package_controller/editearnings/$1';
+$route['updateearnings'] = 'Package_controller/updateearnings';
+$route['addearnings'] = 'Package_controller/addearnings';
+$route['deleteearnings/(:num)'] = 'Package_controller/deleteearnings/$1';
+
+
 /**/
 
 /*Package vs info API*/

@@ -245,8 +245,8 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y%r')as created_at")->where('active','0')->get('earning_settings');
-
+        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where('active','1')->get('earning_settings');
+//print_r($res->result_array());die;
 
         if($res->num_rows()>0)
         {
@@ -272,5 +272,107 @@ class Package_controller extends CI_Controller {
     
 
   }
+   public function editearnings($id)
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+            $res=$this->db->query("select * from ".$this->db->dbprefix('earning_settings')." where id='".$id."'");
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+                $result=$in_array[0];
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Settings found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    public function updateearnings() {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+       // print_r($model);die();
+
+        if (isset($model)) {
+        
+            $this->db->where('id',$model->id);
+            $result=$this->db->update('earning_settings', $model);
+          //  pr($this->db->last_query());die();
+
+            if ($result) {
+                $response['message']="Earnings has been updated successfully";
+            }
+            else
+            {
+                 $response['status']="failure";
+            $response['message']="Record has not been updated successfully";
+            }
+            
+
+        } else {
+            $response['status']="failure";
+            $response['message']="Choose User and continue!!..";
+        }
+
+        die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+    public function addearnings(){
+       $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $response['message']="Earnings inserted successfully";
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        date_default_timezone_set('Asia/Kolkata');
+        
+        $model->updated_at = date("Y-m-d H:i:s");
+        
+        $this->db->insert('earning_settings', $model);
+
+        // if(isset($model->user_type)&&($model->user_type==2))
+        // {
+        //   $last_inserted_user_id = $this->db->insert_id();
+        //   $package_id =isset($model->pcktaken)?$model->pcktaken:0;
+        //   $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id) values('".$last_inserted_user_id."','".$package_id."')");
+        // }
+
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+     public function deleteearnings($id)
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        
+
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('earning_settings')." where id='".$id."' ");
+       // print_r($res_chk->num_rows());die;
+        if($res_chk->num_rows()>0){
+
+            $data=array('active'=>'0');
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('earning_settings'),$data);
+
+            $response['status']="success";
+            $response['message']="Earnings record has been deleted successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
   
 }

@@ -24,7 +24,9 @@ export class EditearningsComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
-  FetchuserRestApiUrl: string = AppSettings.Edituser; 
+  FetchearningsRestApiUrl: string = AppSettings.Editearnings; 
+  getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
+  updateearningsRestApiUrl: string = AppSettings.Updateearnings; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   model: any = {};
@@ -51,8 +53,16 @@ export class EditearningsComponent implements OnInit {
 
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
-        this.edituser(this.id);
+        this.editearnings(this.id);
         
+        });
+      this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+            console.log(this.packagelist); 
         });
   }
   
@@ -62,25 +72,25 @@ export class EditearningsComponent implements OnInit {
   back(){
     this.router.navigate(['/manageuser']);
   }
-  edituser(id:any)
+  editearnings(id:any)
   {
     
-    this.CommonService.editdata(this.FetchuserRestApiUrl,id)
+    this.CommonService.editdata(this.FetchearningsRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result;
           
         });
   }
-  updateuser()
+  updateearnings()
   {
-     this.CommonService.updatedata(this.updateuserRestApiUrl,this.model)
+     this.CommonService.updatedata(this.updateearningsRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
           package_det.status,
           package_det.message,
           package_det.status
         )
-         this.router.navigate(['/manageuser']);
+         this.router.navigate(['/manageearnings']);
         
     });
   }

@@ -16,7 +16,7 @@
                     <div class="header">
                         <h2 class="font-bold">
                             Manage Earnings
-                            <button type="button" (click)="navigateAdduser()" class="btn btn-success waves-effect pull-right">Add Earning</button>
+                            <button type="button" (click)="navigateAddearnings()" class="btn btn-success waves-effect pull-right">Add Earning</button>
                         </h2>
                     </div>
                     <div class="body">
@@ -42,11 +42,11 @@
                                         <td>{{item.downline_count}}</td>
                                         <td>{{item.earning_amt}}</td>
                                         <td>{{item.date}}</td>
-                                        <td *ngIf="item.status==0"><span class="label bg-green">Active</span></td>
-                                        <td *ngIf="item.status==1"><span class="label bg-red">In active</span></td>
+                                        <td *ngIf="item.status==1"><span class="label bg-green">Active</span></td>
+                                        <td *ngIf="item.status==0"><span class="label bg-red">In active</span></td>
                                         <td>
-                                            <a href="javascript:void(0);" (click)="edituser(item.id)"><i class="material-icons">edit</i></a>
-                                            <a href="javascript:void(0);" (click)="deleteuser(item.id)"><i class="material-icons">delete</i></a>
+                                            <a href="javascript:void(0);" (click)="editearnings(item.id)"><i class="material-icons">edit</i></a>
+                                            <a href="javascript:void(0);" (click)="deleteearnings(item.id)"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
 

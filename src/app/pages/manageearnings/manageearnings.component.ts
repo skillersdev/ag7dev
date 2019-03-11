@@ -31,6 +31,7 @@ export class ManageearningsComponent implements OnInit {
   userlist:Array<Object>;
   getuserlistRestApiUrl:string=AppSettings.getearningslist;
   DeleteuserRestApiUrl:string = AppSettings.deleteuser; 
+  DeleteearningsRestApiUrl:string = AppSettings.deleteearnings; 
   constructor(
     private loginService: LoginService,
     private CommonService:CommonService,
@@ -57,15 +58,15 @@ export class ManageearningsComponent implements OnInit {
     this.loginService.logout();
   }
 
-  navigateAdduser()
+  navigateAddearnings()
   {
-    this.router.navigate(['/adduser']);
+    this.router.navigate(['/addearnings']);
   }
-  edituser(id:any)
+  editearnings(id:any)
   {
-    this.router.navigate(['/edituser', id]);
+    this.router.navigate(['/editearnings', id]);
   }
-  deleteuser(id:any)
+  deleteearnings(id:any)
  {
    let idx = id;
       let self = this;
@@ -80,7 +81,7 @@ export class ManageearningsComponent implements OnInit {
         self.removeuser(idx);
         swal(
           'Deleted!',
-          'User Data has been deleted.',
+          'Eaarnings has been deleted.',
           'success'
         )
       },function(dismiss) {
@@ -89,7 +90,7 @@ export class ManageearningsComponent implements OnInit {
  }
  removeuser(idx:any)
  {
-   this.CommonService.deletedata(this.DeleteuserRestApiUrl,idx)
+   this.CommonService.deletedata(this.DeleteearningsRestApiUrl,idx)
         .subscribe(resultdata =>{
            this.CommonService.getdata(this.getuserlistRestApiUrl)
         .subscribe(packagedet =>{

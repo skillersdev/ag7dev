@@ -153,7 +153,14 @@ const routes: Routes = [
     path:'manageearnings',
     component:ManageearningsComponent
   },
-  
+  {
+    path:'addearnings',
+    component:AddearningsComponent
+  },
+  {
+    path:'editearnings/:id',
+    component:EditearningsComponent
+  },
   
 
 ];

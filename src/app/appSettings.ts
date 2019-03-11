@@ -35,7 +35,10 @@ export class AppSettings{
 
 	/**Earnings*/
 	public static getearningslist=AppSettings.API_BASE+"/earningslist";
-
+	public static Editearnings = AppSettings.API_BASE+"/editearnings/";
+	public static Updateearnings= AppSettings.API_BASE+"/updateearnings/";
+	public static Addearnings= AppSettings.API_BASE+"/addearnings";
+	public static deleteearnings = AppSettings.API_BASE+"/deleteearnings/";
 	/*trasnfer history*/
 	public static inserttransferprocess=AppSettings.API_BASE+"/addtransferdetails";
 	
