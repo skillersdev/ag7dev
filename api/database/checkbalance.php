@@ -4,10 +4,12 @@ if($_POST['username'])
 {
 	 $status = "OK"; //initial status
 	 $msg="";
-	$username=$_POST['username']; //fetching details through post method
+	$username=$_POST['username']; //fetching details through post method pay via voucher account details
 	$password = $_POST['password'];
 	 //$pay_amt= $_POST['pay_amt']; /* This line commented by karthikeyan */
-	 $userid=$_POST['userid'];
+	$userid=$_POST['userid']; //PACKAGE user id
+    $packid=$_POST['pack_d']; //pACKAGE id
+    $pack_vs_users_id=$_POST['pack_id_user']; //pACKAGE id
 
 	
 	// Retrieve username and password from database according to user's input, preventing sql injection
@@ -26,14 +28,17 @@ if($_POST['username'])
 	// Check username and password match
 if (($num['ucount']) == 1) {
 		
-		$queryuser="SELECT id,pcktaken FROM  affiliateuser where username = '$userid'"; 
-		$resultuser = mysqli_query($con,$queryuser);
+		// $queryuser="SELECT id,pcktaken FROM  affiliateuser where username = '$userid'";// get package details 
+		// $resultuser = mysqli_query($con,$queryuser);
 		
-		while($rowuser = mysqli_fetch_array($resultuser))
-		{
-			 $uaid="$rowuser[id]";
-		 	 $pcktake="$rowuser[pcktaken]";
-		}
+		// while($rowuser = mysqli_fetch_array($resultuser))
+		// {
+		// 	 $uaid="$rowuser[id]";
+		//  	 $pcktake="$rowuser[pcktaken]";
+		// }
+        $uaid=$userid;
+        $pcktake=$packid;
+
 		$query="SELECT * FROM  packages where id = $pcktake"; 
 		 
 		$result = mysqli_query($con,$query);
@@ -75,8 +80,9 @@ if (($num['ucount']) == 1) {
 			//code by sridhar for activate automatically through voucher
 			$tomake= $userid;
 			$package=$pcktaken;
-
-            $result=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
+           
+            //$result=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
+            $result=mysqli_query($con,"UPDATE user_vs_packages SET package_status=0 WHERE id='".$pack_vs_users_id."'");//activate package_vs_user
             
             //code added by sridhar
 
@@ -99,26 +105,26 @@ if (($num['ucount']) == 1) {
 
 
 
-    require_once('../wp-load.php');
-    $user_name = $ref_list11['username'];
-    $user_email = $ref_list11['email'];
-    $user_id = username_exists( $user_name );
-    if ( !$user_id ) {
-        $password = $ref_list11['password'];
-        $user_id = wp_create_user( $user_name,$password,$user_email );
-		wp_set_password( $password, $user_id );
-		$user_id_role = new WP_User($user_id);
-		$user_id_role->set_role('seller');
-		$updated1 = update_user_meta( $user_id, 'dokan_enable_selling', 'yes' );
-		$updated2 = update_user_meta( $user_id, 'dokan_publishing', 'yes' );
-	} 
-	else
-	{
-		$password = $ref_list11['password'];
-		wp_set_password( $password, $user_id );
-		$user_id_role = new WP_User($user_id);
-		$user_id_role->set_role('seller');
-	}
+ //    require_once('../wp-load.php');
+ //    $user_name = $ref_list11['username'];
+ //    $user_email = $ref_list11['email'];
+ //    $user_id = username_exists( $user_name );
+ //    if ( !$user_id ) {
+ //        $password = $ref_list11['password'];
+ //        $user_id = wp_create_user( $user_name,$password,$user_email );
+	// 	wp_set_password( $password, $user_id );
+	// 	$user_id_role = new WP_User($user_id);
+	// 	$user_id_role->set_role('seller');
+	// 	$updated1 = update_user_meta( $user_id, 'dokan_enable_selling', 'yes' );
+	// 	$updated2 = update_user_meta( $user_id, 'dokan_publishing', 'yes' );
+	// } 
+	// else
+	// {
+	// 	$password = $ref_list11['password'];
+	// 	wp_set_password( $password, $user_id );
+	// 	$user_id_role = new WP_User($user_id);
+	// 	$user_id_role->set_role('seller');
+	// }
 
 	
 	
@@ -156,7 +162,7 @@ if (($num['ucount']) == 1) {
     
     	//getting stage count
     	$s1=mysqli_query($con,"SELECT  COUNT(*) as STAGE1TOTUSER FROM affiliateuser as a,affiliate_bonus_history as b
-    	 WHERE (b.stage1_ref = '$ref' || b.stage2_ref = '$ref' || b.stage3_ref = '$ref' || b.stage4_ref = '$ref' || b.stage5_ref = '$ref' || b.stage6_ref = '$ref' || b.stage7_ref = '$ref' || b.stage8_ref = '$ref' || b.stage9_ref = '$ref' || b.stage10_ref = '$ref' || b.stage11_ref = '$ref' || b.stage12_ref = '$ref' || b.stage13_ref = '$ref' || b.stage14_ref = '$ref' || b.stage15_ref = '$ref' || b.stage16_ref = '$ref' || b.stage17_ref = '$ref' || b.stage18_ref = '$ref' || b.stage19_ref = '$ref' || b.stage20_ref = '$ref' || b.stage21_ref = '$ref' || b.stage22_ref = '$ref' || b.stage23_ref = '$ref' || b.stage24_ref = '$ref' || b.stage25_ref = '$ref' || b.stage26_ref = '$ref' || b.stage27_ref = '$ref' || b.stage28_ref = '$ref' || b.stage29_ref = '$ref' || b.stage30_ref = '$ref' || b.stage31_ref = '$ref' || b.stage32_ref = '$ref' || b.stage33_ref = '$ref' || b.stage34_ref = '$ref' || b.stage35_ref = '$ref' || b.stage36_ref = '$ref' || b.stage37_ref = '$ref' || b.stage38_ref = '$ref' || b.stage39_ref = '$ref' || b.stage40_ref = '$ref' || b.stage41_ref = '$ref' || b.stage42_ref = '$ref' || b.stage43_ref = '$ref' || b.stage44_ref = '$ref' || b.stage45_ref = '$ref' || b.stage46_ref = '$ref' || b.stage47_ref = '$ref' || b.stage48_ref = '$ref' || b.stage49_ref = '$ref' || b.stage50_ref = '$ref' || b.stage51_ref = '$ref' || b.stage52_ref = '$ref' || b.stage53_ref = '$ref' || b.stage54_ref = '$ref' || b.stage55_ref = '$ref' || b.stage56_ref = '$ref' || b.stage57_ref = '$ref' || b.stage58_ref = '$ref' || b.stage59_ref = '$ref' || b.stage60_ref = '$ref' || b.stage61_ref = '$ref' || b.stage62_ref = '$ref' || b.stage63_ref = '$ref' || b.stage64_ref = '$ref' || b.stage65_ref = '$ref' || b.stage66_ref = '$ref' || b.stage67_ref = '$ref' || b.stage68_ref = '$ref' || b.stage69_ref = '$ref' || b.stage70_ref = '$ref' || b.stage71_ref = '$ref' || b.stage72_ref = '$ref' || b.stage73_ref = '$ref' || b.stage74_ref = '$ref' || b.stage75_ref = '$ref' || b.stage76_ref = '$ref' || b.stage77_ref = '$ref' || b.stage78_ref = '$ref' || b.stage79_ref = '$ref' || b.stage80_ref = '$ref' || b.stage81_ref = '$ref' || b.stage82_ref = '$ref' || b.stage83_ref = '$ref' || b.stage84_ref = '$ref' || b.stage85_ref = '$ref' || b.stage86_ref = '$ref' || b.stage87_ref = '$ref' || b.stage88_ref = '$ref' || b.stage89_ref = '$ref' || b.stage90_ref = '$ref' || b.stage91_ref = '$ref' || b.stage92_ref = '$ref' || b.stage93_ref = '$ref' || b.stage94_ref = '$ref' || b.stage95_ref = '$ref' || b.stage96_ref = '$ref' || b.stage97_ref = '$ref' || b.stage98_ref = '$ref' || b.stage99_ref = '$ref' || b.stage100_ref = '$ref') AND (a.username = b.user_id )");
+    	 WHERE (b.stage1_ref = '$ref' || b.stage2_ref = '$ref' || b.stage3_ref = '$ref' || b.stage4_ref = '$ref' || b.stage5_ref = '$ref' || b.stage6_ref = '$ref' || b.stage7_ref = '$ref' || b.stage8_ref = '$ref' || b.stage9_ref = '$ref' || b.stage10_ref = '$ref' || b.stage11_ref = '$ref' || b.stage12_ref = '$ref' || b.stage13_ref = '$ref' || b.stage14_ref = '$ref' || b.stage15_ref = '$ref' || b.stage16_ref = '$ref' || b.stage17_ref = '$ref' || b.stage18_ref = '$ref' || b.stage19_ref = '$ref' || b.stage20_ref = '$ref' || b.stage21_ref = '$ref' || b.stage22_ref = '$ref' || b.stage23_ref = '$ref' || b.stage24_ref = '$ref' || b.stage25_ref = '$ref' || b.stage26_ref = '$ref' || b.stage27_ref = '$ref' || b.stage28_ref = '$ref' || b.stage29_ref = '$ref' || b.stage30_ref = '$ref' ) AND (a.username = b.user_id )");
     	$stage1_list=$s1->fetch_array(MYSQLI_ASSOC);
     	$stage1_count=$stage1_list['STAGE1TOTUSER'];
     	//getting stage count ends
@@ -164,7 +170,7 @@ if (($num['ucount']) == 1) {
     	$downline=2;
     	$marketer_count=1;
     	$ref_under_user=array();
-    	for ($i=1; $i <=100 ; $i++) { 
+    	for ($i=1; $i <=30 ; $i++) { 
     		$marketer_count *=$downline;
     		if($ref_count <=$marketer_count){
     			$ref_stage=$i;
@@ -191,35 +197,7 @@ if (($num['ucount']) == 1) {
     	
     	stage21_ref = '$ref' OR stage22_ref = '$ref' OR stage23_ref = '$ref' OR 
     	stage24_ref = '$ref' OR stage25_ref = '$ref' OR stage26_ref = '$ref' OR stage27_ref = '$ref' OR stage28_ref = '$ref' OR stage29_ref = '$ref' OR
-    	stage30_ref = '$ref' OR
-    	
-    	stage31_ref = '$ref' OR stage32_ref = '$ref' OR stage33_ref = '$ref' OR 
-    	stage34_ref = '$ref' OR stage35_ref = '$ref' OR stage36_ref = '$ref' OR stage37_ref = '$ref' OR stage38_ref = '$ref' OR stage39_ref = '$ref' OR
-    	stage40_ref = '$ref' OR
-    	
-    	stage41_ref = '$ref' OR stage42_ref = '$ref' OR stage43_ref = '$ref' OR 
-    	stage44_ref = '$ref' OR stage45_ref = '$ref' OR stage46_ref = '$ref' OR stage47_ref = '$ref' OR stage48_ref = '$ref' OR stage49_ref = '$ref' OR
-    	stage50_ref = '$ref' OR
-    	
-    	stage51_ref = '$ref' OR stage52_ref = '$ref' OR stage53_ref = '$ref' OR 
-    	stage54_ref = '$ref' OR stage55_ref = '$ref' OR stage56_ref = '$ref' OR stage57_ref = '$ref' OR stage58_ref = '$ref' OR stage59_ref = '$ref' OR
-    	stage60_ref = '$ref' OR
-    	
-    	stage61_ref = '$ref' OR stage62_ref = '$ref' OR stage63_ref = '$ref' OR 
-    	stage64_ref = '$ref' OR stage65_ref = '$ref' OR stage66_ref = '$ref' OR stage67_ref = '$ref' OR stage68_ref = '$ref' OR stage69_ref = '$ref' OR
-    	stage70_ref = '$ref' OR
-    	
-    	stage71_ref = '$ref' OR stage72_ref = '$ref' OR stage73_ref = '$ref' OR 
-    	stage74_ref = '$ref' OR stage75_ref = '$ref' OR stage76_ref = '$ref' OR stage77_ref = '$ref' OR stage78_ref = '$ref' OR stage79_ref = '$ref' OR
-    	stage80_ref = '$ref' OR
-    	
-    	stage81_ref = '$ref' OR stage82_ref = '$ref' OR stage83_ref = '$ref' OR 
-    	stage84_ref = '$ref' OR stage85_ref = '$ref' OR stage86_ref = '$ref' OR stage87_ref = '$ref' OR stage88_ref = '$ref' OR stage89_ref = '$ref' OR
-    	stage90_ref = '$ref' OR
-    	
-    	stage91_ref = '$ref' OR stage92_ref = '$ref' OR stage93_ref = '$ref' OR 
-    	stage94_ref = '$ref' OR stage95_ref = '$ref' OR stage96_ref = '$ref' OR stage97_ref = '$ref' OR stage98_ref = '$ref' OR stage99_ref = '$ref' OR
-    	stage100_ref = '$ref'
+    	stage30_ref = '$ref' 
     	
     	) ORDER BY bid asc");
     	while ($all_list = mysqli_fetch_array($all_user_query, MYSQL_ASSOC)) {
@@ -452,90 +430,11 @@ if (($num['ucount']) == 1) {
     		$p29up=$package_info['stage29_up'];
     		$p30up=$package_info['stage30_up'];
     
-    		$p31up=$package_info['stage31_up'];
-    		$p32up=$package_info['stage32_up'];
-    		$p33up=$package_info['stage33_up'];
-    		$p34up=$package_info['stage34_up'];
-    		$p35up=$package_info['stage35_up'];
-    		$p36up=$package_info['stage36_up'];
-    		$p37up=$package_info['stage37_up'];
-    		$p38up=$package_info['stage38_up'];
-    		$p39up=$package_info['stage39_up'];
-    		$p40up=$package_info['stage40_up'];
-    
-    		$p41up=$package_info['stage41_up'];
-    		$p42up=$package_info['stage42_up'];
-    		$p43up=$package_info['stage43_up'];
-    		$p44up=$package_info['stage44_up'];
-    		$p45up=$package_info['stage45_up'];
-    		$p46up=$package_info['stage46_up'];
-    		$p47up=$package_info['stage47_up'];
-    		$p48up=$package_info['stage48_up'];
-    		$p49up=$package_info['stage49_up'];
-    		$p50up=$package_info['stage50_up'];
-    
-    
-    		$p51up=$package_info['stage51_up'];
-    		$p52up=$package_info['stage52_up'];
-    		$p53up=$package_info['stage53_up'];
-    		$p54up=$package_info['stage54_up'];
-    		$p55up=$package_info['stage55_up'];
-    		$p56up=$package_info['stage56_up'];
-    		$p57up=$package_info['stage57_up'];
-    		$p58up=$package_info['stage58_up'];
-    		$p59up=$package_info['stage59_up'];
-    		$p60up=$package_info['stage60_up'];
-    
-    
-    		$p61up=$package_info['stage61_up'];
-    		$p62up=$package_info['stage62_up'];
-    		$p63up=$package_info['stage63_up'];
-    		$p64up=$package_info['stage64_up'];
-    		$p65up=$package_info['stage65_up'];
-    		$p66up=$package_info['stage66_up'];
-    		$p67up=$package_info['stage67_up'];
-    		$p68up=$package_info['stage68_up'];
-    		$p69up=$package_info['stage69_up'];
-    		$p70up=$package_info['stage70_up'];
-    
-    
-    		$p71up=$package_info['stage71_up'];
-    		$p72up=$package_info['stage72_up'];
-    		$p73up=$package_info['stage73_up'];
-    		$p74up=$package_info['stage74_up'];
-    		$p75up=$package_info['stage75_up'];
-    		$p76up=$package_info['stage76_up'];
-    		$p77up=$package_info['stage77_up'];
-    		$p78up=$package_info['stage78_up'];
-    		$p79up=$package_info['stage79_up'];
-    		$p80up=$package_info['stage80_up'];
-    
-    
-    		$p81up=$package_info['stage81_up'];
-    		$p82up=$package_info['stage82_up'];
-    		$p83up=$package_info['stage83_up'];
-    		$p84up=$package_info['stage84_up'];
-    		$p85up=$package_info['stage85_up'];
-    		$p86up=$package_info['stage86_up'];
-    		$p87up=$package_info['stage87_up'];
-    		$p88up=$package_info['stage88_up'];
-    		$p89up=$package_info['stage89_up'];
-    		$p90up=$package_info['stage90_up'];
-    
-    		$p91up=$package_info['stage91_up'];
-    		$p92up=$package_info['stage92_up'];
-    		$p93up=$package_info['stage93_up'];
-    		$p94up=$package_info['stage94_up'];
-    		$p95up=$package_info['stage95_up'];
-    		$p96up=$package_info['stage96_up'];
-    		$p97up=$package_info['stage97_up'];
-    		$p98up=$package_info['stage98_up'];
-    		$p99up=$package_info['stage99_up'];
-    		$p100up=$package_info['stage100_up'];
+    		
     
     		 $indirect_ref_amt=$package_info['indirect_ref_amt'];
     		
-    			for($i=1;$i<=100;$i++){
+    			for($i=1;$i<=30;$i++){
     
     				$pup="p".$i."up";
     				// echo $current_tot;
@@ -695,84 +594,9 @@ if (($num['ucount']) == 1) {
 			$p29up=$package_info['stage29_up'];
 			$p30up=$package_info['stage30_up'];
 
-			$p31up=$package_info['stage31_up'];
-			$p32up=$package_info['stage32_up'];
-			$p33up=$package_info['stage33_up'];
-			$p34up=$package_info['stage34_up'];
-			$p35up=$package_info['stage35_up'];
-			$p36up=$package_info['stage36_up'];
-			$p37up=$package_info['stage37_up'];
-			$p38up=$package_info['stage38_up'];
-			$p39up=$package_info['stage39_up'];
-			$p40up=$package_info['stage40_up'];
-
-			$p41up=$package_info['stage41_up'];
-			$p42up=$package_info['stage42_up'];
-			$p43up=$package_info['stage43_up'];
-			$p44up=$package_info['stage44_up'];
-			$p45up=$package_info['stage45_up'];
-			$p46up=$package_info['stage46_up'];
-			$p47up=$package_info['stage47_up'];
-			$p48up=$package_info['stage48_up'];
-			$p49up=$package_info['stage49_up'];
-			$p50up=$package_info['stage50_up'];
-
-			$p51up=$package_info['stage51_up'];
-			$p52up=$package_info['stage52_up'];
-			$p53up=$package_info['stage53_up'];
-			$p54up=$package_info['stage54_up'];
-			$p55up=$package_info['stage55_up'];
-			$p56up=$package_info['stage56_up'];
-			$p57up=$package_info['stage57_up'];
-			$p58up=$package_info['stage58_up'];
-			$p59up=$package_info['stage59_up'];
-			$p60up=$package_info['stage60_up'];
-
-			$p61up=$package_info['stage61_up'];
-			$p62up=$package_info['stage62_up'];
-			$p63up=$package_info['stage63_up'];
-			$p64up=$package_info['stage64_up'];
-			$p65up=$package_info['stage65_up'];
-			$p66up=$package_info['stage66_up'];
-			$p67up=$package_info['stage67_up'];
-			$p68up=$package_info['stage68_up'];
-			$p69up=$package_info['stage69_up'];
-			$p70up=$package_info['stage70_up'];
-
-			$p71up=$package_info['stage71_up'];
-			$p72up=$package_info['stage72_up'];
-			$p73up=$package_info['stage73_up'];
-			$p74up=$package_info['stage74_up'];
-			$p75up=$package_info['stage75_up'];
-			$p76up=$package_info['stage76_up'];
-			$p77up=$package_info['stage77_up'];
-			$p78up=$package_info['stage78_up'];
-			$p79up=$package_info['stage79_up'];
-			$p80up=$package_info['stage80_up'];
-
-			$p81up=$package_info['stage81_up'];
-			$p82up=$package_info['stage82_up'];
-			$p83up=$package_info['stage83_up'];
-			$p84up=$package_info['stage84_up'];
-			$p85up=$package_info['stage85_up'];
-			$p86up=$package_info['stage86_up'];
-			$p87up=$package_info['stage87_up'];
-			$p88up=$package_info['stage88_up'];
-			$p89up=$package_info['stage89_up'];
-			$p90up=$package_info['stage90_up'];
-
-			$p91up=$package_info['stage91_up'];
-			$p92up=$package_info['stage92_up'];
-			$p93up=$package_info['stage93_up'];
-			$p94up=$package_info['stage94_up'];
-			$p95up=$package_info['stage95_up'];
-			$p96up=$package_info['stage96_up'];
-			$p97up=$package_info['stage97_up'];
-			$p98up=$package_info['stage98_up'];
-			$p99up=$package_info['stage99_up'];
-			$p100up=$package_info['stage100_up'];
 			
-			for($i=1;$i<=100;$i++){
+			
+			for($i=1;$i<=30;$i++){
 
 				$pup="p".$i."up";
 
