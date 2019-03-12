@@ -55,7 +55,7 @@
                                                 <p><b>User Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="user_name " name="user_name" class="form-control" placeholder="Enter username" [(ngModel)]="model.user_name" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
                                                     </div>
                                                     <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -64,14 +64,14 @@
                                                 <p><b>Password</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.password" #password="ngModel" required>
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
                                                     </div>
                                                     <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" [disabled]="!voucher.form.valid" class="btn btn-primary">Pay</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                                                <button type="button" [disabled]="!voucher.form.valid" class="btn btn-primary" (click)="paytoactivate()">Pay</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
                                             </div>
                                         </form>
                                     </div>
@@ -101,7 +101,8 @@
                                         <td><a href="#">website</a></td>
                                         <td>
                                             <span *ngIf="data.package_status==2">Renew</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price)" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Yet to activate</span></a>
+                                            <span *ngIf="data.package_status==0">Active</span>
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id)" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Yet to activate</span></a>
                                         </td>
                                     </tr>
                                 </tbody>

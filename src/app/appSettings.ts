@@ -3,6 +3,7 @@ export class AppSettings{
 	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
 	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
 	public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
+	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
 
 	//public static API_BASE = "http://erp.buyperungayam.com/api";
 

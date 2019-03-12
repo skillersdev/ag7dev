@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2019 at 08:48 PM
+-- Generation Time: Mar 11, 2019 at 03:18 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -61,11 +61,11 @@ CREATE TABLE `affiliateuser` (
 
 INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
 (1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 1, '0000-00-00', 'India', 9823, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
+(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 1, '0000-00-00', 'India', 9970, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
 (3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, '0', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 1),
 (4, 'remo', '1234567', 'remo', '', '', 'referr', 0, '0', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, '0', 0, '2019-03-01', '', 0, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', 0, '2019-03-01', '', 0, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', 'snunadr', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', 0, '2019-03-01', '', 0, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0);
 
 -- --------------------------------------------------------
@@ -183,13 +183,6 @@ CREATE TABLE `affiliate_bonus_history` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `affiliate_bonus_history`
---
-
-INSERT INTO `affiliate_bonus_history` (`bid`, `user_id`, `referedby`, `stage1_ref`, `stage2_ref`, `stage3_ref`, `stage4_ref`, `stage5_ref`, `stage6_ref`, `stage7_ref`, `stage8_ref`, `stage9_ref`, `stage10_ref`, `stage11_ref`, `stage12_ref`, `stage13_ref`, `stage14_ref`, `stage15_ref`, `stage16_ref`, `stage17_ref`, `stage18_ref`, `stage19_ref`, `stage20_ref`, `stage21_ref`, `stage22_ref`, `stage23_ref`, `stage24_ref`, `stage25_ref`, `stage26_ref`, `stage27_ref`, `stage28_ref`, `stage29_ref`, `stage30_ref`, `stage31_ref`, `stage32_ref`, `stage33_ref`, `stage34_ref`, `stage35_ref`, `stage36_ref`, `stage37_ref`, `stage38_ref`, `stage39_ref`, `stage40_ref`, `stage41_ref`, `stage42_ref`, `stage43_ref`, `stage44_ref`, `stage45_ref`, `stage46_ref`, `stage47_ref`, `stage48_ref`, `stage49_ref`, `stage50_ref`, `stage51_ref`, `stage52_ref`, `stage53_ref`, `stage54_ref`, `stage55_ref`, `stage56_ref`, `stage57_ref`, `stage58_ref`, `stage59_ref`, `stage60_ref`, `stage61_ref`, `stage62_ref`, `stage63_ref`, `stage64_ref`, `stage65_ref`, `stage66_ref`, `stage67_ref`, `stage68_ref`, `stage69_ref`, `stage70_ref`, `stage71_ref`, `stage72_ref`, `stage73_ref`, `stage74_ref`, `stage75_ref`, `stage76_ref`, `stage77_ref`, `stage78_ref`, `stage79_ref`, `stage80_ref`, `stage81_ref`, `stage82_ref`, `stage83_ref`, `stage84_ref`, `stage85_ref`, `stage86_ref`, `stage87_ref`, `stage88_ref`, `stage89_ref`, `stage90_ref`, `stage91_ref`, `stage92_ref`, `stage93_ref`, `stage94_ref`, `stage95_ref`, `stage96_ref`, `stage97_ref`, `stage98_ref`, `stage99_ref`, `stage100_ref`, `ref_stage`, `amt`, `created`) VALUES
-(1, '6', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '3', '2019-03-11 18:30:00');
-
 -- --------------------------------------------------------
 
 --
@@ -267,9 +260,7 @@ CREATE TABLE `earning_settings` (
 --
 
 INSERT INTO `earning_settings` (`id`, `package_id`, `downline_count`, `earning_amt`, `created_at`, `updated_at`, `active`) VALUES
-(1, 1, 12, 123, '2019-03-11 00:00:00', '0000-00-00 00:00:00', 0),
-(2, 9, 67, 78, '0000-00-00 00:00:00', '2019-03-12 02:31:19', 0),
-(3, 3, 23, 33, '0000-00-00 00:00:00', '2019-03-12 02:32:42', 1);
+(1, 1, 12, 1, '2019-03-11 00:00:00', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -522,19 +513,6 @@ CREATE TABLE `paypalpayments` (
   `pckid` double NOT NULL,
   `gateway` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `paypalpayments`
---
-
-INSERT INTO `paypalpayments` (`id`, `orderid`, `transacid`, `price`, `currency`, `date`, `cod`, `renew`, `renacid`, `pckid`, `gateway`) VALUES
-(1, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(2, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(3, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(4, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(5, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(6, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
-(7, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B');
 
 -- --------------------------------------------------------
 
@@ -10870,7 +10848,7 @@ CREATE TABLE `user_vs_packages` (
 
 INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`, `activated_date`, `renew_date`) VALUES
 (1, 3, 1, 1, NULL, NULL),
-(2, 6, 2, 0, NULL, NULL),
+(2, 6, 2, 1, NULL, NULL),
 (3, 7, 1, 1, NULL, NULL),
 (4, 7, 1, 2, NULL, NULL);
 
@@ -11008,7 +10986,7 @@ ALTER TABLE `affiliateuser`
 -- AUTO_INCREMENT for table `affiliate_bonus_history`
 --
 ALTER TABLE `affiliate_bonus_history`
-  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `bid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `affliate_stage_bonus`
@@ -11038,7 +11016,7 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT for table `earning_settings`
 --
 ALTER TABLE `earning_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `emailtext`
@@ -11080,7 +11058,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `paypalpayments`
 --
 ALTER TABLE `paypalpayments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transfer_history`

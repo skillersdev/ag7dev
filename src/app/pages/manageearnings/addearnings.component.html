@@ -26,7 +26,7 @@
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.package_id" #package_id="ngModel" name="package_id" required>
-                                            <option [ngValue]="select">select website</option>    
+                                            <option [ngValue]="select">select package</option>    
                                             <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
                                         </select>
                                         </div>

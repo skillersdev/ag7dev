@@ -218,6 +218,10 @@ class Package_controller extends CI_Controller {
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
 
+                    $package['pck_user_id'] = $value['user_id'];
+                    $package['pck_id'] = $value['package_id'];
+                    $package['pck_user_master_id'] = $value['id'];
+
                     $package['Delivered_date'] = ($value['activated_date']!=NULL)?date_format($value['activated_date'],"Y/m/d"):'--';
 
                     $package['renew_date'] = ($value['renew_date']!=NULL)?date_format($value['renew_date'],"Y/m/d"):'--';

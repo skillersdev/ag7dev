@@ -1,20 +1,26 @@
 <?php
-include_once ("z_db.php");
-if($_POST['username'])
+include_once ("db.php");
+$array =  $_POST['model'];
+
+$tes1=json_decode($array);
+
+$array1 = json_decode(json_encode($tes1), True);
+
+if($array1[0]['username'])
 {
 	 $status = "OK"; //initial status
 	 $msg="";
-	$username=$_POST['username']; //fetching details through post method pay via voucher account details
-	$password = $_POST['password'];
+	$username=$array1[0]['username']; //fetching details through post method pay via voucher account details
+	$password = $array1[0]['password'];
 	 //$pay_amt= $_POST['pay_amt']; /* This line commented by karthikeyan */
-	$userid=$_POST['userid']; //PACKAGE user id
-    $packid=$_POST['pack_d']; //pACKAGE id
-    $pack_vs_users_id=$_POST['pack_id_user']; //pACKAGE id
+	$userid=$array1[0]['userid']; //PACKAGE user id
+    $packid=$array1[0]['pack_id']; //pACKAGE id
+    $pack_vs_users_id=$array1[0]['pack_id_user']; //pACKAGE id
 
 	
 	// Retrieve username and password from database according to user's input, preventing sql injection
 	/* End condition for checking amount was removed by karthikeyan in below query */
-	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '" .$_POST['username']. "') AND (password = '" .$_POST['password']. "') AND (active = 1)";
+	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '" .$array1[0]['username']. "') AND (password = '" .$array1[0]['password']. "') AND (active = 1)";
 	if ($stmt = mysqli_query($con, $query)) {
 		
 		/* execute query */
@@ -86,11 +92,11 @@ if (($num['ucount']) == 1) {
             
             //code added by sridhar
 
-            $ref_query11=mysqli_query($con,"SELECT  * FROM affiliateuser WHERE username='$tomake'");
+            $ref_query11=mysqli_query($con,"SELECT  * FROM affiliateuser WHERE id='$tomake'");
             $ref_list11=$ref_query11->fetch_array(MYSQLI_ASSOC);
             $ref=$ref_list11['referedby'];
             $userid=$tomake;
-            
+           // print_r($ref_list11);die;
             //signup bonus
             $tot_marketer_earning=$ref_list11['tamount'];
             $sbonus_query="SELECT sbonus FROM packages where id = $package"; //fetching no of days validity from package table from databse
