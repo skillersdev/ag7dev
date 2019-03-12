@@ -43,6 +43,15 @@
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
                                             </div>
+                                            <div class="">
+                                                <p><b>Website Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="website_name" name="website_name" class="form-control" placeholder="Enter website" [(ngModel)]="model.website_name" #website_name="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="website_name.valid || website_name.pristine" class="text-danger">website is required</span>
+                                                </div>
+                                            </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary">Pay with paypal</button>
                                                 <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">Pay with voucher</button>
