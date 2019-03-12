@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { CommonService} from '../../services/common.service';
 import { AppSettings } from '../../appSettings';
+declare var $ :any;
 
 @Component({
   selector: 'app-packageinfo',
@@ -30,6 +31,7 @@ export class PackageinfoComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.packagelist=resultdata.result; 
         });
+        $('.page-loader-wrapper').fadeOut();
   }
   pay_via_voucher()
   {
@@ -66,9 +68,14 @@ export class PackageinfoComponent implements OnInit {
     this.details_array.push(this.payment_data);
      this.CommonService.insertdata(this.packageActivateApiUrl,this.details_array)
     .subscribe(payment_status =>{
+      
       if(payment_status=='success')
       {
         swal('','Package activated successfully','success');
+        this.payment_data='';
+        this.model='';
+      }else{
+        swal('','Error while on activate package','error');
         this.payment_data='';
         this.model='';
       }
