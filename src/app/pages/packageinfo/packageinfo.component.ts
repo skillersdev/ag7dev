@@ -13,6 +13,7 @@ declare var $ :any;
 export class PackageinfoComponent implements OnInit {
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
+  CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
   packagelist:Array<Object>;
   model:any={};
@@ -31,7 +32,7 @@ export class PackageinfoComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.packagelist=resultdata.result; 
         });
-        $('.page-loader-wrapper').fadeOut();
+        
   }
   pay_via_voucher()
   {
@@ -63,21 +64,43 @@ export class PackageinfoComponent implements OnInit {
     this.payment_details=false;
     //this.voucher.reset(); 
   }
+  checkwebsite()
+  {
+    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
+    .subscribe(package_det =>{
+      if(package_det.exist==1)
+      {
+        swal('',package_det.message,'error')
+        this.model.website='';
+      }  
+    });
+  }
   paytoactivate()
   { 
+    this.payment_data.website = this.model.website;
     this.details_array.push(this.payment_data);
      this.CommonService.insertdata(this.packageActivateApiUrl,this.details_array)
-    .subscribe(payment_status =>{
-      
-      if(payment_status=='success')
+    .subscribe(payment_status =>{ 
+      if(payment_status.status=='success')
       {
         swal('','Package activated successfully','success');
         this.payment_data='';
         this.model='';
-      }else{
+      }
+      else if(payment_status.status=='user_error'){
+        swal('','Not a valid user or invalid user data','error');        
+        //this.payment_data='';
+        //this.model='';
+      }
+      else if(payment_status.status=='fail'){
+        swal('','user has less amount on his own','error');
+       // this.payment_data=''; 
+        //this.model='';
+      }
+      else{
         swal('','Error while on activate package','error');
-        this.payment_data='';
-        this.model='';
+       // this.payment_data=''; 
+        //this.model='';
       }
      
     });

@@ -26,9 +26,11 @@ export class DashboardComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  packagelist:Array<Object>;
   model: any = {};
   alldata: any = {};
   transferdata: any = {};
+  getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   checkpackageisactivated:string = AppSettings.packageisactivated; 
   checkUserCreditRestApiUrl:string = AppSettings.checkusercredit;
@@ -50,6 +52,11 @@ export class DashboardComponent implements OnInit {
            this.router.navigate(['./packageinfo']); 
           }
       });
+       let user_id = localStorage.getItem('currentUserID');
+      this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+          .subscribe(resultdata =>{   
+            this.packagelist=resultdata.result; 
+          });
     //  setTimeout(() => {
     //     this.router.navigate(['./packageinfo']);
     // }, 5000); 

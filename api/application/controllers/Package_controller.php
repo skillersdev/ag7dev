@@ -215,6 +215,7 @@ class Package_controller extends CI_Controller {
                     $package['package_name'] = $in_array_1[0]['package_name'];
 
                     $package['package_price'] = $in_array_1[0]['package_price'];
+                    $package['website']= $value['website'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
 
@@ -378,5 +379,22 @@ class Package_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
-  
+
+    public function check_website_exists()
+    {
+      $model = json_decode($this->input->post('model',FALSE));
+
+      $response['exist']=0;
+      $website = trim($model->website);
+      
+      $res=$this->db->select("website")->like('website',$website)->get('user_vs_packages');
+
+      if(count($res->result_array())>0)
+      {         
+        $response['exist']=1;
+        $response['message']="website already exists";
+      }
+      echo json_encode($response,JSON_UNESCAPED_SLASHES);
+      die();
+    }
 }

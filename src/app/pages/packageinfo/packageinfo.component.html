@@ -47,9 +47,10 @@
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website_name" name="website_name" class="form-control" placeholder="Enter website" [(ngModel)]="model.website_name" #website_name="ngModel" required>
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                        (blur)="checkwebsite()" required>
                                                     </div>
-                                                    <span [hidden]="website_name.valid || website_name.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

@@ -56,7 +56,7 @@ export class AddearningsComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/manageearnings']);
   }
   addearnigs()
   {
@@ -67,7 +67,7 @@ export class AddearningsComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/manageuser']); 
+        this.router.navigate(['/manageearnings']); 
     });
   }
   checkUserexist(event:any)

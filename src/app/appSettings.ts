@@ -47,7 +47,7 @@ export class AppSettings{
 
     /*Package vs User*/
     public static getPackageInfo= AppSettings.API_BASE+"/getpackagelist/";		
-    
+    public static checkwebsitedetail= AppSettings.API_BASE+"/checkwebsiteexists";		
 
     /**/
 

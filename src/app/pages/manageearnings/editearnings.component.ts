@@ -70,7 +70,7 @@ export class EditearningsComponent implements OnInit {
     this.loginService.logout();
   }
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/manageearnings']);
   }
   editearnings(id:any)
   {

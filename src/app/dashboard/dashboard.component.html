@@ -197,13 +197,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Website package</td>
-                                            <td><span class="label bg-green">Active</span></td>
-                                            <td><a href="">View Webpage</a></td>
-                                            
+                                        <tr *ngFor="let data of packagelist let idx=index">
+                                            <td>{{idx+1}}</td>
+                                            <td>{{data.package_name}}</td>
+                                            <td *ngIf="data.status=='Active'">
+                                                <span class="label bg-green">Active</span>
+                                            </td>
+                                            <td *ngIf="data.status!='Active'">
+                                                <span class="label bg-red">Not Active</span>
+                                            </td>
+                                            <td><a href="">{{data.website}}</a></td>
                                         </tr>
+                                        <!-- 
                                        
                                         <tr>
                                             <td>2</td>
@@ -213,7 +218,7 @@
                                             </td>
                                             <td><a href="">View Webpage</a></td>
                                             
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
