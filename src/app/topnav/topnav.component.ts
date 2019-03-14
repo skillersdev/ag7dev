@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../services/common.service';
+import { Routes,Router,RouterModule}  from '@angular/router';
+import { AppSettings } from '../appSettings';
 
 declare var jquery:any;
 declare var $ :any;
@@ -8,19 +11,26 @@ declare var $ :any;
   styleUrls: ['./topnav.component.css']
 })
 export class TopnavComponent implements OnInit {
-
-  constructor() {
+  checkpackageisactivated:string = AppSettings.packageisactivated;
+  constructor(private CommonService: CommonService,private router: Router) {
 
   
    }
 
   ngOnInit() {
 
-     
-
-     
-    
-
+     let id=localStorage.getItem('currentUserID');
+     let user_type=localStorage.getItem('currentUsergroup');
+     if(user_type!='1')
+     {
+      this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
+         if(data.exist==2)
+          {
+           
+           this.router.navigate(['./packageinfo']); 
+          }
+      });
+    }
 
   }
 

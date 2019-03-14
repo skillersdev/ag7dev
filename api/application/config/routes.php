@@ -97,6 +97,9 @@ $route['deleteearnings/(:num)'] = 'Package_controller/deleteearnings/$1';
 /*Package vs info API*/
 $route['getpackagelist/(:num)'] = 'Package_controller/get_package_info/$1';
 $route['checkwebsiteexists'] = 'Package_controller/check_website_exists';
+
+$route['getpaymentdetails/(:num)'] = 'Paymentinfo_controller/get_payment_details/$1';
+$route['getallpaymentdetails'] = 'Paymentinfo_controller/get_all_payment_details'; 
 ?>
 
 

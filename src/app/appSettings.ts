@@ -55,4 +55,9 @@ export class AppSettings{
 	public static Userlogin=AppSettings.API_BASE + "/checkuser"; //common api
 	public static passwordreset=AppSettings.API_BASE + "/resetpassword"; //common api 
 	//User Login Api Ends here
+
+
+	//paypalpayments/
+	public static getpaymentdet= AppSettings.API_BASE+"/getpaymentdetails/";
+	public static getallpaymentdet= AppSettings.API_BASE+"/getallpaymentdetails";
 }

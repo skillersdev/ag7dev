@@ -20,10 +20,8 @@ export class SidemenuComponent implements OnInit {
   ngOnInit() {
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.model.id = localStorage.getItem('currentUserID');
-     this.CommonService.editdata(this.FetchuserRestApiUrl,this.model.id)
-        .subscribe(resultdata =>{   
-          this.model = resultdata.result;
-        });
+    this.model.email = localStorage.getItem('email');
+    this.model.name = localStorage.getItem('user_fname');
   }
 
     logout(){

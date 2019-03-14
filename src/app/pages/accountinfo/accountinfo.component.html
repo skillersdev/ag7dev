@@ -21,49 +21,16 @@
                                     <th>Paid On</th>
                                     <th>Payment By</th>
                                     <th>Package Taken</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Cheque</td>
-                                    <td>1000</td>
-                                    <td>12/01/2019</td>
-                                    <td>Manager</td>
-                                    <td>Success</td>
-                                    <td>In-progress</td>
-                                    <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Cash</td>
-                                    <td>2000</td>
-                                    <td>12/01/2019</td>
-                                    <td>Manager</td>
-                                    <td>Success</td>
-                                    <td>In-progress</td>
-                                    <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Cheque</td>
-                                    <td>1000</td>
-                                    <td>12/01/2019</td>
-                                    <td>Manager</td>
-                                    <td>Success</td>
-                                    <td>In-progress</td>
-                                    <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
+                                <tr *ngFor="let data of paymentlist let i=index">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{data.payment_type}}</td>
+                                    <td>{{data.paid_amount}}</td>
+                                    <td>{{data.paid_on}}</td>
+                                    <td>{{data.payment_by}}</td>
+                                    <td>{{data.package_taken}}</td>
                                 </tr>
                             </tbody>
                         </table>

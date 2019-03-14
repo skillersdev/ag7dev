@@ -8,6 +8,7 @@ import { SidemenuComponent } from '../../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
+import { CommonService } from '../../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -17,7 +18,7 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./managepayments.component.css']
 })
 export class ManagepaymentsComponent implements OnInit {
-
+  getpackagelistRestApiUrl:string = AppSettings.getallpaymentdet;  
   currentUser:any;
   currentUserID:any;
   currentUsername:any;
@@ -26,7 +27,8 @@ export class ManagepaymentsComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { 
+  paymentdetails:Array<Object>;
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -35,6 +37,14 @@ export class ManagepaymentsComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
       this.loginService.viewsActivate();
+      this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.paymentdetails= packagedet.result;
+            } 
+             
+        });
   }
 
   logout(){

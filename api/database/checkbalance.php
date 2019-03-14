@@ -588,8 +588,8 @@ if (($num['ucount']) == 1) {
 			$headers .= 'From: <no-reply@'.$wlink.'>' . "\r\n";
 			$to=$email;
 			$subject="New COD Order SignUp | Bingo ";
-			$message=$emailtext;
-			mail($to,$subject,$message,$headers);
+			// $message=$emailtext;
+			// mail($to,$subject,$message,$headers);
 						
 			$response['status']="success";
             echo json_encode($response,JSON_UNESCAPED_SLASHES);

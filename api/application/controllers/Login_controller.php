@@ -47,7 +47,7 @@ class Login_controller extends CI_Controller {
       /*Check whether user has been activated any packages or not*/
       
       $pack_det=$this->db->select("*")->where(['user_id'=>$id])->where("(package_status='0' OR package_status='2')")->get('user_vs_packages'); 
-
+      //print_r(count($pack_det->result_array()));die;
       if(count($pack_det->result_array())==0)
       {
         $response['result']=$pack_det->result_array();
@@ -55,7 +55,7 @@ class Login_controller extends CI_Controller {
         $response['message']="No package activated";
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
-      }
+      } 
 
       /**/
   }
