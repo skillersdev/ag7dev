@@ -10,6 +10,28 @@ export class AppSettings{
 
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
 	public static getDashboardinfo = AppSettings.API_BASE + "/dashboard/dashboardinfo"; //dashboard api
+
+	/*Category add*/
+	public static Addcategory = AppSettings.API_BASE + "/addcategory";
+	public static getcategoryDetail = AppSettings.API_BASE + "/getcategory"; //common api
+
+	public static editcategory= AppSettings.API_BASE+"/editcategory/";
+	public static updatecategory= AppSettings.API_BASE+"/updatecategory";
+	public static deletecategory= AppSettings.API_BASE+"/deletecategory/";
+
+	/**/
+
+	/*Subcategory*/
+	public static Addsubcategory = AppSettings.API_BASE + "/addsubcategory";
+	public static getsubcategoryDetail = AppSettings.API_BASE + "/getsubcategory"; //common api
+	public static editsubcategory= AppSettings.API_BASE+"/editsubcategory/";
+	public static updatesubcategory= AppSettings.API_BASE+"/updatesubcategory";
+	public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
+	public static getsubcategorybyid=AppSettings.API_BASE+"/fetchsubcategory";
+	
+	/**/
+
+
 	
 	/**Package APi list**/
 	public static Addpackage = AppSettings.API_BASE + "/addpackage"; //common api
@@ -47,7 +69,8 @@ export class AppSettings{
 
     /*Package vs User*/
     public static getPackageInfo= AppSettings.API_BASE+"/getpackagelist/";		
-    public static checkwebsitedetail= AppSettings.API_BASE+"/checkwebsiteexists";		
+    public static checkwebsitedetail= AppSettings.API_BASE+"/checkwebsiteexists";
+    public static getwebsitelist = AppSettings.API_BASE+"/getwebsitelist";		
 
     /**/
 
@@ -60,4 +83,11 @@ export class AppSettings{
 	//paypalpayments/
 	public static getpaymentdet= AppSettings.API_BASE+"/getpaymentdetails/";
 	public static getallpaymentdet= AppSettings.API_BASE+"/getallpaymentdetails";
+
+	//Product rest api
+	public static addproduct= AppSettings.API_BASE+"/addproduct";
+	public static productlist= AppSettings.API_BASE+"/productlist";
+	public static editproduct= AppSettings.API_BASE+"/editproduct/";
+	public static updateproduct= AppSettings.API_BASE+"/updateproduct";
+	public static deleteproduct= AppSettings.API_BASE+"/deleteproduct/"; 
 }

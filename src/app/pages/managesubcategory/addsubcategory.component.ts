@@ -8,6 +8,8 @@ import { SidemenuComponent } from '../../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
+
+import { CommonService } from '../../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -26,7 +28,10 @@ export class AddsubcategoryComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { 
+  getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
+  insertsubcategoryRestApiUrl:string = AppSettings.Addsubcategory; 
+  categorylist:Array<Object>;
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -34,6 +39,14 @@ export class AddsubcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+      this.CommonService.getdata(this.getcategorylistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.categorylist=det.result;
+            } 
+             
+        });
   }
   
   logout(){
@@ -42,6 +55,18 @@ export class AddsubcategoryComponent implements OnInit {
   back(){
     this.router.navigate(['/managesubcategory']);
   }
-
+  addsubcategorylist()
+  {
+    this.model.created_by=localStorage.getItem('currentUserID');
+    this.CommonService.insertdata(this.insertsubcategoryRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+        this.router.navigate(['/managesubcategory']); 
+    });
+  }
 
 }

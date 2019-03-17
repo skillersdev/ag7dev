@@ -21,6 +21,7 @@ import { ManageproductsComponent } from './pages/manageproducts/manageproducts.c
 import { AddcategoryComponent } from './pages/managecategory/addcategory.component';
 import { AddsubcategoryComponent } from './pages/managesubcategory/addsubcategory.component';
 import { AddproductComponent } from './pages/manageproducts/addproduct.component';
+import { EditproductComponent } from './pages/manageproducts/editproduct/editproduct.component';
 import { ManageserviceComponent } from './pages/manageservice/manageservice.component';
 import { ManagecontactsComponent } from './pages/managecontacts/managecontacts.component';
 import { AddserviceComponent } from './pages/manageservice/addservice.component';
@@ -33,6 +34,8 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { ManageearningsComponent } from './pages/manageearnings/manageearnings.component';
 import { AddearningsComponent } from './pages/manageearnings/addearnings.component';
 import { EditearningsComponent } from './pages/manageearnings/editearnings.component';
+import {EditcategoryComponent} from './pages/managecategory/editcategory.component';
+import {EditsubcategoryComponent} from './pages/managesubcategory/editsubcategory.component';
 
 const routes: Routes = [
   {
@@ -161,6 +164,19 @@ const routes: Routes = [
     path:'editearnings/:id',
     component:EditearningsComponent
   },
+  {
+    path:'editcategory/:id',
+    component:EditcategoryComponent
+  },
+  {
+    path:'editsubcategory/:id',
+    component:EditsubcategoryComponent
+  },
+  {
+    path:'editproduct/:id',
+    component:EditproductComponent
+  },
+  
   
 
 ];

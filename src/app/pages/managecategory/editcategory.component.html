@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Category
+                            Edit Category
                         </h2>
                     </div>
                     <div class="body">
@@ -22,7 +22,7 @@
                                         <form class="" #addcategory="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Category Name</b></p>
+                                                <b>Category Name</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter Category" [(ngModel)]="model.category_name" name="category_name" #category_name="ngModel" required>
@@ -31,7 +31,7 @@
                                                 </div>
                                             </div>
                                         </div>       
-                                        <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addcategorylist()">Add Catgeory</button>&nbsp;
+                                        <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatecategorylist()">Update Catgeory</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </form>
                                     </div>

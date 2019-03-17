@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Routes,Router,RouterModule}  from '@angular/router';
+import { Routes,Router,RouterModule,ActivatedRoute}  from '@angular/router';
 
 import { AppComponent } from '../../app.component';
 
@@ -15,9 +15,9 @@ import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-manageuser',
-  templateUrl: './addcategory.component.html'
+  templateUrl: './editcategory.component.html'
 })
-export class AddcategoryComponent implements OnInit {
+export class EditcategoryComponent implements OnInit {
 
   currentUser:any;
   currentUserID:any;
@@ -25,10 +25,14 @@ export class AddcategoryComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  private sub: any;
   model: any = {};
   alldata: any = {};
+  id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
-  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
+  FetchcategoryRestApiUrl: string = AppSettings.editcategory; 
+  updatecategoryRestApiUrl: string = AppSettings.updatecategory; 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -36,6 +40,10 @@ export class AddcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+      this.sub = this.route.params.subscribe(params => {
+        this.id = +params['id']; // (+) converts string 'id' to a number
+        this.editcategory(this.id);        
+        });
   }
   
   logout(){
@@ -52,6 +60,27 @@ export class AddcategoryComponent implements OnInit {
           package_det.status
         )
         this.router.navigate(['/managecategory']); 
+    });
+  }
+  editcategory(id:any)
+  {
+    this.CommonService.editdata(this.FetchcategoryRestApiUrl,id)
+        .subscribe(resultdata =>{   
+          this.model = resultdata.result;         
+        });
+  }
+  updatecategorylist()
+  {
+     //this.model.is_deleted=1
+     this.CommonService.updatedata(this.updatecategoryRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.router.navigate(['/managecategory']);
+        
     });
   }
   back(){

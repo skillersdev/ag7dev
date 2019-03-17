@@ -67,6 +67,24 @@ $route['updatepackage'] = 'Package_controller/updatepackage';
 $route['deletepackage/(:num)'] = 'Package_controller/deletepackage/$1';
 /*************** */
 
+/***Add catgeory****/
+$route['addcategory'] = 'Category_controller/add_category';
+$route['getcategory'] = 'Category_controller/get_category_list';
+$route['editcategory/(:num)'] = 'Category_controller/editcategory/$1';
+$route['updatecategory'] = 'Category_controller/updatecategory';
+$route['deletecategory/(:num)']='Category_controller/deletecategory/$1';
+/*******/
+
+/***Add subcatgeory****/
+$route['addsubcategory'] = 'Category_controller/add_subcategory';
+$route['getsubcategory'] = 'Category_controller/get_sub_category_list';
+$route['editsubcategory/(:num)'] = 'Category_controller/editsubcategory/$1';
+$route['updatesubcategory'] = 'Category_controller/updatesubcategory';
+$route['deletesubcategory/(:num)']='Category_controller/deletesubcategory/$1';
+$route['fetchsubcategory/(:num)']='Category_controller/getsubcategorybyid/$1';
+/*******/
+
+
 /*User API */
 $route['adduser'] = 'User_controller/add_user_master';
 $route['getuserslist'] = 'User_controller/get_users_detail';
@@ -97,9 +115,18 @@ $route['deleteearnings/(:num)'] = 'Package_controller/deleteearnings/$1';
 /*Package vs info API*/
 $route['getpackagelist/(:num)'] = 'Package_controller/get_package_info/$1';
 $route['checkwebsiteexists'] = 'Package_controller/check_website_exists';
+$route['getwebsitelist']= 'Package_controller/get_website_list';
 
 $route['getpaymentdetails/(:num)'] = 'Paymentinfo_controller/get_payment_details/$1';
 $route['getallpaymentdetails'] = 'Paymentinfo_controller/get_all_payment_details'; 
+
+/*Product Add*/
+$route['addproduct'] = 'Product_controller/addproduct';
+$route['productlist']= 'Product_controller/productlist';
+$route['editproduct/(:num)']='Product_controller/editproduct/$1';
+$route['updateproduct']= 'Product_controller/updateproduct';
+$route['deleteproduct/(:num)'] = 'Product_controller/deleteproduct/$1';
+
 ?>
 
 

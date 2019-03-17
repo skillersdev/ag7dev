@@ -28,42 +28,18 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Product 1</td>
-                                      <td>Category 1</td>
-                                      <td>Sample website</td>
-                                      <td>100 $</td>
-                                      <td>14/02/19</td>
+                                  <tr *ngFor="let data of product_det let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.product_name}}</td>
+                                      <td>{{data.category_name}}</td>
+                                      <td>{{data.website}}</td>
+                                      <td>{{data.price}}</td>
+                                      <td>{{data.created_date}}</td>
                                       <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
+                                         <a href="javascript:void(0);" (click)="editproduct(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deleteproduct(data.id)"><i class="material-icons">delete</i></a>
                                     </td>                                      
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Product 2</td>
-                                    <td>Category 1</td>
-                                    <td>Sample website</td>
-                                    <td>10 $</td>
-                                    <td>14/02/19</td> 
-                                    <td>
-                                      <a href="#"><i class="material-icons">edit</i></a>
-                                      <a href="#"><i class="material-icons">delete</i></a>
-                                  </td>                                     
-                                </tr>
-                                <tr>
-                                  <th scope="row">1</th>
-                                  <td>Product 3</td>
-                                  <td>Category 1</td>
-                                  <td>website 123</td>
-                                  <td>20 $</td>
-                                  <td>14/02/19</td> 
-                                  <td>
-                                    <a href="#"><i class="material-icons">edit</i></a>
-                                    <a href="#"><i class="material-icons">delete</i></a>
-                                </td>                                     
-                              </tr>
+                                  </tr> 
                               </tbody>
                           </table>
                           </div>

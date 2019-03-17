@@ -22,46 +22,25 @@
                                   <tr>
                                       <th>#</th>
                                       <th>CATEGORY NAME</th>
-                                      <th>CATEGORY NAME</th>
+                                      <th>SUB CATEGORY NAME</th>
                                       <th>CREATED DATE</th>
                                       <th>CREATED BY</th>
                                       <th>ACTION</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Category 1</td>
-                                      <td>Sub Category 1</td>
-                                      <td>14/02/19</td>
-                                      <td>admin</td>
+                                  <tr *ngFor="let data of sub_categorylist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.category_name}}</td>
+                                      <td>{{data.sub_category_name}}</td>
+                                      <td>{{data.created_date}}</td>
+                                      <td>{{data.created_by}}</td>
                                       <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
+                                        <a href="javascript:void(0);" (click)="editsubcategory(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deletesubcategory(data.id)"><i class="material-icons">delete</i></a>
                                     </td>
                                   </tr>
-                                  <tr>
-                                      <th scope="row">2</th>
-                                      <td>Category 2</td>
-                                      <td>Sub Category 2</td>
-                                      <td>14/02/19</td>
-                                      <td>admin</td>
-                                      <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                  </tr>                                  
-                                  <tr>
-                                      <th scope="row">3</th>
-                                      <td>Category 2</td>
-                                      <td>Sub Category 3</td>
-                                      <td>15/02/19</td>
-                                      <td>admin</td>
-                                      <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                  </tr>
+                                  
                               </tbody>
                           </table>
                           </div>

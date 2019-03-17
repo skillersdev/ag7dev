@@ -1,0 +1,118 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Edit Product
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        <!-- <h2 class="font-bold col-teal">
+                                            Add Product
+                                        </h2> -->
+                                    </div>
+                                    <div class="body">
+                                        <form #adddproduct="ngForm">
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Category</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                         <select class="form-control show-tick" [(ngModel)]="model.category_id" #category_id="ngModel" name="category_id" (change)="getsubcategory($event.target.value)" required>
+                                                            <option [ngValue]="select">select category</option>    
+                                                            <option *ngFor="let model of categorylist" value="{{model.id}}">{{model.category_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="category_id.valid || category_id.pristine" class="text-danger">Category is required</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                                <div class="col-md-6">
+                                                    <p><b>SubCategory</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick" [(ngModel)]="model.sub_category_id" #sub_category_id="ngModel" name="sub_category_id" required>
+                                                            <option [ngValue]="select">select subcategory</option>    
+                                                            <option *ngFor="let model of subcategorylist" value="{{model.id}}">{{model.sub_category_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="sub_category_id.valid || sub_category_id.pristine" class="text-danger">sub Category is required</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>     
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Prodcut Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter Product" [(ngModel)]="model.product_name" #product_name="ngModel" name="product_name" required>
+                                                    </div>
+                                                    <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product is required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Prodcut Price</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" class="form-control" [(ngModel)]="model.price" #price="ngModel" name="price" required>     
+                                                    </div>
+                                                     <span [hidden]="price.valid || price.pristine" class="text-danger">Price is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Currency Type</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.currency" #currency="ngModel" name="currency" required>
+                                                            <option value="select">select website</option>
+                                                            <option value="dollar">$(Dollar)</option>
+                                                            <option value="rs">Rupees</option>
+                                                            <option value="euro">Euro</option>
+                                                        </select>
+                                                         <span [hidden]="currency.valid || currency.pristine" class="text-danger">Currency is required</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                         
+                                        </div>      
+                                                                    
+                                        <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateproduct()">Update Product</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

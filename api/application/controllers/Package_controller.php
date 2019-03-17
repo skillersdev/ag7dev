@@ -397,4 +397,50 @@ class Package_controller extends CI_Controller {
       echo json_encode($response,JSON_UNESCAPED_SLASHES);
       die();
     }
+
+    public function get_website_list()
+    {
+       $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $package=array();
+         $model = json_decode($this->input->post('model',FALSE));
+         if($model->usertype==1)
+         {
+            $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website!='' ");
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+
+                foreach ($in_array as $key => $value) 
+                {
+                    $package['website'] = $value['website'];                    
+                    array_push($result,$package);
+                }
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+         }
+         else{
+            $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website!='' AND user_id='".$model->userid."' ");
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+
+                foreach ($in_array as $key => $value) 
+                {
+                    $package['website'] = $value['website'];                    
+                    array_push($result,$package);
+                }
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+         }
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
 }

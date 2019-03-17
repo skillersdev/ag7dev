@@ -25,36 +25,17 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>CATEGORY 1</td>
-                                      <td>14/02/19</td>
-                                      <td>admin</td>
+                                  <tr *ngFor="let data of categorylist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.category_name}}</td>
+                                      <td>{{data.created_date}}</td>
+                                      <td>{{data.created_by}}</td>
                                       <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
+                                        <a href="javascript:void(0);" (click)="editcategory(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deletecategory(data.id)"><i class="material-icons">delete</i></a>
                                     </td>
                                   </tr>
-                                  <tr>
-                                      <th scope="row">2</th>
-                                      <td>CATEGORY 2</td>
-                                      <td>14/02/19</td>
-                                      <td>admin</td>
-                                      <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                  </tr>                                  
-                                  <tr>
-                                      <th scope="row">3</th>
-                                      <td>CATEGORY 3</td>
-                                      <td>15/02/19</td>
-                                      <td>admin</td>
-                                      <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
-                                    </td>
-                                  </tr>
+                                 
                               </tbody>
                           </table>
                           </div>
