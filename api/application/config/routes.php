@@ -127,6 +127,11 @@ $route['editproduct/(:num)']='Product_controller/editproduct/$1';
 $route['updateproduct']= 'Product_controller/updateproduct';
 $route['deleteproduct/(:num)'] = 'Product_controller/deleteproduct/$1';
 
+$route['addservice'] = 'Service_controller/addservice';
+$route['getservice'] = 'Service_controller/get_all_service_details';
+$route['editservice/(:num)']='Service_controller/editservice/$1';
+$route['updateservice'] = 'Service_controller/updateservice';
+$route['deleteservice/(:num)']= 'Service_controller/deleteservice/$1';
 ?>
 
 

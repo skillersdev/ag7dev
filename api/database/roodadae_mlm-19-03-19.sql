@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2019 at 08:03 PM
+-- Generation Time: Mar 14, 2019 at 08:55 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -219,28 +219,6 @@ CREATE TABLE `banners` (
   `bannerhtml` text NOT NULL,
   `banneractive` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category_master`
---
-
-CREATE TABLE `category_master` (
-  `id` int(15) NOT NULL,
-  `category_name` varchar(155) NOT NULL,
-  `created_by` int(15) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(15) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `category_master`
---
-
-INSERT INTO `category_master` (`id`, `category_name`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'category updated', 2, '2019-03-15 17:57:50', 0),
-(2, 'catgeory 2', 2, '2019-03-16 08:16:55', 1);
 
 -- --------------------------------------------------------
 
@@ -565,55 +543,6 @@ INSERT INTO `paypalpayments` (`id`, `orderid`, `transacid`, `price`, `currency`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_master`
---
-
-CREATE TABLE `product_master` (
-  `id` int(15) NOT NULL,
-  `product_name` varchar(155) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `sub_category_id` int(11) NOT NULL,
-  `website` varchar(155) NOT NULL,
-  `price` double NOT NULL,
-  `currency` varchar(155) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `product_master`
---
-
-INSERT INTO `product_master` (`id`, `product_name`, `category_id`, `sub_category_id`, `website`, `price`, `currency`, `created_date`, `is_deleted`) VALUES
-(1, 'product1', 1, 1, '0', 12, '0', '2019-03-17 09:43:03', 1),
-(2, 'product2', 1, 1, 'kakak', 12, 'rs', '2019-03-17 10:50:53', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `services`
---
-
-CREATE TABLE `services` (
-  `id` int(15) NOT NULL,
-  `title` varchar(155) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `website` varchar(155) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(15) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `services`
---
-
-INSERT INTO `services` (`id`, `title`, `description`, `website`, `created_date`, `is_deleted`) VALUES
-(1, 'service toitleqwq212', 'fulmarggggggggg', 'tyree', '2019-03-19 18:16:56', 1),
-(2, 'titke', 'asdadas', 'kakak', '2019-03-19 18:59:44', 0);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `settings`
 --
 
@@ -643,28 +572,6 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`email`, `sno`, `wlink`, `invoicedetails`, `coname`, `fblink`, `twitterlink`, `paypalid`, `maintain`, `alwdpayment`, `minmobile`, `maxmobile`, `footer`, `header`, `payzaid`, `solidtrustid`, `solidbutton`) VALUES
 ('sridhar.subit@gmail.com', 0, 'http://www.roodabatoz.com', 'Malaysia', 'Roodabatoz ', 'https://www.facebook.com/ROODAB1/', 'https://twitter.com/@roodabatoz', 'admin@arycapital.com.my', 0, 3, 0, 0, 'Powered By - Roodabatoz', 'Roodabatoz', 'Payza', 'Solid', 'Button');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sub_category_master`
---
-
-CREATE TABLE `sub_category_master` (
-  `id` int(5) NOT NULL,
-  `sub_category_name` varchar(155) NOT NULL,
-  `category_id` int(15) NOT NULL,
-  `created_by` int(15) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(15) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sub_category_master`
---
-
-INSERT INTO `sub_category_master` (`id`, `sub_category_name`, `category_id`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'subcategory1123', 1, 2, '2019-03-16 16:57:24', 0);
 
 -- --------------------------------------------------------
 
@@ -11002,12 +10909,6 @@ ALTER TABLE `banners`
   ADD PRIMARY KEY (`bannerid`);
 
 --
--- Indexes for table `category_master`
---
-ALTER TABLE `category_master`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
@@ -11069,29 +10970,10 @@ ALTER TABLE `paypalpayments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product_master`
---
-ALTER TABLE `product_master`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `services`
---
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`sno`);
-
---
--- Indexes for table `sub_category_master`
---
-ALTER TABLE `sub_category_master`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `transfer_history`
@@ -11144,12 +11026,6 @@ ALTER TABLE `affliate_stage_bonus`
 --
 ALTER TABLE `banners`
   MODIFY `bannerid` double NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `category_master`
---
-ALTER TABLE `category_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -11210,24 +11086,6 @@ ALTER TABLE `payments`
 --
 ALTER TABLE `paypalpayments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `product_master`
---
-ALTER TABLE `product_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `services`
---
-ALTER TABLE `services`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `sub_category_master`
---
-ALTER TABLE `sub_category_master`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `transfer_history`
