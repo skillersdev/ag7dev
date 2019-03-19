@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { AppSettings } from '../../appSettings';
+
+import { CommonService } from '../../services/common.service';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -12,16 +16,57 @@ declare var $ :any;
 })
 export class ManageserviceComponent implements OnInit {
 
-  constructor(private loginService: LoginService,private router: Router) { }
-
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
+  getservicelistRestApiUrl:string = AppSettings.getservicelist;
+  DeleteserviceRestApiUrl:string = AppSettings.deleteservicedata;
+  service_det:Array<Object>;
   ngOnInit() {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
+      this.CommonService.getdata(this.getservicelistRestApiUrl)
+    .subscribe(det =>{
+        if(det.result!=""){ this.service_det=det.result;}
+    });
   }
 
   navigateAddservice()
   {
     this.router.navigate(['/addservice']);
   }
+  editservice(id:any)
+  {
+    this.router.navigate(['/editservice',id]);
+  }
+   deleteservice(id:any)
+  {
+    let idx = id;
+      let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        self.removeservice(idx);
+        swal(
+          'Deleted!',
+          'Service Data has been deleted.',
+          'success'
+        )
+      },function(dismiss) {
+    });
+  }
+ removeservice(idx:any)
+ {
+   this.CommonService.deletedata(this.DeleteserviceRestApiUrl,idx)
+        .subscribe(resultdata =>{
+          this.CommonService.getdata(this.getservicelistRestApiUrl)
+            .subscribe(det =>{
+                if(det.result!=""){ this.service_det=det.result;}
+            })
+      });
+ }
 
 }

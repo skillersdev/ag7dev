@@ -36,6 +36,8 @@ import { AddearningsComponent } from './pages/manageearnings/addearnings.compone
 import { EditearningsComponent } from './pages/manageearnings/editearnings.component';
 import {EditcategoryComponent} from './pages/managecategory/editcategory.component';
 import {EditsubcategoryComponent} from './pages/managesubcategory/editsubcategory.component';
+import {EditserviceComponent} from './pages/manageservice/editservice.component';
+
 
 const routes: Routes = [
   {
@@ -176,6 +178,11 @@ const routes: Routes = [
     path:'editproduct/:id',
     component:EditproductComponent
   },
+  {
+     path:'editservice/:id',
+    component:EditserviceComponent
+    
+  }
   
   
 

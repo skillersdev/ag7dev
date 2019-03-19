@@ -21,41 +21,21 @@
                                       <th>#</th>
                                       <th>WEBSITE</th>
                                       <th>TITLE</th>
-                                      <th>SERVICE</th>
+                                      <th>Created Date</th>
                                       <th>ACTION</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Website | Price-USD3</td>
-                                      <td>Manage service</td>
-                                      <td>Service1</td>
+                                  <tr *ngFor="let data of service_det let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.website}}</td>
+                                      <td>{{data.title}}</td>
+                                      <td>{{data.created_date}}</td>
                                       <td>
-                                        <a href="#"><i class="material-icons">edit</i></a>
-                                        <a href="#"><i class="material-icons">delete</i></a>
+                                         <a href="javascript:void(0);" (click)="editservice(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deleteservice(data.id)"><i class="material-icons">delete</i></a>
                                     </td>                                      
                                   </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Service1 website</td>
-                                    <td>product srvice</td>
-                                    <td>Service2</td>
-                                    <td>
-                                      <a href="#"><i class="material-icons">edit</i></a>
-                                      <a href="#"><i class="material-icons">delete</i></a>
-                                  </td>                                     
-                                </tr>
-                                <tr>
-                                  <th scope="row">2</th>
-                                    <td>Service2 website</td>
-                                    <td>product srvice</td>
-                                    <td>Service3</td> 
-                                  <td>
-                                    <a href="#"><i class="material-icons">edit</i></a>
-                                    <a href="#"><i class="material-icons">delete</i></a>
-                                </td>                                     
-                              </tr>
                               </tbody>
                           </table>
                           </div>

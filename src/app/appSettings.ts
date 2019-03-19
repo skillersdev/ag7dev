@@ -90,4 +90,11 @@ export class AppSettings{
 	public static editproduct= AppSettings.API_BASE+"/editproduct/";
 	public static updateproduct= AppSettings.API_BASE+"/updateproduct";
 	public static deleteproduct= AppSettings.API_BASE+"/deleteproduct/"; 
+
+
+	public static insertservice= AppSettings.API_BASE+"/addservice"; 
+	public static getservicelist= AppSettings.API_BASE+"/getservice"; 
+	public static getservicebyid= AppSettings.API_BASE+"/editservice/";
+	public static updateservice= AppSettings.API_BASE+"/updateservice";
+	public static deleteservicedata= AppSettings.API_BASE+"/deleteservice/";
 }
