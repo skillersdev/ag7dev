@@ -44,6 +44,10 @@ import { EditearningsComponent } from './pages/manageearnings/editearnings.compo
 import { EditcategoryComponent } from './pages/managecategory/editcategory.component';
 import { EditsubcategoryComponent } from './pages/managesubcategory/editsubcategory.component';
 import { EditserviceComponent } from './pages/manageservice/editservice.component';
+import { ManageadvertisementComponent } from './pages/manageadvertisement/manageadvertisement.component';
+
+import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertisement.component';
+import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +87,10 @@ import { EditserviceComponent } from './pages/manageservice/editservice.componen
     EditcategoryComponent,
     EditsubcategoryComponent,
     EditproductComponent,
-    EditserviceComponent
+    EditserviceComponent,
+    ManageadvertisementComponent,
+    AddadvertisementComponent,
+    EditadvertisementComponent
   ],
   imports: [
     BrowserModule,                          

@@ -97,7 +97,12 @@ $route['checkusercredit'] = 'User_controller/check_user_credit';
 $route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
 $route['updatepassword'] = 'User_controller/updatepassword';
 $route['uploadimage'] = 'User_controller/uploadimage';
-
+$route['uploadAdvfile']= 'User_controller/uploadAdvfile';
+$route['addadvertisment']= 'User_controller/add_user_ad';
+$route['getadvertisment']= 'User_controller/get_user_ad';
+$route['editad/(:num)'] = 'User_controller/editad/$1'; 
+$route['updatead']= 'User_controller/updatead';
+$route['deletead/(:num)'] = 'User_controller/deletead/$1';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/

@@ -37,7 +37,9 @@ import { EditearningsComponent } from './pages/manageearnings/editearnings.compo
 import {EditcategoryComponent} from './pages/managecategory/editcategory.component';
 import {EditsubcategoryComponent} from './pages/managesubcategory/editsubcategory.component';
 import {EditserviceComponent} from './pages/manageservice/editservice.component';
-
+import {ManageadvertisementComponent} from './pages/manageadvertisement/manageadvertisement.component';
+import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertisement.component';
+import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
 
 const routes: Routes = [
   {
@@ -182,6 +184,20 @@ const routes: Routes = [
      path:'editservice/:id',
     component:EditserviceComponent
     
+  },
+  {
+     path:'editad/:id',
+    component:EditadvertisementComponent
+    
+  },
+  
+  {
+     path:'manageads',
+      component:ManageadvertisementComponent    
+  },
+  {
+     path:'addads',
+     component:AddadvertisementComponent    
   }
   
   

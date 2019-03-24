@@ -1,0 +1,114 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Advertisemets
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addcategory="ngForm">
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Ad type</b></p>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <select class="form-control show-tick" [(ngModel)]="model.ad_type" #ad_type="ngModel" name="ad_type" (change)="gettype()" required> 
+                                                            <option value="select">Select Ad type</option>
+                                                            <option value="1">Image</option>
+                                                            <option value="2">Video</option>
+                                                        </select>
+                                                    </div>      
+                                                </div>
+                                            </div>                                            
+                                        </div> 
+                                        <div class="row clearfix" *ngIf="model.formEnable==1">
+                                            <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="url.valid || url.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p><b>Preview</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <img src="{{image_url}}{{model.uploads}}" style="width:100%;">  
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <p><b>Upload Image</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <input type="file" name="adimage" (change)=fileEvent($event) required>    
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <div class="row clearfix" *ngIf="model.formEnable==2">
+                                            <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="url.valid || url.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <p><b>Preview</b></p>
+                                                <div class="">
+                                                   <div class="form-line">
+                                                     <video width="320" height="200" controls>
+                                                      <source src="{{image_url}}{{model.uploads}}" type="video/mp4">
+                                                    </video> 
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><b>Upload Video</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                         <input type="file" name="adimage" (change)=fileEvent($event) required>   
+                                                    </div>
+                                                    <span>*Accepts MP4 type video only</span>
+                                                </div>
+                                            </div>  
+                                        </div>      
+                                        <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatead()">Update Advertisement</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

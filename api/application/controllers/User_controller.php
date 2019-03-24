@@ -32,6 +32,21 @@ class User_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
+    public function add_user_ad(){
+       $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $response['message']="Ad inserted successfully";
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        
+        $this->db->insert('user_advertisements', $model);
+       
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    
   
   public function get_users_detail()
   {
@@ -269,7 +284,43 @@ class User_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
-    
+    public function uploadAdvfile()
+    {
+        $path = 'user_adv_uploads/';
+        $Response=[];
+       
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+            // print_r($ext);die;
+            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png" ||$ext==".mp4" )
+            {
+
+              $generatedName = md5($_FILES['file']['tmp_name']).$ext;
+
+              $filePath = $path.$generatedName;
+              $product_image=$filePath;
+           
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+              {
+                $Response['status']="success"; 
+                $Response['data']=$product_image;
+              }
+            }
+            else 
+            {
+                $Response['status']="fail"; 
+                $Response['data']="Not a valid format";
+            }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
     public function uploadimage()
     {
        $path = 'user_profile/';
@@ -358,6 +409,118 @@ class User_controller extends CI_Controller {
 
     echo json_encode($response,JSON_UNESCAPED_SLASHES);
     die();
+    }
+     public function get_user_ad()
+    {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
+        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where('is_deleted','0')->get('user_advertisements');
+
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+            $data =$user_det->result_array();  
+
+            $value['user_id']=$data[0]['username']; 
+
+            $result[]=array('id'=>$value['id'],'website'=>$value['url'],
+              'created_at'=>$value['created_at'],'created_by'=>$value['user_id']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+
+    }
+    public function editad($id)
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+            $res=$this->db->query("select * from ".$this->db->dbprefix('user_advertisements')." where id='".$id."'");
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+                $result=$in_array[0];
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    public function updatead() {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+       // print_r($model);die();
+
+        if (isset($model)) {
+        
+            $this->db->where('id',$model->id);
+            $result=$this->db->update('user_advertisements', $model);
+          //  pr($this->db->last_query());die();
+
+            if ($result) {
+                $response['message']="Advertisements has been updated successfully";
+            }
+            else
+            {
+                 $response['status']="failure";
+            $response['message']="Advertisements has not been updated fully";
+            }
+            
+
+        } else {
+            $response['status']="failure";
+            $response['message']="Choose Advertisements and continue!!..";
+        }
+
+        die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+     public function deletead($id)
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        
+
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('user_advertisements')." where id='".$id."' ");
+        
+        if($res_chk->num_rows()>0){
+
+            $data=array('is_deleted'=>'1');
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+
+            $response['status']="success";
+            $response['message']="Advertisement record has been deleted successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
     }
   
 }

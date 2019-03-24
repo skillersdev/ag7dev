@@ -53,7 +53,12 @@ export class AppSettings{
 	public static packageisactivated=AppSettings.API_BASE+"/checkpackage/";
 	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";
 	public static uploadprofileimage=AppSettings.API_BASE+"/uploadimage";
-
+	public static uploadAdvfile=AppSettings.API_BASE+"/uploadAdvfile";
+	public static Adduseradvertisement=AppSettings.API_BASE+"/addadvertisment";
+	public static getadDetail=AppSettings.API_BASE+"/getadvertisment";
+	public static editad= AppSettings.API_BASE+"/editad/";
+	public static updatead= AppSettings.API_BASE+"/updatead";
+	public static deletead=AppSettings.API_BASE+"/deletead/";	
 	/* */
 
 	/**Earnings*/
