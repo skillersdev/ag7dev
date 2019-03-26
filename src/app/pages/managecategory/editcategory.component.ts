@@ -29,9 +29,11 @@ export class EditcategoryComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   id:number;
+  websitelist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchcategoryRestApiUrl: string = AppSettings.editcategory; 
-  updatecategoryRestApiUrl: string = AppSettings.updatecategory; 
+  updatecategoryRestApiUrl: string = AppSettings.updatecategory;
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -40,6 +42,13 @@ export class EditcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+       this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+       this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        }); 
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.editcategory(this.id);        

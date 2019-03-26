@@ -48,6 +48,28 @@ class Category_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
+  public function getcategorybyweb()
+  {
+    $model = json_decode($this->input->post('model',FALSE));
+
+     $res=$this->db->select("*")->like('url',$model->url)->where(['is_deleted'=>'0'])->get('category_master'); 
+     $result=array();
+      if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+            
+            $result[]=array('id'=>$value['id'],'category_name'=>$value['category_name'],
+              'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No Category records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
   public function get_category_list()
   {
      $this->output->set_content_type('application/json');

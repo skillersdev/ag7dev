@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2019 at 07:06 PM
+-- Generation Time: Mar 26, 2019 at 06:29 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -229,6 +229,7 @@ CREATE TABLE `banners` (
 CREATE TABLE `category_master` (
   `id` int(15) NOT NULL,
   `category_name` varchar(155) NOT NULL,
+  `url` varchar(155) NOT NULL,
   `created_by` int(15) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` int(15) NOT NULL DEFAULT '0'
@@ -238,9 +239,10 @@ CREATE TABLE `category_master` (
 -- Dumping data for table `category_master`
 --
 
-INSERT INTO `category_master` (`id`, `category_name`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'category updated', 2, '2019-03-15 17:57:50', 0),
-(2, 'catgeory 2', 2, '2019-03-16 08:16:55', 1);
+INSERT INTO `category_master` (`id`, `category_name`, `url`, `created_by`, `created_date`, `is_deleted`) VALUES
+(1, 'category updated', '', 2, '2019-03-15 17:57:50', 0),
+(2, 'catgeory 2', '', 2, '2019-03-16 08:16:55', 1),
+(3, 'web category', 'tyree', 2, '2019-03-26 02:54:21', 0);
 
 -- --------------------------------------------------------
 
@@ -653,6 +655,7 @@ INSERT INTO `settings` (`email`, `sno`, `wlink`, `invoicedetails`, `coname`, `fb
 CREATE TABLE `sub_category_master` (
   `id` int(5) NOT NULL,
   `sub_category_name` varchar(155) NOT NULL,
+  `url` varchar(155) NOT NULL,
   `category_id` int(15) NOT NULL,
   `created_by` int(15) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -663,8 +666,9 @@ CREATE TABLE `sub_category_master` (
 -- Dumping data for table `sub_category_master`
 --
 
-INSERT INTO `sub_category_master` (`id`, `sub_category_name`, `category_id`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'subcategory1123', 1, 2, '2019-03-16 16:57:24', 0);
+INSERT INTO `sub_category_master` (`id`, `sub_category_name`, `url`, `category_id`, `created_by`, `created_date`, `is_deleted`) VALUES
+(1, 'subcategory1123', '', 1, 2, '2019-03-16 16:57:24', 0),
+(2, 'web sub', 'tyree', 3, 2, '2019-03-26 03:24:58', 0);
 
 -- --------------------------------------------------------
 
@@ -2908,7 +2912,7 @@ ALTER TABLE `banners`
 -- AUTO_INCREMENT for table `category_master`
 --
 ALTER TABLE `category_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -2986,7 +2990,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `sub_category_master`
 --
 ALTER TABLE `sub_category_master`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transfer_history`

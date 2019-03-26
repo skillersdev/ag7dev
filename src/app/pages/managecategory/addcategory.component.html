@@ -22,6 +22,18 @@
                                         <form class="" #addcategory="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="url.valid || url.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <p><b>Category Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
@@ -30,6 +42,7 @@
                                                       <span [hidden]="category_name.valid || category_name.pristine" class="text-danger">Category Name is required</span>
                                                 </div>
                                             </div>
+
                                         </div>       
                                         <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addcategorylist()">Add Catgeory</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>

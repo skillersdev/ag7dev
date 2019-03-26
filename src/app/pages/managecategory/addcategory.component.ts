@@ -27,7 +27,9 @@ export class AddcategoryComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
+  websitelist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -36,6 +38,14 @@ export class AddcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+
+      this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+       this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        }); 
   }
   
   logout(){

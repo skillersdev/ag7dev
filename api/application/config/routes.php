@@ -73,6 +73,7 @@ $route['getcategory'] = 'Category_controller/get_category_list';
 $route['editcategory/(:num)'] = 'Category_controller/editcategory/$1';
 $route['updatecategory'] = 'Category_controller/updatecategory';
 $route['deletecategory/(:num)']='Category_controller/deletecategory/$1';
+$route['checkcategorybyweb']='Category_controller/getcategorybyweb';
 /*******/
 
 /***Add subcatgeory****/

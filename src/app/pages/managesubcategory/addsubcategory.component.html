@@ -19,11 +19,23 @@
                                     <div class="body">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" (change)="getcategorybywebsite($event.target.value)" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="url.valid || url.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <p><b>Category</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.category_id" #category_id="ngModel" name="category_id" required>
-                                                            <option [ngValue]="select">select website</option>    
+                                                        <select class="form-control show-tick" [(ngModel)]="model.category_id" #category_id="ngModel" name="category_id"  required>
+                                                            <option [ngValue]="select">select category</option>    
                                                             <option *ngFor="let model of categorylist" value="{{model.id}}">{{model.category_name}}</option>
                                                         </select>
                                                         <span [hidden]="category_id.valid || category_id.pristine" class="text-danger">Category is required</span>

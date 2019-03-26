@@ -30,10 +30,13 @@ export class EditsubcategoryComponent implements OnInit {
   alldata: any = {};
   id:number;
   categorylist:Array<Object>;
+  websitelist:Array<Object>;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   //insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchsubcategoryRestApiUrl: string = AppSettings.editsubcategory; 
   updatesubcategoryRestApiUrl: string = AppSettings.updatesubcategory; 
+
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -49,6 +52,13 @@ export class EditsubcategoryComponent implements OnInit {
               this.categorylist=det.result;
             } 
              
+        });
+         this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+       this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
         });
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number

@@ -28,8 +28,11 @@ export class AddsubcategoryComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
+  websitelist:Array<Object>;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
-  insertsubcategoryRestApiUrl:string = AppSettings.Addsubcategory; 
+  insertsubcategoryRestApiUrl:string = AppSettings.Addsubcategory;
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
+  getcategorybywebRestApiUrl:string = AppSettings.getcategorybywebsite; 
   categorylist:Array<Object>;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -39,14 +42,22 @@ export class AddsubcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
-      this.CommonService.getdata(this.getcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!="")
-            { 
-              this.categorylist=det.result;
-            } 
+      // this.CommonService.getdata(this.getcategorylistRestApiUrl)
+      //   .subscribe(det =>{
+      //       if(det.result!="")
+      //       { 
+      //         this.categorylist=det.result;
+      //       } 
              
-        });
+      //   });
+
+        this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+       this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        }); 
   }
   
   logout(){
@@ -54,6 +65,15 @@ export class AddsubcategoryComponent implements OnInit {
   }
   back(){
     this.router.navigate(['/managesubcategory']);
+  }
+  getcategorybywebsite(website:any)
+  {
+    
+    this.model.url=website;
+    this.CommonService.checkexistdata(this.getcategorybywebRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+        this.categorylist=package_det.result;
+    });
   }
   addsubcategorylist()
   {
