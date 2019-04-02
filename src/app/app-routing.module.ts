@@ -40,6 +40,7 @@ import {EditserviceComponent} from './pages/manageservice/editservice.component'
 import {ManageadvertisementComponent} from './pages/manageadvertisement/manageadvertisement.component';
 import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertisement.component';
 import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
+import { EditcontactComponent } from './pages/managecontacts/editcontact.component';
 
 const routes: Routes = [
   {
@@ -198,6 +199,11 @@ const routes: Routes = [
   {
      path:'addads',
      component:AddadvertisementComponent    
+  },
+   {
+     path:'editcontact/:id',
+    component:EditcontactComponent
+    
   }
   
   

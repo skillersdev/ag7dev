@@ -26,33 +26,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Contact 1</td>
-                                            <td>website1 preminun</td>
+                                        <tr *ngFor="let data of contactlist let idx=index">
+                                            <th scope="row">{{idx+1}}</th>
+                                            <td>{{data.contact}}</td>
+                                            <td>{{data.website}}</td>
                                             <td>
-                                                <a href="#"><i class="material-icons">edit</i></a>
-                                                <a href="#"><i class="material-icons">delete</i></a>
+                                               <a href="javascript:void(0);" (click)="editcontact(data.id)"><i class="material-icons">edit</i></a>
+                                              <a href="javascript:void(0);" (click)="deletecontact(data.id)"><i class="material-icons">delete</i></a>
                                             </td>                                      
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Contact 2</td>
-                                            <td>website2 preminun</td>
-                                            <td>
-                                            <a href="#"><i class="material-icons">edit</i></a>
-                                            <a href="#"><i class="material-icons">delete</i></a>
-                                        </td>                                        
-                                        </tr>
-                                        <tr>
-                                        <th scope="row">3</th>
-                                            <td>Contact 3</td>
-                                            <td>website3 preminun</td>
-                                            <td>
-                                                <a href="#"><i class="material-icons">edit</i></a>
-                                                <a href="#"><i class="material-icons">delete</i></a>
-                                            </td>                                        
-                                    </tr>
+                                        </tr> 
+                                       
                                     </tbody>
                                 </table>
                             </div>

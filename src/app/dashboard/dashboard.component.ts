@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   packagelist:Array<Object>;
+  package_vs_user_list:Array<Object>;
   model: any = {};
   alldata: any = {};
   transferdata: any = {};
@@ -35,6 +36,8 @@ export class DashboardComponent implements OnInit {
   checkpackageisactivated:string = AppSettings.packageisactivated; 
   checkUserCreditRestApiUrl:string = AppSettings.checkusercredit;
   inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
+  getpackagevsuserApiUrl:string = AppSettings.getPackageNotbuy;
+  insertpackagevsuserApiUrl:string = AppSettings.insertpackagevsuser;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -53,10 +56,16 @@ export class DashboardComponent implements OnInit {
           }
       });
        let user_id = localStorage.getItem('currentUserID');
+       this.model.user_id = user_id;
       this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
           .subscribe(resultdata =>{   
             this.packagelist=resultdata.result; 
           });
+
+      this.CommonService.editdata(this.getpackagevsuserApiUrl,user_id)
+          .subscribe(resultdata =>{   
+            this.package_vs_user_list=resultdata.result; 
+          });    
     //  setTimeout(() => {
     //     this.router.navigate(['./packageinfo']);
     // }, 5000); 
@@ -75,6 +84,19 @@ export class DashboardComponent implements OnInit {
          swal('Oops...','Marketer doesnot exists', 'error');
          this.model.mname='';
       }       
+    });
+  }
+  savepackages()
+  {
+    this.CommonService.insertdata(this.insertpackagevsuserApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         $('#largeModal').modal('toggle');
+        this.router.navigate(['/dashboard']); 
     });
   }
   checkbalance()

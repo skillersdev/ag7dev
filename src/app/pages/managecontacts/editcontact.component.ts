@@ -15,9 +15,9 @@ import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-manageuser',
-  templateUrl: './editadvertisement.component.html'
+  templateUrl: './editcontact.component.html'
 })
-export class EditadvertisementComponent implements OnInit {
+export class EditcontactComponent implements OnInit {
 
   currentUser:any;
   currentUserID:any;
@@ -25,17 +25,16 @@ export class EditadvertisementComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
-  websitelist:Array<Object>;
   private sub: any;
   model: any = {};
   alldata: any = {};
   id:number;
+  websitelist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
-  FetchadRestApiUrl: string = AppSettings.editad; 
-  updateadRestApiUrl: string = AppSettings.updatead; 
-  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
-  uploaduserAdvApi:string=AppSettings.uploadAdvfile;
-  image_url = AppSettings.IMAGE_BASE;
+  FetchcategoryRestApiUrl: string = AppSettings.editcategory; 
+  updatecontactRestApiUrl: string = AppSettings.updatecontact;
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
+  FetchcontactRestApiUrl:string = AppSettings.getcontactlistbyid;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -53,9 +52,8 @@ export class EditadvertisementComponent implements OnInit {
         }); 
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
-        this.editad(this.id);        
+        this.editcontact(this.id);        
         });
-
   }
   
   logout(){
@@ -71,62 +69,32 @@ export class EditadvertisementComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/manageads']); 
+        this.router.navigate(['/managecontacts']); 
     });
   }
-  gettype()
+  editcontact(id:any)
   {
-    if(this.model.ad_type==1){
-      this.model.formEnable=1;
-    }else{
-      this.model.formEnable=2;
-    }
-  }
-  fileEvent($event) {
-    const fileSelected: File = $event.target.files[0];
-    
-    this.CommonService.uploadFile(this.uploaduserAdvApi,fileSelected)
-    .subscribe( (response) => {
-       if(response.status=='success')
-       {
-        this.model.uploads = response.data;
-       }
-        else{
-          swal('',response.data,'Oops!');
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
-        }
-     })
-  }
-  editad(id:any)
-  {
-    this.CommonService.editdata(this.FetchadRestApiUrl,id)
+    this.CommonService.editdata(this.FetchcontactRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result; 
-           if(this.model.ad_type==1){
-              this.model.formEnable=1;
-            }else{
-              this.model.formEnable=2;
-            }        
+          this.model = resultdata.result;         
         });
   }
-  updatead()
+  updatecontactlist()
   {
      //this.model.is_deleted=1
-     delete this.model.formEnable;
-     this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
+     this.CommonService.updatedata(this.updatecontactRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
           package_det.status,
           package_det.message,
           package_det.status
         )
-         this.router.navigate(['/manageads']);
+         this.router.navigate(['/managecategory']);
         
     });
   }
   back(){
-    this.router.navigate(['/manageads']); 
+    this.router.navigate(['/managecategory']);
   }
 
 }

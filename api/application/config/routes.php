@@ -125,6 +125,8 @@ $route['getwebsitelist']= 'Package_controller/get_website_list';
 
 $route['getpaymentdetails/(:num)'] = 'Paymentinfo_controller/get_payment_details/$1';
 $route['getallpaymentdetails'] = 'Paymentinfo_controller/get_all_payment_details'; 
+$route['getpackagenotbuy/(:num)'] = 'Package_controller/get_package_not_buy/$1';
+$route['addpackagevsuser']= 'Package_controller/addpackagevsuser';
 
 /*Product Add*/
 $route['addproduct'] = 'Product_controller/addproduct';
@@ -133,11 +135,14 @@ $route['editproduct/(:num)']='Product_controller/editproduct/$1';
 $route['updateproduct']= 'Product_controller/updateproduct';
 $route['deleteproduct/(:num)'] = 'Product_controller/deleteproduct/$1';
 
-$route['addservice'] = 'Service_controller/addservice';
-$route['getservice'] = 'Service_controller/get_all_service_details';
-$route['editservice/(:num)']='Service_controller/editservice/$1';
+
+/*Contacts master*/
+$route['addcontacts'] = 'Contacts_controller/addcontacts';
+$route['getcontact']= 'Contacts_controller/get_contact_list';
+$route['editcontactbyid/(:num)']='Contacts_controller/editcontact/$1';
+$route['updatecontact']= 'Contacts_controller/updatecontact';
 $route['updateservice'] = 'Service_controller/updateservice';
-$route['deleteservice/(:num)']= 'Service_controller/deleteservice/$1';
+$route['deletecontact/(:num)']= 'Contacts_controller/deletecontact/$1';
 ?>
 
 

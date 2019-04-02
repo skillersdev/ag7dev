@@ -173,6 +173,7 @@
 
                                             </div>
                                             </form>
+                                            
                                             <br/> <br/> <br/>       
                                                 
 
@@ -222,32 +223,48 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">Buy Package</button>
                         </div>
                     </div>
                 </div>
                 <!-- #END# Task Info -->
                
 
-                <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">MODAL - LARGE SIZE</button>
+                
 
                 <!-- Large Size -->
                 
             <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title" id="largeModalLabel">Activate Package</h4>
                         </div>
                         <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                            <form #addpackage="ngForm">
+                           <div class="col-md-6">
+                                    <p><b>Select Package</b></p> 
+                                   <!--  <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" required name="packuser">
+                                        <option value="">Select Package</option>
+                                        <option *ngFor="let item of package_vs_user_list let idx=index" value="{{item.id}}">{{item.package_name}}</option>  
+                                    </select> -->
+                                    <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  required>
+                                        <option [ngValue]="select">select website</option>    
+                                        <option *ngFor="let model of package_vs_user_list" value="{{model.id}}">{{model.package_name}}</option>
+                                    </select>
+                                    <span [hidden]="packuser.valid || packuser.pristine" class="text-danger">Package is required</span>
+                                </div>
+                                <div class="col-md-12">
+                                     <button type="button" class="btn btn-primary" (click)="savepackages()">Buy Package</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                            <br>
+                            <br>
+                            <!-- <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button> -->
                         </div>
                     </div>
                 </div>

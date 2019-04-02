@@ -8,6 +8,7 @@ import { SidemenuComponent } from '../../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
+import { CommonService } from '../../services/common.service';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -26,7 +27,11 @@ export class AddcontactComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
-  constructor(private loginService: LoginService,private router: Router,private http:Http) { 
+  websitelist:Array<Object>;
+
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
+  insertcontactsRestApiUrl: string = AppSettings.Addcontacts; 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
@@ -34,6 +39,13 @@ export class AddcontactComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+       this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+       this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        }); 
   }
   
   logout(){
@@ -43,5 +55,17 @@ export class AddcontactComponent implements OnInit {
     this.router.navigate(['/managecontacts']);
   }
 
-
+  addcontactlist()
+  {
+    //this.model.created_by=localStorage.getItem('currentUserID');
+    this.CommonService.insertdata(this.insertcontactsRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+        this.router.navigate(['/managecontacts']); 
+    });
+  }
 }

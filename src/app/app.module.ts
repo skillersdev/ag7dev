@@ -34,6 +34,7 @@ import { ManageserviceComponent } from './pages/manageservice/manageservice.comp
 import { ManagecontactsComponent } from './pages/managecontacts/managecontacts.component';
 import { AddserviceComponent } from './pages/manageservice/addservice.component';
 import { AddcontactComponent } from './pages/managecontacts/addcontact.component';
+import { EditcontactComponent } from './pages/managecontacts/editcontact.component';
 import { ManagetransferComponent } from './pages/managetransfer/managetransfer.component';
 import { PackageinfoComponent } from './pages/packageinfo/packageinfo.component';
 import { EdituserComponent } from './pages/manageuser/edituser.component';
@@ -90,7 +91,8 @@ import {EditadvertisementComponent} from './pages/manageadvertisement/editadvert
     EditserviceComponent,
     ManageadvertisementComponent,
     AddadvertisementComponent,
-    EditadvertisementComponent
+    EditadvertisementComponent,
+    EditcontactComponent
   ],
   imports: [
     BrowserModule,                          

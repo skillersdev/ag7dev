@@ -30,8 +30,14 @@ export class AppSettings{
 	public static getsubcategorybyid=AppSettings.API_BASE+"/fetchsubcategory";
 	
 	/**/
-
-
+	/*Contacts li*/
+	public static Addcontacts = AppSettings.API_BASE + "/addcontacts";
+	public static getcontactDetail = AppSettings.API_BASE + "/getcontact"; //common 
+	public static getcontactlistbyid= AppSettings.API_BASE+"/editcontactbyid/";
+	public static updatecontact= AppSettings.API_BASE+"/updatecontact";
+	//public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
+	public static deletecontact= AppSettings.API_BASE+"/deletecontact/";
+	
 	
 	/**Package APi list**/
 	public static Addpackage = AppSettings.API_BASE + "/addpackage"; //common api
@@ -77,7 +83,8 @@ export class AppSettings{
     public static getPackageInfo= AppSettings.API_BASE+"/getpackagelist/";		
     public static checkwebsitedetail= AppSettings.API_BASE+"/checkwebsiteexists";
     public static getwebsitelist = AppSettings.API_BASE+"/getwebsitelist";		
-
+    public static getPackageNotbuy= AppSettings.API_BASE+"/getpackagenotbuy/";
+    public static insertpackagevsuser= AppSettings.API_BASE+"/addpackagevsuser";		
     /**/
 
 	//User Login Api Starts here

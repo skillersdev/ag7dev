@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2019 at 09:14 PM
+-- Generation Time: Mar 26, 2019 at 06:29 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -66,8 +66,7 @@ INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `
 (4, 'remo', '1234567', 'remo', '', '', 'referr', 0, '0', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, '0', 1, '2019-03-01', '', 1000, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', 1, '2019-03-01', '', 979, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, '', 0, '2019-04-02', '', 0, '', '', 2, 3, 0, '2199-12-31', 1, 0, 0, 2, 0);
+(7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -258,30 +257,6 @@ CREATE TABLE `contacts` (
   `type` smallint(1) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contacts_master`
---
-
-CREATE TABLE `contacts_master` (
-  `id` int(15) NOT NULL,
-  `website` varchar(155) NOT NULL,
-  `contact` varchar(155) NOT NULL,
-  `fb_link` varchar(155) NOT NULL,
-  `linked_url` varchar(155) NOT NULL,
-  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(15) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `contacts_master`
---
-
-INSERT INTO `contacts_master` (`id`, `website`, `contact`, `fb_link`, `linked_url`, `created_date`, `is_deleted`) VALUES
-(1, 'tyree', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
-(2, 'tyree', 'sdfsdfsfdfsf000', 'sdfsfsf77', 'sfsfsf99', '2019-03-31 01:14:49', 1);
 
 -- --------------------------------------------------------
 
@@ -1263,9 +1238,9 @@ CREATE TABLE `user_advertisements` (
 --
 
 INSERT INTO `user_advertisements` (`id`, `url`, `uploads`, `user_id`, `ad_type`, `feature_of_ad`, `is_deleted`, `created_at`) VALUES
-(1, 'kakak', 'user_adv_uploads/a811936c885451af7e03793703077f63.mp4', '2', '2', 0, 0, '0000-00-00 00:00:00'),
+(1, 'tyree', 'user_adv_uploads/b30c6917030360771aa84dd4c9f739f9.jpg', '2', '1', 0, 0, '0000-00-00 00:00:00'),
 (2, 'kakak', 'user_adv_uploads/d1d5d3a570721b328eef555a4401ec09.mp4', '2', '2', 0, 1, '2019-03-23 01:04:17'),
-(3, 'kakak', 'user_adv_uploads/b64d84960168384d30d67bdbb887dd3a.mp4', '2', '1', 0, 0, '2019-03-24 17:56:36');
+(3, 'tyree', 'user_adv_uploads/b64d84960168384d30d67bdbb887dd3a.mp4', '2', '2', 0, 0, '2019-03-24 17:56:36');
 
 -- --------------------------------------------------------
 
@@ -2758,11 +2733,7 @@ INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`,
 (1, 3, 1, 1, '', NULL, NULL),
 (2, 6, 2, 0, 'tyree', NULL, NULL),
 (3, 7, 1, 0, 'kakak', NULL, NULL),
-(4, 7, 1, 1, '', NULL, NULL),
-(5, 8, 3, 1, '', NULL, NULL),
-(6, 7, 9, 1, '', NULL, NULL),
-(7, 7, 3, 1, '', NULL, NULL),
-(8, 7, 2, 1, '', NULL, NULL);
+(4, 7, 1, 1, '', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -2803,12 +2774,6 @@ ALTER TABLE `category_master`
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `contacts_master`
---
-ALTER TABLE `contacts_master`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2923,7 +2888,7 @@ ALTER TABLE `user_vs_packages`
 -- AUTO_INCREMENT for table `affiliateuser`
 --
 ALTER TABLE `affiliateuser`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `affiliate_bonus_history`
@@ -2954,12 +2919,6 @@ ALTER TABLE `category_master`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `contacts_master`
---
-ALTER TABLE `contacts_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `currency`
@@ -3055,7 +3014,7 @@ ALTER TABLE `user_services`
 -- AUTO_INCREMENT for table `user_vs_packages`
 --
 ALTER TABLE `user_vs_packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
