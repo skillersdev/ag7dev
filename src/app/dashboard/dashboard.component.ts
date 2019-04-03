@@ -7,6 +7,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
 import { CommonService } from '../services/common.service';
+import Swal from 'sweetalert2'
+
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -90,17 +92,24 @@ export class DashboardComponent implements OnInit {
   {
     this.CommonService.insertdata(this.insertpackagevsuserApiUrl,this.model)
     .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
+        Swal.fire({
+        title: 'Package has been alloted',
+        type: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Activate Package?'
+      }).then((result) => {
+        if (result.value) {
+          this.router.navigate(['/packageinfo']);
+        }
+      })
          $('#largeModal').modal('toggle');
-        this.router.navigate(['/dashboard']); 
+        //this.router.navigate(['/dashboard']) ; 
     });
   }
   checkbalance()
-  {
+  {     
     this.alldata.user_id=localStorage.getItem('currentUserID');
     if((this.model.share_amt!='')&&(this.model.share_amt!=undefined))
       {

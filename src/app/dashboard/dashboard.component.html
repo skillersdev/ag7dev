@@ -36,7 +36,20 @@
                             </div>
                         </a>    
                     </div>
-
+                    <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">Buy Package</button> -->
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#largeModal">
+                    <div class="info-box-3 bg-blue hover-zoom-effect">
+                        <div class="icon">
+                            <i class="material-icons">devices</i>
+                        </div>
+                        <div class="content">
+                            <h5>Buy Package</h5>
+                            <!-- <div class="number">2</div> -->
+                        </div>
+                    </div>
+                    </a>
+                </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <a href="javascript:void(0);" [routerLink]="['/managepackages']">
                     <div class="info-box-3 bg-blue hover-zoom-effect">
@@ -223,7 +236,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">Buy Package</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -254,6 +267,8 @@
                                     </select>
                                     <span [hidden]="packuser.valid || packuser.pristine" class="text-danger">Package is required</span>
                                 </div>
+                                <div class="col-md-12">&nbsp;&nbsp;</div>
+                                <div class="col-md-12">&nbsp;&nbsp;</div>
                                 <div class="col-md-12">
                                      <button type="button" class="btn btn-primary" (click)="savepackages()">Buy Package</button>
                             <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
