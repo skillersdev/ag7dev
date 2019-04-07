@@ -126,7 +126,7 @@
                                                 </div>
                                             </div>
                                             <div class="row clearfix">
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     <p><b>Signup for Bonus</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
@@ -135,6 +135,18 @@
                                                         <div *ngIf="sign_up_bonus.errors && (sign_up_bonus.dirty || sign_up_bonus.touched)" class="">
                                                             <span *ngIf="sign_up_bonus.errors.required" class="text-danger">Bonus is required</span>
                                                             <span [hidden]="!sign_up_bonus.hasError('pattern')" class="text-danger"> *Bonus should have numbers only. </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-3">
+                                                    <p><b>Renewal days</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" pattern="[0-9/.]*" name="validity" [(ngModel)]="model.validity" #validity="ngModel" required>
+                                                        </div>
+                                                        <div *ngIf="validity.errors && (validity.dirty || validity.touched)" class="">
+                                                            <span *ngIf="validity.errors.required" class="text-danger">Renewal day is required</span>
+                                                            <span [hidden]="!validity.hasError('pattern')" class="text-danger"> *Renewal should have numbers only. </span>
                                                         </div>
                                                     </div>
                                                 </div>

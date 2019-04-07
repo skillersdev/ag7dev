@@ -86,7 +86,13 @@ export class PackageinfoComponent implements OnInit {
         swal('','Package activated successfully','success');
         this.payment_data='';
         this.model='';
-      }
+         $('#exampleModal').modal('toggle');
+          let user_id = localStorage.getItem('currentUserID');
+          this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+              .subscribe(resultdata =>{   
+                this.packagelist=resultdata.result; 
+              });
+            }
       else if(payment_status.status=='user_error'){
         swal('','Not a valid user or invalid user data','error');        
         //this.payment_data='';

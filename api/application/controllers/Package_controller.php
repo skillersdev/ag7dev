@@ -31,7 +31,7 @@ class Package_controller extends CI_Controller {
         $stage_field_column=implode(',',$stage_column);
         $stage_field_value=implode(',',$stage_column_value);
         //$this->db->insert('package_info', $model);
-        $this->db->query("insert into ".$this->db->dbprefix('packages')." (name,price,currency,details,tax,sbonus,minimum_voucher,maximum_transfer,maximum_register,cdate,active,".$level_field.",".$stage_field_column.",indirect_ref_amt,pay_via_voucher) values (
+        $this->db->query("insert into ".$this->db->dbprefix('packages')." (name,price,currency,details,tax,sbonus,minimum_voucher,maximum_transfer,cdate,active,".$level_field.",".$stage_field_column.",validity,indirect_ref_amt,pay_via_voucher) values (
                 '".$model->package_name."','".$model->package_price."','".$model->currency."',
                 '".$model->package_details."',
                 '".$model->package_tax."',
@@ -42,6 +42,7 @@ class Package_controller extends CI_Controller {
                 '1',
                 ".$level_field_value.",
                 ".$stage_field_value.",
+                ".$model->validity.",
                 '".$model->indirect_ref_amount."','".$model->pay_via_voucher."')");
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -147,7 +148,7 @@ class Package_controller extends CI_Controller {
             
 
               $result=$this->db->query("update ".$this->db->dbprefix('packages')." set  name='".$model->name."',price='".$model->price."',currency='".$model->currency."',
-              details='".$model->details."',tax='".$model->tax."',sbonus='".$model->sbonus."',minimum_voucher='".$model->minimum_voucher."',maximum_transfer='".$model->maximum_transfer."',".$level_field.",".$stage_field_column.",indirect_ref_amt='".$model->indirect_ref_amt."',pay_via_voucher='".$model->pay_via_voucher."' where id='".$model->id."'");
+              details='".$model->details."',tax='".$model->tax."',sbonus='".$model->sbonus."',minimum_voucher='".$model->minimum_voucher."',maximum_transfer='".$model->maximum_transfer."',".$level_field.",".$stage_field_column.",validity='".$model->validity."',indirect_ref_amt='".$model->indirect_ref_amt."',pay_via_voucher='".$model->pay_via_voucher."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Package has been updated successfully";
@@ -218,14 +219,29 @@ class Package_controller extends CI_Controller {
                     $package['website']= $value['website'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
+                    if($value['package_status']=='0')
+                    {
+                      
+                      $today=date("Y-m-d");
+                      $pck_end_date_time = strtotime($value['renew_date']);
+                      $current_time = strtotime($today);
 
+                      if($current_time>$pck_end_date_time)
+                      {
+                        $package['status']='Renewal';
+
+                      }
+
+                    
+                    }
+                    
                     $package['pck_user_id'] = $value['user_id'];
                     $package['pck_id'] = $value['package_id'];
                     $package['pck_user_master_id'] = $value['id'];
 
-                    $package['Delivered_date'] = ($value['activated_date']!=NULL)?date_format($value['activated_date'],"Y/m/d"):'--';
+                    $package['Delivered_date'] = ($value['activated_date']!=NULL)?date("Y/m/d",strtotime($value['activated_date'])):'--';
 
-                    $package['renew_date'] = ($value['renew_date']!=NULL)?date_format($value['renew_date'],"Y/m/d"):'--';
+                    $package['renew_date'] = ($value['renew_date']!=NULL)?date("Y/m/d",strtotime($value['renew_date'])):'--';
                     $package['package_status']=$value['package_status'];
                     array_push($result,$package);
                     

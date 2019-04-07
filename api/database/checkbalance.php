@@ -59,6 +59,7 @@ if (($num['ucount']) == 1) {
 			$pcur="$row[currency]";
 			$ptax="$row[tax]";
 			$gatewayid="$row[gateway]";
+            $validity="$row[validity]";
 			$pay_via_voucher="$row[pay_via_voucher]";// This line was added by karthikeyan
 			$total=$pprice+$ptax;
 		}
@@ -90,8 +91,10 @@ if (($num['ucount']) == 1) {
 			$tomake= $userid;
 			$package=$pcktaken;
            
+            $current_date=date("Y-m-d");
+            $renew_date = date('Y-m-d', strtotime($current_date.''.$validity.' day'));
             //$result=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
-            $result=mysqli_query($con,"UPDATE user_vs_packages SET package_status=0,website='".$website_name."' WHERE id='".$pack_vs_users_id."'");//activate package_vs_user
+            $result=mysqli_query($con,"UPDATE user_vs_packages SET package_status=0,website='".$website_name."',activated_date='".$current_date."',renew_date='".$renew_date."' WHERE id='".$pack_vs_users_id."'");//activate package_vs_user
             
             //code added by sridhar
 

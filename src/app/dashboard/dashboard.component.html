@@ -146,8 +146,83 @@
             </div>
             <!-- #END# Hover Zoom Effect -->
 
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Package Activation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">update
+                                        <form class="" #addpackage="ngForm">
+                                            <div class="">
+                                                <p><b>Package Name</b></p>
+                                                <div class="form-group"> 
+                                                    <div class="form-line">
+                                                        <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
+                                                    </div>
+                                                    <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <p><b>Package price</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
+                                                    </div>
+                                                    <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <p><b>Website Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                        (blur)="checkwebsite()" required>
+                                                    </div>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">Pay with paypal</button>
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">Pay with voucher</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="">
+                                        <form *ngIf="payment_details" class="" #voucher="ngForm">
+                                            <div class="col-md-12">
+                                                <p><b>User Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p><b>Password</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" [disabled]="!voucher.form.valid" class="btn btn-primary" (click)="paytoactivate()">Pay</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
+            
             <div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -217,8 +292,11 @@
                                             <td *ngIf="data.status=='Active'">
                                                 <span class="label bg-green">Active</span>
                                             </td>
-                                            <td *ngIf="data.status!='Active'">
+                                            <td *ngIf="data.status=='Inactivate'">
                                                 <span class="label bg-red">Not Active</span>
+                                            </td>
+                                             <td *ngIf="data.status=='Renewal'">
+                                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="label bg-orange">Expired</span></a>
                                             </td>
                                             <td><a href="">{{data.website}}</a></td>
                                         </tr>

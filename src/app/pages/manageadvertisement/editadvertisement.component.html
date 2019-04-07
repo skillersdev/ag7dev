@@ -32,7 +32,25 @@
                                                         </select>
                                                     </div>      
                                                 </div>
-                                            </div>                                            
+                                            </div>
+                                              <div class="col-md-3">    
+                                              <b>Show AD in website</b>                      
+                                                <div class="input-group input-group-lg">           
+                                                    <span class="input-group-addon">
+                                                        <input type="checkbox" [(ngModel)]="model.website_ad" [checked]="model.website_ad==1" #website_ad="ngModel" name="website_ad" class="filled-in" id="ig_checkbox">
+                                                        <label for="ig_checkbox"></label>
+                                                    </span>                                                    
+                                                </div>
+                                            </div> 
+                                             <div class="col-md-3">
+                                                <b>IBA Advertiesment</b>
+                                                <div class="input-group input-group-lg">   
+                                                    <div class="input-group-addon">
+                                                      <input type="checkbox" [checked]="model.iba_ad==1" [(ngModel)]="model.iba_ad" #iba_ad="ngModel" name="iba_ad">
+                                                      <label for="ig_checkbox"></label>
+                                                    </div>      
+                                                </div>
+                                            </div>                                           
                                         </div> 
                                         <div class="row clearfix" *ngIf="model.formEnable==1">
                                             <div class="col-md-6">
