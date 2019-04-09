@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+//print_r($profile_image);die;
 ?>
 
 
@@ -126,8 +127,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="container">
         <div class="row">
 			<div class="col-lg-3">
-				
-					<img align="left" style="width: 165px; height: 180px;" src="http://www.professionalclick.com/images/upload/img_1528440325.jpg" alt="Profile image example"/>
+				 <?php 
+          $profile_image = ($profile_image!=0)?$profile_image:'user_profile/default.png'
+         ?>
+					<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/"<?php echo $profile_image;?>" alt="Profile image example"/>
 					
 					
 				
@@ -140,8 +143,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <div class="col-lg-3">
             <h3>Address</h3>
-            <p>City Center,Majestics Metro Station,Bangalore</p>
-			 <p>9789176467,<br>042-898979989</p>
+            <p><?php echo $address;?></p>
+      			 <p><?php echo $mobile;?>,<br>042-898979989</p>
           </div>
           
         </div>
@@ -159,18 +162,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="row">
+          <?php
+          if(count($product_details)>0)
+          {
+            while($product_details){
+          
+          ?>
           <div class="col-lg-3 col-md-3">
             <div class="speaker">
               <img src="<?php echo base_url();?>/assets/img/speakers/1.jpeg" alt="Speaker 1" class="img-fluid">
               <div class="details">
-                <h4><a href="product-details.html">Laptop</a></h4>
-                <p>Electronics- 1200$</p>
-               
+                <h4><a href="product-details.html"><?php echo $product_details['product_name'];?></a></h4>
+                <p><?php echo $product_details['price'];?></p>               
               </div>
             </div>
           </div>
+        <?php } } else
+        {?>
+            <div class="col-lg-3 col-md-3">
+            <div class="speaker">
+             <!--  <img src="<?php echo base_url();?>/assets/img/speakers/1.jpeg" alt="Speaker 1" class="img-fluid"> -->
+              <div class="details">
+                <h4>No Products Found</h4>
+                <p><?php //echo $product_details['price'];?></p>               
+              </div>
+            </div>
+          </div>
+          <?php }?>
+
 		  
-		  <div class="col-lg-3 col-md-3">
+		  <!-- <div class="col-lg-3 col-md-3">
             <div class="speaker">
               <img src="<?php echo base_url();?>/assets/img/speakers/3.jpg" alt="Speaker 1" class="img-fluid">
               <div class="details">
@@ -179,9 +200,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                
               </div>
             </div>
-          </div>
+          </div> -->
 		  
-		   <div class="col-lg-3 col-md-3">
+		  <!--  <div class="col-lg-3 col-md-3">
             <div class="speaker">
               <img src="<?php echo base_url();?>/assets/img/speakers/4.jpg" alt="Speaker 1" class="img-fluid">
               <div class="details">
@@ -190,8 +211,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                
               </div>
             </div>
-          </div>
-          
+          </div> -->
+     <!--      
           <div class="col-lg-3 col-md-3">
             <div class="speaker">
               <img src="<?php echo base_url();?>/assets/img/speakers/5.jpg" alt="Speaker 1" class="img-fluid" style="height: 255px;">
@@ -201,7 +222,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                
               </div>
             </div>
-          </div>
+          </div> -->
          
           
           

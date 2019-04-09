@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   transferdata: any = {};
+  userwebsiteurl:string=AppSettings.userweburl;
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   checkpackageisactivated:string = AppSettings.packageisactivated; 
@@ -146,6 +147,18 @@ export class DashboardComponent implements OnInit {
     });
   }
    
-
+  userweb(website_name:any)
+  {
+    this.model.user_web_url=website_name;
+     this.CommonService.insertdata(this.userwebsiteurl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+        this.router.navigate(['/dashboard']); 
+    });
+  }
 
 }

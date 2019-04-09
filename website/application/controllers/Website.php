@@ -7,11 +7,78 @@ class Website extends CI_Controller {
 	public function index()
 	{
 		$template=1;
-		
-		$this->load->helper('url');
-		if($template==1){
-			$this->load->view('template1');	
+		//print_r($_GET);die;
+		$data=[];
+		if(isset($_GET['web']))
+		{
+			$res=$this->db->select("*")->like('website',$_GET['web'])->get('user_vs_packages');
+			$val=$res->result_array();
+			
+
+			$user_profile=$this->db->select("*")->like('id',$val[0]['user_id'])->where(['is_deleted'=>'0'])->get('affiliateuser'); 
+			$user_profile_result =$user_profile->result_array();
+			/*Product list*/
+			$product_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('product_master'); 
+			$product_det_result =$product_det->result_array();
+			$result=[];
+			if(count($product_det_result)>0)
+			{	
+
+				foreach($product_det_result as $key=>$value)
+		          {              
+		            
+		            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'website'=>$value['website'],'price'=>$value['price']);
+		          }
+
+			}
+			/*Services list*/
+			$service_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('services'); 
+			$service_det_result =$service_det->result_array();
+			$serv_result=[];
+			if(count($service_det_result)>0)
+			{	
+
+				foreach($service_det_result as $key=>$value)
+		          {              
+		            
+		            $serv_result[]=array('id'=>$value['id'],'service_name'=>$value['title'],'desc'=>$value['description']);
+		          }
+
+			}
+
+			/*Contact list*/
+			$contact_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('contacts_master'); 
+			$contact_det_result =$contact_det->result_array();
+			$contac_result=[];
+			if(count($contact_det_result)>0)
+			{	
+
+				foreach($contact_det_result as $key=>$value)
+		          {              
+		            
+		            $contac_result[]=array('id'=>$value['id'],'fb'=>$value['fb_link'],'linked'=>$value['linked_url']);
+		          }
+
+			}
+			$data['product_details']=$result;
+			$data['service_details']=$serv_result;
+			$data['contact_details']=$contac_result;
+			$data['profile_image']=$user_profile_result[0]['image_url'];
+			$data['address']=$user_profile_result[0]['address'];
+			$data['mobile']=$user_profile_result[0]['mobile'];
+			$data['mail']=$user_profile_result[0]['email'];
+			//echo "<pre>";print_r($data);die;
+
+			$this->load->helper('url');
+			//if($template==1){
+				$this->load->view('template1',$data);	
+			//}
 		}
+		else
+		{
+			$this->load->view('template2');	
+		}
+		
 		
 	}
 }
