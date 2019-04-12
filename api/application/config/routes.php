@@ -134,6 +134,7 @@ $route['productlist']= 'Product_controller/productlist';
 $route['editproduct/(:num)']='Product_controller/editproduct/$1';
 $route['updateproduct']= 'Product_controller/updateproduct';
 $route['deleteproduct/(:num)'] = 'Product_controller/deleteproduct/$1';
+$route['uploadproductimage']='Product_controller/uploadproductimage';
 
 
 /*Contacts master*/
@@ -141,7 +142,11 @@ $route['addcontacts'] = 'Contacts_controller/addcontacts';
 $route['getcontact']= 'Contacts_controller/get_contact_list';
 $route['editcontactbyid/(:num)']='Contacts_controller/editcontact/$1';
 $route['updatecontact']= 'Contacts_controller/updatecontact';
+$route['addservice'] = 'Service_controller/addservice';
+$route['getservice']= 'Service_controller/get_all_service_details';
+$route['editservice/(:num)']='Service_controller/editservice/$1';
 $route['updateservice'] = 'Service_controller/updateservice';
+$route['deleteservice/(:num)'] = 'Service_controller/deleteservice/$1';
 $route['deletecontact/(:num)']= 'Contacts_controller/deletecontact/$1';
 ?>
 

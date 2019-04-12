@@ -27,7 +27,7 @@ class Website extends CI_Controller {
 				foreach($product_det_result as $key=>$value)
 		          {              
 		            
-		            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'website'=>$value['website'],'price'=>$value['price']);
+		            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'website'=>$value['website'],'price'=>$value['price'],'product_image'=>$value['product_image']);
 		          }
 
 			}
@@ -65,6 +65,7 @@ class Website extends CI_Controller {
 			$data['contact_details']=$contac_result;
 			$data['profile_image']=$user_profile_result[0]['image_url'];
 			$data['address']=$user_profile_result[0]['address'];
+			$data['about_me']=$user_profile_result[0]['about_me'];
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
 			//echo "<pre>";print_r($data);die;

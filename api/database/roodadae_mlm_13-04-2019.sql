@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2019 at 06:29 PM
+-- Generation Time: Apr 07, 2019 at 07:36 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -61,12 +61,13 @@ CREATE TABLE `affiliateuser` (
 
 INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
 (1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 1, '0000-00-00', 'India', 9823, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
+(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 1, '0000-00-00', 'India', 9799, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
 (3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, '0', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 1),
 (4, 'remo', '1234567', 'remo', '', '', 'referr', 0, '0', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, '0', 1, '2019-03-01', '', 1000, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
 (6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', 1, '2019-03-01', '', 979, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0);
+(7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, '', 0, '2019-04-02', '', 0, '', '', 2, 3, 0, '2199-12-31', 1, 0, 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -261,6 +262,30 @@ CREATE TABLE `contacts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts_master`
+--
+
+CREATE TABLE `contacts_master` (
+  `id` int(15) NOT NULL,
+  `website` varchar(155) NOT NULL,
+  `contact` varchar(155) NOT NULL,
+  `fb_link` varchar(155) NOT NULL,
+  `linked_url` varchar(155) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_deleted` int(15) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contacts_master`
+--
+
+INSERT INTO `contacts_master` (`id`, `website`, `contact`, `fb_link`, `linked_url`, `created_date`, `is_deleted`) VALUES
+(1, 'tyree', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
+(2, 'tyree', 'sdfsdfsfdfsf000', 'sdfsfsf77', 'sfsfsf99', '2019-03-31 01:14:49', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `currency`
 --
 
@@ -363,7 +388,7 @@ CREATE TABLE `packages` (
   `minimum_voucher` double NOT NULL,
   `maximum_transfer` double NOT NULL,
   `maximum_register` double NOT NULL,
-  `cdate` date NOT NULL,
+  `cdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` int(1) NOT NULL DEFAULT '1',
   `level1` double NOT NULL DEFAULT '0',
   `stage1_up` double NOT NULL DEFAULT '0',
@@ -437,16 +462,20 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `name`, `price`, `currency`, `details`, `tax`, `mpay`, `sbonus`, `minimum_voucher`, `maximum_transfer`, `maximum_register`, `cdate`, `active`, `level1`, `stage1_up`, `level2`, `stage2_up`, `level3`, `stage3_up`, `level4`, `stage4_up`, `level5`, `stage5_up`, `level6`, `level7`, `level8`, `level9`, `level10`, `level11`, `level12`, `level13`, `level14`, `level15`, `level16`, `level17`, `level18`, `level19`, `level20`, `level21`, `level22`, `level23`, `level24`, `level25`, `level26`, `level27`, `level28`, `level29`, `level30`, `stage6_up`, `stage7_up`, `stage8_up`, `stage9_up`, `stage10_up`, `stage11_up`, `stage12_up`, `stage13_up`, `stage14_up`, `stage15_up`, `stage16_up`, `stage17_up`, `stage18_up`, `stage19_up`, `stage20_up`, `stage21_up`, `stage22_up`, `stage23_up`, `stage24_up`, `stage25_up`, `stage26_up`, `stage27_up`, `stage28_up`, `stage29_up`, `stage30_up`, `gateway`, `validity`, `indirect_ref_amt`, `is_deleted`, `pay_via_voucher`) VALUES
-(1, 'T...,....12', 0, 'USD', '.........', 0, 300, 0, 50, 100, 100, '2016-09-15', 0, 3, 50, 0, 261, 30, 783, 40, 2349, 0, 7047, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 365, 0, 0, 0),
-(2, 't..........', 1.2e27, 'USD', 't.......', 0, 7000, 49, 50, 100, 100, '2016-11-12', 0, 10, 15, 20, 15, 30, 15, 40, 15, 30, 20, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 3, 0, 21),
-(3, 'Website', 3, 'USD', 'Website ', 0, 1000000, 1, 1, 300000, 100000, '2017-02-02', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 0, 0, 3),
-(9, 'Iranian rial', 0, 'IRR', 'Iranian rial', 0, 0, 0, 0, 0, 0, '2018-04-26', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 'T...........', 0, 'USD', 'T..........', 0, 7000, 10, 50, 100, 100, '2017-02-10', 0, 10, 1, 10, 0, 10, 0, 10, 0, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 4, 0, 70),
-(5, 'T.............', 0, 'USD', 'T..........', 0, 7000, 0, 0, 30000, 1200, '2017-02-21', 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 50),
-(6, 'T...........', 0, 'USD', '..........', 0, 7000, 0, 50, 100, 100, '2017-02-21', 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 0, 490),
-(7, 'T...........', 0, 'USD', 'T............', 0, 7000, 0, 50, 100, 100, '2017-02-21', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 40, 0, 1000),
-(8, 'T.........', 0, 'USD', 'T...........', 0, 7000, 13, 50, 100, 100, '2017-02-26', 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 3, 0, 30),
-(10, 'joker', 10, 'US-Dollar-USD', 'koker', 11, 0, 23, 23, 233, 20190310183429, '0000-00-00', 100, 200, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0);
+(1, 'T...,....12', 0, 'USD', '.........', 0, 300, 4, 50, 100, 100, '2016-09-15 00:00:00', 0, 3, 50, 0, 261, 30, 783, 40, 2349, 0, 7047, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0),
+(2, 't..........', 1.2e27, 'USD', 't.......', 0, 7000, 49, 50, 100, 100, '2016-11-12 00:00:00', 0, 10, 15, 20, 15, 30, 15, 40, 15, 30, 20, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 3, 0, 21),
+(3, 'Website', 3, 'USD', 'Website ', 0, 1000000, 1, 1, 300000, 100000, '2017-02-02 00:00:00', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 93, 0, 0, 3),
+(9, 'Iranian rial', 0, 'IRR', 'Iranian rial', 0, 0, 0, 0, 0, 0, '2018-04-26 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 'T...........', 0, 'USD', 'T..........', 0, 7000, 10, 50, 100, 100, '2017-02-10 00:00:00', 0, 10, 1, 10, 0, 10, 0, 10, 0, 10, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 4, 0, 70),
+(5, 'T.............', 0, 'USD', 'T..........', 0, 7000, 0, 0, 30000, 1200, '2017-02-21 00:00:00', 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 50),
+(6, 'T...........', 0, 'USD', '..........', 0, 7000, 0, 50, 100, 100, '2017-02-21 00:00:00', 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 30, 0, 490),
+(7, 'T...........', 0, 'USD', 'T............', 0, 7000, 0, 50, 100, 100, '2017-02-21 00:00:00', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 40, 0, 1000),
+(8, 'T.........', 0, 'USD', 'T...........', 0, 7000, 13, 50, 100, 100, '2017-02-26 00:00:00', 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 0, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 3, 0, 30),
+(10, 'joker', 10, 'US-Dollar-USD', 'koker', 11, 0, 23, 23, 233, 20190310183429, '0000-00-00 00:00:00', 100, 200, 201, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0),
+(11, 'dgfgdgdgfdg', 3533, 'US-Dollar-USD', 'dfgdgfdgdgdfgdg', 45, 0, 34, 345, 345, 0, '2019-04-06 00:00:00', 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 345),
+(12, 'sdfsfsfsfsfs', 312313, 'US-Dollar-USD', 'fsfsfsfsf', 123131, 0, 23424, 23424, 23424, 0, '2019-04-06 00:00:00', 1, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2342, 123131, 0, 12313),
+(13, 'marketpack', 12, 'Australian Dollar', 'test', 1, 0, 34, 11, 12, 0, '2019-04-06 00:00:00', 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 10, 10, 0, 11),
+(14, 'packagemarketer', 1900, 'Australian Dollar', 'package from marketer', 12, 0, 90, 12, 12, 0, '2019-04-06 00:00:00', 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 9, 12, 0, 12);
 
 -- --------------------------------------------------------
 
@@ -562,7 +591,9 @@ INSERT INTO `paypalpayments` (`id`, `orderid`, `transacid`, `price`, `currency`,
 (7, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
 (8, 6, 'R.V', 21, 'USD', '2019-03-13', 1, 0, 0, 2, 'R.B'),
 (9, 7, 'R.V', 0, 'USD', '2019-03-14', 1, 0, 0, 1, 'R.B'),
-(10, 7, 'R.V', 0, 'USD', '2019-03-14', 1, 0, 0, 1, 'R.B');
+(10, 7, 'R.V', 0, 'USD', '2019-03-14', 1, 0, 0, 1, 'R.B'),
+(11, 7, 'R.V', 12, 'Australian Dollar', '2019-04-06', 1, 0, 0, 14, 'R.B'),
+(12, 7, 'R.V', 12, 'Australian Dollar', '2019-04-07', 1, 0, 0, 14, 'R.B');
 
 -- --------------------------------------------------------
 
@@ -1229,6 +1260,8 @@ CREATE TABLE `user_advertisements` (
   `user_id` varchar(20) NOT NULL,
   `ad_type` varchar(50) NOT NULL DEFAULT '0' COMMENT '1=image;2=video',
   `feature_of_ad` int(15) NOT NULL DEFAULT '0',
+  `website_ad` int(15) NOT NULL DEFAULT '0',
+  `iba_ad` int(15) NOT NULL DEFAULT '0',
   `is_deleted` int(15) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -1237,10 +1270,10 @@ CREATE TABLE `user_advertisements` (
 -- Dumping data for table `user_advertisements`
 --
 
-INSERT INTO `user_advertisements` (`id`, `url`, `uploads`, `user_id`, `ad_type`, `feature_of_ad`, `is_deleted`, `created_at`) VALUES
-(1, 'tyree', 'user_adv_uploads/b30c6917030360771aa84dd4c9f739f9.jpg', '2', '1', 0, 0, '0000-00-00 00:00:00'),
-(2, 'kakak', 'user_adv_uploads/d1d5d3a570721b328eef555a4401ec09.mp4', '2', '2', 0, 1, '2019-03-23 01:04:17'),
-(3, 'tyree', 'user_adv_uploads/b64d84960168384d30d67bdbb887dd3a.mp4', '2', '2', 0, 0, '2019-03-24 17:56:36');
+INSERT INTO `user_advertisements` (`id`, `url`, `uploads`, `user_id`, `ad_type`, `feature_of_ad`, `website_ad`, `iba_ad`, `is_deleted`, `created_at`) VALUES
+(1, 'kakak', 'user_adv_uploads/a811936c885451af7e03793703077f63.mp4', '2', '2', 0, 1, 0, 0, '0000-00-00 00:00:00'),
+(2, 'kakak', 'user_adv_uploads/d1d5d3a570721b328eef555a4401ec09.mp4', '2', '2', 0, 0, 0, 1, '2019-03-23 01:04:17'),
+(3, 'kakak', 'user_adv_uploads/b64d84960168384d30d67bdbb887dd3a.mp4', '2', '1', 0, 0, 0, 0, '2019-03-24 17:56:36');
 
 -- --------------------------------------------------------
 
@@ -2721,7 +2754,8 @@ CREATE TABLE `user_vs_packages` (
   `package_id` int(11) NOT NULL,
   `package_status` int(11) NOT NULL DEFAULT '1' COMMENT '1-deactive,0-active,2-expired',
   `website` varchar(155) NOT NULL,
-  `activated_date` datetime DEFAULT NULL,
+  `template` int(15) NOT NULL DEFAULT '1',
+  `activated_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `renew_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2729,11 +2763,17 @@ CREATE TABLE `user_vs_packages` (
 -- Dumping data for table `user_vs_packages`
 --
 
-INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`, `website`, `activated_date`, `renew_date`) VALUES
-(1, 3, 1, 1, '', NULL, NULL),
-(2, 6, 2, 0, 'tyree', NULL, NULL),
-(3, 7, 1, 0, 'kakak', NULL, NULL),
-(4, 7, 1, 1, '', NULL, NULL);
+INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`, `website`, `template`, `activated_date`, `renew_date`) VALUES
+(1, 3, 1, 1, '', 1, NULL, NULL),
+(2, 6, 2, 0, 'tyree', 1, NULL, NULL),
+(3, 7, 1, 1, 'kakak', 1, NULL, NULL),
+(4, 7, 1, 1, '', 1, NULL, NULL),
+(5, 8, 3, 1, '', 1, NULL, NULL),
+(6, 7, 9, 1, '', 1, NULL, NULL),
+(7, 7, 3, 1, '', 1, NULL, NULL),
+(8, 7, 2, 1, '', 1, NULL, NULL),
+(9, 7, 10, 1, '', 1, NULL, NULL),
+(10, 7, 14, 0, 'hhhhhhhhhh', 1, '2019-04-07 00:00:00', '2019-04-06 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -2774,6 +2814,12 @@ ALTER TABLE `category_master`
 -- Indexes for table `contacts`
 --
 ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts_master`
+--
+ALTER TABLE `contacts_master`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2888,7 +2934,7 @@ ALTER TABLE `user_vs_packages`
 -- AUTO_INCREMENT for table `affiliateuser`
 --
 ALTER TABLE `affiliateuser`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `affiliate_bonus_history`
@@ -2921,6 +2967,12 @@ ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `contacts_master`
+--
+ALTER TABLE `contacts_master`
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `currency`
 --
 ALTER TABLE `currency`
@@ -2948,7 +3000,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `package_info`
@@ -2972,7 +3024,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `paypalpayments`
 --
 ALTER TABLE `paypalpayments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product_master`
@@ -3014,7 +3066,7 @@ ALTER TABLE `user_services`
 -- AUTO_INCREMENT for table `user_vs_packages`
 --
 ALTER TABLE `user_vs_packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

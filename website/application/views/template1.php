@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//print_r($profile_image);die;
+//print_r($product_details);die;
+
 ?>
 
 
@@ -128,21 +129,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
 			<div class="col-lg-3">
 				 <?php 
-          $profile_image = ($profile_image!=0)?$profile_image:'user_profile/default.png'
+          $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
          ?>
-					<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/"<?php echo $profile_image;?>" alt="Profile image example"/>
-					
-					
-				
 			</div>
           <div class="col-lg-6">
             <h2>About Us</h2>
-            <p>Sed nam ut dolor qui repellendus iusto odit. Possimus inventore eveniet accusamus error amet eius aut
-              accusantium et. Non odit consequatur repudiandae sequi ea odio molestiae. Enim possimus sunt inventore in
-              est ut optio sequi unde.</p>
+            <?php 
+              $about_us =($about_me!='')?$about_me:'Welcome to mysite';
+
+            ?>
+            <p>
+              <?php echo $about_us; ?>
+            </p>
           </div>
           <div class="col-lg-3">
             <h3>Address</h3>
+            <?php 
+            $address =($address!='')?$address:'A108 Adam Street, NY 535022, USA';
+            ?>
+
             <p><?php echo $address;?></p>
       			 <p><?php echo $mobile;?>,<br>042-898979989</p>
           </div>
@@ -165,19 +171,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <?php
           if(count($product_details)>0)
           {
-            while($product_details){
-          
-          ?>
-          <div class="col-lg-3 col-md-3">
-            <div class="speaker">
-              <img src="<?php echo base_url();?>/assets/img/speakers/1.jpeg" alt="Speaker 1" class="img-fluid">
-              <div class="details">
-                <h4><a href="product-details.html"><?php echo $product_details['product_name'];?></a></h4>
-                <p><?php echo $product_details['price'];?></p>               
-              </div>
-            </div>
-          </div>
-        <?php } } else
+            for($i=0;$i<count($product_details);$i++)
+              {
+                //echo $product_details[$i]['product_image'];
+                ?>
+                  <div class="col-lg-3 col-md-3">
+                    <div class="speaker">
+                     <?php 
+                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
+                        ?>
+                      <div class="details">
+                        <h4><a href="product-details.html">
+                          <?php echo $product_details[$i]['product_name'];?></a>
+                        </h4>
+                        <p><?php echo $product_details[$i]['price'];?></p>               
+                      </div>
+                    </div>
+                  </div>
+        <?php } 
+        } else
         {?>
             <div class="col-lg-3 col-md-3">
             <div class="speaker">
@@ -245,50 +257,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="row">
+          <?php 
 
+          for($j=0;$j<count($service_details);$j++)
+          {
+          ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
                 <img src="<?php echo base_url();?>/assets/img/hotels/1.png" alt="Hotel 1" class="img-fluid"style="height: 205px;">
               </div>
-              <h3>Web Development Service</h3>
+              <h3><?php echo $service_details[$j]['service_name'];?></h3>
               
-              <p>Complete IT Solution provider</p>
+              <p><?php echo $service_details[$j]['desc'];?></p>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-3">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="<?php echo base_url();?>/assets/img/hotels/2.jpg" alt="Hotel 2" class="img-fluid" style="height: 205px;">
-              </div>
-              <h3>Consultant</h3>
-              
-              <p>Provide staffing solution in diffrent domains</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-3">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="<?php echo base_url();?>/assets/img/hotels/3.jpg" alt="Hotel 3" class="img-fluid" style="height: 205px;">
-              </div>
-              <h3>Testing Service</h3>
-              
-              <p>Provides automated and manual testing </p>
-            </div>
-          </div>
-		  
-		  <div class="col-lg-3 col-md-3">
-            <div class="hotel">
-              <div class="hotel-img">
-                <img src="<?php echo base_url();?>/assets/img/hotels/2.png" alt="Hotel 3" class="img-fluid" style="height: 205px;">
-              </div>
-              <h3>AI Service</h3>
-              
-              <p>Provides automated Robot arms in Industries </p>
-            </div>
-          </div>
+        <?php } ?>
 		  
 
         </div>

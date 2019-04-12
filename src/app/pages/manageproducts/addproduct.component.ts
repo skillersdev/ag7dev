@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -26,6 +27,7 @@ export class AddproductComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
+  uploaduserProfileApi:string=AppSettings.uploadproductimage;
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
@@ -77,6 +79,22 @@ export class AddproductComponent implements OnInit {
         this.router.navigate(['/manageproducts']); 
     }); 
   }
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.product_image = response.data;
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+   }
   logout(){
     this.loginService.logout();
   }

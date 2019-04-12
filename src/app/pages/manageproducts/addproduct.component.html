@@ -99,14 +99,15 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                          <!--   <div class="col-md-6">
+                                            <div class="col-md-6">
                                                 <p><b>Prodcut Image</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="file" class="form-control" name="file">    
+                                                         <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.product_image" #product_image="ngModel" name="product_image" required/> 
+                                                          <span [hidden]="product_image.valid || product_image.pristine" class="text-danger">Image is required</span> 
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>      
                                                                     
                                         <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproduct()">Add Product</button>&nbsp;

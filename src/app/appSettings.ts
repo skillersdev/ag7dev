@@ -104,6 +104,7 @@ export class AppSettings{
 	public static editproduct= AppSettings.API_BASE+"/editproduct/";
 	public static updateproduct= AppSettings.API_BASE+"/updateproduct";
 	public static deleteproduct= AppSettings.API_BASE+"/deleteproduct/"; 
+	public static uploadproductimage=AppSettings.API_BASE+"/uploadproductimage";
 
 
 	public static insertservice= AppSettings.API_BASE+"/addservice"; 

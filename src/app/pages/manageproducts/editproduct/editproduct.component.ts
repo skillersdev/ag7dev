@@ -29,10 +29,12 @@ export class EditproductComponent implements OnInit {
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
+  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
   insertproductRestApiUrl :string = AppSettings.addproduct;
   FetchproductRestApiUrl:string = AppSettings.editproduct;
   updateproductRestApiUrl:string = AppSettings.updateproduct;
+  image_url = AppSettings.IMAGE_BASE;
   categorylist:Array<Object>;
   subcategorylist:Array<Object>;
   websitelist:Array<Object>;
@@ -92,6 +94,22 @@ export class EditproductComponent implements OnInit {
         
     });
   }
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.product_image = response.data;
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+   }
   back(){
     this.router.navigate(['/manageproducts']);
   }

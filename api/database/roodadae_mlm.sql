@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2019 at 07:36 PM
+-- Generation Time: Apr 12, 2019 at 09:15 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -37,7 +37,8 @@ CREATE TABLE `affiliateuser` (
   `email` text NOT NULL,
   `referedby` varchar(15) NOT NULL DEFAULT 'none',
   `mobile` bigint(10) NOT NULL,
-  `image_url` varchar(155) NOT NULL,
+  `image_url` varchar(155) DEFAULT NULL,
+  `about_me` varchar(255) NOT NULL,
   `active` int(11) NOT NULL DEFAULT '0',
   `doj` date NOT NULL,
   `country` text NOT NULL,
@@ -59,15 +60,15 @@ CREATE TABLE `affiliateuser` (
 -- Dumping data for table `affiliateuser`
 --
 
-INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
-(1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, '0', 1, '0000-00-00', 'India', 9799, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
-(3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, '0', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 1),
-(4, 'remo', '1234567', 'remo', '', '', 'referr', 0, '0', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, '0', 1, '2019-03-01', '', 1000, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', 1, '2019-03-01', '', 979, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(7, 'ramasway', '123456789', 'ramasway', '', '', 'niolll', 0, '0', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
-(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, '', 0, '2019-04-02', '', 0, '', '', 2, 3, 0, '2199-12-31', 1, 0, 0, 2, 0);
+INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `about_me`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
+(1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 1, '0000-00-00', 'India', 9799, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
+(3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, NULL, '', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 1),
+(4, 'remo', '1234567', 'remo', '', '', 'referr', 0, NULL, '', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, NULL, '', 1, '2019-03-01', '', 1000, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', '', 1, '2019-03-01', '', 979, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(7, 'ramasway', '123456789', 'ramasway', '', 'mr.michael@gmail.com', 'niolll', 0, 'user_profile/e88c494d4165a16d828a864174f791f4.jpg', 'Hi Am from MLM family. Its free from all over the world.', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, NULL, '', 0, '2019-04-02', '', 0, '', '', 2, 3, 0, '2199-12-31', 1, 0, 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -280,7 +281,7 @@ CREATE TABLE `contacts_master` (
 --
 
 INSERT INTO `contacts_master` (`id`, `website`, `contact`, `fb_link`, `linked_url`, `created_date`, `is_deleted`) VALUES
-(1, 'tyree', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
+(1, 'kakak', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
 (2, 'tyree', 'sdfsdfsfdfsf000', 'sdfsfsf77', 'sfsfsf99', '2019-03-31 01:14:49', 1);
 
 -- --------------------------------------------------------
@@ -604,6 +605,7 @@ INSERT INTO `paypalpayments` (`id`, `orderid`, `transacid`, `price`, `currency`,
 CREATE TABLE `product_master` (
   `id` int(15) NOT NULL,
   `product_name` varchar(155) NOT NULL,
+  `product_image` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
   `sub_category_id` int(11) NOT NULL,
   `website` varchar(155) NOT NULL,
@@ -617,9 +619,10 @@ CREATE TABLE `product_master` (
 -- Dumping data for table `product_master`
 --
 
-INSERT INTO `product_master` (`id`, `product_name`, `category_id`, `sub_category_id`, `website`, `price`, `currency`, `created_date`, `is_deleted`) VALUES
-(1, 'product1', 1, 1, '0', 12, '0', '2019-03-17 09:43:03', 1),
-(2, 'product2', 1, 1, 'kakak', 12, 'rs', '2019-03-17 10:50:53', 0);
+INSERT INTO `product_master` (`id`, `product_name`, `product_image`, `category_id`, `sub_category_id`, `website`, `price`, `currency`, `created_date`, `is_deleted`) VALUES
+(1, 'product1', '', 1, 1, '0', 12, '0', '2019-03-17 09:43:03', 1),
+(2, 'product2', 'product_image/2acb28b1249f4400e0f0b7f918cf9d01.jpg', 1, 1, 'kakak', 12, 'rs', '2019-03-17 10:50:53', 0),
+(3, 'montior', 'product_image/534bc5c03b3e94a97a0d38c916e1e1b6.jpg', 1, 1, 'kakak', 111119, 'rs', '2019-04-10 18:53:26', 0);
 
 -- --------------------------------------------------------
 
@@ -3030,7 +3033,7 @@ ALTER TABLE `paypalpayments`
 -- AUTO_INCREMENT for table `product_master`
 --
 ALTER TABLE `product_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `services`

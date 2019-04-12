@@ -99,6 +99,15 @@
                                                         </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <p><b>Prodcut Image</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                         <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.product_image" #product_image="ngModel" name="product_image"/>                                                          
+                                                    </div>
+                                                    <img src="{{image_url}}{{model.product_image}}" style="width:20%;">  
+                                                </div>
+                                            </div>
                                          
                                         </div>      
                                                                     
