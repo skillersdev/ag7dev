@@ -4,21 +4,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Website extends CI_Controller {
 
 	
-	public function index()
+	public function index($websitename)
 	{
 		$template=1;
-		//print_r($_GET);die;
+		//print_r($websitename);die;
 		$data=[];
-		if(isset($_GET['web']))
+		if(isset($websitename))
 		{
-			$res=$this->db->select("*")->like('website',$_GET['web'])->get('user_vs_packages');
+			$res=$this->db->select("*")->like('website',$websitename)->get('user_vs_packages');
 			$val=$res->result_array();
 			
 
 			$user_profile=$this->db->select("*")->like('id',$val[0]['user_id'])->where(['is_deleted'=>'0'])->get('affiliateuser'); 
 			$user_profile_result =$user_profile->result_array();
 			/*Product list*/
-			$product_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('product_master'); 
+			$product_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('product_master'); 
 			$product_det_result =$product_det->result_array();
 			$result=[];
 			if(count($product_det_result)>0)
@@ -32,7 +32,7 @@ class Website extends CI_Controller {
 
 			}
 			/*Services list*/
-			$service_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('services'); 
+			$service_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('services'); 
 			$service_det_result =$service_det->result_array();
 			$serv_result=[];
 			if(count($service_det_result)>0)
@@ -47,7 +47,7 @@ class Website extends CI_Controller {
 			}
 
 			/*Contact list*/
-			$contact_det=$this->db->select("*")->like('website',$_GET['web'])->where(['is_deleted'=>'0'])->get('contacts_master'); 
+			$contact_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('contacts_master'); 
 			$contact_det_result =$contact_det->result_array();
 			$contac_result=[];
 			if(count($contact_det_result)>0)
