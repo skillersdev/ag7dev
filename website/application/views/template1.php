@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-3">
 				 <?php 
           $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev1/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
          ?>
 			</div>
           <div class="col-lg-6">
@@ -178,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                      <?php 
-                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
+                        echo '<img src="http://localhost/ag7dev1/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
                         ?>
                       <div class="details">
                         <h4><a href="product-details.html">

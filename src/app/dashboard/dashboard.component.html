@@ -226,47 +226,92 @@
             <div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="card">
-                                <div class="header">
-                                    <h2>Share Balance to Marketer</h2>
-                                    <span>(to share the balance. you should have more than 50 credit balance)</span>
-                                    
-                                </div>
-                                <div class="body">
-                                        <form name="transferform" #transfer=ngForm>
-                                        <div class="form-group ">
-                                                <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
-                                                <div class="col-sm-3">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
-                                                    </div>
-                                                    <span [hidden]="mname.valid || mname.pristine" class="text-danger">Name is required</span>
-                                                </div>
 
-                                                <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
-                                                    <div class="col-sm-3">
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (blur)="checkbalance()" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
-                                                        </div>
-                                                        <div *ngIf="share_amt.errors && (share_amt.dirty || share_amt.touched)" class="">
-                                                            <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
-                                                            <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount()" class="btn btn-success">Transfer</button>
-                                                    </div>
-                                                    
+                    <div class="card"> 
+                        <div class="header">
+                            <h2>Change Language</h2>
+                            
+                        </div>
+                        <div class="body">
+                                <div id="google_translate_element" class="form-group"></div>
+                        </div>
+                    
+                        <script type="text/javascript">
+                            function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                                
+                            }
+                            
+                        </script>
+                        <style>
+                            .goog-logo-link{
+                            display:none;
+                            }
+                            .skiptranslate{color:white !important;}
+                            .goog-te-combo{ 
+                                color: #666 !important;
+                                display: block !important;
+                                width: 100% !important;
+                                height: 34px !important;
+                                padding: 6px 12px !important;
+                                font-size: 14px !important;
+                                line-height: 1.42857143 !important;
+                                background-color: #fff !important;
+                                background-image: none !important;
+                                border: 1px solid #ccc !important;
+                                border-radius: 4px !important;
+                                }
+                            .goog-te-banner-frame{visibility:hidden !important;}
+                            
+                            .goog-tooltip skiptranslate {visibility: hidden !important}
+                        </style>
+                        
+                        <!-- <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+                        
+                    </div>
+                    <!-- translate code ends here-->
 
+                    <div class="card">
+                        <div class="header">
+                            <h2>Share Balance to Marketer</h2>
+                            <span>(to share the balance. you should have more than 50 credit balance)</span>
+                            
+                        </div>
+                        <div class="body">
+                                <form name="transferform" #transfer=ngForm>
+                                <div class="form-group ">
+                                        <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
+                                        <div class="col-sm-3">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
                                             </div>
-                                            </form>
-                                            
-                                            <br/> <br/> <br/>       
-                                                
+                                            <span [hidden]="mname.valid || mname.pristine" class="text-danger">Name is required</span>
+                                        </div>
 
-                                </div>
-                            </div>
+                                        <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
+                                        <div class="col-sm-3">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (blur)="checkbalance()" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                            </div>
+                                            <div *ngIf="share_amt.errors && (share_amt.dirty || share_amt.touched)" class="">
+                                                <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
+                                                <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount()" class="btn btn-success">Transfer</button>
+                                        </div>
+                                            
+
+                                    </div>
+                                    </form>
+                                    <br/> <br/> <br/>
+                                          
+                                        
+
+                        </div>
+                    </div>
 
                     <div class="card">
                         <div class="header">

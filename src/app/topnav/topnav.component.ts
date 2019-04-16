@@ -31,7 +31,8 @@ export class TopnavComponent implements OnInit {
           }
       });
     }
-
+    // let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    // this.loadScript(translate_url);
   }
 
    public loadScript(url) {
