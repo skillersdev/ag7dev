@@ -41,6 +41,8 @@ export class DashboardComponent implements OnInit {
   inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
   getpackagevsuserApiUrl:string = AppSettings.getPackageNotbuy;
   insertpackagevsuserApiUrl:string = AppSettings.insertpackagevsuser;
+
+  websiteurl:string=AppSettings.USER_TEMPLATE;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
