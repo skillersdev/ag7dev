@@ -14,11 +14,25 @@ class Contacts_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Contact Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-        
-        $this->db->insert('contacts_master', $model);
 
-        echo json_encode($response,JSON_UNESCAPED_SLASHES);
-        die();
+         $website = trim($model->website);
+          if(isset($website))
+            {
+              $res=$this->db->select("website")->like('website',$website)->where('is_deleted','0')->get('contacts_master') ;
+          }
+           if(count($res->result_array())>0)
+            {
+               
+                $response['exist']=1;
+                $response['statuc']="error";
+                $response['message']="Selected Website hs already contact exists";
+            }                                                                                                                                                                 
+            else{
+              
+              $this->db->insert('contacts_master', $model);
+            }
+             echo json_encode($response,JSON_UNESCAPED_SLASHES);
+              die();
     }
   public function getsubcategorybyid($id)
   {
@@ -131,10 +145,28 @@ class Contacts_controller extends CI_Controller {
 
         if (isset($model)) {
               
-           $this->db->where('id',$model->id);
-            $result=$this->db->update('contacts_master', $model);
+           $website = trim($model->website);
+          if(isset($website))
+            {
+              $res=$this->db->select("website")->like('website',$website)->where(['is_deleted'=>'0','id!='=>$model->id])->get('contacts_master') ;
+            }
+           if(count($res->result_array())>0)
+            {
+               
+                $response['exist']=1;
+                $response['statuc']="error";
+                $response['message']="Selected Website hs already contact exists";
+            } 
+            else
+            {
+               $this->db->where('id',$model->id);
+                  $result=$this->db->update('contacts_master', $model);
            
-          $response['message']="contacts has been updated successfully";          
+                $response['message']="contacts has been updated successfully"; 
+            }
+
+
+                   
 
         } else {
             $response['status']="failure";

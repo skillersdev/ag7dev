@@ -29,7 +29,7 @@ export class EditproductComponent implements OnInit {
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
-  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+  uploaduserProfileApi:string=AppSettings.uploadserviceimage;
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
   insertproductRestApiUrl :string = AppSettings.addproduct;
   FetchproductRestApiUrl:string = AppSettings.editproduct;

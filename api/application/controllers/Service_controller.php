@@ -133,5 +133,43 @@ class Service_controller extends CI_Controller {
          die();
     }
 
+     public function uploadserviceimage()
+    {
+       $path = 'product_image/';
+        $Response=[];
+     
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+             
+            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
+            {
+
+              $generatedName = md5($_FILES['file']['tmp_name']).$ext;
+
+              $filePath = $path.$generatedName;
+              $product_image=$filePath;
+           
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+              {
+                $Response['status']="success"; 
+                $Response['data']=$product_image;
+              }
+            }
+            else 
+            {
+                $Response['status']="fail"; 
+                $Response['data']="Upload only valid format images";
+            }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
    
 }

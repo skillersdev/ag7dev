@@ -25,13 +25,15 @@ export class EditserviceComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  image_url = AppSettings.IMAGE_BASE;
   private sub: any;
   model: any = {};
   alldata: any = {};
   id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchserviceRestApiUrl: string = AppSettings.getservicebyid; 
-  updateserviceRestApiUrl: string = AppSettings.updateservice;  
+  updateserviceRestApiUrl: string = AppSettings.updateservice; 
+  uploaduserProfileApi:string=AppSettings.uploadserviceimage; 
   websitelist:Array<Object>;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
@@ -67,6 +69,24 @@ export class EditserviceComponent implements OnInit {
           this.model = resultdata.result;         
         });
   }
+
+    fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.service_image = response.data;
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+   }
+
   update_service()
   {
      //this.model.is_deleted=1

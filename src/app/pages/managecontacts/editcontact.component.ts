@@ -83,13 +83,24 @@ export class EditcontactComponent implements OnInit {
   {
      //this.model.is_deleted=1
      this.CommonService.updatedata(this.updatecontactRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/managecategory']);
+    .subscribe(contact_det =>{       
+        if(contact_det.exist==1)
+        {
+          swal(
+            'error',
+            contact_det.message,
+            'error'
+          )
+        }
+        else{
+           swal(
+            contact_det.status,
+            contact_det.message,
+            contact_det.status
+          )
+           this.router.navigate(['/managecontacts']);
+        }
+         
         
     });
   }

@@ -31,6 +31,7 @@ export class AddserviceComponent implements OnInit {
 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   insertserviceRestApiUrl:string = AppSettings.insertservice;
+  uploaduserProfileApi:string=AppSettings.uploadserviceimage;
   model: any = {};
   alldata: any = {};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
@@ -68,5 +69,22 @@ export class AddserviceComponent implements OnInit {
         this.router.navigate(['/manageservices']); 
     });
   }
+
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.service_image = response.data;
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+   }
 
 }

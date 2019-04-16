@@ -59,12 +59,24 @@ export class AddcontactComponent implements OnInit {
   {
     //this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.insertcontactsRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
+    .subscribe(contact_det =>{  
+        if(contact_det.exist==1)
+        {
+          swal(
+            'error',
+            contact_det.message,
+            'error'
+          )
+        }
+        else{
+           swal(
+            contact_det.status,
+            contact_det.message,
+            contact_det.status
+          )
+        }
+
+        
         this.router.navigate(['/managecontacts']); 
     });
   }
