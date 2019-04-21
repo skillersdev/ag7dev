@@ -243,10 +243,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </section>
 
-    
+      <!--==========================
+      Advertisement Section
+    ============================-->
+    <section id="hotels" class="section-with-bg wow fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>Advertisements</h2>
+          
+        </div>
+
+        <div class="row">
+          <?php 
+
+          for($j=0;$j<count($service_details);$j++)
+          {
+          ?>
+          <div class="col-lg-3 col-md-3">
+            <div class="hotel">
+              <div class="hotel-img">
+                <img src="<?php echo base_url();?>/assets/img/hotels/1.png" alt="Hotel 1" class="img-fluid"style="height: 205px;">
+              </div>
+              <h3><?php echo $service_details[$j]['service_name'];?></h3>
+              
+              <p><?php echo $service_details[$j]['desc'];?></p>
+            </div>
+          </div>
+        <?php } ?>
+		  
+
+        </div>
+      </div>
+
+    </section>
+	
 
     <!--==========================
-      Hotels Section
+      Service Section
     ============================-->
     <section id="hotels" class="section-with-bg wow fadeInUp">
 
@@ -279,6 +313,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
 
     </section>
+	
+	
 
     
       </div>
