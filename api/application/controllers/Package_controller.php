@@ -192,6 +192,74 @@ class Package_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
+    public function get_all_package()
+    {   //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $package=array();
+        $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')."");
+
+
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+                //print_r($in_array);die;
+                foreach ($in_array as $key => $value) 
+                {
+                    $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
+                    $in_array_1=$res1->result_array(); 
+
+                    $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $data =$user_det->result_array();  
+
+                    $package['marketer']=$data[0]['username']; 
+
+                    $package['package_name'] = $in_array_1[0]['name'];
+
+                    $package['package_price'] = $in_array_1[0]['price'];
+                    $package['website']= $value['website'];
+
+                    $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
+                    if($value['package_status']=='0')
+                    {
+                      
+                      $today=date("Y-m-d");
+                      $pck_end_date_time = strtotime($value['renew_date']);
+                      $current_time = strtotime($today);
+
+                      if($current_time>$pck_end_date_time)
+                      {
+                        $package['status']='Renewal';
+
+                      }
+
+                    
+                    }
+                    
+                    $package['pck_user_id'] = $value['user_id'];
+                    $package['pck_id'] = $value['package_id'];
+                    $package['pck_user_master_id'] = $value['id'];
+
+                    $package['Delivered_date'] = ($value['activated_date']!=NULL)?date("Y/m/d",strtotime($value['activated_date'])):'--';
+
+                    $package['renew_date'] = ($value['renew_date']!=NULL)?date("Y/m/d",strtotime($value['renew_date'])):'--';
+                    $package['package_status']=$value['package_status'];
+                    array_push($result,$package);
+                    
+                }
+                
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    
+    }
 
    public function get_package_info($id)
     {
@@ -212,6 +280,11 @@ class Package_controller extends CI_Controller {
                 {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
+
+                    $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $data =$user_det->result_array();  
+
+                    $package['marketer']=$data[0]['username']; 
 
                     $package['package_name'] = $in_array_1[0]['name'];
 

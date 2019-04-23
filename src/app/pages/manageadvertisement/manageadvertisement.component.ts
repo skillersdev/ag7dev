@@ -13,8 +13,10 @@ import { LoginService } from '../../services/login.service';
 })
 export class ManageadvertisementComponent implements OnInit {
 	advertisementlist:Array<Object>;
+  model:any={};
 	getadlistRestApiUrl:string = AppSettings.getadDetail;
 	DeleteadRestApiUrl:string = AppSettings.deletead;
+  updateibaRestApiUrl:string = AppSettings.updateibadetails;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class ManageadvertisementComponent implements OnInit {
             } 
              
         });
+        this.model.usergroup=localStorage.getItem('currentUsergroup');
   }
   navigateAddads()
   {
@@ -35,6 +38,19 @@ export class ManageadvertisementComponent implements OnInit {
   editad(id:any)
   {
      this.router.navigate(['/editad', id]);
+  }
+  changeibastatus(id:any)
+  {
+    this.model.ad_id=id;
+    this.CommonService.insertdata(this.updateibaRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+        this.router.navigate(['/manageads']); 
+    });
   }
   deletead(id:any)
   {

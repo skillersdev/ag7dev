@@ -41,10 +41,27 @@ class Website extends CI_Controller {
 				foreach($service_det_result as $key=>$value)
 		          {              
 		            
-		            $serv_result[]=array('id'=>$value['id'],'service_name'=>$value['title'],'desc'=>$value['description']);
+		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description']);
 		          }
 
 			}
+
+			/*Adver*/
+			/*Services list*/
+			$ad_det=$this->db->select("*")->like('url',$websitename)->where(['is_deleted'=>'0'])->get('user_advertisements'); 
+			$ad_det_result =$ad_det->result_array();
+			$ads_result=[];
+			if(count($ad_det_result)>0)
+			{	
+
+				foreach($ad_det_result as $key=>$value)
+		          {              
+		            
+		            $ads_result[]=array('id'=>$value['id'],'uploads'=>$value['uploads'],'ad_type'=>$value['ad_type']);
+		          }
+
+			}
+
 
 			/*Contact list*/
 			$contact_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('contacts_master'); 
@@ -63,6 +80,7 @@ class Website extends CI_Controller {
 			$data['product_details']=$result;
 			$data['service_details']=$serv_result;
 			$data['contact_details']=$contac_result;
+			$data['ad_details'] = $ads_result;
 			$data['profile_image']=$user_profile_result[0]['image_url'];
 			$data['address']=$user_profile_result[0]['address'];
 			$data['about_me']=$user_profile_result[0]['about_me'];

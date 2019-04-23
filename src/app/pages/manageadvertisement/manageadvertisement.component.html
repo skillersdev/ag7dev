@@ -33,6 +33,7 @@
                                       <td>
                                         <a href="javascript:void(0);" (click)="editad(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletead(data.id)"><i class="material-icons">delete</i></a>
+                                        <input *ngIf="model.usergroup==1" type="button" name="iba_ad" (click)="changeibastatus(data.id)" value="Enable IBA">
                                     </td>
                                   </tr>
                                  

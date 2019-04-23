@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+//print_r($service_details);die;
 //print_r($product_details);die;
 
 ?>
@@ -130,7 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-3">
 				 <?php 
           $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev1/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
          ?>
 			</div>
           <div class="col-lg-6">
@@ -178,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                      <?php 
-                        echo '<img src="http://localhost/ag7dev1/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
+                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
                         ?>
                       <div class="details">
                         <h4><a href="product-details.html">
@@ -257,17 +258,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="row">
           <?php 
 
-          for($j=0;$j<count($service_details);$j++)
+          for($k=0;$k<count($ad_details);$k++)
           {
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
-                <img src="<?php echo base_url();?>/assets/img/hotels/1.png" alt="Hotel 1" class="img-fluid"style="height: 205px;">
+                <?php 
+                  if($ad_details[$k]['ad_type']==1)
+                  { 
+                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid">'; 
+                  }
+                  else{
+                    echo '<video width="280" height="200" controls>
+                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+                          </video>';
+                  }
+                ?>
+                <!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
               </div>
-              <h3><?php echo $service_details[$j]['service_name'];?></h3>
+             <!--  <h3><?php// echo $ad_details[$k]['service_name'];?></h3>
               
-              <p><?php echo $service_details[$j]['desc'];?></p>
+              <p><?php //echo $ad_details[$k]['desc'];?></p> -->
             </div>
           </div>
         <?php } ?>
@@ -299,7 +311,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
-                <img src="<?php echo base_url();?>/assets/img/hotels/1.png" alt="Hotel 1" class="img-fluid"style="height: 205px;">
+               <?php 
+                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid">'; 
+                ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
               

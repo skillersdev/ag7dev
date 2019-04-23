@@ -88,7 +88,7 @@ class Service_controller extends CI_Controller {
           // //  pr($this->db->last_query());die();
             
 
-              $result=$this->db->query("update ".$this->db->dbprefix('services')." set  title='".$model->title."',description='".$model->description."',website='".$model->website."' where id='".$model->id."'");
+              $result=$this->db->query("update ".$this->db->dbprefix('services')." set  title='".$model->title."',description='".$model->description."',service_image='".$model->service_image."',website='".$model->website."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Service has been updated successfully";

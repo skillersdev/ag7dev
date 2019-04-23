@@ -25,7 +25,7 @@ class User_controller extends CI_Controller {
         {
           $last_inserted_user_id = $this->db->insert_id();
           $package_id =isset($model->pcktaken)?$model->pcktaken:0;
-          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id) values('".$last_inserted_user_id."','".$package_id."')");
+          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_inserted_user_id."','".$package_id."','".$model->website."')");
         }
 
 
@@ -514,6 +514,32 @@ class User_controller extends CI_Controller {
 
             $response['status']="success";
             $response['message']="Advertisement record has been deleted successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+    public function updateibadetails()
+    {
+         $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+        
+
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('user_advertisements')." where id='".$model->ad_id."' AND is_deleted=0");
+        
+        if($res_chk->num_rows()>0){
+
+            $data=array('iba_ad'=>'1');
+            $this->db->where('id',$model->ad_id);
+            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+
+            $response['status']="success";
+            $response['message']="IBA has enabled for this Advertisements";
             
         }else{
             $response['status']="failure";

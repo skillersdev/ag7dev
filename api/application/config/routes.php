@@ -104,6 +104,7 @@ $route['getadvertisment']= 'User_controller/get_user_ad';
 $route['editad/(:num)'] = 'User_controller/editad/$1'; 
 $route['updatead']= 'User_controller/updatead';
 $route['deletead/(:num)'] = 'User_controller/deletead/$1';
+$route['updateibadetails'] = 'User_controller/updateibadetails';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/
@@ -120,6 +121,7 @@ $route['deleteearnings/(:num)'] = 'Package_controller/deleteearnings/$1';
 
 /*Package vs info API*/
 $route['getpackagelist/(:num)'] = 'Package_controller/get_package_info/$1';
+$route['getpackagealllist']='Package_controller/get_all_package';
 $route['checkwebsiteexists'] = 'Package_controller/check_website_exists';
 $route['getwebsitelist']= 'Package_controller/get_website_list';
 

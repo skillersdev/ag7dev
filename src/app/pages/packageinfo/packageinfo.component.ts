@@ -12,6 +12,7 @@ declare var $ :any;
 })
 export class PackageinfoComponent implements OnInit {
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
+  getinfolistRestApiUrl:string = AppSettings.getallPackageInfo; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
@@ -28,10 +29,26 @@ export class PackageinfoComponent implements OnInit {
     this.loginService.viewsActivate();
     this.payment_details=false;
     let user_id = localStorage.getItem('currentUserID');
-    this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+      this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.packagelist=resultdata.result; 
         });
+    }
+    else{
+      this.CommonService.getdata(this.getinfolistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.packagelist=det.result; 
+             
+            } 
+             
+        });
+    }
+    
         
   }
   pay_via_voucher()

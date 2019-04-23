@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
   users :any= []; //storing the data from the API
   userRestApiUrl: string = AppSettings.Userlogin; //API common URL
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
+  CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser; 
   packagelist:Array<Object>;
@@ -82,6 +83,17 @@ export class SignupComponent implements OnInit {
       {
         swal('',package_det.message,'error')
         this.model.username='';
+      }  
+    });
+  }
+   checkwebsite()
+  {
+    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
+    .subscribe(package_det =>{
+      if(package_det.exist==1)
+      {
+        swal('',package_det.message,'error')
+        this.model.website='';
       }  
     });
   }

@@ -7,6 +7,15 @@
             <div class="body">
                 <form id="sign_up" #signup="ngForm">
                     <!-- <div class="msg">Signup as a new marketer</div> -->
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">view_comfys</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="Enter Website Name" (blur)="checkwebsite()" required autofocus>
+                        </div>
+                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                    </div>
 
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -63,7 +72,7 @@
                         </span>
                         <div class="form-line">
                             <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
-                                <option [ngValue]="select">select website</option>    
+                                <option [ngValue]="select">select package</option>    
                                 <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
                             </select>
                         </div>
