@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2019 at 07:16 PM
+-- Generation Time: Apr 12, 2019 at 09:15 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -47,7 +47,6 @@ CREATE TABLE `affiliateuser` (
   `signupcode` text NOT NULL,
   `level` int(1) NOT NULL DEFAULT '2',
   `pcktaken` int(10) NOT NULL DEFAULT '0',
-  `website` varchar(255) NOT NULL,
   `launch` int(1) NOT NULL DEFAULT '0',
   `expiry` date NOT NULL DEFAULT '2199-12-31',
   `getpayment` int(11) NOT NULL DEFAULT '1',
@@ -61,16 +60,15 @@ CREATE TABLE `affiliateuser` (
 -- Dumping data for table `affiliateuser`
 --
 
-INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `about_me`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `website`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
-(1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 1, '0000-00-00', 'India', 9799, '', '', 2, 1, '', 0, '2199-12-31', 1, 0, 0, 1, 0),
-(3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, NULL, '', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, '', 0, '2199-12-31', 1, 0, 0, 2, 1),
-(4, 'remo', '1234567', 'remo', '', '', 'referr', 0, NULL, '', 0, '2019-03-01', '', 0, '', '', 2, 5, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, NULL, '', 1, '2019-03-01', '', 1000, '', '', 2, 2, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', '', 1, '2019-03-01', '', 979, '', '', 2, 2, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(7, 'ramasway', '123456789', 'ramasway', '66 gp coimabtre', 'mr.michael@gmail.com', 'niolll', 0, 'user_profile/e88c494d4165a16d828a864174f791f4.jpg', 'dfdgdgd', 0, '2019-03-04', '', 999808, '', '', 2, 1, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, NULL, '', 0, '2019-04-02', '', 0, '', '', 2, 3, '', 0, '2199-12-31', 1, 0, 0, 2, 0),
-(9, 'antony', '123456', 'mark', '', '', 'test111', 0, NULL, '', 0, '2019-04-23', '', 0, '', '', 2, 14, 'test', 0, '2199-12-31', 1, 0, 0, 2, 0);
+INSERT INTO `affiliateuser` (`Id`, `username`, `password`, `fname`, `address`, `email`, `referedby`, `mobile`, `image_url`, `about_me`, `active`, `doj`, `country`, `tamount`, `payment`, `signupcode`, `level`, `pcktaken`, `launch`, `expiry`, `getpayment`, `renew`, `iba_status`, `user_type`, `is_deleted`) VALUES
+(1, 'marketer', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 0, '0000-00-00', 'India', 5000, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(2, 'sridhar', '123456', 'MAnimarana mariumuth', 'sdfsfsfsfs', 'mr.mani99@gmail.com', '12', 9874563212, NULL, '', 1, '0000-00-00', 'India', 9799, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 1, 0),
+(3, 'user module tes', 'lkjdfgjk', 'xjgsfds', 'we', 'sf', 'sf', 0, NULL, '', 0, '0000-00-00', 'xcf', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 1),
+(4, 'remo', '1234567', 'remo', '', '', 'referr', 0, NULL, '', 0, '2019-03-01', '', 0, '', '', 2, 5, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(5, 'romeo', '12345678', 'romeo', '', '', 'kathir', 0, NULL, '', 1, '2019-03-01', '', 1000, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(6, 'michael', '0123456', 'michaels', 'test', 'mr.mani99@gmail.com', '12', 0, 'user_profile/97a0bf18c64dfe7d08afdd2ef8b86e69.jpg', '', 1, '2019-03-01', '', 979, '', '', 2, 2, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(7, 'ramasway', '123456789', 'ramasway', '', 'mr.michael@gmail.com', 'niolll', 0, 'user_profile/e88c494d4165a16d828a864174f791f4.jpg', 'Hi Am from MLM family. Its free from all over the world.', 0, '2019-03-04', '', 0, '', '', 2, 1, 0, '2199-12-31', 1, 0, 0, 2, 0),
+(8, 'manikam', '123456', 'kamalesh', '', '', 'rest', 0, NULL, '', 0, '2019-04-02', '', 0, '', '', 2, 3, 0, '2199-12-31', 1, 0, 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -283,9 +281,8 @@ CREATE TABLE `contacts_master` (
 --
 
 INSERT INTO `contacts_master` (`id`, `website`, `contact`, `fb_link`, `linked_url`, `created_date`, `is_deleted`) VALUES
-(1, 'hhhhhhhhhh', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
-(2, 'tyree', 'sdfsdfsfdfsf000', 'sdfsfsf77', 'sfsfsf99', '2019-03-31 01:14:49', 1),
-(3, 'kakak', 'hhhhhhhhhhh', 'jhgkgygk', 'vvvg', '2019-04-16 01:18:49', 0);
+(1, 'kakak', 'tmamma', 'ww.fb.com1', 'www.link.com', '2019-03-31 00:17:00', 0),
+(2, 'tyree', 'sdfsdfsfdfsf000', 'sdfsfsf77', 'sfsfsf99', '2019-03-31 01:14:49', 1);
 
 -- --------------------------------------------------------
 
@@ -597,23 +594,7 @@ INSERT INTO `paypalpayments` (`id`, `orderid`, `transacid`, `price`, `currency`,
 (9, 7, 'R.V', 0, 'USD', '2019-03-14', 1, 0, 0, 1, 'R.B'),
 (10, 7, 'R.V', 0, 'USD', '2019-03-14', 1, 0, 0, 1, 'R.B'),
 (11, 7, 'R.V', 12, 'Australian Dollar', '2019-04-06', 1, 0, 0, 14, 'R.B'),
-(12, 7, 'R.V', 12, 'Australian Dollar', '2019-04-07', 1, 0, 0, 14, 'R.B'),
-(13, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(14, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(15, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(16, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(17, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(18, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(19, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(20, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(21, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(22, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(23, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(24, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(25, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(26, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(27, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B'),
-(28, 10, 'R.V', 12, 'Australian Dollar', '2019-04-25', 1, 0, 0, 14, 'R.B');
+(12, 7, 'R.V', 12, 'Australian Dollar', '2019-04-07', 1, 0, 0, 14, 'R.B');
 
 -- --------------------------------------------------------
 
@@ -641,8 +622,7 @@ CREATE TABLE `product_master` (
 INSERT INTO `product_master` (`id`, `product_name`, `product_image`, `category_id`, `sub_category_id`, `website`, `price`, `currency`, `created_date`, `is_deleted`) VALUES
 (1, 'product1', '', 1, 1, '0', 12, '0', '2019-03-17 09:43:03', 1),
 (2, 'product2', 'product_image/2acb28b1249f4400e0f0b7f918cf9d01.jpg', 1, 1, 'kakak', 12, 'rs', '2019-03-17 10:50:53', 0),
-(3, 'montior', 'product_image/534bc5c03b3e94a97a0d38c916e1e1b6.jpg', 1, 1, 'kakak', 111119, 'rs', '2019-04-10 18:53:26', 0),
-(4, 'Mall', 'product_image/cd6b277b8134cd113163a2b9db99b867.jpg', 1, 1, 'hhhhhhhhhh', 1, 'rs', '2019-04-12 19:17:21', 0);
+(3, 'montior', 'product_image/534bc5c03b3e94a97a0d38c916e1e1b6.jpg', 1, 1, 'kakak', 111119, 'rs', '2019-04-10 18:53:26', 0);
 
 -- --------------------------------------------------------
 
@@ -655,7 +635,6 @@ CREATE TABLE `services` (
   `title` varchar(155) NOT NULL,
   `description` varchar(255) NOT NULL,
   `website` varchar(155) NOT NULL,
-  `service_image` varchar(155) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` int(15) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -664,13 +643,9 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `title`, `description`, `website`, `service_image`, `created_date`, `is_deleted`) VALUES
-(1, 'service toitleqwq212', 'fulmarggggggggg', 'tyree', '', '2019-03-19 18:16:56', 1),
-(2, 'titkei', 'asdadas', 'kakak', 'product_image/db2c2f7de589e895ddce22e8111af9ea.jpg', '2019-03-19 18:59:44', 0),
-(3, 'Service 1', 'Yeah its worth', 'hhhhhhhhhh', '', '2019-04-12 19:20:30', 0),
-(4, 'mbkjkjgkjg', 'vhjyg', 'hhhhhhhhhh', '', '2019-04-12 19:24:17', 1),
-(5, 'ASsSs', 'as', 'hhhhhhhhhh', 'product_image/6fa688411904f3452028db5423183579.jpg', '2019-04-16 18:18:55', 0),
-(6, 'm ,mn', ' hvhvb', 'kakak', 'product_image/01d920b7f5730591a216cee0911c1c88.jpg', '2019-04-16 18:29:27', 0);
+INSERT INTO `services` (`id`, `title`, `description`, `website`, `created_date`, `is_deleted`) VALUES
+(1, 'service toitleqwq212', 'fulmarggggggggg', 'tyree', '2019-03-19 18:16:56', 1),
+(2, 'titke', 'asdadas', 'kakak', '2019-03-19 18:59:44', 0);
 
 -- --------------------------------------------------------
 
@@ -1299,9 +1274,9 @@ CREATE TABLE `user_advertisements` (
 --
 
 INSERT INTO `user_advertisements` (`id`, `url`, `uploads`, `user_id`, `ad_type`, `feature_of_ad`, `website_ad`, `iba_ad`, `is_deleted`, `created_at`) VALUES
-(1, 'kakak', 'user_adv_uploads/a811936c885451af7e03793703077f63.mp4', '2', '2', 0, 1, 1, 0, '0000-00-00 00:00:00'),
+(1, 'kakak', 'user_adv_uploads/a811936c885451af7e03793703077f63.mp4', '2', '2', 0, 1, 0, 0, '0000-00-00 00:00:00'),
 (2, 'kakak', 'user_adv_uploads/d1d5d3a570721b328eef555a4401ec09.mp4', '2', '2', 0, 0, 0, 1, '2019-03-23 01:04:17'),
-(3, 'kakak', 'user_adv_uploads/5edb400837e42a92c442f37db74eabd9.jpg', '2', '1', 0, 0, 0, 0, '2019-03-24 17:56:36');
+(3, 'kakak', 'user_adv_uploads/b64d84960168384d30d67bdbb887dd3a.mp4', '2', '1', 0, 0, 0, 0, '2019-03-24 17:56:36');
 
 -- --------------------------------------------------------
 
@@ -2792,6 +2767,7 @@ CREATE TABLE `user_vs_packages` (
 --
 
 INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`, `website`, `template`, `activated_date`, `renew_date`) VALUES
+(1, 3, 1, 1, '', 1, NULL, NULL),
 (2, 6, 2, 0, 'tyree', 1, NULL, NULL),
 (3, 7, 1, 1, 'kakak', 1, NULL, NULL),
 (4, 7, 1, 1, '', 1, NULL, NULL),
@@ -2800,9 +2776,7 @@ INSERT INTO `user_vs_packages` (`id`, `user_id`, `package_id`, `package_status`,
 (7, 7, 3, 1, '', 1, NULL, NULL),
 (8, 7, 2, 1, '', 1, NULL, NULL),
 (9, 7, 10, 1, '', 1, NULL, NULL),
-(10, 7, 14, 2, 'hhhhhhhhhh', 1, '2019-04-07 00:00:00', NULL),
-(11, 7, 11, 1, '', 1, '2019-04-16 00:08:18', NULL),
-(12, 9, 14, 1, 'test', 1, '2019-04-23 07:16:39', NULL);
+(10, 7, 14, 0, 'hhhhhhhhhh', 1, '2019-04-07 00:00:00', '2019-04-06 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -2963,7 +2937,7 @@ ALTER TABLE `user_vs_packages`
 -- AUTO_INCREMENT for table `affiliateuser`
 --
 ALTER TABLE `affiliateuser`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `affiliate_bonus_history`
@@ -2999,7 +2973,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `contacts_master`
 --
 ALTER TABLE `contacts_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `currency`
@@ -3053,19 +3027,19 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `paypalpayments`
 --
 ALTER TABLE `paypalpayments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `product_master`
 --
 ALTER TABLE `product_master`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sub_category_master`
@@ -3095,7 +3069,7 @@ ALTER TABLE `user_services`
 -- AUTO_INCREMENT for table `user_vs_packages`
 --
 ALTER TABLE `user_vs_packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

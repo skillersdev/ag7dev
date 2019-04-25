@@ -7,6 +7,8 @@ $tes1=json_decode($array);
 $array1 = json_decode(json_encode($tes1), True);
 $website_name = $array1[0]['website'];
 
+//print_r($array);die;
+
 if($array1[0]['username'])
 {
 	 $status = "OK"; //initial status

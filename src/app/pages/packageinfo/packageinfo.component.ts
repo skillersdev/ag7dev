@@ -16,12 +16,13 @@ export class PackageinfoComponent implements OnInit {
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
-  websiteUrl:string=AppSettings.WEBSITE_URL;
+  packageRenewApiUrl:string = AppSettings.package_renew;
   packagelist:Array<Object>;
   model:any={};
   payment_data:any={}; 
   details_array:any=[];
   payment_details:any=false;
+  renew_payment_details:any=false;
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
@@ -29,6 +30,7 @@ export class PackageinfoComponent implements OnInit {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.payment_details=false;
+    this.renew_payment_details=true;
     let user_id = localStorage.getItem('currentUserID');
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.model.usergroup==2)
@@ -55,6 +57,11 @@ export class PackageinfoComponent implements OnInit {
   pay_via_voucher()
   {
     this.payment_details=true;
+    
+  }
+  pay_via_voucher_renew()
+  {
+    this.renew_payment_details=false;
   }
   checkUserexist(event:any)
   {
@@ -69,13 +76,14 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
-  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any)
+  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any)
   {
     this.model.package_name = package_name;
     this.model.package_price = package_price;
     this.payment_data.userid = userid;//user_vs_package user id
     this.payment_data.pack_id =pack_id;//user_vs_pacakge package if
     this.payment_data.pack_id_user=pack_id_user;//user_vs_packeg mastr id
+    this.model.website = website;
   }
   CancelPayment()
   {
@@ -117,6 +125,42 @@ export class PackageinfoComponent implements OnInit {
         //this.model='';
       }
       else if(payment_status.status=='fail'){
+        swal('','user has less amount on his own','error');
+       // this.payment_data=''; 
+        //this.model='';
+      }
+      else{
+        swal('','Error while on activate package','error');
+       // this.payment_data=''; 
+        //this.model='';
+      }
+     
+    });
+  }
+  paytorenew()
+  {
+    this.payment_data.website = this.model.website;
+    this.details_array.push(this.payment_data);
+     this.CommonService.insertdata(this.packageRenewApiUrl,this.details_array)
+    .subscribe(payment_status =>{ 
+      if(payment_status.status=='success')
+      {
+        swal('','Package Renewed successfully','success');
+        this.payment_data='';
+        this.model='';
+         $('#renewModal').modal('toggle');
+          let user_id = localStorage.getItem('currentUserID');
+          this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+              .subscribe(resultdata =>{   
+                this.packagelist=resultdata.result; 
+              });
+            }
+      else if(payment_status.status=='user_error'){
+        swal('','Not a valid user or invalid user data','error');        
+        //this.payment_data='';
+        //this.model='';
+      }
+      else if(payment_status.status=='Failed'){
         swal('','user has less amount on his own','error');
        // this.payment_data=''; 
         //this.model='';

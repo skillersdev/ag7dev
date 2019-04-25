@@ -5,6 +5,7 @@ export class AppSettings{
 	public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
 	public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
 	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 
 	
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api

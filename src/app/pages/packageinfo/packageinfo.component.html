@@ -88,6 +88,83 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="renewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Package Renew</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="" #addpackage="ngForm">
+                                            <div class="">
+                                                <p><b>Package Name</b></p>
+                                                <div class="form-group"> 
+                                                    <div class="form-line">
+                                                        <input type="text" id="package_name " name="package_name" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
+                                                    </div>
+                                                    <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <p><b>Package price</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
+                                                    </div>
+                                                    <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <p><b>Website Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                         required readonly="">
+                                                         <!-- (blur)="checkwebsite()" -->
+                                                    </div>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                               <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">Pay with voucher</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="">
+                                        <form *ngIf="!renew_payment_details" class="" #renew_voucher="ngForm">
+                                            <div class="col-md-12">
+                                                <p><b>User Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <p><b>Password</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" [disabled]="!renew_voucher.form.valid" class="btn btn-primary" (click)="paytorenew()">Pay</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
@@ -112,7 +189,9 @@
                                         <td>{{data.status}}</td>
                                         <td><a href="{{websiteUrl}}{{data.website}}">website</a></td>
                                         <td>
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website)" data-toggle="modal" data-target="#renewModal">
                                             <span *ngIf="data.package_status==2">Renew</span>
+                                        </a>
                                             <span *ngIf="data.package_status==0">Active</span>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id)" data-toggle="modal" data-target="#exampleModal">
                                                 <span *ngIf="data.package_status==1">Yet to activate</span>
