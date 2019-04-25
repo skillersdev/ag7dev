@@ -65,6 +65,10 @@ export class LoginService {
 
   }
 
+  viewsManageUserActivate() {
+
+    
+  }
 
 
 }

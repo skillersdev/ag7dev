@@ -110,11 +110,13 @@
                                         <td>{{data.renew_date}}</td>
                                         <td>{{data.Delivered_date}}</td>
                                         <td>{{data.status}}</td>
-                                        <td><a href="#">website</a></td>
+                                        <td><a href="{{websiteUrl}}{{data.website}}">website</a></td>
                                         <td>
                                             <span *ngIf="data.package_status==2">Renew</span>
                                             <span *ngIf="data.package_status==0">Active</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id)" data-toggle="modal" data-target="#exampleModal"><span *ngIf="data.package_status==1">Yet to activate</span></a>
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id)" data-toggle="modal" data-target="#exampleModal">
+                                                <span *ngIf="data.package_status==1">Yet to activate</span>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

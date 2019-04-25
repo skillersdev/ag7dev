@@ -16,6 +16,7 @@ export class PackageinfoComponent implements OnInit {
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
+  websiteUrl:string=AppSettings.WEBSITE_URL;
   packagelist:Array<Object>;
   model:any={};
   payment_data:any={}; 
