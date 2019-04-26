@@ -42,7 +42,13 @@ import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertis
 import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
 import { EditcontactComponent } from './pages/managecontacts/editcontact.component';
 
+import { LandingpageComponent } from './landingpage/landingpage.component';
+
 const routes: Routes = [
+  {
+	  path: 'landing',
+	  component: LandingpageComponent
+  },
   {
 	  path: '',
 	  component: LoginComponent

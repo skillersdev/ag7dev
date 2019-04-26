@@ -1,10 +1,11 @@
 export class AppSettings{
 
 	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
-	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
-	public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
-	public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
-	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	public static API_BASE = "http://localhost/ag7dev1/trunk/api";
+	public static USER_TEMPLATE= "http://localhost/ag7dev1/trunk/website";
+	public static IMAGE_BASE = "http://localhost/ag7dev1/trunk/api/";
+	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev1/trunk/api/database/checkbalance.php";
+	public static WEBSITE_URL="http://localhost/ag7dev1/trunk/website/";
 	public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 
 	
@@ -18,7 +19,7 @@ export class AppSettings{
 	public static editcategory= AppSettings.API_BASE+"/editcategory/";
 	public static updatecategory= AppSettings.API_BASE+"/updatecategory";
 	public static deletecategory= AppSettings.API_BASE+"/deletecategory/";
-
+	
 	/**/
 
 	/*Subcategory*/

@@ -49,6 +49,7 @@ import { ManageadvertisementComponent } from './pages/manageadvertisement/manage
 
 import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertisement.component';
 import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import {EditadvertisementComponent} from './pages/manageadvertisement/editadvert
     ManageadvertisementComponent,
     AddadvertisementComponent,
     EditadvertisementComponent,
-    EditcontactComponent
+    EditcontactComponent,
+    LandingpageComponent
   ],
   imports: [
     BrowserModule,                          
