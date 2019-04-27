@@ -31,7 +31,7 @@ export class LoginService {
       localStorage.removeItem('currentUsername');
       localStorage.removeItem('currentUsergroup');
       localStorage.removeItem('currentUserStatus');
-      this.router.navigate(['./']);
+      this.router.navigate(['./login']);
   }   
 
 

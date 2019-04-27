@@ -44,6 +44,7 @@ export class SignupComponent implements OnInit {
               this.packagelist= packagedet.result;
             } 
         });
+        this.model.website=localStorage.getItem('website_name');
   }
    passwordMatch()
    {
@@ -70,7 +71,7 @@ export class SignupComponent implements OnInit {
           "Registered Successfully",
           user_det.status
         )
-        this.router.navigate(['/']); 
+        this.router.navigate(['/login']); 
     });
   }
   checkUserexist(event:any)

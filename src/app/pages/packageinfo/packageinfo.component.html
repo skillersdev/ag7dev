@@ -48,7 +48,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
-                                                        (blur)="checkwebsite()" required>
+                                                         readonly="">
                                                     </div>
                                                     <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
@@ -193,7 +193,7 @@
                                             <span *ngIf="data.package_status==2">Renew</span>
                                         </a>
                                             <span *ngIf="data.package_status==0">Active</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id)" data-toggle="modal" data-target="#exampleModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website)" data-toggle="modal" data-target="#exampleModal">
                                                 <span *ngIf="data.package_status==1">Yet to activate</span>
                                             </a>
                                         </td>

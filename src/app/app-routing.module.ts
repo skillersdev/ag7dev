@@ -46,11 +46,11 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 
 const routes: Routes = [
   {
-	  path: 'landing',
+	  path: '',
 	  component: LandingpageComponent
   },
   {
-	  path: '',
+	  path: 'login',
 	  component: LoginComponent
   },
   {

@@ -9,11 +9,14 @@
     <div class="intro-text">
       <p class="intro-heading">Welcome to Roodabatoz</p>
       <h1 class="intro-lead-in" >Search & Create Website</h1>
-      <form action="#" method="post">
-        <input type="text" placeholder="Search Website">
-        <input type="submit" value="Search & Create">
-		<p class="intro-heading" style="text-align: center !important;">OR</p>
-		<input type="submit" value="Login To Your Website">
+      <form id="signsignup_up" #signup="ngForm">
+        <input type="text" placeholder="Search Website" [(ngModel)]="model.website" #website="ngModel" name="website"  required>
+        <div *ngIf="website.errors && (website.dirty || website.touched)">
+        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+      </div>
+       <!--  <input type="submit" value="Search & Create"  [disabled]="!signup.form.valid">
+		<p class="intro-heading" style="text-align: center !important;">OR</p> -->
+		<input type="submit" value="Login To Your Website" (click)="checkwebsite()" [attr.disabled]="disabled ? '!signup.form.valid' : null">
 	  </form>
     </div>
   </div>
