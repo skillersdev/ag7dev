@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { CommonService} from '../../services/common.service';
 import { AppSettings } from '../../appSettings';
+import Swal from 'sweetalert2'
 declare var $ :any;
 
 @Component({
@@ -17,6 +18,7 @@ export class PackageinfoComponent implements OnInit {
   CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
   packageRenewApiUrl:string = AppSettings.package_renew;
+  updatetemplatepackagevsuser:string = AppSettings.updatetemplatepackagevsuser;
   packagelist:Array<Object>;
   model:any={};
   payment_data:any={}; 
@@ -76,15 +78,36 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
-  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any)
+  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any)
   {
+    
     this.model.package_name = package_name;
     this.model.package_price = package_price;
     this.payment_data.userid = userid;//user_vs_package user id
     this.payment_data.pack_id =pack_id;//user_vs_pacakge package if
     this.payment_data.pack_id_user=pack_id_user;//user_vs_packeg mastr id
     this.model.website = website;
+    this.model.template = template;
+    this.model.p_id = pack_id_user;
+    
+    
+    
   }
+
+  updatetemplate()
+  {
+    this.CommonService.insertdata(this.updatetemplatepackagevsuser,this.model)
+    .subscribe(package_det =>{       
+      swal('','Template Updated Successfully','success');  
+      // this.router.navigate(['./packageinfo']); 
+      // this.router.navigate(['/dashboard']);
+         
+         this.ngOnInit();
+         $('#ctemplateModal').modal('toggle');
+        //this.router.navigate(['/dashboard']) ; 
+    });
+  }
+
   CancelPayment()
   {
     this.payment_details=false;

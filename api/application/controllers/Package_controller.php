@@ -290,6 +290,7 @@ class Package_controller extends CI_Controller {
 
                     $package['package_price'] = $in_array_1[0]['price'];
                     $package['website']= $value['website'];
+                    $package['template']= $value['template'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
                     if($value['package_status']=='0')
@@ -325,7 +326,7 @@ class Package_controller extends CI_Controller {
                 $response['message']=" No Package record found!!";
             }
             $response['result']=$result;
-
+// print_r($result); die;
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
@@ -345,6 +346,41 @@ class Package_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
+   
+   public function updatetemplatepackagevsuser()
+   {
+    $this->output->set_content_type('application/json');
+    $response=array('status'=>"success");
+
+    $model = json_decode($this->input->post('model',FALSE));
+
+//    print_r($model);die();
+
+    if (isset($model)) {
+        $new_model->template = $model->template;
+    
+        $this->db->where('id',$model->p_id);
+        $result=$this->db->update('user_vs_packages', $new_model);
+      //  pr($this->db->last_query());die();
+
+        if ($result) {
+            $response['message']="Template updated successfully";
+        }
+        else
+        {
+        $response['status']="failure";
+        $response['message']="Record has not been updated successfully";
+        }
+        
+
+    } else {
+        $response['status']="failure";
+        $response['message']="Record has not been updated successfully";
+    }
+
+    die(json_encode($response, JSON_UNESCAPED_SLASHES));
+   }
+   
     public function get_package_not_buy($id)
     {
         //var_dump($id); die();

@@ -87,7 +87,8 @@ export class AppSettings{
     public static checkwebsitedetail= AppSettings.API_BASE+"/checkwebsiteexists";
     public static getwebsitelist = AppSettings.API_BASE+"/getwebsitelist";		
     public static getPackageNotbuy= AppSettings.API_BASE+"/getpackagenotbuy/";
-    public static insertpackagevsuser= AppSettings.API_BASE+"/addpackagevsuser";		
+	public static insertpackagevsuser= AppSettings.API_BASE+"/addpackagevsuser";
+	public static updatetemplatepackagevsuser= AppSettings.API_BASE+"/updatetemplatepackagevsuser";		
     /**/
 
 	//User Login Api Starts here

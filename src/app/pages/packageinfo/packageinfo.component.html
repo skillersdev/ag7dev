@@ -164,6 +164,68 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="ctemplateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Change Template</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="" #addpackage="ngForm">
+                                            <div class="">
+                                                <p><b>Package Name</b></p>
+                                                <div class="form-group"> 
+                                                    <div class="form-line">
+                                                        <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel"  [readonly]="true">
+                                                    </div>
+                                                    <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="">
+                                                <p><b>Website Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                         readonly="readonly">
+                                                         <!-- <input type="hidden" id="p_id" name="p_id" class="form-control" [(ngModel)]="model.p_id" #p_id="ngModel"> -->
+                                                    </div>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="">
+                                                <p><b>Change Template</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.template" #template="ngModel" name="template" required>
+                                                            <option value="">Select Template</option>
+                                                            <option value="1">Template1</option>
+                                                            <option value="2">Template2</option>
+                                                            <option value="3">Template3</option>
+                                                            <option value="4">Template4</option>
+                                                            <option value="5">Template5</option>  
+                                                            <!-- <option *ngFor="let model of categorylist" value="{{model.id}}">{{model.category_name}}</option> -->
+                                                        </select>
+                                                        <span [hidden]="template.valid || template.pristine" class="text-danger">Template is required</span>
+                                                        
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="updatetemplate()" class="btn btn-primary">Change Template</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -176,6 +238,7 @@
                                         <th>Delivered Date</th>
                                         <th>Status</th>
                                         <th>Website link</th>
+                                        <th>Change Template</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -188,12 +251,15 @@
                                         <td>{{data.Delivered_date}}</td>
                                         <td>{{data.status}}</td>
                                         <td><a href="{{websiteUrl}}{{data.website}}">website</a></td>
+                                        <td><a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#ctemplateModal">
+                                            <span>Change Template</span>
+                                        </a></td>
                                         <td>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website)" data-toggle="modal" data-target="#renewModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#renewModal">
                                             <span *ngIf="data.package_status==2">Renew</span>
                                         </a>
                                             <span *ngIf="data.package_status==0">Active</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website)" data-toggle="modal" data-target="#exampleModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#exampleModal">
                                                 <span *ngIf="data.package_status==1">Yet to activate</span>
                                             </a>
                                         </td>
