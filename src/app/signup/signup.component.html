@@ -1,6 +1,6 @@
  <div class="signup-box">
         <div class="logo">
-            <a href="javascript:void(0);">Sign Up<b></b></a>
+            <a href="javascript:void(0);">Create Website<b></b></a>
             <small>fill the information to continue</small>
         </div>
         <div class="card">
@@ -84,7 +84,7 @@
                                 <i class="material-icons">group</i>
                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Sponsor/Referral Username" required autofocus>
+                                <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Creator/Website Name" required autofocus>
                             </div>
                         </div>
                     
@@ -94,7 +94,7 @@
                     <button class="btn btn-block btn-lg bg-pink waves-effect" [disabled]="!signup.form.valid || model.passwordmatch" type="submit" (click)="adduser()">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a [routerLink]="['/login']" >You already have a membership?</a>
+                        <a [routerLink]="['/login']" >I already have a website</a>
                     </div>
                 </form>
             </div>

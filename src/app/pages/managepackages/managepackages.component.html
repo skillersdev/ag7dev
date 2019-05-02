@@ -10,7 +10,7 @@
                         <div class="header">
                             <h2>
                                 Manage Packages
-                                <button type="button" (click)="navigateAddpackage()" class="btn btn-success waves-effect pull-right">Add package</button>
+                                <button type="button" (click)="navigateAddpackage()" class="btn btn-success waves-effect pull-right">Buy package</button>
                             </h2>
                         </div>
                         <div class="body">
@@ -20,10 +20,7 @@
                                         <tr>
                                             <th>Package Name</th>
                                             <th>Package Price</th>
-                                            <th>Indirect Bonus</th>
                                             <th>Pay via Voucher</th>
-                                            <th>Minimum Payout for User</th>
-                                            <th>Signup Bonus</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>                                   
@@ -31,10 +28,7 @@
                                         <tr *ngFor="let data of packagelist let idx=index">
                                             <td>{{data.package_name}}</td>
                                             <td>{{data.package_price}}</td>
-                                            <td>{{data.indirect_ref_amount}}</td>
                                             <td>{{data.pay_via_voucher}}</td>
-                                            <td>{{data.payout_for_user}}</td>
-                                            <td>{{data.sign_up_bonus}}</td>
                                             <td>
                                                 <a href="javascript:void(0);" (click)="editpackage(data.id)"><i class="material-icons">edit</i></a>
                                                 <a href="javascript:void(0);" (click)="deletepackage(data.id)"><i class="material-icons">delete</i></a>

@@ -44,4 +44,9 @@ model: any = {};
     }
   }
 
+  navigatetologin()
+  {
+    this.router.navigate(['./login']);
+  }
+
 }

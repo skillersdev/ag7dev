@@ -14,9 +14,9 @@
         <div *ngIf="website.errors && (website.dirty || website.touched)">
         <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
       </div>
-       <!--  <input type="submit" value="Search & Create"  [disabled]="!signup.form.valid">
-		<p class="intro-heading" style="text-align: center !important;">OR</p> -->
-		<input type="submit" value="Login To Your Website" (click)="checkwebsite()" [attr.disabled]="disabled ? '!signup.form.valid' : null">
+        <input type="submit" value="Search & Create" (click)="checkwebsite()" [disabled]="!signup.form.valid">
+		<p class="intro-heading" style="text-align: center !important;">OR</p>
+		<input type="submit" value="Login To Your Website" (click)="navigatetologin()" [attr.disabled]="disabled ? '!signup.form.valid' : null">
 	  </form>
     </div>
   </div>
