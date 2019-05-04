@@ -354,15 +354,11 @@ class Package_controller extends CI_Controller {
 
     $model = json_decode($this->input->post('model',FALSE));
 
-//    print_r($model);die();
-
     if (isset($model)) {
         $new_model->template = $model->template;
     
         $this->db->where('id',$model->p_id);
         $result=$this->db->update('user_vs_packages', $new_model);
-      //  pr($this->db->last_query());die();
-
         if ($result) {
             $response['message']="Template updated successfully";
         }
