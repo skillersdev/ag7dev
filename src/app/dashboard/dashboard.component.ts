@@ -162,6 +162,7 @@ export class DashboardComponent implements OnInit {
   userweb(website_name:any)
   {
     this.model.user_web_url=website_name;
+    // this.model.template=template;
      this.CommonService.insertdata(this.userwebsiteurl,this.model)
     .subscribe(package_det =>{       
          swal(
