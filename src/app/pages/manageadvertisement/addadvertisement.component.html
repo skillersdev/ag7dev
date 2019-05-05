@@ -73,6 +73,26 @@
                                                         <input type="file" name="adimage" (change)=fileEvent($event) required>    
                                                     </div>
                                                 </div>
+                                            </div> 
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">weblink</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="weblink" name="weblink" [(ngModel)]="model.weblink"  #weblink="ngModel" placeholder="weblink" required>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">About Image</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="desc" name="desc" [(ngModel)]="model.desc" #desc="ngModel" placeholder="About Image">
+                                                    </div>
+                                                </div>
+                                                </div>
                                             </div>  
                                         </div>
                                         <div class="row clearfix" *ngIf="model.formEnable==2">
@@ -95,6 +115,26 @@
                                                          <input type="file" name="adimage" (change)=fileEvent($event) required>   
                                                     </div>
                                                     <span>*Accepts MP4 type video only</span>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">weblink</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="weblink" name="weblink" [(ngModel)]="model.weblink"  #weblink="ngModel" placeholder="weblink" required>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div> 
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">About Video</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="desc" name="desc" [(ngModel)]="model.desc"  #desc="ngModel" placeholder="About Video">
+                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>  
                                         </div>      

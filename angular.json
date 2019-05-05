@@ -46,10 +46,9 @@
               "src/assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js",
               "src/assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js",
               "src/assets/js/pages/examples/profile.js",
-              "src/assets/js/demo.js"
-              
-             
-              
+              "src/assets/js/demo.js",
+              "src/assets/plugins/ckeditor/ckeditor.js",
+              "src/assets/plugins/tinymce/tinymce.js" 
             ]
           },
           "configurations": {

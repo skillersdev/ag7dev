@@ -77,6 +77,34 @@ class User_controller extends CI_Controller {
     
 
   }
+  public function getmarketerslist()
+  {
+     $model = json_decode($this->input->post('model',FALSE));
+    
+        $username = trim($model->currentUsername);
+        if(isset($model->currentUsername)){
+            $res=$this->db->select("*")->like('referedby',$username)->where(['is_deleted'=>'0'])->get('affiliateuser');    
+        }
+       
+       $response=[];
+
+        if(count($res->result_array())>0)
+        {
+          // $data = $res->result_array();
+            $result=[];
+
+             foreach($res->result_array() as $key=>$value)
+              { 
+                //$value['username']=$data[0]['username']; 
+
+                $result[]=array('username'=>$value['username'],'website'=>$value['website'],
+                  'doj'=>$value['doj'],'expiry'=>$value['expiry']);
+              }
+            //$response['message']="User name already exists";
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+  }
   public function check_user_exist(){
     $model = json_decode($this->input->post('model',FALSE));
     //print_r($model->username);die;   
@@ -294,7 +322,8 @@ class User_controller extends CI_Controller {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
             // print_r($ext);die;
-            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png" ||$ext==".mp4" )
+            //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
+            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png" ||$ext==".mp4" ||$ext==".AVI" ||$ext==".3GPP" ||$ext==".FLV" ||$ext==".MOV" ||$ext==".MPEG4" ||$ext==".MPEGPS" ||$ext==".WebM" ||$ext==".WMV" ||$ext==".MPEG4")
             {
 
               $generatedName = md5($_FILES['file']['tmp_name']).$ext;

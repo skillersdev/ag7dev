@@ -65,6 +65,66 @@
                                                     </div>
                                                 </div>                                           
                                             </div>
+                                            <div class="row clearfix">                                            
+                                                 <div class="col-md-6">
+                                                <p><b>Phone numbers</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.phonenumber" #phonenumber="ngModel" name="phonenumber">
+                                                    </div>                                                                              
+                                                </div>
+                                            </div> 
+
+                                             <div class="col-md-6">
+                                                <p><b>Home numbers</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.homenumber" #homenumber="ngModel" name="homenumber">
+                                                    </div>                       
+                                                </div>
+                                            </div> 
+                                          
+                                            </div>
+                                             <div class="row clearfix">                                            
+                                                 <div class="col-md-6">
+                                                <p><b>Office numbers</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.officenumber" #officenumber="ngModel" name="officenumber">
+                                                    </div>                                                                              
+                                                </div>
+                                            </div> 
+
+                                             <div class="col-md-6">
+                                                <p><b>FAX numbers</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.faxnumber" #faxnumber="ngModel" name="homenumber">
+                                                    </div>                       
+                                                </div>
+                                            </div> 
+                                          
+                                            </div>
+                                             <div class="row clearfix">                                            
+                                                 <div class="col-md-6">
+                                                <p><b>WhatsApp</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.whatsapp" #whatsapp="ngModel" name="whatsapp">
+                                                    </div>                                                                              
+                                                </div>
+                                            </div> 
+
+                                             <div class="col-md-6">
+                                                <p><b>Telegram</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.telegram" #telegram="ngModel" name="telegram">
+                                                    </div>                       
+                                                </div>
+                                            </div> 
+                                          
+                                            </div>
                                                             
                                         <button type="button" [disabled]="!addcontact.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatecontactlist()">Update Contact</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()"class="btn btn-primary m-t-15 waves-effect">Cancel</button>

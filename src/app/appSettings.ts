@@ -67,7 +67,8 @@ export class AppSettings{
 	public static updatead= AppSettings.API_BASE+"/updatead";
 	public static deletead=AppSettings.API_BASE+"/deletead/";
 	public static updateibadetails=AppSettings.API_BASE+"/updateibadetails";
-	public static getcategorybywebsite=AppSettings.API_BASE+"/checkcategorybyweb";	
+	public static getcategorybywebsite=AppSettings.API_BASE+"/checkcategorybyweb";
+	public static getMarketerslistDetail = 	AppSettings.API_BASE+"/getMarketerslist";
 	/* */
 
 	/**Earnings*/

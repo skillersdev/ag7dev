@@ -144,19 +144,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <?php echo $about_us; ?>
             </p>
           </div>
-          <div class="col-lg-3">
+         <!--  <div class="col-lg-3">
             <h3>Address</h3>
             <?php 
-            $address =($address!='')?$address:'A108 Adam Street, NY 535022, USA';
+            //$address =($address!='')?$address:'A108 Adam Street, NY 535022, USA';
             ?>
 
-            <p><?php echo $address;?></p>
-      			 <p><?php echo $mobile;?>,<br>042-898979989</p>
-          </div>
+            <p><?php //echo $address;?></p>
+      			 <p><?php //echo $mobile;?>,<br>042-898979989</p>
+          </div> -->
           
         </div>
       </div>
     </section>
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="section-bg wow fadeInUp">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Nihil officia ut sint molestiae tenetur.</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-3">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>A108 Adam Street, NY 535022, USA</address>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:info@example.com">info@example.com</a></p>
+            </div>
+          </div>
+      
+      <div class="col-md-3">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Social</h3>
+              <p><a href="#">Facebook</a></p>
+        <p><a href="#">Twitter</a></p>
+        <p><a href="#">LinkedIn</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        
+
+      </div>
+    </section><!-- #contact -->
 
     <!--==========================
       Speakers Section
@@ -334,60 +389,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
 
     
-    <!--==========================
-      Contact Section
-    ============================-->
-    <section id="contact" class="section-bg wow fadeInUp">
-
-      <div class="container">
-
-        <div class="section-header">
-          <h2>Contact Us</h2>
-          <p>Nihil officia ut sint molestiae tenetur.</p>
-        </div>
-
-        <div class="row contact-info">
-
-          <div class="col-md-3">
-            <div class="contact-address">
-              <i class="ion-ios-location-outline"></i>
-              <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="contact-phone">
-              <i class="ion-ios-telephone-outline"></i>
-              <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="contact-email">
-              <i class="ion-ios-email-outline"></i>
-              <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
-            </div>
-          </div>
-		  
-		  <div class="col-md-3">
-            <div class="contact-email">
-              <i class="ion-ios-email-outline"></i>
-              <h3>Social</h3>
-              <p><a href="#">Facebook</a></p>
-			  <p><a href="#">Twitter</a></p>
-			  <p><a href="#">LinkedIn</a></p>
-            </div>
-          </div>
-
-        </div>
-
-        
-
-      </div>
-    </section><!-- #contact -->
+    
 
   </main>
 
@@ -400,16 +402,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-6 col-md-6 footer-info">
+        <!--   <div class="col-lg-6 col-md-6 footer-info">
             <img src="<?php echo base_url();?>/assets/img/logo.png" alt="TheEvenet">
             <p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
-          </div>
-
-          
+          </div> -->       
 
          
 
-          <div class="col-lg-6 col-md-6 footer-contact">
+    <!--       <div class="col-lg-6 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
               A108 Adam Street <br>
@@ -427,7 +427,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
             </div>
 
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -437,10 +437,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="copyright">
         &copy; Copyright <strong>Website</strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      <!-- <div class="credits">
        
         Designed by <a href="https://skillersglobalservice.com/">Skillers</a>
-      </div>
+      </div> -->
     </div>
   </footer><!-- #footer -->
 

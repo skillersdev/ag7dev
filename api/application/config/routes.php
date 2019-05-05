@@ -105,6 +105,7 @@ $route['editad/(:num)'] = 'User_controller/editad/$1';
 $route['updatead']= 'User_controller/updatead';
 $route['deletead/(:num)'] = 'User_controller/deletead/$1';
 $route['updateibadetails'] = 'User_controller/updateibadetails';
+$route['getMarketerslist'] = 'User_controller/getmarketerslist';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
 /**/

@@ -36,6 +36,19 @@
                         </div>
                         <span [hidden]="username.valid || username.pristine" class="text-danger">Username is required</span>
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                           <i class="material-icons">account_circle</i>
+                        </span>
+                        <div class="form-line">
+                       <input name="group5" type="radio" id="radio_30" value="male" class="with-gap radio-col-red" checked="" [(ngModel)]="model.gender">
+                       <label for="radio_30">Male</label>
+
+                        <input name="group5" type="radio" id="radio_31" value="female" class="with-gap radio-col-red" [(ngModel)]="model.gender">
+                       <label for="radio_31">Female</label>
+                        </div>
+                       
+                    </div>
                       
                     
                     <div class="input-group">

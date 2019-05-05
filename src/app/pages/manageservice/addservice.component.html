@@ -58,6 +58,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                     <div class="col-md-6">
+                                                <p><b>website Link</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.weblink" #weblink="ngModel" name="weblink">
+                                                    </div>                       
+                                                </div>
+                                            </div> 
                                                 </div>                
                                                 <button type="button" [disabled]="!addservice.form.valid"  class="btn btn-primary m-t-15 waves-effect" (click)="add_service()">Add Service</button>&nbsp;
                                                 &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
