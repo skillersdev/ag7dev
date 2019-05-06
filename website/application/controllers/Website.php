@@ -86,6 +86,7 @@ class Website extends CI_Controller {
 			$data['about_me']=$user_profile_result[0]['about_me'];
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
+			$data['website']=$val[0]['website'];
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');

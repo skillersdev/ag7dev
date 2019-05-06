@@ -167,7 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="section-header">
           <h2>Contact Us</h2>
-          <p>Nihil officia ut sint molestiae tenetur.</p>
+          <p><?php echo $website;?></p>
         </div>
 
         <div class="row contact-info">
@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
               <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <address><?php echo $address;?></address>
             </div>
           </div>
 
@@ -184,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              <p><a href="tel:+155895548855"><?php echo $mobile;?></a></p>
             </div>
           </div>
 
@@ -192,7 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:info@example.com"><?php echo $mail;?></a></p>
             </div>
           </div>
       

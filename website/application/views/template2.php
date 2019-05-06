@@ -1,4 +1,6 @@
-
+<?php
+//echo "<pre>";print_r($website);die;
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -110,9 +112,9 @@
 
 						<div class="slide-caption">
                             <div class="caption-content">
-                                <h2 class="animated fadeInDown">BLUE Onepage HTML5 Template</h2>
-                                <span class="animated fadeInDown">Clean and Professional one page Template</span>
-                                <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                                <h2 class="animated fadeInDown">Welcome to Roodabatoz</h2>
+                                <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
+      							<p class="mb-4 pb-0">Expert in software development and staffing</p>
                             </div>
                         </div>
 						
@@ -198,10 +200,16 @@
 						</div>-->
 						<div class="col-md-12 col-md-offset-1 wow animated fadeInRight">
 							<div class="welcome-block">
-								<h3>Welcome To website title</h3>								
+								<h3>Welcome To <?php echo $website;?></h3>								
 						     	 <div class="message-body">
-									<img src="<?php echo base_url();?>assets/template2/img/member-1.jpg" class="pull-left" alt="member">
-						       		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+									 <?php 
+								          $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+								          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+								         ?>
+								          <?php 
+								              $about_us =($about_me!='')?$about_me:'Welcome to mysite';
+								            ?>
+						       		<p><?php echo $about_us; ?> </p>
 						     	 </div>
 						       	
 						    </div>
@@ -221,47 +229,24 @@
 							<h2 class="wow animated bounceInLeft">Service</h2>
 							<p class="wow animated bounceInRight">Provide Various Service in diffrent domain</p>
 						</div>
-						
+						<?php 
+
+				          for($j=0;$j<count($service_details);$j++)
+				          {
+				          ?>
 						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn">
 							<div class="service-item">
-								<div class="service-icon">
-									<i class="fa fa-home fa-3x"></i>
+								<div class="">
+									 <?php 
+						                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+						                ?>
 								</div>
-								<h3>Support</h3>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+								<h3><?php echo $service_details[$j]['service_name'];?></h3>
+								<p><?php echo $service_details[$j]['desc'];?></p>
 							</div>
 						</div>
+						<?php } ?>
 					
-						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn" data-wow-delay="0.3s">
-							<div class="service-item">
-								<div class="service-icon">
-									<i class="fa fa-tasks fa-3x"></i>
-								</div>
-								<h3>Well Documented</h3>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-							</div>
-						</div>
-					
-						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn" data-wow-delay="0.6s">
-							<div class="service-item">
-								<div class="service-icon">
-									<i class="fa fa-clock-o fa-3x"></i>
-								</div>
-								<h3>Design UI/UX</h3>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-							</div>
-						</div>
-					
-						<div class="col-md-3 col-sm-6 col-xs-12 text-center wow animated zoomIn" data-wow-delay="0.9s">
-							<div class="service-item">
-								<div class="service-icon">
-									<i class="fa fa-heart fa-3x"></i>
-								</div>
-								
-								<h3>Web Security</h3>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>							
-							</div>
-						</div>
 						
 					</div>
 				</div>
@@ -280,77 +265,31 @@
 						
 
 						<ul class="project-wrapper wow animated fadeInUp">
+							 <?php
+					          if(count($product_details)>0)
+					          {
+					            for($i=0;$i<count($product_details);$i++)
+					              {
+					                //echo $product_details[$i]['product_image'];
+					                ?>
 							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item.jpg" class="img-responsive" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat">
+								 <?php 
+			                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+			                        ?>
 								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
+									<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
+									<p><?php echo $product_details[$i]['price'];?></p>
 								</figcaption>
 								<ul class="external">
 									<li><a class="fancybox" title="Araund The world" data-fancybox-group="works" href="img/portfolio/item.jpg"><i class="fa fa-search"></i></a></li>
 									
 								</ul>
 							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item2.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street" href="img/slider/banner.jpg" data-fancybox-group="works" ><i class="fa fa-search"></i></a></li>
-									
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item3.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Behind The world" data-fancybox-group="works" href="img/portfolio/item3.jpg"><i class="fa fa-search"></i></a></li>
-									
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item4.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry.">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 4" data-fancybox-group="works" href="img/portfolio/item4.jpg"><i class="fa fa-search"></i></a></li>
-									
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item5.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 5" data-fancybox-group="works" href="img/portfolio/item5.jpg"><i class="fa fa-search"></i></a></li>
-									
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item6.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 6" data-fancybox-group="works" href="img/portfolio/item6.jpg"><i class="fa fa-search"></i></a></li>
-									
-								</ul>
-							</li>
+							<?php } 
+						        } else
+						        {?>
+						        	<li class="portfolio-item">No Products found</li>
+							<?php }?>
 						</ul>
 						
 					</div>
@@ -370,77 +309,34 @@
 							</div>
 						
 							<ul class="project-wrapper wow animated fadeInUp">
+								 <?php 
+
+					          for($k=0;$k<count($ad_details);$k++)
+					          {
+					          ?>
 							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item.jpg" class="img-responsive" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat">
-								<figcaption class="mask">
+								<?php
+								 if($ad_details[$k]['ad_type']==1)
+				                  { 
+				                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+				                  }
+				                  else{
+				                    echo '<video width="280" height="200" controls>
+				                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+				                          </video>';
+				                  }
+				                  ?>
+								<!-- <figcaption class="mask">
 									<h3>Wall street</h3>
 									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
+								</figcaption> -->
+								<!-- <ul class="external">
 									<li><a class="fancybox" title="Araund The world" data-fancybox-group="works" href="img/portfolio/item.jpg"><i class="fa fa-search"></i></a></li>
 									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
+								</ul> -->
 							</li>
+							<?php } ?>
 							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item2.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street" href="img/slider/banner.jpg" data-fancybox-group="works" ><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item3.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Behind The world" data-fancybox-group="works" href="img/portfolio/item3.jpg"><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item4.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry.">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 4" data-fancybox-group="works" href="img/portfolio/item4.jpg"><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item5.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 5" data-fancybox-group="works" href="img/portfolio/item5.jpg"><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
-							</li>
-							
-							<li class="portfolio-item">
-								<img src="<?php echo base_url();?>assets/template2/img/portfolio/item6.jpg" class="img-responsive" alt="Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. ">
-								<figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption>
-								<ul class="external">
-									<li><a class="fancybox" title="Wall street 6" data-fancybox-group="works" href="img/portfolio/item6.jpg"><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul>
-							</li>
 						</ul>
 						
 						
@@ -507,9 +403,10 @@
 						<div class="col-md-12 wow animated fadeInRight">
 							<address class="contact-details">
 								<h3>Contact Us</h3>						
-								<p><i class="fa fa-pencil"></i>Phoenix Inc.<span>PO Box 345678</span> <span>Little Lonsdale St, Melbourne </span><span>Australia</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: (415) 124-5678 </p>
-								<p><i class="fa fa-envelope"></i>website@yourname.com</p>
+								<p><i class="fa fa-pencil"></i><?php echo $website;?>
+								<span><?php echo $address;?></span><span>Australia</span></p><br>
+								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
+								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
 							</address>
 						</div>
 			

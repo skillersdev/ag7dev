@@ -112,7 +112,7 @@
 					<div class="item active" style="background-image: url(img/banner.jpg);">
 						<div class="carousel-caption">
 							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Rodabatoz</span>!</h2>
-							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color">Website name</span> We are a team of professionals.</h3>
+							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color"><?php echo $website;?></span> We are a team of professionals.</h3>
 							<p data-wow-duration="1000ms" class="wow slideInRight animated">Provides various services</p>
 							
 							<ul class="social-links text-center">
@@ -166,49 +166,28 @@
 					</div>
 
 					<!-- service item -->
+					 <?php 
+
+			          for($j=0;$j<count($service_details);$j++)
+			          {
+			          ?>
 					<div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
 						<div class="service-item">
-							<div class="service-icon">
-								<i class="fa fa-github fa-2x"></i>
+							<div class="">
+								 <?php 
+					                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+					                ?>
 							</div>
 							
 							<div class="service-desc">
-								<h3>Branding</h3>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+								<h3><?php echo $service_details[$j]['service_name'];?></h3>
+								<p><?php echo $service_details[$j]['desc'];?></p>
 							</div>
 						</div>
 					</div>
+					 <?php } ?>
 					<!-- end service item -->
 					
-					<!-- service item -->
-					<div class="col-md-4 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
-						<div class="service-item">
-							<div class="service-icon">
-								<i class="fa fa-pencil fa-2x"></i>
-							</div>
-							
-							<div class="service-desc">
-								<h3>Development</h3>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-							</div>
-						</div>
-					</div>
-					<!-- end service item -->
-					
-					<!-- service item -->
-					<div class="col-md-4 wow fadeInRight" data-wow-duration="500ms"  data-wow-delay="900ms">
-						<div class="service-item">
-							<div class="service-icon">
-								<i class="fa fa-bullhorn fa-2x"></i>
-							</div>
-							
-							<div class="service-desc">
-								<h3>Consulting</h3>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-							</div>
-						</div>
-					</div>
-					<!-- end service item -->
 						
 				</div>
 			</div>
@@ -250,78 +229,28 @@
 			</div>
 			
 			<div class="project-wrapper">
-			
+				 <?php
+		          if(count($product_details)>0)
+		          {
+		            for($i=0;$i<count($product_details);$i++)
+		              {
+		                //echo $product_details[$i]['product_image'];
+		                ?>
 				<figure class="mix work-item branding">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-1.jpg" alt="">
+					 <?php 
+                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+                        ?>
 					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-1.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
+						<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
+									<p><?php echo $product_details[$i]['price'];?></p>
 					</figcaption>
 				</figure>
+				<?php } 
+						        } else
+						        {?>
+						        	<span class="portfolio-item">No Products found</span>
+							<?php }?>
 				
-				<figure class="mix work-item web">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-2.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-2.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-				
-				<figure class="mix work-item logo-design">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-3.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-3.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-				
-				<figure class="mix work-item photography">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-4.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-4.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-			
-				<figure class="mix work-item branding">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-5.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-5.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-				
-				<figure class="mix work-item web">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-6.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-6.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-				
-				<figure class="mix work-item logo-design">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-7.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-7.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
-				
-				<figure class="mix work-item photography">
-					<img src="<?php echo base_url();?>assets/template3/img/works/item-8.jpg" alt="">
-					<figcaption class="overlay">
-						<a class="fancybox" rel="works" title="Write Your Image Caption Here" href="<?php echo base_url();?>assets/template3/img/works/item-8.jpg"><i class="fa fa-eye fa-lg"></i></a>
-						<h4>Labore et dolore magnam</h4>
-						<p>Photography</p>
-					</figcaption>
-				</figure>
 				
 			</div>
 		
@@ -348,41 +277,26 @@
 					<!-- <div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
 						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
 					</div> -->
+					
+					<!-- single member -->
+					 <?php 
 
-					<!-- single member -->
-					<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
-						<div class="member-thumb">
-							<img src="<?php echo base_url();?>assets/template3/img/team/member-1.png" alt="Team Member" class="img-responsive">
-							<figcaption class="overlay">
-								<h5>voluptatem quia voluptas </h5>
-								<p>sit aspernatur aut odit aut fugit,</p>
-								
-							</figcaption>
-						</div>
-						<h4>John Filmr Doe</h4>
-						<span>Managing Director</span>
-					</figure>
-					<!-- end single member -->
-					
-					<!-- single member -->
-					<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="member-thumb">
-							<img src="<?php echo base_url();?>assets/template3/img/team/member-2.png" alt="Team Member" class="img-responsive">
-							<figcaption class="overlay">
-								<h5>voluptatem quia voluptas </h5>
-								<p>sit aspernatur aut odit aut fugit,</p>
-								
-							</figcaption>
-						</div>
-						<h4>Martin Matrone</h4>
-						<span>Lead Developer</span>
-					</figure>
-					<!-- end single member -->
-					
-					<!-- single member -->
+			          for($k=0;$k<count($ad_details);$k++)
+			          {
+			          ?>
 					<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
 						<div class="member-thumb">
-							<img src="<?php echo base_url();?>assets/template3/img/team/member-3.png" alt="Team Member" class="img-responsive">
+							<?php
+							 if($ad_details[$k]['ad_type']==1)
+				                  { 
+				                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+				                  }
+				                  else{
+				                    echo '<video width="280" height="200" controls>
+				                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+				                          </video>';
+				                  }
+				                  ?>
 							<figcaption class="overlay">
 								<h5>voluptatem quia voluptas </h5>
 								<p>sit aspernatur aut odit aut fugit,</p>
@@ -392,22 +306,9 @@
 						<h4>Steve Flaulkin</h4>
 						<span>Sr. UI Designer</span>
 					</figure>
+				<?php } ?>
 					<!-- end single member -->
-					
 					<!-- single member -->
-					<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="900ms">
-						<div class="member-thumb">
-							<img src="<?php echo base_url();?>assets/template3/img/team/member-1.png" alt="Team Member" class="img-responsive">
-							<figcaption class="overlay">
-								<h5>voluptatem quia voluptas </h5>
-								<p>sit aspernatur aut odit aut fugit,</p>
-								
-							</figcaption>
-						</div>
-						<h4>John Filmr Doe</h4>
-						<span>Managing Director</span>
-					</figure>
-					<!-- end single member -->
 					
 				</div>
 			</div>
@@ -445,10 +346,10 @@
 					<!-- contact address -->
 					<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
 						<div class="contact-address">
-							<h3>Cras at ultrices erat, sed vulputate!</h3>
-							<p>2345 Setwant natrer, 1234,</p>
-							<p>Washington. United States.</p>
-							<p>(401) 1234 567</p>
+							<p><i class="fa fa-pencil"></i><?php echo $website;?>
+								<span><?php echo $address;?></span><span>Australia</span></p><br>
+								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
+								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
 						</div>
 					</div>
 					<!-- end contact address -->

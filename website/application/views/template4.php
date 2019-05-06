@@ -100,21 +100,21 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="<?php echo base_url();?>assets/template4/#page-top"></a>
+                        <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url();?>assets/template4/#services">Services</a>
+                        <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url();?>assets/template4/#products">Products</a>
+                        <a class="page-scroll" href="#products">Products</a>
                     </li>
                    
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url();?>assets/template4/#ads">Advertisment</a>
+                        <a class="page-scroll" href="#ads">Advertisment</a>
                     </li>
                   
                     <li>
-                        <a class="page-scroll" href="<?php echo base_url();?>assets/template4/#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -146,10 +146,10 @@
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
                             <h1 class="animated3">
-                                <span><strong>Fame</strong> for the highest</span>
+                                <span><strong>Roodabatoz</strong> welcome to this site</span>
                             </h1>
-                            <p class="animated2">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                            <a href="<?php echo base_url();?>assets/template4/#feature" class="page-scroll btn btn-primary animated1">Read More</a>
+                            <p class="animated2"> We are a team of professionals.</p>	
+                            <!-- <a href="<?php echo base_url();?>assets/template4/#feature" class="page-scroll btn btn-primary animated1">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -212,33 +212,22 @@
                 </div>
             </div>
             <div class="row">
-                
+                 <?php 
+
+                  for($j=0;$j<count($service_details);$j++)
+                  {
+                  ?>
                 <div class="col-md-4">
                     <div class="welcome-section text-center">
-                        <img src="<?php echo base_url();?>assets/template4/images/about-01.jpg" class="img-responsive" alt="..">
-                        <h4>Office Philosophy</h4>
-                        <div class="border"></div>
-                        <p>Duis aute irure dolor in reprehen derit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem reprehenderit</p>
+                        <?php 
+                          echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+                        ?>
+                        <h3><?php echo $service_details[$j]['service_name'];?></h3>
+                                <p><?php echo $service_details[$j]['desc'];?></p>
                     </div>
                 </div>
-                
-                <div class="col-md-4">
-                    <div class="welcome-section text-center">
-                        <img src="<?php echo base_url();?>assets/template4/images/about-02.jpg" class="img-responsive" alt="..">
-                        <h4>Office Mission & Vission</h4>
-                        <div class="border"></div>
-                        <p>Duis aute irure dolor in reprehen derit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem reprehenderit</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="welcome-section text-center">
-                        <img src="<?php echo base_url();?>assets/template4/images/about-03.jpg" class="img-responsive" alt="..">
-                        <h4>Office Value & Rules</h4>
-                        <div class="border"></div>
-                        <p>Duis aute irure dolor in reprehen derit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Lorem reprehenderit</p>
-                    </div>
-                </div>
+                <?php } ?>
+               
                 
             </div><!-- /.row -->            
             
@@ -277,68 +266,30 @@
                         
                         <!-- Start Portfolio items -->
                         <ul id="portfolio-list">
+                             <?php
+                              if(count($product_details)>0)
+                              {
+                                for($i=0;$i<count($product_details);$i++)
+                                  {
+                                    //echo $product_details[$i]['product_image'];
+                                    ?>
                             <li>
                                 <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img1.jpg" class="img-responsive" alt="" />
+                                    <?php 
+                                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+                                        ?>
                                     <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
+                                       <h3><?php echo $product_details[$i]['product_name'];?></a></h3>
+                                    <p><?php echo $product_details[$i]['price'];?></p>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img2.jpg" class="img-responsive" alt="" />
-                                    <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img3.jpg" class="img-responsive" alt="" />
-                                    <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img4.jpg" class="img-responsive" alt="" />
-                                    <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img5.jpg" class="img-responsive" alt="" />
-                                    <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="portfolio-item">
-                                    <img src="<?php echo base_url();?>assets/template4/images/portfolio/img6.jpg" class="img-responsive" alt="" />
-                                    <div class="portfolio-caption">
-                                        <h4>Portfolio Title</h4>
-                                        <a href="<?php echo base_url();?>assets/template4/#portfolio-modal" data-toggle="modal" class="link-1"><i class="fa fa-magic"></i></a>
-                                        <a href="<?php echo base_url();?>assets/template4/#" class="link-2"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            
-                            
+                            <?php } 
+                                } else
+                                {?>
+                                    <span class="portfolio-item">No Products found</span>
+                            <?php }?>
+                           
                         </ul>
                         <!-- End Portfolio items -->
                     </div>
@@ -389,7 +340,7 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
                             <h3>Advertisement</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                            <!-- <p>Duis aute irure dolor in reprehenderit in voluptate</p> -->
                         </div>
                 </div>
             </div>
@@ -397,66 +348,31 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="team-section">
-                    
-                        
-                
-                
-
                                 <div class="our-team">
-
+                                     <?php
+                                      for($k=0;$k<count($ad_details);$k++)
+                                      {
+                                      ?>
                                     <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-1.png" class="img-responsive" alt="">
-                                        <div class="team-details">
+                                      <?php
+                                         if($ad_details[$k]['ad_type']==1)
+                                              { 
+                                                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+                                              }
+                                              else{
+                                                echo '<video width="280" height="200" controls>
+                                                        <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+                                                      </video>';
+                                              }
+                                              ?>
+                                        <!-- <div class="team-details">
                                             <h4>John Doe</h4>
                                             <p>Founder & Director</p>
                                             
-                                        </div>
+                                        </div> -->
                                     </div>
-
-                                    <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-2.png" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-3.png" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
-                                            
-                                        </div>
-                                    </div>    
-
-                                    <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-4.png" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
-                                           
-                                        </div>
-                                    </div>
-
-                                    <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-1.png" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="team-member">
-                                        <img src="<?php echo base_url();?>assets/template4/images/team/manage-2.png" class="img-responsive" alt="">
-                                        <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
-                                            
-                                        </div>
-                                    </div>
+                                    <?php } ?>
+                                  
 
 
                                 </div>
@@ -488,10 +404,10 @@
                     <div class="footer-contact-info">
                         <h4>Contact info</h4>
                         <ul>
-                            <li><strong>E-mail :</strong> your-email@mail.com</li>
-                            <li><strong>Phone :</strong> +8801-6778776</li>
-                            <li><strong>Mobile :</strong> +8801-45565378</li>
-                            <li><strong>Web :</strong> yourdomain.com</li>
+                            
+                            <li><strong>E-mail :</strong><?php echo $mail;?></li>
+                            <li><strong>Phone :</strong><?php echo $mobile;?></li>
+                            <li><strong>Web :</strong><?php echo $website;?></li>
                         </ul>
                     </div>
                 </div>
