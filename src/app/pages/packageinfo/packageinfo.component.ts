@@ -102,8 +102,9 @@ export class PackageinfoComponent implements OnInit {
       // this.router.navigate(['./packageinfo']); 
       // this.router.navigate(['/dashboard']);
          
-         this.ngOnInit();
+        //  this.ngOnInit();
          $('#ctemplateModal').modal('toggle');
+         this.ngOnInit();
         //this.router.navigate(['/dashboard']) ; 
     });
   }

@@ -355,12 +355,12 @@ class Package_controller extends CI_Controller {
    {
     $this->output->set_content_type('application/json');
     $response=array('status'=>"success");
-
+    $new_model=new stdClass();
     $model = json_decode($this->input->post('model',FALSE));
-
+    
     if (isset($model)) {
         $new_model->template = $model->template;
-    
+    // print_r($new_model); die;
         $this->db->where('id',$model->p_id);
         $result=$this->db->update('user_vs_packages', $new_model);
         if ($result) {
