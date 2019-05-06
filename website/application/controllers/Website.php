@@ -4,20 +4,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Website extends CI_Controller {
 
 	
-	public function index($template)
+	public function index($websitename)
 	{
 		// $template=1;
-		// print_r($websitename);die;
+		
 		$data=[];
-		if(isset($template))
+		if(isset($websitename))
 		{
-			$res=$this->db->select("*")->like('template',$template)->get('user_vs_packages');
+			$res=$this->db->select("*")->like('website',$websitename)->get('user_vs_packages');
 			$val=$res->result_array();
+			
 
 			$user_profile=$this->db->select("*")->like('id',$val[0]['user_id'])->where(['is_deleted'=>'0'])->get('affiliateuser'); 
 			$user_profile_result =$user_profile->result_array();
 			/*Product list*/
-			$product_det=$this->db->select("*")->like('website',$val[0]['website'])->where(['is_deleted'=>'0'])->get('product_master'); 
+			$product_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('product_master'); 
 			$product_det_result =$product_det->result_array();
 			$result=[];
 			if(count($product_det_result)>0)
@@ -31,7 +32,7 @@ class Website extends CI_Controller {
 
 			}
 			/*Services list*/
-			$service_det=$this->db->select("*")->like('website',$val[0]['website'])->where(['is_deleted'=>'0'])->get('services'); 
+			$service_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('services'); 
 			$service_det_result =$service_det->result_array();
 			$serv_result=[];
 			if(count($service_det_result)>0)
@@ -47,7 +48,7 @@ class Website extends CI_Controller {
 
 			/*Adver*/
 			/*Services list*/
-			$ad_det=$this->db->select("*")->like('url',$val[0]['website'])->where(['is_deleted'=>'0'])->get('user_advertisements'); 
+			$ad_det=$this->db->select("*")->like('url',$websitename)->where(['is_deleted'=>'0'])->get('user_advertisements'); 
 			$ad_det_result =$ad_det->result_array();
 			$ads_result=[];
 			if(count($ad_det_result)>0)
@@ -63,7 +64,7 @@ class Website extends CI_Controller {
 
 
 			/*Contact list*/
-			$contact_det=$this->db->select("*")->like('website',$val[0]['website'])->where(['is_deleted'=>'0'])->get('contacts_master'); 
+			$contact_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('contacts_master'); 
 			$contact_det_result =$contact_det->result_array();
 			$contac_result=[];
 			if(count($contact_det_result)>0)
@@ -88,22 +89,25 @@ class Website extends CI_Controller {
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');
-			if($template==1){
+			if($val[0]['template']==1){
 				$this->load->view('template1',$data);	
 			}
-			if($template==2){
+			if($val[0]['template']==2){
 				$this->load->view('template2',$data);	
 			}
-			if($template==3){
+			if($val[0]['template']==3){
 				$this->load->view('template3',$data);	
 			}
-			if($template==4){
+			if($val[0]['template']==4){
 				$this->load->view('template4',$data);	
+			}
+			if($val[0]['template']==5){
+				$this->load->view('template5',$data);	
 			}
 		}
 		else
 		{
-			$this->load->view('template2');	
+			$this->load->view('template1');	
 		}
 		
 		
