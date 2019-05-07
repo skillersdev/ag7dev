@@ -63,7 +63,7 @@
 					<!-- /responsive nav button -->
 					
 					<!-- logo -->
-                    <a class="navbar-brand" href="<?php echo base_url();?>assets/template3/#body">
+                    <a class="navbar-brand" href="#body">
 						<h1 id="logo">
 							<img src="<?php echo base_url();?>assets/template3/img/logo.png" alt="Roodabatoz" style="width: 123px;">
 						</h1>
@@ -74,11 +74,11 @@
 				<!-- main nav -->
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
-                        <li class="current"><a href="<?php echo base_url();?>assets/template3/#body">Home</a></li>
-                        <li><a href="<?php echo base_url();?>assets/template3/#services">Services</a></li>
-                        <li><a href="<?php echo base_url();?>assets/template3/#products">Products</a></li>
-                        <li><a href="<?php echo base_url();?>assets/template3/#ads">Ads</a></li>
-                        <li><a href="<?php echo base_url();?>assets/template3/#contact">Contact</a></li>
+                        <li class="current"><a href="#body">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#ads">Ads</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
 				<!-- /main nav -->

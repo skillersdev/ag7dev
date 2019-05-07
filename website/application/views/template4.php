@@ -91,7 +91,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="<?php echo base_url();?>assets/template4/#page-top">
+                <a class="navbar-brand page-scroll" href="#page-top">
 					<img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="Roodabatoz" style="width: 123px;">
 				</a>
             </div>
@@ -149,7 +149,7 @@
                                 <span><strong>Roodabatoz</strong> welcome to this site</span>
                             </h1>
                             <p class="animated2"> We are a team of professionals.</p>	
-                            <!-- <a href="<?php echo base_url();?>assets/template4/#feature" class="page-scroll btn btn-primary animated1">Read More</a> -->
+                            <!-- <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a> -->
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                     		  <span>Welcome to <strong>Fame</strong></span>
                     	    </h1>
                             <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="<?php echo base_url();?>assets/template4/#feature" class="page-scroll btn btn-primary animated3">Read More</a>
+                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                                 <span>The way of <strong>Success</strong></span>
                             </h1>
                             <p class="animated1">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                             <a class="animated3 slider btn btn-primary btn-min-block" href="<?php echo base_url();?>assets/template4/#">Get Now</a><a class="animated3 slider btn btn-default btn-min-block" href="<?php echo base_url();?>assets/template4/#">Live Demo</a>
+                             <a class="animated3 slider btn btn-primary btn-min-block" href="#">Get Now</a><a class="animated3 slider btn btn-default btn-min-block" href="#">Live Demo</a>
                                 
                         </div>
                     </div>
@@ -188,10 +188,10 @@
             <!-- Carousel inner end-->
 
             <!-- Controls -->
-            <a class="left carousel-control" href="<?php echo base_url();?>assets/template4/#main-slide" data-slide="prev">
+            <a class="left carousel-control" href="#main-slide" data-slide="prev">
                 <span><i class="fa fa-angle-left"></i></span>
             </a>
-            <a class="right carousel-control" href="<?php echo base_url();?>assets/template4/#main-slide" data-slide="next">
+            <a class="right carousel-control" href="#main-slide" data-slide="next">
                 <span><i class="fa fa-angle-right"></i></span>
             </a>
         </div>
