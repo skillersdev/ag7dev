@@ -42,7 +42,7 @@
     </head>
 	
     <body id="body">
-	
+		<?php $path_url = $this->config->item('path_url'); ?>
 		<!-- preloader -->
 		<div id="preloader">
 			<img src="<?php echo base_url();?>assets/template3/img/preloader.gif" alt="Preloader">
@@ -175,7 +175,7 @@
 						<div class="service-item">
 							<div class="">
 								 <?php 
-					                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+					                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
 					                ?>
 							</div>
 							
@@ -238,7 +238,7 @@
 		                ?>
 				<figure class="mix work-item branding">
 					 <?php 
-                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+                        echo '<img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
                         ?>
 					<figcaption class="overlay">
 						<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -289,11 +289,11 @@
 							<?php
 							 if($ad_details[$k]['ad_type']==1)
 				                  { 
-				                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+				                      echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
 				                  }
 				                  else{
 				                    echo '<video width="280" height="200" controls>
-				                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+				                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
 				                          </video>';
 				                  }
 				                  ?>

@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = '';
 
+$config['path_url'] = 'http://localhost/ag7dev.git/trunk/api/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

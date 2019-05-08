@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //print_r($service_details);die;
 //print_r($product_details);die;
+$path_url = $this->config->item('path_url');
 
 ?>
 
@@ -131,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-lg-3">
 				 <?php 
           $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
          ?>
 			</div>
           <div class="col-lg-6">
@@ -234,7 +235,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                      <?php 
-                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid">'; 
+                        echo '<img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid">'; 
                         ?>
                       <div class="details">
                         <h4><a href="product-details.html">
@@ -322,11 +323,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php 
                   if($ad_details[$k]['ad_type']==1)
                   { 
-                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid">'; 
+                      echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid">'; 
                   }
                   else{
                     echo '<video width="280" height="200" controls>
-                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
                           </video>';
                   }
                 ?>
@@ -367,7 +368,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid">'; 
+                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>

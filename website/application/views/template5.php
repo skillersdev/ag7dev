@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <?php $path_url = $this->config->item('path_url'); ?>
   <meta charset="utf-8">
   <title>Roodabatoz</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -122,7 +123,7 @@
           <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
           <?php 
           $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
          ?>  
           <!-- <img src="<?php echo base_url();?>assets/template5/img/about-img.svg" class="img-fluid" alt=""> -->
           </div>
@@ -189,14 +190,14 @@
 
             <div class="portfolio-wrap">
             <?php 
-                echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+                echo '<img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
             ?>
               <div class="portfolio-info">
                 <h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
                 <p><?php echo $product_details[$i]['price'];?></p>
                 <div>
                  <?php
-                 echo  '<a href="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].'" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>';
+                 echo  '<a href="'.$path_url.$product_details[$i]['product_image'].'" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>';
                  ?>
                   <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
                 </div>
@@ -240,11 +241,11 @@
             <?php
                                          if($ad_details[$k]['ad_type']==1)
                                               { 
-                                                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+                                                  echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
                                               }
                                               else{
                                                 echo '<video width="280" height="200" controls>
-                                                        <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+                                                        <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
                                                       </video>';
                                               }
                                               ?>

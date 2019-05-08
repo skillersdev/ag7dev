@@ -1,5 +1,6 @@
 <?php
 //echo "<pre>";print_r($website);die;
+$path_url = $this->config->item('path_url');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -204,7 +205,7 @@
 						     	 <div class="message-body">
 									 <?php 
 								          $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-								          echo '<img align="left" style="width: 165px; height: 180px;" src="http://localhost/ag7dev.git/trunk/api/'.$profile_image.'" alt="Profile image example"/>';
+								          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
 								         ?>
 								          <?php 
 								              $about_us =($about_me!='')?$about_me:'Welcome to mysite';
@@ -238,7 +239,7 @@
 							<div class="service-item">
 								<div class="">
 									 <?php 
-						                  echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+						                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].'" class="img-fluid" style="width:100%;">'; 
 						                ?>
 								</div>
 								<h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -274,7 +275,7 @@
 					                ?>
 							<li class="portfolio-item">
 								 <?php 
-			                        echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+			                        echo '<img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;">'; 
 			                        ?>
 								<figcaption class="mask">
 									<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -318,11 +319,11 @@
 								<?php
 								 if($ad_details[$k]['ad_type']==1)
 				                  { 
-				                      echo '<img src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+				                      echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
 				                  }
 				                  else{
 				                    echo '<video width="280" height="200" controls>
-				                            <source src="http://localhost/ag7dev.git/trunk/api/'.$ad_details[$k]['uploads'].'" type="video/mp4">
+				                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
 				                          </video>';
 				                  }
 				                  ?>
