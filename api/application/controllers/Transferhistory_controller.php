@@ -29,6 +29,16 @@ class Transferhistory_controller extends CI_Controller {
                  $data=array('tamount'=>$final_tot);
                 $this->db->where('id',$user_id);
                 $this->db->update($this->db->dbprefix('affiliateuser'),$data);
+
+                $user_share_to=$this->db->select("id,tamount")->like('username',$model->transfer_to)->where('is_deleted','0')->get('affiliateuser');
+                if(count($user_share_to->result_array())>0)
+                {
+                    $share_to_det=$user_share_to->result_array();
+                    $share_to=array('tamount'=>$model->amt);
+                    $this->db->where('id',$share_to_det[0]['id']);
+                    $this->db->update($this->db->dbprefix('affiliateuser'),$share_to);
+                }
+
                 $response=array('status'=>"success",'message'=>"Amount shared successfully");
         }
        // print_r($model);die;

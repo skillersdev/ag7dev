@@ -28,6 +28,7 @@ export class PackageinfoComponent implements OnInit {
   details_array:any=[];
   payment_details:any=false;
   renew_payment_details:any=false;
+  checkIswebsite:Boolean=false;
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
@@ -91,6 +92,7 @@ export class PackageinfoComponent implements OnInit {
     this.payment_data.pack_id =pack_id;//user_vs_pacakge package if
     this.payment_data.pack_id_user=pack_id_user;//user_vs_packeg mastr id
     this.model.website = website;
+    this.checkIswebsite=(this.model.website!='')?true:false;
     this.model.template = template;
     this.model.p_id = pack_id_user;
     

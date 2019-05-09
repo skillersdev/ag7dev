@@ -142,7 +142,7 @@ class User_controller extends CI_Controller {
 
         /*Check Maximum trasnfer*/
         $package_id=$data[0]['pcktaken'];  
-        $pack_det=$this->db->select("maximum_transfer")->like('id',$package_id)->where(['is_deleted'=>'0'])->get('package_info');
+        $pack_det=$this->db->select("maximum_transfer")->like('id',$package_id)->where(['is_deleted'=>'0'])->get('packages');
         if(count($pack_det->result_array())>0)
         { 
             $pck_data =$pack_det->result_array(); 
