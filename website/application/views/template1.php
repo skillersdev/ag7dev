@@ -201,9 +201,10 @@ $path_url = $this->config->item('path_url');
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Social</h3>
-              <p><a href="#">Facebook</a></p>
+              
+              <p><a href="<?php echo $contact_details[0]['fb']; ?>">Facebook</a></p>
         <p><a href="#">Twitter</a></p>
-        <p><a href="#">LinkedIn</a></p>
+        <p><a href="<?php echo $contact_details[0]['linked']; ?>">LinkedIn</a></p>
             </div>
           </div>
 

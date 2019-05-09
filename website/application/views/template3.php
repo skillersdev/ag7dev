@@ -116,10 +116,10 @@
 							<p data-wow-duration="1000ms" class="wow slideInRight animated">Provides various services</p>
 							
 							<ul class="social-links text-center">
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-twitter fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-facebook fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-google-plus fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-dribbble fa-lg"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
+								<li><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-lg"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
+								<li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -359,10 +359,10 @@
 					<!-- footer social links -->
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="600ms">
 						<ul class="footer-social">
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-behance fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-twitter fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-dribbble fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-facebook fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-behance fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
 						</ul>
 					</div>
 					<!-- end footer social links -->

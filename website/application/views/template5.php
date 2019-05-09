@@ -286,10 +286,10 @@
             <div class="map mb-4 mb-lg-0">
              <div class="social-links">
               <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="<?php echo $contact_details[0]['fb']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
               <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
               <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
             </div>
             </div>
           </div>

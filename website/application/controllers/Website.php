@@ -71,12 +71,12 @@ class Website extends CI_Controller {
 			{	
 
 				foreach($contact_det_result as $key=>$value)
-		          {              
-		            
+		          { 
 		            $contac_result[]=array('id'=>$value['id'],'fb'=>$value['fb_link'],'linked'=>$value['linked_url']);
 		          }
 
 			}
+			// print_r($contac_result); die;
 			$data['product_details']=$result;
 			$data['service_details']=$serv_result;
 			$data['contact_details']=$contac_result;
