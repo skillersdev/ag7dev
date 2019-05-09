@@ -122,10 +122,10 @@
 
           <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
           <?php 
-          $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
+          //$profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+          //echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
          ?>  
-          <!-- <img src="<?php echo base_url();?>assets/template5/img/about-img.svg" class="img-fluid" alt=""> -->
+          <img src="<?php echo base_url();?>assets/template5/img/about-img.svg" class="img-fluid" alt="">
           </div>
         </div>
 

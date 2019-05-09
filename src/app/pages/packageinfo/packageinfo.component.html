@@ -228,7 +228,7 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <table class="table table-bordered table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -250,7 +250,7 @@
                                         <td>{{data.renew_date}}</td>
                                         <td>{{data.Delivered_date}}</td>
                                         <td>{{data.status}}</td>
-                                        <td><a href="{{websiteUrl}}{{data.website}}">website</a></td>
+                                        <td><a href="website/{{data.website}}">website</a></td>
                                         <td><a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>Change Template</span>
                                         </a></td>

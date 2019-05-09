@@ -109,7 +109,7 @@
 				<div class="carousel-inner" role="listbox">
 					
 					<!-- single slide -->
-					<div class="item active" style="background-image: url(img/banner.jpg);">
+					<div class="item active" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
 						<div class="carousel-caption">
 							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Rodabatoz</span>!</h2>
 							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color"><?php echo $website;?></span> We are a team of professionals.</h3>
@@ -126,7 +126,7 @@
 					<!-- end single slide -->
 					
 					<!-- single slide -->
-					<div class="item" style="background-image: url(img/banner.jpg);">
+					<div class="item" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
 						<div class="carousel-caption">
 							<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Roodabatoz</span>!</h2>
 							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">Website name</span> Provide various Services.</h3>
@@ -359,10 +359,10 @@
 					<!-- footer social links -->
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="600ms">
 						<ul class="footer-social">
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/https://www.behance.net/Themefisher"><i class="fa fa-behance fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/https://www.twitter.com/Themefisher"><i class="fa fa-twitter fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/https://dribbble.com/themefisher"><i class="fa fa-dribbble fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/https://www.facebook.com/Themefisher"><i class="fa fa-facebook fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-behance fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-twitter fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-dribbble fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-facebook fa-2x"></i></a></li>
 						</ul>
 					</div>
 					<!-- end footer social links -->

@@ -19,6 +19,9 @@ export class PackageinfoComponent implements OnInit {
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
   packageRenewApiUrl:string = AppSettings.package_renew;
   updatetemplatepackagevsuser:string = AppSettings.updatetemplatepackagevsuser;
+  websiteurl:any;
+  appwebsiteurl:string=AppSettings.WEBSITE_URL;
+
   packagelist:Array<Object>;
   model:any={};
   payment_data:any={}; 
@@ -29,6 +32,7 @@ export class PackageinfoComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
+    this.websiteurl=this.appwebsiteurl;
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.payment_details=false;

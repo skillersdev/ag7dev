@@ -29,8 +29,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
      this.entered = 0;
+
+     let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    this.loadScript(translate_url);
      
   }
+
+  public loadScript(url) {
+    console.log('preparing to load...')
+    let node = document.createElement('script');
+    node.src = url;
+    node.type = 'text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(node);
+  }
+
+  
 
    enterlogin()
   {
