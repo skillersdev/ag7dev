@@ -23,7 +23,7 @@ if($array1[0]['username'])
 	
 	// Retrieve username and password from database according to user's input, preventing sql injection
 	/* End condition for checking amount was removed by karthikeyan in below query */
-	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '".$array1[0]['username']."') AND (password = '".$array1[0]['password']."') AND (active = 0)";
+	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '".$array1[0]['username']."') AND (password = '".$array1[0]['password']."') AND (active = 1)";
     //echo $query;die();
 	if ($stmt = mysqli_query($con, $query)) {
 		
@@ -96,7 +96,7 @@ if (($num['ucount']) == 1) {
            
             $current_date=date("Y-m-d");
             $renew_date = date('Y-m-d', strtotime($current_date.''.$validity.' day'));
-            //$result=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
+            //$result222=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
             $result=mysqli_query($con,"UPDATE user_vs_packages SET package_status=0,website='".$website_name."',activated_date='".$current_date."',renew_date='".$renew_date."' WHERE id='".$pack_vs_users_id."'");//activate package_vs_user
             
             //code added by sridhar
@@ -239,7 +239,10 @@ if (($num['ucount']) == 1) {
                 
                 				/* code by karthikeyan starts (20-02-2017) package_id added in condition */
                 				$earning_sql1=mysqli_query($con,"SELECT downline_count, earning_amt FROM earning_settings WHERE package_id = '$bonus_user_pack' AND active='1'");
-                				while ($earning_row1 = mysqli_fetch_array($earning_sql1, MYSQL_ASSOC)) {
+                				
+
+								
+								while ($earning_row1 = mysqli_fetch_array($earning_sql1, MYSQL_ASSOC)) {
                 
                 					if (($tot_downline1 >= $earning_row1['downline_count']) && ($tot_amt2 <= $earning_row1['earning_amt'])){
                 						//echo "next-".$ref_bonus_user2.":-".$tot_amt2;

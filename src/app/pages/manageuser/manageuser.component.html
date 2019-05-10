@@ -46,8 +46,8 @@
                                         <td>{{item.tamount}}</td>
                                         <td>{{item.country}}</td>
                                         <td>{{item.doj}}</td>
-                                        <td *ngIf="item.status==0"><span class="label bg-green">Active</span></td>
-                                        <td *ngIf="item.status==1"><span class="label bg-red">In active</span></td>
+                                        <td *ngIf="item.status==1"><span class="label bg-green">Active</span></td>
+                                        <td *ngIf="item.status==0"><span class="label bg-red">In active</span></td>
                                         <td>
                                             <a href="javascript:void(0);" (click)="edituser(item.id)"><i class="material-icons">edit</i></a>
                                             <a href="javascript:void(0);" (click)="deleteuser(item.id)"><i class="material-icons">delete</i></a>

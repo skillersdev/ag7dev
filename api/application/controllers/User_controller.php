@@ -64,7 +64,7 @@ class User_controller extends CI_Controller {
         {
           foreach($res->result_array() as $key=>$value)
           {               
-            $status=($value['active']=='0')?'Active':'Inactive';
+            $status=($value['active']=='1')?'Active':'Inactive';
             $result[]=array('id'=>$value['id'],'username'=>$value['username'],'password'=>$value['password'],'fname'=>$value['fname'],'address'=>$value['address'],'email'=>$value['email'],'referedby'=>$value['referedby'],'mobile'=>$value['mobile'],'active'=>$status,'doj'=>$value['doj'],'country'=>$value['country'],'tamount'=>$value['tamount'],'payment'=>$value['payment'],'signupcode'=>$value['signupcode'],'level'=>$value['level'],'pcktaken'=>$value['pcktaken'],'launch'=>$value['launch'],'getpayment'=>$value['getpayment'],'renew'=>$value['renew'],'iba_status'=>$value['iba_status'],'user_type'=>$value['user_type'],'created_date'=>$value['expiry'],'status'=>$value['active']);
           }
         }else{
