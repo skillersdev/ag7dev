@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { CommonService } from './services/common.service';
@@ -57,6 +58,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     TopnavComponent,
     SidemenuComponent,
     DashboardComponent,
+    ChatComponent,
     LoginComponent,
     ManageuserComponent,
     AddserviceComponent,
