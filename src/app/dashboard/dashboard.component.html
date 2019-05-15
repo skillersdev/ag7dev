@@ -175,7 +175,7 @@
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
                                             </div>
-                                            <div class="">
+                                            <div>
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
@@ -191,8 +191,8 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="">
-                                        <form *ngIf="payment_details" class="" #voucher="ngForm">
+                                    <div >
+                                        <form *ngIf="payment_details"  #voucher="ngForm">
                                             <div class="col-md-12">
                                                 <p><b>User Name</b></p>
                                                 <div class="form-group">
@@ -383,10 +383,7 @@
                             <form #addpackage="ngForm">
                            <div class="col-md-6">
                                     <p><b>Select Package</b></p> 
-                                   <!--  <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" required name="packuser">
-                                        <option value="">Select Package</option>
-                                        <option *ngFor="let item of package_vs_user_list let idx=index" value="{{item.id}}">{{item.package_name}}</option>  
-                                    </select> -->
+                                  
                                     <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  required>
                                         <option [ngValue]="select">select website</option>    
                                         <option *ngFor="let model of package_vs_user_list" value="{{model.id}}">{{model.package_name}}</option>
