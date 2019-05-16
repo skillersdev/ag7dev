@@ -21,7 +21,9 @@ import { Injectable } from '@angular/core';
 export class ChatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
-  model: any = {}; 
+  api_bases=AppSettings.STYLE_BASE;
+  Newgroupmodel: any = {}; 
+  group_det:Array<Object>;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -29,11 +31,34 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
-    let id=localStorage.getItem('currentUserID');
+    this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
+    this.getgrouplists();
   }
 
+  getgrouplists(){
+    this.CommonService.getdata(AppSettings.getgroups)
+    .subscribe(det =>{
+      
+        if(det.result!=""){ this.group_det=det.result;}
+    });
+  }
+
+  addgroup()
+  {
+    
+    this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
+    .subscribe(package_det =>{       
+      
+        this.Newgroupmodel='';
+        this.getgrouplists();
+        swal('','Group Created Successfully','success');  
+        
+    });
+  }
  
 
  

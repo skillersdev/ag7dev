@@ -153,6 +153,10 @@ $route['updateservice'] = 'Service_controller/updateservice';
 $route['deleteservice/(:num)'] = 'Service_controller/deleteservice/$1';
 $route['deletecontact/(:num)']= 'Contacts_controller/deletecontact/$1';
 $route['uploadserviceimage']='Service_controller/uploadserviceimage';
+
+//group
+$route['addgroup']= 'Group_controller/addgroup';
+$route['getgroups']= 'Group_controller/getgroups';
 ?>
 
 
