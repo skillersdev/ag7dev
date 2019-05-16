@@ -24,6 +24,7 @@ export class EditearningsComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  select: any;
   FetchearningsRestApiUrl: string = AppSettings.Editearnings; 
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   updateearningsRestApiUrl: string = AppSettings.Updateearnings; 

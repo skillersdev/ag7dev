@@ -28,6 +28,7 @@ export class EditserviceComponent implements OnInit {
   image_url = AppSettings.IMAGE_BASE;
   private sub: any;
   model: any = {};
+  select: any;
   alldata: any = {};
   id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 

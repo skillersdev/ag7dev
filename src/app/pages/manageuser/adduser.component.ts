@@ -26,6 +26,7 @@ export class AdduserComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  select: any;
   packagelist:Array<Object>;
   alldata: any = {};
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 

@@ -28,6 +28,7 @@ export class AddsubcategoryComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
+  select: any;
   websitelist:Array<Object>;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   insertsubcategoryRestApiUrl:string = AppSettings.Addsubcategory;

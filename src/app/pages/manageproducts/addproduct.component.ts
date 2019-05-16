@@ -26,6 +26,7 @@ export class AddproductComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  select: any;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   uploaduserProfileApi:string=AppSettings.uploadproductimage;
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 

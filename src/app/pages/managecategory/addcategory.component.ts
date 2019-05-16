@@ -26,6 +26,7 @@ export class AddcategoryComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  select: any;
   alldata: any = {};
   websitelist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 

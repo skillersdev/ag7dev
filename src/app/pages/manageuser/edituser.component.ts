@@ -24,6 +24,7 @@ export class EdituserComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  select: any;
   FetchuserRestApiUrl: string = AppSettings.Edituser; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 

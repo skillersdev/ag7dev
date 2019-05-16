@@ -146,7 +146,7 @@
             </div>
             <!-- #END# Hover Zoom Effect -->
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -219,7 +219,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
             
@@ -383,7 +383,6 @@
                             <form #addpackage="ngForm">
                            <div class="col-md-6">
                                     <p><b>Select Package</b></p> 
-                                  
                                     <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  required>
                                         <option [ngValue]="select">select website</option>    
                                         <option *ngFor="let model of package_vs_user_list" value="{{model.id}}">{{model.package_name}}</option>
@@ -399,10 +398,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <br>
-                            <br>
-                            <!-- <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button> -->
+                          
                         </div>
                     </div>
                 </div>

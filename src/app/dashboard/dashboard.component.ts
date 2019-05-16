@@ -28,11 +28,13 @@ export class DashboardComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  payment_details:any
   packagelist:Array<Object>;
   package_vs_user_list:Array<Object>;
   model: any = {};
   alldata: any = {};
   transferdata: any = {};
+  select: any;
   userwebsiteurl:string=AppSettings.userweburl;
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 

@@ -26,6 +26,7 @@ export class EditproductComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  select: any;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 

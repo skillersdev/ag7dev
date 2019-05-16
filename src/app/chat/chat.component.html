@@ -4,11 +4,11 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Roodabatoz Chat</title>
-	<link rel="stylesheet" href="../assets/chat/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="../assets/chat/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="../assets/chat/style.css">
+	<link rel="stylesheet" href="/assets/chat/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+	<link rel="stylesheet" href="/assets/chat/all.css" >
+	<link rel="stylesheet" href="/assets/chat/style.css">
 </head>
 
 <body>
@@ -19,15 +19,15 @@
 
 				<!-- Navbar -->
 				<div class="row d-flex flex-row align-items-center p-2" id="navbar">
-					<img alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px; cursor:pointer;" onclick="showProfileSettings()" id="display-pic" src="../assets/chat/images/asdsd12f34ASd231.png">
+					<img alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px; cursor:pointer;" onclick="showProfileSettings()" id="display-pic" src="assets/chat/images/asdsd12f34ASd231.png">
 					<div class="text-white font-weight-bold" id="username">Anish</div>
 					<div class="nav-item dropdown ml-auto">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#">New Group</a>
-							<a class="dropdown-item" href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#">Dashboard</a>
+							<a class="dropdown-item" href="#">New Group</a>
+							<a class="dropdown-item" href="#">Dashboard</a>
 							
-							<a class="dropdown-item" href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#">Log Out</a>
+							<a class="dropdown-item" href="#">Log Out</a>
 						</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 				<!-- Chat List -->
 				<div class="row" id="chat-list" style="overflow:auto;">
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" onclick="generateMessageArea(this, 0)">
-			<img src="../assets/chat/images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+			<img src="assets/chat/images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">Programmers</div>
 				<div class="small last-message">+91 98232 37261:  yeah, i'm online</div>
@@ -47,7 +47,7 @@
 		</div>
 		
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom" onclick="generateMessageArea(this, 1)">
-			<img src="../assets/chat/images/dsaad212312aGEA12ew.png" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+			<img src="assets/chat/images/dsaad212312aGEA12ew.png" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">Dee</div>
 				<div class="small last-message"><i class="fas fa-check-circle mr-1"></i> if you go to the movie, then give me a call</div>
@@ -59,7 +59,7 @@
 		</div>
 		
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom unread" onclick="generateMessageArea(this, 2)">
-			<img src="../assets/chat/images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+			<img src="assets/chat/images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">Nitin</div>
 				<div class="small last-message"> have you seen infinity war?</div>
@@ -71,7 +71,7 @@
 		</div>
 		
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom" onclick="generateMessageArea(this, 3)">
-			<img src="../assets/chat/images/asd1232ASdas123a.png" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+			<img src="assets/chat/images/asd1232ASdas123a.png" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">Sanjay</div>
 				<div class="small last-message"><i class="far fa-check-circle mr-1"></i> yup</div>
@@ -83,7 +83,7 @@
 		</div>
 		
 		<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom" onclick="generateMessageArea(this, 4)">
-			<img src="../assets/chat/images/Alsdk120asdj913jk.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+			<img src="assets/chat/images/Alsdk120asdj913jk.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 			<div class="w-50">
 				<div class="name">Suvro Mobile</div>
 				<div class="small last-message"><i class="far fa-check-circle mr-1"></i> i'm good too</div>
@@ -129,15 +129,15 @@
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" onclick="showChatList()"></i>
 					</div>
-					<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><img src="../assets/chat/images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<a href="#"><img src="assets/chat/images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">Programmers</div>
 						<div class="text-white small" id="details">You, Nitin, Suvro Mobile</div>
 					</div>
 					<div class="d-flex flex-row align-items-center ml-auto">
-						<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
-						<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a>
-						<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
+						<a href="#"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
+						<a href="#"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a>
+						<a href="#"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
 					</div>
 				</div>
 
@@ -149,7 +149,7 @@
 	
 	<div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
 		<div class="options">
-			<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-angle-down text-muted px-2"></i></a>
+			<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
 		</div>
 		
 	<div class="small font-weight-bold text-primary">
@@ -171,7 +171,7 @@
 	
 	<div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
 		<div class="options">
-			<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-angle-down text-muted px-2"></i></a>
+			<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
 		</div>
 		
 	<div class="small font-weight-bold text-primary">
@@ -190,7 +190,7 @@
 
 				<!-- Input -->
 				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area">
-					<a href="file:///C:/xampp/htdocs/ag7dev.git/trunk/template/chat-template/index.html#"><i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
+					<a href="#"><i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
 					<input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm">
 					<i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" onclick="sendMessage()"></i>
 				</div>
@@ -198,12 +198,12 @@
 		</div>
 	</div>
 
-	<script src="../assets/chat/jquery-3.3.1.slim.min.js.download" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="../assets/chat/popper.min.js.download" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-	<script src="../assets/chat/bootstrap.min.js.download" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-	<script src="../assets/chat/datastore.js"></script>
-	<script src="../assets/chat/date-utils.js"></script>
-	<script src="../assets/chat/script.js"></script>
+	<script src="assets/chat/jquery-3.3.1.slim.min.js.download" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="assets/chat/popper.min.js.download" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+	<script src="assets/chat/bootstrap.min.js.download" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script src="assets/chat/datastore.js"></script>
+	<script src="assets/chat/date-utils.js"></script>
+	<script src="assets/chat/script.js"></script>
 
 
 </body></html>

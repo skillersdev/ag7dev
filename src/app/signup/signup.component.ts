@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
 
   model: any = {};
   data:any={};
+  select: any;
   entered:any;
   users :any= []; //storing the data from the API
   userRestApiUrl: string = AppSettings.Userlogin; //API common URL

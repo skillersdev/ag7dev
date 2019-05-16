@@ -26,6 +26,7 @@ export class AddserviceComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  select: any;
 
   websitelist:Array<Object>;
 

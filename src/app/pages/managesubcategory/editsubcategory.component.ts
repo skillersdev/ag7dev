@@ -28,6 +28,7 @@ export class EditsubcategoryComponent implements OnInit {
   private sub: any;
   model: any = {};
   alldata: any = {};
+  select: any;
   id:number;
   categorylist:Array<Object>;
   websitelist:Array<Object>;

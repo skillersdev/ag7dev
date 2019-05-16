@@ -28,6 +28,7 @@ export class AddearningsComponent implements OnInit {
   model: any = {};
   packagelist:Array<Object>;
   alldata: any = {};
+  select: any;
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser; 

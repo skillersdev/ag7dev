@@ -28,6 +28,7 @@ export class EditcategoryComponent implements OnInit {
   private sub: any;
   model: any = {};
   alldata: any = {};
+  select: any;
   id:number;
   websitelist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 

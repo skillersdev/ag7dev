@@ -26,6 +26,7 @@ export class AddcontactComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  select: any;
   alldata: any = {};
   websitelist:Array<Object>;
 
