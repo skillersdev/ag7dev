@@ -1,13 +1,13 @@
 export class AppSettings{
 
-	//public static API_BASE = "http://php55.development.local/php17052301_sspandian_erp/ver1/api";
+	
 	public static API_BASE = "http://localhost/ag7dev.git/trunk/api";
-	public static STYLE_BASE = "http://localhost/ag7dev.git/trunk/src";
 	public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
 	public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
 	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
 	public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
 	public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+
 
 	
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
@@ -25,11 +25,11 @@ export class AppSettings{
 
 	/*Subcategory*/
 	public static Addsubcategory = AppSettings.API_BASE + "/addsubcategory";
-	public static getsubcategoryDetail = AppSettings.API_BASE + "/getsubcategory"; //common api
+	public static getsubcategoryDetail = AppSettings.API_BASE + "/getsubcategory/"; //common api
 	public static editsubcategory= AppSettings.API_BASE+"/editsubcategory/";
 	public static updatesubcategory= AppSettings.API_BASE+"/updatesubcategory";
 	public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
-	public static getsubcategorybyid=AppSettings.API_BASE+"/fetchsubcategory";
+	public static getsubcategorybyid=AppSettings.API_BASE+"/fetchsubcategory/";
 	
 	/**/
 	/*Contacts li*/
@@ -51,7 +51,9 @@ export class AppSettings{
 
 	/*User Api list*/
 	public static Adduser=AppSettings.API_BASE+"/adduser";
-	public static getuserslist= AppSettings.API_BASE + "/getuserslist";		
+	public static Addtemplate=AppSettings.API_BASE+"/addtemplate";	
+	public static getuserslist= AppSettings.API_BASE + "/getuserslist";	
+	public static gettemplatelist =	AppSettings.API_BASE + "/gettemplatelist";	
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";
 	public static Updateuserprofile= AppSettings.API_BASE+"/updateuserprofile";	
@@ -106,6 +108,7 @@ export class AppSettings{
 	//Product rest api
 	public static addproduct= AppSettings.API_BASE+"/addproduct";
 	public static productlist= AppSettings.API_BASE+"/productlist";
+	public static productlistbyweb= AppSettings.API_BASE+"/productlistbyweb";
 	public static editproduct= AppSettings.API_BASE+"/editproduct/";
 	public static updateproduct= AppSettings.API_BASE+"/updateproduct";
 	public static deleteproduct= AppSettings.API_BASE+"/deleteproduct/"; 

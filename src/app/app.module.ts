@@ -52,6 +52,10 @@ import {AddadvertisementComponent} from './pages/manageadvertisement/addadvertis
 import {EditadvertisementComponent} from './pages/manageadvertisement/editadvertisement.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 
+
+import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
+import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
+import { EdittemplateComponent } from './pages/managetemplates/edittemplate.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +100,10 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     AddadvertisementComponent,
     EditadvertisementComponent,
     EditcontactComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    ManagetemplateComponent,
+    AddtemplateComponent,
+    EdittemplateComponent
   ],
   imports: [
     BrowserModule,                          

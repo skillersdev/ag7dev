@@ -52,10 +52,10 @@ export class AddproductComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!=""){ this.categorylist=det.result;}
         });
-        this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.subcategorylist=det.result;}
-        });
+        // this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
+        // .subscribe(det =>{
+        //     if(det.result!=""){ this.subcategorylist=det.result;}
+        // });
         this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       
@@ -103,5 +103,13 @@ export class AddproductComponent implements OnInit {
   back(){
     this.router.navigate(['/manageproducts']);
   }
+ getsubcategory(cat_id:any)
+ {
+   this.CommonService.editdata(this.getsubcategoryRestApiUrl,cat_id)
+        .subscribe(resultdata =>{   
+          this.subcategorylist=resultdata.result; 
+        });
+ }
+  
 
 }

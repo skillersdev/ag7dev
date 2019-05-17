@@ -58,10 +58,6 @@ export class EditproductComponent implements OnInit {
             if(det.result!=""){ this.categorylist=det.result;}
         });
 
-        this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.subcategorylist=det.result;}
-        });
         this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       
@@ -79,8 +75,14 @@ export class EditproductComponent implements OnInit {
   {
   	this.CommonService.editdata(this.FetchproductRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result;  
+           this.CommonService.editdata(this.getsubcategoryRestApiUrl,this.model.category_id)
+              .subscribe(resultdata =>{   
+                this.subcategorylist=resultdata.result; 
+           });        
         });
+
+       
   }
   updateproduct()
   {

@@ -44,7 +44,9 @@ import {EditadvertisementComponent} from './pages/manageadvertisement/editadvert
 import { EditcontactComponent } from './pages/managecontacts/editcontact.component';
 
 import { LandingpageComponent } from './landingpage/landingpage.component';
-
+import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
+import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
+import { EdittemplateComponent} from './pages/managetemplates/edittemplate.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -215,7 +217,20 @@ const routes: Routes = [
      path:'editcontact/:id',
     component:EditcontactComponent
     
-  }
+  },
+  {
+    path:'managetemplates',
+    component:ManagetemplateComponent
+  },
+  {
+    path:'addtemplate',
+    component:AddtemplateComponent
+  },
+  {
+     path:'edittemplate/:id',
+    component:EdittemplateComponent
+    
+  },
   
   
 
