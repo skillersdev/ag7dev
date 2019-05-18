@@ -32,6 +32,22 @@ class User_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
+
+    public function add_template_master()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $response['message']="Template inserted successfully";
+
+        $model = json_decode($this->input->post('model',FALSE));
+        
+        $this->db->insert('website_page_details', $model);        
+
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+
     public function add_user_ad(){
        $this->output->set_content_type('application/json');
         $response=array('status'=>"success");
@@ -79,8 +95,7 @@ class User_controller extends CI_Controller {
   }
   public function getmarketerslist()
   {
-     $model = json_decode($this->input->post('model',FALSE));
-    
+     $model = json_decode($this->input->post('model',FALSE));    
         $username = trim($model->currentUsername);
         if(isset($model->currentUsername)){
             $res=$this->db->select("*")->like('referedby',$username)->where(['is_deleted'=>'0'])->get('affiliateuser');    
@@ -105,6 +120,24 @@ class User_controller extends CI_Controller {
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
   }
+  public function get_template_list()
+  {
+     
+       $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('website_page_details'); 
+       $result=[];
+       $response=[];
+        if(count($res->result_array())>0)
+        {
+            
+            foreach($res->result_array() as $key=>$value)
+              { 
+                $result[]=array('id'=>$value['id'],'template_name'=>$value['template_name'],'created_date'=>$value['created_date']);
+              }
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+  }
+  
   public function check_user_exist(){
     $model = json_decode($this->input->post('model',FALSE));
     //print_r($model->username);die;   

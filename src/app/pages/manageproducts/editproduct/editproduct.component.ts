@@ -116,5 +116,12 @@ export class EditproductComponent implements OnInit {
   back(){
     this.router.navigate(['/manageproducts']);
   }
+  getsubcategory(cat_id:any)
+  {
+     this.CommonService.editdata(this.getsubcategoryRestApiUrl,cat_id)
+        .subscribe(resultdata =>{   
+          this.subcategorylist=resultdata.result; 
+        });
+  }
 
 }

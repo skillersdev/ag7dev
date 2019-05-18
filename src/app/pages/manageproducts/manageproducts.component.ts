@@ -16,41 +16,46 @@ export class ManageproductsComponent implements OnInit {
   getproductbywebsiteApiUrl:string= AppSettings.productlistbyweb;
   product_det:Array<Object>;
   packagelist:Array<Object>;
-  websitelist:any=[]
+  websitelist:Array<Object>;
   model:any={};
+  productmodel:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     let user_id = localStorage.getItem('currentUserID');
-
     this.websitelist=[];
      this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
           .subscribe(resultdata =>{   
             this.packagelist=resultdata.result;
             this.packagelist.filter((resultexpgem:any) =>{
               this.websitelist.push(resultexpgem.website);
-          });
+
+            });
+             
+            this.productmodel.weblist = this.websitelist;
+
+            this.model.usergroup=localStorage.getItem('currentUsergroup');
+              if(this.model.usergroup==2)
+              {
+                console.log("DD");
+                this.CommonService.insertdata(this.getproductbywebsiteApiUrl,this.productmodel)
+                  .subscribe(resultdata =>{   
+                   if(resultdata.result!=""){ this.product_det=resultdata.result;}
+                });
+              }
+              else{
+                console.log("eeeeeeeeee");
+                this.CommonService.getdata(this.getproductlistRestApiUrl)
+                .subscribe(det =>{
+                    if(det.result!=""){ this.product_det=det.result;}
+                });   
+              }
+                    console.log(this.productmodel);
+
       });
-      this.model.usergroup=localStorage.getItem('currentUsergroup');
-     this.model.weblist =JSON.stringify(this.websitelist);
-     console.log(this.model);
-      if(this.model.usergroup==2)
-      {
-        console.log("ddddddddddd");
-        this.CommonService.insertdata(this.getproductbywebsiteApiUrl,this.model)
-          .subscribe(resultdata =>{   
-           console.log(resultdata);
-        });
-      }
-      else{
-        console.log("eeeeeeeeee");
-        this.CommonService.getdata(this.getproductlistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.product_det=det.result;}
-        });   
-      }
+      
        
     
             

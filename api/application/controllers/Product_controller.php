@@ -97,6 +97,39 @@ class Product_controller extends CI_Controller {
 
   }
   
+  public function productlistbyweb()
+  {
+    $this->output->set_content_type('application/json');
+      
+        //$response=array('status'=>"success",'message'=>"Product Inserted successfully");
+
+        $this->output->set_content_type('application/json');
+      
+        //$response=array('status'=>"success",'message'=>"Package Inserted successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        $filtered_array = array_filter($model->weblist); 
+
+        $response=array();
+
+        $result = "'" . implode ( "', '", $filtered_array ) . "'";
+        $fn_res =explode(",",$result);
+        //print_r (explode(" ,",$result));
+
+        
+        $string = implode(' OR website LIKE ', $fn_res);
+        
+         $res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website LIKE {$string}");
+         $in_array=$res->result_array();
+         $response['result']=$in_array;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+         // print_r($in_array);die;
+
+       
+  }
    public function editproduct($id)
     {
         //var_dump($id); die();

@@ -22,7 +22,7 @@
                                                 <p><b>Select Website</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" (change)="getcategorybywebsite($event.target.value)" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
                                                             <option [ngValue]="select">select website</option>    
                                                             <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
                                                         </select>
