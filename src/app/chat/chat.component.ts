@@ -21,9 +21,11 @@ import { Injectable } from '@angular/core';
 export class ChatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
-  api_bases=AppSettings.STYLE_BASE;
+  // api_bases=AppSettings.STYLE_BASE;
   Newgroupmodel: any = {}; 
   group_det:Array<Object>;
+  userdropdownList : Array<Object>;
+  userdropdownSettings = {};
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -32,24 +34,43 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     
-    
+    this.Newgroupmodel.userselectedItems={};
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.getgrouplists();
+
+    // this.selectedItems = [
+    //   { Id: 3, username: 'Pune' },
+    //   { Id: 4, username: 'Navsari' }
+    // ];
+    this.userdropdownSettings = {
+      singleSelection: false,
+      idField: 'Id',
+      textField: 'username',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
 
   getgrouplists(){
-    this.CommonService.getdata(AppSettings.getgroups)
+    this.CommonService.getdata(AppSettings.getuserslist)
     .subscribe(det =>{
       
+        if(det.result!=""){ this.userdropdownList=det.result;}
+    });
+
+    // this.CommonService.getdata(AppSettings.getgroups)
+    this.CommonService.insertdata(AppSettings.getgroups,this.Newgroupmodel)
+    .subscribe(det =>{      
         if(det.result!=""){ this.group_det=det.result;}
     });
   }
 
   addgroup()
   {
-    
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{       
       

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,9 +55,9 @@ import {EditadvertisementComponent} from './pages/manageadvertisement/editadvert
 import { LandingpageComponent } from './landingpage/landingpage.component';
 
 
-import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
-import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
-import { EdittemplateComponent } from './pages/managetemplates/edittemplate.component';
+// import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
+// import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
+// import { EdittemplateComponent } from './pages/managetemplates/edittemplate.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,15 +103,16 @@ import { EdittemplateComponent } from './pages/managetemplates/edittemplate.comp
     EditadvertisementComponent,
     EditcontactComponent,
     LandingpageComponent,
-    ManagetemplateComponent,
-    AddtemplateComponent,
-    EdittemplateComponent
+    // ManagetemplateComponent,
+    // AddtemplateComponent,
+    // EdittemplateComponent
   ],
   imports: [
     BrowserModule,                          
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot(),
     HttpModule
   ],
   providers: [LoginService,CommonService],
