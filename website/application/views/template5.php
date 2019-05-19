@@ -49,10 +49,10 @@
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
           <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Products</a></li>
-          <li><a href="#team">Ads</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#team">Ads</a></li>          
         </ul>
       </nav><!-- .main-nav -->
       
@@ -134,6 +134,56 @@
       </div>
     </section><!-- #about -->
 
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact">
+      <div class="container-fluid">
+
+        <div class="section-header">
+          <h3>Contact Us</h3>
+        </div>
+
+        <div class="row wow fadeInUp">
+
+          <div class="col-lg-4">
+            <div class="map mb-4 mb-lg-0">
+             <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="<?php echo $contact_details[0]['fb']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-md-5 info">
+                <i class="ion-ios-location-outline"></i>
+                <p><?php echo $address;?></p>
+              </div>
+              <div class="col-md-4 info">
+                <i class="ion-ios-email-outline"></i>
+                <p><?php echo $mail;?></p>
+              </div>
+              <div class="col-md-3 info">
+                <i class="ion-ios-telephone-outline"></i>
+                <p><?php echo $mobile;?></p>
+              </div>
+            </div>
+
+            
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+
+    
     <!--==========================
       Services Section
     ============================-->
@@ -270,54 +320,7 @@
 
      
 
-    <!--==========================
-      Contact Section
-    ============================-->
-    <section id="contact">
-      <div class="container-fluid">
-
-        <div class="section-header">
-          <h3>Contact Us</h3>
-        </div>
-
-        <div class="row wow fadeInUp">
-
-          <div class="col-lg-4">
-            <div class="map mb-4 mb-lg-0">
-             <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="<?php echo $contact_details[0]['fb']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-            </div>
-          </div>
-
-          <div class="col-lg-8">
-            <div class="row">
-              <div class="col-md-5 info">
-                <i class="ion-ios-location-outline"></i>
-                <p><?php echo $address;?></p>
-              </div>
-              <div class="col-md-4 info">
-                <i class="ion-ios-email-outline"></i>
-                <p><?php echo $mail;?></p>
-              </div>
-              <div class="col-md-3 info">
-                <i class="ion-ios-telephone-outline"></i>
-                <p><?php echo $mobile;?></p>
-              </div>
-            </div>
-
-            
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #contact -->
-
+    
   </main>
 
   <!--==========================

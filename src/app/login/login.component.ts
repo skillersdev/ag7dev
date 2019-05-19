@@ -83,12 +83,14 @@ export class LoginComponent implements OnInit {
               if(data.exist==1)
               {
                 let user_det = data.result[0];
+                console.log(user_det);
                 localStorage.setItem('currentUser', user_det.username);
                 localStorage.setItem('currentUserID', user_det.id);
                 localStorage.setItem('currentUsergroup',user_det.user_type);
                 localStorage.setItem('user_fname',user_det.fname);
                 localStorage.setItem('email',user_det.email);
                 localStorage.setItem('address',user_det.address);
+                localStorage.setItem('tamount',user_det.tamount);
                 if(user_det.user_type==1)
                 {
                   this.router.navigate(['./admindashboard']);

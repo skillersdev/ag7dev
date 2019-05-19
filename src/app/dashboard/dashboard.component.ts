@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  tamount:any;
   payment_details:any
   packagelist:Array<Object>;
   package_vs_user_list:Array<Object>;
@@ -63,6 +64,7 @@ export class DashboardComponent implements OnInit {
           }
       });
        let user_id = localStorage.getItem('currentUserID');
+       this.tamount = localStorage.getItem('tamount');
        this.model.user_id = user_id;
       this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
           .subscribe(resultdata =>{   

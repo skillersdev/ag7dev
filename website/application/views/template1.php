@@ -58,11 +58,12 @@ $path_url = $this->config->item('path_url');
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#speakers">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
           <li><a href="#hotels">Services</a></li>
+          <li><a href="#speakers">Products</a></li>         
          
           <!-- <li><a href="#sponsors">Clients</a></li> -->
-          <li><a href="#contact">Contact</a></li>
+          
          
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -214,7 +215,44 @@ $path_url = $this->config->item('path_url');
 
       </div>
     </section><!-- #contact -->
+    
+    <!--==========================
+      Service Section
+    ============================-->
+    <section id="hotels" class="section-with-bg wow fadeInUp">
 
+      <div class="container">
+        <div class="section-header">
+          <h2>Services</h2>
+          
+        </div>
+
+        <div class="row">
+          <?php 
+
+          for($j=0;$j<count($service_details);$j++)
+          {
+          ?>
+          <div class="col-lg-3 col-md-3">
+            <div class="hotel">
+              <div class="hotel-img">
+               <?php 
+                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
+                ?>
+              </div>
+              <h3><?php echo $service_details[$j]['service_name'];?></h3>
+              
+              <p><?php echo $service_details[$j]['desc'];?></p>
+            </div>
+          </div>
+        <?php } ?>
+		  
+
+        </div>
+      </div>
+
+    </section>
+	
     <!--==========================
       Speakers Section
     ============================-->
@@ -348,43 +386,6 @@ $path_url = $this->config->item('path_url');
     </section>
 	
 
-    <!--==========================
-      Service Section
-    ============================-->
-    <section id="hotels" class="section-with-bg wow fadeInUp">
-
-      <div class="container">
-        <div class="section-header">
-          <h2>Services</h2>
-          
-        </div>
-
-        <div class="row">
-          <?php 
-
-          for($j=0;$j<count($service_details);$j++)
-          {
-          ?>
-          <div class="col-lg-3 col-md-3">
-            <div class="hotel">
-              <div class="hotel-img">
-               <?php 
-                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
-                ?>
-              </div>
-              <h3><?php echo $service_details[$j]['service_name'];?></h3>
-              
-              <p><?php echo $service_details[$j]['desc'];?></p>
-            </div>
-          </div>
-        <?php } ?>
-		  
-
-        </div>
-      </div>
-
-    </section>
-	
 	
 
     

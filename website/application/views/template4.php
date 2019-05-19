@@ -107,6 +107,9 @@ $path_url = $this->config->item('path_url');
                         <a href="#page-top"></a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#services">Services</a>
                     </li>
                     <li>
@@ -117,9 +120,7 @@ $path_url = $this->config->item('path_url');
                         <a class="page-scroll" href="#ads">Advertisment</a>
                     </li>
                   
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -203,7 +204,36 @@ $path_url = $this->config->item('path_url');
     </section>
     <!-- End Home Page Slider -->
 
-    
+     
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title text-center">
+                        <h3>Contact With Us</h3>
+                        <p class="white-text">Duis aute irure dolor in reprehenderit in voluptate</p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-contact-info">
+                        <h4>Contact info</h4>
+                        <ul>
+                            
+                            <li><strong>E-mail :</strong><?php echo $mail;?></li>
+                            <li><strong>Phone :</strong><?php echo $mobile;?></li>
+                            <li><strong>Web :</strong><?php echo $website;?></li>
+                        </ul>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+       
+    </section>
+
 	 <!-- Start About Us Section -->
     <section id="services" class="about-us-section-1">
         <div class="container">
@@ -239,7 +269,9 @@ $path_url = $this->config->item('path_url');
     </section>
     <!-- Services Section -->
 	
-    
+   
+
+
     <!-- Start Call to Action Section -->
     <section class="call-to-action">
         <div class="container">
@@ -390,35 +422,8 @@ $path_url = $this->config->item('path_url');
     </section>
     <!-- End Ads Section -->
 
-
-  
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title text-center">
-                        <h3>Contact With Us</h3>
-                        <p class="white-text">Duis aute irure dolor in reprehenderit in voluptate</p>
-                    </div>
-                </div>
-            </div>
-           
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="footer-contact-info">
-                        <h4>Contact info</h4>
-                        <ul>
-                            
-                            <li><strong>E-mail :</strong><?php echo $mail;?></li>
-                            <li><strong>Phone :</strong><?php echo $mobile;?></li>
-                            <li><strong>Web :</strong><?php echo $website;?></li>
-                        </ul>
-                    </div>
-                </div>
-               
-            </div>
-        </div>
-        <footer class="style-1">
+<section>
+<footer class="style-1">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
@@ -429,9 +434,8 @@ $path_url = $this->config->item('path_url');
                 </div>
             </div>
         </footer>
-    </section>
-
-
+</section>
+  
     <div id="loader">
         <div class="spinner">
             <div class="dot1"></div>

@@ -74,11 +74,12 @@
 				<!-- main nav -->
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
-                        <li class="current"><a href="#body">Home</a></li>
+						<li class="current"><a href="#body">Home</a></li>
+						<li><a href="#contact">Contact</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#products">Products</a></li>
                         <li><a href="#ads">Ads</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        
                     </ul>
                 </nav>
 				<!-- /main nav -->
@@ -152,6 +153,60 @@
         End Home SliderEnd
         ==================================== -->
 		
+		<!--
+        Contact Us
+        ==================================== -->		
+		
+		<section id="contact" class="contact">
+			<div class="container">
+				<div class="row mb50">
+				
+					<div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
+						<h2>Contact Us</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+					
+					<div class="sec-sub-title text-center wow rubberBand animated" data-wow-duration="1000ms">
+						<p>Address </p>
+					</div>
+					
+					<!-- contact address -->
+					<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
+						<div class="contact-address">
+							<p><i class="fa fa-pencil"></i><?php echo $website;?>
+								<span><?php echo $address;?></span><span>Australia</span></p><br>
+								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
+								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
+						</div>
+					</div>
+					<!-- end contact address -->
+					
+					
+					
+					<!-- footer social links -->
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="600ms">
+						<ul class="footer-social">
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-behance fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
+						</ul>
+					</div>
+					<!-- end footer social links -->
+					
+				</div>
+			</div>
+			
+			
+			
+		</section>
+		
+        <!--
+        End Contact Us
+        ==================================== -->
+		
+
+
         <!--
         services
         ==================================== -->
@@ -326,57 +381,6 @@
         ==================================== -->
 		
 		
-		<!--
-        Contact Us
-        ==================================== -->		
-		
-		<section id="contact" class="contact">
-			<div class="container">
-				<div class="row mb50">
-				
-					<div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
-						<h2>Contact Us</h2>
-						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-					</div>
-					
-					<div class="sec-sub-title text-center wow rubberBand animated" data-wow-duration="1000ms">
-						<p>Address </p>
-					</div>
-					
-					<!-- contact address -->
-					<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
-						<div class="contact-address">
-							<p><i class="fa fa-pencil"></i><?php echo $website;?>
-								<span><?php echo $address;?></span><span>Australia</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
-								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
-						</div>
-					</div>
-					<!-- end contact address -->
-					
-					
-					
-					<!-- footer social links -->
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="600ms">
-						<ul class="footer-social">
-							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-behance fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
-						</ul>
-					</div>
-					<!-- end footer social links -->
-					
-				</div>
-			</div>
-			
-			
-			
-		</section>
-		
-        <!--
-        End Contact Us
-        ==================================== -->
 		
 		
 		<footer id="footer" class="footer">
