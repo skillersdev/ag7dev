@@ -439,7 +439,7 @@ $path_url = $this->config->item('path_url');
 							</ul>
 						</div>
 						
-						<p>Copyright &copy; 2019 Design and Developed By<a href="http://www.skillersglobalservice.com">Skillers</a> </p>
+						<p> &copy; Copyright <strong>Roodab</strong>. All Rights Reserved</p>
 					</div>
 				</div>
 			</div>

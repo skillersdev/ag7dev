@@ -330,7 +330,7 @@
     
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Roodabatoz</strong>. All Rights Reserved
+        &copy; Copyright <strong>Roodab</strong>. All Rights Reserved
       </div>
    
     </div>

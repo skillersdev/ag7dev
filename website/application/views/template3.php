@@ -389,7 +389,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<p class="copyright text-center">
-							Copyright © 2019 Roodabatoz. All rights reserved.
+						&copy; Copyright <strong>Roodab</strong>. All Rights Reserved
 						</p>
 					</div>
 				</div>

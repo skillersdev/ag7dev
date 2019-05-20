@@ -427,7 +427,7 @@ $path_url = $this->config->item('path_url');
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
-                        <span class="copyright">Copyright &copy; 2019 Roodabatoz</span>
+                        <span class="copyright"> &copy; Copyright <strong>Roodab</strong>. All Rights Reserved</span>
                     </div>
                    
                    

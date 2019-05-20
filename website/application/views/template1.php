@@ -75,8 +75,8 @@ $path_url = $this->config->item('path_url');
   ============================-->
   <section id="intro">
     <div class="intro-container wow fadeIn">
-      <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
-      <p class="mb-4 pb-0">Expert in software development and staffing</p>
+      <!-- <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
+      <p class="mb-4 pb-0">Expert in software development and staffing</p> -->
       
     </div>
 	
@@ -438,7 +438,7 @@ $path_url = $this->config->item('path_url');
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Website</strong>. All Rights Reserved
+        &copy; Copyright <strong>Roodab</strong>. All Rights Reserved
       </div>
       <!-- <div class="credits">
        
