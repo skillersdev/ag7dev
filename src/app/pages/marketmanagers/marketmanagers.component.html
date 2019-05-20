@@ -23,7 +23,7 @@
                                 <tr *ngFor="let data of userlist; let i=index;">
                                     <th scope="row">{{i+1}}</th>
                                     <td>{{data.username}}</td>
-                                    <td><a><i (click)="redirectWebsite()" class="material-icons  col-pink">visibility</i></a></td>
+                                    <td>{{data.website}}</td>
                                 </tr>
                                
                             </tbody>

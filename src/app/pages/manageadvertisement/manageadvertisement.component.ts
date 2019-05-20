@@ -15,12 +15,26 @@ export class ManageadvertisementComponent implements OnInit {
 	advertisementlist:Array<Object>;
   model:any={};
 	getadlistRestApiUrl:string = AppSettings.getadDetail;
+  getadlistbyUserRestApiUrl:string = AppSettings.getadDetailbyUser;
 	DeleteadRestApiUrl:string = AppSettings.deletead;
   updateibaRestApiUrl:string = AppSettings.updateibadetails;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
-  ngOnInit() {
-  	this.CommonService.getdata(this.getadlistRestApiUrl)
+  ngOnInit() 
+  {
+     let user_id = localStorage.getItem('currentUserID');
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.advertisementlist=resultdata.result; 
+        });
+  	
+      }
+      else{
+        this.CommonService.getdata(this.getadlistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -28,7 +42,7 @@ export class ManageadvertisementComponent implements OnInit {
             } 
              
         });
-        this.model.usergroup=localStorage.getItem('currentUsergroup');
+      }
   }
   navigateAddads()
   {

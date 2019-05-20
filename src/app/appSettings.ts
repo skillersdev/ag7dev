@@ -66,6 +66,7 @@ export class AppSettings{
 	public static uploadAdvfile=AppSettings.API_BASE+"/uploadAdvfile";
 	public static Adduseradvertisement=AppSettings.API_BASE+"/addadvertisment";
 	public static getadDetail=AppSettings.API_BASE+"/getadvertisment";
+	public static getadDetailbyUser=AppSettings.API_BASE+"/getadvertismentbyuser/";
 	public static editad= AppSettings.API_BASE+"/editad/";
 	public static updatead= AppSettings.API_BASE+"/updatead";
 	public static deletead=AppSettings.API_BASE+"/deletead/";
