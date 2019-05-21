@@ -12,6 +12,7 @@ declare let swal: any;
 })
 export class LandingpageComponent implements OnInit {
 CheckwebsiteExistsRestApiUrl:string = AppSettings.checkwebsitedetail; 
+websiteurl:string=AppSettings.USER_TEMPLATE;
 model: any = {};
   constructor(
   	private loginService: LoginService,private CommonService: CommonService,
@@ -28,7 +29,8 @@ model: any = {};
     .subscribe(package_det =>{
       if(package_det.exist==1)
       {
-        swal('',package_det.message,'error')
+        window.open(this.websiteurl+"/"+this.model.website, '_blank');
+        // swal('',package_det.message,'error')
         this.model.website='';
       } 
       else
