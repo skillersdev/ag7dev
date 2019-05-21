@@ -1,0 +1,156 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- <div class="block-header">
+                <h2>Manage Users
+                    <small>Table</small>
+                </h2>
+            </div> -->
+
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Edit User
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <form class="" #form="ngForm">
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p><b>User Name</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="username" placeholder="Enter Username" [(ngModel)]="model.username" #username="ngModel" (blur)="checkUserexist($event)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>User Full Name</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="fname" placeholder="Enter User Full Name" [(ngModel)]="model.fname" #fname="ngModel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p> <b>Password</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>Confirm Password</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" name="cpassword" placeholder="Confirm Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p><b>Email</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" [(ngModel)]="model.email" #password="ngModel" name="email" placeholder="Enter Email">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>Sponsor/Referral Name</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Referal Name" [(ngModel)]="model.referedby" name="referedby" #referedby="ngModel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p><b>Current Status</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control show-tick" [(ngModel)]="model.active" #active="ngModel" name="active">
+                                                <option [ngValue]="select">Select</option>
+                                                <option value="0">Active</option>
+                                                <option value="1">Inactive</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>Select Package To Update/Edit</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken">
+                                                <option [ngValue]="select">Select</option>
+                                                <option value="1">Website | Price-USD3</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p><b>Mobile Phone Number</b></p>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                            <i class="material-icons">phone_iphone</i>
+                                        </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control mobile-phone-number" [(ngModel)]="model.mobile" #mobile="ngModel" name="mobile" placeholder="Ex: +00 (000) 000-00-00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>Country</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" name="country" class="form-control" placeholder="Country" [(ngModel)]="model.country" #country="ngModel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <p><b>User Type</b></p>
+                                        <!-- <input type="radio" name="gender" id="admin" class="with-gap radio-col-blue">
+                                        <label for="male">Admin</label> -->
+                                        <input name="user_type" type="radio" id="radio_30" [(ngModel)]="model.user_type" class="with-gap radio-col-pink" checked="model.user_type==1" value="1" />
+                                        <label for="radio_30">Admin</label>
+                                        <!-- <input type="radio" name="gender" id="marketer" class="with-gap radio-col-blue"> -->
+                                        <input name="user_type" type="radio" id="radio_31" [(ngModel)]="model.user_type" class="with-gap radio-col-pink" checked="model.user_type==2" value="2" />
+                                        <label for="radio_31">Marketer</label>
+                                        <!-- <label for="female" class="m-l-20">Marketer</label> -->
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><b>Address</b></p>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="4" class="form-control no-resize" placeholder="Please type Address..." [(ngModel)]="model.address" #address="ngModel" name="address"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                            <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="updateuser()">Update User</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

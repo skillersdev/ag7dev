@@ -1,0 +1,94 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- <div class="block-header">
+                <h2>Manage Users
+                    <small>Table</small>
+                </h2>
+            </div> -->
+
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Template
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <form class="" #registerForm="ngForm">
+                            <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <p><b>Template Name</b><span class="text-danger">*</span></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="template_name" placeholder="Enter Template Name" required [(ngModel)]="model.template_name" #template_name="ngModel">
+                                        </div>
+                                        <span [hidden]="template_name.valid || template_name.pristine" class="text-danger">Template Name is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Slider Text</b><span class="text-danger">*</span></p>
+                                    <span class="text-danger">By adding comma separator text will be vary of slider's text</span>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="slider_text" placeholder="Enter Slider Name" [(ngModel)]="model.slider_text" #slider_text="ngModel" required>
+                                        </div>
+                                        <span [hidden]="slider_text.valid || slider_text.pristine" class="text-danger">Slider Text is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <p><b>About title</b><span class="text-danger">*</span></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="about_title" placeholder="Enter About title" required [(ngModel)]="model.about_title" #about_title="ngModel">
+                                        </div>
+                                        <span [hidden]="about_title.valid || about_title.pristine" class="text-danger">About title is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Product title</b><span class="text-danger">*</span></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="product_title" placeholder="Enter Product Title" [(ngModel)]="model.product_title" #product_title="ngModel" required>
+                                        </div>
+                                        <span [hidden]="product_title.valid || product_title.pristine" class="text-danger">Product Title is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-6">
+                                    <p><b>Service title</b><span class="text-danger">*</span></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="services_title" placeholder="Enter Service title" required [(ngModel)]="model.services_title" #services_title="ngModel">
+                                        </div>
+                                        <span [hidden]="services_title.valid || services_title.pristine" class="text-danger">Service title is required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Contact title</b><span class="text-danger">*</span></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" name="contact_title" placeholder="Enter Contact Title" [(ngModel)]="model.contact_title" #contact_title="ngModel" required>
+                                        </div>
+                                        <span [hidden]="contact_title.valid || contact_title.pristine" class="text-danger">Contact Title is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
