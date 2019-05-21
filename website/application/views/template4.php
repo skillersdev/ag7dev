@@ -96,7 +96,7 @@ $path_url = $this->config->item('path_url');
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-					<img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="Roodabatoz" style="width: 123px;">
+					 <img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="Roodabatoz" style="width: 123px;">
 				</a>
             </div>
 
@@ -379,8 +379,7 @@ $path_url = $this->config->item('path_url');
                             <!-- <p>Duis aute irure dolor in reprehenderit in voluptate</p> -->
                         </div>
                 </div>
-            </div>
-            
+            </div>            
             <div class="row">
                 <div class="col-md-12">
                     <div id="team-section">
@@ -442,9 +441,6 @@ $path_url = $this->config->item('path_url');
             <div class="dot2"></div>
         </div>
     </div>
-
-    
-
     <!-- jQuery Version 2.1.1 -->
     <script src="<?php echo base_url();?>assets/template4/js/jquery-2.1.1.min.js"></script>
 
@@ -459,7 +455,7 @@ $path_url = $this->config->item('path_url');
     <script src="<?php echo base_url();?>assets/template4/js/cbpAnimatedHeader.js"></script>
     <script src="<?php echo base_url();?>assets/template4/js/owl.carousel.min.js"></script>
 	<script src="<?php echo base_url();?>assets/template4/js/jquery.fitvids.js"></script>
-	<script src="<?php echo base_url();?>assets/template4/js/styleswitcher.js"></script>
+	 <script src="<?php echo base_url();?>assets/template4/js/styleswitcher.js"></script>
 
     <!-- Contact Form JavaScript -->
     <script src="<?php echo base_url();?>assets/template4/js/jqBootstrapValidation.js"></script>

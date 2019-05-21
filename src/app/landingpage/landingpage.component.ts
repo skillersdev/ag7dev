@@ -21,7 +21,7 @@ model: any = {};
   }
    checkwebsite()
   {
-    console.log(this.model.website);
+    // console.log(this.model.website); 
     if((this.model.website!=undefined)&&(this.model.website!=''))
     {
       this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
