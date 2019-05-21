@@ -113,9 +113,9 @@ $path_url = $this->config->item('path_url');
 
 						<div class="slide-caption">
                             <div class="caption-content">
-                                <h2 class="animated fadeInDown">Welcome to Roodabatoz</h2>
+                                <!-- <h2 class="animated fadeInDown">Welcome to Roodabatoz</h2>
                                 <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
-      							<p class="mb-4 pb-0">Expert in software development and staffing</p>
+      							<p class="mb-4 pb-0">Expert in software development and staffing</p> -->
                             </div>
                         </div>
 						

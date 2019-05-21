@@ -103,6 +103,7 @@ $route['uploadimage'] = 'User_controller/uploadimage';
 $route['uploadAdvfile']= 'User_controller/uploadAdvfile';
 $route['addadvertisment']= 'User_controller/add_user_ad';
 $route['getadvertisment']= 'User_controller/get_user_ad';
+$route['getadvertismentbyuser/(:num)']= 'User_controller/get_ad_by_user/$1';
 $route['editad/(:num)'] = 'User_controller/editad/$1'; 
 $route['updatead']= 'User_controller/updatead';
 $route['deletead/(:num)'] = 'User_controller/deletead/$1';

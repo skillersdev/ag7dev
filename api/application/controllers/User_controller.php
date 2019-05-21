@@ -354,9 +354,11 @@ class User_controller extends CI_Controller {
           {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
-            // print_r($ext);die;
+            //print_r($ext);die;
+            $upper_Case_ext=strtoupper($ext);
+
             //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
-            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png" ||$ext==".mp4" ||$ext==".AVI" ||$ext==".3GPP" ||$ext==".FLV" ||$ext==".MOV" ||$ext==".MPEG4" ||$ext==".MPEGPS" ||$ext==".WebM" ||$ext==".WMV" ||$ext==".MPEG4")
+            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
             {
 
               $generatedName = md5($_FILES['file']['tmp_name']).$ext;
@@ -482,6 +484,40 @@ class User_controller extends CI_Controller {
         global $api_path;        
 
         $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where('is_deleted','0')->get('user_advertisements');
+
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+            $data =$user_det->result_array();  
+
+            $value['user_id']=$data[0]['username']; 
+
+            $result[]=array('id'=>$value['id'],'website'=>$value['url'],
+              'created_at'=>$value['created_at'],'created_by'=>$value['user_id']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+
+    }
+    public function get_ad_by_user($id)
+    {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
+        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where(['is_deleted'=>'0','user_id'=>$id])->get('user_advertisements');
 
 
         if($res->num_rows()>0)
