@@ -575,7 +575,7 @@ class Package_controller extends CI_Controller {
       $response['exist']=0;
       $website = trim($model->website);
       
-      $res=$this->db->select("website")->like('website',$website)->get('user_vs_packages');
+      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
 
       if(count($res->result_array())>0)
       {         

@@ -11,10 +11,13 @@ class Website extends CI_Controller {
 		$data=[];
 		if(isset($websitename))
 		{
-			$res=$this->db->select("*")->like('website',$websitename)->get('user_vs_packages');
+			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
 			$val=$res->result_array();
 			
+// print_r($val); die;
+			if($val){
 
+			
 			$user_profile=$this->db->select("*")->like('id',$val[0]['user_id'])->where(['is_deleted'=>'0'])->get('affiliateuser'); 
 			$user_profile_result =$user_profile->result_array();
 			/*Product list*/
@@ -105,6 +108,9 @@ class Website extends CI_Controller {
 			if($val[0]['template']==5){
 				$this->load->view('template5',$data);	
 			}
+		} else{
+			// $data['exist']=0;
+		}
 		}
 		else
 		{

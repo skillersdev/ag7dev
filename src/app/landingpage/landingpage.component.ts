@@ -41,6 +41,7 @@ model: any = {};
     {
       this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
     .subscribe(package_det =>{
+     
       if(package_det.exist==1)
       {
         window.open(this.websiteurl+"/"+this.model.website, '_blank');
