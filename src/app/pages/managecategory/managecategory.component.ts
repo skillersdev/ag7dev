@@ -47,13 +47,17 @@ export class ManagecategoryComponent implements OnInit {
             confirm: true,
           },
         text: "You won't be able to revert this!",
-      }).then(function (result) {
-        self.removecategory(idx);
-        swal(
-          'Deleted!',
-          'Package Data has been deleted.',
-          'success'
-        )
+      }).then(function (result) 
+      {
+        if(result)
+        {
+           self.removecategory(idx);
+          swal(
+            'Deleted!',
+            'Package Data has been deleted.',
+            'success'
+          )
+        }
       },function(dismiss) {
     });
   }

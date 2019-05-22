@@ -57,12 +57,15 @@ export class ManagecontactsComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removecontact(idx);
-        swal(
-          'Deleted!',
-          'Package Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+           self.removecontact(idx);
+            swal(
+              'Deleted!',
+              'Package Data has been deleted.',
+              'success'
+            )
+          }       
       },function(dismiss) {
     });
   }

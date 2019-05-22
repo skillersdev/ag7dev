@@ -43,6 +43,11 @@ export class ManageuserComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+     this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+      this.loginService.logout();
+    }
     this.CommonService.getdata(this.getuserlistRestApiUrl)
     .subscribe(userdet =>{
         if(userdet.result!="")

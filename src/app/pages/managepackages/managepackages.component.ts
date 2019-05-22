@@ -37,6 +37,11 @@ export class ManagepackagesComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
+       this.model.usergroup=localStorage.getItem('currentUsergroup');
+        if(this.model.usergroup==2)
+        {
+          this.loginService.logout();
+        }
       this.CommonService.getdata(this.getpackagelistRestApiUrl)
         .subscribe(packagedet =>{
             if(packagedet.result!="")
@@ -71,12 +76,15 @@ export class ManagepackagesComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removepackage(idx);
-        swal(
-          'Deleted!',
-          'Package Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+           self.removepackage(idx);
+          swal(
+            'Deleted!',
+            'Package Data has been deleted.',
+            'success'
+          )
+        }       
       },function(dismiss) {
   // dismiss can be "cancel" | "close" | "outside"
 });

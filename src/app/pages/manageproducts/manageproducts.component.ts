@@ -82,12 +82,15 @@ export class ManageproductsComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removeproduct(idx);
-        swal(
-          'Deleted!',
-          'Product Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+           self.removeproduct(idx);
+          swal(
+            'Deleted!',
+            'Product Data has been deleted.',
+            'success'
+          )
+        }       
       },function(dismiss) {
     });
   }

@@ -44,6 +44,11 @@ export class ManageearningsComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+     this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+      this.loginService.logout();
+    }
     this.CommonService.getdata(this.getuserlistRestApiUrl)
     .subscribe(userdet =>{
         if(userdet.result!="")  
@@ -78,12 +83,15 @@ export class ManageearningsComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removeuser(idx);
-        swal(
-          'Deleted!',
-          'Eaarnings has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+          self.removeuser(idx);
+          swal(
+            'Deleted!',
+            'Eaarnings has been deleted.',
+            'success'
+          )
+        }        
       },function(dismiss) {
   // dismiss can be "cancel" | "close" | "outside"
 });
