@@ -69,7 +69,7 @@ export class ManageadvertisementComponent implements OnInit {
   deletead(id:any)
   {
     let idx = id;
-      let self = this;
+    let self = this;
       swal({
         title: 'Are you sure?',
          buttons: {
@@ -78,12 +78,11 @@ export class ManageadvertisementComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removead(idx);
-        swal(
-          'Deleted!',
-          'Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+          self.removead(idx);
+          swal('Deleted!','Data has been deleted.','success');
+        }        
       },function(dismiss) {
     });
   }
