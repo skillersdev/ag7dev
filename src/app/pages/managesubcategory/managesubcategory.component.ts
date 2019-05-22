@@ -47,12 +47,15 @@ export class ManagesubcategoryComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removesubcategory(idx);
-        swal(
-          'Deleted!',
-          'Package Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+          self.removesubcategory(idx);
+          swal(
+            'Deleted!',
+            'Package Data has been deleted.',
+            'success'
+          );
+        }
       },function(dismiss) {
     });
   }

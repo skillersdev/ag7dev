@@ -49,12 +49,15 @@ export class ManageserviceComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removeservice(idx);
-        swal(
-          'Deleted!',
-          'Service Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+          self.removeservice(idx);
+          swal(
+            'Deleted!',
+            'Service Data has been deleted.',
+            'success'
+          );
+        }
       },function(dismiss) {
     });
   }

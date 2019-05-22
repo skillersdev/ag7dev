@@ -78,12 +78,15 @@ export class ManagetemplateComponent implements OnInit {
           },
         text: "You won't be able to revert this!",
       }).then(function (result) {
-        self.removeuser(idx);
-        swal(
-          'Deleted!',
-          'User Data has been deleted.',
-          'success'
-        )
+        if(result)
+        {
+          self.removeuser(idx);
+          swal(
+            'Deleted!',
+            'User Data has been deleted.',
+            'success'
+          );
+        }
       },function(dismiss) {
   // dismiss can be "cancel" | "close" | "outside"
 });
