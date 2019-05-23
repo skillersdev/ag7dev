@@ -23,6 +23,10 @@ export class ChatComponent implements OnInit {
   currentUserID:any;
   api_bases:any;
   Newgroupmodel: any = {}; 
+  group_dt_model:Array<Object>;
+  // group_dt_model.group_name:any;
+  group_members_model:Array<Object>;
+  group_msg_model:Array<Object>;
   group_det:Array<Object>;
   userdropdownList : Array<Object>;
   userdropdownSettings = {};
@@ -34,6 +38,9 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
+    this.group_dt_model=[];
+    this.group_msg_model=[];
+    this.group_members_model=[];
     this.Newgroupmodel.userselectedItems={};
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
@@ -69,6 +76,17 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  generateMessageArea(g_id){
+    this.Newgroupmodel.g_id=g_id;
+    this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
+        .subscribe(resultdata =>{   
+          // console.log(resultdata.group_details);
+          this.group_dt_model = resultdata.group_details[0];
+          this.group_msg_model = resultdata.group_msg;
+          this.group_members_model=resultdata.group_members; 
+        });
+  }
+
   addgroup()
   {
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
@@ -80,7 +98,16 @@ export class ChatComponent implements OnInit {
         
     });
   }
- 
+  sendMessage(){
+    this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
+    .subscribe(package_det =>{       
+      
+        this.Newgroupmodel.groupmsgtxt='';
+        this.generateMessageArea(this.Newgroupmodel.g_id);
+        // swal('','Message sent Successfully','success');  
+        
+    });
+  }
 
  
 }

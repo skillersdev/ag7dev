@@ -94,7 +94,7 @@
 
 				<!-- Chat List -->
 				<div class="row" id="chat-list" style="overflow:auto;">
-						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" onclick="generateMessageArea(this, i)">
+						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
 								<img src="{{api_bases}}images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
@@ -148,8 +148,8 @@
 					</div>
 					<a href="#"><img src="{{api_bases}}images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
 					<div class="d-flex flex-column">
-						<div class="text-white font-weight-bold" id="name">Skillers Group</div>
-						<div class="text-white small" id="details">5 members</div>
+						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
+						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
 					</div>
 					<div class="d-flex flex-row align-items-center ml-auto">
 						<a href="#"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
@@ -182,19 +182,19 @@
 					</div>
 					
 					
-					<div class="align-self-end self p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
+					<div  *ngFor="let data of group_msg_model let i=index" class="align-self-end self p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
 						<div class="options">
 							<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
 						
 						<div class="small font-weight-bold text-primary">
-							+91 91231 40293
+							{{data.created_by}}
 						</div>
 					
 						<div class="d-flex flex-row">
-							<div class="body m-1 mr-2">sxsx</div>
+							<div class="body m-1 mr-2">{{data.message}}</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
-								14:38
+								{{data.created_date | date}}
 								<i class="far fa-check-circle"></i>
 							</div>
 						</div>
@@ -205,8 +205,9 @@
 				<!-- Input -->
 				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area">
 					<a href="#"><i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
-					<input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm">
-					<i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" onclick="sendMessage()"></i>
+					<input name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"  #groupmsgtxt="ngModel"/>
+					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> -->
+					<i class="fas fa-paper-plane text-muted px-3" style="cursor:pointer;" (click)="sendMessage()"></i>
 				</div>
 			</div>
 		</div>

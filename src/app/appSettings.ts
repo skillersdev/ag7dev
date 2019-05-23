@@ -127,6 +127,8 @@ export class AppSettings{
 	//Group
 	public static addgroup=AppSettings.API_BASE+"/addgroup";
 	public static getgroups=AppSettings.API_BASE+"/getgroups";
+	public static getgroupsdetails=AppSettings.API_BASE+"/getgroupsdetails";
+	public static sendmsg=AppSettings.API_BASE+"/sendmsg";
 
 
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
