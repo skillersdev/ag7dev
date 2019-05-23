@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2019 at 08:47 PM
+-- Generation Time: May 23, 2019 at 09:46 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -44,7 +44,12 @@ CREATE TABLE `group_members` (
 
 INSERT INTO `group_members` (`id`, `group_id`, `user_id`, `user_name`, `created_by`, `created_date`, `is_deleted`) VALUES
 (1, 10, 1, 'marketer', 7, '2019-05-18 18:26:04', 0),
-(2, 1, 2, 'sridhar', 7, '2019-05-18 18:26:05', 0);
+(2, 1, 2, 'sridhar', 7, '2019-05-18 18:26:05', 0),
+(3, 11, 10, 'dhanas', 7, '2019-05-23 18:38:31', 0),
+(4, 11, 2, 'sridhar', 7, '2019-05-23 18:38:31', 0),
+(5, 11, 1, 'marketer', 7, '2019-05-23 18:38:31', 0),
+(6, 12, 4, 'remo', 7, '2019-05-23 18:41:58', 0),
+(7, 12, 5, 'romeo', 7, '2019-05-23 18:41:58', 0);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +69,7 @@ ALTER TABLE `group_members`
 -- AUTO_INCREMENT for table `group_members`
 --
 ALTER TABLE `group_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
