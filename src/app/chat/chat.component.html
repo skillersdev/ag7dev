@@ -8,7 +8,7 @@
 	<title>Roodabatoz Chat</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="../assets/chat/style.css">
+	
 </head>
 
 <body>
@@ -79,7 +79,7 @@
 				<!-- col-12 col-sm-5 col-md-4 flex-column used to show -->
 				<!-- Navbar -->
 				<div class="row d-flex flex-row align-items-center p-2" id="navbar">
-					<img src="../assets/chat/images/logo.png" alt="Profile Photo" style="height: 35px;cursor:pointer;width: 185px;margin-left: auto;" id="display-pic"  onclick="hideProfileSettings()">
+					<img src="{{api_bases}}images/logo.png" alt="Profile Photo" style="height: 35px;cursor:pointer;width: 185px;margin-left: auto;" id="display-pic"  onclick="hideProfileSettings()">
 					<div class="text-white font-weight-bold" id="username"></div>
 					<div class="nav-item dropdown ml-auto">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
@@ -95,7 +95,7 @@
 				<!-- Chat List -->
 				<div class="row" id="chat-list" style="overflow:auto;">
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" onclick="generateMessageArea(this, i)">
-								<img src="../assets/chat/images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+								<img src="{{api_bases}}images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
 									<div class="small last-message">+91 98232 37261:  yeah, i'm online</div>
@@ -146,7 +146,7 @@
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" ></i>
 					</div>
-					<a href="#"><img src="../assets/chat/images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<a href="#"><img src="{{api_bases}}images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">Skillers Group</div>
 						<div class="text-white small" id="details">5 members</div>

@@ -13,7 +13,7 @@ import { Injectable } from '@angular/core';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: []
+  styleUrls: ['./style.css']
 })
 
 
@@ -21,7 +21,7 @@ import { Injectable } from '@angular/core';
 export class ChatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
-  // api_bases=AppSettings.STYLE_BASE;
+  api_bases:any;
   Newgroupmodel: any = {}; 
   group_det:Array<Object>;
   userdropdownList : Array<Object>;
@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.Newgroupmodel.userselectedItems={};
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
