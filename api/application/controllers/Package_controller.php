@@ -408,7 +408,8 @@ class Package_controller extends CI_Controller {
                 
                 $ids = implode($pack_vs_usr_ids,',');
                 
-                 $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")");
+                // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")"); //comment by sridhar
+				 $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')."");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
                   foreach ($in_array_1 as $key => $value1) 
