@@ -134,7 +134,7 @@
 			</div>
 
 			<!-- Message Area -->
-			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100" id="message-area">
+			<div class="d-none flex-column col-12 col-sm-7 col-md-8 p-0 h-100 message-area" id="message-area">
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-none      used for disable message list-->
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-flex      used for show message list -->
 			
@@ -167,7 +167,7 @@
 						27/03/2018
 					</div>
 					
-					<div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
+					<!-- <div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
 						<div class="options">
 							<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
@@ -179,10 +179,13 @@
 								
 							</div>
 						</div>
-					</div>
+					</div> -->
 					
 					
-					<div  *ngFor="let data of group_msg_model let i=index" class="align-self-end self p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
+					<div  *ngFor="let data of group_msg_model let i=index" [ngClass]="{
+						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
+						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
+					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
 						<div class="options">
 							<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
@@ -191,13 +194,23 @@
 							{{data.created_by}}
 						</div>
 					
-						<div class="d-flex flex-row">
+						<div *ngIf="Newgroupmodel.currentUserID==data.created_by" class="d-flex flex-row">
+							
 							<div class="body m-1 mr-2">{{data.message}}</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								{{data.created_date | date}}
 								<i class="far fa-check-circle"></i>
 							</div>
 						</div>
+
+						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by" class="d-flex flex-row">
+							
+								<div class="body m-1 mr-2">{{data.message}}</div>
+								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
+									{{data.created_date | date}}
+									<i class="far fa-check-circle"></i>
+								</div>
+							</div>
 					</div>
 					
 				</div>

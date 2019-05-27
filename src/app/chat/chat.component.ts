@@ -84,6 +84,7 @@ export class ChatComponent implements OnInit {
           this.group_dt_model = resultdata.group_details[0];
           this.group_msg_model = resultdata.group_msg;
           this.group_members_model=resultdata.group_members; 
+          $('.message-area').addClass('d-sm-flex');
         });
   }
 
