@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2019 at 09:46 PM
+-- Generation Time: May 29, 2019 at 09:45 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -33,6 +33,7 @@ CREATE TABLE `all_message` (
   `group_id` int(10) NOT NULL,
   `message` varchar(4000) NOT NULL,
   `created_by` int(10) NOT NULL,
+  `user_name` varchar(400) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_deleted` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,13 +42,15 @@ CREATE TABLE `all_message` (
 -- Dumping data for table `all_message`
 --
 
-INSERT INTO `all_message` (`id`, `group_id`, `message`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 11, 'tetetett bfdfj', 10, '2019-05-23 18:56:49', 0),
-(2, 11, 'aaa sdsad', 2, '2019-05-23 18:57:15', 0),
-(3, 11, 'test msg', 7, '2019-05-23 19:36:38', 0),
-(4, 12, 'dfgdfgdfgfd', 7, '2019-05-23 19:36:56', 0),
-(5, 11, 'sample', 7, '2019-05-23 19:39:55', 0),
-(6, 11, 'dsfbsdfsd fsdfdsbfdsnf sdfhdsfnjsdkfndjksfnkjdnsfjnjdsfdfdsf dfsdf', 7, '2019-05-23 19:40:42', 0);
+INSERT INTO `all_message` (`id`, `group_id`, `message`, `created_by`, `user_name`, `created_date`, `is_deleted`) VALUES
+(1, 11, 'tetetett bfdfj', 10, 'dhanas', '2019-05-23 18:56:49', 0),
+(2, 11, 'aaa sdsad', 2, 'sridhar', '2019-05-23 18:57:15', 0),
+(3, 11, 'test msg', 7, 'ramasway', '2019-05-23 19:36:38', 0),
+(4, 12, 'dfgdfgdfgfd', 7, 'ramasway', '2019-05-23 19:36:56', 0),
+(5, 11, 'sample', 7, 'ramasway', '2019-05-23 19:39:55', 0),
+(6, 11, 'dsfbsdfsd fsdfdsbfdsnf sdfhdsfnjsdkfndjksfnkjdnsfjnjdsfdfdsf dfsdf', 2, 'sridhar', '2019-05-23 19:40:42', 0),
+(7, 11, 'sasfdsafds', 7, 'ramasway', '2019-05-27 20:16:22', 0),
+(8, 11, 'aaaaaaaaaaaa', 7, 'ramasway', '2019-05-29 19:02:42', 0);
 
 --
 -- Indexes for dumped tables
@@ -67,7 +70,7 @@ ALTER TABLE `all_message`
 -- AUTO_INCREMENT for table `all_message`
 --
 ALTER TABLE `all_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
