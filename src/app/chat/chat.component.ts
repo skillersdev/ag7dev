@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   api_bases:any;
   Newgroupmodel: any = {}; 
   group_dt_model:Array<Object>;
-  // group_dt_model.group_name:any;
+  group_name:any;
   group_members_model:Array<Object>;
   group_msg_model:Array<Object>;
   group_det:Array<Object>;
@@ -39,12 +39,14 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_dt_model=[];
+    this.group_name=0;
     this.group_msg_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems={};
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
+    this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
     this.getgrouplists();
 
     // this.selectedItems = [
@@ -80,6 +82,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id=g_id;
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
+          this.group_name=1;
           // console.log(resultdata.group_details);
           this.group_dt_model = resultdata.group_details[0];
           this.group_msg_model = resultdata.group_msg;

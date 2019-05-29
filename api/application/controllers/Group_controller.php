@@ -23,8 +23,15 @@ class Group_controller extends CI_Controller {
         // (`id`, `group_name`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
        
         foreach ($model->userselectedItems as $key => $value) {
-         
-         $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,user_name,created_by) values ('".$g_id."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
+         // $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
+         // $mem_group_array=$mem_group_sql->result_array();
+
+         // if(count($mem_group_array) > 0){
+
+         // }else {
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
+         // }
+        
       }
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
@@ -37,7 +44,7 @@ class Group_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
       //   print_r($model); die;
         if($model){
-         $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,created_by) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->currentUserID."')");
+         $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,created_by,user_name) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->currentUserID."','".$model->currentUser."')");
         }
       
         
@@ -78,9 +85,17 @@ class Group_controller extends CI_Controller {
           $result=array();
 
           $model = json_decode($this->input->post('model',FALSE));
-    
-              $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
-              $group_array=$group_sql->result_array(); 
+      
+         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name')
+            ->join('group_members', 'group_members.group_id=group_master.id', 'left')
+            ->where('group_members.user_id', $model->currentUserID)
+            ->where('group_master.private_public', '2')
+            ->where('group_master.is_deleted', '0')
+            ->get('group_master');
+            $group_array=$group_sql->result_array(); 
+            // print_r($group_array); die;
+            //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
+            //   $group_array=$group_sql->result_array(); 
               $response['result']=$group_array;
            echo json_encode($response,JSON_UNESCAPED_SLASHES);
            die();

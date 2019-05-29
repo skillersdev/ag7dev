@@ -98,7 +98,7 @@
 								<img src="{{api_bases}}images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
-									<div class="small last-message">+91 98232 37261:  yeah, i'm online</div>
+									<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
 								</div>
 								<div class="flex-grow-1 text-right">
 									<div class="small time">28/03/2018</div>
@@ -134,7 +134,7 @@
 			</div>
 
 			<!-- Message Area -->
-			<div class="d-none flex-column col-12 col-sm-7 col-md-8 p-0 h-100 message-area" id="message-area">
+			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 message-area"  id="message-area">
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-none      used for disable message list-->
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-flex      used for show message list -->
 			
@@ -142,7 +142,7 @@
 				<!-- w-100 h-100 overlay            shows blank screen  -->
 				<!-- w-100 h-100 overlay d-none      used to hide the blank screen -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" id="navbar">
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" ></i>
 					</div>
@@ -163,7 +163,7 @@
 
 				<!-- Messages -->
 				<div class="d-flex flex-column" id="messages">
-					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded">
+					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" *ngIf="group_name!=0">
 						27/03/2018
 					</div>
 					
@@ -182,7 +182,7 @@
 					</div> -->
 					
 					
-					<div  *ngFor="let data of group_msg_model let i=index" [ngClass]="{
+					<div   *ngFor="let data of group_msg_model let i=index" [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
@@ -191,7 +191,7 @@
 						</div>
 						
 						<div class="small font-weight-bold text-primary">
-							{{data.created_by}}
+							{{data.user_name}}
 						</div>
 					
 						<div *ngIf="Newgroupmodel.currentUserID==data.created_by" class="d-flex flex-row">
@@ -216,7 +216,7 @@
 				</div>
 
 				<!-- Input -->
-				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area">
+				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area" *ngIf="group_name!=0">
 					<a href="#"><i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
 					<input name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"  #groupmsgtxt="ngModel"/>
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> -->
