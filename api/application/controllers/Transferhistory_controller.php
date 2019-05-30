@@ -24,9 +24,9 @@ class Transferhistory_controller extends CI_Controller {
                     $tot_amt=$data_amt[0]['tamount'];
                     $user_id = $data_amt[0]['id'];
                 }
-                $final_tot = $tot_amt - $model->amt;
+                $final_tot= $tot_amt-$model->amt;
 
-                 $data=array('tamount'=>$final_tot);
+                $data=array('tamount'=>$final_tot);
                 $this->db->where('id',$user_id);
                 $this->db->update($this->db->dbprefix('affiliateuser'),$data);
 
@@ -34,7 +34,7 @@ class Transferhistory_controller extends CI_Controller {
                 if(count($user_share_to->result_array())>0)
                 {
                     $share_to_det=$user_share_to->result_array();
-                    $share_to=array('tamount'=>$model->amt);
+                    $share_to=array('tamount'=>$model->amt+$share_to_det[0]['tamount']);
                     $this->db->where('id',$share_to_det[0]['id']);
                     $this->db->update($this->db->dbprefix('affiliateuser'),$share_to);
                 }
@@ -70,7 +70,10 @@ class Transferhistory_controller extends CI_Controller {
               }
             //$response['message']="User name already exists";
         }
-        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+		if($result !=""){
+				echo json_encode($result,JSON_UNESCAPED_SLASHES);
+		}
+        
         die();
   }
   
