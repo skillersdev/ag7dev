@@ -72,12 +72,9 @@
                             <div class="row clearfix">
                                
                                 <div class="col-md-6">
-                                    <p><b>Select Marketer</b></p>
-                                    <select class="form-control show-tick" [(ngModel)]="model.username" #username="ngModel" required name="username">
-                                        <option>Select Marketer</option>
-                                        <option *ngFor="let item of userlist let idx=index">{{item.username}}</option>  
-                                    </select>
-                                    <span [hidden]="username.valid || username.pristine" class="text-danger">marketer is required</span>
+                                    <p><b>Marketer name</b></p>                                   
+                                    <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>                                    
+                                    <span [hidden]="mname.valid || mname.pristine" class="text-danger">Name is required</span>
                                 </div>
                                 <div class="col-md-6">
                                     <p><b>Enter Amount to share</b></p>

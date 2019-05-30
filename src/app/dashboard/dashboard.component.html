@@ -129,7 +129,7 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                   <!--  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <a href="javascript:void(0);">
                         <div class="info-box-3 bg-light-green hover-zoom-effect">
                             <div class="icon">
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         </a>
-                    </div>
+                    </div> -->
                 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a href="javascript:void(0);" [routerLink]="['/']">
@@ -290,6 +290,12 @@
                             <span>(to share the balance. you should have more than 50 credit balance)</span>
                             
                         </div>
+                         <div>
+                             <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                             <div class="col-sm-2">
+                                {{tamount}}
+                             </div>
+                         </div>  
                         <div class="body">
                                 <form name="transferform" #transfer=ngForm>
                                 <div class="form-group ">

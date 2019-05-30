@@ -84,6 +84,7 @@ export class AppSettings{
 	public static deleteearnings = AppSettings.API_BASE+"/deleteearnings/";
 	/*trasnfer history*/
 	public static inserttransferprocess=AppSettings.API_BASE+"/addtransferdetails";
+	public static gettransferlistDetail = 	AppSettings.API_BASE+"/gettransferlist";
 	
 	/**/
 

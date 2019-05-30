@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
 import { CommonService} from '../services/common.service';
+import Swal from 'sweetalert2'
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -27,6 +28,7 @@ export class AdmindashboardComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   getuserlistRestApiUrl:string=AppSettings.getuserslist;
+  checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
  inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
     document.body.className="theme-red";
@@ -49,7 +51,17 @@ ngOnInit() {
 logout() {
   this.loginService.logout();
 }
-
+checkmarketer(marketer_name:any)
+ {
+   this.model.username=marketer_name;
+   this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model).subscribe(data=>{
+      if(data.exist==0)
+      {                
+         swal('Oops...','Marketer doesnot exists', 'error');
+         this.model.mname='';
+      }       
+    });
+  }
 transferamount()
   {
     this.transferdata.transfer_to=this.model.username;

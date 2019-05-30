@@ -82,10 +82,10 @@ $path_url = $this->config->item('path_url');
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
 						<li><a href="#body">Home</a></li>
-						<li><a href="#contact">Contact</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#portfolio">Products</a></li>
-                        <li><a href="#testimonials">Ads</a></li>                        
+						<li><a href="#contact">My Contact</a></li>
+                        <li><a href="#service">My Service</a></li>
+                        <li><a href="#portfolio">My Products</a></li>
+                        <li><a href="#testimonials">My Ads</a></li>                        
                     </ul>
                 </nav>
 				<!-- /main nav -->
@@ -226,7 +226,7 @@ $path_url = $this->config->item('path_url');
 					<div class="row">
 						
 						<div class="sec-title text-center wow animated fadeInDown">
-							<h2>Contact</h2>
+							<h2>My Contact</h2>
 							
 						</div>
 						
@@ -251,7 +251,7 @@ $path_url = $this->config->item('path_url');
 						
 						<div class="col-md-12 wow animated fadeInRight">
 							<address class="contact-details">
-								<h3>Contact Us</h3>						
+								<h3>My Contact</h3>						
 								<p><i class="fa fa-pencil"></i><?php echo $website;?>
 								<span><?php echo $address;?></span><span>Australia</span></p><br>
 								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
@@ -270,7 +270,7 @@ $path_url = $this->config->item('path_url');
 					<div class="row">
 					
 						<div class="sec-title text-center">
-							<h2 class="wow animated bounceInLeft">Service</h2>
+							<h2 class="wow animated bounceInLeft">My service</h2>
 							<p class="wow animated bounceInRight">Provide Various Service in diffrent domain</p>
 						</div>
 						<?php 
@@ -303,7 +303,7 @@ $path_url = $this->config->item('path_url');
 					<div class="row">
 					
 						<div class="sec-title text-center wow animated fadeInDown">
-							<h2>PRODUCTS</h2>
+							<h2>My PRODUCTS</h2>
 							<p>Latest Products.</p>
 						</div>
 						
@@ -348,7 +348,7 @@ $path_url = $this->config->item('path_url');
 						<div class="row">
 						
 							<div class="sec-title text-center wow animated fadeInDown">
-								<h2>Advertisment</h2>
+								<h2>My Advertisment</h2>
 								
 							</div>
 						

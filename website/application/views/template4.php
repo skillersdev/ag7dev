@@ -107,17 +107,17 @@ $path_url = $this->config->item('path_url');
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">My Contact</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services">My Service</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#products">Products</a>
+                        <a class="page-scroll" href="#products">My Products</a>
                     </li>
                    
                     <li>
-                        <a class="page-scroll" href="#ads">Advertisment</a>
+                        <a class="page-scroll" href="#ads">My Advertisment</a>
                     </li>
                   
 
@@ -240,7 +240,7 @@ $path_url = $this->config->item('path_url');
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h3>Services</h3>
+                            <h3>My Services</h3>
                             <p>We provides various services</p>
                         </div>
                 </div>
@@ -292,7 +292,7 @@ $path_url = $this->config->item('path_url');
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-center">
-                            <h3>Our Products</h3>
+                            <h3>My Products</h3>
                             <p>Duis aute irure dolor in reprehenderit in voluptate</p>
                         </div>                        
                     </div>
@@ -375,7 +375,7 @@ $path_url = $this->config->item('path_url');
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h3>Advertisement</h3>
+                            <h3>My Advertisement</h3>
                             <!-- <p>Duis aute irure dolor in reprehenderit in voluptate</p> -->
                         </div>
                 </div>

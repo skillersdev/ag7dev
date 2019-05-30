@@ -47,6 +47,31 @@ class Transferhistory_controller extends CI_Controller {
         die();
     }
   
-  
+   public function gettransferlist()
+  {
+     $model = json_decode($this->input->post('model',FALSE));    
+        $username = trim($model->currentUsername);
+        if(isset($model->currentUsername)){
+            $res=$this->db->select("*")->like('transfer_from',$username)->get('transfer_history');    
+        }
+       
+       $response=[];
+
+        if(count($res->result_array())>0)
+        {
+          // $data = $res->result_array();
+            $result=[];
+
+             foreach($res->result_array() as $key=>$value)
+              { 
+                //$value['username']=$data[0]['username']; 
+
+                $result[]=array('transfer_from'=>$value['transfer_from'],'transfer_to'=>$value['transfer_to'],'amt'=>$value['amt']);
+              }
+            //$response['message']="User name already exists";
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+  }
   
 }

@@ -20,22 +20,15 @@
                                       <th>#</th> 
                                       <th>Transfer To</th>
                                       <th>Amount</th>
-                                      <th>Transfer Date</th>
+                                      <th>Transfer From</th>
                                   </tr>
                               </thead>
-                              <tbody>
-                                  <tr>
-                                      <th scope="row">1</th>
-                                      <td>Sridhar</td>
-                                      <td>1000</td>
-                                      <td>14/02/19</td>
-                                                                        
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Maran 2</td>
-                                    <td>1000</td>
-                                    <td>14/02/19</td> 
+                              <tbody>                                
+                                  <tr *ngFor="let data of transferlist;let i=index;">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{data.transfer_to}}</td>
+                                    <td>{{data.amt}}</td>
+                                    <td>{{data.transfer_from}}</td> 
                                 </tr>                               
                               </tbody>
                           </table>

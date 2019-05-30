@@ -75,10 +75,10 @@
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
 						<li class="current"><a href="#body">Home</a></li>
-						<li><a href="#contact">Contact</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#ads">Ads</a></li>
+						<li><a href="#contact">My Contact</a></li>
+                        <li><a href="#services">My Services</a></li>
+                        <li><a href="#products">My Products</a></li>
+                        <li><a href="#ads">My Ads</a></li>
                         
                     </ul>
                 </nav>
@@ -162,7 +162,7 @@
 				<div class="row mb50">
 				
 					<div class="sec-title text-center mb50 wow fadeInDown animated" data-wow-duration="500ms">
-						<h2>Contact Us</h2>
+						<h2>My Contact</h2>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
 					
@@ -216,7 +216,7 @@
 				<div class="row">
 				
 					<div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
-						<h2>Services</h2>
+						<h2>My Service</h2>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
 
@@ -262,7 +262,7 @@
 				<div class="row">
 				
 					<div class="sec-title text-center">
-						<h2>Products</h2>
+						<h2>My Products</h2>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
 					
@@ -325,7 +325,7 @@
 				<div class="row">
 		
 					<div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
-						<h2>Advertisment</h2>
+						<h2>My Advertisment</h2>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
 					

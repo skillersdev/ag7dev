@@ -57,10 +57,10 @@ $path_url = $this->config->item('path_url');
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#hotels">Services</a></li>
-          <li><a href="#speakers">Products</a></li>         
+          <li><a href="#about">About me</a></li>
+          <li><a href="#contact">My Contact</a></li>
+          <li><a href="#hotels">My Services</a></li>
+          <li><a href="#speakers">My Products</a></li>         
          
           <!-- <li><a href="#sponsors">Clients</a></li> -->
           
@@ -137,7 +137,7 @@ $path_url = $this->config->item('path_url');
          ?>
 			</div>
           <div class="col-lg-6">
-            <h2>About Us</h2>
+            <h2>About me</h2>
             <?php 
               $about_us =($about_me!='')?$about_me:'Welcome to mysite';
 
@@ -168,7 +168,7 @@ $path_url = $this->config->item('path_url');
       <div class="container">
 
         <div class="section-header">
-          <h2>Contact Us</h2>
+          <h2>My Contact</h2>
           <p><?php echo $website;?></p>
         </div>
 
@@ -223,7 +223,7 @@ $path_url = $this->config->item('path_url');
 
       <div class="container">
         <div class="section-header">
-          <h2>Services</h2>
+          <h2>My Service</h2>
           
         </div>
 
@@ -259,7 +259,7 @@ $path_url = $this->config->item('path_url');
     <section id="speakers" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
-          <h2>Products</h2>
+          <h2>My Products</h2>
           <p>Various Products</p>
         </div>
 
@@ -346,7 +346,7 @@ $path_url = $this->config->item('path_url');
 
       <div class="container">
         <div class="section-header">
-          <h2>Advertisements</h2>
+          <h2>My Advertisements</h2>
           
         </div>
 

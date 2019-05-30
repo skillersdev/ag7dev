@@ -48,11 +48,11 @@
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Products</a></li>
-          <li><a href="#team">Ads</a></li>          
+          <li><a href="#about">About me</a></li>
+          <li><a href="#contact">My Contact</a></li>
+          <li><a href="#services">My Services</a></li>
+          <li><a href="#portfolio">My Products</a></li>
+          <li><a href="#team">My Ads</a></li>          
         </ul>
       </nav><!-- .main-nav -->
       
@@ -86,7 +86,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>About Us</h3>
+          <h3>About me</h3>
           <p><?php 
               $about_us =($about_me!='')?$about_me:'Welcome to mysite';
 
@@ -142,7 +142,7 @@
       <div class="container-fluid">
 
         <div class="section-header">
-          <h3>Contact Us</h3>
+          <h3>My Contact</h3>
         </div>
 
         <div class="row wow fadeInUp">
@@ -191,7 +191,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>Services</h3>
+          <h3>My Services</h3>
           
         </header>
 
@@ -224,7 +224,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3 class="section-title">Our Products</h3>
+          <h3 class="section-title">My Products</h3>
         </header>
 
 
@@ -275,7 +275,7 @@
     <section id="team">
       <div class="container">
         <div class="section-header">
-          <h3>Advertisment</h3>
+          <h3>My Advertisment</h3>
          
         </div>
 

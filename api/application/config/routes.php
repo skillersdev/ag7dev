@@ -111,6 +111,7 @@ $route['updateibadetails'] = 'User_controller/updateibadetails';
 $route['getMarketerslist'] = 'User_controller/getmarketerslist';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
+ $route['gettransferlist'] ='Transferhistory_controller/gettransferlist';
 /**/
 
 /*Earnings list*/
