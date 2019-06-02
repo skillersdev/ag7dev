@@ -289,14 +289,18 @@
                             <h2>Share Balance to Marketer</h2>
                             <span>(to share the balance. you should have more than 50 credit balance)</span>
                             
+                           
+                            
                         </div>
-                         <div>
-                             <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
-                             <div class="col-sm-2">
-                                {{tamount}}
-                             </div>
-                         </div>  
+                          
                         <div class="body">
+                            <div>
+                                    <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                                    <div class="col-sm-2">
+                                           <span class="label bg-orange"> {{tamount}} </span>
+                                    </div>
+                            </div>
+                            <br/>
                                 <form name="transferform" #transfer=ngForm>
                                 <div class="form-group ">
                                         <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
