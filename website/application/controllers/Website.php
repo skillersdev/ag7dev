@@ -28,8 +28,7 @@ class Website extends CI_Controller {
 			{	
 
 				foreach($product_det_result as $key=>$value)
-		          {              
-		            
+		          {   
 		            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'website'=>$value['website'],'price'=>$value['price'],'product_image'=>$value['product_image']);
 		          }
 

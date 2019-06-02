@@ -224,6 +224,24 @@ $path_url = $this->config->item('path_url');
       <div class="container">
         <div class="section-header">
           <h2>My Service</h2>
+
+          <!-- Modal -->
+        <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h4 class="modal-title" id="mtitle2"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              </div>
+              <div class="modal-body" id="mimage2">                
+              </div>
+              <div class="modal-footer" id="desc2">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
           
         </div>
 
@@ -232,12 +250,15 @@ $path_url = $this->config->item('path_url');
 
           for($j=0;$j<count($service_details);$j++)
           {
+            $name = "'".$service_details[$j]['service_name']."'";
+            $image = "'".$path_url.$service_details[$j]['service_image']."'";
+            $desc = "'".$service_details[$j]['desc']."'";
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
+                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -263,21 +284,43 @@ $path_url = $this->config->item('path_url');
           <p>Various Products</p>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h4 class="modal-title" id="mtitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              </div>
+              <div class="modal-body" id="mimage">                
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
+        
+
         <div class="row">
           <?php
           if(count($product_details)>0)
           {
+            // print_r($product_details); die;
             for($i=0;$i<count($product_details);$i++)
               {
                 //echo $product_details[$i]['product_image'];
+                $name = "'".$product_details[$i]['product_name']."'";
+                $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
                 ?>
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                      <?php 
-                        echo '<img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid">'; 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
                         ?>
                       <div class="details">
-                        <h4><a href="product-details.html">
+                        <h4><a href="javascript:void(0);">
                           <?php echo $product_details[$i]['product_name'];?></a>
                         </h4>
                         <p><?php echo $product_details[$i]['price'];?></p>               
@@ -339,6 +382,24 @@ $path_url = $this->config->item('path_url');
 
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h4 class="modal-title" id="mtitle1"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              </div>
+              <div class="modal-body" id="mimage1">                
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
+
       <!--==========================
       Advertisement Section
     ============================-->
@@ -355,6 +416,8 @@ $path_url = $this->config->item('path_url');
 
           for($k=0;$k<count($ad_details);$k++)
           {
+            $name = "";
+            $image = "'".$path_url.$ad_details[$k]['uploads']."'";
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
@@ -362,7 +425,7 @@ $path_url = $this->config->item('path_url');
                 <?php 
                   if($ad_details[$k]['ad_type']==1)
                   { 
-                      echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid">'; 
+                      echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
                   }
                   else{
                     echo '<video width="280" height="200" controls>
@@ -462,6 +525,25 @@ $path_url = $this->config->item('path_url');
 
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url();?>/assets/js/main.js"></script>
+  <script>
+  
+  function servicepopupimage(name,image,desc){
+      
+      $('#mtitle2').html(name);
+      $('#mimage2').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#desc2').html(desc);
+     }
+
+    function popupimage(name,image){
+      
+      $('#mtitle').html(name);
+      $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
+     }
+
+     function popupimage1(image){
+      $('#mimage1').html('<img src="'+image+'" width="400px" height="400px">');
+     }
+  </script>
 </body>
 
 </html>
