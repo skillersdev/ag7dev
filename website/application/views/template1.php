@@ -258,7 +258,7 @@ $path_url = $this->config->item('path_url');
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid">'; 
+                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -290,10 +290,11 @@ $path_url = $this->config->item('path_url');
             <!-- Modal content-->
             <div class="modal-content">           
               <div class="modal-header">
-              <h4 class="modal-title" id="mtitle"></h4>
+              <h5 >Category Name : </h5><h5 class="modal-title" id="cname"></h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>               
               </div>
-              <div class="modal-body" id="mimage">                
+              <div class="modal-body" id="mimage">   
+              <h4 class="modal-title" id="mtitle"></h4>             
               </div>
               <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
@@ -312,12 +313,13 @@ $path_url = $this->config->item('path_url');
               {
                 //echo $product_details[$i]['product_image'];
                 $name = "'".$product_details[$i]['product_name']."'";
+                $cname = "'".$product_details[$i]['category_name']."'";
                 $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
                 ?>
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                      <?php 
-                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
                         ?>
                       <div class="details">
                         <h4><a href="javascript:void(0);">
@@ -534,9 +536,10 @@ $path_url = $this->config->item('path_url');
       $('#desc2').html(desc);
      }
 
-    function popupimage(name,image){
+    function popupimage(name,image,cname){
       
       $('#mtitle').html(name);
+      $('#cname').html(cname);
       $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
      }
 

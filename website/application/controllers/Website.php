@@ -29,7 +29,11 @@ class Website extends CI_Controller {
 
 				foreach($product_det_result as $key=>$value)
 		          {   
-		            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'website'=>$value['website'],'price'=>$value['price'],'product_image'=>$value['product_image']);
+					$category_det=$this->db->select("category_name")->where(['id'=>$value['category_id']])->get('category_master'); 
+
+					$category_det_result =$category_det->result_array();
+					// print_r($category_det_result); die;
+					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_det_result[0]['category_name'],'website'=>$value['website'],'price'=>$value['price'],'product_image'=>$value['product_image']);
 		          }
 
 			}
