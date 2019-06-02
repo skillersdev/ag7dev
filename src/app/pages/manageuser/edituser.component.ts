@@ -34,7 +34,8 @@ export class EdituserComponent implements OnInit {
   private sub: any;
   id:number;
   stage_of_packages:Array<Object>;stage_of_packages_prev:Array<Object>;
-
+  
+  getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   stage_bonus_data:Array<Object>;
   stage_upgradation_data:Array<Object>;
   constructor(private loginService: LoginService,
@@ -54,6 +55,15 @@ export class EdituserComponent implements OnInit {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.edituser(this.id);
         
+        });
+
+        this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+            console.log(this.packagelist); 
         });
   }
   
