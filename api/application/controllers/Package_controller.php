@@ -285,7 +285,7 @@ class Package_controller extends CI_Controller {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
 
-                    $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $user_det=$this->db->select("username,tamount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
                     $data =$user_det->result_array();  
 
                     $package['marketer']=$data[0]['username']; 
@@ -293,6 +293,7 @@ class Package_controller extends CI_Controller {
                     $package['package_name'] = $in_array_1[0]['name'];
 
                     $package['package_price'] = $in_array_1[0]['price'];
+                    $package['tamount']= $data[0]['tamount'];
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
 

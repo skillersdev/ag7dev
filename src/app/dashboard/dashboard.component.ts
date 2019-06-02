@@ -69,7 +69,8 @@ export class DashboardComponent implements OnInit {
       this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
           .subscribe(resultdata =>{   
             this.packagelist=resultdata.result; 
-          });
+            this.model.tot_amt=resultdata.result[0]['tamount']; 
+                      });
 
       this.CommonService.editdata(this.getpackagevsuserApiUrl,user_id)
           .subscribe(resultdata =>{   
@@ -159,7 +160,7 @@ export class DashboardComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/dashboard']); 
+        this.ngOnInit(); 
     });
   }
    
