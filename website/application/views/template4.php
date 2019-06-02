@@ -328,13 +328,17 @@ $path_url = $this->config->item('path_url');
                     <!-- Modal content-->
                     <div class="modal-content">           
                     <div class="modal-header">
-                    <h5 >Category Name : </h5><h5 class="modal-title" id="cname"></h5>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>               
+                    <h5 class="modal-title" id="mtitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                        </div>
+                        <div class="modal-header">
+                        <h6 >Category Name : </h6><h6 class="modal-title" id="cname"></h6> <br>
+                        <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br>            
                     </div>
                     <div class="modal-body" id="mimage">   
                     <h4 class="modal-title" id="mtitle"></h4>             
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" id="mfooter">
                         <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                     </div>
                     </div>            
@@ -353,13 +357,15 @@ $path_url = $this->config->item('path_url');
                                   {
                                     $name = "'".$product_details[$i]['product_name']."'";
                                     $cname = "'".$product_details[$i]['category_name']."'";
+                                    $scname = "'".$product_details[$i]['sub_category_name']."'";
                                     $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
+                                    $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
                                     //echo $product_details[$i]['product_image'];
                                     ?>
                             <li>
                                 <div class="portfolio-item">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
                                         ?>
                                     <div class="portfolio-caption">
                                        <h3><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -539,10 +545,12 @@ $path_url = $this->config->item('path_url');
       $('#desc2').html(desc);
      }
 
-    function popupimage(name,image,cname){
+     function popupimage(name,image,cname,scname,price){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
+      $('#scname').html(scname);
+      $('#mfooter').html(price);
       $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
      }
 

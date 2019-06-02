@@ -26,15 +26,24 @@ class Website extends CI_Controller {
 			$result=[];
 			if(count($product_det_result)>0)
 			{	
+				$category_name=$sub_category_name='';
 
 				foreach($product_det_result as $key=>$value)
 		          {   
-					  print_r($value); die;
+					//   print_r($value); die;
 					$category_det=$this->db->select("category_name")->where(['id'=>$value['category_id']])->get('category_master'); 
-
 					$category_det_result =$category_det->result_array();
+					if($category_det_result){
+						$category_name = $category_det_result[0]['category_name'];
+					}
+
+					$sub_category_det=$this->db->select("sub_category_name")->where(['id'=>$value['sub_category_id']])->get('sub_category_master'); 
+					$sub_category_det_result =$sub_category_det->result_array();
+					if($sub_category_det_result){
+						$sub_category_name = $sub_category_det_result[0]['sub_category_name'];
+					}
 					
-					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_det_result[0]['category_name'],'website'=>$value['website'],'price'=>$value['price'],'product_image'=>$value['product_image']);
+					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image']);
 		          }
 
 			}
@@ -71,18 +80,19 @@ class Website extends CI_Controller {
 
 
 			/*Contact list*/
-			$contact_det=$this->db->select("*")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('contacts_master'); 
-			$contact_det_result =$contact_det->result_array();
 			$contac_result=[];
-			if(count($contact_det_result)>0)
-			{	
+			$contact_det=$this->db->select("*,fb_link as fb,linked_url as linked")->like('website',$websitename)->where(['is_deleted'=>'0'])->get('contacts_master'); 
+			$contac_result =$contact_det->result_array();
+			
+			// if(count($contact_det_result)>0)
+			// {	
 
-				foreach($contact_det_result as $key=>$value)
-		          { 
-		            $contac_result[]=array('id'=>$value['id'],'fb'=>$value['fb_link'],'linked'=>$value['linked_url']);
-		          }
+			// 	foreach($contact_det_result as $key=>$value)
+		    //       { 
+		    //         $contac_result[]=array('id'=>$value['id'],'fb'=>$value['fb_link'],'linked'=>$value['linked_url']);
+		    //       }
 
-			}
+			// }
 			// print_r($contac_result); die;
 			$data['product_details']=$result;
 			$data['service_details']=$serv_result;

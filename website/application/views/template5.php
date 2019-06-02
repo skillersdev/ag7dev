@@ -48,7 +48,7 @@
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About me</a></li>
+          <li><a href="#about">About Me</a></li>
           <li><a href="#contact">My Contact</a></li>
           <li><a href="#services">My Services</a></li>
           <li><a href="#portfolio">My Products</a></li>
@@ -86,7 +86,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>About me</h3>
+          <h3>About Me</h3>
           <p><?php 
               $about_us =($about_me!='')?$about_me:'Welcome to mysite';
 
@@ -155,6 +155,25 @@
               <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
               <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
               <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <p><?php if($contact_details[0]['phonenumber']!=''){
+          echo "Phone :".$contact_details[0]['phonenumber'];
+        } ?></p>
+        <p><?php if($contact_details[0]['homenumber']!=''){
+          echo "Home No :".$contact_details[0]['homenumber'];
+        } ?></p>
+        <p><?php if($contact_details[0]['officenumber']!=''){
+          echo "Office No :".$contact_details[0]['officenumber'];
+        } ?></p>
+        <p><?php if($contact_details[0]['faxnumber']!=''){
+          echo "Fax No :".$contact_details[0]['faxnumber'];
+        } ?></p>
+        <p><?php if($contact_details[0]['whatsapp']!=''){
+          echo "Whatsapp :".$contact_details[0]['whatsapp'];
+        } ?></p>
+        <p><?php if($contact_details[0]['telegram']!=''){
+          echo "Telegram :".$contact_details[0]['telegram'];
+        } ?></p>
+        
             </div>
             </div>
           </div>
@@ -254,13 +273,17 @@
             <!-- Modal content-->
             <div class="modal-content">           
               <div class="modal-header">
-              <h5 >Category Name : </h5><h5 class="modal-title" id="cname"></h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              <h5 class="modal-title" id="mtitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                </div>
+                <div class="modal-header">
+                <h6 >Category Name : </h6><h6 class="modal-title" id="cname"></h6> <br>
+                <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br>             
               </div>
               <div class="modal-body" id="mimage">   
               <h4 class="modal-title" id="mtitle"></h4>             
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer" id="mfooter">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
               </div>
             </div>            
@@ -277,13 +300,15 @@
                 for($i=0;$i<count($product_details);$i++){
                   $name = "'".$product_details[$i]['product_name']."'";
                 $cname = "'".$product_details[$i]['category_name']."'";
+                $scname = "'".$product_details[$i]['sub_category_name']."'";
                 $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
+                $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
                                     //echo $product_details[$i]['product_image'];
             ?>
 
             <div class="portfolio-wrap">
             <?php 
-                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
+                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
             ?>
               <div class="portfolio-info">
                 <h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
@@ -428,10 +453,12 @@
       $('#desc2').html(desc);
      }
 
-    function popupimage(name,image,cname){
+     function popupimage(name,image,cname,scname,price){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
+      $('#scname').html(scname);
+      $('#mfooter').html(price);
       $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
      }
 
