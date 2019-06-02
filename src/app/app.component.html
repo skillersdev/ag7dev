@@ -1,2 +1,89 @@
 
 <router-outlet></router-outlet>
+
+<div id="floatingRectangle" data-toggle="modal" data-target="#myModalchangelanguage">
+    Change Language checking here
+</div>
+<!-- Modal -->
+<div id="myModalchangelanguage" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+           
+            <div class="modal-body">
+               <!-- language code-->
+            <div class="row" style="margin-top: 19px;">  
+                    <div class="col-xs-6" style="text-align: right;margin-top: 13px;">Change Language:</div>
+                    <div class="col-xs-6">
+                        <div id="google_translate_element" class="form-group"></div>
+                    </div>
+        
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        
+                    }
+                </script>
+                <style>
+                    .goog-logo-link{
+                    display:none;
+                    }
+                    .skiptranslate{color:white !important;}
+                    .goog-te-combo{ 
+                        color: #666 !important;
+                        display: block !important;
+                        
+                        height: 34px !important;
+                        padding: 6px 12px !important;
+                        font-size: 14px !important;
+                        line-height: 1.42857143 !important;
+                        background-color: #fff !important;
+                        background-image: none !important;
+                        border: 1px solid #ccc !important;
+                        border-radius: 4px !important;
+                        }
+                    .goog-te-banner-frame{visibility:hidden !important;}
+                    
+                    .goog-tooltip skiptranslate {visibility: hidden !important}
+
+                    .goog-tooltip {
+                        display: none !important;
+                    }
+                    .goog-tooltip:hover {
+                        display: none !important;
+                    }
+                    .goog-text-highlight {
+                        background-color: transparent !important;
+                        border: none !important; 
+                        box-shadow: none !important;
+                    }
+                    .goog-te-balloon-frame { display: none; }
+
+                </style>
+                </div>
+                <!-- language code ends here-->
+            </div>
+            
+          </div>
+      
+        </div>
+      </div>
+
+<style>
+    #floatingRectangle {
+        z-index: 9999;
+        width: 127px;
+        height: 28px;
+        position: fixed;
+        /* left: 0; */
+        right: 10px;
+        bottom: 0px;
+        cursor: pointer;
+        /* top: 0; */
+        background-color: #f16528;
+        color: white;
+        padding: 3px;
+
+    }
+</style>

@@ -21,7 +21,7 @@ model: any = {};
   ngOnInit() {
 
      let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    this.loadScript(translate_url);
+    //this.loadScript(translate_url);
 
   }
 

@@ -79,7 +79,7 @@ export class DashboardComponent implements OnInit {
     //     this.router.navigate(['./packageinfo']);
     // }, 5000); 
     let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    this.loadScript(translate_url);
+    //this.loadScript(translate_url);
   }
 
   public loadScript(url) {
