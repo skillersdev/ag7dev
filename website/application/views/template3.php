@@ -217,6 +217,25 @@
 				
 					<div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
 						<h2>My Service</h2>
+						 <!-- Modal -->
+						 <div class="modal fade" id="myModal2" role="dialog">
+							<div class="modal-dialog">          
+								<!-- Modal content-->
+								<div class="modal-content">           
+								<div class="modal-header">
+								<h4 class="modal-title" id="mtitle2"></h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>               
+								</div>
+								<div class="modal-body" id="mimage2">                
+								</div>
+								<div class="modal-footer" id="desc2">
+									<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+								</div>
+								</div>            
+							</div>
+							</div>
+							
+							</div>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
 
@@ -225,12 +244,15 @@
 
 			          for($j=0;$j<count($service_details);$j++)
 			          {
+						$name = "'".$service_details[$j]['service_name']."'";
+						$image = "'".$path_url.$service_details[$j]['service_image']."'";
+						$desc = "'".$service_details[$j]['desc']."'";
 			          ?>
 					<div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms">
 						<div class="service-item">
 							<div class="">
 								 <?php 
-					                  echo '<img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;">'; 
+					                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid" style="width:100%;"></a>'; 
 					                ?>
 							</div>
 							
@@ -265,6 +287,25 @@
 						<h2>My Products</h2>
 						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
 					</div>
+
+					 <!-- Modal -->
+					 <div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">          
+						<!-- Modal content-->
+						<div class="modal-content">           
+						<div class="modal-header">
+						<h5 >Category Name : </h5><h5 class="modal-title" id="cname"></h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>               
+						</div>
+						<div class="modal-body" id="mimage">   
+						<h4 class="modal-title" id="mtitle"></h4>             
+						</div>
+						<div class="modal-footer">
+							<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+						</div>
+						</div>            
+					</div>
+					</div>
 					
 					<div class="sec-sub-title text-center">
 						<p>various products</p>
@@ -289,11 +330,14 @@
 		          {
 		            for($i=0;$i<count($product_details);$i++)
 		              {
-		                //echo $product_details[$i]['product_image'];
+						//echo $product_details[$i]['product_image'];
+						$name = "'".$product_details[$i]['product_name']."'";
+						$cname = "'".$product_details[$i]['category_name']."'";
+						$product_image = "'".$path_url.$product_details[$i]['product_image']."'";
 		                ?>
 				<figure class="mix work-item branding">
 					 <?php 
-                        echo '<img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;">'; 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
                         ?>
 					<figcaption class="overlay">
 						<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -323,6 +367,26 @@
 		<section id="ads" class="team">
 			<div class="container">
 				<div class="row">
+
+				
+			<!-- Modal -->
+			<div class="modal fade" id="myModal1" role="dialog">
+				<div class="modal-dialog">          
+					<!-- Modal content-->
+					<div class="modal-content">           
+					<div class="modal-header">
+					<h4 class="modal-title" id="mtitle1"></h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>               
+					</div>
+					<div class="modal-body" id="mimage1">                
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+					</div>
+					</div>            
+				</div>
+				</div>
+
 		
 					<div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
 						<h2>My Advertisment</h2>
@@ -338,13 +402,14 @@
 
 			          for($k=0;$k<count($ad_details);$k++)
 			          {
+						$image = "'".$path_url.$ad_details[$k]['uploads']."'";
 			          ?>
 					<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
 						<div class="member-thumb">
 							<?php
 							 if($ad_details[$k]['ad_type']==1)
 				                  { 
-				                      echo '<img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;">'; 
+				                      echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;"></a>'; 
 				                  }
 				                  else{
 				                    echo '<video width="280" height="200" controls>
@@ -494,5 +559,25 @@
 				});
 			});
 		</script>
+		<script>
+  
+  function servicepopupimage(name,image,desc){
+      
+      $('#mtitle2').html(name);
+      $('#mimage2').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#desc2').html(desc);
+     }
+
+    function popupimage(name,image,cname){
+      
+      $('#mtitle').html(name);
+      $('#cname').html(cname);
+      $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
+     }
+
+     function popupimage1(image){
+      $('#mimage1').html('<img src="'+image+'" width="400px" height="400px">');
+     }
+  </script>
     </body>
 </html>
