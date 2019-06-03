@@ -143,9 +143,7 @@ class Service_controller extends CI_Controller {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
              
-            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
-            {
-
+           
               $generatedName = md5($_FILES['file']['tmp_name']).$ext;
 
               $filePath = $path.$generatedName;
@@ -156,12 +154,7 @@ class Service_controller extends CI_Controller {
                 $Response['status']="success"; 
                 $Response['data']=$product_image;
               }
-            }
-            else 
-            {
-                $Response['status']="fail"; 
-                $Response['data']="Upload only valid format images";
-            }
+           
           }
         else {
             $Response['status']="fail"; 
