@@ -23,6 +23,7 @@ export class ManageadvertisementComponent implements OnInit {
   ngOnInit() 
   {
      let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.model.usergroup==2)
     {

@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Contacts_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    public function addcontacts(){
        $this->output->set_content_type('application/json');
@@ -114,6 +114,33 @@ class Contacts_controller extends CI_Controller {
     
 
   }
+   public function getcontactbyid($id)
+   {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+            $res=$this->db->query("select * from ".$this->db->dbprefix('contacts_master')." where created_by='".$id."'");
+
+            if($res->num_rows()>0)
+            {
+              foreach($res->result_array() as $key=>$value)
+              {  
+
+                $result[]=array('id'=>$value['id'],'website'=>$value['website'],
+                  'created_date'=>$value['created_date'],'contact'=>$value['contact']);
+              }
+            }else{
+                $response['status']="failure";
+                $response['message']="No records found..";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+  
   
    public function editcontact($id)
     {

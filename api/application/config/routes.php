@@ -150,6 +150,7 @@ $route['uploadproductimage']='Product_controller/uploadproductimage';
 $route['addcontacts'] = 'Contacts_controller/addcontacts';
 $route['getcontact']= 'Contacts_controller/get_contact_list';
 $route['editcontactbyid/(:num)']='Contacts_controller/editcontact/$1';
+$route['getcontactbyid/(:num)']='Contacts_controller/getcontactbyid/$1';
 $route['updatecontact']= 'Contacts_controller/updatecontact';
 $route['addservice'] = 'Service_controller/addservice';
 $route['getservice']= 'Service_controller/get_all_service_details';

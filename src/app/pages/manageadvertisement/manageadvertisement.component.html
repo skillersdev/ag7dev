@@ -19,6 +19,7 @@
                                   <tr>
                                       <th>#</th>
                                       <th>Website Name</th>
+                                      <th>Website Gallery</th>
                                       <th>Created Date</th>
                                       <th>Created By</th>
                                       <th>Actions</th>
@@ -28,6 +29,7 @@
                                   <tr *ngFor="let data of advertisementlist let idx=index">
                                       <th scope="row">{{idx+1}}</th>
                                       <td>{{data.website}}</td>
+                                      <td><img src="{{model.imagePath}}/{{data.ad_image}}" style="width:10%;"></td>
                                       <td>{{data.created_at}}</td>
                                       <td>{{data.created_by}}</td>
                                       <td>

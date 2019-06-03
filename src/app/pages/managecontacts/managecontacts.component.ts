@@ -21,14 +21,28 @@ import { Injectable } from '@angular/core';
 export class ManagecontactsComponent implements OnInit {
   getcontactlistRestApiUrl:string = AppSettings.getcontactDetail; 
   DeletecontactRestApiUrl:string = AppSettings.deletecontact; 
+  getcontactbyUserRestApiUrl:string = AppSettings.getcontactbyid; 
   contactlist:Array<Object>;
+  model:any={};
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { }
 
   ngOnInit() {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
-     this.CommonService.getdata(this.getcontactlistRestApiUrl)
+       let user_id = localStorage.getItem('currentUserID');
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcontactbyUserRestApiUrl,user_id)
+        .subscribe(det =>{   
+          this.contactlist=det.result;
+        });
+    
+      }
+      else{
+         this.CommonService.getdata(this.getcontactlistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -36,6 +50,8 @@ export class ManagecontactsComponent implements OnInit {
             }   
              
         });
+      }
+    
   }
   navigateAddcontact()
   {

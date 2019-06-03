@@ -502,7 +502,7 @@ class User_controller extends CI_Controller {
             $value['user_id']=$data[0]['username']; 
 
             $result[]=array('id'=>$value['id'],'website'=>$value['url'],
-              'created_at'=>$value['created_at'],'created_by'=>$value['user_id']);
+              'created_at'=>$value['created_at'],'created_by'=>$value['user_id'],'ad_image'=>$value['uploads']);
           }
         }else{
             $response['status']="failure";

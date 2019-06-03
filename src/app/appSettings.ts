@@ -37,6 +37,7 @@ export class AppSettings{
 	public static Addcontacts = AppSettings.API_BASE + "/addcontacts";
 	public static getcontactDetail = AppSettings.API_BASE + "/getcontact"; //common 
 	public static getcontactlistbyid= AppSettings.API_BASE+"/editcontactbyid/";
+	public static getcontactbyid= AppSettings.API_BASE+"/getcontactbyid/";
 	public static updatecontact= AppSettings.API_BASE+"/updatecontact";
 	//public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
 	public static deletecontact= AppSettings.API_BASE+"/deletecontact/";

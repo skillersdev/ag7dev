@@ -238,25 +238,21 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Website link</th>
+                                        <th>Change Template</th>
+                                        <th>Action</th>
                                         <th>Package Taken</th>
                                         <th>Marketer</th>
                                         <th>Expired</th>
                                         <th>Delivered Date</th>
                                         <th>Status</th>
-                                        <th>Website link</th>
-                                        <th>Change Template</th>
-                                        <th>Action</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
-                                        <td>{{data.package_name}}</td>
-                                        <td>{{data.marketer}}</td>
-                                        <td>{{data.renew_date}}</td>
-                                        <td>{{data.Delivered_date}}</td>
-                                        <td>{{data.status}}</td>
-                                        <td><a href="website/{{data.website}}">website</a></td>
+                                          <td><a href="website/{{data.website}}">website</a></td>
                                         <td><a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>Change Template</span>
                                         </a></td>
@@ -270,6 +266,12 @@
                                             </a>
                                            <!--  <a href="#" data-toggle="modal" data-target="#templatesetting"><i class="material-icons">settings</i></a> -->
                                         </td>
+                                        <td>{{data.package_name}}</td>
+                                        <td>{{data.marketer}}</td>
+                                        <td>{{data.renew_date}}</td>
+                                        <td>{{data.Delivered_date}}</td>
+                                        <td>{{data.status}}</td>
+                                      
                                     </tr>
                                 </tbody>
                             </table>
