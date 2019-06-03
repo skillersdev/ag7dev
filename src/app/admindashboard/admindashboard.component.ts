@@ -43,6 +43,9 @@ ngOnInit() {
         if(userdet.result!="")
         { 
           this.userlist= userdet.result;
+          this.model.total_web_count=userdet.result['total_web_count'];
+          this.model.total_active_web_count=userdet.result['total_active_web_count'];
+          console.log(this.model);
         } 
          
     });

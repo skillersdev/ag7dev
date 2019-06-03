@@ -74,7 +74,11 @@ class User_controller extends CI_Controller {
         global $api_path;        
 
         $res=$this->db->select("Id,username,password,fname,address,email,referedby,mobile,active,DATE_FORMAT(doj,'%d/%m/%Y')as doj,country,tamount,payment,signupcode,level,pcktaken,launch,getpayment,renew,iba_status,user_type,DATE_FORMAT(expiry,'%d/%m/%Y')as expiry")->where('is_deleted','0')->get('affiliateuser');
-
+        $website_query=$this->db->select("count(*) as total_website")->get('user_vs_packages'); 
+        $web_tot_count=$website_query->result_array();
+       
+        $active_website_query=$this->db->select("count(*) as total_act_website")->where('package_status','0')->get('user_vs_packages'); 
+        $active_web_tot_count=$active_website_query->result_array();
 
         if($res->num_rows()>0)
         {
@@ -87,6 +91,8 @@ class User_controller extends CI_Controller {
             $response['status']="failure";
             $response['message']="No User records found..";
         }
+        $result['total_web_count'] = $web_tot_count[0]['total_website'];
+        $result['total_active_web_count'] =$active_web_tot_count[0]['total_act_website'];
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
