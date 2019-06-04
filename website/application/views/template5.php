@@ -155,18 +155,7 @@
               <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
               <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
               <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
-              <p><?php if($contact_details[0]['phonenumber']!=''){
-          echo "Phone :".$contact_details[0]['phonenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['homenumber']!=''){
-          echo "Home No :".$contact_details[0]['homenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['officenumber']!=''){
-          echo "Office No :".$contact_details[0]['officenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['faxnumber']!=''){
-          echo "Fax No :".$contact_details[0]['faxnumber'];
-        } ?></p>
+              
         <p><?php if($contact_details[0]['whatsapp']!=''){
           echo "Whatsapp :".$contact_details[0]['whatsapp'];
         } ?></p>
@@ -191,6 +180,18 @@
               <div class="col-md-3 info">
                 <i class="ion-ios-telephone-outline"></i>
                 <p><?php echo $mobile;?></p>
+                <p><?php if($contact_details[0]['phonenumber']!=''){
+              echo "Phone :".$contact_details[0]['phonenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['homenumber']!=''){
+              echo "Home :".$contact_details[0]['homenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['officenumber']!=''){
+              echo "Office :".$contact_details[0]['officenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['faxnumber']!=''){
+              echo "Fax :".$contact_details[0]['faxnumber'];
+            } ?></p>
               </div>
             </div>
 

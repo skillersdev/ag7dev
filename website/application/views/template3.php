@@ -121,18 +121,7 @@
 								<li><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-lg"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
 								<li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a></li>
-									<li><?php if($contact_details[0]['phonenumber']!=''){
-								echo "Phone :".$contact_details[0]['phonenumber'];
-								} ?></li>
-								<li><?php if($contact_details[0]['homenumber']!=''){
-								echo "Home No :".$contact_details[0]['homenumber'];
-								} ?></li>
-								<li><?php if($contact_details[0]['officenumber']!=''){
-								echo "Office No :".$contact_details[0]['officenumber'];
-								} ?></li>
-								<li><?php if($contact_details[0]['faxnumber']!=''){
-								echo "Fax No :".$contact_details[0]['faxnumber'];
-								} ?></li>
+									
 								<li><?php if($contact_details[0]['whatsapp']!=''){
 								echo "Whatsapp :".$contact_details[0]['whatsapp'];
 								} ?></li>
@@ -195,7 +184,18 @@
 						<div class="contact-address">
 							<p><i class="fa fa-pencil"></i><?php echo $website;?>
 								<span><?php echo $address;?></span><span>Australia</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?> </p>
+								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,,<?php if($contact_details[0]['phonenumber']!=''){
+								echo "Phone :".$contact_details[0]['phonenumber'];
+								} ?>,
+								<?php if($contact_details[0]['homenumber']!=''){
+								echo "Home :".$contact_details[0]['homenumber'];
+								} ?>,
+								<?php if($contact_details[0]['officenumber']!=''){
+								echo "Office :".$contact_details[0]['officenumber'];
+								} ?>,
+								<?php if($contact_details[0]['faxnumber']!=''){
+								echo "Fax :".$contact_details[0]['faxnumber'];
+								} ?>  </p>
 								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
 						</div>
 					</div>

@@ -223,7 +223,18 @@ $path_url = $this->config->item('path_url');
                         <ul>
                             
                             <li><strong>E-mail :</strong><?php echo $mail;?></li>
-                            <li><strong>Phone :</strong><?php echo $mobile;?></li>
+                            <li><strong>Phone :</strong><?php echo $mobile;?>,,<?php if($contact_details[0]['phonenumber']!=''){
+								echo "Phone :".$contact_details[0]['phonenumber'];
+								} ?>,
+								<?php if($contact_details[0]['homenumber']!=''){
+								echo "Home :".$contact_details[0]['homenumber'];
+								} ?>,
+								<?php if($contact_details[0]['officenumber']!=''){
+								echo "Office :".$contact_details[0]['officenumber'];
+								} ?>,
+								<?php if($contact_details[0]['faxnumber']!=''){
+								echo "Fax :".$contact_details[0]['faxnumber'];
+								} ?> </li>
                             <li><strong>Web :</strong><?php echo $website;?></li>
                         </ul>
                     </div>

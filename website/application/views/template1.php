@@ -187,6 +187,18 @@ $path_url = $this->config->item('path_url');
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
               <p><a href="tel:+155895548855"><?php echo $mobile;?></a></p>
+              <p><?php if($contact_details[0]['phonenumber']!=''){
+              echo "Phone :".$contact_details[0]['phonenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['homenumber']!=''){
+              echo "Home :".$contact_details[0]['homenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['officenumber']!=''){
+              echo "Office :".$contact_details[0]['officenumber'];
+            } ?></p>
+            <p><?php if($contact_details[0]['faxnumber']!=''){
+              echo "Fax :".$contact_details[0]['faxnumber'];
+            } ?></p>
             </div>
           </div>
 
@@ -206,18 +218,7 @@ $path_url = $this->config->item('path_url');
               <p><a target="_blank" href="<?php echo $contact_details[0]['fb']; ?>">Facebook</a></p>
         <p><a target="_blank" href="#">Twitter</a></p>
         <p><a target="_blank" href="<?php echo $contact_details[0]['linked']; ?>">LinkedIn</a></p>
-        <p><?php if($contact_details[0]['phonenumber']!=''){
-          echo "Phone :".$contact_details[0]['phonenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['homenumber']!=''){
-          echo "Home No :".$contact_details[0]['homenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['officenumber']!=''){
-          echo "Office No :".$contact_details[0]['officenumber'];
-        } ?></p>
-        <p><?php if($contact_details[0]['faxnumber']!=''){
-          echo "Fax No :".$contact_details[0]['faxnumber'];
-        } ?></p>
+        
         <p><?php if($contact_details[0]['whatsapp']!=''){
           echo "Whatsapp :".$contact_details[0]['whatsapp'];
         } ?></p>
