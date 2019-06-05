@@ -21,7 +21,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -38,7 +38,7 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let item of userlist let idx=index">
+                                    <tr *ngFor="let item of datalist let idx=index">
                                         <td>{{idx+1}}</td>
                                         <td>{{item.fname}}</td>
                                         <td>{{item.username}}</td>

@@ -29,6 +29,7 @@ export class ManageuserComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   userlist:Array<Object>;
+  datalist:Array<Object>;
   getuserlistRestApiUrl:string=AppSettings.getuserslist;
   DeleteuserRestApiUrl:string = AppSettings.deleteuser; 
   constructor(
@@ -53,6 +54,8 @@ export class ManageuserComponent implements OnInit {
         if(userdet.result!="")
         { 
           this.userlist= userdet.result;
+          this.datalist= Object.values(userdet.result);
+          console.log(this.datalist);
         } 
          
     });
