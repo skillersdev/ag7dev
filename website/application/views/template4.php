@@ -150,10 +150,10 @@ $path_url = $this->config->item('path_url');
                     <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-bg-1.jpg" alt="slider">
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
-                            <h1 class="animated3">
+                            <!--<h1 class="animated3">
                                 <span><strong>Roodabatoz</strong> welcome to this site</span>
                             </h1>
-                            <p class="animated2"> We are a team of professionals.</p>	
+                            <p class="animated2"> We are a team of professionals.</p>	-->
                             <!-- <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a> -->
                         </div>
                     </div>
@@ -165,11 +165,11 @@ $path_url = $this->config->item('path_url');
                     
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
-                            <h1 class="animated1">
+                           <!-- <h1 class="animated1">
                     		  <span>Welcome to <strong>Fame</strong></span>
                     	    </h1>
                             <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>
+                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>-->
                         </div>
                     </div>
                 </div>
@@ -179,11 +179,11 @@ $path_url = $this->config->item('path_url');
                     <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images//galaxy.jpg" alt="slider">
                     <div class="slider-content">
                         <div class="col-md-12 text-center">
-                            <h1 class="animated2">
+                            <!--<h1 class="animated2">
                                 <span>The way of <strong>Success</strong></span>
                             </h1>
                             <p class="animated1">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                             <a class="animated3 slider btn btn-primary btn-min-block" href="#">Get Now</a><a class="animated3 slider btn btn-default btn-min-block" href="#">Live Demo</a>
+                             -->
                                 
                         </div>
                     </div>
@@ -211,7 +211,7 @@ $path_url = $this->config->item('path_url');
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h3>Contact With Us</h3>
-                        <p class="white-text">Duis aute irure dolor in reprehenderit in voluptate</p>
+                       <!-- <p class="white-text">Duis aute irure dolor in reprehenderit in voluptate</p>-->
                     </div>
                 </div>
             </div>
@@ -223,7 +223,7 @@ $path_url = $this->config->item('path_url');
                         <ul>
                             
                             <li><strong>E-mail :</strong><?php echo $mail;?></li>
-                            <li><strong>Phone :</strong><?php echo $mobile;?>,,<?php if($contact_details[0]['phonenumber']!=''){
+                            <li><strong>Phone :</strong><?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,
 								<?php if($contact_details[0]['homenumber']!=''){

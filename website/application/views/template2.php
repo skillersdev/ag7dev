@@ -126,9 +126,7 @@ $path_url = $this->config->item('path_url');
 						<div class="bg-img bg-img-2"></div>
 						<div class="slide-caption">
                             <div class="caption-content">
-                                <h2>BLUE Onepage HTML5 Template</h2>
-                                <span>Clean and Professional one page Template</span>
-                                <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                                
                             </div>
                         </div>
 						
@@ -139,9 +137,7 @@ $path_url = $this->config->item('path_url');
 						<div class="bg-img bg-img-3"></div>
 						<div class="slide-caption">
                             <div class="caption-content">
-                                <h2>BLUE Onepage HTML5 Template</h2>
-                                <span>Clean and Professional one page Template</span>
-                                <a href="#" class="btn btn-blue btn-effect">Join US</a>
+                                
                             </div>
                         </div>
 
@@ -253,7 +249,7 @@ $path_url = $this->config->item('path_url');
 							<address class="contact-details">
 								<h3>My Contact</h3>						
 								<p><i class="fa fa-pencil"></i><?php echo $website;?>
-								<span><?php echo $address;?></span><span>Australia</span></p><br>
+								<span><?php echo $address;?></span></p><br>
 								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,<?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,

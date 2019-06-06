@@ -186,7 +186,7 @@ $path_url = $this->config->item('path_url');
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855"><?php echo $mobile;?></a></p>
+              <!--<p><a href="tel:+155895548855"><?php //echo $mobile;?></a></p>-->
               <p><?php if($contact_details[0]['phonenumber']!=''){
               echo "Phone :".$contact_details[0]['phonenumber'];
             } ?></p>

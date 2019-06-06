@@ -120,7 +120,8 @@ class Product_controller extends CI_Controller {
         
         $string = implode(' OR website LIKE ', $fn_res);
         
-         $res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website LIKE {$string}");
+         //$res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website LIKE {$string}");
+		  $res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website = {$string} AND is_deleted=0");//added by sridhar
          $in_array=$res->result_array();
          $response['result']=$in_array;
 

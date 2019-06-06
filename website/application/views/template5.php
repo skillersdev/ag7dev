@@ -179,7 +179,7 @@
               </div>
               <div class="col-md-3 info">
                 <i class="ion-ios-telephone-outline"></i>
-                <p><?php echo $mobile;?></p>
+                
                 <p><?php if($contact_details[0]['phonenumber']!=''){
               echo "Phone :".$contact_details[0]['phonenumber'];
             } ?></p>

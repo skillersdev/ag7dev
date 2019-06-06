@@ -138,9 +138,9 @@
 					<!-- single slide -->
 					<div class="item" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
 						<div class="carousel-caption">
-							<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Roodabatoz</span>!</h2>
-							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">Website name</span> Provide various Services.</h3>
-							<p data-wow-duration="500ms" class="wow slideInRight animated">We are a team of professionals</p>
+							<!--<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Roodabatoz</span>!</h2>
+							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">We</span> Provide various Services.</h3>
+							<p data-wow-duration="500ms" class="wow slideInRight animated">We are a team of professionals</p>-->
 							
 							<!--<ul class="social-links text-center">
 								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-twitter fa-lg"></i></a></li>
@@ -183,8 +183,9 @@
 					<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
 						<div class="contact-address">
 							<p><i class="fa fa-pencil"></i><?php echo $website;?>
-								<span><?php echo $address;?></span><span>Australia</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,,<?php if($contact_details[0]['phonenumber']!=''){
+								<span><?php echo $address;?></span></p><br>
+								<p><i class="fa fa-phone"></i> 
+								<?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,
 								<?php if($contact_details[0]['homenumber']!=''){
@@ -206,9 +207,9 @@
 					<!-- footer social links -->
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="600ms">
 						<ul class="footer-social">
-							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-behance fa-2x"></i></a></li>
+							
 							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+							
 							<li style="float: left; margin-right: 10px;"><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
 						</ul>
 					</div>
@@ -441,14 +442,14 @@
 				                          </video>';
 				                  }
 				                  ?>
-							<figcaption class="overlay">
+							<!--<figcaption class="overlay">
 								<h5>voluptatem quia voluptas </h5>
 								<p>sit aspernatur aut odit aut fugit,</p>
 								
 							</figcaption>
 						</div>
 						<h4>Steve Flaulkin</h4>
-						<span>Sr. UI Designer</span>
+						<span>Sr. UI Designer</span>-->
 					</figure>
 				<?php } ?>
 					<!-- end single member -->
