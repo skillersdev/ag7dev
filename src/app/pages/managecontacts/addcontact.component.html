@@ -51,7 +51,7 @@
                                                     <p><b>Facebook Url</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="Enter facebook Url" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link" required>
+                                                            <input type="text" class="form-control" placeholder="Enter facebook Url" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link">
                                                         </div>
                                                         <span [hidden]="fb_link.valid || fb_link.pristine" class="text-danger">Eacebook link is required</span>
                                                     </div>
@@ -60,7 +60,7 @@
                                                     <p><b>linkedin Url</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="Enter linkedin Url" [(ngModel)]="model.linked_url" #linked_url="ngModel" name="linked_url" required>
+                                                            <input type="text" class="form-control" placeholder="Enter linkedin Url" [(ngModel)]="model.linked_url" #linked_url="ngModel" name="linked_url">
                                                         </div>
                                                         <span [hidden]="linked_url.valid || linked_url.pristine" class="text-danger"> linked is required</span>
                                                     </div>
