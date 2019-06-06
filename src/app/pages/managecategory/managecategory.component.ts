@@ -13,13 +13,29 @@ import { LoginService } from '../../services/login.service';
 export class ManagecategoryComponent implements OnInit {
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   DeletecategoryRestApiUrl:string = AppSettings.deletecategory; 
+  getcategorybyUserRestApiUrl:string = AppSettings.categorybyid; 
   categorylist:Array<Object>;
+  model:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.loginService.localStorageData();
-     this.loginService.viewsActivate();
-      this.CommonService.getdata(this.getcategorylistRestApiUrl)
+    this.loginService.viewsActivate();
+
+    let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.categorylist=resultdata.result; 
+        });
+    
+      }
+      else{
+        this.CommonService.getdata(this.getcategorylistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -27,6 +43,7 @@ export class ManagecategoryComponent implements OnInit {
             } 
              
         });
+      }      
   }
   navigateAddcategory()
   {

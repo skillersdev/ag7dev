@@ -11,14 +11,30 @@ import { CommonService } from '../../services/common.service';
 })
 export class ManagesubcategoryComponent implements OnInit {
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail;
+  getsubcategorybyUserRestApiUrl:string = AppSettings.getsubcategorybyid;
   DeletesubcategoryRestApiUrl :string = AppSettings.deletesubcategory;
   sub_categorylist:Array<Object>;
+  model:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
-     this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
+     let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getsubcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.sub_categorylist=resultdata.result; 
+        });
+    
+      }
+      else
+      {
+         this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -26,6 +42,7 @@ export class ManagesubcategoryComponent implements OnInit {
             } 
              
         });
+      }
   }
   navigateAddsubcategory()
   {

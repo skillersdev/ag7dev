@@ -39,7 +39,7 @@ export class ManageproductsComponent implements OnInit {
             this.model.usergroup=localStorage.getItem('currentUsergroup');
               if(this.model.usergroup==2)
               {
-                console.log("DD");
+                this.productmodel.userid = user_id;
                 this.CommonService.insertdata(this.getproductbywebsiteApiUrl,this.productmodel)
                   .subscribe(resultdata =>{   
                    if(resultdata.result!=""){ this.product_det=resultdata.result;}

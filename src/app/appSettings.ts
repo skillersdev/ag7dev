@@ -17,6 +17,8 @@ export class AppSettings{
 	/*Category add*/
 	public static Addcategory = AppSettings.API_BASE + "/addcategory";
 	public static getcategoryDetail = AppSettings.API_BASE + "/getcategory"; //common api
+	public static categorybyid=AppSettings.API_BASE+"/fetchcategorybyid/";
+	
 
 	public static editcategory= AppSettings.API_BASE+"/editcategory/";
 	public static updatecategory= AppSettings.API_BASE+"/updatecategory";
