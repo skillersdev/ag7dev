@@ -70,5 +70,22 @@ export class LoginService {
     
   }
 
+  viewCommontdataTable(divid,classname){
+    setTimeout(function () {
+      $('#'+divid).DataTable().destroy();
+      $('.'+classname).DataTable({
+        dom: 'Bfrtip',
+        "pageLength": 50,
+        responsive: true,
+        buttons: [//'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+      });
+
+      $.AdminBSB.dropdownMenu.activate();
+      $.AdminBSB.select.activate();  
+    }, 200);   
+
+  }
+
 
 }

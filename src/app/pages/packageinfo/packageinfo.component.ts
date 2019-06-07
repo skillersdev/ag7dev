@@ -45,6 +45,7 @@ export class PackageinfoComponent implements OnInit {
       this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.packagelist=resultdata.result; 
+          this.loginService.viewCommontdataTable('dataTable','packinfo_table');
         });
     }
     else{
@@ -53,7 +54,7 @@ export class PackageinfoComponent implements OnInit {
             if(det.result!="")
             { 
               this.packagelist=det.result; 
-             
+              this.loginService.viewCommontdataTable('dataTable','packinfo_table');
             } 
              
         });

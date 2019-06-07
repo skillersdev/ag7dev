@@ -31,6 +31,7 @@ export class ManageadvertisementComponent implements OnInit {
       this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.advertisementlist=resultdata.result; 
+          this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
         });
   	
       }
@@ -40,6 +41,7 @@ export class ManageadvertisementComponent implements OnInit {
             if(det.result!="")
             { 
               this.advertisementlist=det.result;
+              this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
             } 
              
         });

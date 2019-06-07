@@ -55,7 +55,8 @@ export class ManageuserComponent implements OnInit {
         { 
           this.userlist= userdet.result;
           this.datalist= Object.values(userdet.result);
-          console.log(this.datalist);
+          //console.log(this.datalist);
+          this.loginService.viewCommontdataTable('dataTable','user_table');
         } 
          
     });

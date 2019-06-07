@@ -22,6 +22,7 @@ export class AccountinfoComponent implements OnInit {
       this.CommonService.editdata(this.getpaymentinfodetApiUrl,user_id)
           .subscribe(resultdata =>{   
             this.paymentlist=resultdata.result; 
+            this.loginService.viewCommontdataTable('dataTable','accinfo_table');
           });
   }
 

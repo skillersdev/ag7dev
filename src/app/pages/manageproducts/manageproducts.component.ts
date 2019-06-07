@@ -42,14 +42,20 @@ export class ManageproductsComponent implements OnInit {
                 this.productmodel.userid = user_id;
                 this.CommonService.insertdata(this.getproductbywebsiteApiUrl,this.productmodel)
                   .subscribe(resultdata =>{   
-                   if(resultdata.result!=""){ this.product_det=resultdata.result;}
+                   if(resultdata.result!=""){ 
+                     this.product_det=resultdata.result;
+                     this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+                  }
                 });
               }
               else{
                 console.log("eeeeeeeeee");
                 this.CommonService.getdata(this.getproductlistRestApiUrl)
                 .subscribe(det =>{
-                    if(det.result!=""){ this.product_det=det.result;}
+                    if(det.result!=""){ 
+                      this.product_det=det.result;
+                      this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+                    }
                 });   
               }
                     console.log(this.productmodel);

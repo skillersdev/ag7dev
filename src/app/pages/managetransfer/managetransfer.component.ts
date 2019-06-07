@@ -22,7 +22,7 @@ export class ManagetransferComponent implements OnInit {
       this.CommonService.insertdata(this.gettransferlist,this.model)
     .subscribe(package_det =>{ 
         this.transferlist = package_det;
-        
+        this.loginService.viewCommontdataTable('dataTable','transferinfo_table');
     });
      
   }
