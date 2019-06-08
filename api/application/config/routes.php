@@ -91,6 +91,7 @@ $route['fetchsubcategory/(:num)']='Category_controller/getsubcategorybyid/$1';
 $route['adduser'] = 'User_controller/add_user_master';
 $route['addtemplate']= 'User_controller/add_template_master';
 $route['getuserslist'] = 'User_controller/get_users_detail';
+$route['getchatuserslist'] = 'User_controller/get_chatusers_detail';
 $route['gettemplatelist']= 'User_controller/get_template_list';
 $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['updateuser'] = 'User_controller/updateuser';

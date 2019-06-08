@@ -57,6 +57,7 @@ export class AppSettings{
 	public static Adduser=AppSettings.API_BASE+"/adduser";
 	public static Addtemplate=AppSettings.API_BASE+"/addtemplate";	
 	public static getuserslist= AppSettings.API_BASE + "/getuserslist";	
+	public static getchatuserslist= AppSettings.API_BASE + "/getchatuserslist";	
 	public static gettemplatelist =	AppSettings.API_BASE + "/gettemplatelist";	
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";

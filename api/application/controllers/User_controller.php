@@ -99,6 +99,34 @@ class User_controller extends CI_Controller {
     
 
   }
+  public function get_chatusers_detail()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
+        $res=$this->db->select("Id,username")->where('is_deleted','0')->get('affiliateuser');
+        
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+            $result[]=array('Id'=>$value['Id'],'username'=>$value['username']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+   
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+
+  }
   public function getmarketerslist()
   {
      $model = json_decode($this->input->post('model',FALSE));    
