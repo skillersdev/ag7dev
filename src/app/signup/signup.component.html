@@ -36,7 +36,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter User Name" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter Website lock" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                         <div *ngIf="username.errors && (username.dirty || username.touched)" class="">
                             <span [hidden]="username.errors.required" class="text-danger">username is required</span>
