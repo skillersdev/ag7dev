@@ -164,5 +164,37 @@ class Service_controller extends CI_Controller {
          die();
     }
 
+    public function getservicebyuser()
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $package=array();
+         $model = json_decode($this->input->post('model',FALSE));
+
+       $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website!='' AND user_id='".$model->userId."' ");
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+
+                foreach ($in_array as $key => $value) 
+                {
+                    $package[] =  $value['website'];  
+                }
+            }
+        $query_parts = array();
+        foreach ($package as $val) {
+            $query_parts[] = "'%".$val."%'";
+        }
+
+        $string = implode(' OR website LIKE ', $query_parts);
+
+        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE website LIKE {$string}");
+        $result1=$tank->result_array();
+          $response['result']=$result1;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
    
 }

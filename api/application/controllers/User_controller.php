@@ -80,6 +80,9 @@ class User_controller extends CI_Controller {
         $active_website_query=$this->db->select("count(*) as total_act_website")->where('package_status','0')->get('user_vs_packages'); 
         $active_web_tot_count=$active_website_query->result_array();
 
+        $active_yet_to_query=$this->db->select("count(*) as total_yet_to_act_website")->where('package_status','1')->get('user_vs_packages'); 
+        $yet_to_active_web_tot_count=$active_yet_to_query->result_array();
+
         if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)
@@ -93,6 +96,7 @@ class User_controller extends CI_Controller {
         }
         $result['total_web_count'] = $web_tot_count[0]['total_website'];
         $result['total_active_web_count'] =$active_web_tot_count[0]['total_act_website'];
+        $result['total_yet_to_active'] =$yet_to_active_web_tot_count[0]['total_yet_to_act_website'];
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
@@ -564,7 +568,7 @@ class User_controller extends CI_Controller {
             $value['user_id']=$data[0]['username']; 
 
             $result[]=array('id'=>$value['id'],'website'=>$value['url'],
-              'created_at'=>$value['created_at'],'created_by'=>$value['user_id']);
+              'created_at'=>$value['created_at'],'created_by'=>$value['user_id'],'ad_image'=>$value['uploads']);
           }
         }else{
             $response['status']="failure";

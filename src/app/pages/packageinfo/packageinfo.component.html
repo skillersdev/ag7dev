@@ -46,13 +46,13 @@
                                             <div class="">
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                    <div class="form-line" *ngIf="checkIswebsite">
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website"  #website="ngModel" 
                                                          readonly="">
                                                     </div>
-                                                   <!--  <div class="form-line"  *ngIf="!checkIswebsite">
+                                                    <div class="form-line"  *ngIf="!checkIswebsite">
                                                         <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" >
-                                                    </div> -->
+                                                    </div>
                                                     <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
                                             </div>

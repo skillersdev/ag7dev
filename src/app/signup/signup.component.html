@@ -12,9 +12,13 @@
                             <i class="material-icons">view_comfys</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="Enter Website Name" (blur)="checkwebsite()" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="Enter Website Name" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
-                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                         <div *ngIf="website.errors && (website.dirty || website.touched)" class="">
+                            <span [hidden]="website.errors.required" class="text-danger">website is required</span>
+                             <span [hidden]="!website.errors.pattern" class="text-danger">Website accepts alpha numeric value only</span>
+                        </div>
+                       
                     </div>
 
                     <div class="input-group">
@@ -32,9 +36,12 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter User Name" (blur)="checkUserexist($event)" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter User Name" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
-                        <span [hidden]="username.valid || username.pristine" class="text-danger">Username is required</span>
+                        <div *ngIf="username.errors && (username.dirty || username.touched)" class="">
+                            <span [hidden]="username.errors.required" class="text-danger">username is required</span>
+                             <span [hidden]="!username.errors.pattern" class="text-danger">username accepts alpha numeric value only</span>
+                        </div>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">

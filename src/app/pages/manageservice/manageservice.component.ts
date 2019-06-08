@@ -20,13 +20,28 @@ export class ManageserviceComponent implements OnInit {
   getservicelistRestApiUrl:string = AppSettings.getservicelist;
   DeleteserviceRestApiUrl:string = AppSettings.deleteservicedata;
   service_det:Array<Object>;
+  model:any={};
   ngOnInit() {
     this.loginService.localStorageData();
-     this.loginService.viewsActivate();
+    this.loginService.viewsActivate();
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    this.model.userId=localStorage.getItem('currentUserID');
+    if(this.model.usergroup==2)
+    {
+       this.CommonService.insertdata(AppSettings.getservicebyuser,this.model)
+        .subscribe(det =>{
+            if(det.result!=""){ this.service_det=det.result;}
+        });
+    
+    }
+    else{
       this.CommonService.getdata(this.getservicelistRestApiUrl)
-    .subscribe(det =>{
-        if(det.result!=""){ this.service_det=det.result;}
-    });
+      .subscribe(det =>{
+          if(det.result!=""){ this.service_det=det.result;}
+      });
+    }
+     
   }
 
   navigateAddservice()

@@ -84,6 +84,7 @@ $route['editsubcategory/(:num)'] = 'Category_controller/editsubcategory/$1';
 $route['updatesubcategory'] = 'Category_controller/updatesubcategory';
 $route['deletesubcategory/(:num)']='Category_controller/deletesubcategory/$1';
 $route['fetchsubcategory/(:num)']='Category_controller/getsubcategorybyid/$1';
+$route['getsubcatlist/(:num)']='Category_controller/getsubcategorylistbyuser/$1';
 /*******/
 
 
@@ -161,6 +162,7 @@ $route['updateservice'] = 'Service_controller/updateservice';
 $route['deleteservice/(:num)'] = 'Service_controller/deleteservice/$1';
 $route['deletecontact/(:num)']= 'Contacts_controller/deletecontact/$1';
 $route['uploadserviceimage']='Service_controller/uploadserviceimage';
+$route['getservicebyuser'] = 'Service_controller/getservicebyuser';
 
 //group
 $route['addgroup']= 'Group_controller/addgroup';

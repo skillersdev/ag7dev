@@ -33,6 +33,7 @@ export class AppSettings{
 	public static updatesubcategory= AppSettings.API_BASE+"/updatesubcategory";
 	public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
 	public static getsubcategorybyid=AppSettings.API_BASE+"/fetchsubcategory/";
+	public static getsubcatlist =AppSettings.API_BASE+"/getsubcatlist/";
 	
 	/**/
 	/*Contacts li*/
@@ -128,6 +129,7 @@ export class AppSettings{
 	public static updateservice= AppSettings.API_BASE+"/updateservice";
 	public static deleteservicedata= AppSettings.API_BASE+"/deleteservice/";
 	public static uploadserviceimage=AppSettings.API_BASE+"/uploadserviceimage";
+	public static getservicebyuser=AppSettings.API_BASE+"/getservicebyuser";
 
 	//Group
 	public static addgroup=AppSettings.API_BASE+"/addgroup";

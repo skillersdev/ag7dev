@@ -12,6 +12,7 @@ import { CommonService } from '../../services/common.service';
 export class ManagesubcategoryComponent implements OnInit {
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail;
   getsubcategorybyUserRestApiUrl:string = AppSettings.getsubcategorybyid;
+  getsubcatlistbyuser:string = AppSettings.getsubcatlist;
   DeletesubcategoryRestApiUrl :string = AppSettings.deletesubcategory;
   sub_categorylist:Array<Object>;
   model:any={};
@@ -26,7 +27,7 @@ export class ManagesubcategoryComponent implements OnInit {
     if(this.model.usergroup==2)
     {
 
-      this.CommonService.editdata(this.getsubcategorybyUserRestApiUrl,user_id)
+      this.CommonService.editdata(this.getsubcatlistbyuser,user_id)
         .subscribe(resultdata =>{   
           this.sub_categorylist=resultdata.result; 
         });

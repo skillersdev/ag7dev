@@ -58,7 +58,7 @@ export class AddcontactComponent implements OnInit {
 
   addcontactlist()
   {
-    //this.model.created_by=localStorage.getItem('currentUserID');
+    this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.insertcontactsRestApiUrl,this.model)
     .subscribe(contact_det =>{  
         if(contact_det.exist==1)
