@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2019 at 09:45 PM
+-- Generation Time: Jun 09, 2019 at 08:41 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -43,14 +43,18 @@ CREATE TABLE `all_message` (
 --
 
 INSERT INTO `all_message` (`id`, `group_id`, `message`, `created_by`, `user_name`, `created_date`, `is_deleted`) VALUES
-(1, 11, 'tetetett bfdfj', 10, 'dhanas', '2019-05-23 18:56:49', 0),
-(2, 11, 'aaa sdsad', 2, 'sridhar', '2019-05-23 18:57:15', 0),
-(3, 11, 'test msg', 7, 'ramasway', '2019-05-23 19:36:38', 0),
-(4, 12, 'dfgdfgdfgfd', 7, 'ramasway', '2019-05-23 19:36:56', 0),
-(5, 11, 'sample', 7, 'ramasway', '2019-05-23 19:39:55', 0),
-(6, 11, 'dsfbsdfsd fsdfdsbfdsnf sdfhdsfnjsdkfndjksfnkjdnsfjnjdsfdfdsf dfsdf', 2, 'sridhar', '2019-05-23 19:40:42', 0),
-(7, 11, 'sasfdsafds', 7, 'ramasway', '2019-05-27 20:16:22', 0),
-(8, 11, 'aaaaaaaaaaaa', 7, 'ramasway', '2019-05-29 19:02:42', 0);
+(1, 1, 'hi', 7, 'ramasway', '2019-06-09 18:22:33', 0),
+(2, 1, 'hi sridhar', 7, 'ramasway', '2019-06-09 18:24:25', 0),
+(3, 1, 'hi ramas', 2, 'sridhar', '2019-06-09 18:25:51', 0),
+(4, 1, 'fyn', 2, 'sridhar', '2019-06-09 18:26:01', 0),
+(5, 1, 'wt about you', 2, 'sridhar', '2019-06-09 18:26:08', 0),
+(6, 2, 'dddd', 7, 'ramasway', '2019-06-09 18:28:01', 0),
+(8, 4, 'hi', 7, 'ramasway', '2019-06-09 18:32:21', 0),
+(9, 4, 'hi', 2, 'sridhar', '2019-06-09 18:32:34', 0),
+(10, 4, 'wt doing?', 7, 'ramasway', '2019-06-09 18:32:44', 0),
+(11, 4, 'vo', 2, 'sridhar', '2019-06-09 18:32:53', 0),
+(12, 4, 'u', 2, 'sridhar', '2019-06-09 18:32:58', 0),
+(13, 4, 'same', 7, 'ramasway', '2019-06-09 18:33:08', 0);
 
 --
 -- Indexes for dumped tables
@@ -70,7 +74,7 @@ ALTER TABLE `all_message`
 -- AUTO_INCREMENT for table `all_message`
 --
 ALTER TABLE `all_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -101,5 +101,16 @@ export class CommonService
         var body = formData;
     
         return this._http.post(apiUrl, body, { headers: headers }).pipe(map((model: Response) => model.json()));
-    }      
+    }   
+    
+    chatuploadFile(apiUrl:any,fileToUpload: File) 
+    {
+        let formData: FormData = new FormData();
+        formData.append('file',fileToUpload);
+        let headers = new Headers();
+     
+        var body = formData;
+    
+        return this._http.post(apiUrl, body, { headers: headers }).pipe(map((model: Response) => model.json()));
+    }   
 }

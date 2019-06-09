@@ -6,8 +6,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Roodabatoz Chat</title>
-	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" >
-	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" >
+	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" > -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" > -->
 	
 </head>
 
@@ -34,6 +36,12 @@
 								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control"  #groupname="ngModel"/>
 							</div>
 						</div>
+						<div class="form-group m-b-0">
+							<div class="form-line ">
+								<label for="groupname" class="m-r-3">Group Image :</label>&nbsp;
+								<input type="file" name="adimage" (change)=fileEvent($event) required>   
+							</div>
+						</div>
 
 						<div class="form-group m-b-0">
 								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
@@ -45,7 +53,7 @@
 									
 								</div>
 							</div>
-
+ 
 						
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
@@ -55,7 +63,7 @@
 								<label for="public">Public</label>
 							</div>
 						</div>
-	
+	 
 					</div>
 	
 					<!-- Modal footer -->
@@ -91,7 +99,7 @@
 				<!-- Chat List -->
 				<div class="row" id="chat-list" style="overflow:auto;">
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
-								<img src="{{api_bases}}images/0923102932_aPRkoW.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
 									<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
@@ -142,7 +150,7 @@
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" ></i>
 					</div>
-					<a href="javascript:void(0);"><img src="{{api_bases}}images/Ass09123asdj9dk0qw.jpg" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<a href="javascript:void(0);"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
 						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
@@ -153,9 +161,6 @@
 						<a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
 					</div>
 				</div>
-				
-				
-				
 
 				<!-- Messages -->
 				<div class="d-flex flex-column" id="messages">
@@ -195,7 +200,7 @@
 							<div class="body m-1 mr-2">{{data.message}}</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								{{data.created_date | date}}
-								<i class="far fa-check-circle"></i>
+								<!-- <i class="far fa-check-circle"></i> -->
 							</div>
 						</div>
 
@@ -204,7 +209,7 @@
 								<div class="body m-1 mr-2">{{data.message}}</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date}}
-									<i class="far fa-check-circle"></i>
+									<!-- <i class="far fa-check-circle"></i> -->
 								</div>
 							</div>
 					</div>

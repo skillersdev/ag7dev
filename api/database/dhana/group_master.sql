@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2019 at 09:44 PM
+-- Generation Time: Jun 09, 2019 at 08:42 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `group_master` (
   `id` int(11) NOT NULL,
   `group_name` varchar(200) NOT NULL,
+  `imagename` varchar(100) NOT NULL,
   `private_public` int(2) NOT NULL,
   `created_by` int(10) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -41,15 +42,10 @@ CREATE TABLE `group_master` (
 -- Dumping data for table `group_master`
 --
 
-INSERT INTO `group_master` (`id`, `group_name`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'test', 2, 7, '2019-05-16 16:41:45', 0),
-(2, 'test2', 1, 7, '2019-05-16 16:43:42', 0),
-(3, 'group1', 1, 7, '2019-05-16 17:09:28', 0),
-(4, 'group2', 2, 0, '2019-05-16 17:12:37', 0),
-(6, 'group', 2, 7, '2019-05-18 17:01:20', 0),
-(10, 'group8', 2, 7, '2019-05-18 18:26:04', 0),
-(11, 'roodab', 2, 7, '2019-05-23 18:38:31', 0),
-(12, 'roodab new', 2, 7, '2019-05-23 18:41:58', 0);
+INSERT INTO `group_master` (`id`, `group_name`, `imagename`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES
+(1, 'group test', 'pexels-photo-414612.jpeg', 2, 7, '2019-06-09 18:22:03', 0),
+(2, 'new group', 'images.jpg', 2, 7, '2019-06-09 18:27:50', 0),
+(4, 'sridhar group', 'image.jpg', 2, 2, '2019-06-09 18:29:50', 0);
 
 --
 -- Indexes for dumped tables
@@ -69,7 +65,7 @@ ALTER TABLE `group_master`
 -- AUTO_INCREMENT for table `group_master`
 --
 ALTER TABLE `group_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

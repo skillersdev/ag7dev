@@ -169,6 +169,7 @@ $route['addgroup']= 'Group_controller/addgroup';
 $route['getgroups']= 'Group_controller/getgroups';
 $route['getgroupsdetails']= 'Group_controller/getgroupsdetails';
 $route['sendmsg']= 'Group_controller/sendmsg';
+$route['groupimage']= 'Group_controller/groupimage';
 ?>
 
 

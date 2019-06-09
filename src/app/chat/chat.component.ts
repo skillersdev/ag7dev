@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
   userdropdownList=[];
   userdropdownSettings:any={};
   interval: any;
+  group_bases:any;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -40,6 +41,8 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
+    this.group_bases = AppSettings.IMAGE_BASE;
+    
     this.group_dt_model=[];
     this.group_name=0;
     this.group_msg_model=[];
@@ -63,9 +66,9 @@ export class ChatComponent implements OnInit {
     this.getuserlists();
     this.Newgroupmodel.g_id='';
     
-    this.interval = setInterval(() => { 
-      this.getgrouplists();
-    }, 5000);
+    // this.interval = setInterval(() => { 
+    //   this.getgrouplists();
+    // }, 15000);
 
     // this.selectedItems = [
     //   { Id: 3, username: 'Pune' },
@@ -76,7 +79,7 @@ export class ChatComponent implements OnInit {
   refreshData(){
     this.interval = setInterval(() => { 
       this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 5000);
+    }, 10000);
   }
   getuserlists(){
     this.CommonService.getdata(AppSettings.getchatuserslist)
@@ -86,7 +89,7 @@ export class ChatComponent implements OnInit {
         
     });
   }
-  getgrouplists(){   
+  getgrouplists(){    
 
     // this.CommonService.getdata(AppSettings.getgroups)
     this.CommonService.insertdata(AppSettings.getgroups,this.Newgroupmodel)
@@ -101,7 +104,6 @@ export class ChatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
-          console.log(resultdata.group_details);
           this.group_dt_model = resultdata.group_details[0];
           this.group_msg_model = resultdata.group_msg;
           this.group_members_model=resultdata.group_members; 
@@ -127,8 +129,20 @@ export class ChatComponent implements OnInit {
         this.generateMessageArea(this.Newgroupmodel.g_id);
         // swal('','Message sent Successfully','success');  
         
-    });
+    }); 
   }
-
+   
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.Newgroupmodel.groupimagename =$event.target.files[0].name;
+    this.CommonService.chatuploadFile(AppSettings.groupimage,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        // this.Newgroupmodel.groupimagename = response.data;
+       }
+       
+     })
+  }
  
 }
