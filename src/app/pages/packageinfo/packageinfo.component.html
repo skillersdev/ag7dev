@@ -246,7 +246,7 @@
                                         <th>Expired</th>
                                         <th>Delivered Date</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        <th *ngIf="data.package_status==1">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -33,6 +33,7 @@ export class AddproductComponent implements OnInit {
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
   insertproductRestApiUrl :string = AppSettings.addproduct;
+  getcategorybyUserRestApiUrl:string = AppSettings.categorybyid; 
   categorylist:Array<Object>;
   subcategorylist:Array<Object>;
   websitelist:Array<Object>;
@@ -48,10 +49,33 @@ export class AddproductComponent implements OnInit {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
       /*category list*/
-      this.CommonService.getdata(this.getcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.categorylist=det.result;}
+
+      let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.categorylist=resultdata.result; 
         });
+    
+      }
+      else{
+        this.CommonService.getdata(this.getcategorylistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.categorylist=det.result;
+            } 
+             
+        });
+      } 
+      // this.CommonService.getdata(this.getcategorylistRestApiUrl)
+      //   .subscribe(det =>{
+      //       if(det.result!=""){ this.categorylist=det.result;}
+      //   });
         // this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
         // .subscribe(det =>{
         //     if(det.result!=""){ this.subcategorylist=det.result;}

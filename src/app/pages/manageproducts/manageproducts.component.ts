@@ -15,6 +15,7 @@ export class ManageproductsComponent implements OnInit {
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
   getproductbywebsiteApiUrl:string= AppSettings.productlistbyweb;
   product_det:Array<Object>;
+  categoryDet:Array<Object>;
   packagelist:Array<Object>;
   websitelist:Array<Object>;
   model:any={};
@@ -44,6 +45,7 @@ export class ManageproductsComponent implements OnInit {
                   .subscribe(resultdata =>{   
                    if(resultdata.result!=""){ 
                      this.product_det=resultdata.result;
+                     this.categoryDet=resultdata.category_name;
                      this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                   }
                 });

@@ -124,6 +124,16 @@ class Product_controller extends CI_Controller {
 		  $res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website = {$string} AND is_deleted=0");//added by sridhar
          $in_array=$res->result_array();
          $response['result']=$in_array;
+          if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+
+            $cat_sql=$this->db->query("select category_name from ".$this->db->dbprefix('category_master')." where id='".$value['category_id']."'");
+            $cat_array=$cat_sql->result_array(); 
+            $response['category_name'][] = $cat_array[0]['category_name'];
+          }
+        }
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();

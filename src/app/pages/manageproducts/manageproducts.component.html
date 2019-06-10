@@ -31,7 +31,7 @@
                                   <tr *ngFor="let data of product_det let idx=index">
                                       <th scope="row">{{idx+1}}</th>
                                       <td>{{data.product_name}}</td>
-                                      <td>{{data.category_name}}</td>
+                                      <td>{{categoryDet[idx]}}</td>
                                       <td>{{data.website}}</td>
                                       <td>{{data.price}}</td>
                                       <td>{{data.created_date}}</td>

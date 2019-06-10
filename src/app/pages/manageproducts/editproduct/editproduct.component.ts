@@ -35,6 +35,7 @@ export class EditproductComponent implements OnInit {
   insertproductRestApiUrl :string = AppSettings.addproduct;
   FetchproductRestApiUrl:string = AppSettings.editproduct;
   updateproductRestApiUrl:string = AppSettings.updateproduct;
+  getcategorybyUserRestApiUrl:string = AppSettings.categorybyid; 
   image_url = AppSettings.IMAGE_BASE;
   categorylist:Array<Object>;
   subcategorylist:Array<Object>;
@@ -53,10 +54,28 @@ export class EditproductComponent implements OnInit {
   	 this.loginService.localStorageData();
       this.loginService.viewsActivate();
       /*category list*/
-      this.CommonService.getdata(this.getcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.categorylist=det.result;}
+     let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.categorylist=resultdata.result; 
         });
+    
+      }
+      else{
+        this.CommonService.getdata(this.getcategorylistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.categorylist=det.result;
+            } 
+             
+        });
+      } 
 
         this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');

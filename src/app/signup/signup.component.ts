@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
     .subscribe(user_det =>{       
          swal(
           user_det.status,
-          "Registered Successfully",
+          "Website Activated Successfully",
           user_det.status
         )
         this.router.navigate(['/login']); 
