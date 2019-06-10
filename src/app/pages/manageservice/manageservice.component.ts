@@ -80,10 +80,7 @@ export class ManageserviceComponent implements OnInit {
  {
    this.CommonService.deletedata(this.DeleteserviceRestApiUrl,idx)
         .subscribe(resultdata =>{
-          this.CommonService.getdata(this.getservicelistRestApiUrl)
-            .subscribe(det =>{
-                if(det.result!=""){ this.service_det=det.result;}
-            })
+         this.ngOnInit();
       });
  }
 

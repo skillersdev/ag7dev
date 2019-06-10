@@ -21,11 +21,13 @@ export class PackageinfoComponent implements OnInit {
   updatetemplatepackagevsuser:string = AppSettings.updatetemplatepackagevsuser;
   websiteurl:any;
   appwebsiteurl:string=AppSettings.WEBSITE_URL;
+  DeletepackageRestApiUrl:string = AppSettings.deletePackageDetails;
 
   packagelist:Array<Object>;
   model:any={};
   payment_data:any={}; 
   details_array:any=[];
+  deleteDetails:any={};
   payment_details:any=false;
   renew_payment_details:any=false;
   checkIswebsite:Boolean=false;
@@ -204,4 +206,40 @@ export class PackageinfoComponent implements OnInit {
      
     });
   }
+  deletepackagedetails(id:any,website:any)
+  {
+    this.deleteDetails.package_id= id;
+    this.deleteDetails.website= website;
+      console.log(this.deleteDetails)
+    let idx = id;
+      let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removeuser();
+          swal(
+            'Deleted!',
+            'User Data has been deleted.',
+            'success'
+          );
+        }
+      },function(dismiss) {
+      
+    });
+  }
+
+ removeuser()
+ {
+   this.CommonService.updatedata(this.DeletepackageRestApiUrl,this.deleteDetails)
+        .subscribe(resultdata =>{
+         this.ngOnInit();
+      });
+ }
 }
