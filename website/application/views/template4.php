@@ -67,7 +67,7 @@ $path_url = $this->config->item('path_url');
     
     <!-- Styleswitcher
 ================================================== -->
-        <div class="colors-switcher">
+<!--<div class="colors-switcher">
             <a id="show-panel" class="hide-panel"><i class="fa fa-tint"></i></a>        
                 <ul class="colors-list">
                     <li><a title="Light Red" onClick="setActiveStyleSheet('light-red'); return false;" class="light-red"></a></li>
@@ -80,7 +80,7 @@ $path_url = $this->config->item('path_url');
                     
                 </ul>
 
-        </div>  
+        </div>  -->
 <!-- Styleswitcher End
 ================================================== -->
 
@@ -144,53 +144,21 @@ $path_url = $this->config->item('path_url');
             </ol>
             <!--/ Indicators end-->
 
-            <!-- Carousel inner -->
+            <!-- Carousel inner  slider part-->
             <div class="carousel-inner">
                 <div class="item active">
                     <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-bg-1.jpg" alt="slider">
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                            <!--<h1 class="animated3">
-                                <span><strong>Roodabatoz</strong> welcome to this site</span>
-                            </h1>
-                            <p class="animated2"> We are a team of professionals.</p>	-->
-                            <!-- <a href="#feature" class="page-scroll btn btn-primary animated1">Read More</a> -->
-                        </div>
-                    </div>
                 </div>
                 <!--/ Carousel item end -->
                 
                 <div class="item">
                     <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-back.png" alt="slider">
-                    
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                           <!-- <h1 class="animated1">
-                    		  <span>Welcome to <strong>Fame</strong></span>
-                    	    </h1>
-                            <p class="animated2">Generate a flood of new business with the<br> power of a digital media platform</p>
-                            <a href="#feature" class="page-scroll btn btn-primary animated3">Read More</a>-->
-                        </div>
-                    </div>
                 </div>
                 <!--/ Carousel item end -->
                 
-                <div class="item">
-                    <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images//galaxy.jpg" alt="slider">
-                    <div class="slider-content">
-                        <div class="col-md-12 text-center">
-                            <!--<h1 class="animated2">
-                                <span>The way of <strong>Success</strong></span>
-                            </h1>
-                            <p class="animated1">At vero eos et accusamus et iusto odio dignissimos<br> ducimus qui blanditiis praesentium voluptatum</p>	
-                             -->
-                                
-                        </div>
-                    </div>
-                </div>
-                <!--/ Carousel item end -->
+              
             </div>
-            <!-- Carousel inner end-->
+            <!-- Carousel inner slider part end-->
 
             <!-- Controls -->
             <a class="left carousel-control" href="#main-slide" data-slide="prev">
@@ -312,7 +280,7 @@ $path_url = $this->config->item('path_url');
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Libero tempore soluta nobis est eligendi</br> optio cumque nihil impedit minus id quod maxime </br>placeat facere possimus, omnis voluptas assumenda est</h1>
+                   
                     
                 </div>
             </div>
@@ -328,7 +296,7 @@ $path_url = $this->config->item('path_url');
                     <div class="col-md-12">
                         <div class="section-title text-center">
                             <h3>My Products</h3>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate</p>
+                            <p>Various Products</p>
                         </div>                        
                     </div>
                 </div>
@@ -484,11 +452,20 @@ $path_url = $this->config->item('path_url');
                                                       </video>';
                                               }
                                               ?>
-                                        <!-- <div class="team-details">
-                                            <h4>John Doe</h4>
-                                            <p>Founder & Director</p>
+                                        <div>
+                                            <!--<h4>John Doe</h4>
+                                            <p>Founder & Director</p>-->
                                             
-                                        </div> -->
+											<?php 
+												if($ad_details[$k]['desc']!=""){
+													echo "<p>".$ad_details[$k]['desc']."</p>"; 
+												}
+												if($ad_details[$k]['weblink']!=""){
+													echo "<p><a href='".$ad_details[$k]['weblink']."' target='_blank'>Visit</a></p>"; 
+												}
+											?>
+								
+                                        </div>
                                     </div>
                                     <?php } ?>
                                   

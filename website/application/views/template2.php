@@ -106,51 +106,20 @@ $path_url = $this->config->item('path_url');
             <div id="slider" class="sl-slider-wrapper">
 
 				<div class="sl-slider">
-				
 					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-
-						<div class="bg-img bg-img-1"></div>
-
-						<div class="slide-caption">
-                            <div class="caption-content">
-                                <!-- <h2 class="animated fadeInDown">Welcome to Roodabatoz</h2>
-                                <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
-      							<p class="mb-4 pb-0">Expert in software development and staffing</p> -->
-                            </div>
-                        </div>
-						
+						<div class="bg-img bg-img-1">
+							<img src="<?php echo base_url();?>assets/template2/img/slider/banner.jpg" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+						</div>
 					</div>
 					
-					<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-					
-						<div class="bg-img bg-img-2"></div>
-						<div class="slide-caption">
-                            <div class="caption-content">
-                                
-                            </div>
-                        </div>
-						
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+						<div class="bg-img bg-img-2">
+							<img src="<?php echo base_url();?>assets/template2/img/slider/affinity.jpeg"  style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+						</div>
 					</div>
-					
-					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-						
-						<div class="bg-img bg-img-3"></div>
-						<div class="slide-caption">
-                            <div class="caption-content">
-                                
-                            </div>
-                        </div>
-
-					</div>
-
 				</div><!-- /sl-slider -->
 
-                <!-- 
-                <nav id="nav-arrows" class="nav-arrows">
-                    <span class="nav-arrow-prev">Previous</span>
-                    <span class="nav-arrow-next">Next</span>
-                </nav>
-                -->
+               
                 
                 <nav id="nav-arrows" class="nav-arrows hidden-xs hidden-sm visible-md visible-lg">
                     <a href="javascript:;" class="sl-prev">
@@ -452,14 +421,20 @@ $path_url = $this->config->item('path_url');
 				                          </video>';
 				                  }
 				                  ?>
-								<!-- <figcaption class="mask">
-									<h3>Wall street</h3>
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>
-								</figcaption> -->
-								<!-- <ul class="external">
-									<li><a class="fancybox" title="Araund The world" data-fancybox-group="works" href="img/portfolio/item.jpg"><i class="fa fa-search"></i></a></li>
-									<li><a href=""><i class="fa fa-link"></i></a></li>
-								</ul> -->
+								 <figcaption style="color:white;">
+									<!--<h3>Wall street</h3>
+									<p>Lorem Ipsum is simply dummy text of the printing and typesetting ndustry. </p>-->
+									<?php 
+										if($ad_details[$k]['desc']!=""){
+											echo "<p>".$ad_details[$k]['desc']."</p>"; 
+										}
+										if($ad_details[$k]['weblink']!=""){
+											echo "<p><a style='color:white;' href='".$ad_details[$k]['weblink']."' target='_blank'>Visit</a></p>"; 
+										}
+										?>
+				
+								</figcaption>
+								
 							</li>
 							<?php } ?>
 							

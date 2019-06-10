@@ -11,9 +11,9 @@
 		<!-- Page Title -->
         <title>Roodabatoz</title>		
 		<!-- Meta Description -->
-        <meta name="description" content="Blue One Page Creative HTML5 Template">
-        <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-        <meta name="author" content="Muhammad Morshed">
+        <meta name="description" content="Roodabatoz">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
 		<!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -111,44 +111,11 @@
 					
 					<!-- single slide -->
 					<div class="item active" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
-						<div class="carousel-caption">
-							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Rodabatoz</span>!</h2>
-							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color"><?php echo $website;?></span> We are a team of professionals.</h3>
-							<p data-wow-duration="1000ms" class="wow slideInRight animated">Provides various services</p>
-							
-							<ul class="social-links text-center">
-								<li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
-								<li><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-lg"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
-								<li><a href="#"><i class="fa fa-dribbble fa-lg"></i></a></li>
-									
-								<li><?php if($contact_details[0]['whatsapp']!=''){
-								echo "Whatsapp :".$contact_details[0]['whatsapp'];
-								} ?></li>
-								<li><?php if($contact_details[0]['telegram']!=''){
-								echo "Telegram :".$contact_details[0]['telegram'];
-								} ?></li>
-							</ul>
-							
-							
-						</div>
 					</div>
 					<!-- end single slide -->
 					
 					<!-- single slide -->
 					<div class="item" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
-						<div class="carousel-caption">
-							<!--<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">Welcome to<span> Roodabatoz</span>!</h2>
-							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">We</span> Provide various Services.</h3>
-							<p data-wow-duration="500ms" class="wow slideInRight animated">We are a team of professionals</p>-->
-							
-							<!--<ul class="social-links text-center">
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-twitter fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-facebook fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-google-plus fa-lg"></i></a></li>
-								<li><a href="<?php echo base_url();?>assets/template3/"><i class="fa fa-dribbble fa-lg"></i></a></li>
-							</ul>-->
-						</div>
 					</div>
 					<!-- end single slide -->
 					
@@ -366,6 +333,7 @@
                         ?>
 					<figcaption class="overlay">
 						<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
+						<h6>Category:<?php echo $product_details[$i]['category_name'];?></h6>
 									<p><?php echo $product_details[$i]['price'];?></p>
 					</figcaption>
 				</figure>
@@ -442,14 +410,20 @@
 				                          </video>';
 				                  }
 				                  ?>
-							<!--<figcaption class="overlay">
-								<h5>voluptatem quia voluptas </h5>
-								<p>sit aspernatur aut odit aut fugit,</p>
-								
+							<figcaption >
+								<!--<h5>voluptatem quia voluptas </h5>
+								<p>sit aspernatur aut odit aut fugit,</p>-->
+								<?php 
+									if($ad_details[$k]['desc']!=""){
+										echo "<p>".$ad_details[$k]['desc']."</p>"; 
+									}
+									if($ad_details[$k]['weblink']!=""){
+										echo "<p><a  href='".$ad_details[$k]['weblink']."' target='_blank'>Visit</a></p>"; 
+									}
+								?>
 							</figcaption>
 						</div>
-						<h4>Steve Flaulkin</h4>
-						<span>Sr. UI Designer</span>-->
+						
 					</figure>
 				<?php } ?>
 					<!-- end single member -->

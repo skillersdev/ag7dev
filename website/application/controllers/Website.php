@@ -75,7 +75,7 @@ class Website extends CI_Controller {
 				foreach($ad_det_result as $key=>$value)
 		          {              
 		            
-		            $ads_result[]=array('id'=>$value['id'],'uploads'=>$value['uploads'],'ad_type'=>$value['ad_type']);
+		            $ads_result[]=array('id'=>$value['id'],'uploads'=>$value['uploads'],'ad_type'=>$value['ad_type'],'desc'=>$value['desc'],'weblink'=>$value['weblink']);
 		          }
 
 			}

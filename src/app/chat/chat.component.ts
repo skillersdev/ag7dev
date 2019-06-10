@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
   group_members_model:Array<Object>;
   group_msg_model:Array<Object>;
   group_det:Array<Object>;
-  userdropdownList=[];
+  userdropdownList:any;
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
@@ -44,6 +44,7 @@ export class ChatComponent implements OnInit {
     this.group_bases = AppSettings.IMAGE_BASE;
     
     this.group_dt_model=[];
+    this.userdropdownList=[];
     this.group_name=0;
     this.group_msg_model=[];
     this.group_members_model=[];

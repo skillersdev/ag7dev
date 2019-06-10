@@ -371,39 +371,7 @@ $path_url = $this->config->item('path_url');
           <?php }?>
 
 		  
-		  <!-- <div class="col-lg-3 col-md-3">
-            <div class="speaker">
-              <img src="<?php echo base_url();?>/assets/img/speakers/3.jpg" alt="Speaker 1" class="img-fluid">
-              <div class="details">
-                <h4><a href="product-details.html">USB Holder</a></h4>
-                <p>Electronics- 20$</p>
-               
-              </div>
-            </div>
-          </div> -->
-		  
-		  <!--  <div class="col-lg-3 col-md-3">
-            <div class="speaker">
-              <img src="<?php echo base_url();?>/assets/img/speakers/4.jpg" alt="Speaker 1" class="img-fluid">
-              <div class="details">
-                <h4><a href="product-details.html">Touch Watch</a></h4>
-                <p>Electronics- 200$</p>
-               
-              </div>
-            </div>
-          </div> -->
-     <!--      
-          <div class="col-lg-3 col-md-3">
-            <div class="speaker">
-              <img src="<?php echo base_url();?>/assets/img/speakers/5.jpg" alt="Speaker 1" class="img-fluid" style="height: 255px;">
-              <div class="details">
-                <h4><a href="product-details.html">Laptop</a></h4>
-                <p>Electronics- 200$</p>
-               
-              </div>
-            </div>
-          </div> -->
-         
+		
           
           
         </div>
@@ -449,25 +417,33 @@ $path_url = $this->config->item('path_url');
             $image = "'".$path_url.$ad_details[$k]['uploads']."'";
           ?>
           <div class="col-lg-3 col-md-3">
+			
             <div class="hotel">
-              <div class="hotel-img">
-                <?php 
-                  if($ad_details[$k]['ad_type']==1)
-                  { 
-                      echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
-                  }
-                  else{
-                    echo '<video width="280" height="200" controls>
-                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
-                          </video>';
-                  }
-                ?>
-                <!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
-              </div>
-             <!--  <h3><?php// echo $ad_details[$k]['service_name'];?></h3>
-              
-              <p><?php //echo $ad_details[$k]['desc'];?></p> -->
+				<div class="hotel-img">
+					<?php 
+					  if($ad_details[$k]['ad_type']==1)
+					  { 
+						  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
+					  }
+					  else{
+						echo '<video width="280" height="200" controls>
+								<source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
+							  </video>';
+					  }
+					?>
+					<!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
+				</div>
+				<!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+				<?php 
+				if($ad_details[$k]['desc']!=""){
+					echo "<p>".$ad_details[$k]['desc']."</p>"; 
+				}
+				if($ad_details[$k]['weblink']!=""){
+					echo "<p><a href='".$ad_details[$k]['weblink']."' target='_blank'>View</a></p>"; 
+				}
+				?>
             </div>
+
           </div>
         <?php } ?>
 		  
@@ -559,7 +535,7 @@ $path_url = $this->config->item('path_url');
   function servicepopupimage(name,image,desc){
       
       $('#mtitle2').html(name);
-      $('#mimage2').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
       $('#desc2').html(desc);
      }
 
@@ -569,11 +545,11 @@ $path_url = $this->config->item('path_url');
       $('#cname').html(cname);
       $('#scname').html(scname);
       $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px">');
      }
 
      function popupimage1(image){
-      $('#mimage1').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#mimage1').html('<img src="'+image+'" width="460px" height="400px">');
      }
   </script>
 </body>
