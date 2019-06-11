@@ -102,7 +102,7 @@ class Group_controller extends CI_Controller {
 
          $model = json_decode($this->input->post('model',FALSE));
    // print_r($model); die;
-             $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."' and private_public='2' and  is_deleted='0'");
+             $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0'");
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
 
@@ -128,10 +128,10 @@ class Group_controller extends CI_Controller {
 
           $model = json_decode($this->input->post('model',FALSE));
       
-         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename')
+         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->where('group_members.user_id', $model->currentUserID)
-            ->where('group_master.private_public', '2')
+            // ->where('group_master.private_public', '2')
             ->where('group_master.is_deleted', '0')
             ->get('group_master');
             $group_array=$group_sql->result_array(); 

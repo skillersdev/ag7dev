@@ -78,9 +78,9 @@ export class ChatComponent implements OnInit {
     
   }
   refreshData(){
-    this.interval = setInterval(() => { 
-      this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 10000);
+    // this.interval = setInterval(() => { 
+    //   this.generateMessageArea(this.Newgroupmodel.g_id);
+    // }, 10000);
   }
   getuserlists(){
     this.CommonService.getdata(AppSettings.getchatuserslist)
@@ -106,6 +106,7 @@ export class ChatComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.group_name=1;
           this.group_dt_model = resultdata.group_details[0];
+          console.log(this.group_dt_model);
           this.group_msg_model = resultdata.group_msg;
           this.group_members_model=resultdata.group_members; 
           $('.message-area').addClass('d-sm-flex');
@@ -116,6 +117,9 @@ export class ChatComponent implements OnInit {
   {
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{       
+      this.Newgroupmodel.groupname='';
+      this.Newgroupmodel.groupimagename='';
+      this.Newgroupmodel.privatepublic='';       
       
         this.getgrouplists();
         swal('','Group Created Successfully','success');  
