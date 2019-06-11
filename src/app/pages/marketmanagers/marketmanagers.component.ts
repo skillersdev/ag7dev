@@ -15,6 +15,7 @@ export class MarketmanagersComponent implements OnInit {
  getmarketerslistRestApiUrl:string = AppSettings.getMarketerslistDetail; 
  model:any={};
  userlist:Array<Object>;
+ websiteurl:string=AppSettings.USER_TEMPLATE;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {

@@ -52,7 +52,8 @@ class Transferhistory_controller extends CI_Controller {
      $model = json_decode($this->input->post('model',FALSE));    
         $username = trim($model->currentUsername);
         if(isset($model->currentUsername)){
-            $res=$this->db->select("*")->like('transfer_from',$username)->get('transfer_history');    
+            //$res=$this->db->select("*")->like('transfer_from',$username)->get('transfer_history');   
+            $res=$this->db->query("select * from ".$this->db->dbprefix('transfer_history')." where transfer_to LIKE '%".$username."%'"); 
         }
        
        $response=[];

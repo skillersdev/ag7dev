@@ -18,7 +18,7 @@
                         <div class="content">
                             <div class="text">Total Users</div>
                             <div class="">
-                                {{userlist.length}}
+                                {{model.tot_users}}
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Share Balance to Marketer<small>(to share the balance. you should have more than 50RM balance)</small></h2>
+                            <h2>Share Balance to Marketer<small>(to share the balance. you should have more than RM 50 balance)</small></h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -102,8 +102,7 @@
                                     <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
                                     <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
                                 </div>
-                                </div> 
-                                
+                                </div>                                 
                                  <button type="submit"  (click)="transferamount()" [disabled]="!transfer.form.valid" class="btn btn-success m-t-15 waves-effect">Transfer</button> 
                                                            
                             </div>

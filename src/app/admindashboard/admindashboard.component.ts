@@ -43,6 +43,7 @@ ngOnInit() {
         if(userdet.result!="")
         { 
           this.userlist= userdet.result;
+          this.model.tot_users = Object.values(userdet.result).length;
           this.model.total_web_count=userdet.result['total_web_count'];
           this.model.total_active_web_count=userdet.result['total_active_web_count'];
           this.model.total_yet_to_active = userdet.result['total_yet_to_active'];

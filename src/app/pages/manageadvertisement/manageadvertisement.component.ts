@@ -18,6 +18,7 @@ export class ManageadvertisementComponent implements OnInit {
   getadlistbyUserRestApiUrl:string = AppSettings.getadDetailbyUser;
 	DeleteadRestApiUrl:string = AppSettings.deletead;
   updateibaRestApiUrl:string = AppSettings.updateibadetails;
+  websiteurl:string=AppSettings.USER_TEMPLATE;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() 
