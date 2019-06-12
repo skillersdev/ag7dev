@@ -442,7 +442,7 @@ $login_url = $this->config->item('login_url');
 					echo "<p>".$ad_details[$k]['desc']."</p>"; 
 				}
 				if($ad_details[$k]['weblink']!=""){
-					echo "<p><a href='".$ad_details[$k]['weblink']."' target='_blank'>View</a></p>"; 
+					echo "<p><a href='".$ad_details[$k]['weblink']."' target='_blank'>Website Link</a></p>"; 
 				}
 				?>
             </div>
