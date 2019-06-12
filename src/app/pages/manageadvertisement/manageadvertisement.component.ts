@@ -27,7 +27,7 @@ export class ManageadvertisementComponent implements OnInit {
      this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.model.usergroup==2)
-    {
+    {   
 
       this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
