@@ -555,7 +555,9 @@ class User_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where(['is_deleted'=>'0','user_id'=>$id])->get('user_advertisements');
+        $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as created_at")->where(['is_deleted'=>'0','user_id'=>$id])->get('user_advertisements'); 
+
+        
 
 
         if($res->num_rows()>0)
