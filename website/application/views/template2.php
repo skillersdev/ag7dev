@@ -1,6 +1,7 @@
 <?php
 //echo "<pre>";print_r($website);die;
 $path_url = $this->config->item('path_url');
+$login_url = $this->config->item('login_url');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -85,7 +86,8 @@ $path_url = $this->config->item('path_url');
 						<li><a href="#contact">My Contact</a></li>
                         <li><a href="#service">My Service</a></li>
                         <li><a href="#portfolio">My Products</a></li>
-                        <li><a href="#testimonials">My Ads</a></li>                        
+                        <li><a href="#testimonials">My Ads</a></li> 
+                        <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>                       
                     </ul>
                 </nav>
 				<!-- /main nav -->

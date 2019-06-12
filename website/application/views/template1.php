@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //print_r($product_details);die;
 $path_url = $this->config->item('path_url');
 
+$login_url = $this->config->item('login_url');
+
 ?>
 
 
@@ -60,7 +62,8 @@ $path_url = $this->config->item('path_url');
           <li><a href="#about">About Me</a></li>
           <li><a href="#contact">My Contact</a></li>
           <li><a href="#hotels">My Services</a></li>
-          <li><a href="#speakers">My Products</a></li>         
+          <li><a href="#speakers">My Products</a></li> 
+          <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
          
           <!-- <li><a href="#sponsors">Clients</a></li> -->
           

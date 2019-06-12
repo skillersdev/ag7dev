@@ -45,6 +45,7 @@ export class EditproductComponent implements OnInit {
    id:number;
   model: any = {};
   alldata: any = {};
+  localdata:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -55,9 +56,9 @@ export class EditproductComponent implements OnInit {
       this.loginService.viewsActivate();
       /*category list*/
      let user_id = localStorage.getItem('currentUserID');
-     this.model.imagePath = AppSettings.API_BASE;
-    this.model.usergroup=localStorage.getItem('currentUsergroup');
-    if(this.model.usergroup==2)
+     this.localdata.imagePath = AppSettings.API_BASE;
+    this.localdata.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.localdata.usergroup==2)
     {
 
       this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)

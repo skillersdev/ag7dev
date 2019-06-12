@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <?php $path_url = $this->config->item('path_url'); ?>
+  <?php 
+  $path_url = $this->config->item('path_url'); 
+  $login_url = $this->config->item('login_url');
+  ?>
   <meta charset="utf-8">
   <title>Roodabatoz</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -52,7 +55,8 @@
           <li><a href="#contact">My Contact</a></li>
           <li><a href="#services">My Services</a></li>
           <li><a href="#portfolio">My Products</a></li>
-          <li><a href="#team">My Ads</a></li>          
+          <li><a href="#team">My Ads</a></li> 
+          <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
         </ul>
       </nav><!-- .main-nav -->
       

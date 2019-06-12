@@ -1,3 +1,6 @@
+<?php 
+$login_url = $this->config->item('login_url');
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -79,7 +82,7 @@
                         <li><a href="#services">My Services</a></li>
                         <li><a href="#products">My Products</a></li>
                         <li><a href="#ads">My Ads</a></li>
-                        
+                        <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
                     </ul>
                 </nav>
 				<!-- /main nav -->

@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 $path_url = $this->config->item('path_url');
-
+$login_url = $this->config->item('login_url');
  ?>
 
 <head>
@@ -120,7 +120,7 @@ $path_url = $this->config->item('path_url');
                         <a class="page-scroll" href="#ads">My Advertisment</a>
                     </li>
                   
-
+                    <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
