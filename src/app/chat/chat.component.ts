@@ -33,6 +33,8 @@ export class ChatComponent implements OnInit {
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
+  bootstrapcssurl:any;
+  chatcssurl:any;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -42,7 +44,8 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
-    
+    this.bootstrapcssurl=this.api_bases+"bootstrap.min.css";
+    this.chatcssurl=this.api_bases+"all.css";
     this.group_dt_model=[];
     this.userdropdownList=[];
     this.group_name=0;
