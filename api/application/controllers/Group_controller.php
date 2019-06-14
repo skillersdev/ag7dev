@@ -37,7 +37,73 @@ class Group_controller extends CI_Controller {
         die();
    }
 
-   public function groupimage()
+   public function updategroup()
+   {
+     $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Group added successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die;
+        $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
+        
+        $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
+        foreach ($model->userselectedItems as $key => $value) {
+         // $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
+         // $mem_group_array=$mem_group_sql->result_array();
+
+         // if(count($mem_group_array) > 0){
+
+         // }else {
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
+         // }
+        
+      }
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   
+   public function msggroupimage()
+    {
+        $path = 'groupchat_images/';
+        $Response=[];
+       
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+            //print_r($ext);die;
+            $upper_Case_ext=strtoupper($ext);
+
+            //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
+            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
+            {
+              $chatimage = $_FILES['file']['name'].time();
+              $filePath = $path.$chatimage;
+           
+              if (move_uploaded_file($chatimage, $filePath)) 
+              {
+
+                $Response['status']="success"; 
+                $Response['data']=$chatimage;
+              }
+            }
+            else 
+            {
+                $Response['status']="fail"; 
+                $Response['data']="Not a valid format";
+            }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
+    public function groupimage()
     {
         $path = 'group_images/';
         $Response=[];
@@ -93,6 +159,23 @@ class Group_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
+
+   public function imagesendmsg(){
+    $this->output->set_content_type('application/json');
+    
+      $response=array('status'=>"success",'message'=>"Msg sent successfully");
+
+      $model = json_decode($this->input->post('model',FALSE));
+    //   print_r($model); die;
+      if($model){
+       $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->chatimage."','".$model->currentUserID."','".$model->currentUser."')");
+      }
+    
+      
+      echo json_encode($response,JSON_UNESCAPED_SLASHES);
+      die();
+ }
+
    public function getgroupsdetails(){
     
       $this->output->set_content_type('application/json');
@@ -106,9 +189,12 @@ class Group_controller extends CI_Controller {
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
 
-             $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
              $mem_group_array=$mem_group_sql->result_array(); 
+             $mem_group_array1=$mem_group_sql->result_object(); 
+            //  print_r($mem_group_array1); die;
              $response['group_members']=$mem_group_array;
+             $response['select_group_members']=$mem_group_array1;
 
              $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."'");
              $msg_group_array=$msg_group_sql->result_array(); 
@@ -143,6 +229,5 @@ class Group_controller extends CI_Controller {
            die();
         
    }
-   
-   
+  
 }

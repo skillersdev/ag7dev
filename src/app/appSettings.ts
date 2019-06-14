@@ -138,5 +138,8 @@ export class AppSettings{
 	public static sendmsg=AppSettings.API_BASE+"/sendmsg";
  	public static deletePackageDetails = AppSettings.API_BASE+"/deletepackagedetails"; 
 	public static groupimage=AppSettings.API_BASE+"/groupimage";
+	public static updategroup=AppSettings.API_BASE+"/updategroup";
+	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
+	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
 }

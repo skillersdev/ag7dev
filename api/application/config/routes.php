@@ -171,6 +171,8 @@ $route['getgroupsdetails']= 'Group_controller/getgroupsdetails';
 $route['sendmsg']= 'Group_controller/sendmsg';
 $route['deletepackagedetails'] = 'Package_controller/deletepackagedetails';
 $route['groupimage']= 'Group_controller/groupimage';
+$route['updategroup']= 'Group_controller/updategroup';
+$route['msggroupimage']= 'Group_controller/msggroupimage'; 
 ?>
 
 
