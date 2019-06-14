@@ -152,5 +152,9 @@ export class ChatComponent implements OnInit {
        
      })
   }
+
+  logout(){
+    this.loginService.logout();
+  }
  
 }
