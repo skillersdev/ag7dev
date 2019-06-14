@@ -33,8 +33,6 @@ export class ChatComponent implements OnInit {
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
-  bootstrapcssurl:any;
-  chatcssurl:any;
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -44,8 +42,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
-    this.bootstrapcssurl=this.api_bases+"bootstrap.min.css";
-    this.chatcssurl=this.api_bases+"all.css";
+    
     this.group_dt_model=[];
     this.userdropdownList=[];
     this.group_name=0;
@@ -68,7 +65,7 @@ export class ChatComponent implements OnInit {
     };
     this.getgrouplists();
     this.getuserlists();
-    this.Newgroupmodel.g_id='';
+    this.Newgroupmodel.g_id=''; 
     
     // this.interval = setInterval(() => { 
     //   this.getgrouplists();
@@ -81,9 +78,9 @@ export class ChatComponent implements OnInit {
     
   }
   refreshData(){
-    // this.interval = setInterval(() => { 
-    //   this.generateMessageArea(this.Newgroupmodel.g_id);
-    // }, 10000);
+    this.interval = setInterval(() => { 
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+    }, 10000);
   }
   getuserlists(){
     this.CommonService.getdata(AppSettings.getchatuserslist)
@@ -109,11 +106,27 @@ export class ChatComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.group_name=1;
           this.group_dt_model = resultdata.group_details[0];
-          console.log(this.group_dt_model);
+          this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+          this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
+          this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+          
+          // console.log(this.group_dt_model);
           this.group_msg_model = resultdata.group_msg;
-          this.group_members_model=resultdata.group_members; 
+          this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
+          this.group_members_model=this.Newgroupmodel.userselectedItems=resultdata.group_members; 
           $('.message-area').addClass('d-sm-flex');
         });
+  }
+  
+  updategroup()
+  {
+    this.CommonService.insertdata(AppSettings.updategroup,this.Newgroupmodel)
+    .subscribe(package_det =>{     
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+        this.getgrouplists();
+        swal('','Group Updated Successfully','success');  
+        
+    });
   }
 
   addgroup()
@@ -147,14 +160,28 @@ export class ChatComponent implements OnInit {
     .subscribe( (response) => {
        if(response.status=='success')
        {
+         
         // this.Newgroupmodel.groupimagename = response.data;
+        
        }
        
      })
   }
 
+  msgfileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.CommonService.chatuploadFile(AppSettings.msggroupimage,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        console.log(response);
+        
+        // this.Newgroupmodel.groupimagename = response.data;
+       }
+       
+     })
+  }
   logout(){
     this.loginService.logout();
-  }
- 
+  } 
 }

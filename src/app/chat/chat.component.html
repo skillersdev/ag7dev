@@ -6,10 +6,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Roodabatoz Chat</title>
-	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" > -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" > -->
+	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" >
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" >
 	<style>
 		#floatingRectangle{display: none !important;}
 	</style>
@@ -59,9 +59,9 @@
 						
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [value]="1" />
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
 								<label for="private" class="m-r-3">Private</label>&nbsp;
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [value]="2" />
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
 								<label for="public">Public</label>
 							</div>
 						</div>
@@ -71,6 +71,66 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-success" (click)="addgroup()" data-dismiss="modal">Save</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+	
+					</div>
+				</div>
+			</div>
+			<!-- new group-->
+
+			<!-- The Modal -->
+		<div class="modal" id="myModaledit">
+				<div class="modal-dialog">
+					<div class="modal-content">
+	
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Group</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>				
+	
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<label for="groupname" class="m-r-3">Group Name :</label>&nbsp;
+								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control"  #groupname="ngModel"/>
+							</div>
+						</div>
+						<div class="form-group m-b-0">
+							<div class="form-line ">
+								<label for="groupname" class="m-r-3">Group Image :</label>&nbsp;
+								<input type="file" name="adimage" (change)=fileEvent($event) required>   
+							</div>
+						</div>
+
+						<div class="form-group m-b-0">
+								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
+									<label for="groupname" class="m-r-3">User Lists :</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList" 
+									[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings" 
+									[ngModelOptions]="{standalone: true}" 
+									 #userselectedItems="ngModel"></ng-multiselect-dropdown>
+									
+								</div>
+							</div>
+ 
+						 
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" value="1" readonly="true" />
+								<label for="private1" class="m-r-3">Private</label>&nbsp;
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" value="2" readonly="true" />
+								<label for="public1">Public</label>
+							</div>
+						</div>
+	 
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" (click)="updategroup()" data-dismiss="modal">Update</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
 	
@@ -157,10 +217,17 @@
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
 						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
 					</div>
-					<div class="d-flex flex-row align-items-center ml-auto">
+					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+							<div class="dropdown-menu dropdown-menu-right">
+									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
+									
+							</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
 						<a href="javascript:void(0);"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a> -->
-						<a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white"></i></a>
+						<a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white">
+						</i></a>
+						
 					</div>
 				</div>
 
@@ -220,10 +287,10 @@
 
 				<!-- Input -->
 				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area" *ngIf="group_name!=0">
-					<a *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"><i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
+					<a *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
 					<i *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;" (click)="sendMessage()"></i>	<input name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"  #groupmsgtxt="ngModel"/>
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> -->
-					
+					<input type="file" name="chatimage" (change)=msgfileEvent($event) >
 				</div>
 			</div>
 		</div>
