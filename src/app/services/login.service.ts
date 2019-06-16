@@ -88,4 +88,12 @@ export class LoginService {
   }
 
 
+  viewsUploadoption(){
+    $('#my-button').click(function(){
+      alert("test here");
+      $('#my-file').click();
+    });
+  }
+
+
 }

@@ -51,6 +51,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.userselectedItems=[]; 
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+    this.loginService.viewsUploadoption();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
     this.Newgroupmodel.userselectedItems =[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
@@ -80,7 +81,7 @@ export class ChatComponent implements OnInit {
   refreshData(){
     this.interval = setInterval(() => { 
       this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 10000);
+    }, 20000);
   }
   getuserlists(){
     this.CommonService.getdata(AppSettings.getchatuserslist)

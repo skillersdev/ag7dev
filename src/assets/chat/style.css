@@ -20,7 +20,9 @@
 }
 
 #navbar {
-	background: #3a649b;
+	/*background: #3a649b;*/
+	background: #b84033;
+	
 }
 
 .dropdown-toggle::after {

@@ -6,10 +6,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Roodabatoz Chat</title>
-	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" >
-	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous"> -->
-	<link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" >
+	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/bootstrap.min.css" > -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="http://localhost/ag7dev.git/trunk/src/assets/chat/all.css" >
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
 	<style>
 		#floatingRectangle{display: none !important;}
 	</style>
@@ -144,7 +147,7 @@
 				<!-- col-12 col-sm-5 col-md-4 flex-column d-none  used to hide -->
 				<!-- col-12 col-sm-5 col-md-4 flex-column used to show -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2" id="navbar">
+				<div class="row d-flex flex-row align-items-center p-2" id="navbar" style="background: #b84033 !important">
 					<img src="{{api_bases}}images/logo.png" alt="Profile Photo" style="height: 35px;cursor:pointer;width: 185px;margin-left: auto;" id="display-pic"  onclick="hideProfileSettings()">
 					<div class="text-white font-weight-bold" id="username"></div>
 					<div class="nav-item dropdown ml-auto">
@@ -161,7 +164,7 @@
 				<!-- Chat List -->
 				<div class="row" id="chat-list" style="overflow:auto;">
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
-								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;">
+								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
 									<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
@@ -181,7 +184,7 @@
 						<div class="text-white font-weight-bold">Profile</div>
 					</div>
 					<div class="d-flex flex-column" style="overflow:auto;">
-						<img alt="Profile Photo" class="img-fluid rounded-circle my-5 justify-self-center mx-auto" id="profile-pic">
+						<img alt="Profile Photo" class="img-fluid rounded-circle my-5 justify-self-center mx-auto" id="profile-pic" >
 						<input type="file" id="profile-pic-input" class="d-none">
 						<div class="bg-white px-3 py-2">
 							<div class="text-muted mb-2"><label for="input-name">Your Name</label></div>
@@ -208,31 +211,32 @@
 				<!-- w-100 h-100 overlay            shows blank screen  -->
 				<!-- w-100 h-100 overlay d-none      used to hide the blank screen -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar">
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar" style="background: #b84033 !important">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" ></i>
 					</div>
-					<a href="javascript:void(0);"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height:50px;" id="pic"></a>
+					<a href="javascript:void(0);"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
 						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
 					</div>
 					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto">
-							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-ellipsis-v text-white"></i></a>
 							<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
 									
 							</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
 						<a href="javascript:void(0);"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a> -->
-						<a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white">
-						</i></a>
+						<!-- <a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white">
+						</i></a> -->
 						
 					</div>
 				</div>
 
 				<!-- Messages -->
-				<div class="d-flex flex-column" id="messages">
+				<div class="d-flex flex-column" id="messages" >
 					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" *ngIf="group_name!=0">
 						14/06/2019
 					</div>
@@ -266,7 +270,7 @@
 					
 						<div *ngIf="Newgroupmodel.currentUserID==data.created_by" class="d-flex flex-row">
 							
-							<div class="body m-1 mr-2">{{data.message}}</div>
+							<div class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								{{data.created_date | date}}
 								<!-- <i class="far fa-check-circle"></i> -->
@@ -275,7 +279,7 @@
 
 						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by" class="d-flex flex-row">
 							
-								<div class="body m-1 mr-2">{{data.message}}</div>
+								<div class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date}}
 									<!-- <i class="far fa-check-circle"></i> -->
@@ -287,10 +291,14 @@
 
 				<!-- Input -->
 				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area" *ngIf="group_name!=0">
-					<a *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
-					<i *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;" (click)="sendMessage()"></i>	<input name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"  #groupmsgtxt="ngModel"/>
+					<a *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"
+					id="my-button"
+					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
+					<i *ngIf="group_dt_model.private_public!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
+					<input name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> -->
-					<input type="file" name="chatimage" (change)=msgfileEvent($event) >
+
+					<input type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)=msgfileEvent($event) >
 				</div>
 			</div>
 		</div>
