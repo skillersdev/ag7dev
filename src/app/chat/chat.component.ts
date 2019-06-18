@@ -78,10 +78,27 @@ export class ChatComponent implements OnInit {
     // ];
     
   }
+
+  ngOnDestroy() {
+  if (this.interval) {
+    clearInterval(this.interval);
+  }
+}
+
   refreshData(){
-    this.interval = setInterval(() => { 
+  if(this.router.url!="/chat"){
+  this.Newgroupmodel.g_id='';
+    clearInterval(this.interval);
+  }
+  else if(this.Newgroupmodel.g_id!='' && this.router.url=="/chat"){
+    this.interval = setInterval(() => {
+   // alert(this.router.url);
       this.generateMessageArea(this.Newgroupmodel.g_id);
     }, 20000);
+  }  else {
+    clearInterval(this.interval);
+  }
+    
   }
   getuserlists(){
     this.CommonService.getdata(AppSettings.getchatuserslist)
@@ -98,6 +115,7 @@ export class ChatComponent implements OnInit {
     .subscribe(det =>{      
         if(det.result!=""){ this.group_det=det.result;}
     });
+    this.Newgroupmodel.g_id='';
   }
 
   generateMessageArea(g_id){
@@ -132,6 +150,7 @@ export class ChatComponent implements OnInit {
 
   addgroup()
   {
+  this.Newgroupmodel.g_id='';
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{       
       this.Newgroupmodel.groupname='';
@@ -142,6 +161,7 @@ export class ChatComponent implements OnInit {
         swal('','Group Created Successfully','success');  
         
     });
+    
   }
   sendMessage(){
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
