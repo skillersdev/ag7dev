@@ -162,7 +162,7 @@
 				</div>
 
 				<!-- Chat List -->
-				<div class="row" id="chat-list" style="overflow:auto;">
+				<div class="row chat-list" id="chat-list" style="overflow:auto;">
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
 								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
 								<div class="w-50">
@@ -213,7 +213,7 @@
 				<!-- Navbar -->
 				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar" style="background: #b84033 !important">
 					<div class="d-block d-sm-none">
-						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" ></i>
+						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" (click)="hideshow()" ></i>
 					</div>
 					<a href="javascript:void(0);"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
@@ -270,7 +270,8 @@
 					
 						<div *ngIf="Newgroupmodel.currentUserID==data.created_by" class="d-flex flex-row">
 							
-							<div class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
+							<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
+							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><img src="{{group_bases}}groupchat_images/{{data.chatimage}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;"></div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								{{data.created_date | date}}
 								<!-- <i class="far fa-check-circle"></i> -->
@@ -279,7 +280,10 @@
 
 						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by" class="d-flex flex-row">
 							
-								<div class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
+								<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
+								<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'">
+								<img src="{{group_bases}}groupchat_images/{{data.chatimage}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
+							</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date}}
 									<!-- <i class="far fa-check-circle"></i> -->

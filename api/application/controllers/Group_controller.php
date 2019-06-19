@@ -73,16 +73,16 @@ class Group_controller extends CI_Controller {
           {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
-            //print_r($ext);die;
+            
             $upper_Case_ext=strtoupper($ext);
 
             //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
             if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
             {
-              $chatimage = $_FILES['file']['name'].time();
+              $chatimage = time().$_FILES['file']['name'];
               $filePath = $path.$chatimage;
            
-              if (move_uploaded_file($chatimage, $filePath)) 
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
               {
 
                 $Response['status']="success"; 
@@ -150,9 +150,9 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Msg sent successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-      //   print_r($model); die;
+        // print_r($model); die;
         if($model){
-         $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,created_by,user_name) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->currentUserID."','".$model->currentUser."')");
+         $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->groupimagename."','".$model->currentUserID."','".$model->currentUser."')");
         }
       
         

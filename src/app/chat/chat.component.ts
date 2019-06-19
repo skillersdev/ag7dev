@@ -45,6 +45,7 @@ export class ChatComponent implements OnInit {
     
     this.group_dt_model=[];
     this.userdropdownList=[];
+    this.Newgroupmodel.groupimagename = '';
     this.group_name=0;
     this.group_msg_model=[];
     this.group_members_model=[];
@@ -87,13 +88,22 @@ export class ChatComponent implements OnInit {
 
   refreshData(){
   if(this.router.url!="/chat"){
+
   this.Newgroupmodel.g_id='';
     clearInterval(this.interval);
   }
   else if(this.Newgroupmodel.g_id!='' && this.router.url=="/chat"){
-    this.interval = setInterval(() => {
-   // alert(this.router.url);
-      this.generateMessageArea(this.Newgroupmodel.g_id);
+   this.interval = setInterval(() => {
+
+   if(this.router.url!="/chat" || this.Newgroupmodel.g_id==''){
+    
+    this.Newgroupmodel.g_id='';
+      clearInterval(this.interval);
+    } else {
+      //this.generateMessageArea(this.Newgroupmodel.g_id);
+    }
+   
+     // this.generateMessageArea(this.Newgroupmodel.g_id);
     }, 20000);
   }  else {
     clearInterval(this.interval);
@@ -115,10 +125,30 @@ export class ChatComponent implements OnInit {
     .subscribe(det =>{      
         if(det.result!=""){ this.group_det=det.result;}
     });
-    this.Newgroupmodel.g_id='';
+  }
+  hideshow(){
+  this.Newgroupmodel.g_id = '';
+     $('.chat-list').removeClass('d-none');
+    $('.message-area').removeClass('d-flex');
+    $('.chat-list').addClass('d-flex');
+    $('.message-area').addClass('d-none');
+    
+  } 
+  generateMessageArea(g_id){
+  
+  if($(window).width() > 450){
+  $('.chat-list').removeClass('d-none');
+    $('.message-area').removeClass('d-flex');
+    $('.chat-list').addClass('d-flex');
+    $('.message-area').addClass('d-none');
+  } else {
+    $('.chat-list').removeClass('d-flex');
+    $('.message-area').removeClass('d-none');
+    $('.chat-list').addClass('d-none');
+    $('.message-area').addClass('d-flex');
   }
 
-  generateMessageArea(g_id){
+   
     this.Newgroupmodel.g_id=g_id;
     this.refreshData();
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
@@ -164,6 +194,7 @@ export class ChatComponent implements OnInit {
     
   }
   sendMessage(){
+
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
     .subscribe(package_det =>{       
       
@@ -191,13 +222,16 @@ export class ChatComponent implements OnInit {
 
   msgfileEvent($event) {
     const fileSelected: File = $event.target.files[0];
+
     this.CommonService.chatuploadFile(AppSettings.msggroupimage,fileSelected)
     .subscribe( (response) => {
        if(response.status=='success')
        {
         console.log(response);
         
-        // this.Newgroupmodel.groupimagename = response.data;
+         this.Newgroupmodel.groupimagename = response.data;
+          this.Newgroupmodel.groupmsgtxt='';
+          this.sendMessage(); 
        }
        
      })
