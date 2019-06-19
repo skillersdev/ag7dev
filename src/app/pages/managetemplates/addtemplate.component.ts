@@ -108,6 +108,8 @@ export class AddtemplateComponent implements OnInit {
         this.showbutton=true;
        }
         else{
+          $('.preloader').hide();
+          this.showbutton=true;
           swal('',response.data,'Oops!');
           
           //this.toastr.errorToastr(response.data, 'Oops!');

@@ -99,6 +99,7 @@ $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['edittemplate/(:num)']= 'User_controller/edittemplate/$1';
 $route['updateuser'] = 'User_controller/updateuser';
 $route['updateuserprofile'] = 'User_controller/updateuserprofile';
+$route['reactivatepackage']= 'User_controller/reactivatepackage';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
 $route['checkuserexist'] = 'User_controller/check_user_exist';
 $route['checkusercredit'] = 'User_controller/check_user_credit';

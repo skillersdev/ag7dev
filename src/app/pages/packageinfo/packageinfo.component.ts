@@ -19,16 +19,19 @@ export class PackageinfoComponent implements OnInit {
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
   packageRenewApiUrl:string = AppSettings.package_renew;
   updatetemplatepackagevsuser:string = AppSettings.updatetemplatepackagevsuser;
+  ReactivatepackageRestApiUrl:string = AppSettings.reactivatepackagevsuser;
   websiteurl:any;
   appwebsiteurl:string=AppSettings.WEBSITE_URL;
   DeletepackageRestApiUrl:string = AppSettings.deletePackageDetails;
 
   packagelist:Array<Object>;
   model:any={};
+  Rmodel:any={};
   payment_data:any={}; 
   details_array:any=[];
   deleteDetails:any={};
   payment_details:any=false;
+  showButton:Boolean=false;
   renew_payment_details:any=false;
   checkIswebsite:Boolean=false;
 
@@ -36,6 +39,7 @@ export class PackageinfoComponent implements OnInit {
 
   ngOnInit() {
     this.websiteurl=this.appwebsiteurl;
+    this.showButton=false;
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.payment_details=false;
@@ -125,12 +129,12 @@ export class PackageinfoComponent implements OnInit {
   }
   checkwebsite()
   {
-    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
+    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.Rmodel)
     .subscribe(package_det =>{
       if(package_det.exist==1)
       {
         swal('',package_det.message,'error')
-        this.model.website='';
+        this.Rmodel.website='';
       }  
     });
   }
@@ -138,6 +142,7 @@ export class PackageinfoComponent implements OnInit {
   { 
     this.payment_data.website = this.model.website;
     this.details_array.push(this.payment_data);
+    $('.preloader').show();
      this.CommonService.insertdata(this.packageActivateApiUrl,this.details_array)
     .subscribe(payment_status =>{ 
       if(payment_status.status=='success')
@@ -151,19 +156,24 @@ export class PackageinfoComponent implements OnInit {
               .subscribe(resultdata =>{   
                 this.packagelist=resultdata.result; 
               });
+              $('.preloader').hide();
+              this.showButton=true;
             }
       else if(payment_status.status=='user_error'){
         swal('','Not a valid user or invalid user data','error');        
         //this.payment_data='';
         //this.model='';
+        $('.preloader').hide();
       }
       else if(payment_status.status=='fail'){
         swal('','user has less amount on his own','error');
+        $('.preloader').hide();
        // this.payment_data=''; 
         //this.model='';
       }
       else{
         swal('','Error while on activate package','error');
+        $('.preloader').hide();
        // this.payment_data=''; 
         //this.model='';
       }
@@ -240,6 +250,22 @@ export class PackageinfoComponent implements OnInit {
    this.CommonService.updatedata(this.DeletepackageRestApiUrl,this.deleteDetails)
         .subscribe(resultdata =>{
          this.ngOnInit();
+      });
+ }
+ activateweb()
+ {
+   this.Rmodel.user_id = localStorage.getItem('currentUserID');
+     this.CommonService.updatedata(this.ReactivatepackageRestApiUrl,this.Rmodel)
+        .subscribe(resultdata =>{
+         swal('','Package Renewed successfully','success');
+        this.payment_data='';
+        this.Rmodel='';
+         $('#exampleModalExists').modal('toggle');
+          let user_id = localStorage.getItem('currentUserID');
+          this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+              .subscribe(resultdata =>{   
+                this.packagelist=resultdata.result; 
+              });
       });
  }
 }

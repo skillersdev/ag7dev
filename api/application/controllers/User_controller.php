@@ -436,6 +436,20 @@ class User_controller extends CI_Controller {
         if (isset($_FILES['file'])) 
           {
             $originalName = $_FILES['file']['name'];
+            
+            $image_info = getimagesize($_FILES["file"]["tmp_name"]);
+            $image_width = $image_info[0];
+            $image_height = $image_info[1];
+
+            // if($image_width<1900 && $image_height<900)
+            // {
+            //   $Response['status']="fail"; 
+            //   $Response['data']="Upload image size should be accurate size";
+            //    echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+            //   die();
+            // }
+
+            //echo $image_width."-------".$image_height;die;
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
             //print_r($ext);die;
             $upper_Case_ext=strtoupper($ext);
@@ -730,6 +744,32 @@ class User_controller extends CI_Controller {
         }
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
+    }
+    public function reactivatepackage()
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+
+       
+
+
+        $user_res=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$model->user_id."' ");
+
+        $user_array=$user_res->result_array();
+
+         //$current_date=date("Y-m-d");
+            $renew_date = date('Y-m-d', strtotime('+ 93 day',strtotime($user_array[0]['doj'])));
+
+            //print_r($renew_date);die;
+
+        $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,package_status,website,template,activated_date,renew_date) values ('".$model->user_id."',1,0,'".$model->website."',1,'".$user_array[0]['doj']."','".$renew_date."')");
+
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+
+
     }
   
 }

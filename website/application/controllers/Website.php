@@ -7,7 +7,8 @@ class Website extends CI_Controller {
 	public function index($websitename)
 	{
 		// $template=1;
-		
+		//$websitename=$_REQUEST['model']	;
+		//print_r($websitename); die;
 		$data=[];
 		if(isset($websitename))
 		{
