@@ -318,7 +318,7 @@ $login_url = $this->config->item('login_url');
               </div>
               <div class="modal-header">
               <h6 >Category Name : </h6><h6 class="modal-title" id="cname"></h6> <br>
-              <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br>
+              <!-- <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br> -->
                              
               </div>
               <div class="modal-body" id="mimage">   

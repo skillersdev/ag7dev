@@ -58,10 +58,12 @@ export class AppSettings{
 	/*User Api list*/
 	public static Adduser=AppSettings.API_BASE+"/adduser";
 	public static Addtemplate=AppSettings.API_BASE+"/addtemplate";	
+	public static gettemplatelistbyuser=AppSettings.API_BASE+"/gettemplatelistbyuser";	
 	public static getuserslist= AppSettings.API_BASE + "/getuserslist";	
 	public static getchatuserslist= AppSettings.API_BASE + "/getchatuserslist";	
 	public static gettemplatelist =	AppSettings.API_BASE + "/gettemplatelist";	
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
+	public static Edittemplate = AppSettings.API_BASE+"/edittemplate/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";
 	public static Updateuserprofile= AppSettings.API_BASE+"/updateuserprofile";	
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
@@ -80,7 +82,6 @@ export class AppSettings{
 	public static updateibadetails=AppSettings.API_BASE+"/updateibadetails";
 	public static getcategorybywebsite=AppSettings.API_BASE+"/checkcategorybyweb";
 	public static getMarketerslistDetail = 	AppSettings.API_BASE+"/getMarketerslist";
-	/* */
 
 	/**Earnings*/
 	public static getearningslist=AppSettings.API_BASE+"/earningslist";
@@ -101,7 +102,8 @@ export class AppSettings{
     public static getwebsitelist = AppSettings.API_BASE+"/getwebsitelist";		
     public static getPackageNotbuy= AppSettings.API_BASE+"/getpackagenotbuy/";
 	public static insertpackagevsuser= AppSettings.API_BASE+"/addpackagevsuser";
-	public static updatetemplatepackagevsuser= AppSettings.API_BASE+"/updatetemplatepackagevsuser";		
+	public static updatetemplatepackagevsuser= AppSettings.API_BASE+"/updatetemplatepackagevsuser";
+
     /**/
 
 	//User Login Api Starts here

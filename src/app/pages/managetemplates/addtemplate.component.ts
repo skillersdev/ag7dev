@@ -27,12 +27,15 @@ export class AddtemplateComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   packagelist:Array<Object>;
+  websitelist:Array<Object>;
+  showbutton:boolean=true;
   alldata: any = {};
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   AddUserRestApiUrl:string = AppSettings.Adduser;
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   AddTemplateRestApiUrl:string = AppSettings.Addtemplate;
-
+ uploaduserAdvApi:string=AppSettings.uploadAdvfile;
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -50,6 +53,14 @@ export class AddtemplateComponent implements OnInit {
             } 
             console.log(this.packagelist); 
         });
+
+      this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+      
+         this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        });   
   }
   
   logout(){
@@ -57,10 +68,11 @@ export class AddtemplateComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/managetemplates']);
   }
   addtemplate()
   {
+    this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.AddTemplateRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
@@ -71,17 +83,36 @@ export class AddtemplateComponent implements OnInit {
         this.router.navigate(['/managetemplates']); 
     });
   }
-  checkUserexist(event:any)
-  {
-    //console.log(event.target.value);
-    this.model.username=event.target.value;
-    this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model)
-    .subscribe(package_det =>{
-      if(package_det.exist==1)
-      {
-        swal('',package_det.message,'error')
-      }  
-    });
+  // checkUserexist(event:any)
+  // {
+  //   //console.log(event.target.value);
+  //   this.model.username=event.target.value;
+  //   this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model)
+  //   .subscribe(package_det =>{
+  //     if(package_det.exist==1)
+  //     {
+  //       swal('',package_det.message,'error')
+  //     }  
+  //   });
+  // }
+   fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.showbutton=false;
+    $('.preloader').show();
+    this.CommonService.uploadFile(this.uploaduserAdvApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.slider_image = response.data;
+        $('.preloader').hide();
+        this.showbutton=true;
+       }
+        else{
+          swal('',response.data,'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
   }
 
 }

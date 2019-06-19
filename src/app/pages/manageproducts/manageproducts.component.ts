@@ -36,7 +36,6 @@ export class ManageproductsComponent implements OnInit {
             });
              
             this.productmodel.weblist = this.websitelist;
-
             this.model.usergroup=localStorage.getItem('currentUsergroup');
               if(this.model.usergroup==2)
               {
@@ -46,17 +45,16 @@ export class ManageproductsComponent implements OnInit {
                    if(resultdata.result!=""){ 
                      this.product_det=resultdata.result;
                      this.categoryDet=resultdata.category_name;
-                     this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+                     //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                   }
                 });
               }
               else{
-                console.log("eeeeeeeeee");
                 this.CommonService.getdata(this.getproductlistRestApiUrl)
                 .subscribe(det =>{
                     if(det.result!=""){ 
                       this.product_det=det.result;
-                      this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+                      //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                     }
                 });   
               }
@@ -106,10 +104,11 @@ export class ManageproductsComponent implements OnInit {
  {
    this.CommonService.deletedata(this.DeleteproductRestApiUrl,idx)
         .subscribe(resultdata =>{
-         this.CommonService.getdata(this.getproductlistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!=""){ this.product_det=det.result;}
-        });
+        //  this.CommonService.getdata(this.getproductlistRestApiUrl)
+        // .subscribe(det =>{
+        //     if(det.result!=""){ this.product_det=det.result;}
+        // });
+        this.ngOnInit();
       });
  }
 

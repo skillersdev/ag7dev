@@ -97,12 +97,13 @@ export class ProfileComponent implements OnInit {
    }
    fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
-    
+    $('.preloader').show();
     this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
     .subscribe( (response) => {
        if(response.status=='success')
        {
         this.model.image_url = response.data;
+        $('.preloader').hide();
        }
         else{
           swal('',"Error while on upload photo",'Oops!');

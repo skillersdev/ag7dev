@@ -153,8 +153,10 @@ export class DashboardComponent implements OnInit {
     this.transferdata.transfer_to=this.model.username;
     this.transferdata.transfer_from=localStorage.getItem('currentUser');
     this.transferdata.amt=this.model.share_amt;
+    $('.preloader').show();
     this.CommonService.insertdata(this.inserttrasnfeprocessRestApiUrl,this.transferdata)
-    .subscribe(package_det =>{       
+    .subscribe(package_det =>{
+    $('.preloader').hide();       
          swal(
           package_det.status,
           package_det.message,

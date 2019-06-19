@@ -30,6 +30,7 @@ export class ManagetemplateComponent implements OnInit {
   alldata: any = {};
   userlist:Array<Object>;
   gettemplatelistRestApiUrl:string=AppSettings.gettemplatelist;
+  gettemplistbyUserRestApiUrl:string=AppSettings.gettemplatelistbyuser;
   DeleteuserRestApiUrl:string = AppSettings.deleteuser; 
   constructor(
     private loginService: LoginService,
@@ -43,15 +44,28 @@ export class ManagetemplateComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
-    this.CommonService.getdata(this.gettemplatelistRestApiUrl)
-    .subscribe(userdet =>{
-        if(userdet)
-        { 
-          this.userlist= userdet;
-        }
-        console.log(this.userlist); 
-         
-    });
+    
+    let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.model.usergroup==2)
+    { 
+      this.CommonService.editdata(this.gettemplistbyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.userlist=resultdata.result; 
+         // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+        });
+    
+      }
+      else{
+         this.CommonService.getdata(this.gettemplatelistRestApiUrl)
+          .subscribe(userdet =>{
+              if(userdet)
+              { 
+                this.userlist= userdet;
+              }
+          });
+      }
   }
   
   logout(){
@@ -64,7 +78,7 @@ export class ManagetemplateComponent implements OnInit {
   }
   edituser(id:any)
   {
-    this.router.navigate(['/edituser', id]);
+    this.router.navigate(['/edittemplate', id]);
   }
   deleteuser(id:any)
  {

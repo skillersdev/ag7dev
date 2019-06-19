@@ -287,7 +287,7 @@ $login_url = $this->config->item('login_url');
 						<div class="modal-header">
 						<h4 class="modal-title" id="mtitle"></h4> 
 						<h5 >Category Name : </h5><h5 class="modal-title" id="cname"></h5>
-						<h5 >Sub Category : </h5><h5 class="modal-title" id="scname"></h5>
+						<!-- <h5 >Sub Category : </h5><h5 class="modal-title" id="scname"></h5> -->
 							<button type="button" class="close" data-dismiss="modal">&times;</button>               
 						</div>
 						<div class="modal-body" id="mimage">   

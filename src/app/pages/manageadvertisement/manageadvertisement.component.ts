@@ -32,7 +32,7 @@ export class ManageadvertisementComponent implements OnInit {
       this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.advertisementlist=resultdata.result; 
-          this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+         // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
         });
   	
       }
@@ -42,7 +42,7 @@ export class ManageadvertisementComponent implements OnInit {
             if(det.result!="")
             { 
               this.advertisementlist=det.result;
-              this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+             // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
             } 
              
         });
@@ -106,31 +106,33 @@ export class ManageadvertisementComponent implements OnInit {
           if(resultdata!="")
           { 
             // this.advertisementlist=[];
-            let user_id = localStorage.getItem('currentUserID');
-            this.model.usergroup=localStorage.getItem('currentUsergroup');
+            swal('Deleted!','Data has been deleted.','success');
+            this.ngOnInit();
+            // let user_id = localStorage.getItem('currentUserID');
+            // this.model.usergroup=localStorage.getItem('currentUsergroup');
            
-            if(this.model.usergroup=='2')
-            {   
+            // if(this.model.usergroup=='2')
+            // {   
              
-              this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
-               .subscribe(resultdata =>{   
-                 this.advertisementlist=resultdata.result; 
-                 this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
-                  swal('Deleted!','Data has been deleted.','success');
-               });
-            }
-            else{
+            //   this.CommonService.editdata(this.getadlistbyUserRestApiUrl,user_id)
+            //    .subscribe(resultdata =>{   
+            //      this.advertisementlist=resultdata.result; 
+            //      this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+            //       swal('Deleted!','Data has been deleted.','success');
+            //    });
+            // }
+            // else{
               
-              this.CommonService.getdata(this.getadlistRestApiUrl)
-              .subscribe(det =>{
-                  if(det.result!="")
-                  { 
-                    this.advertisementlist=det.result;
-                    this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
-                  } 
+            //   this.CommonService.getdata(this.getadlistRestApiUrl)
+            //   .subscribe(det =>{
+            //       if(det.result!="")
+            //       { 
+            //         this.advertisementlist=det.result;
+            //         this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+            //       } 
                   
-              });
-            }
+            //   });
+            // }
 
            
           } 

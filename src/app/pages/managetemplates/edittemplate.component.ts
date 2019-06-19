@@ -24,10 +24,12 @@ export class EdittemplateComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
-  FetchuserRestApiUrl: string = AppSettings.Edituser; 
+  FetchtemplateRestApiUrl: string = AppSettings.Edittemplate; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
+  getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   model: any = {};
+  image_url = AppSettings.IMAGE_BASE;
    select: any;
   packagelist:Array<Object>;
   alldata: any = {};
@@ -50,6 +52,15 @@ export class EdittemplateComponent implements OnInit {
        this.stage_of_packages=[]; 
        this.stage_of_packages_prev=[];
 
+       this.CommonService.getdata(this.getpackagelistRestApiUrl)
+        .subscribe(packagedet =>{
+            if(packagedet.result!="")
+            { 
+              this.packagelist= packagedet.result;
+            } 
+            console.log(this.packagelist); 
+        });
+
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.edituser(this.id);
@@ -66,10 +77,10 @@ export class EdittemplateComponent implements OnInit {
   edituser(id:any)
   {
     
-    this.CommonService.editdata(this.FetchuserRestApiUrl,id)
+    this.CommonService.editdata(this.FetchtemplateRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result;
-          
+          console.log(this.model);
         });
   }
   updateuser()

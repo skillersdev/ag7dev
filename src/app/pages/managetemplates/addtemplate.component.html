@@ -22,69 +22,42 @@
                         <form class="" #registerForm="ngForm">
                             <div class="row clearfix">
                                 <div class="col-md-6">
-                                    <p><b>Template Name</b><span class="text-danger">*</span></p>
+                                    <p><b>Select Website</b></p>
                                     <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="template_name" placeholder="Enter Template Name" required [(ngModel)]="model.template_name" #template_name="ngModel">
-                                        </div>
-                                        <span [hidden]="template_name.valid || template_name.pristine" class="text-danger">Template Name is required</span>
+                                       <div class="form-line">
+                                            <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="url" required>
+                                                <option [ngValue]="select">select website</option>    
+                                                <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                            </select>
+                                            <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                            </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <p><b>Slider Text</b><span class="text-danger">*</span></p>
-                                    <span class="text-danger">By adding comma separator text will be vary of slider's text</span>
+                                <div class="col-md-4">
+                                   <p><b>Upload Image</b></p>
                                     <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="slider_text" placeholder="Enter Slider Name" [(ngModel)]="model.slider_text" #slider_text="ngModel" required>
-                                        </div>
-                                        <span [hidden]="slider_text.valid || slider_text.pristine" class="text-danger">Slider Text is required</span>
+                                       <div class="form-line">
+                                            <input type="file" name="adimage" (change)=fileEvent($event) required>    
+                                        </div> 
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <p><b>About title</b><span class="text-danger">*</span></p>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="about_title" placeholder="Enter About title" required [(ngModel)]="model.about_title" #about_title="ngModel">
+                                <div class="col-md-2">
+                                 <div class="preloader pl-size-xs" style="display:none;">
+                                    <div class="spinner-layer pl-red-grey">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
                                         </div>
-                                        <span [hidden]="about_title.valid || about_title.pristine" class="text-danger">About title is required</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><b>Product title</b><span class="text-danger">*</span></p>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="product_title" placeholder="Enter Product Title" [(ngModel)]="model.product_title" #product_title="ngModel" required>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
                                         </div>
-                                        <span [hidden]="product_title.valid || product_title.pristine" class="text-danger">Product Title is required</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <p><b>Service title</b><span class="text-danger">*</span></p>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="services_title" placeholder="Enter Service title" required [(ngModel)]="model.services_title" #services_title="ngModel">
-                                        </div>
-                                        <span [hidden]="services_title.valid || services_title.pristine" class="text-danger">Service title is required</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><b>Contact title</b><span class="text-danger">*</span></p>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <input type="text" class="form-control" name="contact_title" placeholder="Enter Contact Title" [(ngModel)]="model.contact_title" #contact_title="ngModel" required>
-                                        </div>
-                                        <span [hidden]="contact_title.valid || contact_title.pristine" class="text-danger">Contact Title is required</span>
-                                    </div>
-                                </div>
                             </div>
+                            
                         </form>
-                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="submit" [disabled]="!registerForm.form.valid || !showbutton" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
-
                     </div>
                 </div>
             </div>

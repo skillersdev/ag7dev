@@ -301,7 +301,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>Share Balance to Marketer</h2>
-                            <span>(to share the balance. you should have more than RM 50)</span>
+                            <span>(to share the balance, you should have more than RV 1)</span>
                             
                            
                             
@@ -338,6 +338,16 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount()" class="btn btn-success">Transfer</button>
+                                             <div class="preloader pl-size-xs" style="display:none;">
+                                                    <div class="spinner-layer pl-red-grey">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                        <div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                             
 

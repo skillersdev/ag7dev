@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==1" class="active">
-                    <a [routerLink]="['/admindashboard']">
+                    <a [routerLink]="['/admindashboard']"> 
                         <i class="material-icons col-red">home</i>
                         <span>Dashboard</span>
                     </a>
@@ -126,12 +126,12 @@
                         <span *ngIf="model.usergroup==2">My Contacts</span>
                     </a>
                 </li>
-                 <!-- <li  *ngIf="model.usergroup==1">
+                 <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managetemplates']">
                         <i class="material-icons col-indigo">contacts</i>
                         <span>Manage Templates</span>                        
                     </a>
-                </li> -->
+                </li>
                 <li *ngIf="model.usergroup==2">
                     <a href="javascript:void(0);" [routerLink]="['/profile']">
                         <i class="material-icons col-deep-orange">person</i>
@@ -211,9 +211,7 @@
                         <li>
                             <a href="pages/ui/tooltips-popovers.html">Tooltips & Popovers</a>
                         </li>
-                        <li>
-                            <a href="pages/ui/waves.html">Waves</a>
-                        </li>
+                       
                     </ul>
                 </li>
                 <li>

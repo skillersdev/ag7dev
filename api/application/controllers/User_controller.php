@@ -41,7 +41,7 @@ class User_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        $this->db->insert('website_page_details', $model);        
+        $this->db->insert('template_settings', $model);        
 
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -161,7 +161,7 @@ class User_controller extends CI_Controller {
   public function get_template_list()
   {
      
-       $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('website_page_details'); 
+       $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('template_settings'); 
        $result=[];
        $response=[];
         if(count($res->result_array())>0)
@@ -169,13 +169,36 @@ class User_controller extends CI_Controller {
             
             foreach($res->result_array() as $key=>$value)
               { 
-                $result[]=array('id'=>$value['id'],'template_name'=>$value['template_name'],'created_date'=>$value['created_date']);
+                $res11=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$value['created_by']."' ");
+                $in_array11=$res11->result_array();
+               // print_r($in_array11);die;
+                //$result=$in_array11[0];
+                $result[]=array('id'=>$value['id'],'template_name'=>$value['website'],'created_date'=>$value['created_date'],'created_by'=>$in_array11[0]['username']);
               }
         }
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
   }
-  
+  public function get_templatelistby_user()
+  {
+    $model = json_decode($this->input->post('model',FALSE));
+    $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->user_id])->get('template_settings'); 
+       $result=[];
+       $response=[];
+        if(count($res->result_array())>0)
+        {
+            
+            foreach($res->result_array() as $key=>$value)
+              { 
+                $res11=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$value['created_by']."'");
+                $in_array11=$res11->result_array();
+
+                 $result[]=array('id'=>$value['id'],'template_name'=>$value['website'],'created_date'=>$value['created_date'],'created_by'=>$in_array11[0]);
+              }
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+  }
   public function check_user_exist(){
     $model = json_decode($this->input->post('model',FALSE));
     //print_r($model->username);die;   
@@ -256,6 +279,28 @@ class User_controller extends CI_Controller {
         $result=array();
 
             $res=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$id."'");
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+                $result=$in_array[0];
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Package record found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    public function edittemplate($id)
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+            $res=$this->db->query("select * from ".$this->db->dbprefix('template_settings')." where id='".$id."'");
 
             if($res->num_rows()>0){
                 $in_array=$res->result_array();
