@@ -642,7 +642,9 @@ class Package_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
-        $user_res=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where website LIKE '%".$model->website."%'");
+        // "select * from ".$this->db->dbprefix('affiliateuser')." where website LIKE '%".$model->website."%'"
+
+        $user_res=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where website='".$model->website."' ");
 
         $user_array=$user_res->result_array();
 
@@ -653,7 +655,7 @@ class Package_controller extends CI_Controller {
             $this->db->update($this->db->dbprefix('affiliateuser'),$data);
         }
 
-         $category_res=$this->db->query("select * from ".$this->db->dbprefix('category_master')." where url LIKE '%".$model->website."%'");
+         $category_res=$this->db->query("select * from ".$this->db->dbprefix('category_master')." where url='".$model->website."' ");
 
         $category_res_arr=$category_res->result_array();
 
@@ -663,7 +665,7 @@ class Package_controller extends CI_Controller {
          $category_delete=$this->db->query("DELETE FROM category_master where id='".$value['id']."' ");            
         }
 
-         $prod_res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website LIKE '%".$model->website."%'");
+         $prod_res=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where website='".$model->website."' ");
 
         $prod_res_arr=$prod_res->result_array();
 
@@ -673,7 +675,7 @@ class Package_controller extends CI_Controller {
          $prod_del=$this->db->query("DELETE FROM product_master where id='".$value['id']."' ");            
         }
 
-        $serv_res=$this->db->query("select * from ".$this->db->dbprefix('services')." where website LIKE '%".$model->website."%'");
+        $serv_res=$this->db->query("select * from ".$this->db->dbprefix('services')." where website='".$model->website."' ");
 
         $serv_res_arr=$serv_res->result_array();
 
@@ -683,7 +685,7 @@ class Package_controller extends CI_Controller {
          $serv_del=$this->db->query("DELETE FROM services where id='".$value['id']."' ");            
         }
 
-        $sub_cat_res=$this->db->query("select * from ".$this->db->dbprefix('sub_category_master')." where url LIKE '%".$model->website."%'");
+        $sub_cat_res=$this->db->query("select * from ".$this->db->dbprefix('sub_category_master')." where url='".$model->website."' ");
 
         $sub_cat_res_arr=$sub_cat_res->result_array();
 
@@ -693,7 +695,7 @@ class Package_controller extends CI_Controller {
          $sub_cat_del=$this->db->query("DELETE FROM sub_category_master where id='".$value['id']."' ");            
         }
 
-        $adv_res=$this->db->query("select * from ".$this->db->dbprefix('user_advertisements')." where url LIKE '%".$model->website."%'");
+        $adv_res=$this->db->query("select * from ".$this->db->dbprefix('user_advertisements')." where url='".$model->website."' ");
 
         $adv_res_arr=$adv_res->result_array();
 
@@ -703,7 +705,7 @@ class Package_controller extends CI_Controller {
          $adv_del=$this->db->query("DELETE FROM user_advertisements where id='".$value['id']."' ");            
         }
 
-        $user_vs_pck_res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website LIKE '%".$model->website."%'");
+        $user_vs_pck_res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website='".$model->website."' ");
 
         $user_vs_pck_res_arr=$user_vs_pck_res->result_array();
 
