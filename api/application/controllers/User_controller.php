@@ -136,7 +136,7 @@ class User_controller extends CI_Controller {
      $model = json_decode($this->input->post('model',FALSE));    
         $username = trim($model->currentUsername);
         if(isset($model->currentUsername)){
-            $res=$this->db->select("*")->like('referedby',$username)->where(['is_deleted'=>'0'])->get('affiliateuser');    
+            $res=$this->db->select("*")->where(['is_deleted'=>'0','referedby'=>$username])->get('affiliateuser');    
         }
        
        $response=[];

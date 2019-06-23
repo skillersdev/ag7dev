@@ -15,7 +15,6 @@ export class TopnavComponent implements OnInit {
   checkpackageisactivated:string = AppSettings.packageisactivated;
   constructor(private CommonService: CommonService,private router: Router,private loginService: LoginService) {
 
-  
    }
 
   ngOnInit() {
