@@ -27,6 +27,8 @@ $config['base_url'] = '';
 
 $config['login_url'] = 'http://localhost:4200/login';
 
+$config['base_path'] = 'http://localhost/ag7dev.git/trunk/api/';
+
 $config['path_url'] = 'http://localhost/ag7dev.git/trunk/api/';
 
 /*

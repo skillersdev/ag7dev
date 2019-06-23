@@ -65,6 +65,7 @@ export class AppSettings{
 	public static Edituser = AppSettings.API_BASE+"/edituser/";
 	public static Edittemplate = AppSettings.API_BASE+"/edittemplate/";
 	public static Updateuser= AppSettings.API_BASE+"/updateuser";
+	public static Updatetemp= AppSettings.API_BASE+"/updatetemp";
 	public static Updateuserprofile= AppSettings.API_BASE+"/updateuserprofile";	
 	public static deleteuser=AppSettings.API_BASE+"/deleteuser/";
 	public static checkuserdetail=AppSettings.API_BASE+"/checkuserexist";
@@ -73,6 +74,7 @@ export class AppSettings{
 	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";
 	public static uploadprofileimage=AppSettings.API_BASE+"/uploadimage";
 	public static uploadAdvfile=AppSettings.API_BASE+"/uploadAdvfile";
+	public static uploadTempfile=AppSettings.API_BASE+"/uploadtempfile";
 	public static Adduseradvertisement=AppSettings.API_BASE+"/addadvertisment";
 	public static getadDetail=AppSettings.API_BASE+"/getadvertisment";
 	public static getadDetailbyUser=AppSettings.API_BASE+"/getadvertismentbyuser/";

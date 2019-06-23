@@ -3,6 +3,7 @@
 <?php
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
+$image_path = $this->config->item('base_path');
  ?>
 
 <head>
@@ -146,14 +147,19 @@ $login_url = $this->config->item('login_url');
 
             <!-- Carousel inner  slider part-->
             <div class="carousel-inner">
-                <div class="item active">
-                    <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-bg-1.jpg" alt="slider">
+                <?php 
+                 for($j=0;$j<count($slider_image);$j++)
+                {
+                ?>
+                <div class="item <?php if($j==0){echo "active";} ?>">
+                    <img class="img-responsive" src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" alt="slider">
                 </div>
+            <?php } ?>
                 <!--/ Carousel item end -->
                 
-                <div class="item">
+              <!--   <div class="item">
                     <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-back.png" alt="slider">
-                </div>
+                </div> -->
                 <!--/ Carousel item end -->
                 
               

@@ -24,8 +24,11 @@ class Website extends CI_Controller {
 			/*Product list*/
 			$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('product_master'); 
 			$product_det_result =$product_det->result_array();
+
+			$slider_image_res=$this->db->select("slider_image")->where(['website'=>$websitename])->get('template_settings');
+			$image_array=$slider_image_res->result_array();
 			
-			//print_r($product_det_result); exit;
+			// echo "<pre>";print_r($image_array); exit;
 			$result=[];
 			if(count($product_det_result)>0)
 			{	
@@ -107,6 +110,7 @@ class Website extends CI_Controller {
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
 			$data['website']=$val[0]['website'];
+			$data['slider_image']=$image_array;
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');

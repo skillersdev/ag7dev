@@ -25,13 +25,17 @@ export class EdittemplateComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   FetchtemplateRestApiUrl: string = AppSettings.Edittemplate; 
-  updateuserRestApiUrl: string = AppSettings.Updateuser; 
+  updateuserRestApiUrl: string = AppSettings.Updatetemp; 
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
+  uploaduserAdvApi:string=AppSettings.uploadTempfile;
+  showbutton:boolean=true;
   model: any = {};
   image_url = AppSettings.IMAGE_BASE;
    select: any;
   packagelist:Array<Object>;
+  websitelist:Array<Object>;
   alldata: any = {};
   private sub: any;
   id:number;
@@ -51,6 +55,14 @@ export class EdittemplateComponent implements OnInit {
       this.loginService.viewsActivate();
        this.stage_of_packages=[]; 
        this.stage_of_packages_prev=[];
+
+        this.model.usertype=localStorage.getItem('currentUsergroup');
+        this.model.userid=localStorage.getItem('currentUserID');
+      
+         this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.model)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        });  
 
        this.CommonService.getdata(this.getpackagelistRestApiUrl)
         .subscribe(packagedet =>{
@@ -72,7 +84,7 @@ export class EdittemplateComponent implements OnInit {
     this.loginService.logout();
   }
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/managetemplates']);
   }
   edituser(id:any)
   {
@@ -83,7 +95,7 @@ export class EdittemplateComponent implements OnInit {
           console.log(this.model);
         });
   }
-  updateuser()
+  updatetemp()
   {
      this.CommonService.updatedata(this.updateuserRestApiUrl,this.model)
     .subscribe(package_det =>{       
@@ -92,7 +104,7 @@ export class EdittemplateComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-         this.router.navigate(['/manageuser']);
+         this.router.navigate(['/managetemplates']);
         
     });
   }
@@ -108,5 +120,26 @@ export class EdittemplateComponent implements OnInit {
         swal('',package_det.message,'error')
       }  
     });
+  }
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.showbutton=false;
+    $('.preloader').show();
+    this.CommonService.uploadFile(this.uploaduserAdvApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.slider_image = response.data;
+        $('.preloader').hide();
+        this.showbutton=true;
+       }
+        else{
+          $('.preloader').hide();
+          this.showbutton=true;
+          swal('',response.data,'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
   }
 }

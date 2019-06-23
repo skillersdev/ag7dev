@@ -37,7 +37,7 @@
                                                 <p><b>Preview</b></p>
                                                 <div class="">
                                                    <div class="form-line">
-                                                      <img src="{{image_url}}{{model.uploads}}" style="width:100%;">     
+                                                      <img src="{{image_url}}{{model.slider_image}}" style="width:40%;">     
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,10 +49,22 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <div class="col-md-2">
+                                 <div class="preloader pl-size-xs" style="display:none;">
+                                    <div class="spinner-layer pl-red-grey">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                             
                         </form>
-                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatetemp()">Update Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
                     </div>
                 </div>

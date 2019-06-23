@@ -35,7 +35,7 @@ export class AddtemplateComponent implements OnInit {
   AddUserRestApiUrl:string = AppSettings.Adduser;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   AddTemplateRestApiUrl:string = AppSettings.Addtemplate;
- uploaduserAdvApi:string=AppSettings.uploadAdvfile;
+ uploaduserAdvApi:string=AppSettings.uploadTempfile;
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
