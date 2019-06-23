@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { AppSettings } from '../appSettings';
+import { LoginService } from '../../services/login.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -12,13 +13,14 @@ declare var $ :any;
 })
 export class TopnavComponent implements OnInit {
   checkpackageisactivated:string = AppSettings.packageisactivated;
-  constructor(private CommonService: CommonService,private router: Router) {
+  constructor(private CommonService: CommonService,private router: Router,private loginService: LoginService) {
 
   
    }
 
   ngOnInit() {
-
+    this.loginService.localStorageData();
+     this.loginService.viewsActivate();
      let id=localStorage.getItem('currentUserID');
      let user_type=localStorage.getItem('currentUsergroup');
      if(user_type!='1')

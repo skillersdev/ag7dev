@@ -19,7 +19,8 @@ model: any = {};
   	private router: Router,private http:Http) { }
 
   ngOnInit() {
-
+    this.loginService.localStorageData();
+    this.loginService.viewsActivate();
      let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     //this.loadScript(translate_url);
 
