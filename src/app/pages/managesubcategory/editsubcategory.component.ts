@@ -30,10 +30,12 @@ export class EditsubcategoryComponent implements OnInit {
   alldata: any = {};
   select: any;
   id:number;
+  localdata:any={};
   categorylist:Array<Object>;
   websitelist:Array<Object>;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   //insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
+  getcategorybyUserRestApiUrl:string = AppSettings.categorybyid;
   FetchsubcategoryRestApiUrl: string = AppSettings.editsubcategory; 
   updatesubcategoryRestApiUrl: string = AppSettings.updatesubcategory; 
 
@@ -46,7 +48,19 @@ export class EditsubcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
-      this.CommonService.getdata(this.getcategorylistRestApiUrl)
+        let user_id = localStorage.getItem('currentUserID');
+     this.localdata.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.localdata.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.categorylist=resultdata.result; 
+        });
+    
+      }
+      else{
+        this.CommonService.getdata(this.getcategorylistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -54,6 +68,7 @@ export class EditsubcategoryComponent implements OnInit {
             } 
              
         });
+      } 
          this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       

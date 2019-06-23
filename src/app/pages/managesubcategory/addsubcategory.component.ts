@@ -29,10 +29,12 @@ export class AddsubcategoryComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   select: any;
+  localdata:any={};
   websitelist:Array<Object>;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
   insertsubcategoryRestApiUrl:string = AppSettings.Addsubcategory;
-  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
+  getcategorybyUserRestApiUrl:string = AppSettings.categorybyid; 
   getcategorybywebRestApiUrl:string = AppSettings.getcategorybywebsite; 
   categorylist:Array<Object>;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
@@ -43,14 +45,27 @@ export class AddsubcategoryComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
-      // this.CommonService.getdata(this.getcategorylistRestApiUrl)
-      //   .subscribe(det =>{
-      //       if(det.result!="")
-      //       { 
-      //         this.categorylist=det.result;
-      //       } 
+      let user_id = localStorage.getItem('currentUserID');
+     this.localdata.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.localdata.usergroup==2)
+    {
+
+      this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+        .subscribe(resultdata =>{   
+          this.categorylist=resultdata.result; 
+        });
+    
+      }
+      else{
+        this.CommonService.getdata(this.getcategorylistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.categorylist=det.result;
+            } 
              
-      //   });
+        });
+      } 
 
         this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
