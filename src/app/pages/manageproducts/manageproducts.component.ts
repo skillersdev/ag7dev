@@ -44,6 +44,7 @@ export class ManageproductsComponent implements OnInit {
                   .subscribe(resultdata =>{   
                    if(resultdata.result!=""){ 
                      this.product_det=resultdata.result;
+                     
                      this.categoryDet=resultdata.category_name;
                      //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                   }
@@ -58,8 +59,7 @@ export class ManageproductsComponent implements OnInit {
                     }
                 });   
               }
-                    console.log(this.productmodel);
-
+              this.loginService.viewCommontdataTable('dataTable','productinfo_table');
       });
       
        
