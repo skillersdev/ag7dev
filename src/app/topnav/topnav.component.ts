@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../services/common.service';
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { AppSettings } from '../appSettings';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../services/login.service';
 
 declare var jquery:any;
 declare var $ :any;
