@@ -146,6 +146,7 @@ export class AppSettings{
 	public static groupimage=AppSettings.API_BASE+"/groupimage";
 	public static updategroup=AppSettings.API_BASE+"/updategroup";
 	public static deletegroup=AppSettings.API_BASE+"/deletegroup";
+	public static exitgroup=AppSettings.API_BASE+"/exitgroup";
 	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";

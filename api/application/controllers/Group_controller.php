@@ -33,7 +33,7 @@ class Group_controller extends CI_Controller {
          // }
         
       }
-      // $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$g_id."','".$model->groupimagename."')");
+      $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$g_id."','".$model->groupimagename."')");
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
@@ -60,7 +60,7 @@ class Group_controller extends CI_Controller {
          // }
         
       }
-     // $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$model->g_id."','".$model->groupimagename."')");
+     $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$model->g_id."','".$model->groupimagename."')");
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
@@ -73,6 +73,20 @@ class Group_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set is_deleted=1 where id='".$model->g_id."'");
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   public function exitgroup()
+   {
+     $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Group exit successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die;
+        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted=1 where group_id='".$model->g_id."' and user_id='".$model->currentUserID."'");
         
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();

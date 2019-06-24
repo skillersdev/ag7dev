@@ -178,6 +178,7 @@ $route['deletepackagedetails'] = 'Package_controller/deletepackagedetails';
 $route['groupimage']= 'Group_controller/groupimage';
 $route['updategroup']= 'Group_controller/updategroup';
 $route['deletegroup']= 'Group_controller/deletegroup';
+$route['exitgroup']= 'Group_controller/exitgroup';
 $route['msggroupimage']= 'Group_controller/msggroupimage'; 
 ?>
 

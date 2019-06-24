@@ -102,10 +102,10 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id='';
       clearInterval(this.interval);
     } else {
-      this.generateMessageArea(this.Newgroupmodel.g_id);
+    this.generateMessageArea(this.Newgroupmodel.g_id);
     }
    
-   
+     // this.generateMessageArea(this.Newgroupmodel.g_id);
     }, 40000);
   }  else {
     clearInterval(this.interval);
@@ -195,6 +195,20 @@ export class ChatComponent implements OnInit {
     this.ngOnInit();
       // this.router.navigate(['./chat']); 
         swal('','Group Deleted Successfully','success');  
+        
+    });
+  }
+
+  exitgroup()
+  {
+    this.CommonService.insertdata(AppSettings.exitgroup,this.Newgroupmodel)
+    .subscribe(package_det =>{    
+    this.group_name=0;
+    this.Newgroupmodel.g_id=''; 
+    this.getgrouplists();
+    this.ngOnInit();
+      // this.router.navigate(['./chat']); 
+        swal('','Exit Group Successfully','success');  
         
     });
   }
