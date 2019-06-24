@@ -313,18 +313,18 @@
                                   </button>
                                     </div> 
                                     <div class="modal-body">
-                                        <form class="" #addpackage="ngForm">
+                                        <form class="" #addpackaged="ngForm">
                                             <div class="">
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">                            
                                                     <div class="form-line">
-                                                        <input type="text" id="Rwebsite" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="Rmodel.website" (blur)="checkwebsite()" #Rwebsite="ngModel" >
+                                                        <input type="text" id="Rwebsite" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="Rmodel.website" (blur)="checkwebsite()" #Rwebsite="ngModel" required="">
                                                     </div>
                                                     <span [hidden]="Rwebsite.valid || Rwebsite.pristine" class="text-danger">website is required</span>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" (click)="activateweb()">Activate website
+                                                <button type="button" class="btn btn-primary" (click)="activateweb()" [disabled]="!addpackaged.form.valid">Activate website
                                                 </button>                                               
                                             </div>
                                         </form>

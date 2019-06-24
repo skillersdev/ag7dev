@@ -171,11 +171,18 @@ $login_url = $this->config->item('login_url');
 								<h3>Welcome To <?php echo $website;?></h3>								
 						     	 <div class="message-body">
 									 <?php 
-								          $profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-								          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
+								           if($contact_details[0]['website_image']!='')
+									         {
+									            $image = $contact_details[0]['website_image'];
+									         }
+									         else{
+									          $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+									         }
+								          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
 								         ?>
 								          <?php 
-								              $about_us =($about_me!='')?$about_me:'Welcome to mysite';
+								              $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_website']:'Welcome to mysite';
+
 								            ?>
 						       		<p><?php echo $about_us; ?> </p>
 						     	 </div>

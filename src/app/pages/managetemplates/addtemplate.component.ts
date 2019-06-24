@@ -29,6 +29,7 @@ export class AddtemplateComponent implements OnInit {
   packagelist:Array<Object>;
   websitelist:Array<Object>;
   showbutton:boolean=true;
+  select:any={};
   alldata: any = {};
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 

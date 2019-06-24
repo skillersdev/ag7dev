@@ -32,6 +32,7 @@ export class AddcontactComponent implements OnInit {
 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
   insertcontactsRestApiUrl: string = AppSettings.Addcontacts; 
+  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -81,4 +82,22 @@ export class AddcontactComponent implements OnInit {
         this.router.navigate(['/managecontacts']); 
     });
   }
+
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    $('.preloader').show();
+    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.website_image = response.data;
+        $('.preloader').hide();
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+   }
 }

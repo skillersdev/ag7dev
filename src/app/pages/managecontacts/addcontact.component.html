@@ -46,6 +46,39 @@
                                                 </div>
                                             </div>                                           
                                         </div>
+
+                                         <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>web Profile</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                     <input name="file" type="file" (change)=fileEvent($event)/>
+                                                    </div>
+                                                     <div class="preloader pl-size-xs" style="display:none;">
+                                                        <div class="spinner-layer pl-red-grey">
+                                                            <div class="circle-clipper left">
+                                                                <div class="circle"></div>
+                                                            </div>
+                                                            <div class="circle-clipper right">
+                                                                <div class="circle"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                             <div class="col-md-6">
+                                                <p><b>About Profile</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter your info" [(ngModel)]="model.about_website" #about_website="ngModel" name="contact" required>
+                                                    </div>
+                                                     <span [hidden]="about_website.valid || about_website.pristine" class="text-danger">About  is required</span>
+                                                </div>
+                                            </div>                                           
+                                        </div>
+
+
                                         <div class="row clearfix">                                            
                                                 <div class="col-md-6">
                                                     <p><b>Facebook Url</b></p>

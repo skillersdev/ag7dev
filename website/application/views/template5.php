@@ -92,7 +92,8 @@
         <header class="section-header">
           <h3>About Me</h3>
           <p><?php 
-              $about_us =($about_me!='')?$about_me:'Welcome to mysite';
+               $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_website']:'Welcome to mysite';
+
 
             ?></p>
         </header>
@@ -126,10 +127,15 @@
 
           <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
           <?php 
-          //$profile_image = ($profile_image!='')?$profile_image:'user_profile/default.png';
-          //echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$profile_image.'" alt="Profile image example"/>';
-         ?>  
-          <img src="<?php echo base_url();?>assets/template5/img/about-img.svg" class="img-fluid" alt="">
+           if($contact_details[0]['website_image']!='')
+             {
+                $image = $contact_details[0]['website_image'];
+             }
+             else{
+              $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+             }
+            echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
+           ?>           
           </div>
         </div>
 
