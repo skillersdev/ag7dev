@@ -28,6 +28,7 @@ export class ChatComponent implements OnInit {
   group_name:any;
   group_members_model:Array<Object>;
   group_msg_model:Array<Object>;
+  date_array_model:Array<Object>;
   group_det:Array<Object>;
   userdropdownList:any;
   userdropdownSettings:any={};
@@ -48,6 +49,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.groupimagename = '';
     this.group_name=0;
     this.group_msg_model=[];
+    this.date_array_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems=[]; 
     this.loginService.localStorageData();
@@ -100,11 +102,11 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id='';
       clearInterval(this.interval);
     } else {
-      this.generateMessageArea(this.Newgroupmodel.g_id);
+     // this.generateMessageArea(this.Newgroupmodel.g_id);
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 20000);
+    }, 40000);
   }  else {
     clearInterval(this.interval);
   }
@@ -155,12 +157,17 @@ export class ChatComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.group_name=1;
           this.group_dt_model = resultdata.group_details[0];
+          
           this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
           this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
           this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+          this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+          
           
           // console.log(this.group_dt_model);
           this.group_msg_model = resultdata.group_msg;
+          console.log(this.group_msg_model);
+          this.date_array_model = resultdata.date_array;
           this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
           this.group_members_model=this.Newgroupmodel.userselectedItems=resultdata.group_members; 
           $('.message-area').addClass('d-sm-flex');
@@ -174,6 +181,20 @@ export class ChatComponent implements OnInit {
       this.generateMessageArea(this.Newgroupmodel.g_id);
         this.getgrouplists();
         swal('','Group Updated Successfully','success');  
+        
+    });
+  }
+
+  deletegroup()
+  {
+    this.CommonService.insertdata(AppSettings.deletegroup,this.Newgroupmodel)
+    .subscribe(package_det =>{    
+    this.group_name=0;
+    this.Newgroupmodel.g_id=''; 
+    this.getgrouplists();
+    this.ngOnInit();
+      // this.router.navigate(['./chat']); 
+        swal('','Group Deleted Successfully','success');  
         
     });
   }

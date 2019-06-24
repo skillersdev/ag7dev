@@ -145,6 +145,7 @@ export class AppSettings{
  	public static deletePackageDetails = AppSettings.API_BASE+"/deletepackagedetails"; 
 	public static groupimage=AppSettings.API_BASE+"/groupimage";
 	public static updategroup=AppSettings.API_BASE+"/updategroup";
+	public static deletegroup=AppSettings.API_BASE+"/deletegroup";
 	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";

@@ -142,6 +142,37 @@
 			</div>
 			<!-- new group-->
 
+			<!-- The delete Modal -->
+		<div class="modal" id="deletemyModaledit">
+				<div class="modal-dialog">
+					<div class="modal-content">
+	
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Group</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>				
+	
+					<!-- Modal body -->
+					<div class="modal-body">
+						 
+						<div class="form-group m-b-0">
+							You want Delete this Group?
+						</div>
+	 
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success" (click)="deletegroup()" data-dismiss="modal">Delete</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					</div>
+	
+					</div>
+				</div>
+			</div>
+			<!-- del group-->
+
 		<div class="row h-100">
 			<div class="col-12 col-sm-5 col-md-4 d-flex flex-column" id="chat-list-area" style="position:relative;">
 				<!-- col-12 col-sm-5 col-md-4 flex-column d-none  used to hide -->
@@ -220,11 +251,12 @@
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
 						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
 					</div>
-					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto">
+					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto" *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-ellipsis-v text-white"></i></a>
 							<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
+									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
 									
 							</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
@@ -236,9 +268,10 @@
 				</div>
 
 				<!-- Messages -->
-				<div class="d-flex flex-column" id="messages" >
+				<div class="d-flex flex-column" id="messages"  >
+					<div  *ngFor="let datedata of date_array_model" >
 					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" *ngIf="group_name!=0">
-						14/06/2019
+						{{datedata}}
 					</div>
 					
 					<!-- <div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
@@ -250,13 +283,12 @@
 							<div class="body m-1 mr-2">have you seen infinity war?</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								17:23
-								
 							</div>
 						</div>
 					</div> -->
 					
 					
-					<div   *ngFor="let data of group_msg_model let i=index" [ngClass]="{
+					<div   *ngFor="let data of group_msg_model[datedata] let i=index" [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
@@ -264,33 +296,44 @@
 							<a href="javascript:void(0);"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
 						
-						<div class="small font-weight-bold text-primary">
+						<div *ngIf="group_name!=0" class="small font-weight-bold text-primary">
 							{{data.user_name}}
 						</div>
 					
-						<div *ngIf="Newgroupmodel.currentUserID==data.created_by" class="d-flex flex-row">
+						<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="d-flex flex-row">
 							
 							<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
-							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><img src="{{group_bases}}groupchat_images/{{data.chatimage}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;"></div>
+							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}"  class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
+							<video *ngIf="data.video_type==1" width="320" height="240" controls>
+							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
+							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
+							</video>
+								</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 								{{data.created_date | date}}
 								<!-- <i class="far fa-check-circle"></i> -->
 							</div>
 						</div>
 
-						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by" class="d-flex flex-row">
+						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)" class="d-flex flex-row">
 							
 								<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
 								<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'">
-								<img src="{{group_bases}}groupchat_images/{{data.chatimage}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
-							</div>
+									<a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img  *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}" class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
+									<video *ngIf="data.video_type==1" width="320" height="240" controls>
+									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
+									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
+									</video>
+								</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date}}
 									<!-- <i class="far fa-check-circle"></i> -->
 								</div>
 							</div>
 					</div>
-					
+				</div>
+					<!-- date array -->
+
 				</div>
 
 				<!-- Input -->

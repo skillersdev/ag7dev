@@ -33,6 +33,7 @@ class Group_controller extends CI_Controller {
          // }
         
       }
+      // $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$g_id."','".$model->groupimagename."')");
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
@@ -59,6 +60,20 @@ class Group_controller extends CI_Controller {
          // }
         
       }
+     // $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$model->g_id."','".$model->groupimagename."')");
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   public function deletegroup()
+   {
+     $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Group delete successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set is_deleted=1 where id='".$model->g_id."'");
+        
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
@@ -152,6 +167,10 @@ class Group_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
         // print_r($model); die;
         if($model){
+          if($model->groupmsgtxt!=''){
+            $model->groupimagename='';
+          } 
+
          $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->groupimagename."','".$model->currentUserID."','".$model->currentUser."')");
         }
       
@@ -197,8 +216,33 @@ class Group_controller extends CI_Controller {
              $response['select_group_members']=$mem_group_array1;
 
              $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."'");
+             $msg_group_array1 = array();
+             $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
-             $response['group_msg']=$msg_group_array;
+             foreach ($msg_group_array as $msg_key => $msg_value) {
+
+              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
+              if(in_array($newDate,$datearray)){
+               
+              } else{
+                 $datearray[] = $newDate;  
+              }
+               $msg_value['video_type'] = 0;
+              if($msg_value['chatimage']!=''){
+                $ext = explode(".", $msg_value['chatimage']);
+                if($ext[1]=="mp4"){
+                  $msg_value['video_type'] = 1;
+                }
+              }
+
+               $msg_group_array1[$newDate][] = $msg_value;
+               // print_r($msg_value['created_date']);
+             }
+             // $datearray = array_unique($datearray);
+              // print_r($msg_group_array1);
+              // die;
+             $response['group_msg']=$msg_group_array1;
+             $response['date_array']=$datearray;
             //  print_r($response); die;
           echo json_encode($response,JSON_UNESCAPED_SLASHES);
           die();
