@@ -205,7 +205,18 @@ $image_path = $this->config->item('base_path');
                         <h4>Contact info</h4>
                         <ul>
                             
-                            <li><strong>E-mail :</strong><?php echo $mail;?></li>
+                            <li><strong>E-mail :</strong> <?php 
+                 
+                                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+                                {
+                                  echo $contact_details[0]['email']; 
+                                }
+                                else
+                                {
+                                  echo $mail;
+                                }
+                                 
+                                ?></li>
                             <li><strong>Phone :</strong><?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,

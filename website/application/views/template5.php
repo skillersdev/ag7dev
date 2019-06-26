@@ -181,11 +181,31 @@
             <div class="row">
               <div class="col-md-5 info">
                 <i class="ion-ios-location-outline"></i>
-                <p><?php echo $address;?></p>
+                <p><?php
+                            if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+                            {
+                              echo $contact_details[0]['address']; 
+                            }
+                            else
+                            {
+                              echo $address;
+                            }
+                         ?> </p>
               </div>
               <div class="col-md-4 info">
                 <i class="ion-ios-email-outline"></i>
-                <p><?php echo $mail;?></p>
+                <p> <?php 
+                 
+                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+                {
+                  echo $contact_details[0]['email']; 
+                }
+                else
+                {
+                  echo $mail;
+                }
+                 
+                ?></p>
               </div>
               <div class="col-md-3 info">
                 <i class="ion-ios-telephone-outline"></i>

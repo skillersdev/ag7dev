@@ -155,6 +155,26 @@
                                             </div> 
                                           
                                             </div>
+                                             <div class="row clearfix">                                            
+                                                 <div class="col-md-6">
+                                                <p><b>Address</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea class="form-control" placeholder="Enter number" [(ngModel)]="model.address" #address="ngModel" name="address"></textarea>
+                                                    </div>                                                                              
+                                                </div>
+                                            </div> 
+
+                                             <div class="col-md-6">
+                                                <p><b>Mail Id</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel">
+                                                    </div>                       
+                                                </div>
+                                            </div> 
+                                          
+                                            </div> 
                                                             
                                         <button type="button" [disabled]="!addcontact.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatecontactlist()">Update Contact</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()"class="btn btn-primary m-t-15 waves-effect">Cancel</button>

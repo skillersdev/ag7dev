@@ -166,7 +166,16 @@ $image_path = $this->config->item('base_path');
 					<div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 wow fadeInLeft animated" data-wow-duration="500ms">
 						<div class="contact-address">
 							<p><i class="fa fa-pencil"></i><?php echo $website;?>
-								<span><?php echo $address;?></span></p><br>
+								<span><?php
+						                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+						                {
+						                  echo $contact_details[0]['address']; 
+						                }
+						                else
+						                {
+						                  echo $address;
+						                }
+						             ?>	</span></p><br>
 								<p><i class="fa fa-phone"></i> 
 								<?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
@@ -180,7 +189,18 @@ $image_path = $this->config->item('base_path');
 								<?php if($contact_details[0]['faxnumber']!=''){
 								echo "Fax :".$contact_details[0]['faxnumber'];
 								} ?>  </p>
-								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
+								<p><i class="fa fa-envelope"></i> <?php 
+                 
+					                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+					                {
+					                  echo $contact_details[0]['email']; 
+					                }
+					                else
+					                {
+					                  echo $mail;
+					                }
+					                 
+					                ?></p>
 						</div>
 					</div>
 					<!-- end contact address -->

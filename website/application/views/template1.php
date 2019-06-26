@@ -190,7 +190,19 @@ $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
               <h3>Address</h3>
-              <address><?php echo $address;?></address>
+              <address>
+                <?php
+                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+                {
+                  echo $contact_details[0]['address']; 
+                }
+                else
+                {
+                  echo $address;
+                }
+                 ?>
+                   
+                 </address>
             </div>
           </div>
 
@@ -218,7 +230,19 @@ $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com"><?php echo $mail;?></a></p>
+              <p><a href="mailto:info@example.com">
+                <?php 
+                 
+                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+                {
+                  echo $contact_details[0]['email']; 
+                }
+                else
+                {
+                  echo $mail;
+                }
+                 
+                ?></a></p>
             </div>
           </div>
       

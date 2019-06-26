@@ -25,7 +25,7 @@ class Contacts_controller extends CI_Controller {
                
                 $response['exist']=1;
                 $response['statuc']="error";
-                $response['message']="Selected Website hs already contact exists";
+                $response['message']="Selected Website has already contact exists";
             }                                                                                                                                                                 
             else{
               
@@ -121,7 +121,7 @@ class Contacts_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
-            $res=$this->db->query("select * from ".$this->db->dbprefix('contacts_master')." where created_by='".$id."'");
+            $res=$this->db->query("select * from ".$this->db->dbprefix('contacts_master')." where created_by='".$id."' AND is_deleted=0 ");
 
             if($res->num_rows()>0)
             {

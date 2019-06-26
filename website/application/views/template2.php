@@ -246,7 +246,18 @@ $image_path = $this->config->item('base_path');
 							<address class="contact-details">
 								<h3>My Contact</h3>						
 								<p><i class="fa fa-pencil"></i><?php echo $website;?>
-								<span><?php echo $address;?></span></p><br>
+								<span>
+									 <?php
+						                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+						                {
+						                  echo $contact_details[0]['address']; 
+						                }
+						                else
+						                {
+						                  echo $address;
+						                }
+						             ?>			
+									</span></p><br>
 								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,<?php if($contact_details[0]['phonenumber']!=''){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,
@@ -260,7 +271,20 @@ $image_path = $this->config->item('base_path');
 								echo "Fax :".$contact_details[0]['faxnumber'];
 								} ?> </p>
 								
-								<p><i class="fa fa-envelope"></i><?php echo $mail;?></p>
+								<p><i class="fa fa-envelope"></i>
+									 <?php 
+                 
+						                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+						                {
+						                  echo $contact_details[0]['email']; 
+						                }
+						                else
+						                {
+						                  echo $mail;
+						                }
+						                 
+						                ?>
+								</p>
 							</address>
 						</div>
 			

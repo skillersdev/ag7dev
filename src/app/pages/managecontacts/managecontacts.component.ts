@@ -89,14 +89,7 @@ export class ManagecontactsComponent implements OnInit {
  {
    this.CommonService.deletedata(this.DeletecontactRestApiUrl,idx)
         .subscribe(resultdata =>{
-          this.CommonService.getdata(this.getcontactlistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!="")
-            { 
-              this.contactlist=det.result;
-            }   
-             
-        });
+        this.ngOnInit();
       });
  }
 }
