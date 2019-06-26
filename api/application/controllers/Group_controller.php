@@ -17,8 +17,16 @@ class Group_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
       //   print_r($model); die;
+        $length=10;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        // echo $randomString; die;
       
-        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,imagename,private_public,created_by) values ('".$model->groupname."','".$model->groupimagename."','".$model->privatepublic."','".$model->currentUserID."')");
+        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,group_code,imagename,private_public,created_by) values ('".$model->groupname."','".$randomString."','".$model->groupimagename."','".$model->privatepublic."','".$model->currentUserID."')");
         $g_id = $this->db->insert_id();
         // (`id`, `group_name`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
        
@@ -252,6 +260,10 @@ class Group_controller extends CI_Controller {
                $msg_group_array1[$newDate][] = $msg_value;
                // print_r($msg_value['created_date']);
              }
+             
+             $group_image_sql=$this->db->query("select * from ".$this->db->dbprefix('group_profile_images_log')." where group_id='". $model->g_id."'");
+             $group_image_array=$group_image_sql->result_array(); 
+             $response['group_profile_details']=$group_image_array;
              // $datearray = array_unique($datearray);
               // print_r($msg_group_array1);
               // die;

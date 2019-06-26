@@ -29,11 +29,14 @@ export class ChatComponent implements OnInit {
   group_members_model:Array<Object>;
   group_msg_model:Array<Object>;
   date_array_model:Array<Object>;
+  group_profile_log_model:Array<Object>;
   group_det:Array<Object>;
   userdropdownList:any;
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
+  slideIndex:any;
+
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       // document.body.className="theme-red";
@@ -43,7 +46,8 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
-    
+    this.slideIndex = 1; 
+    this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
     this.Newgroupmodel.groupimagename = '';
@@ -102,7 +106,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id='';
       clearInterval(this.interval);
     } else {
-    this.generateMessageArea(this.Newgroupmodel.g_id);
+    //this.generateMessageArea(this.Newgroupmodel.g_id);
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
@@ -169,7 +173,9 @@ export class ChatComponent implements OnInit {
           console.log(this.group_msg_model);
           this.date_array_model = resultdata.date_array;
           this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
-          this.group_members_model=this.Newgroupmodel.userselectedItems=resultdata.group_members; 
+          this.group_members_model=this.Newgroupmodel.userselectedItems=resultdata.group_members;
+          this.group_profile_log_model=this.Newgroupmodel.userselectedItems=resultdata.group_profile_details; 
+          
           $('.message-area').addClass('d-sm-flex');
         });
   }
@@ -253,6 +259,28 @@ export class ChatComponent implements OnInit {
        }
        
      })
+  }
+  plusSlides(n){
+  this.showSlides(this.slideIndex += n);
+  }
+
+  showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {this.slideIndex = 1}    
+    if (n < 1) {this.slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+       // slides[i].style.display = "none";  
+        $('.pimage'+i).css('display','none'); 
+    }
+    for (i = 0; i < dots.length; i++) {
+       // dots[i].className = dots[i].className.replace(" active", "");
+    }
+    //slides[this.slideIndex-1].style.display = "block"; 
+    var all_val = this.slideIndex-1; 
+    $('.pimage'+all_val).css('display','block');
+    //dots[this.slideIndex-1].className += " active";
   }
 
   msgfileEvent($event) {

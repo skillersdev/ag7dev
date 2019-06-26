@@ -16,6 +16,13 @@
 	<style>
 		#floatingRectangle{display: none !important;}
 	
+
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+.pimage0{display:block;}
+img {vertical-align: middle;}
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
@@ -250,31 +257,17 @@
 					<div class="modal-body">
 						 
 						<div class="form-group m-b-0">
-							<div class="slideshow-container">
+							
 
-								<div class="mySlides fade">
-								  <div class="numbertext">1 / 3</div>
-								  <img src="img_nature_wide.jpg" style="width:100%">
-								  <div class="text">Caption Text</div>
+								<div class="slideshow-container"> 
+								  <div *ngFor="let data of group_profile_log_model let i=index" id="pimage{{i}}"  class="mySlides pimage{{i}}">
+								    <img src="{{group_bases}}group_images/{{data.image_name}}" style="width:80%; height: 400px;">
+								    
+								  </div>
+
+								  <a class="prev" (click)="plusSlides(-1, 1)">&#10094;</a>
+								  <a class="next" (click)="plusSlides(1, 1)">&#10095;</a>
 								</div>
-
-								<div class="mySlides fade">
-								  <div class="numbertext">2 / 3</div>
-								  <img src="img_snow_wide.jpg" style="width:100%">
-								  <div class="text">Caption Two</div>
-								</div>
-
-								<div class="mySlides fade">
-								  <div class="numbertext">3 / 3</div>
-								  <img src="img_mountains_wide.jpg" style="width:100%">
-								  <div class="text">Caption Three</div>
-								</div>
-
-								<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-								<a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-								</div>
-								<br>
 
 								<!-- <div style="text-align:center">
 								  <span class="dot" onclick="currentSlide(1)"></span> 
@@ -551,11 +544,12 @@
 	
 
 
-<script>
+<!-- <script>
 var slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
+
   showSlides(slideIndex += n);
 }
 
@@ -579,7 +573,7 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script> 
-
+ -->
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	    crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
