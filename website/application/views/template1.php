@@ -5,6 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $path_url = $this->config->item('path_url');
 
 $login_url = $this->config->item('login_url');
+$image_path = $this->config->item('base_path');
 
 ?>
 

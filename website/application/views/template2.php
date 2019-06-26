@@ -2,6 +2,7 @@
 //echo "<pre>";print_r($website);die;
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
+$image_path = $this->config->item('base_path');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -108,9 +109,26 @@ $login_url = $this->config->item('login_url');
             <div id="slider" class="sl-slider-wrapper">
 
 				<div class="sl-slider">
+					<?php 
+					if(count($slider_image)>0)
+                	{
+                    	for($j=0;$j<count($slider_image);$j++)
+                    	{
+                    		?>
+                    		<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+								<div class="bg-img bg-img-1">
+									<img src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+								</div>
+							</div>
+						<?php 
+						} 
+					}
+					else{
+					?>
+
 					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
 						<div class="bg-img bg-img-1">
-							<img src="<?php echo base_url();?>assets/template2/img/slider/banner.jpg" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+							<img src="<?php //echo base_url();?>assets/template2/img/slider/banner.jpg" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
 						</div>
 					</div>
 					
@@ -119,6 +137,7 @@ $login_url = $this->config->item('login_url');
 							<img src="<?php echo base_url();?>assets/template2/img/slider/affinity.jpeg"  style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
 						</div>
 					</div>
+				<?php } ?>
 				</div><!-- /sl-slider -->
 
                

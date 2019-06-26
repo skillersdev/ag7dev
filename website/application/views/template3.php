@@ -1,5 +1,6 @@
 <?php 
 $login_url = $this->config->item('login_url');
+$image_path = $this->config->item('base_path');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -111,16 +112,28 @@ $login_url = $this->config->item('login_url');
 				
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
-					
+					<?php 
+					if(count($slider_image)>0)
+                	{
+                    	for($j=0;$j<count($slider_image);$j++)
+                    	{
+                    		?>
 					<!-- single slide -->
-					<div class="item active" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
+					<div class="item active" style="background-image: url(<?php echo $image_path.$slider_image[$j]['slider_image'];?>);">
 					</div>
+					<?php 
+						}	
+					} else{?>
+						<div class="item active" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
+						</div>
+						<!-- single slide -->
+						<div class="item" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
+						</div>
+					<!-- end single slide -->
+					<?php } ?>
 					<!-- end single slide -->
 					
-					<!-- single slide -->
-					<div class="item" style="background-image: url(<?php echo base_url();?>assets/template3/img/banner.jpg);">
-					</div>
-					<!-- end single slide -->
+					
 					
 				</div>
 				<!-- End Wrapper for slides -->

@@ -148,18 +148,27 @@ $image_path = $this->config->item('base_path');
             <!-- Carousel inner  slider part-->
             <div class="carousel-inner">
                 <?php 
-                 for($j=0;$j<count($slider_image);$j++)
+                if(count($slider_image)>0)
                 {
+                    for($j=0;$j<count($slider_image);$j++)
+                    {
+                    ?>
+                        <div class="item <?php if($j==0){echo "active";} ?>">
+                            <img class="img-responsive" src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" alt="slider">
+                        </div>
+                <?php 
+                    } 
+                }else{
+                      ?>
+                      <div class="item">
+                        <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-back.png" alt="slider">
+                     </div>
+                     <?php
+                }
                 ?>
-                <div class="item <?php if($j==0){echo "active";} ?>">
-                    <img class="img-responsive" src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" alt="slider">
-                </div>
-            <?php } ?>
                 <!--/ Carousel item end -->
                 
-              <!--   <div class="item">
-                    <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-back.png" alt="slider">
-                </div> -->
+            
                 <!--/ Carousel item end -->
                 
               
