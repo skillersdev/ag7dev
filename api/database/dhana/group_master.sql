@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2019 at 08:42 PM
+-- Generation Time: Jun 26, 2019 at 09:30 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -35,17 +35,22 @@ CREATE TABLE `group_master` (
   `private_public` int(2) NOT NULL,
   `created_by` int(10) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `is_deleted` int(10) NOT NULL DEFAULT '0'
+  `is_deleted` int(10) NOT NULL DEFAULT '0',
+  `group_code` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `group_master`
 --
 
-INSERT INTO `group_master` (`id`, `group_name`, `imagename`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES
-(1, 'group test', 'pexels-photo-414612.jpeg', 2, 7, '2019-06-09 18:22:03', 0),
-(2, 'new group', 'images.jpg', 2, 7, '2019-06-09 18:27:50', 0),
-(4, 'sridhar group', 'image.jpg', 2, 2, '2019-06-09 18:29:50', 0);
+INSERT INTO `group_master` (`id`, `group_name`, `imagename`, `private_public`, `created_by`, `created_date`, `is_deleted`, `group_code`) VALUES
+(1, 'group test', 'pexels-photo-414612.jpeg', 2, 7, '2019-06-09 18:22:03', 0, ''),
+(2, 'new group', 'download.jpg', 2, 7, '2019-06-09 18:27:50', 0, ''),
+(4, 'sridhar group', 'image.jpg', 2, 2, '2019-06-09 18:29:50', 0, ''),
+(5, 'private group', 'image.jpg', 1, 7, '2019-06-11 18:06:13', 0, ''),
+(6, 'p2', 'images.jpg', 1, 7, '2019-06-11 18:14:43', 0, ''),
+(7, 'new group test', 'images (1).jpg', 2, 7, '2019-06-26 19:22:41', 0, ''),
+(8, 'new group test2', 'images (1).jpg', 2, 7, '2019-06-26 19:26:46', 0, 'XtKwVz89aY');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +70,7 @@ ALTER TABLE `group_master`
 -- AUTO_INCREMENT for table `group_master`
 --
 ALTER TABLE `group_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
