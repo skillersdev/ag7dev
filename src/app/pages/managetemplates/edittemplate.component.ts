@@ -31,6 +31,7 @@ export class EdittemplateComponent implements OnInit {
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
   uploaduserAdvApi:string=AppSettings.uploadTempfile;
   showbutton:boolean=true;
+  Iserror:boolean=true;
   model: any = {};
   image_url = AppSettings.IMAGE_BASE;
    select: any;
@@ -132,11 +133,13 @@ export class EdittemplateComponent implements OnInit {
         this.model.slider_image = response.data;
         $('.preloader').hide();
         this.showbutton=true;
+         this.Iserror = true;
        }
         else{
           $('.preloader').hide();
           this.showbutton=true;
-          swal('',response.data,'Oops!');
+           this.Iserror = false;
+          swal('',response.data,'error'); 
           
           //this.toastr.errorToastr(response.data, 'Oops!');
         }
