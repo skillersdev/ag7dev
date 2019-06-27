@@ -34,6 +34,12 @@ export class LoginService {
       this.router.navigate(['./login']);
   }   
 
+  sidemenuActive(){
+    $.AdminBSB.browser.activate();
+    $.AdminBSB.leftSideBar.activate();
+    $.AdminBSB.rightSideBar.activate();
+    $.AdminBSB.navbar.activate();
+  }
 
   viewsActivate() {
     $.AdminBSB.browser.activate();
@@ -81,7 +87,7 @@ export class LoginService {
         ]
       });
 
-      $.AdminBSB.dropdownMenu.activate();
+      // $.AdminBSB.dropdownMenu.activate();
       $.AdminBSB.select.activate();  
     }, 200);   
 

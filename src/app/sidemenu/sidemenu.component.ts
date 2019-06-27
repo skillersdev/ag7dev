@@ -22,6 +22,8 @@ export class SidemenuComponent implements OnInit {
     this.model.id = localStorage.getItem('currentUserID');
     this.model.email = localStorage.getItem('email');
     this.model.name = localStorage.getItem('user_fname');
+    
+    this.loginService.sidemenuActive();
   }
 
     logout(){

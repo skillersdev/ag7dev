@@ -260,7 +260,7 @@ export class ChatComponent implements OnInit {
        
      })
   }
-  plusSlides(n){
+  plusSlides(n,m){
   this.showSlides(this.slideIndex += n);
   }
 
