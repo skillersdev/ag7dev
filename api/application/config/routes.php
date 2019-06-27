@@ -91,7 +91,7 @@ $route['getsubcatlist/(:num)']='Category_controller/getsubcategorylistbyuser/$1'
 /*User API */
 $route['adduser'] = 'User_controller/add_user_master';
 $route['addtemplate']= 'User_controller/add_template_master';
-$route['gettemplatelistbyuser']='User_controller/get_templatelistby_user';
+$route['gettemplatelistbyuser/(:num)']='User_controller/get_templatelistby_user/$1';
 $route['getuserslist'] = 'User_controller/get_users_detail';
 $route['getchatuserslist'] = 'User_controller/get_chatusers_detail';
 $route['gettemplatelist']= 'User_controller/get_template_list';

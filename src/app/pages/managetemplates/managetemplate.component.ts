@@ -50,9 +50,9 @@ export class ManagetemplateComponent implements OnInit {
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.model.usergroup==2)
     { 
-      this.CommonService.editdata(this.gettemplistbyUserRestApiUrl,user_id)
+      this.CommonService.getdatabyid(this.gettemplistbyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
-          this.userlist=resultdata.result; 
+          this.userlist=resultdata; 
          // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
         });
     

@@ -217,16 +217,16 @@ $image_path = $this->config->item('base_path');
                                 }
                                  
                                 ?></li>
-                            <li><strong>Phone :</strong><?php if($contact_details[0]['phonenumber']!=''){
+                            <li><strong>Phone :</strong><?php if(isset($contact_details[0]['phonenumber'])){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,
-								<?php if($contact_details[0]['homenumber']!=''){
+								<?php if(isset($contact_details[0]['homenumber'])){
 								echo "Home :".$contact_details[0]['homenumber'];
 								} ?>,
-								<?php if($contact_details[0]['officenumber']!=''){
+								<?php if(isset($contact_details[0]['officenumber'])){
 								echo "Office :".$contact_details[0]['officenumber'];
 								} ?>,
-								<?php if($contact_details[0]['faxnumber']!=''){
+								<?php if(isset($contact_details[0]['faxnumber'])){
 								echo "Fax :".$contact_details[0]['faxnumber'];
 								} ?> </li>
                             <li><strong>Web :</strong><?php echo $website;?></li>

@@ -92,7 +92,7 @@
         <header class="section-header">
           <h3>About Me</h3>
           <p><?php 
-               $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_website']:'Welcome to mysite';
+               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
 
 
             ?></p>
@@ -127,7 +127,7 @@
 
           <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
           <?php 
-           if($contact_details[0]['website_image']!='')
+           if(isset($contact_details[0]['website_image']))
              {
                 $image = $contact_details[0]['website_image'];
              }
@@ -161,15 +161,29 @@
             <div class="map mb-4 mb-lg-0">
              <div class="social-links">
               <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="<?php echo $contact_details[0]['fb']; ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="<?php
+              if(isset($contact_details[0]['fb']))
+              {
+                echo $contact_details[0]['fb']; 
+              }
+               ?>" class="facebook"><i class="fa fa-facebook"></i></a>
+              
               <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
               <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="<?php echo $contact_details[0]['linked']; ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <a href="<?php 
+                 if(isset($contact_details[0]['linked']))
+
+                  {
+                    echo $contact_details[0]['linked']; 
+                  }                 
+
+
+                 ?>" class="linkedin"><i class="fa fa-linkedin"></i></a>
               
-        <p><?php if($contact_details[0]['whatsapp']!=''){
+        <p><?php if(isset($contact_details[0]['whatsapp'])){
           echo "Whatsapp :".$contact_details[0]['whatsapp'];
         } ?></p>
-        <p><?php if($contact_details[0]['telegram']!=''){
+        <p><?php if(isset($contact_details[0]['telegram'])){
           echo "Telegram :".$contact_details[0]['telegram'];
         } ?></p>
         
@@ -210,16 +224,16 @@
               <div class="col-md-3 info">
                 <i class="ion-ios-telephone-outline"></i>
                 
-                <p><?php if($contact_details[0]['phonenumber']!=''){
+                <p><?php if(isset($contact_details[0]['phonenumber'])){
               echo "Phone :".$contact_details[0]['phonenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['homenumber']!=''){
+            <p><?php if(isset($contact_details[0]['homenumber'])){
               echo "Home :".$contact_details[0]['homenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['officenumber']!=''){
+            <p><?php if(isset($contact_details[0]['officenumber'])){
               echo "Office :".$contact_details[0]['officenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['faxnumber']!=''){
+            <p><?php if(isset($contact_details[0]['faxnumber'])){
               echo "Fax :".$contact_details[0]['faxnumber'];
             } ?></p>
               </div>

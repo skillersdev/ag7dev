@@ -138,7 +138,7 @@ $image_path = $this->config->item('base_path');
 				 <?php 
          //echo "<pre>";print_r($contact_details);
          //die;
-         if($contact_details[0]['website_image']!='')
+         if(isset($contact_details[0]['website_image']))
          {
             $image = $contact_details[0]['website_image'];
          }
@@ -151,7 +151,7 @@ $image_path = $this->config->item('base_path');
       <div class="col-lg-6">
        <h2>About Me</h2>
         <?php
-$about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_website']:'Welcome to mysite';
+$about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
 
             ?>
             <p>
@@ -211,16 +211,16 @@ $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_
               <i class="ion-ios-telephone-outline"></i>
               <h3>Phone Number</h3>
               <!--<p><a href="tel:+155895548855"><?php //echo $mobile;?></a></p>-->
-              <p><?php if($contact_details[0]['phonenumber']!=''){
+              <p><?php if(isset($contact_details[0]['phonenumber'])){
               echo "Phone :".$contact_details[0]['phonenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['homenumber']!=''){
+            <p><?php if(isset($contact_details[0]['homenumber'])){
               echo "Home :".$contact_details[0]['homenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['officenumber']!=''){
+            <p><?php if(isset($contact_details[0]['officenumber'])){
               echo "Office :".$contact_details[0]['officenumber'];
             } ?></p>
-            <p><?php if($contact_details[0]['faxnumber']!=''){
+            <p><?php if(isset($contact_details[0]['faxnumber'])){
               echo "Fax :".$contact_details[0]['faxnumber'];
             } ?></p>
             </div>
@@ -251,14 +251,23 @@ $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_
               <i class="ion-ios-email-outline"></i>
               <h3>Social</h3>
               
-              <p><a target="_blank" href="<?php echo $contact_details[0]['fb']; ?>">Facebook</a></p>
+              <p><a target="_blank" href="<?php 
+              if(isset($contact_details[0]['fb'])){
+                echo $contact_details[0]['fb']; 
+              } ?>">Facebook</a></p>
         <p><a target="_blank" href="#">Twitter</a></p>
-        <p><a target="_blank" href="<?php echo $contact_details[0]['linked']; ?>">LinkedIn</a></p>
+        <p><a target="_blank" href="<?php
+         if(isset($contact_details[0]['linked'])){
+                echo $contact_details[0]['linked']; 
+              }
+         //echo $contact_details[0]['linked']; 
+
+         ?>">LinkedIn</a></p>
         
-        <p><?php if($contact_details[0]['whatsapp']!=''){
+        <p><?php if(isset($contact_details[0]['whatsapp'])){
           echo "Whatsapp :".$contact_details[0]['whatsapp'];
         } ?></p>
-        <p><?php if($contact_details[0]['telegram']!=''){
+        <p><?php if(isset($contact_details[0]['telegram'])){
           echo "Telegram :".$contact_details[0]['telegram'];
         } ?></p>
         

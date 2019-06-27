@@ -29,6 +29,7 @@ export class AddtemplateComponent implements OnInit {
   packagelist:Array<Object>;
   websitelist:Array<Object>;
   showbutton:boolean=true;
+  Iserror:boolean=true;
   select:any={};
   alldata: any = {};
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
@@ -75,12 +76,9 @@ export class AddtemplateComponent implements OnInit {
   {
     this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.AddTemplateRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
+    .subscribe(package_det =>{  
+       
+         swal(package_det.status,package_det.message,package_det.status)
         this.router.navigate(['/managetemplates']); 
     });
   }
@@ -106,11 +104,13 @@ export class AddtemplateComponent implements OnInit {
        {
         this.model.slider_image = response.data;
         $('.preloader').hide();
+        this.Iserror = true;
         this.showbutton=true;
        }
         else{
           $('.preloader').hide();
           this.showbutton=true;
+          this.Iserror = false;
           swal('',response.data,'Oops!');
           
           //this.toastr.errorToastr(response.data, 'Oops!');

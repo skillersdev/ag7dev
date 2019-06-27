@@ -190,7 +190,8 @@ $image_path = $this->config->item('base_path');
 								<h3>Welcome To <?php echo $website;?></h3>								
 						     	 <div class="message-body">
 									 <?php 
-								           if($contact_details[0]['website_image']!='')
+
+								           if(isset($contact_details[0]['website_image'])&&($contact_details[0]['website_image']!=''))
 									         {
 									            $image = $contact_details[0]['website_image'];
 									         }
@@ -200,7 +201,7 @@ $image_path = $this->config->item('base_path');
 								          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
 								         ?>
 								          <?php 
-								              $about_us=($contact_details[0]['about_website']!='')?$contact_details[0]['about_website']:'Welcome to mysite';
+								              $about_us=(isset($contact_details[0]['about_website']) && ($contact_details[0]['about_website']!=''))?$contact_details[0]['about_website']:'Welcome to mysite';
 
 								            ?>
 						       		<p><?php echo $about_us; ?> </p>
@@ -258,16 +259,19 @@ $image_path = $this->config->item('base_path');
 						                }
 						             ?>			
 									</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,<?php if($contact_details[0]['phonenumber']!=''){
-								echo "Phone :".$contact_details[0]['phonenumber'];
-								} ?>,
-								<?php if($contact_details[0]['homenumber']!=''){
+								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,
+									<?php 
+									if(isset($contact_details[0]['phonenumber'])&&$contact_details[0]['phonenumber']!='')
+									{
+										echo "Phone :".$contact_details[0]['phonenumber'];
+									} ?>,
+								<?php if(isset($contact_details[0]['homenumber'])){
 								echo "Home :".$contact_details[0]['homenumber'];
 								} ?>,
-								<?php if($contact_details[0]['officenumber']!=''){
+								<?php if(isset($contact_details[0]['officenumber'])){
 								echo "Office :".$contact_details[0]['officenumber'];
 								} ?>,
-								<?php if($contact_details[0]['faxnumber']!=''){
+								<?php if(isset($contact_details[0]['faxnumber'])){
 								echo "Fax :".$contact_details[0]['faxnumber'];
 								} ?> </p>
 								
@@ -517,10 +521,10 @@ $image_path = $this->config->item('base_path');
 								<li class="wow animated zoomIn" data-wow-delay="0.3s"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
 								<li class="wow animated zoomIn" data-wow-delay="0.6s"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
 								
-								<li><?php if($contact_details[0]['whatsapp']!=''){
+								<li><?php if(isset($contact_details[0]['whatsapp'])){
 								echo "Whatsapp :".$contact_details[0]['whatsapp'];
 								} ?></li>
-								<li><?php if($contact_details[0]['telegram']!=''){
+								<li><?php if(isset($contact_details[0]['telegram'])){
 								echo "Telegram :".$contact_details[0]['telegram'];
 								} ?></li>							
 							</ul>

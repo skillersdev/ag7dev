@@ -179,10 +179,10 @@ class User_controller extends CI_Controller {
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
   }
-  public function get_templatelistby_user()
+  public function get_templatelistby_user($id)
   {
     $model = json_decode($this->input->post('model',FALSE));
-    $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->user_id])->get('template_settings'); 
+    $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$id])->get('template_settings'); 
        $result=[];
        $response=[];
         if(count($res->result_array())>0)
@@ -193,7 +193,7 @@ class User_controller extends CI_Controller {
                 $res11=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$value['created_by']."'");
                 $in_array11=$res11->result_array();
 
-                 $result[]=array('id'=>$value['id'],'template_name'=>$value['website'],'created_date'=>$value['created_date'],'created_by'=>$in_array11[0]);
+                 $result[]=array('id'=>$value['id'],'template_name'=>$value['website'],'created_date'=>$value['created_date'],'created_by'=>$in_array11[0]['username']);
               }
         }
         echo json_encode($result,JSON_UNESCAPED_SLASHES);

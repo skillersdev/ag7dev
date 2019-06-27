@@ -56,7 +56,7 @@
                             </div>
                             
                         </form>
-                        <button type="submit" [disabled]="!registerForm.form.valid || !showbutton" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="submit" [disabled]="!registerForm.form.valid || !showbutton || !Iserror" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template Slider</button>&nbsp; &nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
                     </div>
                 </div>

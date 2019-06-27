@@ -177,16 +177,16 @@ $image_path = $this->config->item('base_path');
 						                }
 						             ?>	</span></p><br>
 								<p><i class="fa fa-phone"></i> 
-								<?php if($contact_details[0]['phonenumber']!=''){
+								<?php if(isset($contact_details[0]['phonenumber'])){
 								echo "Phone :".$contact_details[0]['phonenumber'];
 								} ?>,
-								<?php if($contact_details[0]['homenumber']!=''){
+								<?php if(isset($contact_details[0]['homenumber'])){
 								echo "Home :".$contact_details[0]['homenumber'];
 								} ?>,
-								<?php if($contact_details[0]['officenumber']!=''){
+								<?php if(isset($contact_details[0]['officenumber'])){
 								echo "Office :".$contact_details[0]['officenumber'];
 								} ?>,
-								<?php if($contact_details[0]['faxnumber']!=''){
+								<?php if(isset($contact_details[0]['faxnumber'])){
 								echo "Fax :".$contact_details[0]['faxnumber'];
 								} ?>  </p>
 								<p><i class="fa fa-envelope"></i> <?php 
@@ -213,7 +213,12 @@ $image_path = $this->config->item('base_path');
 							
 							<li style="float: left; margin-right: 10px;"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
 							
-							<li style="float: left; margin-right: 10px;"><a href="<?php echo $contact_details[0]['fb']; ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
+							<li style="float: left; margin-right: 10px;"><a href="<?php 
+							if(isset($contact_details[0]['fb']))
+							{
+								echo $contact_details[0]['fb'];
+							}
+							 ?>"><i class="fa fa-facebook fa-2x"></i></a></li>
 						</ul>
 					</div>
 					<!-- end footer social links -->
