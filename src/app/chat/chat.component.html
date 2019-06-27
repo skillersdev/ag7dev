@@ -16,9 +16,6 @@
 	<style>
 		#floatingRectangle{display: none !important;}
 	
-
-* {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
 .pimage0{display:block;}
 img {vertical-align: middle;}
@@ -268,12 +265,10 @@ img {vertical-align: middle;}
 								  <a class="prev" (click)="plusSlides(-1, 1)">&#10094;</a>
 								  <a class="next" (click)="plusSlides(1,1)">&#10095;</a>
 								</div>
-
-								<!-- <div style="text-align:center">
-								  <span class="dot" onclick="currentSlide(1)"></span> 
-								  <span class="dot" onclick="currentSlide(2)"></span> 
-								  <span class="dot" onclick="currentSlide(3)"></span> 
-								</div> -->
+ 
+								<div >
+								  <span *ngFor="let data of group_profile_log_model let i=index" (click)="currentSlide(i+1)"><img src="{{group_bases}}group_images/{{data.image_name}}" style="cursor:pointer;width:40px; height: 40px;"></span>  
+								</div>
 
 						</div>
 	 
@@ -539,7 +534,7 @@ img {vertical-align: middle;}
 					</div> -->
 					
 					
-					<div   *ngFor="let data of group_msg_model[datedata] let i=index" [ngClass]="{
+					<div   *ngFor="let data of group_msg_model[datedata] let i=index"   [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >

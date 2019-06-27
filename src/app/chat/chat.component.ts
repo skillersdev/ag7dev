@@ -264,6 +264,10 @@ export class ChatComponent implements OnInit {
   this.showSlides(this.slideIndex += n);
   }
 
+  currentSlide(n) {
+  this.showSlides(this.slideIndex = n);
+}
+
   showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");
