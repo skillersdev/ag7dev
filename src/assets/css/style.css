@@ -1984,14 +1984,14 @@
   color: #fff; }
   .bg-black .content .text,
   .bg-black .content .number {
-    color: #fff !important; }
+    color: #000000 !important; }
 
 .bg-white {
   background-color: #ffffff !important;
-  color: #fff; }
+  color: #000000; }
   .bg-white .content .text,
   .bg-white .content .number {
-    color: #fff !important; }
+    color: #000000 !important; }
 
 .col-red {
   color: #F44336 !important; }

@@ -426,7 +426,7 @@ img {vertical-align: middle;}
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" (click)="hideshow()" ></i>
 					</div>
-					<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
+					<a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
 						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
@@ -449,7 +449,77 @@ img {vertical-align: middle;}
 				</div>
 
 				<!-- Messages -->
-				<div class="d-flex flex-column" id="messages"  >
+				<style>
+					div .ml-auto, .mx-auto {
+						margin-left: auto!important;
+					}
+
+					div .mr-auto, .mx-auto {
+						margin-right: auto!important;
+						width: 90px !important;
+					}
+
+					div .pl-2, .px-2 {
+						padding-left: .5rem!important;
+					}
+
+					div .pr-2, .px-2 {
+						padding-right: .5rem!important;
+					}
+
+					div .flex-row {
+						-ms-flex-direction: row!important;
+						flex-direction: row!important;
+					}
+
+					.d-flex {
+						display: -ms-flexbox!important;
+						display: flex!important;
+					}
+
+				
+				</style>
+				<div class="d-flex flex-column" id="messages">
+						<!-- <div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded">
+							27/03/2018
+						</div>
+						
+						<div class="align-self-start p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
+							<div class="options">
+								<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
+							</div>
+							
+							<div class="d-flex flex-row">
+								<div class="body m-1 mr-2">have you seen infinity war?</div>
+								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
+									17:23
+									
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="align-self-end self p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
+							<div class="options">
+								<a href="#"><i class="fas fa-angle-down text-muted px-2"></i></a>
+							</div>
+							
+							<div class="small font-weight-bold text-primary">
+								+91 91231 40293
+							</div>
+						
+							<div class="d-flex flex-row">
+								<div class="body m-1 mr-2">sxsx</div>
+								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
+									14:38
+									<i class="far fa-check-circle"></i>
+								</div>
+							</div>
+						</div> -->
+
+					
+
+
 					<div  *ngFor="let datedata of date_array_model" >
 					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" *ngIf="group_name!=0">
 						{{datedata}}
@@ -490,7 +560,7 @@ img {vertical-align: middle;}
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
 							</video>
 								</div>
-							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
+							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:140px;">
 								{{data.created_date | date}}
 								<!-- <i class="far fa-check-circle"></i> -->
 							</div>
