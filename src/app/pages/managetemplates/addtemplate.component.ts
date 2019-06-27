@@ -111,7 +111,7 @@ export class AddtemplateComponent implements OnInit {
           $('.preloader').hide();
           this.showbutton=true;
           this.Iserror = false;
-          swal('',response.data,'Oops!');
+          swal('',response.data,'error');
           
           //this.toastr.errorToastr(response.data, 'Oops!');
         }

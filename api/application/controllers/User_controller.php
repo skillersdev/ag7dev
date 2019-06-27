@@ -520,10 +520,10 @@ class User_controller extends CI_Controller {
             $image_width = $image_info[0];
             $image_height = $image_info[1];
             //echo $image_width."-------".$image_height;die;
-            if($image_width<1900 && $image_height<900)
+            if($image_width<1500 && $image_height<700)
             {
               $Response['status']="fail"; 
-              $Response['data']="Upload image size should be above 1900*900 size";
+              $Response['data']="Upload image size should be above 1500*700 size";
                echo json_encode($Response,JSON_UNESCAPED_SLASHES);
               die();
             }
