@@ -474,7 +474,7 @@ img {vertical-align: middle;}
 
 				
 				</style>
-				<div class="d-flex flex-column" id="messages">
+				<div class="d-flex flex-column" id="messages"> 
 						<!-- <div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded">
 							27/03/2018
 						</div>
@@ -534,7 +534,7 @@ img {vertical-align: middle;}
 					</div> -->
 					
 					
-					<div   *ngFor="let data of group_msg_model[datedata] let i=index"   [ngClass]="{
+					<div  *ngFor="let data of group_msg_model[datedata] let i=index"   [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
@@ -542,13 +542,13 @@ img {vertical-align: middle;}
 							<a href="javascript:void(0);"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
 						
-						<div *ngIf="group_name!=0" class="small font-weight-bold text-primary">
+						<div  *ngIf="group_name!=0" class="small font-weight-bold text-primary">
 							{{data.user_name}}
 						</div>
 					
 						<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="d-flex flex-row">
 							
-							<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
+							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
 							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}"  class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
 							<video *ngIf="data.video_type==1" width="320" height="240" controls>
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">

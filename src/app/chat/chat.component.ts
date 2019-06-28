@@ -61,7 +61,7 @@ export class ChatComponent implements OnInit {
     this.loginService.viewsUploadoption();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
-    this.Newgroupmodel.userselectedItems =[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
+    this.Newgroupmodel.userselectedItems=[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
     this.userdropdownSettings = {
       singleSelection: false,
       idField: 'Id',
@@ -173,8 +173,8 @@ export class ChatComponent implements OnInit {
           console.log(this.group_msg_model);
           this.date_array_model = resultdata.date_array;
           this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
-          this.group_members_model=this.Newgroupmodel.userselectedItems=resultdata.group_members;
-          this.group_profile_log_model=this.Newgroupmodel.userselectedItems=resultdata.group_profile_details; 
+          this.group_members_model=resultdata.group_members;
+          this.group_profile_log_model=resultdata.group_profile_details; 
           
           $('.message-area').addClass('d-sm-flex');
         });

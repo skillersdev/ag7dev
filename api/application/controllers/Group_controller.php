@@ -93,7 +93,7 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Group exit successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-        // print_r($model); die;
+        // print_r($model); die; 
         $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted=1 where group_id='".$model->g_id."' and user_id='".$model->currentUserID."'");
         
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -289,6 +289,7 @@ class Group_controller extends CI_Controller {
             ->where('group_members.user_id', $model->currentUserID)
             // ->where('group_master.private_public', '2')
             ->where('group_master.is_deleted', '0')
+            ->where('group_members.is_deleted', '0')
             ->get('group_master');
             $group_array=$group_sql->result_array(); 
             // print_r($group_array); die;
