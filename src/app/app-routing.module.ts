@@ -47,6 +47,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
 import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
 import { EdittemplateComponent} from './pages/managetemplates/edittemplate.component';
+import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -231,7 +232,11 @@ const routes: Routes = [
     component:EdittemplateComponent
     
   },
-  
+  {
+     path:'chat/join/:code',
+    component:ChatgroupComponent
+    
+  },
   
 
 ];

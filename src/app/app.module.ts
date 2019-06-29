@@ -58,6 +58,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
 import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.component';
 import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
 import { EdittemplateComponent } from './pages/managetemplates/edittemplate.component';
+import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +106,8 @@ import { EdittemplateComponent } from './pages/managetemplates/edittemplate.comp
     LandingpageComponent,
     ManagetemplateComponent,
     AddtemplateComponent,
-    EdittemplateComponent
+    EdittemplateComponent,
+    ChatgroupComponent
   ],
   imports: [
     BrowserModule,                          

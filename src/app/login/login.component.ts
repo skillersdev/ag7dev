@@ -83,7 +83,8 @@ export class LoginComponent implements OnInit {
               if(data.exist==1)
               {
                 let user_det = data.result[0];
-                console.log(user_det);
+                let chatcode = localStorage.getItem('chatcode');
+
                 localStorage.setItem('currentUser', user_det.username);
                 localStorage.setItem('currentUserID', user_det.id);
                 localStorage.setItem('currentUsergroup',user_det.user_type);
@@ -91,10 +92,15 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('email',user_det.email);
                 localStorage.setItem('address',user_det.address);
                 localStorage.setItem('tamount',user_det.tamount);
-                if(user_det.user_type==1)
+                if((user_det.user_type==1)&&(chatcode==null))
                 {
                   this.router.navigate(['./admindashboard']);
                   // swal('', data.message, 'success');
+                }
+                else if(chatcode!=null)
+                {
+                  this.router.navigate(['chat/join', chatcode]);
+                   //return false;
                 }
                 else{
                   this.router.navigate(['./dashboard']);

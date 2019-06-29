@@ -31,6 +31,7 @@ export class LoginService {
       localStorage.removeItem('currentUsername');
       localStorage.removeItem('currentUsergroup');
       localStorage.removeItem('currentUserStatus');
+      localStorage.removeItem('chatcode');
       this.router.navigate(['./login']);
   }   
 
