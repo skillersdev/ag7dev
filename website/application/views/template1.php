@@ -394,8 +394,10 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                         echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
                         ?>
                       <div class="details">
-                        <h4><a href="javascript:void(0);">
+                        <h4>                          
+                          <a href="javascript:void(0);">
                           <?php echo $product_details[$i]['product_name'];?></a>
+                          <br><span style="color:white;font-size: 16px;">Category:<?php echo $product_details[$i]['category_name'];?></span>
                         </h4>
                         <p><?php echo $product_details[$i]['price'];?></p>               
                       </div>

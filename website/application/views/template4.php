@@ -373,6 +373,7 @@ $image_path = $this->config->item('base_path');
                                         echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
                                         ?>
                                     <div class="portfolio-caption">
+                                        <span>Category:<?php echo $product_details[$i]['category_name'];?></span>
                                        <h3><?php echo $product_details[$i]['product_name'];?></a></h3>
                                     <p><?php echo $product_details[$i]['price'];?></p>
                                     </div>

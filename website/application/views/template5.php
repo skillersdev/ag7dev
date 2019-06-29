@@ -356,7 +356,8 @@
                 echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
             ?>
               <div class="portfolio-info">
-                <h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
+                <span style="color: white;">Category:<?php echo $product_details[$i]['category_name'];?></span>
+                <br><br><h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
                 <p><?php echo $product_details[$i]['price'];?></p>
                 <div>
                  <?php

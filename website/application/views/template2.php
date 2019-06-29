@@ -1,5 +1,5 @@
 <?php
-//echo "<pre>";print_r($website);die;
+//echo "<pre>";print_r($product_details);die;
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
@@ -411,6 +411,7 @@ $image_path = $this->config->item('base_path');
 								<figcaption class="mask">
 									<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
 									<p><?php echo $product_details[$i]['price'];?></p>
+									<span>Category:<?php echo $product_details[$i]['category_name'];?></span>
 								</figcaption>
 								<ul class="external">
 									<li><a class="fancybox" title="Araund The world" data-fancybox-group="works" href="img/portfolio/item.jpg"><i class="fa fa-search"></i></a></li>

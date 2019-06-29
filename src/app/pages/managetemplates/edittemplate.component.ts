@@ -140,8 +140,6 @@ export class EdittemplateComponent implements OnInit {
           this.showbutton=true;
            this.Iserror = false;
           swal('',response.data,'error'); 
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
         }
      })
   }
