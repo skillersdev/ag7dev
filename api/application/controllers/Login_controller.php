@@ -15,6 +15,7 @@ class Login_controller extends CI_Controller {
     $response['exist']=0;
     $username = trim($model->user_name);
     $password = trim($model->user_password);
+    
    
         $res=$this->db->select("*")->like(array('username'=>$username,'password'=>$password))->where(['is_deleted'=>'0'])->get('affiliateuser');  
     if(count($res->result_array())>0)

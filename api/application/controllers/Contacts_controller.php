@@ -18,8 +18,9 @@ class Contacts_controller extends CI_Controller {
          $website = trim($model->website);
           if(isset($website))
             {
-              $res=$this->db->select("website")->like('website',$website)->where('is_deleted','0')->get('contacts_master') ;
+              $res=$this->db->select("*")->where(['is_deleted'=>'0','website'=>$website])->get('contacts_master') ;
           }
+          //print_r($res->result_array());die;
            if(count($res->result_array())>0)
             {
                

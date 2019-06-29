@@ -17,6 +17,8 @@ class Category_controller extends CI_Controller {
         
         $this->db->insert('category_master', $model);
 
+        
+
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }

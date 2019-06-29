@@ -51,6 +51,7 @@ class User_controller extends CI_Controller {
     public function add_user_ad(){
        $this->output->set_content_type('application/json');
         $response=array('status'=>"success");
+         
         $response['message']="Ad inserted successfully";
 
         $model = json_decode($this->input->post('model',FALSE));

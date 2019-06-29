@@ -59,6 +59,7 @@ class Service_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
+
             $res=$this->db->query("select * from ".$this->db->dbprefix('services')." where id='".$id."'");
 
             if($res->num_rows()>0){
