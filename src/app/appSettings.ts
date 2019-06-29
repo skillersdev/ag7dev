@@ -148,6 +148,8 @@ export class AppSettings{
 	public static deletegroup=AppSettings.API_BASE+"/deletegroup";
 	public static exitgroup=AppSettings.API_BASE+"/exitgroup";
 	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
+	public static checkuserIsgroupRestApiUrl=AppSettings.API_BASE+"/checkuserhavinggroup";
+	public static addusergroupApiUrl=AppSettings.API_BASE+"/addusertogroup";
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
 }

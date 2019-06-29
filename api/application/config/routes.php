@@ -180,6 +180,8 @@ $route['updategroup']= 'Group_controller/updategroup';
 $route['deletegroup']= 'Group_controller/deletegroup';
 $route['exitgroup']= 'Group_controller/exitgroup';
 $route['msggroupimage']= 'Group_controller/msggroupimage'; 
+$route['checkuserhavinggroup']= 'Group_controller/checkuserhavinggroup'; 
+$route['addusertogroup'] = 'Group_controller/addusertogroup'; 
 ?>
 
 

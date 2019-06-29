@@ -300,5 +300,74 @@ class Group_controller extends CI_Controller {
            die();
         
    }
+
+   public function checkuserhavinggroup()
+   {
+
+       $this->output->set_content_type('application/json');
+          $response=array();          
+          $result=array();
+
+          $model = json_decode($this->input->post('model',FALSE));
+          
+          $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where group_code='". $model->groupcode."'  and  is_deleted='0'");
+          $group_array=$group_sql->result_array(); 
+
+          if(count($group_array)>0)
+          {
+            $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $group_array[0]['id']."' AND user_id='".$model->user_id."'");
+             $mem_group_array=$mem_group_sql->result_array(); 
+             if(count($mem_group_array)>0)
+             {
+                $response['exist']="1";
+                $response['group_id'] = $group_array[0]['id'];
+                $response['group_name'] = $group_array[0]['group_name'];
+                $response['message']="User already in chat group";
+             }
+             else
+             {
+                $response['exist']="0";
+                $response['group_id'] = $group_array[0]['id'];
+                $response['group_name'] = $group_array[0]['group_name'];
+                $response['message']="User Not in chat group";
+             }
+          }
+          else
+          {
+            $response['exist']="2";
+          }
+           echo json_encode($response,JSON_UNESCAPED_SLASHES);
+           die();
+          //print_r($group_array);die;
+   }
+
+   public function addusertogroup()
+   {
+        $response=array('status'=>"success",'message'=>"Successfully added into group");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        //print_r($model1->user_id);die;
+
+        $payme_by=$this->db->select("username")->where(['id'=>$model->user_id])->get('affiliateuser');
+        $user_det=$payme_by->result_array();
+
+        // $model1->user_name = $user_det[0]['username'];
+        // $model1->user_id = $model->user_id;
+        // $model1->group_id = $model->group_id; 
+        // $model1->group_name = $model->group_name; 
+        // $model1->created_by = $model->user_id;
+        
+        $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$model->group_id."','".$model->group_name."','".$model->user_id."','".$user_det[0]['username']."','".$model->user_id."')");
+
+
+
+       // $this->db->insert('group_members', $model1);
+
+        
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
   
 }
