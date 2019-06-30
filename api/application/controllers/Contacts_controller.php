@@ -178,20 +178,20 @@ class Contacts_controller extends CI_Controller {
             {
               $res=$this->db->select("website")->like('website',$website)->where(['is_deleted'=>'0','id!='=>$model->id])->get('contacts_master') ;
             }
-           if(count($res->result_array())>0)
-            {
+           // if(count($res->result_array())>0)
+           //  {
                
-                $response['exist']=1;
-                $response['statuc']="error";
-                $response['message']="Selected Website hs already contact exists";
-            } 
-            else
-            {
+           //      $response['exist']=1;
+           //      $response['statuc']="error";
+           //      $response['message']="Selected Website hs already contact exists";
+           //  } 
+            // else
+            // {
                $this->db->where('id',$model->id);
                   $result=$this->db->update('contacts_master', $model);
            
                 $response['message']="contacts has been updated successfully"; 
-            }
+            // }
 
 
                    

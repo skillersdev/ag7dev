@@ -39,7 +39,8 @@
                                                 <p><b>Contact</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter Contact" [(ngModel)]="model.contact" #contact="ngModel" name="contact" required>
+                                                        <input type="text" class="form-control" placeholder="Enter Contact" 
+                                                        [(ngModel)]="model.contact" #contact="ngModel" name="contact" required>
                                                     </div>
                                                      <span [hidden]="contact.valid || contact.pristine" class="text-danger">contact is required</span>
                                                 </div>
@@ -69,7 +70,7 @@
                                                 <p><b>About Profile</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter your info" [(ngModel)]="model.about_website" #about_website="ngModel" name="contact" required>
+                                                        <input type="text" class="form-control" placeholder="Enter your info" [(ngModel)]="model.about_website" #about_website="ngModel" name="about_website" required>
                                                     </div>
                                                      <span [hidden]="about_website.valid || about_website.pristine" class="text-danger">About  is required</span>
                                                 </div>
