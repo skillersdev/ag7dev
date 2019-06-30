@@ -51,6 +51,8 @@ export class ChatComponent implements OnInit {
     this.group_dt_model=[];
     this.userdropdownList=[];
     this.Newgroupmodel.groupimagename = '';
+    this.Newgroupmodel.search_group_name = '';
+   // this.Newgroupmodel.groupcode='';
     this.group_name=0;
     this.group_msg_model=[];
     this.date_array_model=[];
@@ -71,6 +73,10 @@ export class ChatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    //this.getparamas = this.route.params.subscribe(params => {
+     //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
+    //}); 
+    //console.log(this.Newgroupmodel.groupcode);
     this.getgrouplists();
     this.getuserlists();
     this.Newgroupmodel.g_id=''; 
@@ -132,6 +138,14 @@ export class ChatComponent implements OnInit {
         if(det.result!=""){ this.group_det=det.result;}
     });
   }
+
+  groupsearch(){
+     this.CommonService.insertdata(AppSettings.getgroups,this.Newgroupmodel)
+    .subscribe(det =>{      
+        if(det.result!=""){ this.group_det=det.result;}
+    });
+  }
+
   hideshow(){
   this.Newgroupmodel.g_id = '';
      $('.chat-list').removeClass('d-none');
@@ -234,6 +248,7 @@ export class ChatComponent implements OnInit {
     });
     
   }
+
   sendMessage(){
 
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)

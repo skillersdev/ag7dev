@@ -24,9 +24,9 @@ class Group_controller extends CI_Controller {
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        // echo $randomString; die;
+        // echo $randomString; die;channelgroup
       
-        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,group_code,imagename,private_public,created_by) values ('".$model->groupname."','".$randomString."','".$model->groupimagename."','".$model->privatepublic."','".$model->currentUserID."')");
+        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,channelgroup,group_code,imagename,private_public,created_by) values ('".$model->groupname."','".$model->channelgroup."','".$randomString."','".$model->groupimagename."','".$model->privatepublic."','".$model->currentUserID."')");
         $g_id = $this->db->insert_id();
         // (`id`, `group_name`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
        
@@ -54,7 +54,7 @@ class Group_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         // print_r($model); die;
-        $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
+        $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
         
         $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
         foreach ($model->userselectedItems as $key => $value) {
@@ -283,7 +283,16 @@ class Group_controller extends CI_Controller {
           $result=array();
 
           $model = json_decode($this->input->post('model',FALSE));
-      
+        if($model->search_group_name!=''){
+          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
+            ->join('group_members', 'group_members.group_id=group_master.id', 'left')
+            ->like('group_master.group_name',$model->search_group_name)
+            ->where('group_members.user_id', $model->currentUserID)
+            // ->where('group_master.private_public', '2')
+            ->where('group_master.is_deleted', '0')
+            ->where('group_members.is_deleted', '0')
+            ->get('group_master');
+        } else {
          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->where('group_members.user_id', $model->currentUserID)
@@ -291,6 +300,7 @@ class Group_controller extends CI_Controller {
             ->where('group_master.is_deleted', '0')
             ->where('group_members.is_deleted', '0')
             ->get('group_master');
+          }
             $group_array=$group_sql->result_array(); 
             // print_r($group_array); die;
             //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
@@ -298,6 +308,7 @@ class Group_controller extends CI_Controller {
               $response['result']=$group_array;
            echo json_encode($response,JSON_UNESCAPED_SLASHES);
            die();
+        
         
    }
 

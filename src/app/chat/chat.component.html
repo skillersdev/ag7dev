@@ -139,6 +139,14 @@ img {vertical-align: middle;}
 							</div>
 						</div>
 						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="channel" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==1" [value]="1" />
+								<label for="channel" class="m-r-3">Channel</label>&nbsp;
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="group" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==2" [value]="2" />
+								<label for="group">Group</label>
+							</div>
+						</div>
+						<div class="form-group m-b-0">
 							<div class="form-line ">
 								<label for="groupname" class="m-r-3">Group Image :</label>&nbsp;
 								<input type="file" name="adimage" (change)=fileEvent($event) required>   
@@ -160,9 +168,9 @@ img {vertical-align: middle;}
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
 								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
-								<label for="private" class="m-r-3">Private</label>&nbsp;
+								<label for="private" class="m-r-3">Marketer</label>&nbsp;
 								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
-								<label for="public">Public</label>
+								<label for="public">Private</label>
 							</div>
 						</div>
 	 
@@ -196,6 +204,14 @@ img {vertical-align: middle;}
 							<div class="form-line radio-btns">
 								<label for="groupname" class="m-r-3">Group Name :</label>&nbsp;
 								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control"  #groupname="ngModel"/>
+							</div>
+						</div>
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="channel" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==1" [value]="1" />
+								<label for="channel" class="m-r-3">Channel</label>&nbsp;
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="group" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==2" [value]="2" />
+								<label for="group">Group</label>
 							</div>
 						</div>
 						<div class="form-group m-b-0">
@@ -368,7 +384,9 @@ img {vertical-align: middle;}
 				</div>
 
 				<!-- Chat List -->
+
 				<div class="row chat-list" id="chat-list" style="overflow:auto;">
+					<input name="search_group_name" [(ngModel)]="Newgroupmodel.search_group_name" type="text" id="search_group_name" placeholder="Type a Group name" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="groupsearch()" #search_group_name="ngModel"/>
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
 								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
 								<div class="w-50">
