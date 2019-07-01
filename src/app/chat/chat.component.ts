@@ -47,6 +47,8 @@ export class ChatComponent implements OnInit {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
     this.slideIndex = 1; 
+    this.Newgroupmodel.channelgroup=2;
+    this.Newgroupmodel.privatepublic=2;
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];

@@ -287,10 +287,11 @@ class Group_controller extends CI_Controller {
           $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->like('group_master.group_name',$model->search_group_name)
-            ->where('group_members.user_id', $model->currentUserID)
-            // ->where('group_master.private_public', '2')
+            // ->where('group_members.user_id', $model->currentUserID)
+            ->where('group_master.private_public', '1')
             ->where('group_master.is_deleted', '0')
             ->where('group_members.is_deleted', '0')
+            ->group_by('group_master.id')
             ->get('group_master');
         } else {
          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')

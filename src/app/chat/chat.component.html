@@ -122,11 +122,12 @@ img {vertical-align: middle;}
 		<!-- The Modal -->
 		<div class="modal" id="myModal">
 				<div class="modal-dialog">
+					<form  name="groupForm" #groupForm="ngForm" >
 					<div class="modal-content">
 	
 					<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Create New Group</h4>
+						<h4 class="modal-title">Create New Group/Channel</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>				
 	
@@ -134,9 +135,10 @@ img {vertical-align: middle;}
 					<div class="modal-body">
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
-								<label for="groupname" class="m-r-3">Group Name :</label>&nbsp;
-								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control"  #groupname="ngModel"/>
+								<label for="groupname" class="m-r-3">Name :<span style="color: red;">*</span></label>&nbsp;
+								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control" required  #groupname="ngModel"/>
 							</div>
+							 <!-- <span [hidden]="(Newgroupmodel.groupname!='') || groupname.pristine" class="text-danger">Group Name is required</span> -->
 						</div>
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
@@ -146,16 +148,26 @@ img {vertical-align: middle;}
 								<label for="group">Group</label>
 							</div>
 						</div>
+
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
+								<label for="private" class="m-r-3">Marketer</label>&nbsp;
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
+								<label for="public">Private</label>
+							</div>
+						</div>
+
 						<div class="form-group m-b-0">
 							<div class="form-line ">
-								<label for="groupname" class="m-r-3">Group Image :</label>&nbsp;
+								<label for="groupname" class="m-r-3">Image :<span style="color: red;">*</span></label>&nbsp;
 								<input type="file" name="adimage" (change)=fileEvent($event) required>   
 							</div>
 						</div>
 
 						<div class="form-group m-b-0">
 								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
-									<label for="groupname" class="m-r-3">User Lists :</label>&nbsp;
+									<label for="groupname" class="m-r-3">Marketer Lists :</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList" 
 									[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings" 
 									[ngModelOptions]="{standalone: true}" 
@@ -165,24 +177,18 @@ img {vertical-align: middle;}
 							</div>
  
 						
-						<div class="form-group m-b-0">
-							<div class="form-line radio-btns">
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
-								<label for="private" class="m-r-3">Marketer</label>&nbsp;
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
-								<label for="public">Private</label>
-							</div>
-						</div>
+						
 	 
 					</div>
 	
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-success" (click)="addgroup()" data-dismiss="modal">Save</button>
+						<button type="button" [disabled]="!groupForm.form.valid"  class="btn btn-success" (click)="addgroup()" data-dismiss="modal">Save</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
 	
 					</div>
+				</form>
 				</div>
 			</div>
 			<!-- new group-->
@@ -190,11 +196,12 @@ img {vertical-align: middle;}
 			<!-- The Modal -->
 		<div class="modal" id="myModaledit">
 				<div class="modal-dialog">
+					<form  name="groupForm" #groupForm="ngForm" >
 					<div class="modal-content">
 	
 					<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Edit Group</h4>
+						<h4 class="modal-title">Edit Group/Channel</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>				
 	
@@ -202,8 +209,8 @@ img {vertical-align: middle;}
 					<div class="modal-body">
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
-								<label for="groupname" class="m-r-3">Group Name :</label>&nbsp;
-								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control"  #groupname="ngModel"/>
+								<label for="groupname" class="m-r-3">Name :<span style="color: red;">*</span></label>&nbsp;
+								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control" required  #groupname="ngModel"/>
 							</div>
 						</div>
 						<div class="form-group m-b-0">
@@ -215,25 +222,6 @@ img {vertical-align: middle;}
 							</div>
 						</div>
 						<div class="form-group m-b-0">
-							<div class="form-line ">
-								<label for="groupname" class="m-r-3">Group Image :</label>&nbsp;
-								<input type="file" name="adimage" (change)=fileEvent($event) required>   
-							</div>
-						</div>
-
-						<div class="form-group m-b-0">
-								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
-									<label for="groupname" class="m-r-3">User Lists :</label>&nbsp;
-									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList" 
-									[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings" 
-									[ngModelOptions]="{standalone: true}" 
-									 #userselectedItems="ngModel"></ng-multiselect-dropdown>
-									
-								</div>
-							</div>
- 
-						 
-						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
 								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" value="1" readonly="true" />
 								<label for="private1" class="m-r-3">Private</label>&nbsp;
@@ -241,16 +229,35 @@ img {vertical-align: middle;}
 								<label for="public1">Public</label>
 							</div>
 						</div>
+						<div class="form-group m-b-0">
+							<div class="form-line ">
+								<label for="groupname" class="m-r-3">Image :<span style="color: red;">*</span></label>&nbsp;
+								<input type="file" name="adimage" (change)=fileEvent($event) required>   
+							</div>
+						</div>
+
+						<div class="form-group m-b-0">
+								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
+									<label for="groupname" class="m-r-3">Marketer Lists :</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList" 
+									[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings" 
+									[ngModelOptions]="{standalone: true}" 
+									 #userselectedItems="ngModel"></ng-multiselect-dropdown>
+									
+								</div>
+							</div>
+ 						
 	 
 					</div>
 	
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="button" class="btn btn-success" (click)="updategroup()" data-dismiss="modal">Update</button>
+						<button type="button" [disabled]="!groupForm.form.valid" class="btn btn-success" (click)="updategroup()" data-dismiss="modal">Update</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
 	
 					</div>
+				</form>
 				</div>
 			</div>
 			<!-- new group-->
@@ -386,17 +393,17 @@ img {vertical-align: middle;}
 				<!-- Chat List -->
 
 				<div class="row chat-list" id="chat-list" style="overflow:auto;">
-					<input name="search_group_name" [(ngModel)]="Newgroupmodel.search_group_name" type="text" id="search_group_name" placeholder="Type a Group name" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="groupsearch()" #search_group_name="ngModel"/>
+					<input name="search_group_name" [(ngModel)]="Newgroupmodel.search_group_name" type="text" id="search_group_name" placeholder="Type a Marketer Group/Channel" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="groupsearch()" #search_group_name="ngModel"/>
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea(data.id)">
 								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
 								<div class="w-50">
 									<div class="name">{{data.group_name}}</div>
 									<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
 								</div>
-								<div class="flex-grow-1 text-right">
+								<!-- <div class="flex-grow-1 text-right">
 									<div class="small time">14/06/2019</div>
 									<div class="badge badge-success badge-pill small d-none" id="unread-count">2</div>
-								</div>
+								</div> -->
 							</div>
 				
 				</div>
