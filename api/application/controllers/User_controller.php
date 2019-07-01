@@ -21,6 +21,8 @@ class User_controller extends CI_Controller {
         
         $this->db->insert('affiliateuser', $model);
 
+        $last_insert_id = $this->db->insert_id();
+
         /*Create a chat group for the corressponding user*/
         $group_image = 'default-profile.png';
 
@@ -36,7 +38,11 @@ class User_controller extends CI_Controller {
             }
 
             $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
-            (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."','".$i."','".$group_image."',4,'".$randomString."',1,'". $model->doj."',0)");
+            (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."','".$i."','".$group_image."',4,'".$randomString."','".$last_insert_id."','". $model->doj."',0)");
+            $group_id = $this->db->insert_id();
+
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." 
+            (group_id,group_name,user_id,user_name,created_by,created_date,is_deleted) values('".$group_id."','".$model->username."','".$last_insert_id."','".$model->username."','".$last_insert_id."','". $model->doj."',0)");
         }
 
         /*End*/
