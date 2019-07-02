@@ -234,7 +234,7 @@ const routes: Routes = [
   },
   {
      path:'chat/join/:code',
-    component:ChatgroupComponent
+    component:ChatgroupComponent  
     
   },
   

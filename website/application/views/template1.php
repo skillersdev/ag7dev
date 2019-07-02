@@ -1,12 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 //print_r($service_details);die;
-//print_r($product_details);die;
+//print_r($slider_image);die;
 $path_url = $this->config->item('path_url');
 
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
 
+$last_slider_image = end($slider_image);
+
+//print_r($last_slider_image['slider_image']);die;
 ?>
 
 
@@ -54,13 +57,14 @@ $image_path = $this->config->item('base_path');
       <div id="logo" class="pull-left">
         <!-- Uncomment below if you prefer to use a text logo -->
         <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
-        <a href="#intro" class="scrollto"><img src="<?php echo base_url();?>/assets/img/logo.png" alt="" title=""></a>
+        <a href="#intro" class="scrollto">
+          <img src="<?php echo base_url();?>/assets/img/logo.png" alt="" title=""></a>
       </div>
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Me</a></li>
+          <li><a href="#about"></a></li>
           <li><a href="#contact">My Contact</a></li>
           <li><a href="#hotels">My Services</a></li>
           <li><a href="#speakers">My Products</a></li> 
@@ -77,7 +81,15 @@ $image_path = $this->config->item('base_path');
   <!--==========================
     Intro Section
   ============================-->
+
   <section id="intro">
+      <?php 
+  if(count($slider_image)>0){ 
+    ?>
+    <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%;">
+  <?php }else{?>
+     <img src="../img/intro-bg.jpg" style="width:100%;">
+  <?php } ?>
     <div class="intro-container wow fadeIn">
       <!-- <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
       <p class="mb-4 pb-0">Expert in software development and staffing</p> -->

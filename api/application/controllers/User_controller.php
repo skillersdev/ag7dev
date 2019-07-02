@@ -15,6 +15,8 @@ class User_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
+       // print_r($model);die;
+
         date_default_timezone_set('Asia/Kolkata');
         
         $model->doj = date("Y-m-d H:i:s");
@@ -52,7 +54,7 @@ class User_controller extends CI_Controller {
         {
           $last_inserted_user_id = $this->db->insert_id();
           $package_id =isset($model->pcktaken)?$model->pcktaken:0;
-          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_inserted_user_id."','".$package_id."','".$model->website."')");
+          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_insert_id."','".$package_id."','".$model->website."')");
         }
 
 
