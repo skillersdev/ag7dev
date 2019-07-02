@@ -176,23 +176,29 @@ export class ChatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
-          this.group_dt_model = resultdata.group_details[0];
+          console.log(resultdata);
+          if(resultdata.check_user==0){
+            this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
+          } else{
+            this.group_dt_model = resultdata.group_details[0];
           
-          this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
-          this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
-          this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
-          this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+            this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+            this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
+            this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+            this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+            
+            
+            // console.log(this.group_dt_model);
+            this.group_msg_model = resultdata.group_msg;
+            console.log(this.group_msg_model);
+            this.date_array_model = resultdata.date_array;
+            this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
+            this.group_members_model=resultdata.group_members;
+            this.group_profile_log_model=resultdata.group_profile_details; 
+            
+            $('.message-area').addClass('d-sm-flex');
+          }
           
-          
-          // console.log(this.group_dt_model);
-          this.group_msg_model = resultdata.group_msg;
-          console.log(this.group_msg_model);
-          this.date_array_model = resultdata.date_array;
-          this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
-          this.group_members_model=resultdata.group_members;
-          this.group_profile_log_model=resultdata.group_profile_details; 
-          
-          $('.message-area').addClass('d-sm-flex');
         });
   }
   

@@ -226,9 +226,20 @@ class Group_controller extends CI_Controller {
 
          $model = json_decode($this->input->post('model',FALSE));
    // print_r($model); die;
-             $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0'");
+
+    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0'");
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
+
+             
+         $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='". $model->currentUserID."'");
+         $check_user_array=$check_user->result_array();
+// print_r($check_user_array); die;
+        if(count($check_user_array)==0){
+          $response['check_user']=0;
+        } else {
+          $response['check_user']=1;
+         
 
              $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
              $mem_group_array=$mem_group_sql->result_array(); 
@@ -269,6 +280,9 @@ class Group_controller extends CI_Controller {
               // die;
              $response['group_msg']=$msg_group_array1;
              $response['date_array']=$datearray;
+
+        }
+             
             //  print_r($response); die;
           echo json_encode($response,JSON_UNESCAPED_SLASHES);
           die();
