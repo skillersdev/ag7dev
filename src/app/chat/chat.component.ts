@@ -176,7 +176,6 @@ export class ChatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
-          console.log(resultdata);
           if(resultdata.check_user==0){
             this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
           } else{
@@ -187,8 +186,6 @@ export class ChatComponent implements OnInit {
             this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
             this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
             
-            
-            // console.log(this.group_dt_model);
             this.group_msg_model = resultdata.group_msg;
             console.log(this.group_msg_model);
             this.date_array_model = resultdata.date_array;

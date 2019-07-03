@@ -54,8 +54,9 @@ class Group_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         // print_r($model); die;
-        $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
-        
+       
+         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
+
         $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
         foreach ($model->userselectedItems as $key => $value) {
          // $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
@@ -80,6 +81,7 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Group delete successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
+        
         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set is_deleted=1 where id='".$model->g_id."'");
         
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
