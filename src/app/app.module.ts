@@ -59,6 +59,10 @@ import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.
 import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
 import { EdittemplateComponent } from './pages/managetemplates/edittemplate.component';
 import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
+import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegroupchannel.component';
+import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
+import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +111,10 @@ import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
     ManagetemplateComponent,
     AddtemplateComponent,
     EdittemplateComponent,
-    ChatgroupComponent
+    ChatgroupComponent,
+    ManagegroupchannelComponent,
+    ViewchatComponent,
+    ViewsubscribersComponent
   ],
   imports: [
     BrowserModule,                          

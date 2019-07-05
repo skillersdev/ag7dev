@@ -150,6 +150,14 @@ export class AppSettings{
 	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
 	public static checkuserIsgroupRestApiUrl=AppSettings.API_BASE+"/checkuserhavinggroup";
 	public static addusergroupApiUrl=AppSettings.API_BASE+"/addusertogroup";
+    
+    public static getchatgroupslist=AppSettings.API_BASE+"/getchatgroupslist";
+    public static FetchchatbygroupRestApiUrl=AppSettings.API_BASE+"/getchatsbygrouplist/";
+
+	public static FetchsubscribersbygroupRestApiUrl=AppSettings.API_BASE+"/getsubscribersbygrouplist/"; 
+	public static DeletesubscriberRestApiUrl=AppSettings.API_BASE+"/deletesubscriber/"; 
+
+
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
 }

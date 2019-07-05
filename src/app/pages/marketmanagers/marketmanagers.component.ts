@@ -22,6 +22,7 @@ export class MarketmanagersComponent implements OnInit {
     this.loginService.localStorageData();
      this.loginService.viewsActivate();
      this.model.currentUsername=localStorage.getItem('currentUser');
+     
       this.CommonService.insertdata(this.getmarketerslistRestApiUrl,this.model)
     .subscribe(package_det =>{ 
         this.userlist = package_det;

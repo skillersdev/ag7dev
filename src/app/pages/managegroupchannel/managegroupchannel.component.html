@@ -1,0 +1,53 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                               Group/Channel list
+                             <!--  <button type="button" (click)="navigateAddads()" class="btn btn-success waves-effect pull-right">Add Ads</button>  -->                
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Group Name</th>
+                                      <th>Channel/Group</th>
+                                      <th>Created Date</th>
+                                      <th>Created By</th>
+                                      <th>Group Code</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of chatgrouplist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.group_name}}</td>
+                                      <td>{{data.channelgroup}}</td>
+                                      <td>{{data.created_date}}</td>
+                                      <td>{{data.created_by}}</td>
+                                      <td>{{data.group_code}}</td>
+                                      <td>
+                                      	<a href="javascript:void(0);" (click)="viewchat(data.id)">
+                                        View chat</a>
+                                        <a href="javascript:void(0);" (click)="viewsubscribers(data.id)">View Subscribers</a>                                        
+                                      </td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->

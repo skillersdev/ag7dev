@@ -48,6 +48,11 @@ import { ManagetemplateComponent } from './pages/managetemplates/managetemplate.
 import { AddtemplateComponent } from './pages/managetemplates/addtemplate.component';
 import { EdittemplateComponent} from './pages/managetemplates/edittemplate.component';
 import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
+import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegroupchannel.component';
+import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
+
+import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
+
 const routes: Routes = [
   {
 	  path: '',
@@ -234,10 +239,23 @@ const routes: Routes = [
   },
   {
      path:'chat/join/:code',
-    component:ChatgroupComponent  
+    component:ChatgroupComponent
     
   },
-  
+   {
+    path:'managegroupchannel',
+    component:ManagegroupchannelComponent
+  },
+  {
+     path:'viewchat/:id',
+    component:ViewchatComponent
+    
+  },
+  {
+     path:'viewsubscribers/:id',
+    component:ViewsubscribersComponent
+    
+  },
 
 ];
 

@@ -36,7 +36,8 @@ export class EditadvertisementComponent implements OnInit {
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   uploaduserAdvApi:string=AppSettings.uploadAdvfile;
   image_url = AppSettings.IMAGE_BASE;
-  constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
+  constructor(private loginService: LoginService,private CommonService: CommonService,
+    private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
   }
