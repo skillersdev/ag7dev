@@ -31,12 +31,14 @@ export class EditcontactComponent implements OnInit {
   alldata: any = {};
   id:number;
   websitelist:Array<Object>;
+  contactloglist:Array<Object>;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchcategoryRestApiUrl: string = AppSettings.editcategory; 
   updatecontactRestApiUrl: string = AppSettings.updatecontact;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   FetchcontactRestApiUrl:string = AppSettings.getcontactlistbyid;
   uploaduserProfileApi:string=AppSettings.uploadprofileimage;  
+  image_url = AppSettings.IMAGE_BASE;
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -45,6 +47,7 @@ export class EditcontactComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+
        this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       
@@ -78,12 +81,12 @@ export class EditcontactComponent implements OnInit {
   {
     this.CommonService.editdata(this.FetchcontactRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result; 
+          this.contactloglist = resultdata.result.log_result;         
         });
   }
   updatecontactlist()
   {
-     //this.model.is_deleted=1
      this.CommonService.updatedata(this.updatecontactRestApiUrl,this.model)
     .subscribe(contact_det =>{       
         if(contact_det.exist==1)
@@ -118,8 +121,6 @@ export class EditcontactComponent implements OnInit {
        }
         else{
           swal('',"Error while on upload photo",'Oops!');
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
         }
      })
    }

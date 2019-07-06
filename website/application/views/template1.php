@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//print_r($service_details);die;
+//echo"<pre>"; print_r($contac_log_result);die;
 //print_r($slider_image);die;
 $path_url = $this->config->item('path_url');
 
@@ -170,6 +170,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               <?php echo $about_us; ?>
             </p>
           </div>
+
          <!--  <div class="col-lg-3">
             <h3>Address</h3>
             <?php 

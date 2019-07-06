@@ -28,9 +28,13 @@ class Contacts_controller extends CI_Controller {
                 $response['statuc']="error";
                 $response['message']="Selected Website has already contact exists";
             }                                                                                                                                                                 
-            else{
-              
+            else{              
               $this->db->insert('contacts_master', $model);
+
+              $last_insert_contact_id = $this->db->insert_id();
+
+               $this->db->query("insert into ".$this->db->dbprefix('contact_image_log')." 
+            (contact_id,image_name) values('".$last_insert_contact_id."','".$model->website_image."')");
             }
              echo json_encode($response,JSON_UNESCAPED_SLASHES);
               die();
@@ -156,6 +160,17 @@ class Contacts_controller extends CI_Controller {
             if($res->num_rows()>0){
                 $in_array=$res->result_array();
                 $result=$in_array[0];
+
+               $log_res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->get('contact_image_log');
+
+
+              if($log_res->num_rows()>0)
+              {
+                foreach($log_res->result_array() as $key=>$value)
+                { 
+                  $result['log_result'][]=array('id'=>$value['id'],'contact_id'=>$value['contact_id'],'image_name'=>$value['image_name']);
+                }
+              }
             }else{
                 $response['status']="failure";
                 $response['message']=" No  record found!!";
@@ -189,6 +204,11 @@ class Contacts_controller extends CI_Controller {
             // {
                $this->db->where('id',$model->id);
                   $result=$this->db->update('contacts_master', $model);
+
+                 // $last_insert_contact_id = $this->db->insert_id();
+
+               $this->db->query("insert into ".$this->db->dbprefix('contact_image_log')." 
+            (contact_id,image_name) values('".$model->id."','".$model->website_image."')");
            
                 $response['message']="contacts has been updated successfully"; 
             // }

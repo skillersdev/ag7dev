@@ -397,5 +397,105 @@ class Group_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
+   public function getchatgroupslist()
+   {
+     $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('group_master'); 
+       $result=[];
+       $response=[];
+        if(count($res->result_array())>0)
+        {
+            
+            foreach($res->result_array() as $key=>$value)
+              { 
+                
+                $channelgroup = ($value['channelgroup']==1)?'Channel':'Group';
+
+                $res11=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$value['created_by']."' ");
+                $in_array11=$res11->result_array();
+
+                $result[]=array('id'=>$value['id'],'group_name'=>$value['group_name'],'channelgroup'=>$channelgroup,'created_date'=>$value['created_date'],'created_by'=>$in_array11[0]['username'],'group_code'=>$value['group_code']);
+              }
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   public function getchatslistbygroup($id)
+   {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+            $res=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='".$id."'");
+
+            if($res->num_rows()>0){
+                $in_array=$res->result_array();
+                 if(count($res->result_array())>0)
+                  {
+                      
+                      foreach($res->result_array() as $key=>$value)
+                        { 
+                          
+                          //$channelgroup = ($value['channelgroup']==1)?'Channel':'Group';
+
+                          $res11=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='".$value['group_id']."' ");
+                          $in_array11=$res11->result_array();
+
+                          $result[]=array('id'=>$value['id'],'group_name'=>$in_array11[0]['group_name'],'created_date'=>$value['created_date'],'message'=>$value['message'],'created_by'=>$value['user_name'],'group_code'=>$in_array11[0]['group_code']);
+                        }
+                  }
+
+                //$result=$in_array;
+            }else{
+                $response['status']="failure";
+                $response['message']=" No Chat record found!!";
+            }
+            $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+   public function getsubscribersbygrouplist($id)
+   {
+
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+        $res = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $id."' and is_deleted=0 ");
+         if($res->num_rows()>0){
+          //  $res=$res->result_array();
+            if(count($res->result_array())>0)
+            {                      
+              foreach($res->result_array() as $key=>$value)
+                { 
+                  $result[]=array('id'=>$value['id'],'group_name'=>$value['group_name'],'created_date'=>$value['created_date'],'created_by'=>$value['user_name']);
+                }
+            }
+          }
+          else{
+              $response['status']="failure";
+              $response['message']=" No Chat record found!!";
+          }
+        $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+   
+   public function deletesubscriber($id)
+   {
+      $subscriber_delete=$this->db->query("DELETE FROM group_members where id='".$id."' "); 
+
+      $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $response['message']="Subscribers deleted successfully";
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+    
   
 }

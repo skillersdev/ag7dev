@@ -89,6 +89,11 @@ class Website extends CI_Controller {
 			$contac_result=[];
 			$contact_det=$this->db->select("*,fb_link as fb,linked_url as linked")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('contacts_master'); 
 			$contac_result =$contact_det->result_array();
+
+
+			$contac_log_result=[];
+			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->get('contact_image_log'); 
+			$contac_log_result =$contact_log_det->result_array();
 			
 			// if(count($contact_det_result)>0)
 			// {	
@@ -103,6 +108,7 @@ class Website extends CI_Controller {
 			$data['product_details']=$result;
 			$data['service_details']=$serv_result;
 			$data['contact_details']=$contac_result;
+			$data['contac_log_result']=$contac_log_result;
 			$data['ad_details'] = $ads_result;
 			$data['profile_image']=$user_profile_result[0]['image_url'];
 			$data['address']=$user_profile_result[0]['address'];
