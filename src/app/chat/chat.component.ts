@@ -1,6 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { Routes,Router,RouterModule}  from '@angular/router';
 
+import { NgNavigatorShareService } from 'ng-navigator-share';
+
+
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
@@ -37,9 +40,11 @@ export class ChatComponent implements OnInit {
   group_bases:any;
   slideIndex:any;
 
- 
-  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
+ private ngNavigatorShareService: NgNavigatorShareService;
+
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http,ngNavigatorShareService: NgNavigatorShareService) { 
       // document.body.className="theme-red";
+      this.ngNavigatorShareService = ngNavigatorShareService;
 
   }
 
@@ -93,6 +98,20 @@ export class ChatComponent implements OnInit {
     // ];
     
   }
+
+  share() {
+    this.ngNavigatorShareService.share({
+      title: 'My Awesome app',
+      text: 'hey check out my Share button',
+      url: 'http://localhost:4200/chat'
+    }).then( (response) => {
+      console.log(response);
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
+  }
+  
 
   ngOnDestroy() {
   if (this.interval) {
