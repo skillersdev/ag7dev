@@ -45,6 +45,7 @@ export class AppSettings{
 	public static updatecontact= AppSettings.API_BASE+"/updatecontact";
 	//public static deletesubcategory= AppSettings.API_BASE+"/deletesubcategory/";
 	public static deletecontact= AppSettings.API_BASE+"/deletecontact/";
+	public static DeletelogimagesRestApiUrl= AppSettings.API_BASE+"/deletecontactlogimages/"; 
 	
 	
 	/**Package APi list**/

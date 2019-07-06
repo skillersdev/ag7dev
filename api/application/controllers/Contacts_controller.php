@@ -369,4 +369,15 @@ class Contacts_controller extends CI_Controller {
          die();
     }
 
+    public function deletecontactlogimages($id)
+    {
+       $subscriber_delete=$this->db->query("DELETE FROM contact_image_log where id='".$id."' "); 
+
+      $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        $response['message']="Contact Image deleted successfully";
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+
 }

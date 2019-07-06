@@ -199,15 +199,14 @@
                                           <tbody>
                                               <tr *ngFor="let data of contactloglist let idx=index">
                                                   <th scope="row">{{idx+1}}</th>
-                                                  <td><a href=""><img src="{{image_url}}{{data.image_name}}" style="width:10%;"></a></td>
-                                                  <td>{{data.created_by}}</td>
                                                   <td>
-                                                    
-                                                    <a href="javascript:void(0);" (click)="deletead(data.id)"><i class="material-icons">delete</i></a>
-                                                   
+                                                    <a href=""><img src="{{image_url}}{{data.image_name}}" style="width:10%;"></a>
+                                                  </td>
+                                                  <td>                                                
+                                                    <a href="javascript:void(0);" (click)="deletecontactimage(data.id)"><i class="material-icons">delete</i>
+                                                    </a> 
                                                 </td>
-                                              </tr>
-                                             
+                                              </tr>                                             
                                           </tbody>
                                       </table>
                                       </div>

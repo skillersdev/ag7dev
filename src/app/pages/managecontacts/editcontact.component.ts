@@ -127,5 +127,38 @@ export class EditcontactComponent implements OnInit {
   back(){
     this.router.navigate(['/managecontacts']);
   }
+  deletecontactimage(id:any)
+  {
+    let idx = id;
+    let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removelogimages(idx);
+         
+        }        
+      },function(dismiss) {
+    });
+  }
+ removelogimages(idx:any)
+ {
+   this.CommonService.deletedata(AppSettings.DeletelogimagesRestApiUrl,idx)
+        .subscribe(resultdata =>{
+          
+          if(resultdata!="")
+          {
+            swal('Deleted!','Data has been deleted.','success');
+            this.ngOnInit();
+           
+          } 
 
+      });
+ }
 }

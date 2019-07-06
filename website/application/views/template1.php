@@ -9,6 +9,11 @@ $image_path = $this->config->item('base_path');
 
 $last_slider_image = end($slider_image);
 
+//    for($ct=0;$ct<count($contac_log_result);$ct++)
+//     {
+//       echo $contac_log_result[$ct]['image_name'];
+//     }
+// die;
 //print_r($last_slider_image['slider_image']);die;
 ?>
 
@@ -42,7 +47,11 @@ $last_slider_image = end($slider_image);
 
   <!-- Main Stylesheet File -->
   <link href="<?php echo base_url();?>/assets/css/style.css" rel="stylesheet">
-
+  <style type="text/css">
+    
+    .mySlides {display: none;}
+.pimage0{display:block;}
+  </style>
 
 </head>
 
@@ -143,10 +152,50 @@ $last_slider_image = end($slider_image);
     <!--==========================
       About Section
     ============================-->
+    <!-- Modal body -->
+    <div class="modal" id="imagemyModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          <div class="modal-body">             
+            <div class="form-group m-b-0">
+                <div class="slideshow-container"> 
+                  <?php
+                    for($ct=0;$ct<count($contac_log_result);$ct++)
+                    {?>
+                      <div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
+                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:80%; height: 400px;">
+                      </div>
+                   <?php
+                      //echo $contac_log_result[$ct]['image_name'];
+                    }
+                  ?>                
+                  <a class="prev" style="cursor: pointer;" onclick="plusSlides(-1, 1);">&#10094;</a>
+                  <a class="next" style="cursor: pointer;" onclick="plusSlides(1,1);">&#10095;</a>
+                </div>
+ 
+                <div >
+                  <?php
+                    for($cti=0;$cti<count($contac_log_result);$cti++)
+                    {?>
+                  <span onclick="currentSlide(<?php echo $cti+1; ?>);">
+                    <img src="<?php echo  $image_path.$contac_log_result[$cti]['image_name'];?>" style="cursor:pointer;width:40px; height: 40px;"></span> 
+                   <?php
+                      //echo $contac_log_result[$ct]['image_name'];
+                    }
+                  ?>  
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+</div>
+
+
     <section id="about">
       <div class="container">
         <div class="row">
 			<div class="col-lg-3">
+        <a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal">
 				 <?php 
          //echo "<pre>";print_r($contact_details);
          //die;
@@ -158,7 +207,9 @@ $last_slider_image = end($slider_image);
           $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
          }
           
-        echo '<img align="left" style="width:165px;height:180px;"src="'.$path_url.$image.'"/>'; ?>
+        echo '<img align="left" style="width:165px;height:180px;"src="'.$path_url.$image.'"/>'; 
+        ?>
+      </a>
       </div>           
       <div class="col-lg-6">
        <h2>About Me</h2>
@@ -611,6 +662,34 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
      function popupimage1(image){
       $('#mimage1').html('<img src="'+image+'" width="460px" height="400px">');
      }
+ var slideIndex =1;
+  function plusSlides(n,m){
+    
+     showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {this.slideIndex = 1}    
+    if (n < 1) {this.slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+       // slides[i].style.display = "none";  
+        $('.pimage'+i).css('display','none'); 
+    }
+    for (i = 0; i < dots.length; i++) {
+       // dots[i].className = dots[i].className.replace(" active", "");
+    }
+    //slides[this.slideIndex-1].style.display = "block"; 
+    var all_val = this.slideIndex-1; 
+    $('.pimage'+all_val).css('display','block');
+    //dots[this.slideIndex-1].className += " active";
+  }
   </script>
 </body>
 
