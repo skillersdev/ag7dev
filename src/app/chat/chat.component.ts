@@ -39,6 +39,7 @@ export class ChatComponent implements OnInit {
   interval: any;
   group_bases:any;
   slideIndex:any;
+  grouplink:any;
 
  private ngNavigatorShareService: NgNavigatorShareService;
 
@@ -100,9 +101,11 @@ export class ChatComponent implements OnInit {
   }
 
   share() {
+  this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
+  alert(this.grouplink);
     this.ngNavigatorShareService.share({
       title: 'My Awesome app',
-      text: 'hey check out my Share button',
+      text: 'Click to Join this group',
       url: 'http://localhost:4200/chat'
     }).then( (response) => {
       console.log(response);
@@ -133,7 +136,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id='';
       clearInterval(this.interval);
     } else {
-    //this.generateMessageArea(this.Newgroupmodel.g_id);
+      this.generateMessageArea(this.Newgroupmodel.g_id);
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
@@ -201,12 +204,12 @@ export class ChatComponent implements OnInit {
             this.group_dt_model = resultdata.group_details[0];
           
             this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+            this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
             this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
             this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
             this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
             
             this.group_msg_model = resultdata.group_msg;
-            console.log(this.group_msg_model);
             this.date_array_model = resultdata.date_array;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
             this.group_members_model=resultdata.group_members;

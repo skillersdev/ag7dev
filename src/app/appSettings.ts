@@ -10,6 +10,7 @@ export class AppSettings{
 	public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
 	public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
 	public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+	public static share_link= "http://localhost:4200/chat/join/";
 
 	
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
@@ -25,7 +26,7 @@ export class AppSettings{
 	public static updatecategory= AppSettings.API_BASE+"/updatecategory";
 	public static deletecategory= AppSettings.API_BASE+"/deletecategory/";
 	
-	/**/
+	/**/ 
 
 	/*Subcategory*/
 	public static Addsubcategory = AppSettings.API_BASE + "/addsubcategory";
