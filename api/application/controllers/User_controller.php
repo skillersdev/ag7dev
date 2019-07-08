@@ -235,10 +235,10 @@ class User_controller extends CI_Controller {
     $response['exist']=0;
     $username = trim($model->username);
     if(isset($model->Id)){
-        $res=$this->db->select("username")->like('username',$username)->where(['is_deleted'=>'0','id!='=>$model->Id])->get('affiliateuser');    
+        $res=$this->db->select("username")->where(['is_deleted'=>'0','id!='=>$model->Id,'username',$username])->get('affiliateuser');    
     }
     else{
-        $res=$this->db->select("username")->like('username',$username)->where('is_deleted','0')->get('affiliateuser');
+        $res=$this->db->select("username")->where(['is_deleted','0','username',$username])->get('affiliateuser');
     }
 
     if(count($res->result_array())>0)
@@ -255,7 +255,7 @@ class User_controller extends CI_Controller {
     $model = json_decode($this->input->post('model',FALSE));
     $user_id = trim($model->user_id);
     $share_amount_from_user = $model->share_amt;
-    $res=$this->db->select("username,tamount,pcktaken")->like('id',$user_id)->where(['is_deleted'=>'0'])->get('affiliateuser');    
+    $res=$this->db->select("username,tamount,pcktaken")->where(['is_deleted'=>'0','id'=>$user_id])->get('affiliateuser');    
     
 
     if(count($res->result_array())>0)
@@ -266,14 +266,14 @@ class User_controller extends CI_Controller {
 
         /*Check Maximum trasnfer*/
         $package_id=$data[0]['pcktaken'];  
-        $pack_det=$this->db->select("maximum_transfer")->like('id',$package_id)->where(['is_deleted'=>'0'])->get('packages');
+        $pack_det=$this->db->select("maximum_transfer")->where(['is_deleted'=>'0','id'=>$package_id])->get('packages');
         if(count($pack_det->result_array())>0)
         { 
             $pck_data =$pack_det->result_array(); 
 
             $response['maximum_transfer']=$pck_data[0]['maximum_transfer']; 
 
-            $current_user_transfer_det=$this->db->select_sum("amt")->like('transfer_from',$curret_user_name)->get('transfer_history'); 
+            $current_user_transfer_det=$this->db->select_sum("amt")->where('transfer_from',$curret_user_name)->get('transfer_history'); 
             $trasnfer_data = $current_user_transfer_det->result_array();
 
             $total_transfer_amount = ($trasnfer_data[0]['amt']!='')?$trasnfer_data[0]['amt']:0;
@@ -636,7 +636,7 @@ class User_controller extends CI_Controller {
         $response['exist']=0;
         $email = trim($model->email);
    
-        $res=$this->db->select("*")->like(array('email'=>$email))->where(['is_deleted'=>'0'])->get('affiliateuser');  
+        $res=$this->db->select("*")->where(['is_deleted'=>'0','email'=>$email])->get('affiliateuser');  
         if(count($res->result_array())>0)
         {
            

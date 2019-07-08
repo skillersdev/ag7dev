@@ -185,10 +185,12 @@ class Service_controller extends CI_Controller {
             }
         $query_parts = array();
         foreach ($package as $val) {
-            $query_parts[] = "'%".$val."%'";
+            $query_parts[] = "'".$val."'";
         }
 
         $string = implode(' OR website LIKE ', $query_parts);
+
+        //echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string}";die;
 
         $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string} ");
         $result1=$tank->result_array();

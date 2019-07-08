@@ -17,7 +17,7 @@ class Login_controller extends CI_Controller {
     $password = trim($model->user_password);
     
    
-        $res=$this->db->select("*")->like(array('username'=>$username,'password'=>$password))->where(['is_deleted'=>'0'])->get('affiliateuser');  
+        $res=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$username,'password'=>$password])->get('affiliateuser');  
     if(count($res->result_array())>0)
     {
        foreach($res->result_array() as $key=>$value)
