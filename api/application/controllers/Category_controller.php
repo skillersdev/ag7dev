@@ -102,7 +102,7 @@ class Category_controller extends CI_Controller {
   {
     $model = json_decode($this->input->post('model',FALSE));
 
-     $res=$this->db->select("*")->like('url',$model->url)->where(['is_deleted'=>'0'])->get('category_master'); 
+     $res=$this->db->select("*")->where(['is_deleted'=>'0','url'=>$model->url])->get('category_master'); 
      $result=array();
       if($res->num_rows()>0)
         {

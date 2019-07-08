@@ -71,7 +71,7 @@ class Contacts_controller extends CI_Controller {
   {
     $model = json_decode($this->input->post('model',FALSE));
 
-     $res=$this->db->select("*")->like('url',$model->url)->where(['is_deleted'=>'0'])->get('category_master'); 
+     $res=$this->db->select("*")->where(['is_deleted'=>'0','url'=>$model->url])->get('category_master'); 
      $result=array();
       if($res->num_rows()>0)
         {
@@ -191,7 +191,7 @@ class Contacts_controller extends CI_Controller {
            $website = trim($model->website);
           if(isset($website))
             {
-              $res=$this->db->select("website")->like('website',$website)->where(['is_deleted'=>'0','id!='=>$model->id])->get('contacts_master') ;
+              $res=$this->db->select("website")->where(['is_deleted'=>'0','id!='=>$model->id,'website'=>$website])->get('contacts_master') ;
             }
            // if(count($res->result_array())>0)
            //  {

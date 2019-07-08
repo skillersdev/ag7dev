@@ -17,7 +17,7 @@ class Transferhistory_controller extends CI_Controller {
 
         if($this->db->insert('transfer_history', $model))
         {
-            $total_amt=$this->db->select("id,tamount")->like('username',$model->transfer_from)->where('is_deleted','0')->get('affiliateuser');
+            $total_amt=$this->db->select("id,tamount")->where(['is_deleted'=>'0','username'=>$model->transfer_from])->get('affiliateuser');
              if(count($total_amt->result_array())>0)
                 {
                     $data_amt=$total_amt->result_array();
@@ -30,7 +30,7 @@ class Transferhistory_controller extends CI_Controller {
                 $this->db->where('id',$user_id);
                 $this->db->update($this->db->dbprefix('affiliateuser'),$data);
 
-                $user_share_to=$this->db->select("id,tamount")->like('username',$model->transfer_to)->where('is_deleted','0')->get('affiliateuser');
+                $user_share_to=$this->db->select("id,tamount")->where(['is_deleted'=>'0','username'=>$model->transfer_to])->get('affiliateuser');
                 if(count($user_share_to->result_array())>0)
                 {
                     $share_to_det=$user_share_to->result_array();
@@ -53,7 +53,7 @@ class Transferhistory_controller extends CI_Controller {
         $username = trim($model->currentUsername);
         if(isset($model->currentUsername)){
             //$res=$this->db->select("*")->like('transfer_from',$username)->get('transfer_history');   
-            $res=$this->db->query("select * from ".$this->db->dbprefix('transfer_history')." where transfer_to LIKE '%".$username."%'"); 
+            $res=$this->db->query("select * from ".$this->db->dbprefix('transfer_history')." where transfer_to LIKE '".$username."'"); 
         }
        
        $response=[];
