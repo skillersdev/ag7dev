@@ -99,7 +99,8 @@ export class LoginComponent implements OnInit {
                 }
                 else if(chatcode!=null)
                 {
-                  this.router.navigate(['chat/join', chatcode]);
+                  //this.router.navigate(['chat/join', chatcode]);
+                  this.router.navigate(['/chat']);
                    //return false;
                 }
                 else{
