@@ -102,9 +102,9 @@ export class ChatComponent implements OnInit {
 
   share() {
   this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
-  //alert(this.grouplink);
+  
     this.ngNavigatorShareService.share({
-      title: 'Roodabatoz',
+      title: 'My Awesome app',
       text: 'Click to Join this group',
       url: this.grouplink
     }).then( (response) => {
@@ -140,7 +140,7 @@ export class ChatComponent implements OnInit {
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 40000);
+    }, 20000);
   }  else {
     clearInterval(this.interval);
   }
@@ -172,6 +172,7 @@ export class ChatComponent implements OnInit {
 
   hideshow(){
   this.Newgroupmodel.g_id = '';
+  $('.mainmenu_navbar').removeClass('dhana');
      $('.chat-list').removeClass('d-none');
     $('.message-area').removeClass('d-flex');
     $('.chat-list').addClass('d-flex');
@@ -181,11 +182,15 @@ export class ChatComponent implements OnInit {
   generateMessageArea(g_id){
   
   if($(window).width() > 450){
+  
+    $('.mainmenu_navbar').removeClass('dhana');
   $('.chat-list').removeClass('d-none');
     $('.message-area').removeClass('d-flex');
     $('.chat-list').addClass('d-flex');
     $('.message-area').addClass('d-none');
   } else {
+  
+    $('.mainmenu_navbar').addClass('dhana');
     $('.chat-list').removeClass('d-flex');
     $('.message-area').removeClass('d-none');
     $('.chat-list').addClass('d-none');
