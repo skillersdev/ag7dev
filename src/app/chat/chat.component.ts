@@ -102,11 +102,11 @@ export class ChatComponent implements OnInit {
 
   share() {
   this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
-  alert(this.grouplink);
+  //alert(this.grouplink);
     this.ngNavigatorShareService.share({
-      title: 'My Awesome app',
+      title: 'Roodabatoz',
       text: 'Click to Join this group',
-      url: 'http://localhost:4200/chat'
+      url: this.grouplink
     }).then( (response) => {
       console.log(response);
     })

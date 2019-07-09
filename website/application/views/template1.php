@@ -97,7 +97,7 @@ $last_slider_image = end($slider_image);
     ?>
     <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%;">
   <?php }else{?>
-     <img src="../img/intro-bg.jpg" style="width:100%;">
+     <img src="assets/img/intro-bg.jpg" style="width:100%;">
   <?php } ?>
     <div class="intro-container wow fadeIn">
       <!-- <h1 class="mb-4 pb-0">The Global<br><span>Service</span> Provide</h1>
