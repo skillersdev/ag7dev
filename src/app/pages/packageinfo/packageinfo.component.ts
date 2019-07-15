@@ -34,7 +34,7 @@ export class PackageinfoComponent implements OnInit {
   showButton:Boolean=false;
   renew_payment_details:any=false;
   checkIswebsite:Boolean=false;
-
+  isPaid:Boolean=false;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -143,6 +143,8 @@ export class PackageinfoComponent implements OnInit {
     this.payment_data.website = this.model.website;
     this.details_array.push(this.payment_data);
     $('.preloader').show();
+    this.isPaid=true;
+    //return false;
      this.CommonService.insertdata(this.packageActivateApiUrl,this.details_array)
     .subscribe(payment_status =>{ 
       if(payment_status.status=='success')
@@ -150,6 +152,7 @@ export class PackageinfoComponent implements OnInit {
         swal('','Package activated successfully','success');
         this.payment_data='';
         this.model='';
+        this.isPaid=false;
          $('#exampleModal').modal('toggle');
           let user_id = localStorage.getItem('currentUserID');
           this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
@@ -157,12 +160,14 @@ export class PackageinfoComponent implements OnInit {
                 this.packagelist=resultdata.result; 
               });
               $('.preloader').hide();
-              this.showButton=true;
+              
+              this.showButton=false;
             }
       else if(payment_status.status=='user_error'){
         swal('','Not a valid user or invalid user data','error');        
         //this.payment_data='';
         //this.model='';
+         //this.isPaid=true;
         $('.preloader').hide();
       }
       else if(payment_status.status=='fail'){
