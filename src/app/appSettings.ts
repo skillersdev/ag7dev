@@ -2,25 +2,25 @@ export class AppSettings{
 
 	
 	
-	// public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
-  	// public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
-	// public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
-	// public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
-	// public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
-	// public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
-	// public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
+  	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
+	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
+	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	 public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
+	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 
-	// public static share_link= "http://localhost:4200/chat/join/";
+	 public static share_link= "http://localhost:4200/chat/join/";
 
-	public static share_link= "https://roodabatoz.com/chat/join/";
+	//public static share_link= "https://roodabatoz.com/chat/join/";
 
-	public static API_BASE = "https://roodabatoz.com/api";
-	public static USER_TEMPLATE= "https://roodabatoz.com/website";
-	public static IMAGE_BASE = "https://roodabatoz.com/api/";
-	public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
-	public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
-	public static WEBSITE_URL="https://roodabatoz.com/website/";
-	public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
+//	public static API_BASE = "https://roodabatoz.com/api";
+//	public static USER_TEMPLATE= "https://roodabatoz.com/website";
+//	public static IMAGE_BASE = "https://roodabatoz.com/api/";
+//	public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
+//	public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
+//	public static WEBSITE_URL="https://roodabatoz.com/website/";
+//	public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
 
 	
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
@@ -153,6 +153,7 @@ export class AppSettings{
 	public static addgroup=AppSettings.API_BASE+"/addgroup";
 	public static getgroups=AppSettings.API_BASE+"/getgroups";
 	public static getgroupsdetails=AppSettings.API_BASE+"/getgroupsdetails";
+	public static getgroupsdetailspublic=AppSettings.API_BASE+"/getgroupsdetailspublic";
 	public static sendmsg=AppSettings.API_BASE+"/sendmsg";
  	public static deletePackageDetails = AppSettings.API_BASE+"/deletepackagedetails"; 
 	public static groupimage=AppSettings.API_BASE+"/groupimage";
@@ -165,6 +166,7 @@ export class AppSettings{
     
     public static getchatgroupslist=AppSettings.API_BASE+"/getchatgroupslist";
     public static FetchchatbygroupRestApiUrl=AppSettings.API_BASE+"/getchatsbygrouplist/";
+    public static codetogroup=AppSettings.API_BASE+"/getcodetogroup";
 
 	public static FetchsubscribersbygroupRestApiUrl=AppSettings.API_BASE+"/getsubscribersbygrouplist/"; 
 	public static DeletesubscriberRestApiUrl=AppSettings.API_BASE+"/deletesubscriber/"; 

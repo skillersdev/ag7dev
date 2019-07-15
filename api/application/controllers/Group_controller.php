@@ -219,7 +219,80 @@ class Group_controller extends CI_Controller {
       die();
  }
 
-   public function getgroupsdetails(){
+   public function getgroupsdetailspublic(){
+    
+      $this->output->set_content_type('application/json');
+         $response=array();
+         $response['status']="success";
+         $result=array();
+
+         $model = json_decode($this->input->post('model',FALSE));
+   // print_r($model); die;
+
+    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0' and private_public=4");
+             $group_array=$group_sql->result_array(); 
+             $response['group_details']=$group_array;
+
+             
+         $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+         $check_user_array=$check_user->result_array();
+// print_r($check_user_array); die;
+        if(count($check_user_array)==0){
+          $response['check_user']=0;
+        } else {
+          $response['check_user']=1;
+         
+
+             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+             $mem_group_array=$mem_group_sql->result_array(); 
+             $mem_group_array1=$mem_group_sql->result_object(); 
+            //  print_r($mem_group_array1); die;
+             $response['group_members']=$mem_group_array;
+             $response['select_group_members']=$mem_group_array1;
+
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."'");
+             $msg_group_array1 = array();
+             $datearray =array();
+             $msg_group_array=$msg_group_sql->result_array(); 
+             foreach ($msg_group_array as $msg_key => $msg_value) {
+
+              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
+              if(in_array($newDate,$datearray)){
+               
+              } else{
+                 $datearray[] = $newDate;  
+              }
+               $msg_value['video_type'] = 0;
+              if($msg_value['chatimage']!=''){
+                $ext = explode(".", $msg_value['chatimage']);
+                if($ext[1]=="mp4"){
+                  $msg_value['video_type'] = 1;
+                }
+              }
+
+               $msg_group_array1[$newDate][] = $msg_value;
+               // print_r($msg_value['created_date']);
+             }
+             
+             $group_image_sql=$this->db->query("select * from ".$this->db->dbprefix('group_profile_images_log')." where group_id='". $model->g_id."'");
+             $group_image_array=$group_image_sql->result_array(); 
+             $response['group_profile_details']=$group_image_array;
+             // $datearray = array_unique($datearray);
+              // print_r($msg_group_array1);
+              // die;
+             $response['group_msg']=$msg_group_array1;
+             $response['date_array']=$datearray;
+
+        }
+             
+            //  print_r($response); die;
+          echo json_encode($response,JSON_UNESCAPED_SLASHES);
+          die();
+       
+  }
+
+
+public function getgroupsdetails(){
     
       $this->output->set_content_type('application/json');
          $response=array();
@@ -300,7 +373,7 @@ class Group_controller extends CI_Controller {
 
           $model = json_decode($this->input->post('model',FALSE));
         if($model->search_group_name!=''){
-          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
+          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->like('group_master.group_name',$model->search_group_name)
             // ->where('group_members.user_id', $model->currentUserID)
@@ -310,7 +383,7 @@ class Group_controller extends CI_Controller {
             ->group_by('group_master.id')
             ->get('group_master');
         } else {
-         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public')
+         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->where('group_members.user_id', $model->currentUserID)
             // ->where('group_master.private_public', '2')
@@ -368,6 +441,28 @@ class Group_controller extends CI_Controller {
            die();
           //print_r($group_array);die;
    }
+
+   public function getcodetogroup(){
+    
+      $this->output->set_content_type('application/json');
+         $response=array();
+         $response['status']="success";
+         $result=array();
+
+         $model = json_decode($this->input->post('model',FALSE));
+    
+
+    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where group_code='". $model->groupcode."'  and private_public=4 and  is_deleted='0'");
+             $group_array=$group_sql->result_array(); 
+             $response['group_details']=$group_array;
+
+             
+            // print_r($response); die;
+          echo json_encode($response,JSON_UNESCAPED_SLASHES);
+          die();
+       
+  }
+
 
    public function addusertogroup()
    {

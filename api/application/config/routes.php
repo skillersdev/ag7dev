@@ -174,6 +174,8 @@ $route['getservicebyuser'] = 'Service_controller/getservicebyuser';
 $route['addgroup']= 'Group_controller/addgroup';
 $route['getgroups']= 'Group_controller/getgroups';
 $route['getgroupsdetails']= 'Group_controller/getgroupsdetails';
+$route['getgroupsdetailspublic']= 'Group_controller/getgroupsdetailspublic';
+
 $route['sendmsg']= 'Group_controller/sendmsg';
 $route['deletepackagedetails'] = 'Package_controller/deletepackagedetails';
 $route['groupimage']= 'Group_controller/groupimage';
@@ -188,6 +190,8 @@ $route['getchatgroupslist'] = 'Group_controller/getchatgroupslist';
 $route['getchatsbygrouplist/(:num)']= 'Group_controller/getchatslistbygroup/$1';
 $route['getsubscribersbygrouplist/(:num)']= 'Group_controller/getsubscribersbygrouplist/$1';
 $route['deletesubscriber/(:num)']= 'Group_controller/deletesubscriber/$1';
+$route['getcodetogroup'] = 'Group_controller/getcodetogroup';
+
 
 
 ?>

@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
+import { PublicchatComponent } from './chat/publicchat.component';
 import { ManageuserComponent } from './pages/manageuser/manageuser.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
@@ -254,6 +255,11 @@ const routes: Routes = [
   {
      path:'viewsubscribers/:id',
     component:ViewsubscribersComponent
+    
+  },
+  {
+     path:'chat/public/:code',
+    component:PublicchatComponent
     
   },
 
