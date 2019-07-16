@@ -20,6 +20,8 @@ class User_controller extends CI_Controller {
         date_default_timezone_set('Asia/Kolkata');
         
         $model->doj = date("Y-m-d H:i:s");
+
+        unset($model->cpassword);
         
         $this->db->insert('affiliateuser', $model);
 
@@ -859,9 +861,7 @@ class User_controller extends CI_Controller {
       $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
-        $model = json_decode($this->input->post('model',FALSE));
-
-       
+        $model = json_decode($this->input->post('model',FALSE));    
 
 
         $user_res=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where id='".$model->user_id."' ");
@@ -880,5 +880,36 @@ class User_controller extends CI_Controller {
 
 
     }
-  
+   public function uploadcropimage()
+   {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+
+        /*Converting base 64 image to image file and upload*/
+        $image_parts = explode(";base64,", $model->Imagefile);
+        define('UPLOAD_DIR', 'resizeuploads/');
+        $img = $model->Imagefile;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = UPLOAD_DIR . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+        $result = $success ? $file : 'fail';
+        
+        if($result!='fail')
+        {
+            $response['status']="success";
+            $response['message']="Image upload successfully";
+            $response['data']=$file;
+        }
+        else{
+            $response['status']="failure";
+            $response['message']="Error while upload on photos";    
+        }
+       
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+   }
 }

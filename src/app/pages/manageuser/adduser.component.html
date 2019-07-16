@@ -386,10 +386,11 @@
                                     <p><b>User type</b><span class="text-danger">*</span></p>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" [(ngModel)]="model.user_type" #user_type="ngModel" name="user_type" required>
+                                            <select class="form-control show-tick" [(ngModel)]="model.user_type" #user_type="ngModel" name="user_type">
                                             <option [ngValue]="select">Select</option>
                                             <option value="1">Admin</option>
                                             <option value="2">Marketer</option>
+                                            <option value="3">Sub Admin</option>
                                         </select>
                                         </div>
                                         <div *ngIf="user_type.errors && (user_type.dirty || user_type.touched)"> <span [hidden]="!user_type.errors.required" style="color:red;"> *User Type is required </span> </div>

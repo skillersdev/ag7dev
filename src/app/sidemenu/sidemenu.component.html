@@ -38,7 +38,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li *ngIf="model.usergroup==1">
+                <li *ngIf="model.usergroup==1 || model.usergroup==3">
                     <a href="javascript:void(0);" [routerLink]="['/manageuser']">
                         <i class="material-icons  col-amber">supervisor_account</i>
                         <span>Manage User</span>
@@ -63,7 +63,7 @@
                         <span>Manage Payments</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageads']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Ads</span>
@@ -87,52 +87,52 @@
                         <span>Transfer Info</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/packageinfo']">
                         <i class="material-icons col-purple">shop_two</i>
                         <span>Package Info</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managecategory']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Category</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managesubcategory']">
                         <i class="material-icons  col-green">view_module</i>
                         <span>Manage Subcategory </span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageproducts']">
                         <i class="material-icons  col-green">view_module</i>
                         <span *ngIf="model.usergroup==1">Manage Products </span>
                         <span *ngIf="model.usergroup==2">My Products </span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageservices']">
                         <i class="material-icons  col-green">view_module</i>
                         <span *ngIf="model.usergroup==2">My Services</span>
                         <span *ngIf="model.usergroup==1">Manage Services</span>
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managecontacts']">
                         <i class="material-icons col-indigo">contacts</i>
                         <span *ngIf="model.usergroup==1">Manage Contacts</span>
                         <span *ngIf="model.usergroup==2">My Contacts</span>
                     </a>
                 </li>
-                 <li>
+                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managetemplates']">
                         <i class="material-icons col-indigo">contacts</i>
                         <span>Manage Template slider</span>                        
                     </a>
                 </li>
-                <li>
+                <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managegroupchannel']">
                         <i class="material-icons">chat</i>
                         <span>Manage Group/Channel</span>                        

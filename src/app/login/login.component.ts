@@ -97,12 +97,17 @@ export class LoginComponent implements OnInit {
                   this.router.navigate(['./admindashboard']);
                   // swal('', data.message, 'success');
                 }
+                else if(user_det.user_type==3)
+                {
+                  this.router.navigate(['./admindashboard']);
+                }
                 else if(chatcode!=null)
                 {
                   //this.router.navigate(['chat/join', chatcode]);
                   this.router.navigate(['/chat']);
                    //return false;
                 }
+
                 else{
                   this.router.navigate(['./dashboard']);
                   // swal('', data.message, 'success');

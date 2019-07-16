@@ -63,7 +63,8 @@ import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
 import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegroupchannel.component';
 import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
 import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
-
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +117,8 @@ import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscri
     ManagegroupchannelComponent,
     ViewchatComponent,
     ViewsubscribersComponent,
-    PublicchatComponent
+    PublicchatComponent,
+	ImageCropperComponent
   ],
   imports: [
     BrowserModule,                          
@@ -124,7 +126,8 @@ import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscri
     FormsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
-    HttpModule
+    HttpModule,
+    ImageCropperModule
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]

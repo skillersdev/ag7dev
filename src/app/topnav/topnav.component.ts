@@ -22,7 +22,7 @@ export class TopnavComponent implements OnInit {
      this.loginService.viewsActivate();
      let id=localStorage.getItem('currentUserID');
      let user_type=localStorage.getItem('currentUsergroup');
-     if(user_type!='1')
+     if(user_type!='1' && user_type!='3')
      {
       this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
          if(data.exist==2)

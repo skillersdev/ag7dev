@@ -107,6 +107,7 @@ $route['checkusercredit'] = 'User_controller/check_user_credit';
 $route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
 $route['updatepassword'] = 'User_controller/updatepassword';
 $route['uploadimage'] = 'User_controller/uploadimage';
+$route['uploadcropimage']= 'User_controller/uploadcropimage';
 $route['uploadAdvfile']= 'User_controller/uploadAdvfile';
 $route['uploadtempfile']= 'User_controller/uploadtempfile';
 $route['addadvertisment']= 'User_controller/add_user_ad';

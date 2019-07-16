@@ -170,8 +170,7 @@ export class AppSettings{
 
 	public static FetchsubscribersbygroupRestApiUrl=AppSettings.API_BASE+"/getsubscribersbygrouplist/"; 
 	public static DeletesubscriberRestApiUrl=AppSettings.API_BASE+"/deletesubscriber/"; 
-
-
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
+	public static uploadcropimage= AppSettings.API_BASE+"/uploadcropimage";
 }

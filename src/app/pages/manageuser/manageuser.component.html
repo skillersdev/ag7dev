@@ -52,7 +52,7 @@
                                        
                                         <td>
                                             <a href="javascript:void(0);" (click)="edituser(item.Id)"><i class="material-icons">edit</i></a>
-                                            <a href="javascript:void(0);" (click)="deleteuser(item.Id)"><i class="material-icons">delete</i></a>
+                                            <a *ngIf="model.usergroup!=3" href="javascript:void(0);" (click)="deleteuser(item.Id)"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
 

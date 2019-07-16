@@ -4,9 +4,11 @@ import { AppComponent } from '../app.component';
 import { TopnavComponent } from '../topnav/topnav.component';
 import { SidemenuComponent } from '../sidemenu/sidemenu.component';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { AppSettings } from '../appSettings';
+import {  AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
 import { CommonService } from '../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -31,19 +33,25 @@ export class ProfileComponent implements OnInit {
   model: any = {};
   alldata: any = {};
   resultdata:any={};
+  model1:any={};
+   cropperSettings: CropperSettings;
+  
   image_url = AppSettings.IMAGE_BASE;
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
+
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red"; 
-
+      this.cropperSettings = new CropperSettings();
+    this.cropperSettings.noFileInput = true;
   }
 
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     // this.model.fname = localStorage.getItem('user_fname');
-    // this.model.email = localStorage.getItem('email');
-    // this.model.address = localStorage.getItem('address');
+   
     this.model.id = localStorage.getItem('currentUserID');
      this.CommonService.editdata(this.FetchuserRestApiUrl,this.model.id)
         .subscribe(resultdata =>{   
@@ -56,16 +64,29 @@ export class ProfileComponent implements OnInit {
   }
   update_profile()
   {
-     this.CommonService.updatedata(this.updateuserprofileRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/profile']);
-        
-    });
+    this.CommonService.insertdata(AppSettings.uploadcropimage,this.model1)
+        .subscribe(response =>{       
+            //swal(response.status,response.message,response.status)
+            if(response.data)
+            {
+              this.model.image_url = response.data;
+
+               this.CommonService.updatedata(this.updateuserprofileRestApiUrl,this.model)
+                .subscribe(package_det =>{       
+                     swal(
+                      package_det.status,
+                      package_det.message,
+                      package_det.status
+                    )
+                     this.router.navigate(['/profile']);
+                    
+                });
+            }
+            else{
+              swal(response.status,response.message,response.status)
+            }
+        });
+    
   }
   passwordMatch()
    {
@@ -95,21 +116,64 @@ export class ProfileComponent implements OnInit {
         
     });
    }
-   fileEvent($event) {
-    const fileSelected: File = $event.target.files[0];
-    $('.preloader').show();
-    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
-    .subscribe( (response) => {
-       if(response.status=='success')
-       {
-        this.model.image_url = response.data;
-        $('.preloader').hide();
-       }
-        else{
-          swal('',"Error while on upload photo",'Oops!');
+   // fileEvent(event:any) {
+   //   this.imageChangedEvent = event;
+
+    // const fileSelected: File = $event.target.files[0];
+    // $('.preloader').show();
+    // this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+    // .subscribe( (response) => {
+    //    if(response.status=='success')
+    //    {
+    //     this.model.image_url = response.data;
+    //     $('.preloader').hide();
+    //    }
+    //     else{
+    //       swal('',"Error while on upload photo",'Oops!');
           
-          //this.toastr.errorToastr(response.data, 'Oops!');
-        }
-     })
-   }
+    //       //this.toastr.errorToastr(response.data, 'Oops!');
+    //     }
+    //  })
+   //}
+   // imageCropped(event: File,$event) {
+   //     // this.croppedImage = event.base64;
+   //      console.log(event);
+   //       const fileSelected = event.file;
+   //        $('.preloader').show();
+   //        this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
+   //        .subscribe( (response) => {
+   //           if(response.status=='success')
+   //           {
+   //            this.model.image_url = response.data;
+   //            $('.preloader').hide();
+   //           }
+   //            else{
+   //              swal('',"Error while on upload photo",'Oops!');
+                
+   //              //this.toastr.errorToastr(response.data, 'Oops!');
+   //            }
+   //         })
+   //  }
+
+  //   fileChangeListener($event) {
+  //   var image:any = new Image();
+  //   var file:File = $event.target.files[0];
+  //   console.log(file);
+  //   var myReader:FileReader = new FileReader();
+  //   var that = this;
+  //   myReader.onloadend = function (loadEvent:any) {
+  //       image.src = loadEvent.target.result;
+  //   }; 
+  //  // myReader.readAsDataURL(file);
+  // }
+
+
+  fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+
+    }
 }

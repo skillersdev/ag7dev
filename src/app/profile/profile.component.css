@@ -1,0 +1,15 @@
+/*.cropper{
+	margin-left: unset !important;
+}
+image-cropper{
+	text-align: left !impor tant;
+}*/
+
+
+p {
+  font-family: Lato;
+}
+
+image-cropper {
+  max-height: 33vh;
+}
