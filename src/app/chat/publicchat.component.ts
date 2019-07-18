@@ -66,11 +66,13 @@ export class PublicchatComponent implements OnInit {
     this.date_array_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems=[]; 
-    this.loginService.localStorageData();
+    //this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.loginService.viewsUploadoption();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
+
+    console.log(this.Newgroupmodel.currentUser);
     this.Newgroupmodel.userselectedItems=[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
     this.userdropdownSettings = {
       singleSelection: false,
@@ -256,7 +258,17 @@ export class PublicchatComponent implements OnInit {
   }
 
   sendMessage(){
-
+  if(this.Newgroupmodel.currentUser==null){
+  this.Newgroupmodel.currentUserID=0;
+      Swal.fire({
+        title: '',
+        type: 'info',
+        html:
+          '<input type="text" name="currentUser" type="text" id="currentUser" placeholder="Enter your name" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm currentUser"><button type="button"  class="btn btn-success" (click)="setname()" >Save</button>',
+          showCancelButton: false, 
+          showConfirmButton: false
+      })
+  } else {
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
     .subscribe(package_det =>{       
       
@@ -265,6 +277,15 @@ export class PublicchatComponent implements OnInit {
         // swal('','Message sent Successfully','success');  
         
     }); 
+  }
+    
+  }
+  setname(){
+  
+      this.Newgroupmodel.currentUser=$('.currentUser').val();
+      localStorage.setItem('currentUser', this.Newgroupmodel.currentUser);
+      localStorage.setItem('currentUserID', 0);
+      
   }
    
   fileEvent($event) {
