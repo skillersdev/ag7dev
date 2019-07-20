@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any; 
 import { Injectable } from '@angular/core';  
@@ -27,8 +28,11 @@ export class EditcontactComponent implements OnInit {
   currentAllUsers:any;
   private sub: any;
   model: any = {};
+  model1: any = {};
   select: any;
   alldata: any = {};
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
   id:number;
   websitelist:Array<Object>;
   contactloglist:Array<Object>;
@@ -37,7 +41,8 @@ export class EditcontactComponent implements OnInit {
   updatecontactRestApiUrl: string = AppSettings.updatecontact;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   FetchcontactRestApiUrl:string = AppSettings.getcontactlistbyid;
-  uploaduserProfileApi:string=AppSettings.uploadprofileimage;  
+  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;  
   image_url = AppSettings.IMAGE_BASE;
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -161,4 +166,20 @@ export class EditcontactComponent implements OnInit {
 
       });
  }
+  fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.website_image = response.data;
+        }
+     })
+
+
+    }
 }

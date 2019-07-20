@@ -51,7 +51,16 @@
                                                 <p><b>web Profile</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                     <input name="file" type="file" (change)=fileEvent($event)/>
+                                                     <input type="file" (change)="fileChangeEvent($event)" />
+                                                        <image-cropper
+                                                            [imageChangedEvent]="imageChangedEvent"
+                                                            [maintainAspectRatio]="true"
+                                                            [aspectRatio]="4 / 3"
+                                                            [resizeToWidth]="128"
+                                                            format="png"
+                                                            (imageCropped)="imageCropped($event)"          
+                                                        ></image-cropper>
+                                                        <img [src]="croppedImage" />
                                                     </div>
                                                      <div class="preloader pl-size-xs" style="display:none;">
                                                         <div class="spinner-layer pl-red-grey">

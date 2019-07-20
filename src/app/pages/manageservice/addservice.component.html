@@ -41,8 +41,16 @@
                                                             <p><b>Service Image/Video</b></p>
                                                             <div class="form-group">
                                                                 <div class="form-line">
-                                                                     <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.service_image" #service_image="ngModel" name="service_image" required/> 
-                                                                      <span [hidden]="service_image.valid || service_image.pristine" class="text-danger">Image is required</span> 
+                                                                     <input type="file" (change)="fileChangeEvent($event)" />
+                                                                    <image-cropper
+                                                                        [imageChangedEvent]="imageChangedEvent"
+                                                                        [maintainAspectRatio]="true"
+                                                                        [aspectRatio]="4 / 3"
+                                                                        [resizeToWidth]="128"
+                                                                        format="png"
+                                                                        (imageCropped)="imageCropped($event)"           
+                                                                    ></image-cropper>
+                                                                    <img [src]="croppedImage" />  
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -26,13 +27,18 @@ export class AddcontactComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  model1: any = {};
   select: any;
   alldata: any = {};
   websitelist:Array<Object>;
+   imageChangedEvent: any = '';
+    croppedImage: any = '';
+
 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
   insertcontactsRestApiUrl: string = AppSettings.Addcontacts; 
-  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+  //uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+  uploaduserProfileApi:string=AppSettings.uploadcropimage;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -59,28 +65,36 @@ export class AddcontactComponent implements OnInit {
 
   addcontactlist()
   {
-    this.model.created_by=localStorage.getItem('currentUserID');
-    this.CommonService.insertdata(this.insertcontactsRestApiUrl,this.model)
-    .subscribe(contact_det =>{  
-        if(contact_det.exist==1)
-        {
-          swal(
-            'error',
-            contact_det.message,
-            'error'
-          )
-        }
-        else{
-           swal(
-            contact_det.status,
-            contact_det.message,
-            contact_det.status
-          )
-        }
 
-        
-        this.router.navigate(['/managecontacts']); 
-    });
+    this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+          this.model.website_image = response.data;
+           this.model.created_by=localStorage.getItem('currentUserID');
+            this.CommonService.insertdata(this.insertcontactsRestApiUrl,this.model)
+            .subscribe(contact_det =>{  
+                if(contact_det.exist==1)
+                {
+                  swal(
+                    'error',
+                    contact_det.message,
+                    'error'
+                  )
+                }
+                else{
+                   swal(
+                    contact_det.status,
+                    contact_det.message,
+                    contact_det.status
+                  )
+                }
+
+                
+                this.router.navigate(['/managecontacts']); 
+            });
+       }
+     });
   }
 
   fileEvent($event) {
@@ -100,4 +114,13 @@ export class AddcontactComponent implements OnInit {
         }
      })
    }
+
+     fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+
+    }
 }

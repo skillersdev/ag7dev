@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any; 
 import { Injectable } from '@angular/core';  
@@ -28,13 +29,17 @@ export class EditserviceComponent implements OnInit {
   image_url = AppSettings.IMAGE_BASE;
   private sub: any;
   model: any = {};
+  model1: any = {};
   select: any;
   alldata: any = {};
+   imageChangedEvent: any = '';
+    croppedImage: any = '';
   id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchserviceRestApiUrl: string = AppSettings.getservicebyid; 
   updateserviceRestApiUrl: string = AppSettings.updateservice; 
   uploaduserProfileApi:string=AppSettings.uploadserviceimage; 
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;
   websitelist:Array<Object>;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
@@ -102,6 +107,25 @@ export class EditserviceComponent implements OnInit {
         
     });
   }
+
+  fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.service_image = response.data;
+        
+          
+        }
+     })
+
+
+    }
   back(){
     this.router.navigate(['/manageservices']);
   }

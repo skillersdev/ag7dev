@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 declare var jquery:any;
 declare var $ :any;
@@ -28,7 +29,9 @@ export class AddproductComponent implements OnInit {
   currentAllUsers:any;
   select: any;
   getcategorylistRestApiUrl:string = AppSettings.getcategoryDetail; 
-  uploaduserProfileApi:string=AppSettings.uploadproductimage;
+  // uploaduserProfileApi:string=AppSettings.uploadproductimage;
+  uploaduserProfileApi:string=AppSettings.uploadcropimage;
+  
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
@@ -39,8 +42,11 @@ export class AddproductComponent implements OnInit {
   websitelist:Array<Object>;
   product_det:Array<Object>;
   model: any = {};
+  model1: any = {};
   alldata: any = {};
   localdata:any={};
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -73,14 +79,7 @@ export class AddproductComponent implements OnInit {
              
         });
       } 
-      // this.CommonService.getdata(this.getcategorylistRestApiUrl)
-      //   .subscribe(det =>{
-      //       if(det.result!=""){ this.categorylist=det.result;}
-      //   });
-        // this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
-        // .subscribe(det =>{
-        //     if(det.result!=""){ this.subcategorylist=det.result;}
-        // });
+   
         this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       
@@ -95,15 +94,25 @@ export class AddproductComponent implements OnInit {
 
   addproduct()
   {
-     this.CommonService.insertdata(this.insertproductRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-        this.router.navigate(['/manageproducts']); 
-    }); 
+    this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
+    .subscribe( (response) => {
+       if(response.status=='success')
+       {
+        this.model.product_image = response.data;
+          this.CommonService.insertdata(this.insertproductRestApiUrl,this.model)
+          .subscribe(package_det =>{       
+               swal(
+                package_det.status,
+                package_det.message,
+                package_det.status
+              )
+              this.router.navigate(['/manageproducts']); 
+          }); 
+       }
+        else{
+          swal('',"Error while on upload photo",'Oops!');
+        }
+     })
   }
   fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
@@ -136,5 +145,13 @@ export class AddproductComponent implements OnInit {
         });
  }
   
+   fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+
+    }
 
 }

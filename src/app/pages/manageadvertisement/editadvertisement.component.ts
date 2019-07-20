@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any; 
 import { Injectable } from '@angular/core';  
@@ -28,14 +29,17 @@ export class EditadvertisementComponent implements OnInit {
   websitelist:Array<Object>;
   private sub: any;
   model: any = {};
+  model1: any = {};
   alldata: any = {};
   id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchadRestApiUrl: string = AppSettings.editad; 
   updateadRestApiUrl: string = AppSettings.updatead; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
-  uploaduserAdvApi:string=AppSettings.uploadAdvfile;
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;
   image_url = AppSettings.IMAGE_BASE;
+   imageChangedEvent: any = '';
+    croppedImage: any = '';
   constructor(private loginService: LoginService,private CommonService: CommonService,
     private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -114,18 +118,38 @@ export class EditadvertisementComponent implements OnInit {
   updatead()
   {
      //this.model.is_deleted=1
-     delete this.model.formEnable;
-     this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/manageads']);
-        
-    });
+
+      delete this.model.formEnable;
+           this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
+          .subscribe(package_det =>{       
+               swal(
+                package_det.status,
+                package_det.message,
+                package_det.status
+              )
+               this.router.navigate(['/manageads']);
+              
+          });
   }
+
+   fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.uploads = response.data;
+        
+          
+        }
+     })
+
+
+    }
   back(){
     this.router.navigate(['/manageads']); 
   }

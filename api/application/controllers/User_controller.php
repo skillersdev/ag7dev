@@ -886,7 +886,7 @@ class User_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-
+//print_r($model);
         /*Converting base 64 image to image file and upload*/
         $image_parts = explode(";base64,", $model->Imagefile);
         define('UPLOAD_DIR', 'resizeuploads/');

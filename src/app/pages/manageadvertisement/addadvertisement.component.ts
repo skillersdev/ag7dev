@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any; 
 import { Injectable } from '@angular/core';  
@@ -26,11 +27,14 @@ export class AddadvertisementComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  model1: any = {};
   alldata: any = {};
   websitelist:Array<Object>;
-  uploaduserAdvApi:string=AppSettings.uploadAdvfile;
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;
   insertuseradRestApiUrl: string = AppSettings.Adduseradvertisement; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
   
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -65,15 +69,19 @@ export class AddadvertisementComponent implements OnInit {
   {
     delete this.model.formEnable;
     this.model.user_id=localStorage.getItem('currentUserID');
-    this.CommonService.insertdata(this.insertuseradRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-        this.router.navigate(['/manageads']); 
-    });
+     this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.uploads = response.data;
+        
+           this.CommonService.insertdata(this.insertuseradRestApiUrl,this.model)
+          .subscribe(package_det =>{       
+               swal(package_det.status,package_det.message,package_det.status)
+              this.router.navigate(['/manageads']); 
+          });
+        }
+     })
   }
   fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
@@ -91,6 +99,15 @@ export class AddadvertisementComponent implements OnInit {
         }
      })
   }
+
+  fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+
+    }
 
   back(){
     this.router.navigate(['/manageads']);

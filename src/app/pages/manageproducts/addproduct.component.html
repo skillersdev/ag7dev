@@ -180,8 +180,18 @@
                                                 <p><b>Prodcut Image</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                         <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.product_image" #product_image="ngModel" name="product_image" required/> 
-                                                          <span [hidden]="product_image.valid || product_image.pristine" class="text-danger">Image is required</span> 
+                                                       <!--   <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.product_image" #product_image="ngModel" name="product_image" required/> 
+                                                          <span [hidden]="product_image.valid || product_image.pristine" class="text-danger">Image is required</span>  -->
+                                                           <input type="file" (change)="fileChangeEvent($event)" />
+                                            <image-cropper
+                                                [imageChangedEvent]="imageChangedEvent"
+                                                [maintainAspectRatio]="true"
+                                                [aspectRatio]="4 / 3"
+                                                [resizeToWidth]="128"
+                                                format="png"
+                                                (imageCropped)="imageCropped($event)"           
+                                            ></image-cropper>
+                                            <img [src]="croppedImage" />
                                                     </div>
                                                 </div>
                                             </div>

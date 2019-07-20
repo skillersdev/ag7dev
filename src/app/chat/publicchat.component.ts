@@ -284,7 +284,7 @@ export class PublicchatComponent implements OnInit {
   
       this.Newgroupmodel.currentUser=$('.currentUser').val();
       localStorage.setItem('currentUser', this.Newgroupmodel.currentUser);
-      localStorage.setItem('currentUserID', 0);
+      localStorage.setItem('currentUserID', '0');
       
   }
    

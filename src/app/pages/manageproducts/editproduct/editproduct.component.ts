@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../../appSettings';
 import { LoginService } from '../../../services/login.service';
 import { CommonService } from '../../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -31,6 +32,7 @@ export class EditproductComponent implements OnInit {
   getsubcategorylistRestApiUrl:string = AppSettings.getsubcategoryDetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   uploaduserProfileApi:string=AppSettings.uploadserviceimage;
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;
   getsubcategoryRestApiUrl:string = AppSettings.getsubcategorybyid;
   insertproductRestApiUrl :string = AppSettings.addproduct;
   FetchproductRestApiUrl:string = AppSettings.editproduct;
@@ -41,9 +43,12 @@ export class EditproductComponent implements OnInit {
   subcategorylist:Array<Object>;
   websitelist:Array<Object>;
   product_det:Array<Object>;
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
    private sub: any;
    id:number;
   model: any = {};
+  model1:any={};
   alldata: any = {};
   localdata:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
@@ -105,16 +110,11 @@ export class EditproductComponent implements OnInit {
        
   }
   updateproduct()
-  {
-  	 this.CommonService.updatedata(this.updateproductRestApiUrl,this.model)
+  {    
+  	this.CommonService.updatedata(this.updateproductRestApiUrl,this.model)
     .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        ) 
+         swal(package_det.status,package_det.message,package_det.status) 
          this.router.navigate(['/manageproducts']);
-        
     });
   }
   fileEvent($event) {
@@ -128,8 +128,6 @@ export class EditproductComponent implements OnInit {
        }
         else{
           swal('',"Error while on upload photo",'Oops!');
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
         }
      })
    }
@@ -143,5 +141,22 @@ export class EditproductComponent implements OnInit {
           this.subcategorylist=resultdata.result; 
         });
   }
+
+  fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.product_image = response.data;
+        }
+     })
+
+
+    }
 
 }

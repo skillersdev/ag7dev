@@ -26,7 +26,7 @@ export class AdmindashboardComponent implements OnInit {
   transferdata: any = {};
   userlist:Array<Object>;
   model: any = {};
-  alldata: any = {};
+  data: any = {};
   getuserlistRestApiUrl:string=AppSettings.getuserslist;
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
  inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
@@ -51,6 +51,7 @@ ngOnInit() {
         } 
          
     });
+    this.data.usertype = localStorage.getItem('currentUsergroup');
 }
 
 logout() {

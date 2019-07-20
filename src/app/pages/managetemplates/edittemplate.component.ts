@@ -8,6 +8,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -29,10 +30,15 @@ export class EdittemplateComponent implements OnInit {
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
-  uploaduserAdvApi:string=AppSettings.uploadTempfile;
+  //uploaduserAdvApi:string=AppSettings.uploadTempfile;
+  uploaduserAdvApi:string=AppSettings.uploadcropimage;  
   showbutton:boolean=true;
   Iserror:boolean=true;
   model: any = {};
+  model1: any = {};
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
+    //model1:any={};
   image_url = AppSettings.IMAGE_BASE;
    select: any;
   packagelist:Array<Object>;
@@ -143,4 +149,21 @@ export class EdittemplateComponent implements OnInit {
         }
      })
   }
+
+   fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+    }
+  imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+        this.model1.Imagefile = event.base64;
+        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.slider_image = response.data;
+        }
+     })
+
+
+    }
 }

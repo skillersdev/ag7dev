@@ -63,8 +63,9 @@ import { ChatgroupComponent } from './pages/chatgroup/chatgroup.component';
 import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegroupchannel.component';
 import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
 import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
-import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 import { ImageCropperModule } from 'ngx-image-cropper';
+//import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +119,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ViewchatComponent,
     ViewsubscribersComponent,
     PublicchatComponent,
-	ImageCropperComponent
+	//ImageCropperComponent
   ],
   imports: [
     BrowserModule,                          
