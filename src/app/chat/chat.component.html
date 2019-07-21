@@ -591,6 +591,10 @@ img {vertical-align: middle;}
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
 							</video>
+							<audio *ngIf="data.video_type==2" controls>
+							   <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/ogg">
+  								<source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/mpeg">
+							</audio>
 								</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:140px;">
 								{{data.created_date | date:'hh:mm a'}}
@@ -607,6 +611,10 @@ img {vertical-align: middle;}
 									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
 									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
 									</video>
+									<audio *ngIf="data.video_type==2" controls>
+									   <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/ogg">
+		  								<source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/mpeg">
+									</audio>
 								</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date:'hh:mm a'}}

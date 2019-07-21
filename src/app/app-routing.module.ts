@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { PublicchatComponent } from './chat/publicchat.component';
+import { MychatComponent } from './chat/mychat.component'; 
 import { ManageuserComponent } from './pages/manageuser/manageuser.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
@@ -260,6 +261,10 @@ const routes: Routes = [
   {
      path:'chat/public/:code',
     component:PublicchatComponent
+    
+  },{
+     path:'chat/mychat/:code',
+    component:MychatComponent
     
   },
 

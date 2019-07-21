@@ -192,6 +192,8 @@ $route['getchatsbygrouplist/(:num)']= 'Group_controller/getchatslistbygroup/$1';
 $route['getsubscribersbygrouplist/(:num)']= 'Group_controller/getsubscribersbygrouplist/$1';
 $route['deletesubscriber/(:num)']= 'Group_controller/deletesubscriber/$1';
 $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
+$route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
+$route['mychatgroup'] = 'Group_controller/mychatgroup';
 
 
 

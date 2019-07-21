@@ -167,6 +167,8 @@ export class AppSettings{
     public static getchatgroupslist=AppSettings.API_BASE+"/getchatgroupslist";
     public static FetchchatbygroupRestApiUrl=AppSettings.API_BASE+"/getchatsbygrouplist/";
     public static codetogroup=AppSettings.API_BASE+"/getcodetogroup";
+    public static getmychatcodetogroup=AppSettings.API_BASE+"/getmychatcodetogroup";    
+    public static mychatgroup=AppSettings.API_BASE+"/mychatgroup";
 
 	public static FetchsubscribersbygroupRestApiUrl=AppSettings.API_BASE+"/getsubscribersbygrouplist/"; 
 	public static DeletesubscriberRestApiUrl=AppSettings.API_BASE+"/deletesubscriber/"; 

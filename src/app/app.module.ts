@@ -13,6 +13,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { PublicchatComponent } from './chat/publicchat.component';
+import { MychatComponent } from './chat/mychat.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './services/login.service';
 import { CommonService } from './services/common.service';
@@ -119,6 +120,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ViewchatComponent,
     ViewsubscribersComponent,
     PublicchatComponent,
+    MychatComponent,
 	//ImageCropperComponent
   ],
   imports: [
