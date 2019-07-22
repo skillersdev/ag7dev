@@ -126,13 +126,13 @@
                         <span *ngIf="model.usergroup==2">My Contacts</span>
                     </a>
                 </li>
-                 <li *ngIf="model.usergroup!=3">
+                 <li *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managetemplates']">
                         <i class="material-icons col-indigo">contacts</i>
                         <span>Manage Template slider</span>                        
                     </a>
                 </li>
-                <li *ngIf="model.usergroup!=3">
+                <li *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managegroupchannel']">
                         <i class="material-icons">chat</i>
                         <span>Manage Group/Channel</span>                        
