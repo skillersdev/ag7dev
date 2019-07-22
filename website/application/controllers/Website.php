@@ -6,16 +6,12 @@ class Website extends CI_Controller {
 	
 	public function index($websitename)
 	{
-		// $template=1;
-		//$websitename=$_REQUEST['model']	;
-		//print_r($websitename); die;
+		
 		$data=[];
 		if(isset($websitename))
 		{
 			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
 			$val=$res->result_array();
-			
-// print_r($val); die;
 			if($val){
 
 			
@@ -49,7 +45,8 @@ class Website extends CI_Controller {
 						$sub_category_name = $sub_category_det_result[0]['sub_category_name'];
 					}
 					
-					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image']);
+					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image'],
+						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes']);
 		          }
 
 			}
@@ -145,5 +142,39 @@ class Website extends CI_Controller {
 		}
 		
 		
+	}
+
+	public function updateproductmaster()
+	{
+		$res_chk=$this->db->query("select * from ".$this->db->dbprefix('product_master')." where id='".$_POST['id']."' ");
+        
+        if($res_chk->num_rows()>0)
+        {
+        	$prod_det = $res_chk->result_array();
+
+			if($_POST['field']=='view')
+			{
+				$data=array('total_views'=>$prod_det[0]['total_views']+1);
+	            $this->db->where('id',$_POST['id']);
+	            $this->db->update($this->db->dbprefix('product_master'),$data);
+	             $value =  array('total_views' =>$data['total_views'] );
+
+	             echo json_encode($value);
+	           // return $data['total_likes'];
+	            die;
+	          
+			}
+			elseif($_POST['field']=='like')
+			{
+				$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
+	            $this->db->where('id',$_POST['id']);
+	            $this->db->update($this->db->dbprefix('product_master'),$data);
+	            $value =  array('total_likes' =>$data['total_likes'] );
+
+	             echo json_encode($value);
+	           // return $data['total_likes'];
+	            die;
+			}
+		}
 	}
 }

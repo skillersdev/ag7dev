@@ -430,7 +430,12 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               <div class="modal-body" id="mimage">   
                           
               </div>
-              <div class="modal-footer" id="mfooter">
+              <div class="modal-footer" id="mfooter" style="display: block;">
+                <img src="./assets/img/eye-open.png" id="viewT" style="width:60px;cursor: pointer;">
+                <span id="viewcount"></span>
+                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT" style="width:22px;cursor: pointer;">
+                <span id="likecount"></span>
+               <!--  <i class="glyphicon glyphicon-plus"></i> -->
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
               </div>
             </div>            
@@ -451,11 +456,14 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 $scname = "'".$product_details[$i]['sub_category_name']."'";
                 $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
                 $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
+                $total_likes=$product_details[$i]['total_likes'];
+                $total_views = $product_details[$i]['total_views'];
                 ?>
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
+                      <input type="hidden" id="product_id" value="<?php echo $product_details[$i]['id'];?>">
                      <?php 
-                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.','.$total_likes.','.$total_views.','. $product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
                         ?>
                       <div class="details">
                         <h4>                          
@@ -642,7 +650,18 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url();?>/assets/js/main.js"></script>
   <script>
-  
+   $("#likesT").click(function() {      
+      var id = $('#product_id1').val();
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+                data:{'id':id,'field':'like'},
+                dataType:"JSON",                
+                success:function(data){                 
+                    $('#likecount').html(data.total_likes);
+                }
+            });
+    });
   function servicepopupimage(name,image,desc){
       
       $('#mtitle2').html(name);
@@ -650,13 +669,29 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       $('#desc2').html(desc);
      }
 
-    function popupimage(name,image,cname,scname,price){
+    function popupimage(name,image,cname,scname,price,likes,views,p_id){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
       $('#scname').html(scname);
-      $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px">');
+      $('#likecount').html(likes);
+      $('#viewcount').html(views);
+      //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
+      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1">');
+      
+      var id = p_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+          data:{'id':id,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#viewcount').html(data.total_views);
+          }
+          // success:function(data){
+          //     $('#viewcount').replaceWith(data);
+          // }
+      });
      }
 
      function popupimage1(image){
