@@ -11,6 +11,7 @@ export class AppSettings{
 	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 
 	 public static share_link= "http://localhost:4200/chat/join/";
+	 public static chatshare= "http://localhost:4200/chat/public/";
 
 	//public static share_link= "https://roodabatoz.com/chat/join/";
 

@@ -261,7 +261,7 @@ export class PublicchatComponent implements OnInit {
   if(this.Newgroupmodel.currentUser==null){
   this.Newgroupmodel.currentUserID=0;
       Swal.fire({
-        title: '',
+        title: 'Enter your name',
         type: 'info',
         html:
           '<input type="text" name="currentUser" type="text" id="currentUser" placeholder="Enter your name" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm currentUser"><button type="button"  class="btn btn-success" (click)="setname()" >Save</button>',

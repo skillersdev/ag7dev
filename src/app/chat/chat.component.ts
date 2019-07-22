@@ -101,7 +101,7 @@ export class ChatComponent implements OnInit {
   }
 
   share() {
-  this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
+  this.grouplink = AppSettings.chatshare+this.Newgroupmodel.groupcode;
   
     this.ngNavigatorShareService.share({
       title: 'My Awesome app',
