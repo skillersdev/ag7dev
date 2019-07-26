@@ -26,7 +26,6 @@ img {vertical-align: middle;}
   position: relative;
   margin: auto;
 }
-
 .dhana{
 	display: none !important;
 }
@@ -122,8 +121,6 @@ img {vertical-align: middle;}
 <body style="font-size: 16px !important;">
 	
 	<div class="container-fluid" id="main-container">
-
-
 			<!-- The Modal -->
 		<div class="modal" id="myModaledit">
 				<div class="modal-dialog">
@@ -155,7 +152,7 @@ img {vertical-align: middle;}
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
 								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" value="1" readonly="true" />
-								<label for="private1" class="m-r-3">Private</label>&nbsp;
+									<label for="private1" class="m-r-3">Private</label>&nbsp;
 								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" value="2" readonly="true" />
 								<label for="public1">Public</label>
 							</div>
@@ -177,8 +174,6 @@ img {vertical-align: middle;}
 									
 								</div>
 							</div>
- 						
-	 
 					</div>
 	
 					<!-- Modal footer -->
@@ -208,9 +203,7 @@ img {vertical-align: middle;}
 					<div class="modal-body">
 						 
 						<div class="form-group m-b-0">
-							
-
-								<div class="slideshow-container"> 
+							<div class="slideshow-container"> 
 								  <div *ngFor="let data of group_profile_log_model let i=index" id="pimage{{i}}"  class="mySlides pimage{{i}}">
 								    <img src="{{group_bases}}group_images/{{data.image_name}}" style="width:80%; height: 400px;">
 								    

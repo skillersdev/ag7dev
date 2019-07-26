@@ -54,7 +54,6 @@ export class MychatComponent implements OnInit {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
     this.slideIndex = 1; 
-    
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
@@ -85,7 +84,9 @@ export class MychatComponent implements OnInit {
     this.getparamas = this.route.params.subscribe(params => {
        this.Newgroupmodel.groupcode = params['code']; // (+) converts string 'id' to a number
     }); 
+    
     //console.log(this.Newgroupmodel.groupcode);
+    
     //this.getgrouplists();
     this.getuserlists();
     this.Newgroupmodel.g_id=1; 
@@ -127,7 +128,6 @@ export class MychatComponent implements OnInit {
 
         this.generateMessageArea(package_det.group_details[0].id);
     }   
-        console.log(package_det.group_details[0].id);
     });
   }
 
