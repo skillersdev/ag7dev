@@ -1,3 +1,7 @@
 1)  
  
   ALTER TABLE `product_master` CHANGE `total_views` `total_views` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0', CHANGE `total_likes` `total_likes` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0';
+
+2) services:
+
+ALTER TABLE `services` CHANGE `total_views` `total_views` INT(15) NOT NULL DEFAULT '0', CHANGE `total_likes` `total_likes` INT(15) NOT NULL DEFAULT '0';

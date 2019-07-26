@@ -365,8 +365,13 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               </div>
               <div class="modal-body" id="mimage2">                
               </div>
-              <div class="modal-footer" id="desc2">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              <div class="modal-footer tesdt" id="desc2">
+                <div class="image-container"  style="margin: 0 auto; width:52%;">
+                  <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
+                  <span id="viewservicecount"></span>
+                  <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
+                  <span id="likeservicecount"></span>
+                </div>
               </div>
             </div>            
           </div>
@@ -382,12 +387,13 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             $name = "'".$service_details[$j]['service_name']."'";
             $image = "'".$path_url.$service_details[$j]['service_image']."'";
             $desc = "'".$service_details[$j]['desc']."'";
+            $service_id = "'".$service_details[$j]['id']."'";
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
+                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.','.$service_id.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -662,11 +668,35 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 }
             });
     });
-  function servicepopupimage(name,image,desc){
+
+    $("#likeservice").click(function() {      
+      var id = $('#service_id').val();
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/updateservicemaster"); ?>',
+                data:{'id':id,'field':'like'},
+                dataType:"JSON",                
+                success:function(data){                 
+                    $('#likeservicecount').html(data.total_likes);
+                }
+            });
+    });
+  function servicepopupimage(name,image,desc,service_id){
       
       $('#mtitle2').html(name);
       $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
-      $('#desc2').html(desc);
+      $('#desc2').append('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id">');
+
+       var serviceid = service_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateservicemaster"); ?>',
+          data:{'id':serviceid,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#viewservicecount').html(data.total_views);
+          }
+      });
      }
 
     function popupimage(name,image,cname,scname,price,likes,views,p_id){
@@ -688,9 +718,6 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
           success:function(data){                 
               $('#viewcount').html(data.total_views);
           }
-          // success:function(data){
-          //     $('#viewcount').replaceWith(data);
-          // }
       });
      }
 
