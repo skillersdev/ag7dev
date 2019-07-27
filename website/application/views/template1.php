@@ -515,8 +515,11 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               </div>
               <div class="modal-body" id="mimage1">                
               </div>
-              <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              <div class="modal-footer" style="display: block;">
+                 <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
+                <span id="adviewcount"></span>
+                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
+                <span id="adlikecount"></span>
               </div>
             </div>            
           </div>
@@ -548,7 +551,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 					<?php 
 					  if($ad_details[$k]['ad_type']==1)
 					  { 
-						  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
+						  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.','.$ad_details[$k]['id'].')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
 					  }
 					  else{
 						echo '<video width="280" height="200" controls>
@@ -681,6 +684,20 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 }
             });
     });
+
+    $("#adlikes").click(function() {      
+      var id = $('#adv_id').val();
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/updateadmaster"); ?>',
+                data:{'id':id,'field':'like'},
+                dataType:"JSON",                
+                success:function(data){                 
+                    $('#adlikecount').html(data.total_likes);
+                }
+            });
+    });
+    
   function servicepopupimage(name,image,desc,service_id){
       
       $('#mtitle2').html(name);
@@ -721,8 +738,18 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       });
      }
 
-     function popupimage1(image){
-      $('#mimage1').html('<img src="'+image+'" width="460px" height="400px">');
+     function popupimage1(image,ad_id){
+      $('#mimage1').html('<img src="'+image+'" width="460px" height="400px"><input type="hidden" value="'+ad_id+'" id="adv_id">');
+      var id = ad_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateadmaster"); ?>',
+          data:{'id':id,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#adviewcount').html(data.total_views);
+          }
+      });
      }
  var slideIndex =1;
   function plusSlides(n,m){

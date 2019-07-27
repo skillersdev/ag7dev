@@ -211,4 +211,39 @@ class Website extends CI_Controller {
 			}
 		}
 	}
+
+	public function updateadmaster()
+	{
+		$res_chk=$this->db->query("select * from ".$this->db->dbprefix('user_advertisements')." where id='".$_POST['id']."' ");
+        
+        if($res_chk->num_rows()>0)
+        {
+        	$prod_det = $res_chk->result_array();
+
+			if($_POST['field']=='view')
+			{
+				$data=array('total_views'=>$prod_det[0]['total_views']+1);
+	            $this->db->where('id',$_POST['id']);
+	            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+	             $value =  array('total_views' =>$data['total_views'] );
+
+	             echo json_encode($value);
+	           // return $data['total_likes'];
+	            die;
+	          
+			}
+			elseif($_POST['field']=='like')
+			{
+				$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
+	            $this->db->where('id',$_POST['id']);
+	            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+	            $value =  array('total_likes' =>$data['total_likes'] );
+
+	             echo json_encode($value);
+	           // return $data['total_likes'];
+	            die;
+			}
+		}
+		
+	}
 }

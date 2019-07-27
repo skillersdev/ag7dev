@@ -5,3 +5,7 @@
 2) services:
 
 ALTER TABLE `services` CHANGE `total_views` `total_views` INT(15) NOT NULL DEFAULT '0', CHANGE `total_likes` `total_likes` INT(15) NOT NULL DEFAULT '0';
+
+3) Advertsiements:
+
+ALTER TABLE `user_advertisements`  ADD `total_views` INT(15) NOT NULL DEFAULT '0'  AFTER `created_at`,  ADD `total_likes` INT(15) NOT NULL DEFAULT '0'  AFTER `total_views`;
