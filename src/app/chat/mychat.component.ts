@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Routes,Router,RouterModule,ActivatedRoute}  from '@angular/router';
+import { Routes,Router,RouterModule}  from '@angular/router';
 
 import { NgNavigatorShareService } from 'ng-navigator-share';
 
@@ -26,7 +26,6 @@ export class MychatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
   api_bases:any;
-  getparamas:any;
   Newgroupmodel: any = {}; 
   group_dt_model:Array<Object>;
   group_name:any;
@@ -44,7 +43,7 @@ export class MychatComponent implements OnInit {
 
  private ngNavigatorShareService: NgNavigatorShareService;
 
-  constructor(private loginService: LoginService,private route:ActivatedRoute,private CommonService: CommonService,private router: Router,private http:Http,ngNavigatorShareService: NgNavigatorShareService) { 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http,ngNavigatorShareService: NgNavigatorShareService) { 
       // document.body.className="theme-red";
       this.ngNavigatorShareService = ngNavigatorShareService;
 
@@ -54,13 +53,15 @@ export class MychatComponent implements OnInit {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
     this.slideIndex = 1; 
+    this.Newgroupmodel.channelgroup=2;
+    this.Newgroupmodel.privatepublic=2;
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
-    this.Newgroupmodel.groupcode='';
-    this.group_name=1;
+   // this.Newgroupmodel.groupcode='';
+    this.group_name=0;
     this.group_msg_model=[];
     this.date_array_model=[];
     this.group_members_model=[];
@@ -70,7 +71,6 @@ export class MychatComponent implements OnInit {
     this.loginService.viewsUploadoption();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
-    
     this.Newgroupmodel.userselectedItems=[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
     this.userdropdownSettings = {
       singleSelection: false,
@@ -81,23 +81,27 @@ export class MychatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-    this.getparamas = this.route.params.subscribe(params => {
-       this.Newgroupmodel.groupcode = params['code']; // (+) converts string 'id' to a number
-    }); 
-    
+    //this.getparamas = this.route.params.subscribe(params => {
+     //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
+    //}); 
     //console.log(this.Newgroupmodel.groupcode);
-    
-    //this.getgrouplists();
+    this.getgrouplists();
     this.getuserlists();
-    this.Newgroupmodel.g_id=1; 
+    this.Newgroupmodel.g_id=''; 
     
-    this.Codetogroup();
-    //this.groupdetails();
-   // this.generateMessageArea(1);
+    // this.interval = setInterval(() => { 
+    //   this.getgrouplists();
+    // }, 15000);
+
+    // this.selectedItems = [
+    //   { Id: 3, username: 'Pune' },
+    //   { Id: 4, username: 'Navsari' }
+    // ];
+    
   }
 
   share() {
-  this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
+  this.grouplink = AppSettings.chatshare+this.Newgroupmodel.groupcode;
   
     this.ngNavigatorShareService.share({
       title: 'My Awesome app',
@@ -110,26 +114,7 @@ export class MychatComponent implements OnInit {
       console.log(error);
     });
   }
-    
-  Codetogroup(){
-    this.CommonService.insertdata(AppSettings.getmychatcodetogroup,this.Newgroupmodel)
-    .subscribe(package_det =>{  
-    
-    if(package_det){
-      this.Newgroupmodel.g_id = package_det.group_details[0].id;
-        
-         this.Newgroupmodel.groupname = package_det.group_details[0].group_name;
-         this.Newgroupmodel.channelgroup = package_det.group_details[0].channelgroup;
-         
-            this.Newgroupmodel.groupcode = package_det.group_details[0].group_code;
-            this.Newgroupmodel.privatepublic = package_det.group_details[0].private_public;
-            this.Newgroupmodel.groupimagename = package_det.group_details[0].imagename;
-            this.Newgroupmodel.created_by = package_det.group_details[0].created_by;
-
-        this.generateMessageArea(package_det.group_details[0].id);
-    }   
-    });
-  }
+  
 
   ngOnDestroy() {
   if (this.interval) {
@@ -138,13 +123,24 @@ export class MychatComponent implements OnInit {
 }
 
   refreshData(){
-  if(this.Newgroupmodel.g_id!=''){
-   //this.interval = setInterval(() => {
+  if(this.router.url!="/mychat"){
 
-    //this.generateMessageArea(this.Newgroupmodel.g_id);
+  this.Newgroupmodel.g_id='';
+    clearInterval(this.interval);
+  }
+  else if(this.Newgroupmodel.g_id!='' && this.router.url=="/mychat"){
+   this.interval = setInterval(() => {
+
+   if(this.router.url!="/mychat" || this.Newgroupmodel.g_id==''){
+    
+    this.Newgroupmodel.g_id='';
+      clearInterval(this.interval);
+    } else {
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+    }
    
-     
-    //}, 20000);
+     // this.generateMessageArea(this.Newgroupmodel.g_id);
+    }, 20000);
   }  else {
     clearInterval(this.interval);
   }
@@ -158,12 +154,32 @@ export class MychatComponent implements OnInit {
         
     });
   }
-  groupdetails(){
-   
+  getgrouplists(){    
+
+    // this.CommonService.getdata(AppSettings.getgroups)
+    this.CommonService.insertdata(AppSettings.getmygroups,this.Newgroupmodel)
+    .subscribe(det =>{      
+        if(det.result!=""){ this.group_det=det.result;}
+    });
   }
-  
+
+  generateMessageArea1(id,p_p,g_code){
+    if(p_p==4){
+    //alert(g_code);
+      // this.router.navigate(['./chat/public/',g_code]); 
+    }else {
+      this.generateMessageArea(id);
+    }
+  }
+  groupsearch(){
+    this.group_det=[];
+     this.CommonService.insertdata(AppSettings.getmygroups,this.Newgroupmodel)
+    .subscribe(det =>{      
+        if(det.result!=""){ this.group_det=det.result;}
+    });
+  }
+
   hideshow(){
-  this.router.navigate(['./chat']); 
   this.Newgroupmodel.g_id = '';
   $('.mainmenu_navbar').removeClass('dhana');
      $('.chat-list').removeClass('d-none');
@@ -192,16 +208,21 @@ export class MychatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // this.refreshData();
     this.CommonService.insertdata(AppSettings.mychatgroup,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
-         // if(resultdata.check_user==0){
-            //this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
-          //} else{
-            //this.group_dt_model = resultdata.group_details[0];
+          if(resultdata.check_user==0){
+            // this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
+          } else{
+            this.group_dt_model = resultdata.group_details[0];
           
-
+            this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+            this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
+            this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
+            this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+            this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+            
             this.group_msg_model = resultdata.group_msg;
             this.date_array_model = resultdata.date_array;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
@@ -209,7 +230,7 @@ export class MychatComponent implements OnInit {
             this.group_profile_log_model=resultdata.group_profile_details; 
             
             $('.message-area').addClass('d-sm-flex');
-         // }
+          }
           
         });
   }
@@ -219,9 +240,8 @@ export class MychatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.updategroup,this.Newgroupmodel)
     .subscribe(package_det =>{     
       this.generateMessageArea(this.Newgroupmodel.g_id);
-        //this.getgrouplists();
+        this.getgrouplists();
         swal('','Group Updated Successfully','success');  
-        //this.router.navigate(['./chat']); 
         
     });
   }
@@ -231,12 +251,11 @@ export class MychatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.deletegroup,this.Newgroupmodel)
     .subscribe(package_det =>{    
     this.group_name=0;
-      
-    //this.getgrouplists();
-    //this.ngOnInit();
-    swal('','Group Deleted Successfully','success');  
-     this.router.navigate(['./chat']); 
-        
+    this.Newgroupmodel.g_id=''; 
+    this.getgrouplists();
+    this.ngOnInit();
+      // this.router.navigate(['./chat']); 
+        swal('','Group Deleted Successfully','success');  
         
     });
   }
@@ -246,28 +265,33 @@ export class MychatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.exitgroup,this.Newgroupmodel)
     .subscribe(package_det =>{    
     this.group_name=0;
-      
-    //this.getgrouplists();
-    //this.ngOnInit();
-     swal('','Exit Group Successfully','success');  
-    this.router.navigate(['./chat']); 
-       
+    this.Newgroupmodel.g_id=''; 
+    this.getgrouplists();
+    this.ngOnInit();
+      // this.router.navigate(['./chat']); 
+        swal('','Exit Group Successfully','success');  
         
     });
   }
 
+  addgroup()
+  {
+  this.Newgroupmodel.g_id='';
+    this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
+    .subscribe(package_det =>{       
+      this.Newgroupmodel.groupname='';
+      this.Newgroupmodel.groupimagename='';
+      this.Newgroupmodel.privatepublic='';       
+      
+        this.getgrouplists();
+        swal('','Group Created Successfully','success');  
+        
+    });
+    
+  }
+
   sendMessage(){
-  if(this.Newgroupmodel.currentUser==null){
-  this.Newgroupmodel.currentUserID=0;
-      Swal.fire({
-        title: '',
-        type: 'info',
-        html:
-          '<input type="text" name="currentUser" type="text" id="currentUser" placeholder="Enter your name" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm currentUser"><button type="button"  class="btn btn-success" (click)="setname()" >Save</button>',
-          showCancelButton: false, 
-          showConfirmButton: false
-      })
-  } else {
+
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
     .subscribe(package_det =>{       
       
@@ -276,15 +300,6 @@ export class MychatComponent implements OnInit {
         // swal('','Message sent Successfully','success');  
         
     }); 
-  }
-    
-  }
-  setname(){
-  
-      this.Newgroupmodel.currentUser=$('.currentUser').val();
-      localStorage.setItem('currentUser', this.Newgroupmodel.currentUser);
-      localStorage.setItem('currentUserID', '0');
-      
   }
    
   fileEvent($event) {

@@ -153,6 +153,7 @@ export class AppSettings{
 	//Group
 	public static addgroup=AppSettings.API_BASE+"/addgroup";
 	public static getgroups=AppSettings.API_BASE+"/getgroups";
+	public static getmygroups=AppSettings.API_BASE+"/getmygroups";
 	public static getgroupsdetails=AppSettings.API_BASE+"/getgroupsdetails";
 	public static getgroupsdetailspublic=AppSettings.API_BASE+"/getgroupsdetailspublic";
 	public static sendmsg=AppSettings.API_BASE+"/sendmsg";

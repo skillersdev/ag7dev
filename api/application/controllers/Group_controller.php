@@ -232,7 +232,7 @@ class Group_controller extends CI_Controller {
     $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0' and private_public=3");
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
-
+// print_r($group_array); die;
              
          $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
          $check_user_array=$check_user->result_array();
@@ -250,7 +250,7 @@ class Group_controller extends CI_Controller {
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
 
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and  (created_by='". $model->currentUserID."' or created_by='". $model->created_by."' )");
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
              $msg_group_array1 = array();
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
@@ -483,6 +483,45 @@ public function getgroupsdetails(){
         
         
    }
+   
+   public function getmygroups(){
+    
+    $this->output->set_content_type('application/json');
+       $response=array();
+       $response['status']="success";
+       $result=array();
+
+       $model = json_decode($this->input->post('model',FALSE));
+     if($model->search_group_name!=''){
+       $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
+        //  ->join('group_members', 'group_members.group_id=group_master.id', 'left')
+         ->like('group_master.group_name',$model->search_group_name)
+         // ->where('group_members.user_id', $model->currentUserID)
+         ->where('group_master.private_public', '3')
+         ->where('group_master.is_deleted', '0')
+        //  ->where('group_members.is_deleted', '0')
+         ->group_by('group_master.id')
+         ->get('group_master');
+     } else {
+      $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
+         ->join('all_message', 'all_message.group_id=group_master.id', 'left')
+         ->where('all_message.created_by', $model->currentUserID)
+          ->where('group_master.private_public', '3')
+         ->where('group_master.is_deleted', '0')
+         ->where('all_message.is_deleted', '0')
+         ->group_by('group_master.id')
+         ->get('group_master');
+       }
+         $group_array=$group_sql->result_array(); 
+         // print_r($group_array); die;
+         //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
+         //   $group_array=$group_sql->result_array(); 
+           $response['result']=$group_array;
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+     
+     
+}
 
    public function checkuserhavinggroup()
    {

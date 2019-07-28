@@ -263,7 +263,7 @@ const routes: Routes = [
     component:PublicchatComponent
     
   },{
-     path:'chat/mychat/:code',
+     path:'mychat',
     component:MychatComponent
     
   },

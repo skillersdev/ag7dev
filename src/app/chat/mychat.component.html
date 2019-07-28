@@ -26,6 +26,7 @@ img {vertical-align: middle;}
   position: relative;
   margin: auto;
 }
+
 .dhana{
 	display: none !important;
 }
@@ -121,6 +122,83 @@ img {vertical-align: middle;}
 <body style="font-size: 16px !important;">
 	
 	<div class="container-fluid" id="main-container">
+
+		<!-- The Modal -->
+		<div class="modal" id="myModal">
+				<div class="modal-dialog">
+					<form  name="groupForm" #groupForm="ngForm" >
+					<div class="modal-content">
+	
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Create New Group/Channel</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>				
+	
+					<!-- Modal body -->
+					<div class="modal-body">
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<label for="groupname" class="m-r-3">Name :<span style="color: red;">*</span></label>&nbsp;
+								<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text" id="groupname" class="form-control" required  #groupname="ngModel"/>
+							</div>
+							 <!-- <span [hidden]="(Newgroupmodel.groupname!='') || groupname.pristine" class="text-danger">Group Name is required</span> -->
+						</div>
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="channel" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==1" [value]="1" />
+								<label for="channel" class="m-r-3">Channel</label>&nbsp;
+								<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio" id="group" class="with-gap radio-col-grey" [checked]="Newgroupmodel.channelgroup==2" [value]="2" />
+								<label for="group">Group</label>
+							</div>
+						</div>
+
+						<div class="form-group m-b-0">
+							<div class="form-line radio-btns">
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="marketer" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
+								<label for="marketer" class="m-r-3">Marketer</label>&nbsp;
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
+								<label for="private">Private</label>
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==4" [value]="4" />
+								<label for="public">Public</label>
+							</div>
+						</div>
+
+						<div class="form-group m-b-0">
+							<div class="form-line ">
+								<label for="groupname" class="m-r-3">Image :<span style="color: red;">*</span></label>&nbsp;
+								<input type="file" name="adimage" (change)=fileEvent($event) required>   
+							</div>
+						</div>
+
+						<div class="form-group m-b-0">
+								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
+									<label for="groupname" class="m-r-3">Marketer Lists :</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList" 
+									[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings" 
+									[ngModelOptions]="{standalone: true}" 
+									 #userselectedItems="ngModel"></ng-multiselect-dropdown>
+									
+								</div>
+							</div>
+ 
+						
+						
+	 
+					</div>
+	
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" [disabled]="!groupForm.form.valid"  class="btn btn-success" (click)="addgroup()" data-dismiss="modal">Save</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+	
+					</div>
+				</form>
+				</div>
+			</div>
+			<!-- new group-->
+
 			<!-- The Modal -->
 		<div class="modal" id="myModaledit">
 				<div class="modal-dialog">
@@ -151,9 +229,11 @@ img {vertical-align: middle;}
 						</div>
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" value="1" readonly="true" />
-									<label for="private1" class="m-r-3">Private</label>&nbsp;
-								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" value="2" readonly="true" />
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="marketer1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==1" [value]="1" />
+								<label for="marketer1" class="m-r-3">Marketer</label>&nbsp;
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="private1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==2" [value]="2" />
+								<label for="private1">Private</label>
+								<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio" id="public1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.privatepublic==4" [value]="4" />
 								<label for="public1">Public</label>
 							</div>
 						</div>
@@ -174,6 +254,8 @@ img {vertical-align: middle;}
 									
 								</div>
 							</div>
+ 						
+	 
 					</div>
 	
 					<!-- Modal footer -->
@@ -203,7 +285,9 @@ img {vertical-align: middle;}
 					<div class="modal-body">
 						 
 						<div class="form-group m-b-0">
-							<div class="slideshow-container"> 
+							
+
+								<div class="slideshow-container"> 
 								  <div *ngFor="let data of group_profile_log_model let i=index" id="pimage{{i}}"  class="mySlides pimage{{i}}">
 								    <img src="{{group_bases}}group_images/{{data.image_name}}" style="width:80%; height: 400px;">
 								    
@@ -296,8 +380,69 @@ img {vertical-align: middle;}
 			<!-- del group-->
 
 		<div class="row h-100">
+			<div class="col-12 col-sm-5 col-md-4 d-flex flex-column mainmenu_navbar" id="chat-list-area" style="position:relative;">
+				<!-- col-12 col-sm-5 col-md-4 flex-column d-none  used to hide -->
+				<!-- col-12 col-sm-5 col-md-4 flex-column used to show -->
+				<!-- Navbar -->
+				<div class="row d-flex flex-row align-items-center p-2 " id="navbar" style="background: #b84033 !important">
+					<img src="{{api_bases}}images/logo.png" alt="Profile Photo" style="height: 35px;cursor:pointer;width: 185px;margin-left: auto;" id="display-pic"  onclick="hideProfileSettings()">
+					<div class="text-white font-weight-bold" id="username"></div>
+					<div class="nav-item dropdown ml-auto">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v text-white"></i></a>
+						<div class="dropdown-menu dropdown-menu-right">
+								<!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModal">New Group</a> -->
+								<a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/dashboard']" >Dashboard</a>
+								
+								<a class="dropdown-item" href="javascript:void(0);" (click)=logout() >Log Out</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Chat List -->
+
+				<div class="row chat-list" id="chat-list" style="overflow:auto;">
+					<input name="search_group_name" [(ngModel)]="Newgroupmodel.search_group_name" type="text" id="search_group_name" placeholder="Type a Mychat Group/Channel" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="groupsearch()" #search_group_name="ngModel"/>
+						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea1(data.id,data.private_public,data.group_code)">
+								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
+								<div class="w-50">
+									<div class="name">{{data.group_name}}</div>
+									<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
+								</div>
+								<!-- <div class="flex-grow-1 text-right">
+									<div class="small time">14/06/2019</div>
+									<div class="badge badge-success badge-pill small d-none" id="unread-count">2</div>
+								</div> -->
+							</div>
+				
+				</div>
+
+				<!-- Profile Settings -->
+				<div class="d-flex flex-column w-100 h-100" id="profile-settings">
+					<div class="row d-flex flex-row align-items-center p-2 m-0" style="background:#009688; min-height:65px;">
+						<i class="fas fa-arrow-left p-2 mx-3 my-1 text-white" style="font-size: 1.5rem; cursor: pointer;"></i>
+						<div class="text-white font-weight-bold">Profile</div>
+					</div>
+					<div class="d-flex flex-column" style="overflow:auto;">
+						<img alt="Profile Photo" class="img-fluid rounded-circle my-5 justify-self-center mx-auto" id="profile-pic" >
+						<input type="file" id="profile-pic-input" class="d-none">
+						<div class="bg-white px-3 py-2">
+							<div class="text-muted mb-2"><label for="input-name">Your Name</label></div>
+							<input type="text" name="name" id="input-name" class="w-100 border-0 py-2 profile-input">
+						</div>
+						<div class="text-muted p-3 small">
+							This is not your username or pin. This name will be visible to your WhatsApp contacts.
+						</div>
+						<div class="bg-white px-3 py-2">
+							<div class="text-muted mb-2"><label for="input-about">About</label></div>
+							<input type="text" name="name" id="input-about" value="" class="w-100 border-0 py-2 profile-input">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
 			<!-- Message Area -->
-			<div class="d-none d-sm-flex flex-column col-12 col-sm-12 col-md-12 p-0 h-100 message-area"  id="message-area" style="display: block !important;">
+			<div class="d-none d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 message-area"  id="message-area">
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-none      used for disable message list-->
 			<!-- d-sm-flex flex-column col-12 col-sm-7 col-md-8 p-0 h-100 d-flex      used for show message list -->
 			
@@ -305,17 +450,17 @@ img {vertical-align: middle;}
 				<!-- w-100 h-100 overlay            shows blank screen  -->
 				<!-- w-100 h-100 overlay d-none      used to hide the blank screen -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100"  id="navbar" style="background: #b84033 !important">
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar" style="background: #b84033 !important">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" (click)="hideshow()" ></i>
 					</div>
-					<a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal"><img src="{{group_bases}}group_images/{{Newgroupmodel.groupimagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
+					<a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal"><img src="{{group_bases}}group_images/{{group_dt_model.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
-						<div class="text-white font-weight-bold" id="name">{{Newgroupmodel.groupname}}</div>
-						<!-- <div class="text-white small" id="details">{{group_members_model.length}} members</div> -->
+						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
+						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
 					</div>
 					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto" >
-							<!-- <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-ellipsis-v text-white"></i></a>
 							<div class="dropdown-menu dropdown-menu-right">
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
@@ -323,7 +468,7 @@ img {vertical-align: middle;}
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#exitmyModaledit">Exit Group</a>
 									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>
 
-							</div> -->
+							</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
 						<a href="javascript:void(0);"><i class="fas fa-paperclip mx-3 text-white d-none d-md-block"></i></a> -->
 						<!-- <a href="javascript:void(0);"><i class="fas fa-ellipsis-v mr-2 mx-sm-3 text-white">
@@ -408,7 +553,7 @@ img {vertical-align: middle;}
 
 
 					<div  *ngFor="let datedata of date_array_model" >
-					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" >
+					<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded" *ngIf="group_name!=0">
 						{{datedata}}
 					</div>
 					
@@ -434,7 +579,7 @@ img {vertical-align: middle;}
 							<a href="javascript:void(0);"><i class="fas fa-angle-down text-muted px-2"></i></a>
 						</div>
 						
-						<div   class="small font-weight-bold text-primary">
+						<div  *ngIf="group_name!=0" class="small font-weight-bold text-primary">
 							{{data.user_name}}
 						</div>
 					
@@ -446,6 +591,10 @@ img {vertical-align: middle;}
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
 							</video>
+							<audio *ngIf="data.video_type==2" controls>
+							   <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/ogg">
+  								<source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/mpeg">
+							</audio>
 								</div>
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:140px;">
 								{{data.created_date | date:'hh:mm a'}}
@@ -462,6 +611,10 @@ img {vertical-align: middle;}
 									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
 									  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/ogg">
 									</video>
+									<audio *ngIf="data.video_type==2" controls>
+									   <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/ogg">
+		  								<source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="audio/mpeg">
+									</audio>
 								</div>
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date:'hh:mm a'}}
@@ -475,15 +628,15 @@ img {vertical-align: middle;}
 				</div>
 
 				<!-- Input -->
-				<!--  private_public 1 marketer 2 private 4 public
+				<!--  private_public 1 marketer 2 private
 					channelgroup  1 channel 2 group
 				-->
-				<div *ngIf="Newgroupmodel.channelgroup!=2" class="justify-self-end align-items-center flex-row d-flex" id="input-area" >
-					<a *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" href="javascript:void(0);"
+				<div class="justify-self-end align-items-center flex-row d-flex" id="input-area" *ngIf="group_name!=0">
+					<a *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;" (click)="chatimage.click()" ></i></a>
-					<i *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
-					<input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
+					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
 					 <input type="file" id="fupload" accept="image/*" #file>
@@ -492,75 +645,15 @@ img {vertical-align: middle;}
                         <input id="tenantPhotoID" style="visibility: hidden" type="file" #photoInput >
 
 					-->
- 
 
-					<input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage >
-					<!-- <input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
-				</div>
 
-				<div *ngIf="Newgroupmodel.channelgroup==2" class="justify-self-end align-items-center flex-row d-flex" id="input-area" >
-					<a  href="javascript:void(0);"
-					id="my-button" 
-					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;" (click)="chatimage.click()" ></i></a>
-					<i  class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
-					<input  name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
-					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
-
-					 <input type="file" id="fupload" accept="image/*" #file>
-                        <button (click)="file.click()">Upload file</button>
-                        <i class="fa fa-dashboard"  (click)="photoInput.click()" ></i>
-                        <input id="tenantPhotoID" style="visibility: hidden" type="file" #photoInput >
-
-					-->
- 
-
-					<input  type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage >
-					<!-- <input  type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
+					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage >
+					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-	
-
-
-<!-- <script>
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-</script> 
- -->
-	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	    crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-	    crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-		crossorigin="anonymous"></script> -->
 	
 	
 </body>

@@ -174,6 +174,7 @@ $route['getservicebyuser'] = 'Service_controller/getservicebyuser';
 //group
 $route['addgroup']= 'Group_controller/addgroup';
 $route['getgroups']= 'Group_controller/getgroups';
+$route['getmygroups']= 'Group_controller/getmygroups';
 $route['getgroupsdetails']= 'Group_controller/getgroupsdetails';
 $route['getgroupsdetailspublic']= 'Group_controller/getgroupsdetailspublic';
 
