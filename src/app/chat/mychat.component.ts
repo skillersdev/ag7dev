@@ -20,8 +20,6 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./style.css']
 })
 
-
-
 export class MychatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;

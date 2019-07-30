@@ -20,8 +20,6 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./style.css']
 })
 
-
-
 export class PublicchatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
@@ -92,8 +90,7 @@ export class PublicchatComponent implements OnInit {
     this.Newgroupmodel.g_id=1; 
     
     this.Codetogroup();
-    //this.groupdetails();
-   // this.generateMessageArea(1);
+   
   }
 
   share() {

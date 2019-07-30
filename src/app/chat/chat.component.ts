@@ -349,7 +349,7 @@ export class ChatComponent implements OnInit {
     .subscribe( (response) => {
        if(response.status=='success')
        {
-        console.log(response);
+        // console.log(response);
         
          this.Newgroupmodel.groupimagename = response.data;
           this.Newgroupmodel.groupmsgtxt='';
