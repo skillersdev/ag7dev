@@ -60,7 +60,7 @@ class Website extends CI_Controller {
 				foreach($service_det_result as $key=>$value)
 		          {              
 		            
-		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description'],'weblink'=>$value['weblink']);
+		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description'],'weblink'=>$value['weblink'],'views'=>$value['total_views'],'likes'=>$value['total_likes']);
 		          }
 
 			}
@@ -76,7 +76,7 @@ class Website extends CI_Controller {
 				foreach($ad_det_result as $key=>$value)
 		          {              
 		            
-		            $ads_result[]=array('id'=>$value['id'],'uploads'=>$value['uploads'],'ad_type'=>$value['ad_type'],'desc'=>$value['desc'],'weblink'=>$value['weblink']);
+		            $ads_result[]=array('id'=>$value['id'],'uploads'=>$value['uploads'],'ad_type'=>$value['ad_type'],'desc'=>$value['desc'],'weblink'=>$value['weblink'],'views'=>$value['total_views'],'likes'=>$value['total_likes']);
 		          }
 
 			}

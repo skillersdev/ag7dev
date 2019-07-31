@@ -401,6 +401,13 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
               
               <p><?php echo $service_details[$j]['desc'];?></p>
+                <div class="image-container"  style="width:52%;">
+                  <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                  <span id=""><?php echo $service_details[$j]['views']; ?></span>
+                  <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeService(<?php echo $service_details[$j]['id'];?>)">
+                  <input type="hidden" value="<?php echo $service_details[$j]['id']; ?>" id="service_id<?php echo $service_details[$j]['id']; ?>">
+                  <span id="likeservicecount<?php echo $service_details[$j]['id'];?>"><?php echo $service_details[$j]['likes']; ?></span>
+                </div>
             </div>
           </div>
         <?php } ?>
@@ -488,7 +495,14 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                           <?php echo $product_details[$i]['product_name'];?></a>
                           <br><span style="color:white;font-size: 16px;">Category:<?php echo $product_details[$i]['category_name'];?></span>
                         </h4>
-                        <p><?php echo $product_details[$i]['price'];?></p>               
+                        <p><?php echo $product_details[$i]['price'];?></p> 
+                        <div>
+                           <img src="./assets/img/eye-open1.png" id="viewT" style="width:32px;cursor: pointer;">
+                          <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
+                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:22px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
+                        <input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
+                        <span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
+                        </div>              
                       </div>
                     </div>
                   </div>
@@ -581,6 +595,13 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 					echo "<p><a href='".$ad_details[$k]['weblink']."' target='_blank'>Website Link</a></p>"; 
 				}
 				?>
+         <div class="image-container"  style="width:52%;">
+                  <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                  <span id=""><?php echo $ad_details[$k]['views']; ?></span>
+                  <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php echo $ad_details[$k]['id'];?>)">
+                  <input type="hidden" value="<?php echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
+                  <span id="adlikecount<?php echo $ad_details[$k]['id'];?>"><?php echo $ad_details[$k]['likes']; ?></span>
+                </div>
             </div>
 
           </div>
@@ -683,6 +704,57 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             });
     });
 
+ function likeProduct(id)
+ {
+    var id = $('#product_id'+id).val();
+     $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+            data:{'id':id,'field':'like'},
+            dataType:"JSON",                
+            success:function(data){                 
+                $('#likecount'+id).html(data.total_likes);
+            }
+        });
+ }
+   // $("#likesT1").click(function() {      
+   //    var id = $('#product_id2').val();
+   //       $.ajax({
+   //              type:'POST',
+   //              url:'<?php //echo base_url("index.php/website/updateproductmaster"); ?>',
+   //              data:{'id':id,'field':'like'},
+   //              dataType:"JSON",                
+   //              success:function(data){                 
+   //                  $('#likecount1').html(data.total_likes);
+   //              }
+   //          });
+   //  });
+   function likeService(id)
+   {
+      var id = $('#service_id'+id).val();
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/updateservicemaster"); ?>',
+                data:{'id':id,'field':'like'},
+                dataType:"JSON",                
+                success:function(data){                 
+                    $('#likeservicecount'+id).html(data.total_likes);
+                }
+            });
+   }
+   function likeAd(id)
+   {
+      var id = $('#adv_id'+id).val();
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/updateadmaster"); ?>',
+                data:{'id':id,'field':'like'},
+                dataType:"JSON",                
+                success:function(data){                 
+                    $('#adlikecount'+id).html(data.total_likes);
+                }
+            });
+   }
     $("#likeservice").click(function() {      
       var id = $('#service_id').val();
          $.ajax({
@@ -695,6 +767,18 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 }
             });
     });
+    // $("#likeservice1").click(function() {      
+    //   var id = $('#service_id1').val();
+    //      $.ajax({
+    //             type:'POST',
+    //             url:'<?php //echo base_url("index.php/website/updateservicemaster"); ?>',
+    //             data:{'id':id,'field':'like'},
+    //             dataType:"JSON",                
+    //             success:function(data){                 
+    //                 $('#likeservicecount1').html(data.total_likes);
+    //             }
+    //         });
+    // });
 
     $("#adlikes").click(function() {      
       var id = $('#adv_id').val();
