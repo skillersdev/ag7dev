@@ -162,6 +162,8 @@ export class DashboardComponent implements OnInit {
           package_det.message,
           package_det.status
         )
+         this.model.mname = '';
+         this.model.share_amt = '';
         this.ngOnInit(); 
     });
   }

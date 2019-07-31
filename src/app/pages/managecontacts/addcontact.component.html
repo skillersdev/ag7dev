@@ -59,7 +59,7 @@
                                                             [aspectRatio]="4 / 3"
                                                             [resizeToWidth]="128"
                                                             format="png"
-                                                            (imageCropped)="imageCropped($event)"           
+                                                            (imageCropped)="imageCropped($event)"
                                                         ></image-cropper>
                                                         <img [src]="croppedImage" /> 
                                                     </div>
@@ -188,7 +188,7 @@
                                             </div> 
                                           
                                             </div>           
-                                        <button type="button" [disabled]="!addcontact.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addcontactlist()">Add Contact</button>&nbsp;
+                                        <button type="button" [disabled]="!addcontact.form.valid && model1.Imagefile!='undefined' " class="btn btn-primary m-t-15 waves-effect" (click)="addcontactlist()">Add Contact</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()"class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </form>
                                     </div>

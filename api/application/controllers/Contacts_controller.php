@@ -161,7 +161,7 @@ class Contacts_controller extends CI_Controller {
                 $in_array=$res->result_array();
                 $result=$in_array[0];
 
-               $log_res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->get('contact_image_log');
+               $log_res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['contact_id'=>$id])->get('contact_image_log');
 
 
               if($log_res->num_rows()>0)

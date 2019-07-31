@@ -65,7 +65,7 @@ export class AddcontactComponent implements OnInit {
 
   addcontactlist()
   {
-
+    console.log(this.model1.Imagefile);
     this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
     .subscribe( (response) => {
        if(response.status=='success')

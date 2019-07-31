@@ -237,12 +237,12 @@ class User_controller extends CI_Controller {
     $response['exist']=0;
     $username = trim($model->username);
     if(isset($model->Id)){
-        $res=$this->db->select("username")->where(['is_deleted'=>'0','id!='=>$model->Id,'username',$username])->get('affiliateuser');    
+        $res=$this->db->select("username")->where(['is_deleted'=>'0','id!='=>$model->Id,'username'=>$username])->get('affiliateuser');    
     }
     else{
-        $res=$this->db->select("username")->where(['is_deleted','0','username',$username])->get('affiliateuser');
+        $res=$this->db->select("username")->where(['is_deleted'=>'0','username'=>$username])->get('affiliateuser');
     }
-
+  // print_r($res->result_array());die;
     if(count($res->result_array())>0)
     {
        
@@ -888,6 +888,10 @@ class User_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
 //print_r($model);
         /*Converting base 64 image to image file and upload*/
+        if(isset($model->Imagefile))
+        {
+
+
         $image_parts = explode(";base64,", $model->Imagefile);
         define('UPLOAD_DIR', 'resizeuploads/');
         $img = $model->Imagefile;
@@ -911,5 +915,6 @@ class User_controller extends CI_Controller {
        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
+         }
    }
 }

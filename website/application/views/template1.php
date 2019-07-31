@@ -365,8 +365,8 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               </div>
               <div class="modal-body" id="mimage2">                
               </div>
-              <div class="modal-footer tesdt" id="desc2">
-                <div class="image-container"  style="margin: 0 auto; width:52%;">
+              <div class="modal-footer tesdt" id="desc2" style="display: block;">
+                <div class="image-container"  style="width:52%;">
                   <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
                   <span id="viewservicecount"></span>
                   <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
@@ -388,12 +388,14 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             $image = "'".$path_url.$service_details[$j]['service_image']."'";
             $desc = "'".$service_details[$j]['desc']."'";
             $service_id = "'".$service_details[$j]['id']."'";
+            $weblink = "'".$service_details[$j]['weblink']."'";
+ 
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.','.$service_id.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
+                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.','.$service_id.','.$weblink.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -453,7 +455,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
           <?php
           if(count($product_details)>0)
           {
-            // print_r($product_details); die;
+          //echo "<pre>"; print_r($product_details); 
             for($i=0;$i<count($product_details);$i++)
               { 
                 //echo $product_details[$i]['product_image'];
@@ -464,12 +466,21 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
                 $total_likes=$product_details[$i]['total_likes'];
                 $total_views = $product_details[$i]['total_views'];
+                $prod_desc = "'".$product_details[$i]['desc']."'";
+                $prod_short_desc = "'".$product_details[$i]['short_desc']."'";
                 ?>
                   <div class="col-lg-3 col-md-3">
                     <div class="speaker">
                       <input type="hidden" id="product_id" value="<?php echo $product_details[$i]['id'];?>">
                      <?php 
-                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.','.$total_likes.','.$total_views.','. $product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+                        '.$cname.',
+                        '.$scname.',
+                        '.$price.',
+                        '.$total_likes.',
+                        '.$total_views.',
+                        '.$product_details[$i]['id'].'
+                      )"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid"></a>'; 
                         ?>
                       <div class="details">
                         <h4>                          
@@ -698,11 +709,11 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             });
     });
     
-  function servicepopupimage(name,image,desc,service_id){
+  function servicepopupimage(name,image,desc,service_id,weblink){
       
       $('#mtitle2').html(name);
       $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
-      $('#desc2').append('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id">');
+      $('#desc2').append('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id"><br><div><b>WebLink</b>:'+weblink+'</div>');
 
        var serviceid = service_id;
        $.ajax({
@@ -716,7 +727,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       });
      }
 
-    function popupimage(name,image,cname,scname,price,likes,views,p_id){
+    function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
@@ -724,7 +735,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       $('#likecount').html(likes);
       $('#viewcount').html(views);
       //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
-      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1">');
+      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
       
       var id = p_id;
        $.ajax({

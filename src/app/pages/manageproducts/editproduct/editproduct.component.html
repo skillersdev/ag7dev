@@ -195,7 +195,28 @@
                                                 </div>
                                             </div>                                         
                                         </div>      
-                                                                    
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Short Description</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">                                                      
+                                                    <textarea id="tinymce" [(ngModel)]="model.short_desc" #short_desc="ngModel" name="short_desc">
+                                                        
+                                                    </textarea>
+                                                     </div>
+                                                </div>
+                                             </div>
+                                            <div class="col-md-6">
+                                                <p><b>Description</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">                                                      
+                                                    <textarea id="tinymce" [(ngModel)]="model.desc" #desc="ngModel" name="desc">
+                                                        
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>                          
                                         <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateproduct()">Update Product</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </form>

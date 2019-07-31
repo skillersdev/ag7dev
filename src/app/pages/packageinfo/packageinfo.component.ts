@@ -87,6 +87,8 @@ export class PackageinfoComponent implements OnInit {
       if(package_det.exist==0)
       {
         swal('','User doesnot exist','error')
+        this.payment_data.username='';
+        this.payment_data.password='';
       }  
     });
   }

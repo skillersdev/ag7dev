@@ -80,6 +80,8 @@ transferamount()
           package_det.message,
           package_det.status
         )
+          this.model.mname = '';
+         this.model.share_amt = '';
         this.router.navigate(['/dashboard']); 
     });
   }

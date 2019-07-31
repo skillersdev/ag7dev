@@ -24,7 +24,7 @@ class Website extends CI_Controller {
 			$slider_image_res=$this->db->select("slider_image")->where(['website'=>$websitename])->get('template_settings');
 			$image_array=$slider_image_res->result_array();
 			
-			// echo "<pre>";print_r($image_array); exit;
+			//echo "<pre>";print_r($product_det_result); exit;
 			$result=[];
 			if(count($product_det_result)>0)
 			{	
@@ -46,7 +46,7 @@ class Website extends CI_Controller {
 					}
 					
 					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image'],
-						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes']);
+						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'desc'=>$value['desc'],'short_desc'=>$value['short_desc']);
 		          }
 
 			}
@@ -60,7 +60,7 @@ class Website extends CI_Controller {
 				foreach($service_det_result as $key=>$value)
 		          {              
 		            
-		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description']);
+		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description'],'weblink'=>$value['weblink']);
 		          }
 
 			}
