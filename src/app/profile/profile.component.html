@@ -72,12 +72,11 @@
                                             <image-cropper
                                                 [imageChangedEvent]="imageChangedEvent"
                                                 [maintainAspectRatio]="false"
-                                                [aspectRatio]="4 / 3"
-                                                [resizeToWidth]="128"
+                                                [aspectRatio]="4 / 3"                           
                                                 format="png"
                                                 (imageCropped)="imageCropped($event)"           
                                             ></image-cropper>
-                                            <img [src]="croppedImage" />
+                                            <img [src]="croppedImage" style="width:30%;"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="InputExperience" class="col-sm-2 control-label">Address</label>

@@ -69,11 +69,10 @@
                                                 [imageChangedEvent]="imageChangedEvent"
                                                 [maintainAspectRatio]="false"
                                                 [aspectRatio]="4 / 3"
-                                                [resizeToWidth]="128"
                                                 format="png"
                                                 (imageCropped)="imageCropped($event)"           
                                             ></image-cropper>
-                                            <img [src]="croppedImage" />
+                                            <img [src]="croppedImage" style="width:30%;"/>
                                             </div> 
                                               <div class="col-md-6">
                                                 <div class="form-group">
