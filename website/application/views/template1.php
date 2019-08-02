@@ -495,7 +495,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                           <?php echo $product_details[$i]['product_name'];?></a>
                           <br><span style="color:white;font-size: 16px;">Category:<?php echo $product_details[$i]['category_name'];?></span>
                         </h4>
-                        <p><?php echo $product_details[$i]['price'];?></p> 
+                        <p><?php echo $product_details[$i]['price']."(".$product_details[$i]['currency'].")";?></p> 
                         <div>
                            <img src="./assets/img/eye-open1.png" id="viewT" style="width:32px;cursor: pointer;">
                           <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
