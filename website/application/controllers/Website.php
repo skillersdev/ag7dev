@@ -15,16 +15,16 @@ class Website extends CI_Controller {
 			if($val){
 
 			
-			$user_profile=$this->db->select("*")->where(['id'=>$val[0]['user_id'],'is_deleted'=>'0'])->get('affiliateuser'); 
+			$user_profile=$this->db->select("*")->where(['id'=>$val[0]['user_id'],'is_deleted'=>'0'])->order_by('id','desc')->get('affiliateuser'); 
 			$user_profile_result =$user_profile->result_array();
 			/*Product list*/
-			$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('product_master'); 
+			$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('product_master'); 
 			$product_det_result =$product_det->result_array();
 
 			$slider_image_res=$this->db->select("slider_image")->where(['website'=>$websitename])->get('template_settings');
 			$image_array=$slider_image_res->result_array();
 			
-			//echo "<pre>";print_r($product_det_result); exit;
+		//echo "<pre>";print_r($product_det_result); exit;
 			$result=[];
 			if(count($product_det_result)>0)
 			{	
@@ -51,7 +51,7 @@ class Website extends CI_Controller {
 
 			}
 			/*Services list*/
-			$service_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('services'); 
+			$service_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('services'); 
 			$service_det_result =$service_det->result_array();
 			$serv_result=[];
 			if(count($service_det_result)>0)
@@ -67,7 +67,7 @@ class Website extends CI_Controller {
 
 			/*Adver*/
 			/*Services list*/
-			$ad_det=$this->db->select("*")->where(['url'=>$websitename,'is_deleted'=>'0'])->get('user_advertisements'); 
+			$ad_det=$this->db->select("*")->where(['url'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('user_advertisements'); 
 			$ad_det_result =$ad_det->result_array();
 			$ads_result=[];
 			if(count($ad_det_result)>0)
@@ -84,12 +84,12 @@ class Website extends CI_Controller {
 
 			/*Contact list*/
 			$contac_result=[];
-			$contact_det=$this->db->select("*,fb_link as fb,linked_url as linked")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('contacts_master'); 
+			$contact_det=$this->db->select("*,fb_link as fb,linked_url as linked")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('contacts_master'); 
 			$contac_result =$contact_det->result_array();
 
 
 			$contac_log_result=[];
-			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->get('contact_image_log'); 
+			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->order_by('id','desc')->get('contact_image_log'); 
 			$contac_log_result =$contact_log_det->result_array();
 			
 			// if(count($contact_det_result)>0)
