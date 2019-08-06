@@ -4,6 +4,7 @@
   <?php 
   $path_url = $this->config->item('path_url'); 
   $login_url = $this->config->item('login_url');
+  $this->load->view('index.html');
   ?>
   <meta charset="utf-8">
   <title>Roodabatoz</title>
@@ -56,7 +57,12 @@
           <li><a href="#services">My Services</a></li>
           <li><a href="#portfolio">My Products</a></li>
           <li><a href="#team">My Ads</a></li> 
-          <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
+          <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
+           <li>
+              <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
+                <img src="./assets/img/search.png" style="width:30px;cursor: pointer;background-color: black;">
+              </a>
+            </li>          
         </ul>
       </nav><!-- .main-nav -->
       

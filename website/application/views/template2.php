@@ -1,5 +1,6 @@
 <?php
 //echo "<pre>";print_r($product_details);die;
+$this->load->view('index.html');
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
@@ -88,7 +89,12 @@ $image_path = $this->config->item('base_path');
                         <li><a href="#service">My Service</a></li>
                         <li><a href="#portfolio">My Products</a></li>
                         <li><a href="#testimonials">My Ads</a></li> 
-                        <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>                       
+                        <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li> 
+                         <li>
+				            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
+				              <img src="./assets/img/search.png" style="width:30px;cursor: pointer;">
+				            </a>
+				          </li>                      
                     </ul>
                 </nav>
 				<!-- /main nav -->

@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>403 Forbidden</title>
-</head>
-<body>
+ <div class="modal" id="searchModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        	<div class="modal-header">
+              <h4 class="modal-title" id="mtitle2"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">             
+	            <div class="form-group m-b-0">
+	                <div class="slideshow-container"> 
+	                  <h4>Find website</h4>
+	                  <input type="text" name="searchText" placeholder="search website" id="searchText">
+	                  <input type="hidden" name="websiteurl" id="weburl" value="<?php echo $this->config->item('website_path');?>">
+	                </div>
+	            </div>
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="searchDetail()" id="searcButton">Search</button>                
+            </div>
+		</div>
+	</div>
+</div>
 
-<p>Directory access is forbidden.</p>
-
-</body>
-</html>
+<script>
+  function searchDetail()
+  {
+      var val = $('#searchText').val();
+      var webPath = $('#weburl').val();
+      
+         $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("index.php/website/findwebsite"); ?>',
+                data:{'value':val},
+                dataType:"JSON",                
+                success:function(data){                 
+                    if(data.exist==1)
+                    {
+                    	window.open(webPath+val);
+                    	$("#searchModal").modal('toggle');
+                    }else{
+                    	alert("Entered website has not found");
+                    	$("#searchModal").modal('toggle');
+                    }
+                }
+            });
+  }
+</script>

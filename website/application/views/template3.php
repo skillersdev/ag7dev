@@ -1,6 +1,7 @@
 <?php 
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
+$this->load->view('index.html');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -84,6 +85,11 @@ $image_path = $this->config->item('base_path');
                         <li><a href="#products">My Products</a></li>
                         <li><a href="#ads">My Ads</a></li>
                         <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
+                         <li>
+				            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
+				              <img src="./assets/img/search.png" style="width:30px;cursor: pointer;">
+				            </a>
+				          </li> 
                     </ul>
                 </nav>
 				<!-- /main nav -->

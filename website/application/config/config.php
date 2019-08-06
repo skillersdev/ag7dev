@@ -31,6 +31,8 @@ $config['base_path'] = 'http://localhost/ag7dev.git/trunk/api/';
 
 $config['path_url'] = 'http://localhost/ag7dev.git/trunk/api/';
 
+$config['website_path']= 'http://localhost/ag7dev.git/trunk/website/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

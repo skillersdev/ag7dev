@@ -246,4 +246,22 @@ class Website extends CI_Controller {
 		}
 		
 	}
+
+	public function findwebsite()
+	{
+		//$model = json_decode($this->input->post('model',FALSE));
+
+	      $response['exist']=0;
+	      $website = $_POST['value'];
+	      
+	      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
+
+	      if(count($res->result_array())>0)
+	      {         
+	        $response['exist']=1;
+	        $response['message']="website already exists";
+	      }
+	      echo json_encode($response,JSON_UNESCAPED_SLASHES);
+	      die();
+	}
 }

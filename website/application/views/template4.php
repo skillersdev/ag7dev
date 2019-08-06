@@ -4,6 +4,7 @@
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
+$this->load->view('index.html');
  ?>
 
 <head>
@@ -122,6 +123,11 @@ $image_path = $this->config->item('base_path');
                     </li>
                   
                     <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
+                     <li>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
+                              <img src="./assets/img/search.png" style="width:30px;cursor: pointer;">
+                            </a>
+                          </li> 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
