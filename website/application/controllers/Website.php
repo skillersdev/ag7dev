@@ -151,29 +151,45 @@ class Website extends CI_Controller {
         if($res_chk->num_rows()>0)
         {
         	$prod_det = $res_chk->result_array();
+        	$today =date("Y-m-d");
+			$ip_address = $_SERVER['REMOTE_ADDR'];
 
 			if($_POST['field']=='view')
 			{
-				$data=array('total_views'=>$prod_det[0]['total_views']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('product_master'),$data);
-	             $value =  array('total_views' =>$data['total_views'] );
+				$check_product_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='productview' ");
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				if($check_product_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','productview')");
+					$data=array('total_views'=>$prod_det[0]['total_views']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('product_master'),$data);
+		             $value =  array('total_views' =>$data['total_views'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+	            }
 	          
 			}
 			elseif($_POST['field']=='like')
 			{
-				$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('product_master'),$data);
-	            $value =  array('total_likes' =>$data['total_likes'] );
+				$check_product_like_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='productlike' ");
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				if($check_product_like_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','productlike')");
+					$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('product_master'),$data);
+		            $value =  array('total_likes' =>$data['total_likes'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+		        }
 			}
 		}
 	}
@@ -185,29 +201,50 @@ class Website extends CI_Controller {
         if($res_chk->num_rows()>0)
         {
         	$prod_det = $res_chk->result_array();
+        	$today =date("Y-m-d");
+			$ip_address = $_SERVER['REMOTE_ADDR'];
 
 			if($_POST['field']=='view')
 			{
-				$data=array('total_views'=>$prod_det[0]['total_views']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('services'),$data);
-	             $value =  array('total_views' =>$data['total_views'] );
+				$check_service_view_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='serviceview' ");
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				if($check_service_view_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','serviceview')");
+
+
+					$data=array('total_views'=>$prod_det[0]['total_views']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('services'),$data);
+		             $value =  array('total_views' =>$data['total_views'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+		        }
 	          
 			}
 			elseif($_POST['field']=='like')
 			{
-				$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('services'),$data);
-	            $value =  array('total_likes' =>$data['total_likes'] );
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				$check_service_like_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='servicelike' ");
+
+				if($check_service_like_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','servicelike')");
+
+
+					$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('services'),$data);
+		            $value =  array('total_likes' =>$data['total_likes'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+		        }
 			}
 		}
 	}
@@ -219,29 +256,49 @@ class Website extends CI_Controller {
         if($res_chk->num_rows()>0)
         {
         	$prod_det = $res_chk->result_array();
+        	$today =date("Y-m-d");
+			$ip_address = $_SERVER['REMOTE_ADDR'];
 
 			if($_POST['field']=='view')
 			{
-				$data=array('total_views'=>$prod_det[0]['total_views']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
-	             $value =  array('total_views' =>$data['total_views'] );
+				$check_service_like_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='adview' ");
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				if($check_service_like_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','adview')");
+
+
+
+					$data=array('total_views'=>$prod_det[0]['total_views']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+		             $value =  array('total_views' =>$data['total_views'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+		        }
 	          
 			}
 			elseif($_POST['field']=='like')
 			{
-				$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
-	            $this->db->where('id',$_POST['id']);
-	            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
-	            $value =  array('total_likes' =>$data['total_likes'] );
+				$check_service_like_log=$this->db->query("select * from ".$this->db->dbprefix('user_views_log')." where type_id='".$_POST['id']."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND type='adlike' ");
 
-	             echo json_encode($value);
-	           // return $data['total_likes'];
-	            die;
+				if($check_service_like_log->num_rows()==0)
+				{
+					$this->db->query("insert into ".$this->db->dbprefix('user_views_log')." 
+                    (type_id,ip_address,type) values('".$_POST['id']."','".$ip_address."','adlike')");
+
+					$data=array('total_likes'=>$prod_det[0]['total_likes']+1);
+		            $this->db->where('id',$_POST['id']);
+		            $this->db->update($this->db->dbprefix('user_advertisements'),$data);
+		            $value =  array('total_likes' =>$data['total_likes'] );
+
+		             echo json_encode($value);
+		           // return $data['total_likes'];
+		            die;
+		        }
 			}
 		}
 		
