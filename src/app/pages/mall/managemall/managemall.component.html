@@ -1,0 +1,48 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                            Mall List
+                              <button type="button" (click)="navigateAddmall()" class="btn btn-success waves-effect pull-right">Add Mall</button>                 
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Mall NAME</th>
+                                      <th>CREATED DATE</th>
+                                      <th>CREATED BY</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of malllist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.mall_name}}</td>
+                                      <td>{{data.created_date}}</td>
+                                      <td>{{data.created_by}}</td>
+                                      <td>
+                                        <a href="javascript:void(0);" (click)="editmall(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deletemall(data.id)"><i class="material-icons">delete</i></a>
+                                    </td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->

@@ -38,6 +38,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li >
+                    <a [routerLink]="['/mall']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Mall</span>
+                    </a>
+                </li>
                 <li *ngIf="model.usergroup==1 || model.usergroup==3">
                     <a href="javascript:void(0);" [routerLink]="['/manageuser']">
                         <i class="material-icons  col-amber">supervisor_account</i>

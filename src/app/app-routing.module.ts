@@ -55,6 +55,14 @@ import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component
 
 import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
 
+import { ManagemallComponent } from './pages/mall/managemall/managemall.component';
+import { AddmallComponent } from './pages/mall/managemall/addmall.component';
+import { EditmallComponent } from './pages/mall/managemall/editmall.component';
+
+import { ManagefloorComponent } from './pages/mall/managefloor/managefloor.component';
+import { AddfloorComponent } from './pages/mall/managefloor/addfloor.component';
+import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component';
+
 const routes: Routes = [
   {
 	  path: '',
@@ -267,6 +275,34 @@ const routes: Routes = [
     component:MychatComponent
     
   },
+  {
+    path:'mall/managemall',
+   component:ManagemallComponent
+   
+ },
+ {
+  path:'mall/addmall',
+ component:AddmallComponent
+ 
+},{
+  path:'mall/editmall/:id',
+ component:EditmallComponent
+ 
+},
+{
+  path:'mall/managefloor',
+ component:ManagefloorComponent
+ 
+},
+{
+path:'mall/addfloor',
+component:AddfloorComponent
+
+},{
+path:'mall/editfloor/:id',
+component:EditfloorComponent
+
+},
 
 ];
 

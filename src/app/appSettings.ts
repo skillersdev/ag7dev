@@ -177,4 +177,21 @@ export class AppSettings{
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
 	public static uploadcropimage= AppSettings.API_BASE+"/uploadcropimage";
+
+	/*mall add*/
+	public static Addmall = AppSettings.API_BASE + "/addmall";
+	public static getmallDetail = AppSettings.API_BASE + "/getmall"; //common api
+	public static mallbyid=AppSettings.API_BASE+"/fetchmallbyid/";
+	public static editmall= AppSettings.API_BASE+"/editmall/";
+	public static updatemall= AppSettings.API_BASE+"/updatemall";
+	public static deletemall= AppSettings.API_BASE+"/deletemall/";	
+	/**/ 
+	/*mall add*/
+	public static Addfloor = AppSettings.API_BASE + "/addfloor";
+	public static getfloorDetail = AppSettings.API_BASE + "/getfloor"; //common api
+	public static floorbyid=AppSettings.API_BASE+"/fetchfloorbyid/";
+	public static editfloor= AppSettings.API_BASE+"/editfloor/";
+	public static updatefloor= AppSettings.API_BASE+"/updatefloor";
+	public static deletefloor= AppSettings.API_BASE+"/deletefloor/";	
+	/**/ 
 }

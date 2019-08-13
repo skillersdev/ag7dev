@@ -67,6 +67,14 @@ import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscri
 import { ImageCropperModule } from 'ngx-image-cropper';
 //import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
+import { ManagemallComponent } from './pages/mall/managemall/managemall.component';
+import { AddmallComponent } from './pages/mall/managemall/addmall.component';
+import { EditmallComponent } from './pages/mall/managemall/editmall.component';
+
+import { ManagefloorComponent } from './pages/mall/managefloor/managefloor.component';
+import { AddfloorComponent } from './pages/mall/managefloor/addfloor.component';
+import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +129,12 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ViewsubscribersComponent,
     PublicchatComponent,
     MychatComponent,
+    ManagemallComponent,
+    AddmallComponent,
+    EditmallComponent,
+    ManagefloorComponent,
+    AddfloorComponent,
+    EditfloorComponent
 	//ImageCropperComponent
   ],
   imports: [

@@ -196,7 +196,23 @@ $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
 $route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
 $route['mychatgroup'] = 'Group_controller/mychatgroup';
 
+/*** Mall****/
+$route['addmall'] = 'Mall_controller/add_mall';
+$route['getmall'] = 'Mall_controller/get_mall_list';
+$route['editmall/(:num)'] = 'Mall_controller/editmall/$1';
+$route['updatemall'] = 'Mall_controller/updatemall';
+$route['deletemall/(:num)']='Mall_controller/deletemall/$1';
+$route['fetchmallbyid/(:num)']='Mall_controller/fetchmallbyid/$1';
+/*******/
 
+/*** floor****/
+$route['addfloor'] = 'Floor_controller/add_floor';
+$route['getfloor'] = 'Floor_controller/get_floor_list';
+$route['editfloor/(:num)'] = 'Floor_controller/editfloor/$1';
+$route['updatefloor'] = 'Floor_controller/updatefloor';
+$route['deletefloor/(:num)']='Floor_controller/deletefloor/$1';
+$route['fetchfloorbyid/(:num)']='Floor_controller/fetchfloorbyid/$1';
+/*******/
 
 ?>
 

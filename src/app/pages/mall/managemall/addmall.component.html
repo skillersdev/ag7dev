@@ -1,0 +1,49 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Mall
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addmall="ngForm">
+                                        <div class="row clearfix">
+                                            
+                                            <div class="col-md-6">
+                                                <p><b>Mall Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter mall" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
+                                                    </div>
+                                                      <span [hidden]="mall_name.valid || mall_name.pristine" class="text-danger">Mall Name is required</span>
+                                                </div>
+                                            </div>
+
+                                        </div>       
+                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Add Mall</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

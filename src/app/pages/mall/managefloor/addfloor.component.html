@@ -1,0 +1,60 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Floor
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addfloor="ngForm">
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                                <p><b>Select Mall</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel" name="mall_id" required>
+                                                            <option [ngValue]="select">select Mall</option>    
+                                                            <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="mall_id.valid || mall_id.pristine" class="text-danger">Mall is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Floor Name</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter floor" [(ngModel)]="model.floor_name" name="floor_name" #floor_name="ngModel" required>
+                                                    </div>
+                                                      <span [hidden]="floor_name.valid || floor_name.pristine" class="text-danger">floor Name is required</span>
+                                                </div>
+                                            </div>
+
+                                        </div>       
+                                        <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">Add Floor</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
