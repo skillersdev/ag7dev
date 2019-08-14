@@ -604,7 +604,7 @@ class User_controller extends CI_Controller {
     {
        $path = 'user_profile/';
         $Response=[];
-     
+       
         if (isset($_FILES['file'])) 
           {
             $originalName = $_FILES['file']['name'];
