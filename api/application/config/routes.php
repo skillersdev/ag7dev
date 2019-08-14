@@ -195,7 +195,14 @@ $route['deletesubscriber/(:num)']= 'Group_controller/deletesubscriber/$1';
 $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
 $route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
 $route['mychatgroup'] = 'Group_controller/mychatgroup';
-
+$route['insertalbum'] = 'Gallery_controller/addalbum';
+$route['getalbumbyuser']= 'Gallery_controller/getalbumbyuser';
+$route['getalbumlist']= 'Gallery_controller/getalbumlist';
+$route['uploadalbumimage']= 'Gallery_controller/uploadalbumimage';
+$route['editalbum/(:num)']= 'Gallery_controller/editalbum/$1';
+$route['updatealbum'] = 'Gallery_controller/updatealbum';
+$route['deletealbum/(:num)']= 'Gallery_controller/deletealbum/$1';
+$route['uploadalbumphotos'] ='Gallery_controller/addalbumphotos';
 /*** Mall****/
 $route['addmall'] = 'Mall_controller/add_mall';
 $route['getmall'] = 'Mall_controller/get_mall_list';
@@ -212,8 +219,6 @@ $route['editfloor/(:num)'] = 'Floor_controller/editfloor/$1';
 $route['updatefloor'] = 'Floor_controller/updatefloor';
 $route['deletefloor/(:num)']='Floor_controller/deletefloor/$1';
 $route['fetchfloorbyid/(:num)']='Floor_controller/fetchfloorbyid/$1';
-/*******/
-
 ?>
 
 
