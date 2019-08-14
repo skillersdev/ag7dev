@@ -65,6 +65,10 @@ import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegr
 import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
 import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { ManagegalleryComponent } from './pages/managegallery/managegallery.component';
+import { AddgalleryComponent } from './pages/managegallery/addgallery.component';
+import { EditgalleryComponent } from './pages/managegallery/editgallery.component';
+import { AddalbumphotsComponent } from './pages/managegallery/addalbumphots.component';
 //import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 import { ManagemallComponent } from './pages/mall/managemall/managemall.component';
@@ -79,6 +83,9 @@ import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component
   declarations: [
     AppComponent,
     TopnavComponent,
+    AddgalleryComponent,
+    EditgalleryComponent,
+    AddalbumphotsComponent,
     SidemenuComponent,
     DashboardComponent,
     ChatComponent,
@@ -129,13 +136,13 @@ import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component
     ViewsubscribersComponent,
     PublicchatComponent,
     MychatComponent,
+    ManagegalleryComponent,
     ManagemallComponent,
     AddmallComponent,
     EditmallComponent,
     ManagefloorComponent,
     AddfloorComponent,
-    EditfloorComponent
-	//ImageCropperComponent
+    EditfloorComponent,
   ],
   imports: [
     BrowserModule,                          

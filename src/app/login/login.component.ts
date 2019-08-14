@@ -75,6 +75,7 @@ export class LoginComponent implements OnInit {
       {
         this.entered=1;
       }
+      window.location.reload();
     }
     else 
     {
@@ -119,6 +120,7 @@ export class LoginComponent implements OnInit {
               {
                 swal('Oops...', data.message, 'error');
                 this.router.navigate(['/']);
+                window.location.reload();
               }
           });
         

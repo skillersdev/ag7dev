@@ -145,6 +145,8 @@ export class AppSettings{
 	public static insertservice= AppSettings.API_BASE+"/addservice"; 
 	public static getservicelist= AppSettings.API_BASE+"/getservice"; 
 	public static getservicebyid= AppSettings.API_BASE+"/editservice/";
+
+
 	public static updateservice= AppSettings.API_BASE+"/updateservice";
 	public static deleteservicedata= AppSettings.API_BASE+"/deleteservice/";
 	public static uploadserviceimage=AppSettings.API_BASE+"/uploadserviceimage";
@@ -177,6 +179,14 @@ export class AppSettings{
 	
 	public static userweburl=AppSettings.USER_TEMPLATE+"/";
 	public static uploadcropimage= AppSettings.API_BASE+"/uploadcropimage";
+	public static insertAlbum = AppSettings.API_BASE+"/insertalbum";
+	public static getalbumbyuser= AppSettings.API_BASE+"/getalbumbyuser";
+	public static getalbumlistRestApiUrl= AppSettings.API_BASE+"/getalbumlist";
+	public static uploadalbumimage=AppSettings.API_BASE+"/uploadalbumimage";
+	public static FetchAlbumbyidRestApiUrl= AppSettings.API_BASE+"/editalbum/";
+	public static updatealbumRestApiUrl = AppSettings.API_BASE+"/updatealbum";
+	public static DeletealbumRestApiUrl=AppSettings.API_BASE+"/deletealbum/";
+	public static uploadalbumphotosApi = AppSettings.API_BASE+"/uploadalbumphotos";
 
 	/*mall add*/
 	public static Addmall = AppSettings.API_BASE + "/addmall";
@@ -192,6 +202,5 @@ export class AppSettings{
 	public static floorbyid=AppSettings.API_BASE+"/fetchfloorbyid/";
 	public static editfloor= AppSettings.API_BASE+"/editfloor/";
 	public static updatefloor= AppSettings.API_BASE+"/updatefloor";
-	public static deletefloor= AppSettings.API_BASE+"/deletefloor/";	
-	/**/ 
+	public static deletefloor= AppSettings.API_BASE+"/deletefloor/";
 }

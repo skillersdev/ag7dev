@@ -54,6 +54,10 @@ import { ManagegroupchannelComponent } from './pages/managegroupchannel/managegr
 import { ViewchatComponent } from './pages/managegroupchannel/viewchat.component';
 
 import { ViewsubscribersComponent } from './pages/managegroupchannel/viewsubscribers.component';
+import { ManagegalleryComponent } from './pages/managegallery/managegallery.component';
+import { AddgalleryComponent } from './pages/managegallery/addgallery.component';
+import { EditgalleryComponent } from './pages/managegallery/editgallery.component';
+import { AddalbumphotsComponent } from './pages/managegallery/addalbumphots.component';
 
 import { ManagemallComponent } from './pages/mall/managemall/managemall.component';
 import { AddmallComponent } from './pages/mall/managemall/addmall.component';
@@ -67,6 +71,10 @@ const routes: Routes = [
   {
 	  path: '',
 	  component: LandingpageComponent
+  },
+  {
+    path: 'managegallery',
+    component: ManagegalleryComponent
   },
   {
 	  path: 'login',
@@ -276,6 +284,21 @@ const routes: Routes = [
     
   },
   {
+     path:'addalbum',
+    component:AddgalleryComponent
+    
+  },
+   {
+     path:'editalbum/:id',
+    component:EditgalleryComponent
+    
+  },
+   {
+     path:'addalbumphotos/:id',
+    component:AddalbumphotsComponent
+    
+  },
+  {
     path:'mall/managemall',
    component:ManagemallComponent
    
@@ -297,7 +320,6 @@ const routes: Routes = [
 {
 path:'mall/addfloor',
 component:AddfloorComponent
-
 },{
 path:'mall/editfloor/:id',
 component:EditfloorComponent
