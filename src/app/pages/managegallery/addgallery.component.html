@@ -1,0 +1,84 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Album
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addalbum="ngForm">
+                                        <div class="row clearfix">
+                                          <div class="col-md-6">
+                                                <p><b>Select Website</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">Album Name</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" id="albumname" name="albumname" [(ngModel)]="model.albumname"  #albumname="ngModel" placeholder="albumname" required>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>                                    
+                                        </div> 
+                                        <div class="row clearfix">
+                                            <div class="col-md-6">
+                                              <p><b>Upload Album Image</b></p>                   
+                                              <input type="file" (change)="fileChangeEvent($event)" />
+                                              <image-cropper
+                                                  [imageChangedEvent]="imageChangedEvent"
+                                                  [maintainAspectRatio]="false"
+                                                  [aspectRatio]="4 / 3"
+                                                  format="png"
+                                                  (imageCropped)="imageCropped($event)"           
+                                              ></image-cropper>
+                                            <img [src]="croppedImage" style="width:30%;"/>
+                                            </div> 
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">About Album</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">    
+                                                       <textarea rows="4" class="form-control no-resize" placeholder="" id="about" [(ngModel)]="model.about" #about="ngModel" name="about"></textarea>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>                                            
+                                        </div>                                           
+                                        <button type="submit" [disabled]="!addalbum.form.valid || !iSfileupload" class="btn btn-primary m-t-15 waves-effect" 
+                                        (click)="addalbums()">Add Album</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

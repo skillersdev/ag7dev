@@ -1,0 +1,48 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                              Gallery List
+                              <button type="button" (click)="navigateAddalbum()" class="btn btn-success waves-effect pull-right">Add Album</button>                 
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Akbum Name</th>
+                                      <th>Album icon</th>
+                                      <th>Created Date</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of albumlist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.albumname}}</td>
+                                      <td><img src="{{websiteurl}}/{{data.album_image}}" style="width:10%;"></td>
+                                      <td>{{data.created_date}}</td>
+                                       <td>                                         
+                                        <a href="javascript:void(0);" (click)="deletealbum(data.id)"><i class="material-icons">delete</i></a>
+                                        <a href="javascript:void(0);" (click)="editalbum(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="addalbumphotos(data.id)"><i class="material-icons">photo_album</i></a>
+                                    </td>           
+                                  </tr>
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->
