@@ -20,6 +20,7 @@ import { Injectable } from '@angular/core';
 export class AddfloorComponent implements OnInit {
   malllist:Array<Object>;
   model: any = {};
+  select:any;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 

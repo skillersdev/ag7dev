@@ -24,6 +24,7 @@ export class EditfloorComponent implements OnInit {
   model: any = {};
   id:number;
   malllist:Array<Object>;
+  select:any;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
   FetchfloorRestApiUrl: string = AppSettings.editfloor; 
   updatefloorRestApiUrl: string = AppSettings.updatefloor;  

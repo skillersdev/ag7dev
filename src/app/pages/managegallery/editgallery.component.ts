@@ -22,6 +22,8 @@ export class EditgalleryComponent implements OnInit {
  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
  uploadalbumApi:string=AppSettings.uploadalbumimage;
  model1:any={};
+ select:any;
+ image_url = AppSettings.IMAGE_BASE;
  imageChangedEvent: any = '';
     croppedImage: any = '';
  constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 

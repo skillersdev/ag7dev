@@ -24,6 +24,8 @@ export class AddgalleryComponent implements OnInit {
  insertAlbumRestApiUrl:string = AppSettings.insertAlbum;
   imageChangedEvent: any = '';
   croppedImage: any = '';
+  image_url = AppSettings.IMAGE_BASE;
+  select:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class AddgalleryComponent implements OnInit {
 
     }
    addalbums(){
-     console.log("test");
+     
     this.CommonService.insertdata(this.uploadalbumApi,this.model1)
     .subscribe( (response) => {
        if(response.status=='success')
@@ -69,5 +71,7 @@ export class AddgalleryComponent implements OnInit {
       }
     });
   }  
-
+  back(){
+    this.router.navigate(['/managegallery']);
+  }
 }
