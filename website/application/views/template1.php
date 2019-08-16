@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 //echo"<pre>"; print_r($contac_log_result);die;
-//print_r($slider_image);die;
+//echo "<pre>";print_r($album_details);die;
 $this->load->view('index.html');
 $path_url = $this->config->item('path_url');
 
@@ -618,7 +618,46 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 
     </section>
 	
+   <section id="speakers" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>My Album</h2>
+        </div>
 
+        <div class="row">
+          <?php 
+          for($m=0;$m<count($album_details);$m++)
+          {
+            $name = "";
+            $image = "'".$path_url.$album_details[$m]['album_image']."'";
+            //print_r($image);die;
+          ?>
+          <div class="col-lg-3 col-md-3">      
+            <div class="hotel">
+              <div class="hotel-img">
+                <a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>">
+                  <img src="<?php echo $path_url.$album_details[$m]['album_image']?> ">
+                </a>
+                <?php
+                    // echo '<a href="javascript:void(0);" id="albumId" onclick="galleryPhots('.$album_details[$m]['album_code'].')">
+                    // <img src="'.$path_url.$album_details[$m]['album_image'].' " class="img-fluid"></a>'; 
+                ?>
+              </div>
+              <?php 
+                if($album_details[$m]['about']!=""){
+                  echo "<p>".$album_details[$m]['about']."</p>"; 
+                }
+              ?>
+            </div>
+          </div>
+        <?php 
+         } 
+         ?>
+        </div>
+      </div>
+  </section>
+
+    
 	
 
     
@@ -759,6 +798,10 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                     $('#adlikecount'+id).html(data.total_likes);
                 }
             });
+   }
+   function galleryPhots(albumcode)
+   {
+      window.open('http://www.smkproduction.eu5.org', '_blank');
    }
     $("#likeservice").click(function() {      
       var id = $('#service_id').val();

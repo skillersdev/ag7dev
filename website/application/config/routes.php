@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'website';
 $route['individual'] ="individual/index";
+$route['album/(:any)'] ="gallery/index/$1";
 $route['(:any)'] = 'website/index/$1';//this stands for
 
 $route['404_override'] = '';

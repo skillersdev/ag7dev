@@ -1,17 +1,3 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-//echo"<pre>"; print_r($contac_log_result);die;
-//echo "<pre>";print_r($gallery_details);die;
-$this->load->view('index.html');
-$path_url = $this->config->item('path_url');
-
-$login_url = $this->config->item('login_url');
-$image_path = $this->config->item('base_path');
-
-//$last_slider_image = end($slider_image);
-//print_r($image_path."++".$path_url);die;
-
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,7 +21,7 @@ $image_path = $this->config->item('base_path');
 			<div class="main">
 				<header class="clearfix">
 				
-					<h1>Album<span>&nbsp;&nbsp;&nbsp;<?php echo $gallery_details[0]['album'];?></span></h1>
+					<h1>Album<span>Name comes here</span></h1>
 
 					<div class="support-note">
 						<span class="note-ie">Sorry, only modern browsers.</span>
@@ -46,12 +32,26 @@ $image_path = $this->config->item('base_path');
 				<div class="gamma-container gamma-loading" id="gamma-container">
 
 					<ul class="gamma-gallery">
-                     
+
 						<li>
 							<div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png" data-min-width="1300"></div>
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png"></div>
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png" data-min-width="700"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxxlarge/3.jpg" data-min-width="1300"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxlarge/3.jpg" data-min-width="1000"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xlarge/3.jpg" data-min-width="700"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/large/3.jpg" data-min-width="300"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/medium/3.jpg" data-min-width="200"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/small/3.jpg" data-min-width="140"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg"></div>
+								<noscript>
+									<img src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg" alt="img03"/>
+								</noscript>
+							</div>
+						</li>
+						<li>
+							<div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxxlarge/3.jpg" data-min-width="1300"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxlarge/3.jpg" data-min-width="1000"></div>
+								<div data-src="<?php echo base_url();?>assets/gallery1/images/xlarge/3.jpg" data-min-width="700"></div>
 								<div data-src="<?php echo base_url();?>assets/gallery1/images/large/3.jpg" data-min-width="300"></div>
 								<div data-src="<?php echo base_url();?>assets/gallery1/images/medium/3.jpg" data-min-width="200"></div>
 								<div data-src="<?php echo base_url();?>assets/gallery1/images/small/3.jpg" data-min-width="140"></div>

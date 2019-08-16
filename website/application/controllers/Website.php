@@ -91,6 +91,11 @@ class Website extends CI_Controller {
 			$contac_log_result=[];
 			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->order_by('id','desc')->get('contact_image_log'); 
 			$contac_log_result =$contact_log_det->result_array();
+
+
+			$album_result=[];
+			$album_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('album_master'); 
+			$album_result =$album_det->result_array();
 			
 			// if(count($contact_det_result)>0)
 			// {	
@@ -102,6 +107,7 @@ class Website extends CI_Controller {
 
 			// }
 			// print_r($contac_result); die;
+			$data['album_details'] = $album_result;
 			$data['product_details']=$result;
 			$data['service_details']=$serv_result;
 			$data['contact_details']=$contac_result;
