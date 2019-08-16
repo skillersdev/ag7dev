@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 //echo"<pre>"; print_r($contac_log_result);die;
 //echo "<pre>";print_r($gallery_details);die;
-$this->load->view('index.html');
+//$this->load->view('index.html');
 $path_url = $this->config->item('path_url');
 
 $login_url = $this->config->item('login_url');
@@ -23,25 +23,32 @@ $image_path = $this->config->item('base_path');
         <meta name="keywords" content="roodabatoz, gallery, image gallery, album"/>
         <meta name="author" content="Sridhar"/>
         <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="../assets/css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/gallery1/css/style.css"/>
 		<script src="<?php echo base_url();?>assets/gallery1/js/modernizr.custom.70736.js"></script>
 		<noscript><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/gallery1/css/noJS.css"/></noscript>
 		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
     </head>
     <body>
-        <div class="container">
-		
+        <div class="container" style="background-color: #d8d8d8;">
+			<div class="container demo">
+			   <div class="content">
+				  <div id="large-header" class="large-header">
+					 <canvas id="demo-canvas"></canvas>
+					 <h1 class="main-title"><span class="thin"> <?php echo $gallery_details[0]['album'];?> </span> </h1>
+				  </div>
+			   </div>
+			</div>
 						
 			<div class="main">
-				<header class="clearfix">
+				<!--<header class="clearfix">
 				
-					<h1>Album<span>&nbsp;&nbsp;&nbsp;<?php echo $gallery_details[0]['album'];?></span></h1>
+					<h1>Album<span>&nbsp;&nbsp;&nbsp;<?php //echo $gallery_details[0]['album'];?></span></h1>
 
 					<div class="support-note">
 						<span class="note-ie">Sorry, only modern browsers.</span>
 					</div>
 					
-				</header>
+				</header>-->
 				
 				<div class="gamma-container gamma-loading" id="gamma-container">
 
@@ -56,7 +63,7 @@ $image_path = $this->config->item('base_path');
 
                      
 						<li>
-							<div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
+							<div data-alt="img03" data-description="<h3>View</h3>" data-max-width="1800" data-max-height="1350">
 								<div data-src="<?php echo $image_scr;?>" data-min-width="1300"></div>
 								<div data-src="<?php echo $image_scr;?>"></div>
 								<div data-src="<?php echo $image_scr;?> data-min-width="700"></div>
@@ -145,5 +152,57 @@ $image_path = $this->config->item('base_path');
 			});
 
 		</script>	
+		
+		
+		
+		
+
+<style>
+.large-header {
+   position: relative;
+   width: 100%;
+   background: #111;
+   overflow: hidden;
+   background-size: cover;
+   background-position: center center;
+   z-index: 1;
+}
+
+.demo .large-header {
+   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo-bg.jpg");
+}
+
+.main-title {
+   position: absolute;
+   margin: 0;
+   padding: 0;
+   color: #F9F1E9;
+   text-align: center;
+   top: 50%;
+   left: 50%;
+   -webkit-transform: translate3d(-50%, -50%, 0);
+   transform: translate3d(-50%, -50%, 0);
+}
+
+.demo .main-title {
+   text-transform: uppercase;
+   font-size: 4.2em;
+   letter-spacing: 0.1em;
+}
+
+.main-title .thin {
+   font-weight: 200;
+}
+
+@media only screen and (max-width: 768px) {
+   .demo .main-title {
+      font-size: 3em;
+   }
+}
+
+</style>
+
+
+
 	</body>
 </html>
