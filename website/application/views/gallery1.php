@@ -46,41 +46,38 @@ $image_path = $this->config->item('base_path');
 				<div class="gamma-container gamma-loading" id="gamma-container">
 
 					<ul class="gamma-gallery">
+
+
+					<?php
+						foreach ($gallery_details as $key => $value)
+						{
+							$image_scr = $image_path.$value['photos'];
+						?>
+
                      
 						<li>
 							<div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png" data-min-width="1300"></div>
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png"></div>
-								<div data-src="http://localhost/ag7dev.git/trunk/api/gallery_photos/5d53804e00e6d.png" data-min-width="700"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/large/3.jpg" data-min-width="300"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/medium/3.jpg" data-min-width="200"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/small/3.jpg" data-min-width="140"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg"></div>
+								<div data-src="<?php echo $image_scr;?>" data-min-width="1300"></div>
+								<div data-src="<?php echo $image_scr;?>"></div>
+								<div data-src="<?php echo $image_scr;?> data-min-width="700"></div>
+								<div data-src="<?php echo $image_scr;?> data-min-width="300"></div>
+								<div data-src="<?php echo $image_scr;?>" data-min-width="200"></div>
+								<div data-src="<?php echo $image_scr;?>" data-min-width="140"></div>
+								<div data-src="<?php echo $image_scr;?>"></div>
 								<noscript>
-									<img src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg" alt="img03"/>
+									<img src="<?php echo $image_scr;?>" alt="img03"/>
 								</noscript>
 							</div>
 						</li>
-						<li>
-							<div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxxlarge/3.jpg" data-min-width="1300"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/xxlarge/3.jpg" data-min-width="1000"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/xlarge/3.jpg" data-min-width="700"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/large/3.jpg" data-min-width="300"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/medium/3.jpg" data-min-width="200"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/small/3.jpg" data-min-width="140"></div>
-								<div data-src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg"></div>
-								<noscript>
-									<img src="<?php echo base_url();?>assets/gallery1/images/xsmall/3.jpg" alt="img03"/>
-								</noscript>
-							</div>
-						</li>
+						<?php 
+						}
+						?>
 						
 					</ul>
 
 					<div class="gamma-overlay"></div>
 
-					<div id="loadmore" class="loadmore">Loading more...</div>
+				
 
 				</div>
 

@@ -635,8 +635,8 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
           <div class="col-lg-3 col-md-3">      
             <div class="hotel">
               <div class="hotel-img">
-                <a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>">
-                  <img src="<?php echo $path_url.$album_details[$m]['album_image']?> ">
+                <a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
+                  <img src="<?php echo $path_url.$album_details[$m]['album_image']?> " style="width:60px;cursor: pointer;">
                 </a>
                 <?php
                     // echo '<a href="javascript:void(0);" id="albumId" onclick="galleryPhots('.$album_details[$m]['album_code'].')">
