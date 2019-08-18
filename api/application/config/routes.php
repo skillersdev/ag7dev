@@ -221,6 +221,28 @@ $route['editfloor/(:num)'] = 'Floor_controller/editfloor/$1';
 $route['updatefloor'] = 'Floor_controller/updatefloor';
 $route['deletefloor/(:num)']='Floor_controller/deletefloor/$1';
 $route['fetchfloorbyid/(:num)']='Floor_controller/fetchfloorbyid/$1';
+$route['getfloorbymallid'] = 'Floor_controller/getfloorbymallid';
+/*******/
+
+/*** shop****/
+$route['addshop'] = 'Shop_controller/add_shop';
+$route['getshop'] = 'Shop_controller/get_shop_list';
+$route['editshop/(:num)'] = 'Shop_controller/editshop/$1';
+$route['updateshop'] = 'Shop_controller/updateshop';
+$route['deleteshop/(:num)']='Shop_controller/deleteshop/$1';
+$route['fetchshopbyid/(:num)']='Shop_controller/fetchshopbyid/$1';
+$route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
+/*******/
+/*** Product****/
+$route['addmallproduct'] = 'Mallproduct_controller/add_mallproduct';
+$route['getmallproduct'] = 'Mallproduct_controller/get_mallproduct_list';
+$route['editmallproduct/(:num)'] = 'Mallproduct_controller/editmallproduct/$1';
+$route['updatemallproduct'] = 'Mallproduct_controller/updatemallproduct';
+$route['deletemallproduct/(:num)']='Mallproduct_controller/deletemallproduct/$1';
+$route['fetchmallproductbyid/(:num)']='Mallproduct_controller/fetchmallproductbyid/$1';
+$route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
+/*******/
+
 ?>
 
 
