@@ -11,7 +11,7 @@ class Gallery extends CI_Controller {
 		$album_details = $album_det->result_array();
 		$data=[];
 
-		  $res=$this->db->select("*")->where(['album_id'=>$album_details[0]['id']])->get('album_photos');
+		  $res=$this->db->select("*")->where(['album_id'=>$album_details[0]['id'],'is_deleted'=>'0'])->get('album_photos');
  
           $gallery_det_result =$res->result_array();
 		  $gallery_details=[];

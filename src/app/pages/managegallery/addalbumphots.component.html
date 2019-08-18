@@ -71,6 +71,36 @@
                                         
                                     </form>
                                     </div>
+                                    <div class="header">
+                                      <h2>
+                                          Gallery Image List
+                                      </h2>
+                                  </div>
+                                    <div class="body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
+                                          <thead>
+                                              <tr>
+                                                  <th>#</th>
+                                                  <th>Gallery Images</th>
+                                                  <th>Actions</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr *ngFor="let data of galleryImagelist let idx=index">
+                                                  <th scope="row">{{idx+1}}</th>
+                                                  <td>
+                                                    <a href=""><img src="{{image_url}}{{data.photos}}" style="width:10%;"></a>
+                                                  </td>
+                                                  <td>                                                
+                                                    <a href="javascript:void(0);" (click)="deletealbumimage(data.id)"><i class="material-icons">delete</i>
+                                                    </a> 
+                                                </td>
+                                              </tr>                                             
+                                          </tbody>
+                                      </table>
+                                      </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>

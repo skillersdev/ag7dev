@@ -187,6 +187,7 @@ export class AppSettings{
 	public static updatealbumRestApiUrl = AppSettings.API_BASE+"/updatealbum";
 	public static DeletealbumRestApiUrl=AppSettings.API_BASE+"/deletealbum/";
 	public static uploadalbumphotosApi = AppSettings.API_BASE+"/uploadalbumphotos";
+	public static DeletegalleryimagesRestApiUrl =AppSettings.API_BASE+"/deletealbumphotos/";
 
 	/*mall add*/
 	public static Addmall = AppSettings.API_BASE + "/addmall";

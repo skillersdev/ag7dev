@@ -195,10 +195,12 @@ class Gallery_controller extends CI_Controller {
         $result=array();
 
         $res=$this->db->query("select * from ".$this->db->dbprefix('album_master')." where id='".$id."'");
-
+        $photo_res=$this->db->query("select * from ".$this->db->dbprefix('album_photos')." where album_id='".$id."' AND is_deleted=0");
+       // $gallery_array=
+        $result['gallery_det'] = $photo_res->result_array();
         if($res->num_rows()>0){
             $in_array=$res->result_array();
-            $result=$in_array[0];
+            $result['album_det']=$in_array[0];
         }else{
             $response['status']="failure";
             $response['message']=" No Package record found!!";
@@ -256,6 +258,32 @@ class Gallery_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
+    public function deletealbumphotos($id)
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        
+
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('album_photos')." where id='".$id."' ");
+        //print_r($res_chk);die;
+        if($res_chk->num_rows()>0){
+
+            $data=array('is_deleted'=>'1');
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('album_photos'),$data);
+
+            $response['status']="success";
+            $response['message']="Album record has been deleted successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+    
     public function uploadalbumimage()
    {
       $this->output->set_content_type('application/json');

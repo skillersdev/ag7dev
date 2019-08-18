@@ -203,6 +203,8 @@ $route['editalbum/(:num)']= 'Gallery_controller/editalbum/$1';
 $route['updatealbum'] = 'Gallery_controller/updatealbum';
 $route['deletealbum/(:num)']= 'Gallery_controller/deletealbum/$1';
 $route['uploadalbumphotos'] ='Gallery_controller/addalbumphotos';
+$route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
+
 /*** Mall****/
 $route['addmall'] = 'Mall_controller/add_mall';
 $route['getmall'] = 'Mall_controller/get_mall_list';

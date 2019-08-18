@@ -20,9 +20,11 @@ export class AddalbumphotsComponent implements OnInit {
  model:any;
   alldata:any={};
  websitelist:Array<Object>;
+ galleryImagelist:Array<Object>;
  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
  uploadalbumApi:string=AppSettings.uploadalbumimage;
  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+ image_url = AppSettings.IMAGE_BASE;
  model1:any={};
  imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -41,7 +43,7 @@ export class AddalbumphotsComponent implements OnInit {
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         });
      this.sub = this.route.params.subscribe(params => {
-        this.id = +params['id']; // (+) converts string 'id' to a number
+        this.id = +params['id']; 
         this.editgallery(this.id);        
         });     
   }
@@ -53,7 +55,8 @@ export class AddalbumphotsComponent implements OnInit {
   {
     this.CommonService.editdata(AppSettings.FetchAlbumbyidRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;           
+          this.model = resultdata.result['album_det'];
+          this.galleryImagelist= resultdata.result['gallery_det'];           
         });
   }
     updatealbum()
@@ -79,4 +82,38 @@ export class AddalbumphotsComponent implements OnInit {
         this.model1.Imagefile = event.base64;
 
     }
+  deletealbumimage(id:any)
+  {
+    let idx = id;
+    let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removegalleryimages(idx);
+         
+        }        
+      },function(dismiss) {
+    });
+  }
+ removegalleryimages(idx:any)
+ {
+   this.CommonService.deletedata(AppSettings.DeletegalleryimagesRestApiUrl,idx)
+        .subscribe(resultdata =>{
+          
+          if(resultdata!="")
+          {
+            swal('Deleted!','Data has been deleted.','success');
+            this.ngOnInit();
+           
+          } 
+
+      });
+ }
 }
