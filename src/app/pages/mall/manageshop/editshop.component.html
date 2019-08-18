@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Edit Mall
+                            Edit Shop
                         </h2>
                     </div>
                     <div class="body">
@@ -19,16 +19,39 @@
                                         
                                     </div>
                                     <div class="body">
-                                        <form class="" #addmall="ngForm">
+                                        <form class="" #addshop="ngForm">
                                         <div class="row clearfix">
-                                            
                                             <div class="col-md-6">
-                                                <b>Mall Name</b>
+                                                <p><b>Select Mall</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" required>
+                                                            <option [ngValue]="select">select Mall</option>    
+                                                            <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="mall_id.valid || mall_id.pristine" class="text-danger">Mall is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Select Floor</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" required>
+                                                            <option [ngValue]="select">select Floor</option>    
+                                                            <option *ngFor="let model of floorlist" value="{{model.id}}">{{model.floor_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="floor_id.valid || floor_id.pristine" class="text-danger">Floor is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <b>Shop Name</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter mall" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="Enter shop" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" required>
                                                     </div>
-                                                      <span [hidden]="mall_name.valid || mall_name.pristine" class="text-danger">mall Name is required</span>
+                                                      <span [hidden]="shop_name.valid || shop_name.pristine" class="text-danger">shop Name is required</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -50,7 +73,7 @@
                                                 </div>
                                             </div>
                                         </div>       
-                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatemalllist()">Update Mall</button>&nbsp;
+                                        <button type="submit" [disabled]="!addshop.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateshoplist()">Update Shop</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </form>
                                     </div>

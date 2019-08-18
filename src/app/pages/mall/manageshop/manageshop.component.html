@@ -1,0 +1,50 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu> 
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                            Shop List
+                              <button type="button" (click)="navigateAddshop()" class="btn btn-success waves-effect pull-right">Add Shop</button>                 
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>SHOP NAME</th>
+                                      <th>MALL NAME</th>
+                                      <th>CREATED DATE</th>
+                                      <th>CREATED BY</th>
+                                      <th>Actions</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of shoplist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.shop_name}}</td>
+                                      <td>{{data.mall_name}}</td>
+                                      <td>{{data.created_date}}</td>
+                                      <td>{{data.created_by}}</td>
+                                      <td>
+                                        <a href="javascript:void(0);" (click)="editshop(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" (click)="deleteshop(data.id)"><i class="material-icons">delete</i></a>
+                                    </td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+</section>
+<!-- #END# Striped Rows -->

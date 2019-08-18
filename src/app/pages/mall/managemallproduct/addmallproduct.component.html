@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Edit Floor
+                            Add Product
                         </h2>
                     </div>
                     <div class="body">
@@ -19,13 +19,13 @@
                                         
                                     </div>
                                     <div class="body">
-                                        <form class="" #addfloor="ngForm">
+                                        <form class="" #addproduct="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>Select Mall</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel" name="mall_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" (change)="getfloorlists()" #mall_id="ngModel" name="mall_id" required>
                                                             <option [ngValue]="select">select Mall</option>    
                                                             <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
                                                         </select>
@@ -34,12 +34,36 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>Floor Name</b>
+                                                <p><b>Select Floor</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" (change)="getshoplists()" #floor_id="ngModel" name="floor_id" required>
+                                                            <option [ngValue]="select">select Floor</option>    
+                                                            <option *ngFor="let model of floorlist" value="{{model.id}}">{{model.floor_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="floor_id.valid || floor_id.pristine" class="text-danger">Floor is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Select Shop</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.shop_id" #shop_id="ngModel" name="shop_id" required>
+                                                            <option [ngValue]="select">select Shop</option>    
+                                                            <option *ngFor="let model of shoplist" value="{{model.id}}">{{model.shop_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="shop_id.valid || shop_id.pristine" class="text-danger">Shop is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Product Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter floor" [(ngModel)]="model.floor_name" name="floor_name" #floor_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.product_name" name="product_name" #product_name="ngModel" required>
                                                     </div>
-                                                      <span [hidden]="floor_name.valid || floor_name.pristine" class="text-danger">floor Name is required</span>
+                                                      <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product Name is required</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -60,8 +84,9 @@
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
                                             </div>
+
                                         </div>       
-                                        <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatefloorlist()">Update Floor</button>&nbsp;
+                                        <button type="submit" [disabled]="!addproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproductlist()">Add product</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     </form>
                                     </div>

@@ -1,0 +1,84 @@
+import { Component, OnInit } from '@angular/core';
+import { Routes,Router,RouterModule}  from '@angular/router';
+import { CommonService } from '../../../services/common.service';
+import { AppSettings } from '../../../appSettings';
+
+import { LoginService } from '../../../services/login.service';
+
+@Component({
+  selector: 'app-managemallproduct',
+  templateUrl: './managemallproduct.component.html',
+  styleUrls: []
+})
+export class ManagemallproductComponent implements OnInit {
+  getproductlistRestApiUrl:string = AppSettings.getmallproductDetail; 
+  DeleteproductRestApiUrl:string = AppSettings.deletemallproduct; 
+  getproductbyUserRestApiUrl:string = AppSettings.mallproductbyid; 
+  productlist:Array<Object>;
+  model:any={};
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
+
+  ngOnInit() {
+    this.loginService.localStorageData();
+    this.loginService.viewsActivate();
+
+    let user_id = localStorage.getItem('currentUserID');
+     this.model.imagePath = AppSettings.API_BASE;
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    this.getproductlists();
+    
+  }
+  getproductlists(){
+    this.productlist=[];
+    this.CommonService.getdata(this.getproductlistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.productlist=det.result;
+            } 
+             
+        });
+  }
+  navigateAddproduct()
+  {
+    this.router.navigate(['/mall/addmallproduct']);
+  }
+  editproduct(id:any)
+  {
+     this.router.navigate(['/mall/editmallproduct', id]);
+  }
+  deleteproduct(id:any)
+  {
+    let idx = id;
+      let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) 
+      {
+        if(result)
+        {
+           self.removeproduct(idx);
+          swal(
+            'Deleted!',
+            'product Data has been deleted.',
+            'success'
+          )
+         
+        }
+      },function(dismiss) {
+    });
+  }
+ removeproduct(idx:any)
+ {
+   this.CommonService.deletedata(this.DeleteproductRestApiUrl,idx)
+        .subscribe(resultdata =>{
+          this.getproductlists();
+      });
+ }
+
+}

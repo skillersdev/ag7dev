@@ -14,14 +14,17 @@ declare var $ :any;
 import { Injectable } from '@angular/core';  
 
 @Component({
-  selector: 'app-addmall',
-  templateUrl: './addmall.component.html'
+  selector: 'app-addshop',
+  templateUrl: './addshop.component.html'
 })
-export class AddmallComponent implements OnInit {
-
+export class AddshopComponent implements OnInit {
+  malllist:Array<Object>;
+  floorlist:Array<Object>;
   model: any = {};
   select:any;
-  insertmallRestApiUrl: string = AppSettings.Addmall; 
+  insertshopRestApiUrl: string = AppSettings.Addshop; 
+  getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
+  getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -30,26 +33,47 @@ export class AddmallComponent implements OnInit {
   ngOnInit() {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
+      this.getmalllists();
+      // this.getfloorlists();
   }
-  
+  getmalllists(){
+    this.CommonService.getdata(this.getmalllistRestApiUrl)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.malllist=det.result;
+            } 
+             
+        });
+  }
+  getfloorlists(){
+    this.CommonService.insertdata(this.getfloorlistRestApiUrl,this.model)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              this.floorlist=det.result;
+            } 
+             
+        });
+  }
   logout(){
     this.loginService.logout();
   }
-  addmalllist()
+  addshoplist()
   {
     this.model.created_by=localStorage.getItem('currentUserID');
-    this.CommonService.insertdata(this.insertmallRestApiUrl,this.model)
+    this.CommonService.insertdata(this.insertshopRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
           package_det.status,
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/mall/managemall']); 
+        this.router.navigate(['/mall/manageshop']); 
     });
   }
   back(){
-    this.router.navigate(['/mall/managemall']);
+    this.router.navigate(['/mall/manageshop']);
   }
 
 }
