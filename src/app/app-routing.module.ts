@@ -67,6 +67,15 @@ import { ManagefloorComponent } from './pages/mall/managefloor/managefloor.compo
 import { AddfloorComponent } from './pages/mall/managefloor/addfloor.component';
 import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component';
 
+import { ManageshopComponent } from './pages/mall/manageshop/manageshop.component';
+import { AddshopComponent } from './pages/mall/manageshop/addshop.component';
+import { EditshopComponent } from './pages/mall/manageshop/editshop.component';
+
+import { ManagemallproductComponent } from './pages/mall/managemallproduct/managemallproduct.component';
+import { AddmallproductComponent } from './pages/mall/managemallproduct/addmallproduct.component';
+import { EditmallproductComponent } from './pages/mall/managemallproduct/editmallproduct.component';
+
+
 const routes: Routes = [
   {
 	  path: '',
@@ -323,6 +332,34 @@ component:AddfloorComponent
 },{
 path:'mall/editfloor/:id',
 component:EditfloorComponent
+
+},
+{
+  path:'mall/manageshop',
+ component:ManageshopComponent
+ 
+},
+{
+path:'mall/addshop',
+component:AddshopComponent
+
+},{
+path:'mall/editshop/:id',
+component:EditshopComponent
+
+},
+{
+  path:'mall/managemallproduct',
+ component:ManagemallproductComponent
+ 
+},
+{
+path:'mall/addmallproduct',
+component:AddmallproductComponent
+
+},{
+path:'mall/editmallproduct/:id',
+component:EditmallproductComponent
 
 },
 

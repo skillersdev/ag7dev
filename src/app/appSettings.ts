@@ -2,13 +2,13 @@ export class AppSettings{
 
 	
 	
-	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
-  	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
-	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
-	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
-	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
-	 public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
-	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+	 public static API_BASE = "http://localhost/ag7dev/trunk/api";	
+  	 public static USER_TEMPLATE= "http://localhost/ag7dev/trunk/website";
+	 public static IMAGE_BASE = "http://localhost/ag7dev/trunk/api/";
+	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev/trunk/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/trunk/api/database/checkbalance.php";
+	 public static WEBSITE_URL="http://localhost/ag7dev/trunk/website/";
+	 public static package_renew= "http://localhost/ag7dev/trunk/api/database/checkbalance1.php";
 
 	 public static share_link= "http://localhost:4200/chat/join/";
 	 public static chatshare= "http://localhost:4200/chat/public/";
@@ -189,6 +189,7 @@ export class AppSettings{
 	public static uploadalbumphotosApi = AppSettings.API_BASE+"/uploadalbumphotos";
 	public static DeletegalleryimagesRestApiUrl =AppSettings.API_BASE+"/deletealbumphotos/";
 
+	
 	/*mall add*/
 	public static Addmall = AppSettings.API_BASE + "/addmall";
 	public static getmallDetail = AppSettings.API_BASE + "/getmall"; //common api
@@ -197,11 +198,30 @@ export class AppSettings{
 	public static updatemall= AppSettings.API_BASE+"/updatemall";
 	public static deletemall= AppSettings.API_BASE+"/deletemall/";	
 	/**/ 
-	/*mall add*/
+	/*floor add*/
 	public static Addfloor = AppSettings.API_BASE + "/addfloor";
 	public static getfloorDetail = AppSettings.API_BASE + "/getfloor"; //common api
 	public static floorbyid=AppSettings.API_BASE+"/fetchfloorbyid/";
 	public static editfloor= AppSettings.API_BASE+"/editfloor/";
 	public static updatefloor= AppSettings.API_BASE+"/updatefloor";
 	public static deletefloor= AppSettings.API_BASE+"/deletefloor/";
+
+	/*shop add*/
+	public static Addshop = AppSettings.API_BASE + "/addshop";
+	public static getshopDetail = AppSettings.API_BASE + "/getshop"; //common api
+	public static shopbyid=AppSettings.API_BASE+"/fetchshopbyid/";
+	public static editshop= AppSettings.API_BASE+"/editshop/";
+	public static updateshop= AppSettings.API_BASE+"/updateshop";
+	public static deleteshop= AppSettings.API_BASE+"/deleteshop/";
+	public static getfloorbymallid= AppSettings.API_BASE+"/getfloorbymallid";	
+	/**/ 
+
+	/*mall product add*/
+	public static Addmallproduct = AppSettings.API_BASE + "/addmallproduct";
+	public static getmallproductDetail = AppSettings.API_BASE + "/getmallproduct"; //common api
+	public static mallproductbyid=AppSettings.API_BASE+"/fetchmallproductbyid/";
+	public static editmallproduct= AppSettings.API_BASE+"/editmallproduct/";
+	public static updatemallproduct= AppSettings.API_BASE+"/updatemallproduct";
+	public static deletemallproduct= AppSettings.API_BASE+"/deletemallproduct/";
+	public static getshopbyfloorid= AppSettings.API_BASE+"/getshopbyfloorid";	
 }
