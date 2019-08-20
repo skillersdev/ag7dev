@@ -96,7 +96,7 @@ $last_slider_image = end($slider_image);
     Intro Section
   ============================-->
 
-  <section id="intro">
+  <section id="introo" style="height:auto !important">
       <?php 
   if(count($slider_image)>0){ 
     ?>
