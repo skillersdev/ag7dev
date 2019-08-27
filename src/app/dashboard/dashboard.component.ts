@@ -55,6 +55,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+    console.log('testing here');
     let id=localStorage.getItem('currentUserID');
       this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
          if(data.exist==2)
