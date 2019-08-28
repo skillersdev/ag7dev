@@ -224,4 +224,6 @@ export class AppSettings{
 	public static updatemallproduct= AppSettings.API_BASE+"/updatemallproduct";
 	public static deletemallproduct= AppSettings.API_BASE+"/deletemallproduct/";
 	public static getshopbyfloorid= AppSettings.API_BASE+"/getshopbyfloorid";	
+
+	public static Malllogin = AppSettings.API_BASE + "/malllogin";
 }

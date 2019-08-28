@@ -28,7 +28,7 @@ export class AddmallComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.loginService.localStorageData();
+    this.loginService.malllocalStorageData();
       this.loginService.viewsActivate();
   }
   

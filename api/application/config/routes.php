@@ -243,6 +243,8 @@ $route['fetchmallproductbyid/(:num)']='Mallproduct_controller/fetchmallproductby
 $route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
 /*******/
 
+$route['malllogin'] = 'Malllogin_controller/checklogin';
+
 ?>
 
 

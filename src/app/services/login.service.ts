@@ -24,6 +24,17 @@ export class LoginService {
     }
       
   }
+
+  malllocalStorageData(){
+
+    if(localStorage.getItem('mallcurrentUser')==null)
+    {
+      this.router.navigate(['./']);
+    }
+      
+  }
+
+  
   //clear all local storage and navigate to login 
   logout(){
       localStorage.removeItem('currentUser');

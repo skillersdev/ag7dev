@@ -86,6 +86,7 @@ import { EditshopComponent } from './pages/mall/manageshop/editshop.component';
 import { ManagemallproductComponent } from './pages/mall/managemallproduct/managemallproduct.component';
 import { AddmallproductComponent } from './pages/mall/managemallproduct/addmallproduct.component';
 import { EditmallproductComponent } from './pages/mall/managemallproduct/editmallproduct.component';
+import { MallloginComponent } from './pages/mall/malllogin/malllogin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -155,7 +156,8 @@ import { EditmallproductComponent } from './pages/mall/managemallproduct/editmal
     EditshopComponent,
     ManagemallproductComponent,
     AddmallproductComponent,
-    EditmallproductComponent
+    EditmallproductComponent,
+    MallloginComponent
 	//ImageCropperComponent
   ],
   imports: [

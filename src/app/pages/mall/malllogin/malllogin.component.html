@@ -1,0 +1,68 @@
+<div class="login-box">
+    <div class="logo">
+        <a [routerLink]="['/']">
+            <img src="assets/images/logo.png" style="width: 200px;"/>
+        </a><br/>
+        <small>Welcome to Roodabatoz</small>
+    </div>
+    <div class="card">
+        <div class="body">
+            <form id="sign_in">
+                <div class="msg">My Website login</div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                    <div class="form-line">
+                        <select class="form-control" [(ngModel)]="model.type" #type="ngModel" name="type">
+                            <option value="1">Mall</option>
+                            <option value="2">Floor</option>
+                            <option value="3">Shop</option>
+                            <option value="4">Product</option>
+
+                        </select>
+
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                    <div class="form-line">
+
+                        <input type="text" id="username" [(ngModel)]="model.user_name" #username="ngModel" name="user_name" class="form-control" placeholder="username" required autofocus />
+                        <div *ngIf="username.errors && (username.dirty || username.touched)">
+                            <span [hidden]="!username.errors.required" style="color:white;">
+                                  *Username is required
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                    <div class="form-line">
+                        <input type="password" id="password" [(ngModel)]="model.user_password" #password="ngModel" name="user_password" class="form-control" placeholder="Password" required />
+                        <div *ngIf="password.errors && (password.dirty || password.touched)">
+                            <span [hidden]="!password.errors.required" style="color:white;">
+                                  *Password is required
+                                </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8 p-t-5">
+                        <input type="checkbox" name="rememberme" [(ngModel)]="model.rememberme" #rememberme="ngModel" id="rememberme" class="filled-in chk-col-pink">
+                        <label for="rememberme">Remember Me</label>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-block bg-pink waves-effect" (keyup.enter)="enterlogin()" (click)="checklogin()" type="submit">SIGN IN</button>
+                    </div>
+                </div>
+              
+            </form>
+        </div>
+    </div>
+</div>

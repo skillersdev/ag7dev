@@ -74,6 +74,7 @@ import { EditshopComponent } from './pages/mall/manageshop/editshop.component';
 import { ManagemallproductComponent } from './pages/mall/managemallproduct/managemallproduct.component';
 import { AddmallproductComponent } from './pages/mall/managemallproduct/addmallproduct.component';
 import { EditmallproductComponent } from './pages/mall/managemallproduct/editmallproduct.component';
+import { MallloginComponent } from './pages/mall/malllogin/malllogin.component';
 
 
 const routes: Routes = [
@@ -361,7 +362,12 @@ component:AddmallproductComponent
 path:'mall/editmallproduct/:id',
 component:EditmallproductComponent
 
-},
+}
+,{
+  path:'mall/login',
+  component:MallloginComponent
+  
+  },
 
 ];
 

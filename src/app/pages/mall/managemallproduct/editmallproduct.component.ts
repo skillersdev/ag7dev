@@ -39,7 +39,7 @@ export class EditmallproductComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.loginService.localStorageData();
+    this.loginService.malllocalStorageData();
       this.loginService.viewsActivate();
       
       this.sub = this.route.params.subscribe(params => {

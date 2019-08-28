@@ -19,7 +19,7 @@ export class ManagefloorComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
-    this.loginService.localStorageData();
+    this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
 
     let user_id = localStorage.getItem('currentUserID');

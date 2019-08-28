@@ -33,7 +33,7 @@ export class AddmallproductComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.loginService.localStorageData();
+    this.loginService.malllocalStorageData();
       this.loginService.viewsActivate();
       this.getmalllists();
       // this.getfloorlists();
