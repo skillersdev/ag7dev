@@ -43,24 +43,25 @@ class Gallery_controller extends CI_Controller {
         $file = UPLOAD_DIR . uniqid() . '.png';
         $success = file_put_contents($file, $data);
         $result = $success ? $file : 'fail';
-        //print_r($file);die;
-        if($result!='fail')
-        {
+      }else{
+        $file = $model->photos;
+      }
+       
             $data =array('website'=>$model->website,'album_id'=>$model->album_id,'photos'=>$file);
            // $model->photos = $file;
             $this->db->insert('album_photos', $data);
             $response['status']="success";
             $response['message']="Alubm photos added successfully";
             //$response['data']=$file;
-        }
-        else{
-            $response['status']="failure";
-            $response['message']="Error while upload on photos";    
-        }
+      
+        // else{
+        //     $response['status']="failure";
+        //     $response['message']="Error while upload on photos";    
+        // }
        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
-         }
+         
     }
      public function uploadproductimage()   
     {
@@ -197,7 +198,29 @@ class Gallery_controller extends CI_Controller {
         $res=$this->db->query("select * from ".$this->db->dbprefix('album_master')." where id='".$id."'");
         $photo_res=$this->db->query("select * from ".$this->db->dbprefix('album_photos')." where album_id='".$id."' AND is_deleted=0");
        // $gallery_array=
-        $result['gallery_det'] = $photo_res->result_array();
+        $gallery_details = $photo_res->result_array();
+        $gal_array=[];
+        foreach ($gallery_details as $key => $value)
+        {
+          $filename_photo=substr($value['photos'], strpos($value['photos'], "/") + 1);
+          $ext = '.'.pathinfo($filename_photo, PATHINFO_EXTENSION);
+
+          $video_format =  array('.mp4','.3gp','.3gp2','.3g2','.3gpp','.3gpp2','.wmv','.wma','.asf','.AVI','flv');
+          $audio_format =  array('.mp4','.mp3','.aac','.ogg','.wma');
+
+          if(in_array($ext,$video_format)) {
+             $type = "video";
+          }
+          else if(in_array($ext,$audio_format)){
+            $type = "audio";
+          }
+          else{
+            $type="image";
+          }
+
+          $gal_array[]=array('id'=>$value['id'],'album_id'=>$value['album_id'],'website'=>$value['website'],'photos'=>$value['photos'],'created_date'=>$value['created_date'],'fileName'=>$filename_photo,'ext'=>$ext,'type'=>$type);
+        }
+        $result['gallery_det'] = $gal_array;
         if($res->num_rows()>0){
             $in_array=$res->result_array();
             $result['album_det']=$in_array[0];

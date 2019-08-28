@@ -610,8 +610,8 @@ class User_controller extends CI_Controller {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
              
-            if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
-            {
+            // if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
+            // {
 
               $generatedName = md5($_FILES['file']['tmp_name']).$ext;
 
@@ -623,12 +623,12 @@ class User_controller extends CI_Controller {
                 $Response['status']="success"; 
                 $Response['data']=$product_image;
               }
-            }
-            else 
-            {
-                $Response['status']="fail"; 
-                $Response['data']="Upload only valid format images";
-            }
+            // }
+            // else 
+            // {
+            //     $Response['status']="fail"; 
+            //     $Response['data']="Upload only valid format images";
+            // }
           }
         else {
             $Response['status']="fail"; 
@@ -893,7 +893,7 @@ class User_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-//print_r($model);
+//print_r($model);die;
         /*Converting base 64 image to image file and upload*/
         if(isset($model->Imagefile))
         {

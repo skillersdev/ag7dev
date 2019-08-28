@@ -8,7 +8,7 @@ import { AppSettings } from '../../appSettings';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
-@Component({
+@Component({ 
   selector: 'app-marketmanagers',
   templateUrl: './addalbumphots.component.html'
 })
@@ -17,14 +17,17 @@ export class AddalbumphotsComponent implements OnInit {
  websiteurl:string=AppSettings.API_BASE;
  private sub: any;
  id:number;
- model:any;
+ model:any={};
   alldata:any={};
  websitelist:Array<Object>;
+ IsMediafileupload:Boolean=false;
  galleryImagelist:Array<Object>;
  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
  uploadalbumApi:string=AppSettings.uploadalbumimage;
  uploaduserProfileApi:string=AppSettings.uploadprofileimage;
+ uploaduserAdvApi:string=AppSettings.uploadcropimage;
  image_url = AppSettings.IMAGE_BASE;
+ uploadVideofile:any={};
  model1:any={};
  imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -63,18 +66,44 @@ export class AddalbumphotsComponent implements OnInit {
     {
       this.model1.website = this.model.website;
       this.model1.album_id = this.model.id;
-      this.CommonService.updatedata(AppSettings.uploadalbumphotosApi,this.model1) 
-    .subscribe(package_det =>{       
-         swal(package_det.status,package_det.message,package_det.status)
-         this.router.navigate(['/managegallery']);
-        
-    });
+       
+      if(this.IsMediafileupload)
+      {
+          console.log(this.uploadVideofile);
+           this.CommonService.uploadFile(this.uploaduserProfileApi,this.uploadVideofile)
+          .subscribe( (response) => {
+             if(response.status=='success')
+             {
+              this.model1.photos = response.data;
+              this.CommonService.updatedata(AppSettings.uploadalbumphotosApi,this.model1) 
+              .subscribe(package_det =>{       
+                   swal(package_det.status,package_det.message,package_det.status)
+                   this.router.navigate(['/managegallery']);
+                  
+              });
+             }
+              else{
+                swal('',response.data,'Oops!');
+              }
+         });
+      }
+      else{
+          console.log(this.model1);
+          this.CommonService.updatedata(AppSettings.uploadalbumphotosApi,this.model1) 
+          .subscribe(package_det =>{       
+             swal(package_det.status,package_det.message,package_det.status)
+             this.router.navigate(['/managegallery']);
+          });
+      }
+     
+      
     }
      back(){
       this.router.navigate(['/managegallery']);
     }
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
+        this.IsMediafileupload = false;
         this.model1.Imagefile = event.target;
     }
   imageCropped(event: ImageCroppedEvent) {
@@ -116,4 +145,9 @@ export class AddalbumphotsComponent implements OnInit {
 
       });
  }
+ fileEvent($event) {
+    this.uploadVideofile = $event.target.files[0];
+    this.IsMediafileupload = true;
+    
+  }
 }
