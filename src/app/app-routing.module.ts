@@ -75,7 +75,9 @@ import { ManagemallproductComponent } from './pages/mall/managemallproduct/manag
 import { AddmallproductComponent } from './pages/mall/managemallproduct/addmallproduct.component';
 import { EditmallproductComponent } from './pages/mall/managemallproduct/editmallproduct.component';
 import { MallloginComponent } from './pages/mall/malllogin/malllogin.component';
-
+import { ManagevideoComponent } from './pages/managevideos/managevideo.component';
+import { AddvideoComponent } from './pages/managevideos/addvideo.component';
+import { EditvideoComponent } from './pages/managevideos/editvideo.component';
 
 const routes: Routes = [
   {
@@ -368,6 +370,21 @@ component:EditmallproductComponent
   component:MallloginComponent
   
   },
+  
+  {
+  path:'managevideos',
+  component:ManagevideoComponent
+  
+  },
+  {
+  path:'addvideos',
+  component:AddvideoComponent  
+  },
+  {
+  path:'editvideos/:id',
+  component:EditvideoComponent  
+  },
+  
 
 ];
 
