@@ -372,7 +372,7 @@ component:EditmallproductComponent
   },
   
   {
-  path:'managevideos',
+  path:'managevideos', 
   component:ManagevideoComponent
   
   },

@@ -89,7 +89,7 @@ import { EditmallproductComponent } from './pages/mall/managemallproduct/editmal
 import { MallloginComponent } from './pages/mall/malllogin/malllogin.component';
 import { ManagevideoComponent } from './pages/managevideos/managevideo.component';
 import { AddvideoComponent } from './pages/managevideos/addvideo.component';
-import { EditvideoComponent } from './pages/managevideos/editvideo.component';
+import { EditvideoComponent } from './pages/managevideos/editvideo.component'; 
 @NgModule({
   declarations: [
     AppComponent,
