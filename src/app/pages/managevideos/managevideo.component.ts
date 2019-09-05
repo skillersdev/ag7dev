@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
   //styleUrls: ['./manageuser.component.css']
 })
 export class ManagevideoComponent implements OnInit {
-
+ websiteurl:string=AppSettings.API_BASE;
   currentUser:any;
   currentUserID:any;
   currentUsername:any;
@@ -28,7 +28,7 @@ export class ManagevideoComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   alldata: any = {};
-  userlist:Array<Object>;
+  videolist:Array<Object>;
   datalist:Array<Object>;
   getuserlistRestApiUrl:string=AppSettings.getuserslist;
   DeleteuserRestApiUrl:string = AppSettings.deleteuser; 
@@ -45,18 +45,21 @@ export class ManagevideoComponent implements OnInit {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
      this.model.usergroup=localStorage.getItem('currentUsergroup');
-   
-    this.CommonService.getdata(this.getuserlistRestApiUrl)
-    .subscribe(userdet =>{
-        if(userdet.result!="")
-        { 
-          this.userlist= userdet.result;
-          this.datalist= Object.values(userdet.result);
-          //console.log(this.datalist);
-          this.loginService.viewCommontdataTable('dataTable','user_table');
-        } 
-         
-    });
+        if(this.model.usergroup==2)
+        {
+          this.model.userid = localStorage.getItem('currentUserID');
+          this.CommonService.insertdata(AppSettings.getvideolistbywebsiteApiUrl,this.model)
+            .subscribe(resultdata =>{   
+             if(resultdata.result!='')
+             { 
+               this.videolist=resultdata.result;
+               
+               // this.categoryDet=resultdata.category_name;
+               //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+            }
+          });
+        }
+       
   }
   
   logout(){
@@ -104,7 +107,7 @@ export class ManagevideoComponent implements OnInit {
         .subscribe(packagedet =>{
             if(packagedet.result!="")
             { 
-              this.userlist= packagedet.result;
+              //this.userlist= packagedet.result;
             } 
              
         });

@@ -15,7 +15,7 @@ class Videosection_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        print_r($model);die;
+//print_r($model);die;
         
         $this->db->insert('video_sections', $model);
 
@@ -59,7 +59,7 @@ class Videosection_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-print_r($model);die;
+//print_r($model);die;
         /*Converting base 64 image to image file and upload*/
         if(isset($model->Imagefile))
         {
@@ -91,32 +91,33 @@ print_r($model);die;
          }
     }
   
-  public function productlist()
+  public function getvideolistbyuser()
   {
      $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
         $result=array();
         $html="";
-        global $api_path;        
+        global $api_path;       
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('product_master');
+        $model = json_decode($this->input->post('model',FALSE));
+        if($model->usergroup==2)
+        {
+           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0','created_by'=>$model->userid])->get('video_sections');
 
+        }
+        else{
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0'])->get('video_sections');
+        }
+
+       
 
         if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)
-          {               
+          { 
 
-            $cat_sql=$this->db->query("select category_name from ".$this->db->dbprefix('category_master')." where id='".$value['category_id']."'");
-            $cat_array=$cat_sql->result_array(); 
-            $package['category_name'] = $cat_array[0]['category_name'];
-
-            //  $sub_cat_sql=$this->db->query("select sub_category_name from ".$this->db->dbprefix('category_master')." where id='".$value['sub_category_id']."'");
-            // $sub_cat_array=$sub_cat_sql->result_array(); 
-            // $package['sub_category_name'] = $sub_cat_array[0]['sub_category_name'];
-
-            $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'price'=>$value['price'],'currency'=>$value['currency'],'category_name'=>$package['category_name'],'website'=>$value['website'],'created_date'=>$value['cdate']);
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate']);
           }
         }else{
             $response['status']="failure";

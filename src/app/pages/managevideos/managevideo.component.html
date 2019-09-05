@@ -25,31 +25,22 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Name</th>
-                                        <th>User Name</th>
-                                        <th>Sponsor</th>
-                                        <th>Earnings</th>
-                                        <th>Country</th>
-                                        <th>Reg Date</th>
-                                        <th>Status</th>
+                                        <th>Title</th>
+                                        <th>preview_image</th>
+                                        <th>Description</th>
+                                        <th>created_date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let item of datalist let idx=index">
-                                        <td>{{idx+1}}</td>
-                                        <td>{{item.fname}}</td>
-                                        <td>{{item.username}}</td>
-                                        <td>{{item.referedby}}</td>
-                                        <td>{{item.tamount}}</td>
-                                        <td>{{item.country}}</td>
-                                        <td>{{item.doj}}</td>
+                                    <tr *ngFor="let item of videolist let idx=index">
+                                        <td>{{item.id}}</td>
+                                        <td>{{item.title}}</td>
                                         <td>
-                                            <span *ngIf="item.status==1" class="label bg-green">Active</span>
-                                            <span *ngIf="item.status==0" class="label bg-red">In active</span>
-                                        </td>
-                                       
+                                            <img src="{{websiteurl}}/{{item.preview_image}}" style="width:10%;"></td>
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.created_date}}</td>
                                         <td>
                                             <a href="javascript:void(0);" (click)="editvideo(item.Id)"><i class="material-icons">edit</i></a>
                                             <a *ngIf="model.usergroup!=3" href="javascript:void(0);" (click)="deletevideo(item.Id)"><i class="material-icons">delete</i></a>

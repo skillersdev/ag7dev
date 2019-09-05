@@ -206,6 +206,8 @@ $route['deletealbum/(:num)']= 'Gallery_controller/deletealbum/$1';
 $route['uploadalbumphotos'] ='Gallery_controller/addalbumphotos';
 $route['uploadvideopreview']='Videosection_controller/addvideopreview';
 $route['insertvideosectiondata']='Videosection_controller/addvideosection';
+$route['getvideolistbyid']= 'Videosection_controller/getvideolistbyuser';
+
 $route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
 
 /*** Mall****/

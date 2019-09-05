@@ -182,6 +182,8 @@ export class AppSettings{
 	public static uploadcropimage= AppSettings.API_BASE+"/uploadcropimage";
 	public static insertAlbum = AppSettings.API_BASE+"/insertalbum";
 	public static getalbumbyuser= AppSettings.API_BASE+"/getalbumbyuser";
+	public static getvideolistbywebsiteApiUrl= AppSettings.API_BASE+"/getvideolistbyid";
+	
 	public static getalbumlistRestApiUrl= AppSettings.API_BASE+"/getalbumlist";
 	public static uploadalbumimage=AppSettings.API_BASE+"/uploadalbumimage";
 	public static FetchAlbumbyidRestApiUrl= AppSettings.API_BASE+"/editalbum/";
