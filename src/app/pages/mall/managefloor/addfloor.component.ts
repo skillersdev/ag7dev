@@ -20,6 +20,7 @@ import { Injectable } from '@angular/core';
 export class AddfloorComponent implements OnInit {
   malllist:Array<Object>;
   model: any = {};
+  malltypeid:any;
   select:any;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
@@ -30,6 +31,13 @@ export class AddfloorComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.model.created_by=localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid!=null || this.malltypeid!=1){
+     this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+     
+    } 
       this.loginService.viewsActivate();
       this.getmalllists();
   }
@@ -48,7 +56,7 @@ export class AddfloorComponent implements OnInit {
   }
   addfloorlist()
   {
-    this.model.created_by=localStorage.getItem('currentUserID');
+    
     this.CommonService.insertdata(this.insertfloorRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

@@ -90,6 +90,9 @@ import { MallloginComponent } from './pages/mall/malllogin/malllogin.component';
 import { ManagevideoComponent } from './pages/managevideos/managevideo.component';
 import { AddvideoComponent } from './pages/managevideos/addvideo.component';
 import { EditvideoComponent } from './pages/managevideos/editvideo.component'; 
+
+import { MalldashboardComponent } from './malldashboard/malldashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,7 +166,8 @@ import { EditvideoComponent } from './pages/managevideos/editvideo.component';
     MallloginComponent,
     ManagevideoComponent,
     AddvideoComponent,
-    EditvideoComponent
+    EditvideoComponent,
+    MalldashboardComponent
 	//ImageCropperComponent
   ],
   imports: [

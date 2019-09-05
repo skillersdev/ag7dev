@@ -15,6 +15,7 @@ export class ManagefloorComponent implements OnInit {
   DeletefloorRestApiUrl:string = AppSettings.deletefloor; 
   getfloorbyUserRestApiUrl:string = AppSettings.floorbyid; 
   floorlist:Array<Object>;
+  malltypeid:any;
   model:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
@@ -23,6 +24,7 @@ export class ManagefloorComponent implements OnInit {
     this.loginService.viewsActivate();
 
     let user_id = localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid');  
      this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.getfloorlists();

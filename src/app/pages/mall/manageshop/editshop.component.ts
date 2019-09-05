@@ -25,6 +25,7 @@ export class EditshopComponent implements OnInit {
   id:number;
   malllist:Array<Object>;
   select:any;
+  malltypeid:any;
   floorlist:Array<Object>;
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   FetchshopRestApiUrl: string = AppSettings.editshop; 
@@ -38,6 +39,7 @@ export class EditshopComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.malltypeid = localStorage.getItem('malltypeid'); 
       this.loginService.viewsActivate();
       
       this.sub = this.route.params.subscribe(params => {

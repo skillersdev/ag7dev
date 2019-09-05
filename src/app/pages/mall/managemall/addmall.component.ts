@@ -21,6 +21,7 @@ export class AddmallComponent implements OnInit {
 
   model: any = {};
   select:any;
+  malltypeid:any;
   insertmallRestApiUrl: string = AppSettings.Addmall; 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -29,6 +30,12 @@ export class AddmallComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.model.created_by=localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid!=null ){
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+     
+    } 
       this.loginService.viewsActivate();
   }
   
@@ -37,7 +44,7 @@ export class AddmallComponent implements OnInit {
   }
   addmalllist()
   {
-    this.model.created_by=localStorage.getItem('currentUserID');
+    // this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.insertmallRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

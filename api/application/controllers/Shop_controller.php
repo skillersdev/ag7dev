@@ -58,10 +58,10 @@ class Shop_controller extends CI_Controller {
         {
           foreach($res->result_array() as $key=>$value)
           {               
-            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
-            $data =$user_det->result_array();  
+            // $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            // $data =$user_det->result_array();  
 
-            $value['created_by']=$data[0]['username'];
+            // $value['created_by']=$data[0]['username'];
             
             $mall_det=$this->db->select("mall_name")->where(['is_deleted'=>'0','id'=>$value['mall_id']])->get('mall_master'); 
             $mall_data =$mall_det->result_array();  

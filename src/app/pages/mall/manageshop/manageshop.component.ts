@@ -16,6 +16,7 @@ export class ManageshopComponent implements OnInit {
   getshopbyUserRestApiUrl:string = AppSettings.shopbyid; 
   shoplist:Array<Object>;
   model:any={};
+  malltypeid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class ManageshopComponent implements OnInit {
     this.loginService.viewsActivate();
 
     let user_id = localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid'); 
      this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.getshoplists();

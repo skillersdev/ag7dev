@@ -79,6 +79,8 @@ import { ManagevideoComponent } from './pages/managevideos/managevideo.component
 import { AddvideoComponent } from './pages/managevideos/addvideo.component';
 import { EditvideoComponent } from './pages/managevideos/editvideo.component';
 
+import { MalldashboardComponent } from './malldashboard/malldashboard.component';
+
 const routes: Routes = [
   {
 	  path: '',
@@ -99,6 +101,9 @@ const routes: Routes = [
   {
 	  path: 'dashboard',
 	  component: DashboardComponent
+  }, {
+	  path: 'malldashboard',
+	  component: MalldashboardComponent
   },
   {
 	  path: 'chat',

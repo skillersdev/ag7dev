@@ -27,6 +27,7 @@ export class EditmallproductComponent implements OnInit {
   floorlist:Array<Object>;
   shoplist:Array<Object>;
   select:any;
+  malltypeid:any;
   insertproductRestApiUrl: string = AppSettings.Addmallproduct; 
   FetchproductRestApiUrl: string = AppSettings.editmallproduct; 
   updateproductRestApiUrl: string = AppSettings.updatemallproduct;  
@@ -40,6 +41,7 @@ export class EditmallproductComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.malltypeid = localStorage.getItem('malltypeid');  
       this.loginService.viewsActivate();
       
       this.sub = this.route.params.subscribe(params => {

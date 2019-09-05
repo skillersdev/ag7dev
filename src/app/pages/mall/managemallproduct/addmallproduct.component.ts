@@ -23,6 +23,7 @@ export class AddmallproductComponent implements OnInit {
   shoplist:Array<Object>;
   model: any = {};
   select:any;
+  malltypeid:any;
   insertproductRestApiUrl: string = AppSettings.Addmallproduct; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
@@ -34,6 +35,15 @@ export class AddmallproductComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.model.created_by=localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid!=null || this.malltypeid!=1 || this.malltypeid!=2 || this.malltypeid!=3){
+     this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.floor_id = localStorage.getItem('floorid'); 
+     this.model.shop_id = localStorage.getItem('shopid'); 
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+     
+    } 
       this.loginService.viewsActivate();
       this.getmalllists();
       // this.getfloorlists();
@@ -73,7 +83,7 @@ export class AddmallproductComponent implements OnInit {
   }
   addproductlist()
   {
-    this.model.created_by=localStorage.getItem('currentUserID');
+    // this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.insertproductRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

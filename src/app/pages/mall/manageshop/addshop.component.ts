@@ -22,6 +22,7 @@ export class AddshopComponent implements OnInit {
   floorlist:Array<Object>;
   model: any = {};
   select:any;
+  malltypeid:any;
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
@@ -32,6 +33,14 @@ export class AddshopComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.model.created_by=localStorage.getItem('currentUserID');
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid!=null || this.malltypeid!=1 || this.malltypeid!=2){
+     this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.floor_id = localStorage.getItem('floorid'); 
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+     
+    } 
       this.loginService.viewsActivate();
       this.getmalllists();
       // this.getfloorlists();
@@ -61,7 +70,7 @@ export class AddshopComponent implements OnInit {
   }
   addshoplist()
   {
-    this.model.created_by=localStorage.getItem('currentUserID');
+    // this.model.created_by=localStorage.getItem('currentUserID');
     this.CommonService.insertdata(this.insertshopRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

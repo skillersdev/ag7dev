@@ -16,12 +16,14 @@ export class ManagemallComponent implements OnInit {
   getmallbyUserRestApiUrl:string = AppSettings.mallbyid; 
   malllist:Array<Object>;
   model:any={};
+  malltypeid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
-
+    
+    this.malltypeid = localStorage.getItem('malltypeid');
     let user_id = localStorage.getItem('currentUserID');
      this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');

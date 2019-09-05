@@ -16,10 +16,12 @@ export class ManagemallproductComponent implements OnInit {
   getproductbyUserRestApiUrl:string = AppSettings.mallproductbyid; 
   productlist:Array<Object>;
   model:any={};
+  malltypeid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
+    this.malltypeid = localStorage.getItem('malltypeid');  
     this.loginService.viewsActivate();
 
     let user_id = localStorage.getItem('currentUserID');

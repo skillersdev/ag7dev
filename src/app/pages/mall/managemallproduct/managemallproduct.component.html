@@ -1,6 +1,7 @@
-<app-topnav></app-topnav>
-<app-sidemenu></app-sidemenu> 
+<app-topnav *ngIf="malltypeid=='' || malltypeid==null"></app-topnav>
+<app-sidemenu *ngIf="malltypeid=='' || malltypeid==null"></app-sidemenu> 
 
+<app-malldashboard *ngIf="malltypeid!=''"></app-malldashboard>
 <section class="content">
         <div class="container-fluid">           
             <div class="row clearfix">
