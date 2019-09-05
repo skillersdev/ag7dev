@@ -191,7 +191,7 @@ export class AppSettings{
 	public static uploadvideoPreviewApi= AppSettings.API_BASE+"/uploadvideopreview";
 	public static addvideosectiondata = AppSettings.API_BASE+"/insertvideosectiondata";
 	public static DeletegalleryimagesRestApiUrl =AppSettings.API_BASE+"/deletealbumphotos/";
-
+ 
 	
 	/*mall add*/
 	public static Addmall = AppSettings.API_BASE + "/addmall";

@@ -44,10 +44,13 @@ export class AddgalleryComponent implements OnInit {
  
    fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
+        console.log(this.imageChangedEvent);
     }
   imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
+        console.log("Sd");
+        console.log(this.model1.Imagefile);
         this.iSfileupload= true;
 
     }

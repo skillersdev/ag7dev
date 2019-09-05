@@ -105,11 +105,14 @@ export class AddalbumphotsComponent implements OnInit {
         this.imageChangedEvent = event;
         this.IsMediafileupload = false;
         this.model1.Imagefile = event.target;
+        console.log(this.model1.Imagefile);
+
     }
   imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
-
+        console.log("s");
+        console.log(this.model1.Imagefile);
     }
   deletealbumimage(id:any)
   {
