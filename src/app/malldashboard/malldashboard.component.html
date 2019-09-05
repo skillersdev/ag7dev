@@ -1,0 +1,91 @@
+
+<div class="overlay"></div>
+<!-- Top Bar -->
+<nav class="navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <!-- <a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> -->
+            <a class="bars"></a>
+            <!-- <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a> -->
+            <a class="navbar-brand" [routerLink]="['/']">
+                <img src="assets/images/logo2.png" style="width: 200px;height: 35px;margin-left: 24px;"/>
+            </a>
+
+        </div>
+
+    </div>
+</nav>
+
+
+
+<!-- #Top Bar --><section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="image">
+                <img src="assets/images/user.png" width="48" height="48" alt="User" />
+            </div>
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{model.name}}</div>
+                <div class="email">{{model.email}}</div>
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="javascript:void(0);" [routerLink]="['/profile']"><i class="material-icons">person</i>Profile</a>
+                        </li>
+                        <li role="seperator" class="divider"></li>
+                        <li><a href="" (click)=logout()><i class="material-icons">input</i>Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                
+                <li *ngIf="malltypeid==1" >
+                    <a [routerLink]="['/mall/managemall']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Mall</span>
+                    </a>
+                </li>
+                <li *ngIf="(malltypeid==1) || (malltypeid==2)">
+                    <a [routerLink]="['/mall/managefloor']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Floor</span>
+                    </a>
+                </li>
+                <li *ngIf="(malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
+                    <a [routerLink]="['/mall/manageshop']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Shop</span>
+                    </a>
+                </li>
+                <li *ngIf="(malltypeid==1) || (malltypeid==2) || (malltypeid==3) || (malltypeid==4)">
+                    <a [routerLink]="['/mall/managemallproduct']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Mallproduct</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- #Menu -->
+        <!-- Footer -->
+        <div class="legal">
+            <div class="copyright">
+                &copy; 2019 <a href="javascript:void(0);">Roodabatoz</a>.
+            </div>
+            <div class="version">
+                <b>Version: </b> 1.1
+            </div>
+        </div>
+        <!-- #Footer -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+   
+</section>
