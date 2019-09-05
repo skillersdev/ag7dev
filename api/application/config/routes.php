@@ -107,6 +107,7 @@ $route['checkusercredit'] = 'User_controller/check_user_credit';
 $route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
 $route['updatepassword'] = 'User_controller/updatepassword';
 $route['uploadimage'] = 'User_controller/uploadimage';
+$route['uploadVideoswebsite'] = "Videosection_controller/uploadvideoswebsite";
 $route['uploadcropimage']= 'User_controller/uploadcropimage';
 $route['uploadAdvfile']= 'User_controller/uploadAdvfile';
 $route['uploadtempfile']= 'User_controller/uploadtempfile';
@@ -203,6 +204,8 @@ $route['editalbum/(:num)']= 'Gallery_controller/editalbum/$1';
 $route['updatealbum'] = 'Gallery_controller/updatealbum';
 $route['deletealbum/(:num)']= 'Gallery_controller/deletealbum/$1';
 $route['uploadalbumphotos'] ='Gallery_controller/addalbumphotos';
+$route['uploadvideopreview']='Videosection_controller/addvideopreview';
+$route['insertvideosectiondata']='Videosection_controller/addvideosection';
 $route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
 
 /*** Mall****/

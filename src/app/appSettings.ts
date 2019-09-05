@@ -86,6 +86,7 @@ export class AppSettings{
 	public static packageisactivated=AppSettings.API_BASE+"/checkpackage/";
 	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";
 	public static uploadprofileimage=AppSettings.API_BASE+"/uploadimage";
+	public static uploadvideo = AppSettings.API_BASE+"/uploadVideoswebsite";
 	public static uploadAdvfile=AppSettings.API_BASE+"/uploadAdvfile";
 	public static uploadTempfile=AppSettings.API_BASE+"/uploadtempfile";
 	public static Adduseradvertisement=AppSettings.API_BASE+"/addadvertisment";
@@ -187,6 +188,8 @@ export class AppSettings{
 	public static updatealbumRestApiUrl = AppSettings.API_BASE+"/updatealbum";
 	public static DeletealbumRestApiUrl=AppSettings.API_BASE+"/deletealbum/";
 	public static uploadalbumphotosApi = AppSettings.API_BASE+"/uploadalbumphotos";
+	public static uploadvideoPreviewApi= AppSettings.API_BASE+"/uploadvideopreview";
+	public static addvideosectiondata = AppSettings.API_BASE+"/insertvideosectiondata";
 	public static DeletegalleryimagesRestApiUrl =AppSettings.API_BASE+"/deletealbumphotos/";
 
 	
