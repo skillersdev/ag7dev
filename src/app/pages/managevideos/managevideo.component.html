@@ -42,9 +42,13 @@
                                         <td>{{item.description}}</td>
                                         <td>{{item.created_date}}</td>
                                         <td>
-                                            <a href="javascript:void(0);" (click)="editvideo(item.Id)"><i class="material-icons">edit</i></a>
-                                            <a *ngIf="model.usergroup!=3" href="javascript:void(0);" (click)="deletevideo(item.Id)"><i class="material-icons">delete</i></a>
+                                            <a href="javascript:void(0);" (click)="editvideo(item.id)">
+                                                <i class="material-icons">edit</i></a>
+                                            <a href="javascript:void(0);" (click)="deletevideo(item.id)"><i class="material-icons">delete</i></a>
                                         </td>
+                                    </tr>
+                                    <tr *ngIf="videolist.length==0">
+                                        <td>No records found</td>
                                     </tr>
 
                                 </tbody>

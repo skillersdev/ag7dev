@@ -130,7 +130,7 @@ class Videosection_controller extends CI_Controller {
 
   }
   
-   public function editalbum($id)
+   public function editvideodata($id)
     {
         //var_dump($id); die();
         $this->output->set_content_type('application/json');
@@ -138,35 +138,13 @@ class Videosection_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
-        $res=$this->db->query("select * from ".$this->db->dbprefix('album_master')." where id='".$id."'");
-        $photo_res=$this->db->query("select * from ".$this->db->dbprefix('album_photos')." where album_id='".$id."' AND is_deleted=0");
-       // $gallery_array=
-        $gallery_details = $photo_res->result_array();
-        $gal_array=[];
-        foreach ($gallery_details as $key => $value)
-        {
-          $filename_photo=substr($value['photos'], strpos($value['photos'], "/") + 1);
-          $ext = '.'.pathinfo($filename_photo, PATHINFO_EXTENSION);
-
-          $video_format =  array('.mp4','.3gp','.3gp2','.3g2','.3gpp','.3gpp2','.wmv','.wma','.asf','.AVI','flv');
-          $audio_format =  array('.mp4','.mp3','.aac','.ogg','.wma');
-
-          if(in_array($ext,$video_format)) {
-             $type = "video";
-          }
-          else if(in_array($ext,$audio_format)){
-            $type = "audio";
-          }
-          else{
-            $type="image";
-          }
-
-          $gal_array[]=array('id'=>$value['id'],'album_id'=>$value['album_id'],'website'=>$value['website'],'photos'=>$value['photos'],'created_date'=>$value['created_date'],'fileName'=>$filename_photo,'ext'=>$ext,'type'=>$type);
-        }
-        $result['gallery_det'] = $gal_array;
+        $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+       
+       
+        
         if($res->num_rows()>0){
             $in_array=$res->result_array();
-            $result['album_det']=$in_array[0];
+            $result['video_det']=$in_array[0];
         }else{
             $response['status']="failure";
             $response['message']=" No Package record found!!";
@@ -176,21 +154,21 @@ class Videosection_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-  public function updatealbum() {
+  public function updatevideodata() {
          $this->output->set_content_type('application/json');
         $response=array('status'=>"success");
 
         $model = json_decode($this->input->post('model',FALSE));
         if (isset($model)) {
             $this->db->where('id',$model->id);
-            $result=$this->db->update('album_master', $model);
+            $result=$this->db->update('video_sections', $model);
             if ($result) {
-                $response['message']="Album has been updated successfully";
+                $response['message']="Video has been updated successfully";
             }
             else
             {
                  $response['status']="failure";
-            $response['message']="Album has not been updated fully";
+            $response['message']="video has not been updated fully";
             }
         } else {
             $response['status']="failure";
@@ -199,23 +177,23 @@ class Videosection_controller extends CI_Controller {
 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
-    public function deletealbum($id)
+    public function deletevideosection($id)
     {
       $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
         
 
-        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('album_master')." where id='".$id."' ");
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('video_sections')." where id='".$id."' ");
         //print_r($res_chk);die;
         if($res_chk->num_rows()>0){
 
             $data=array('is_deleted'=>'1');
             $this->db->where('id',$id);
-            $this->db->update($this->db->dbprefix('album_master'),$data);
+            $this->db->update($this->db->dbprefix('video_sections'),$data);
 
             $response['status']="success";
-            $response['message']="Album record has been deleted successfully";
+            $response['message']="Data has been deleted successfully";
             
         }else{
             $response['status']="failure";

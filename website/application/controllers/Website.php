@@ -87,6 +87,10 @@ class Website extends CI_Controller {
 			$contact_det=$this->db->select("*,fb_link as fb,linked_url as linked")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('contacts_master'); 
 			$contac_result =$contact_det->result_array();
 
+			$myvideos_result=[];
+			$video_det=$this->db->select("*")->where(['website_name'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('video_sections'); 
+			$myvideos_result =$video_det->result_array();
+
 
 			$contac_log_result=[];
 			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->order_by('id','desc')->get('contact_image_log'); 
@@ -119,6 +123,7 @@ class Website extends CI_Controller {
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
 			$data['website']=$val[0]['website'];
+			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			//echo "<pre>";print_r($data);die;
 

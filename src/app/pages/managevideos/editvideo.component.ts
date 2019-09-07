@@ -8,6 +8,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService } from '../../services/common.service';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -17,7 +18,7 @@ import { Injectable } from '@angular/core';
   templateUrl: './editvideo.component.html'
 })
 export class EditvideoComponent implements OnInit {
-
+  websiteurl:string=AppSettings.API_BASE;
   currentUser:any;
   currentUserID:any;
   currentUsername:any;
@@ -25,10 +26,20 @@ export class EditvideoComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   select: any;
-  FetchuserRestApiUrl: string = AppSettings.Edituser; 
+  FetchvideodataRestApiUrl: string = AppSettings.Editvideo; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
+  getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;
+  uploadvideoProfileApi:string=AppSettings.uploadvideo;
+   imageChangedEvent: any = '';
+  croppedImage: any = '';
+  image_url = AppSettings.IMAGE_BASE;
   model: any = {};
+  videopreviewmodel:any={};
+  uploadVideofile:any={};
+  videoFileupload:Boolean=false;
+  isImageupload:Boolean=false;
+  websitelist:Array<Object>;
   packagelist:Array<Object>;
   alldata: any = {};
   private sub: any;
@@ -56,15 +67,14 @@ export class EditvideoComponent implements OnInit {
         this.edituser(this.id);
         
         });
+       this.alldata.usertype=localStorage.getItem('currentUsergroup');
+        this.alldata.userid=localStorage.getItem('currentUserID');
+        this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
+        .subscribe(package_det =>{       
+          if(package_det.result!=""){ this.websitelist=package_det.result;}
+        }); 
 
-        this.CommonService.getdata(this.getpackagelistRestApiUrl)
-        .subscribe(packagedet =>{
-            if(packagedet.result!="")
-            { 
-              this.packagelist= packagedet.result;
-            } 
-            console.log(this.packagelist); 
-        });
+        
   }
   
   logout(){
@@ -76,24 +86,51 @@ export class EditvideoComponent implements OnInit {
   edituser(id:any)
   {
     
-    this.CommonService.editdata(this.FetchuserRestApiUrl,id)
+    this.CommonService.editdata(this.FetchvideodataRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;
+          this.model = resultdata.result.video_det;
           
         });
   }
-  updateuser()
-  {
-     this.CommonService.updatedata(this.updateuserRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/manageuser']);
-        
-    });
+ 
+    updateVideos()
+    {
+      if(this.videoFileupload)
+      {
+        this.CommonService.uploadFile(this.uploadvideoProfileApi,this.uploadVideofile)
+          .subscribe( (response) => {
+             if(response.status=='success')
+             { 
+              this.model.video_file = response.data;
+              //console.log(this.videopreviewmodel);
+            }
+          });
+      }
+
+      if(this.isImageupload)
+      {
+        //this.model.preview_image='';
+        this.CommonService.insertdata(AppSettings.uploadvideoPreviewApi,this.videopreviewmodel)
+      
+          .subscribe( (response) => {
+             if(response.status=='success')
+             {
+               this.model.preview_image = response.data;
+               console.log("aaaaaa");
+             }
+           });
+      }
+      this.model.created_by = localStorage.getItem('currentUserID');
+      setTimeout(()=>{ 
+         
+          this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
+          .subscribe(package_det =>{       
+               swal(package_det.status,package_det.message,package_det.status)
+               this.router.navigate(['/managevideos']);
+          });
+      }, 3000);
+       
+         
   }
   checkUserexist(event:any)
   {
@@ -108,4 +145,23 @@ export class EditvideoComponent implements OnInit {
       }  
     });
   }
+
+   fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+        this.isImageupload=true;
+        //this.model1.Imagefile = event.target;
+        
+    }
+   imageCropped(event: ImageCroppedEvent) {
+      this.croppedImage = event.base64;
+      this.videopreviewmodel.Imagefile = event.base64;
+      this.isImageupload=true;
+      console.log(this.videopreviewmodel.Imagefile);
+    }
+
+    fileEvent($event) {
+      this.videoFileupload =true;
+      this.uploadVideofile = $event.target.files[0];
+    
+    }
 }

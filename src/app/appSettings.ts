@@ -2,20 +2,20 @@ export class AppSettings{
 
 	
 	
-	 public static API_BASE = "http://localhost/ag7dev/trunk/api";	
-  	 public static USER_TEMPLATE= "http://localhost/ag7dev/trunk/website";
-	 public static IMAGE_BASE = "http://localhost/ag7dev/trunk/api/";
-	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev/trunk/assets/chat/";
-	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/trunk/api/database/checkbalance.php";
-	 public static WEBSITE_URL="http://localhost/ag7dev/trunk/website/";
-	 public static package_renew= "http://localhost/ag7dev/trunk/api/database/checkbalance1.php";
+	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
+  	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
+	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
+	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	 public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
+	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 
 	 public static share_link= "http://localhost:4200/chat/join/";
 	 public static chatshare= "http://localhost:4200/chat/public/";
 
 	//public static share_link= "https://roodabatoz.com/chat/join/";
 
-//	public static API_BASE = "https://roodabatoz.com/api";
+ //	public static API_BASE = "https://roodabatoz.com/api";
 //	public static USER_TEMPLATE= "https://roodabatoz.com/website";
 //	public static IMAGE_BASE = "https://roodabatoz.com/api/";
 //	public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
@@ -87,6 +87,7 @@ export class AppSettings{
 	public static Updatepassword= AppSettings.API_BASE+"/updatepassword";
 	public static uploadprofileimage=AppSettings.API_BASE+"/uploadimage";
 	public static uploadvideo = AppSettings.API_BASE+"/uploadVideoswebsite";
+	public static Deletevideosection=AppSettings.API_BASE+"/deletevideosection/";
 	public static uploadAdvfile=AppSettings.API_BASE+"/uploadAdvfile";
 	public static uploadTempfile=AppSettings.API_BASE+"/uploadtempfile";
 	public static Adduseradvertisement=AppSettings.API_BASE+"/addadvertisment";
@@ -183,6 +184,9 @@ export class AppSettings{
 	public static insertAlbum = AppSettings.API_BASE+"/insertalbum";
 	public static getalbumbyuser= AppSettings.API_BASE+"/getalbumbyuser";
 	public static getvideolistbywebsiteApiUrl= AppSettings.API_BASE+"/getvideolistbyid";
+	public static Editvideo = AppSettings.API_BASE+"/editvideodata/";
+	public static updatevideosectiondata=AppSettings.API_BASE+"/uploadvideodata";
+	
 	
 	public static getalbumlistRestApiUrl= AppSettings.API_BASE+"/getalbumlist";
 	public static uploadalbumimage=AppSettings.API_BASE+"/uploadalbumimage";

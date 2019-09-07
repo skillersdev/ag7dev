@@ -72,6 +72,7 @@ export class ManagevideoComponent implements OnInit {
   }
   editvideo(id:any)
   {
+    console.log(id);
     this.router.navigate(['/editvideos', id]);
   }
   deletevideo(id:any)
@@ -101,16 +102,9 @@ export class ManagevideoComponent implements OnInit {
  }
  removeuser(idx:any)
  {
-   this.CommonService.deletedata(this.DeleteuserRestApiUrl,idx)
+   this.CommonService.deletedata(AppSettings.Deletevideosection,idx)
         .subscribe(resultdata =>{
-           this.CommonService.getdata(this.getuserlistRestApiUrl)
-        .subscribe(packagedet =>{
-            if(packagedet.result!="")
-            { 
-              //this.userlist= packagedet.result;
-            } 
-             
-        });
+          this.ngOnInit();
       });
  }
 

@@ -89,6 +89,7 @@ $image_path = $this->config->item('base_path');
                         <li><a href="#service">My Service</a></li>
                         <li><a href="#portfolio">My Products</a></li>
                         <li><a href="#testimonials">My Ads</a></li> 
+                        <li><a href="#videosection">My videos</a></li> 
                         <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li> 
                          <li>
 				            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -435,7 +436,84 @@ $image_path = $this->config->item('base_path');
 				</div>
 			</section>
 			<!-- end product section -->
-			
+			 <div class="modal fade" id="videomodal" role="dialog">
+	          <div class="modal-dialog">          
+	            <!-- Modal content-->
+	            <div class="modal-content">           
+	              <div class="modal-header">
+	              <h4 class="modal-title" id="mtitle1"></h4>
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+	              </div>
+	              <div class="modal-body" id="videoimage">                
+	              </div>
+	              <div class="modal-footer" style="display: block;">
+	                 <!-- <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
+	                <span id="adviewcount"></span>
+	                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
+	                <span id="adlikecount"></span> -->
+	              </div>
+	            </div>            
+	          </div>
+	        </div>
+	        <section id="videosection" class="section-with-bg wow fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>My videos</h2>
+          
+        </div>
+
+        <div class="row">
+          <?php 
+
+          for($mv=0;$mv<count($myvideo_det);$mv++)
+          {
+            $name = "";
+            $image = $path_url.$myvideo_det[$mv]['preview_image'];
+            $video = "'".$path_url.$myvideo_det[$mv]['video_file']."'";
+            $id="'".$myvideo_det[$mv]['id']."'"
+          ?>
+          <div class="col-lg-3 col-md-3">
+      
+            <div class="hotel">
+        <div class="hotel-img">
+          <?php 
+             
+              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#videomodal" onclick="videopreviewimage('.$video.','.$id.')"><img src="'.$image.'" class="img-fluid"></a>'; 
+            // }
+            // else{
+            // echo '<video width="280" height="200" controls>
+            //     <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
+            //     </video>';
+            // }
+          ?>
+          <!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
+        </div>
+        <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+        <?php 
+        if($myvideo_det[$mv]['description']!=""){
+          echo "<p>".$myvideo_det[$mv]['description']."</p>"; 
+        }
+       
+        ?>
+        <!--  <div class="image-container"  style="width:52%;">
+              <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+              <span id=""><?php //echo $ad_details[$k]['views']; ?></span>
+              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php //echo $ad_details[$k]['id'];?>)">
+              <input type="hidden" value="<?php //echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
+              <span id="adlikecount<?php //echo $ad_details[$k]['id'];?>"><?php //echo $ad_details[$k]['likes']; ?></span>
+            </div> -->
+      </div>
+
+          </div>
+        <?php } ?>
+      
+
+        </div>
+      </div>
+
+    </section>
+	
 			<!-- Advertisment section -->
 			<section id="testimonials" class="parallax">
 				<div class="overlay">
@@ -615,6 +693,10 @@ $image_path = $this->config->item('base_path');
      function popupimage1(image){
       $('#mimage1').html('<img src="'+image+'" width="400px" height="400px">');
      }
+      function videopreviewimage(video,id){
+        
+      $('#videoimage').html('<video width="280" height="200" controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
+    }
   </script>
     </body>
 </html>
