@@ -86,6 +86,16 @@
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <b>Image</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+                                            
 
                                         </div>       
                                         <button type="submit" [disabled]="!addproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproductlist()">Add product</button>&nbsp;

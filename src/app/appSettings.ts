@@ -232,7 +232,8 @@ export class AppSettings{
 	public static editmallproduct= AppSettings.API_BASE+"/editmallproduct/";
 	public static updatemallproduct= AppSettings.API_BASE+"/updatemallproduct";
 	public static deletemallproduct= AppSettings.API_BASE+"/deletemallproduct/";
-	public static getshopbyfloorid= AppSettings.API_BASE+"/getshopbyfloorid";	
+	public static getshopbyfloorid= AppSettings.API_BASE+"/getshopbyfloorid";
+	public static imageupload= AppSettings.API_BASE+"/imageupload";	
 
 	public static Malllogin = AppSettings.API_BASE + "/malllogin";
 }

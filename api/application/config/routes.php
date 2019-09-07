@@ -248,6 +248,7 @@ $route['addmallproduct'] = 'Mallproduct_controller/add_mallproduct';
 $route['getmallproduct'] = 'Mallproduct_controller/get_mallproduct_list';
 $route['editmallproduct/(:num)'] = 'Mallproduct_controller/editmallproduct/$1';
 $route['updatemallproduct'] = 'Mallproduct_controller/updatemallproduct';
+$route['imageupload'] = 'Mallproduct_controller/imageupload';
 $route['deletemallproduct/(:num)']='Mallproduct_controller/deletemallproduct/$1';
 $route['fetchmallproductbyid/(:num)']='Mallproduct_controller/fetchmallproductbyid/$1';
 $route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
