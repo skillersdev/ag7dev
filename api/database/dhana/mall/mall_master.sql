@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2019 at 04:58 PM
+-- Generation Time: Sep 10, 2019 at 09:01 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `mall_master` (
   `id` int(11) NOT NULL,
   `mall_name` varchar(400) NOT NULL,
-  `created_by` int(10) NOT NULL,
+  `created_by` varchar(100) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `is_deleted` int(2) NOT NULL,
   `code` varchar(10) NOT NULL,
@@ -44,9 +44,10 @@ CREATE TABLE `mall_master` (
 --
 
 INSERT INTO `mall_master` (`id`, `mall_name`, `created_by`, `created_date`, `is_deleted`, `code`, `username`, `password`) VALUES
-(1, 'dfdsfds', 1, '2019-08-10 09:01:18', 1, '', '', ''),
-(2, 'mall12', 2, '2019-08-10 09:01:12', 0, '', '', ''),
-(3, 'mall2', 2, '2019-08-10 09:01:28', 0, '', '', '');
+(1, 'dfdsfds', '1', '2019-08-26 18:56:38', 1, '', '123', '123'),
+(2, 'mall12', '2', '2019-08-26 18:56:47', 0, '', '456', '456'),
+(3, 'mall2', '2', '2019-08-26 18:57:00', 0, '', 'dhana', 'dhana'),
+(4, 'new mall', '2', '2019-09-10 18:28:51', 0, '', 'new', 'new');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +67,7 @@ ALTER TABLE `mall_master`
 -- AUTO_INCREMENT for table `mall_master`
 --
 ALTER TABLE `mall_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

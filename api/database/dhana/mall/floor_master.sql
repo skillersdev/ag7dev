@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2019 at 04:58 PM
+-- Generation Time: Sep 10, 2019 at 09:02 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -32,7 +32,7 @@ CREATE TABLE `floor_master` (
   `id` int(11) NOT NULL,
   `floor_name` varchar(400) NOT NULL,
   `mall_id` int(10) NOT NULL,
-  `created_by` int(10) NOT NULL,
+  `created_by` varchar(100) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `is_deleted` int(2) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -44,8 +44,10 @@ CREATE TABLE `floor_master` (
 --
 
 INSERT INTO `floor_master` (`id`, `floor_name`, `mall_id`, `created_by`, `created_date`, `is_deleted`, `username`, `password`) VALUES
-(1, 'floor12', 3, 2, '2019-08-10 09:34:25', 1, '', ''),
-(2, 'floor2', 2, 2, '2019-08-10 09:33:56', 0, '', '');
+(1, 'floor12', 3, '2', '2019-08-10 09:34:25', 1, '', ''),
+(2, 'floor2', 2, '2', '2019-09-05 20:11:19', 0, 'floor', 'floor'),
+(3, 'floor test1', 2, 'floor', '2019-09-05 20:43:33', 0, 'ff1', 'ff1'),
+(4, 'floor test', 2, '2', '2019-09-10 18:37:24', 0, 'aaaa', 'aaaa');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +67,7 @@ ALTER TABLE `floor_master`
 -- AUTO_INCREMENT for table `floor_master`
 --
 ALTER TABLE `floor_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2019 at 04:58 PM
+-- Generation Time: Sep 10, 2019 at 09:02 PM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.2.20
 
@@ -33,7 +33,7 @@ CREATE TABLE `shop_master` (
   `shop_name` varchar(400) NOT NULL,
   `mall_id` int(10) NOT NULL,
   `floor_id` int(10) NOT NULL,
-  `created_by` int(10) NOT NULL,
+  `created_by` varchar(100) NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `is_deleted` int(2) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -45,7 +45,8 @@ CREATE TABLE `shop_master` (
 --
 
 INSERT INTO `shop_master` (`id`, `shop_name`, `mall_id`, `floor_id`, `created_by`, `created_date`, `is_deleted`, `username`, `password`) VALUES
-(1, 'shop11', 2, 2, 2, '2019-08-17 14:04:46', 0, '', '');
+(1, 'shop11', 2, 2, '2', '2019-09-05 20:53:12', 0, 'shop', 'shop'),
+(2, 'ss', 2, 2, 'shop', '2019-09-05 20:54:48', 0, 'asa', 'asa');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +66,7 @@ ALTER TABLE `shop_master`
 -- AUTO_INCREMENT for table `shop_master`
 --
 ALTER TABLE `shop_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
