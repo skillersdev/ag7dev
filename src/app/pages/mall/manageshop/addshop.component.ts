@@ -32,15 +32,18 @@ export class AddshopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
-    this.model.created_by=localStorage.getItem('currentUserID');
+    // this.loginService.malllocalStorageData();
+    // this.model.created_by=localStorage.getItem('currentUserID');
     this.malltypeid = localStorage.getItem('malltypeid');  
-    if(this.malltypeid!=null || this.malltypeid!=1 || this.malltypeid!=2){
-     this.model.mall_id = localStorage.getItem('mallid'); 
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      
+      this.model.mall_id = localStorage.getItem('mallid'); 
      this.model.floor_id = localStorage.getItem('floorid'); 
+     this.loginService.malllocalStorageData();        
      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
-     
-    } 
+    }
       this.loginService.viewsActivate();
       this.getmalllists();
       // this.getfloorlists();

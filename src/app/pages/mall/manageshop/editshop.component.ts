@@ -38,8 +38,16 @@ export class EditshopComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
-    this.malltypeid = localStorage.getItem('malltypeid'); 
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      
+      this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.floor_id = localStorage.getItem('floorid'); 
+     this.loginService.malllocalStorageData();        
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+    }
       this.loginService.viewsActivate();
       
       this.sub = this.route.params.subscribe(params => {

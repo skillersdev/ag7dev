@@ -34,16 +34,19 @@ export class AddmallproductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
-    this.model.created_by=localStorage.getItem('currentUserID');
+    
+    
     this.malltypeid = localStorage.getItem('malltypeid');  
-    if(this.malltypeid!=null || this.malltypeid!=1 || this.malltypeid!=2 || this.malltypeid!=3){
-     this.model.mall_id = localStorage.getItem('mallid'); 
-     this.model.floor_id = localStorage.getItem('floorid'); 
-     this.model.shop_id = localStorage.getItem('shopid'); 
-     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
-     
-    } 
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      
+      this.model.mall_id = localStorage.getItem('mallid'); 
+      this.model.floor_id = localStorage.getItem('floorid'); 
+      this.model.shop_id = localStorage.getItem('shopid'); 
+      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+      this.loginService.malllocalStorageData();     
+    }
       this.loginService.viewsActivate();
       this.getmalllists();
       // this.getfloorlists();

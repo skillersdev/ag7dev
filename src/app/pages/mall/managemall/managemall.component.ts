@@ -20,13 +20,23 @@ export class ManagemallComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
+    // this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
+
+    this.malltypeid = localStorage.getItem('malltypeid'); 
+    console.log(this.malltypeid); 
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      this.loginService.malllocalStorageData();  
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+     
+    }
     
-    this.malltypeid = localStorage.getItem('malltypeid');
-    let user_id = localStorage.getItem('currentUserID');
-     this.model.imagePath = AppSettings.API_BASE;
-    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    // this.malltypeid = localStorage.getItem('malltypeid');
+    // let user_id = localStorage.getItem('currentUserID');
+    //  this.model.imagePath = AppSettings.API_BASE;
+    // this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.getmalllists();
     
   }

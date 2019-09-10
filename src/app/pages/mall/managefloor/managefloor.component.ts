@@ -20,13 +20,22 @@ export class ManagefloorComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
+    // this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
 
-    let user_id = localStorage.getItem('currentUserID');
     this.malltypeid = localStorage.getItem('malltypeid');  
-     this.model.imagePath = AppSettings.API_BASE;
-    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');     
+    } else{      
+      this.loginService.malllocalStorageData();  
+     this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.created_by = localStorage.getItem('mallcurrentUser');
+    }
+
+    // let user_id = localStorage.getItem('currentUserID');
+    // this.malltypeid = localStorage.getItem('malltypeid');  
+    //  this.model.imagePath = AppSettings.API_BASE;
+    // this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.getfloorlists();
     
   }

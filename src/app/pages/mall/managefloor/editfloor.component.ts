@@ -36,13 +36,16 @@ export class EditfloorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
+    // this.loginService.malllocalStorageData();
       this.loginService.viewsActivate();
       this.malltypeid = localStorage.getItem('malltypeid');  
-      if(this.malltypeid!=null || this.malltypeid!=1){
-      this.model.mall_id = localStorage.getItem('mallid'); 
-      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
-      } 
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');     
+    } else{      
+      this.loginService.malllocalStorageData();  
+     this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.created_by = localStorage.getItem('mallcurrentUser');
+    }
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.editfloor(this.id);        

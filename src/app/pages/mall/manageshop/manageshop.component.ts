@@ -20,11 +20,19 @@ export class ManageshopComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
+    // this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
 
-    let user_id = localStorage.getItem('currentUserID');
-    this.malltypeid = localStorage.getItem('malltypeid'); 
+    this.malltypeid = localStorage.getItem('malltypeid');  
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      
+      this.model.mall_id = localStorage.getItem('mallid'); 
+     this.model.floor_id = localStorage.getItem('floorid'); 
+     this.loginService.malllocalStorageData();        
+     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+    }
      this.model.imagePath = AppSettings.API_BASE;
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     this.getshoplists();

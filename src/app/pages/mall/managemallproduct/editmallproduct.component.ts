@@ -40,10 +40,22 @@ export class EditmallproductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
-    this.malltypeid = localStorage.getItem('malltypeid');  
+    // this.loginService.malllocalStorageData();
+    // this.malltypeid = localStorage.getItem('malltypeid');  
       this.loginService.viewsActivate();
       
+      this.malltypeid = localStorage.getItem('malltypeid');  
+      if(this.malltypeid==null){
+        this.model.created_by=localStorage.getItem('currentUserID');
+      } else{
+        
+        this.model.mall_id = localStorage.getItem('mallid'); 
+        this.model.floor_id = localStorage.getItem('floorid'); 
+        this.model.shop_id = localStorage.getItem('shopid'); 
+        this.model.created_by = localStorage.getItem('mallcurrentUser'); 
+        this.loginService.malllocalStorageData();     
+      }
+
       this.sub = this.route.params.subscribe(params => {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.editproduct(this.id);        

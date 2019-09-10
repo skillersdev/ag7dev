@@ -29,13 +29,15 @@ export class AddmallComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.malllocalStorageData();
-    this.model.created_by=localStorage.getItem('currentUserID');
+    
     this.malltypeid = localStorage.getItem('malltypeid');  
-    if(this.malltypeid!=null ){
+    if(this.malltypeid==null){
+      this.model.created_by=localStorage.getItem('currentUserID');
+    } else{
+      this.loginService.malllocalStorageData();  
      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
      
-    } 
+    }
       this.loginService.viewsActivate();
   }
   

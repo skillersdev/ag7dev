@@ -213,4 +213,39 @@ class Mallproduct_controller extends CI_Controller {
      die();
   }
 
+  public function getshopmallproduct()
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+
+        if (isset($model)) {
+          $shop=array();
+          $result=array();
+
+          $res=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where shop_name='".$model->shopname."'");
+
+          if($res->num_rows()>0){
+              $in_array=$res->result_array();
+              $shop=$in_array[0];
+              $res=$this->db->query("select  product_name,mall_id,floor_id,shop_id,image_name,created_by from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$shop['id']."'");
+
+              if($res->num_rows()>0){
+                  $in_array=$res->result_array();
+                  $result=$in_array;
+              }else{
+                  $response['status']="failure";
+                  $response['message']=" No Package record found!!";
+              }
+              $response['result']=$result;
+          }
+        }
+           
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+
 }
