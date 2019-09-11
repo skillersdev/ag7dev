@@ -33,12 +33,12 @@ class Mall_controller extends CI_Controller {
         {
           foreach($res->result_array() as $key=>$value)
           {               
-            //  $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
-            // $data =$user_det->result_array();
+          //    $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+          //   $data =$user_det->result_array();
 
-            // $value['created_by']=$data[0]['username'];
+          //   $value['created_by']=$data[0]['username'];
 
-           // print_r($data[0]['username']);die;
+          //  print_r($data[0]['username']);die;
             $result[]=array('id'=>$value['id'],'mall_name'=>$value['mall_name'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
           }
