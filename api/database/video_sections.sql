@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2019 at 04:58 AM
+-- Generation Time: Sep 12, 2019 at 07:22 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 5.6.32
 
@@ -32,11 +32,13 @@ CREATE TABLE `video_sections` (
   `id` int(15) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `video_details` varchar(255) NOT NULL,
-  `video_category` varchar(255) NOT NULL,
+  `video_file` varchar(255) NOT NULL,
+  `website_name` varchar(255) DEFAULT NULL,
   `preview_image` varchar(255) NOT NULL,
-  `is_website_details` int(15) NOT NULL COMMENT 'website =1,others=2,marketer website=',
-  `is_deleted` int(15) NOT NULL DEFAULT '0'
+  `videocategory` int(15) NOT NULL COMMENT 'website =1,others=2,marketer website=',
+  `is_deleted` int(15) NOT NULL DEFAULT '0',
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
