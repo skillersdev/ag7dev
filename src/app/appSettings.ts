@@ -2,16 +2,30 @@ export class AppSettings{
 
 	
 	
-	 public static API_BASE = "http://localhost/ag7dev/trunk/api";	
-  	 public static USER_TEMPLATE= "http://localhost/ag7dev/trunk/website";
-	 public static IMAGE_BASE = "http://localhost/ag7dev/trunk/api/";
-	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev/trunk/assets/chat/";
-	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/trunk/api/database/checkbalance.php";
-	 public static WEBSITE_URL="http://localhost/ag7dev/trunk/website/";
-	 public static package_renew= "http://localhost/ag7dev/trunk/api/database/checkbalance1.php";
+	 // public static API_BASE = "http://localhost/ag7dev/trunk/api";	
+  	 // public static USER_TEMPLATE= "http://localhost/ag7dev/trunk/website";
+	 // public static IMAGE_BASE = "http://localhost/ag7dev/trunk/api/";
+	 // public static IMAGE_BASE_CHAT = "http://localhost/ag7dev/trunk/assets/chat/";
+	 // public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/trunk/api/database/checkbalance.php";
+	 // public static WEBSITE_URL="http://localhost/ag7dev/trunk/website/";
+	 // public static package_renew= "http://localhost/ag7dev/trunk/api/database/checkbalance1.php";
 
-	 public static share_link= "http://localhost:4200/chat/join/";
-	 public static chatshare= "http://localhost:4200/chat/public/";
+	 // public static share_link= "http://localhost:4200/chat/join/";
+	 // public static chatshare= "http://localhost:4200/chat/public/";
+
+
+	 public static API_BASE = "https://roodabatoz.com/api";	
+  	 public static USER_TEMPLATE= "https://roodabatoz.com/website";
+	 public static IMAGE_BASE = "https://roodabatoz.com/api/";
+	 public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
+	 public static WEBSITE_URL="https://roodabatoz.com/website/";
+	 public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
+
+	 public static share_link= "https://roodabatoz.com/chat/join/";
+	 public static chatshare= "https://roodabatoz.com/chat/public/";
+	 public static mallshopurl= "https://roodabatoz.com/malls/shop/";
+
 
 	//public static share_link= "https://roodabatoz.com/chat/join/";
 
@@ -236,4 +250,5 @@ export class AppSettings{
 	public static imageupload= AppSettings.API_BASE+"/imageupload";	
 
 	public static Malllogin = AppSettings.API_BASE + "/malllogin";
+
 }

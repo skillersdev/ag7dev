@@ -16,12 +16,15 @@ export class ManageshopComponent implements OnInit {
   getshopbyUserRestApiUrl:string = AppSettings.shopbyid; 
   shoplist:Array<Object>;
   model:any={};
+  mallshopurl:any;
   malltypeid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     // this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
+
+    this.mallshopurl=AppSettings.mallshopurl;
 
     this.malltypeid = localStorage.getItem('malltypeid');  
     if(this.malltypeid==null){

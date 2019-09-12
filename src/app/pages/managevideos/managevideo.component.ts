@@ -42,8 +42,11 @@ export class ManagevideoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loginService.localStorageData();
+      this.loginService.localStorageData();
     this.loginService.viewsActivate();
+
+    let user_id = localStorage.getItem('currentUserID');
+    
      this.model.usergroup=localStorage.getItem('currentUsergroup');
         if(this.model.usergroup==2)
         {

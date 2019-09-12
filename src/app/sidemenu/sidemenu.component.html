@@ -38,12 +38,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li >
-                    <a [routerLink]="['/mall']"> 
-                        <i class="material-icons col-red">home</i>
-                        <span>Mall</span>
-                    </a>
-                </li>
+               
                 <li *ngIf="model.usergroup==1 || model.usergroup==3">
                     <a href="javascript:void(0);" [routerLink]="['/manageuser']">
                         <i class="material-icons  col-amber">supervisor_account</i>
@@ -156,10 +151,48 @@
                         <span>My Profile</span>
                     </a>
                 </li>
+                <!--  <li >
+                    <a [routerLink]="['/mall']"> 
+                        <i class="material-icons col-red">view_module</i>
+                        <span>Mall</span>
+                    </a>
+                </li> -->
+                
                  <li>
                     <a href="javascript:void(0);" [routerLink]="['/managevideos']">
                         <i class="material-icons col-deep-orange">video_call</i>
                         <span>Manage Videos</span>
+                    </a>
+                </li>
+                <li >
+                    <a [routerLink]="['/mall/managemall']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Manage Mall</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/mall/managefloor']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Mange Floor</span>
+                    </a>
+                </li>
+                <li >
+                    <a [routerLink]="['/mall/manageshop']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Manage Shop</span>
+                    </a>
+                </li>
+                <li >
+                    <a [routerLink]="['/mall/managemallproduct']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Manage Mallproduct</span>
+                    </a>
+                </li>
+
+                <li >
+                    <a [routerLink]="['/mall/login']"> 
+                        <i class="material-icons col-red">home</i>
+                        <span>Mall/Floor/Shop Login</span>
                     </a>
                 </li>
                 <!-- <li>
