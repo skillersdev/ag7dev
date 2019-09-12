@@ -257,6 +257,9 @@ $route['getshopmallproduct']='Mallproduct_controller/getshopmallproduct';
 
 $route['malllogin'] = 'Malllogin_controller/checklogin';
 
+$route['getrtubevideolist']= 'Home_controller/getrvideolist';
+$route['editvideodetail/(:num)']= "Home_controller/editvideodetail/$1";
+
 ?>
 
 
