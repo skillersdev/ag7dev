@@ -7,6 +7,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxTagsInputModule } from 'ngx-tags-input';
 import { AppComponent } from './app.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
@@ -177,7 +178,8 @@ import { MalldashboardComponent } from './malldashboard/malldashboard.component'
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot(),
     HttpModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxTagsInputModule
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]

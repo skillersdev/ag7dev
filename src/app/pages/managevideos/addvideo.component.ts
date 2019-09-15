@@ -10,6 +10,7 @@ import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService} from '../../services/common.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { TagInputModule } from 'ngx-chips';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -28,6 +29,8 @@ export class AddvideoComponent implements OnInit {
   currentAllUsers:any;
   model: any = {};
   model1:any={};
+  likes:any = [];
+ dislikes:any = [];
   iSfileupload:boolean=false;
   select: any;
   packagelist:Array<Object>;
@@ -60,6 +63,7 @@ export class AddvideoComponent implements OnInit {
         .subscribe(package_det =>{       
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         }); 
+        this.model.tags=[];
   }
   
   logout(){
@@ -68,6 +72,9 @@ export class AddvideoComponent implements OnInit {
 
   back(){
     this.router.navigate(['/manageuser']);
+  }
+  onTagsChanged(value:any){
+    this.model.tags.push(value.tag.displayValue);
   }
   adduser()
   {
