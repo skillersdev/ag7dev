@@ -31,6 +31,7 @@ export class AddmallComponent implements OnInit {
   ngOnInit() {
     
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{

@@ -51,7 +51,13 @@ class Mallproduct_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mallproduct_master');
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model);
+        if($model->usergroup==1){
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mallproduct_master');
+        }else{
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('mallproduct_master');
+        }       
 
 
         if($res->num_rows()>0)
@@ -112,7 +118,7 @@ class Mallproduct_controller extends CI_Controller {
 
         if (isset($model)) {
               
-           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."',username='".$model->username."',password='".$model->password."'  where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."'  where id='".$model->id."'");
            
           $response['message']="mallproduct has been updated successfully";          
 
@@ -229,7 +235,7 @@ class Mallproduct_controller extends CI_Controller {
 
           if($res->num_rows()>0){
               $in_array=$res->result_array();
-              $shop=$in_array[0];
+              $response['shop']=$shop=$in_array[0];
               $res=$this->db->query("select  product_name,mall_id,floor_id,shop_id,image_name,created_by from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$shop['id']."'");
 
               if($res->num_rows()>0){

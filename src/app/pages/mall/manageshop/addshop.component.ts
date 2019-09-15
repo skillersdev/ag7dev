@@ -35,11 +35,17 @@ export class AddshopComponent implements OnInit {
     // this.loginService.malllocalStorageData();
     // this.model.created_by=localStorage.getItem('currentUserID');
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
+      this.model.owner_id=localStorage.getItem('currentUserID');
     } else{
       
       this.model.mall_id = localStorage.getItem('mallid'); 
+      this.CommonService.insertdata(AppSettings.useridbymallid,this.model)
+      .subscribe(package_det =>{       
+        this.model.owner_id=package_det.created_by;
+      });
      this.model.floor_id = localStorage.getItem('floorid'); 
      this.loginService.malllocalStorageData();        
      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
@@ -49,7 +55,8 @@ export class AddshopComponent implements OnInit {
       // this.getfloorlists();
   }
   getmalllists(){
-    this.CommonService.getdata(this.getmalllistRestApiUrl)
+    // this.CommonService.getdata(this.getmalllistRestApiUrl)
+    this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -84,6 +91,37 @@ export class AddshopComponent implements OnInit {
         this.router.navigate(['/mall/manageshop']); 
     });
   }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+
+          const fileSelected: File = event.target.files[i];
+          
+              this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+              .subscribe( (response) => {
+                this.model.logo=response.data;
+                 
+               })
+        }
+    }
+  }
+   banneronSelectFile(event) {
+      if (event.target.files && event.target.files[0]) {
+          var filesAmount = event.target.files.length;
+          for (let i = 0; i < filesAmount; i++) {
+
+            const fileSelected: File = event.target.files[i];
+            
+                this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+                .subscribe( (response) => {
+                  this.model.banner=response.data;
+                  
+                })
+          }
+      }
+    }
+
   back(){
     this.router.navigate(['/mall/manageshop']);
   }

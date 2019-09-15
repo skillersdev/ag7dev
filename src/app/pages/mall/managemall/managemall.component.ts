@@ -24,7 +24,7 @@ export class ManagemallComponent implements OnInit {
     this.loginService.viewsActivate();
 
     this.malltypeid = localStorage.getItem('malltypeid'); 
-    console.log(this.malltypeid); 
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -41,7 +41,8 @@ export class ManagemallComponent implements OnInit {
     
   }
   getmalllists(){
-    this.CommonService.getdata(this.getmalllistRestApiUrl)
+    // this.CommonService.getdata(this.getmalllistRestApiUrl)
+    this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

@@ -24,6 +24,7 @@ export class ManagefloorComponent implements OnInit {
     this.loginService.viewsActivate();
 
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');     
     } else{      
@@ -40,7 +41,8 @@ export class ManagefloorComponent implements OnInit {
     
   }
   getfloorlists(){
-    this.CommonService.getdata(this.getfloorlistRestApiUrl)
+    // this.CommonService.getdata(this.getfloorlistRestApiUrl)
+    this.CommonService.insertdata(this.getfloorlistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

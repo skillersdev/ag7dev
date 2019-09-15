@@ -76,9 +76,15 @@ class Floor_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
         $html="";
-        global $api_path;        
-
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('floor_master');
+        global $api_path;       
+        
+        $model = json_decode($this->input->post('model',FALSE));
+       
+        if($model->usergroup==1){
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('floor_master');
+        }else{
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('floor_master');
+        }
 
 
         if($res->num_rows()>0)

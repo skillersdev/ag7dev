@@ -59,8 +59,13 @@ class Mall_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');
-
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model);
+        if($model->usergroup==1){
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');
+        }else{
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by])->get('mall_master');
+        }        
 
         if($res->num_rows()>0)
         {
@@ -107,25 +112,44 @@ class Mall_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-  public function updatemall() {
+    
+  public function useridbymallid() {
         $this->output->set_content_type('application/json');
         $response=array('status'=>"success");
 
         $model = json_decode($this->input->post('model',FALSE));
 
         if (isset($model)) {
-              
-           $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  mall_name='".$model->mall_name."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
-           
-          $response['message']="mall has been updated successfully";          
+          $res=$this->db->query("select created_by from ".$this->db->dbprefix('mall_master')." where id='".$model->mall_id."'");
 
-        } else {
-            $response['status']="failure";
-            $response['message']="Error while on update mall";
-        }
+          if($res->num_rows()>0){
+              $in_array=$res->result_array();
+              $response['created_by']=$in_array[0];
+          }       
+
+        } 
 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
+    public function updatemall() {
+      $this->output->set_content_type('application/json');
+      $response=array('status'=>"success");
+
+      $model = json_decode($this->input->post('model',FALSE));
+
+      if (isset($model)) {
+            
+         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  mall_name='".$model->mall_name."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
+         
+        $response['message']="mall has been updated successfully";          
+
+      } else {
+          $response['status']="failure";
+          $response['message']="Error while on update mall";
+      }
+
+      die(json_encode($response, JSON_UNESCAPED_SLASHES));
+  }
     public function deletemall($id)
     {
       $this->output->set_content_type('application/json');

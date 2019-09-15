@@ -43,7 +43,8 @@ export class ManageshopComponent implements OnInit {
   }
   getshoplists(){
     this.shoplist=[];
-    this.CommonService.getdata(this.getshoplistRestApiUrl)
+    // this.CommonService.getdata(this.getshoplistRestApiUrl)
+    this.CommonService.insertdata(this.getshoplistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

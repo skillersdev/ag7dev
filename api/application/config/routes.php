@@ -222,6 +222,7 @@ $route['editmall/(:num)'] = 'Mall_controller/editmall/$1';
 $route['updatemall'] = 'Mall_controller/updatemall';
 $route['deletemall/(:num)']='Mall_controller/deletemall/$1';
 $route['fetchmallbyid/(:num)']='Mall_controller/fetchmallbyid/$1';
+$route['useridbymallid'] = 'Mall_controller/useridbymallid';
 /*******/
 
 /*** floor****/

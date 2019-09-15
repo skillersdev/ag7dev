@@ -39,6 +39,7 @@ export class EditshopComponent implements OnInit {
 
   ngOnInit() {
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -57,7 +58,8 @@ export class EditshopComponent implements OnInit {
         this.getmalllists();
       }
       getmalllists(){
-        this.CommonService.getdata(this.getmalllistRestApiUrl)
+        // this.CommonService.getdata(this.getmalllistRestApiUrl)
+        this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
             .subscribe(det =>{
                 if(det.result!="")
                 { 
@@ -104,6 +106,36 @@ export class EditshopComponent implements OnInit {
         
     });
   }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+
+          const fileSelected: File = event.target.files[i];
+          
+              this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+              .subscribe( (response) => {
+                this.model.logo=response.data;
+                 
+               })
+        }
+    }
+  }
+   banneronSelectFile(event) {
+      if (event.target.files && event.target.files[0]) {
+          var filesAmount = event.target.files.length;
+          for (let i = 0; i < filesAmount; i++) {
+
+            const fileSelected: File = event.target.files[i];
+            
+                this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+                .subscribe( (response) => {
+                  this.model.banner=response.data;
+                  
+                })
+          }
+      }
+    }
   back(){
     this.router.navigate(['/mall/manageshop']);
   }

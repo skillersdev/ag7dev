@@ -32,19 +32,27 @@ export class AddfloorComponent implements OnInit {
   ngOnInit() {
     // this.loginService.malllocalStorageData();
     
-    this.malltypeid = localStorage.getItem('malltypeid');  
+    this.malltypeid = localStorage.getItem('malltypeid');
+    this.model.usergroup=localStorage.getItem('currentUsergroup');  
     if(this.malltypeid==null){
-      this.model.created_by=localStorage.getItem('currentUserID');     
+      this.model.created_by=localStorage.getItem('currentUserID');
+      this.model.owner_id=localStorage.getItem('currentUserID');     
     } else{      
       this.loginService.malllocalStorageData();  
      this.model.mall_id = localStorage.getItem('mallid'); 
+      this.CommonService.insertdata(AppSettings.useridbymallid,this.model)
+      .subscribe(package_det =>{       
+        this.model.owner_id=package_det.created_by;
+      });
      this.model.created_by = localStorage.getItem('mallcurrentUser');
+     
     }
       this.loginService.viewsActivate();
       this.getmalllists();
   }
   getmalllists(){
-    this.CommonService.getdata(this.getmalllistRestApiUrl)
+    // this.CommonService.getdata(this.getmalllistRestApiUrl)
+    this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

@@ -51,8 +51,13 @@ class Shop_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('shop_master');
-
+        $model = json_decode($this->input->post('model',FALSE));
+       
+        if($model->usergroup==1){
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('shop_master');
+        }else{
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('shop_master');
+        }
 
         if($res->num_rows()>0)
         {

@@ -25,6 +25,7 @@ export class ManagemallproductComponent implements OnInit {
     this.loginService.viewsActivate();
 
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -44,7 +45,8 @@ export class ManagemallproductComponent implements OnInit {
   }
   getproductlists(){
     this.productlist=[];
-    this.CommonService.getdata(this.getproductlistRestApiUrl)
+    // this.CommonService.getdata(this.getproductlistRestApiUrl)
+    this.CommonService.insertdata(this.getproductlistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

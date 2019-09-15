@@ -39,9 +39,15 @@ export class AddmallproductComponent implements OnInit {
     this.malltypeid = localStorage.getItem('malltypeid');  
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
+      this.model.owner_id=localStorage.getItem('currentUserID');  
     } else{
       
       this.model.mall_id = localStorage.getItem('mallid'); 
+      this.model.usergroup=localStorage.getItem('currentUsergroup');
+      this.CommonService.insertdata(AppSettings.useridbymallid,this.model)
+      .subscribe(package_det =>{       
+        this.model.owner_id=package_det.created_by;
+      });
       this.model.floor_id = localStorage.getItem('floorid'); 
       this.model.shop_id = localStorage.getItem('shopid'); 
       this.model.created_by = localStorage.getItem('mallcurrentUser'); 
@@ -52,7 +58,8 @@ export class AddmallproductComponent implements OnInit {
       // this.getfloorlists();
   }
   getmalllists(){
-    this.CommonService.getdata(this.getmalllistRestApiUrl)
+    // this.CommonService.getdata(this.getmalllistRestApiUrl)
+    this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
             { 

@@ -24,7 +24,7 @@
                                       <th>MALL NAME</th>
                                       <th>CREATED DATE</th>
                                       <th>CREATED BY</th>
-                                      <!-- <th>SHOP LINK</th> -->
+                                      <th>SHOP LINK</th>
                                       <th>Actions</th>
                                   </tr>
                               </thead>
@@ -35,7 +35,7 @@
                                       <td>{{data.mall_name}}</td>
                                       <td>{{data.created_date}}</td>
                                       <td>{{data.created_by}}</td>
-                                      <!-- <td><a href="{{mallshopurl}}{{data.shop_name}}" target="_blank">View Shop</a></td> -->
+                                      <td><a href="{{mallshopurl}}{{data.shop_name}}" target="_blank">View Shop</a></td>
                                       <td>
                                         <a href="javascript:void(0);" (click)="editshop(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deleteshop(data.id)"><i class="material-icons">delete</i></a>
