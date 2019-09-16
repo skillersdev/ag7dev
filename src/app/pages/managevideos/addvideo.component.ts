@@ -73,7 +73,7 @@ export class AddvideoComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/managevideos']);
   }
   onTagsChanged(value:any){
 
