@@ -43,7 +43,8 @@ export class AddvideoComponent implements OnInit {
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   uploadvideoProfileApi:string=AppSettings.uploadvideo;
   AddUserRestApiUrl:string = AppSettings.Adduser; 
-   imageChangedEvent: any = '';
+  imageChangedEvent: any = '';
+  tagArray:Array<Object>;
   croppedImage: any = '';
   image_url = AppSettings.IMAGE_BASE;
 
@@ -64,6 +65,7 @@ export class AddvideoComponent implements OnInit {
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         }); 
         this.model.tags=[];
+        this.tagArray=[];
   }
   
   logout(){
@@ -74,10 +76,14 @@ export class AddvideoComponent implements OnInit {
     this.router.navigate(['/manageuser']);
   }
   onTagsChanged(value:any){
-    this.model.tags.push(value.tag.displayValue);
+
+    this.tagArray.push(value.tag.displayValue);
+    console.log(value);
+    this.model.taglist = this.tagArray;
   }
   adduser()
   {
+
     this.CommonService.insertdata(this.AddUserRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

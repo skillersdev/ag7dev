@@ -14,9 +14,11 @@ class Videosection_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Gallery Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-        
+
+        unset($model->tags);
+        $model->tags = implode (", ", $model->taglist);
 //print_r($model);die;
-        
+        unset($model->taglist);
         $this->db->insert('video_sections', $model);
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -144,6 +146,7 @@ class Videosection_controller extends CI_Controller {
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
+            $in_array[0]['tags_list'] = explode(',', $in_array[0]['tags']);
             $result['video_det']=$in_array[0];
         }else{
             $response['status']="failure";
@@ -161,6 +164,10 @@ class Videosection_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
         if (isset($model)) {
             $this->db->where('id',$model->id);
+             unset($model->tags);
+            $model->tags = implode (", ", $model->tags_list);
+            //print_r($model);die;
+            unset($model->tags_list);
             $result=$this->db->update('video_sections', $model);
             if ($result) {
                 $response['message']="Video has been updated successfully";

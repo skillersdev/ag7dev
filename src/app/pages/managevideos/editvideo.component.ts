@@ -81,7 +81,7 @@ export class EditvideoComponent implements OnInit {
     this.loginService.logout();
   }
   back(){
-    this.router.navigate(['/manageuser']);
+    this.router.navigate(['/managevideos']);
   }
   edituser(id:any)
   {
@@ -92,7 +92,12 @@ export class EditvideoComponent implements OnInit {
           
         });
   }
- 
+   
+    onTagsChanged(value:any){
+
+    this.model.tags_list.push(value.tag.displayValue);
+    
+  }
     updateVideos()
     {
       if(this.videoFileupload)
