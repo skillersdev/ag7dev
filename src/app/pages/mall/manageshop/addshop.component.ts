@@ -33,7 +33,8 @@ export class AddshopComponent implements OnInit {
 
   ngOnInit() {
     // this.loginService.malllocalStorageData();
-    // this.model.created_by=localStorage.getItem('currentUserID');
+    // this.model.created_by=localStorage.getItem('currentUserID'); 
+
     this.malltypeid = localStorage.getItem('malltypeid');  
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
@@ -52,10 +53,12 @@ export class AddshopComponent implements OnInit {
     }
       this.loginService.viewsActivate();
       this.getmalllists();
+
       // this.getfloorlists();
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
+    
     this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
