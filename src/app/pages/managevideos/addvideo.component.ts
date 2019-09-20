@@ -119,7 +119,7 @@ export class AddvideoComponent implements OnInit {
     }
     addVideos()
     {
-
+      $('.preloader').show();
        this.CommonService.uploadFile(this.uploadvideoProfileApi,this.uploadVideofile)
           .subscribe( (response) => {
              if(response.status=='success')
@@ -132,6 +132,7 @@ export class AddvideoComponent implements OnInit {
                {
                  this.model.preview_image = response.data;
                  this.model.created_by = this.alldata.userid;
+                 $('.preloader').hide();
                 this.CommonService.updatedata(AppSettings.addvideosectiondata,this.model) 
                 .subscribe(package_det =>{       
                      swal(package_det.status,package_det.message,package_det.status)
