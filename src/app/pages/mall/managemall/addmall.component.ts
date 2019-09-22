@@ -58,6 +58,31 @@ export class AddmallComponent implements OnInit {
         this.router.navigate(['/mall/managemall']); 
     });
   }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+
+          const fileSelected: File = event.target.files[i];
+          
+              this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+              .subscribe( (response) => {
+                // this.urls.push(response.data);
+                this.model.image_name=response.data;
+                 
+               })
+                // var reader = new FileReader();
+                // this.msgfileEvent(event);
+                // reader.onload = (event:any) => {
+                //   console.log(event.target.result);
+                //    this.urls.push(event.target.result); 
+                // }
+                
+                // reader.readAsDataURL(event.target.files[i]);
+        }
+    }
+  }
+
   back(){
     this.router.navigate(['/mall/managemall']);
   }
