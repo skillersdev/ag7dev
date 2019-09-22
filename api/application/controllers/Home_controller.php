@@ -55,6 +55,7 @@ class Home_controller extends CI_Controller {
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
+            $in_array[0]['tags_list'] = explode(',', $in_array[0]['tags']);
             $result['video_det']=$in_array[0];
         }else{
             $response['status']="failure";
