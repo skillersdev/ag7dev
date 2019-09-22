@@ -212,6 +212,7 @@ $route['uploadalbumphotos'] ='Gallery_controller/addalbumphotos';
 $route['uploadvideopreview']='Videosection_controller/addvideopreview';
 $route['insertvideosectiondata']='Videosection_controller/addvideosection';
 $route['getvideolistbyid']= 'Videosection_controller/getvideolistbyuser';
+$route['getvideopagesearchresult']= 'Videosection_controller/searchvideoresult';
 
 $route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
 

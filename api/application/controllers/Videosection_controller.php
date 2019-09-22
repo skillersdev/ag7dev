@@ -209,6 +209,37 @@ class Videosection_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
-  
+    
+    public function searchvideoresult()
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;       
+
+        $model = json_decode($this->input->post('model',FALSE));
+       
+        // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0','title'=>$model->searchKey])->get('video_sections');
+
+         $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." WHERE  is_deleted='0' AND title='".$model->searchword."' OR tags REGEXP CONCAT('(^|,)(', REPLACE('".$model->searchword."', ',', '|'), ')(,|$)')");
+       
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          { 
+
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['created_date']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
 
 }

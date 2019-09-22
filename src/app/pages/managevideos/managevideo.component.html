@@ -35,10 +35,11 @@
 
                                 <tbody>
                                     <tr *ngFor="let item of videolist let idx=index">
-                                        <td>{{item.id}}</td>
+                                        <td>{{idx+1}}</td>
                                         <td>{{item.title}}</td>
                                         <td>
-                                            <img src="{{websiteurl}}/{{item.preview_image}}" style="width:10%;"></td>
+                                            <img src="{{websiteurl}}/{{item.preview_image}}" style="width:10%;">
+                                        </td>
                                         <td>{{item.description}}</td>
                                         <td>{{item.created_date}}</td>
                                         <td>
