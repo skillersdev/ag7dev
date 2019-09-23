@@ -65,8 +65,7 @@ export class AddalbumphotsComponent implements OnInit {
     updatealbum()
     {
       this.model1.website = this.model.website;
-      this.model1.album_id = this.model.id;
-       
+      this.model1.album_id = this.model.id;       
       if(this.IsMediafileupload)
       {
           console.log(this.uploadVideofile);

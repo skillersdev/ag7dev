@@ -53,7 +53,7 @@ export class EditgalleryComponent implements OnInit {
   {
     this.CommonService.editdata(AppSettings.FetchAlbumbyidRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result.album_det;         
         });
   }
   fileChangeEvent(event: any): void {

@@ -239,6 +239,9 @@ class Gallery_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         if (isset($model)) {
+          unset($model->album_image);
+          $model->album_image = $model->service_image;
+          unset($model->service_image);
             $this->db->where('id',$model->id);
             $result=$this->db->update('album_master', $model);
             if ($result) {

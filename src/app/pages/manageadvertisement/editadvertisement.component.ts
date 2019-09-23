@@ -98,8 +98,6 @@ export class EditadvertisementComponent implements OnInit {
        }
         else{
           swal('',response.data,'Oops!');
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
         }
      })
   }
