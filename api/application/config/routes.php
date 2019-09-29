@@ -224,6 +224,7 @@ $route['updatemall'] = 'Mall_controller/updatemall';
 $route['deletemall/(:num)']='Mall_controller/deletemall/$1';
 $route['fetchmallbyid/(:num)']='Mall_controller/fetchmallbyid/$1';
 $route['useridbymallid'] = 'Mall_controller/useridbymallid';
+$route['getmalllist']='Mall_controller/getmalllist';
 /*******/
 
 /*** floor****/
@@ -254,6 +255,7 @@ $route['imageupload'] = 'Mallproduct_controller/imageupload';
 $route['deletemallproduct/(:num)']='Mallproduct_controller/deletemallproduct/$1';
 $route['fetchmallproductbyid/(:num)']='Mallproduct_controller/fetchmallproductbyid/$1';
 $route['getshopmallproduct']='Mallproduct_controller/getshopmallproduct';
+
 // $route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
 /*******/
 

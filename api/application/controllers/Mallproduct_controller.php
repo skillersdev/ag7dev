@@ -52,6 +52,11 @@ class Mallproduct_controller extends CI_Controller {
         global $api_path;        
 
         $model = json_decode($this->input->post('model',FALSE));
+        if(isset($model->usergroup)){
+          $model->usergroup=$model->usergroup;
+        }else{
+          $model->usergroup='';
+        }
         // print_r($model);
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mallproduct_master');

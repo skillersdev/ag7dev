@@ -85,6 +85,44 @@ class Mall_controller extends CI_Controller {
         }
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();  
+
+  }
+  public function getmalllist()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
+        // $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model);
+        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');     
+        $shop=array();
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            $data =$user_det->result_array();  
+
+            $value['created_by']=$data[0]['username']; 
+
+            $shop_det=$this->db->select("shop_name")->where(['is_deleted'=>'0','mall_id'=>$value['id']])->get('shop_master'); 
+            $shop[$value['id']] =$shop_det->result_array();  
+
+            $result[]=array('id'=>$value['id'],'mall_name'=>$value['mall_name'],
+              'created_date'=>$value['created_date'],'image_name'=>$value['image_name']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+        $response['shop']=$shop;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     
 
