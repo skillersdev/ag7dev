@@ -41,6 +41,7 @@ export class ChatComponent implements OnInit {
   slideIndex:any;
   grouplink:any;
 
+
  private ngNavigatorShareService: NgNavigatorShareService;
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http,ngNavigatorShareService: NgNavigatorShareService) { 
@@ -60,11 +61,13 @@ export class ChatComponent implements OnInit {
     this.userdropdownList=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
-   // this.Newgroupmodel.groupcode='';
+   
     this.group_name=0;
     this.group_msg_model=[];
     this.date_array_model=[];
     this.group_members_model=[];
+    // this.Newgroupmodel.groupcode='';
+
     this.Newgroupmodel.userselectedItems=[]; 
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
@@ -81,17 +84,18 @@ export class ChatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
     //this.getparamas = this.route.params.subscribe(params => {
      //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
     //}); 
-    //console.log(this.Newgroupmodel.groupcode);
-    this.getgrouplists();
-    this.getuserlists();
-    this.Newgroupmodel.g_id=''; 
     
-    // this.interval = setInterval(() => { 
-    //   this.getgrouplists();
-    // }, 15000);
+     this.getgrouplists();
+     this.getuserlists();
+     this.Newgroupmodel.g_id=''; 
+    
+      // this.interval = setInterval(() => { 
+      //   this.getgrouplists();
+      // }, 15000);
 
     // this.selectedItems = [
     //   { Id: 3, username: 'Pune' },
