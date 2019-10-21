@@ -11,7 +11,7 @@ class Videosection_controller extends CI_Controller {
    public function addvideosection(){
         $this->output->set_content_type('application/json');
       
-        $response=array('status'=>"success",'message'=>"Gallery Inserted successfully");
+        $response=array('status'=>"success",'message'=>"Data Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
 
@@ -29,7 +29,7 @@ class Videosection_controller extends CI_Controller {
     {
        $path = 'videosection/';
         $Response=[];
-       
+       //print_r($_FILES);die;
         if (isset($_FILES['file'])) 
           {
             $originalName = $_FILES['file']['name'];
