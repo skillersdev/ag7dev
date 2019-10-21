@@ -67,7 +67,15 @@
                                                       <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product Name is required</span>
                                                 </div>
                                             </div>
-                                         
+                                            <div class="col-md-6">
+                                                <p><b>Paypal Email</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="Enter Paypal Email" [(ngModel)]="model.paypal_email" name="paypal_email" #paypal_email="ngModel" required>
+                                                    </div>
+                                                      <span [hidden]="paypal_email.valid || paypal_email.pristine" class="text-danger">Paypal Email id is required</span>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <b>Image</b>
                                                 <div class="form-group">
