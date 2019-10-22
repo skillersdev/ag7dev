@@ -502,7 +502,9 @@ public function getgroupsdetails(){
         //  ->where('group_members.is_deleted', '0')
          ->group_by('group_master.id')
          ->get('group_master');
+
      } else {
+       
       $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
          ->join('all_message', 'all_message.group_id=group_master.id', 'left')
          ->where('all_message.created_by', $model->currentUserID)
