@@ -36,8 +36,21 @@
 
                                                     </div>
                                                 </div>
+
                                                 <div class="row clearfix"> 
                                                      <div class="col-md-6">
+                                                        <p><b>Upload type</b></p>
+                                                        <div class="form-group">   
+                                                            <div class="form-line">
+                                                               <select class="form-control show-tick" [(ngModel)]="upload_type.type" #upload_type="ngModel" name="upload_type"  required> 
+                                                                    <option value="select">Select Upload type</option>
+                                                                    <option value="1">Image</option>
+                                                                    <option value="2">Video</option>
+                                                                </select>
+                                                            </div>      
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-md-6" *ngIf="upload_type.type==1">
                                                             <p><b>Service Image/Video</b></p>
                                                             <div class="form-group">
                                                                 <div class="form-line">
@@ -53,6 +66,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                         <div class="col-md-6" *ngIf="upload_type.type==2">
+                                                <p><b>Upload Video</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                         <input type="file" name="adimage" (change)=fileEvent($event) required>   
+                                                    </div>
+                                                    <!-- <span>*Accepts MP4 type video only</span> -->
+                                                </div>
+                                            </div> 
                                                     <div class="col-md-6">
                                                         <p><b>Select Website</b></p>
                                                         <div class="form-group">

@@ -24,6 +24,8 @@ export class AddserviceComponent implements OnInit {
   currentUserID:any;
   currentUsername:any;
   currentUsergroup:any;
+  videoFile:any;
+  upload_type:any={};
   currentUserStatus:any;
   currentAllUsers:any;
   select: any;
@@ -34,6 +36,7 @@ export class AddserviceComponent implements OnInit {
 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   insertserviceRestApiUrl:string = AppSettings.insertservice;
+  uploadvideoProfileApi:string=AppSettings.uploadvideo;
   // uploaduserProfileApi:string=AppSettings.uploadserviceimage;
   uploaduserProfileApi:string=AppSettings.uploadcropimage;
   model1:any={};
@@ -64,7 +67,9 @@ export class AddserviceComponent implements OnInit {
     this.router.navigate(['/manageservices']);
   }
   add_service(){
-    this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
+    if(this.upload_type.type==1)
+    {
+      this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
     .subscribe( (response) => {
        if(response.status=='success')
        {
@@ -80,12 +85,53 @@ export class AddserviceComponent implements OnInit {
         });
       }
     });
+    }
+    else{
+       this.CommonService.uploadFile(this.uploadvideoProfileApi,this.videoFile)
+    .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.service_image = response.data;
+        
+           this.CommonService.insertdata(this.insertserviceRestApiUrl,this.model)
+          .subscribe(service_det =>{       
+               swal(
+                service_det.status,
+                service_det.message,
+                service_det.status
+              )
+              this.router.navigate(['/manageservices']); 
+          });
+        }
+        else{
+          swal('',response.data,'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+    }
+    
 
 
    
   }
-
-  fileEvent($event) {
+ fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.videoFile = fileSelected;
+    // this.CommonService.uploadFile(this.uploadvideoProfileApi,fileSelected)
+    // .subscribe( (response) => {
+    //    if(response.status=='success')
+    //    {
+    //     this.model.uploads = response.data;
+    //    }
+    //     else{
+    //       swal('',response.data,'Oops!');
+          
+    //       //this.toastr.errorToastr(response.data, 'Oops!');
+    //     }
+    //  })
+  }
+  //fileEvent($event) {
     // const fileSelected: File = $event.target.files[0];
     
     // this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
@@ -100,7 +146,7 @@ export class AddserviceComponent implements OnInit {
     //       //this.toastr.errorToastr(response.data, 'Oops!');
     //     }
     //  })
-   }
+   //}
 
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;

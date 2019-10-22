@@ -152,7 +152,7 @@ export class AddvideoComponent implements OnInit {
   }
     fileEvent($event) {
       this.uploadVideofile = $event.target.files[0];
-    
+      console.log(this.uploadVideofile);
     }
 
 }

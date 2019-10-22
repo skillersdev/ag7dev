@@ -26,6 +26,7 @@ export class AddadvertisementComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  videoFile:any;
   model: any = {};
   model1: any = {};
   alldata: any = {};
@@ -33,6 +34,7 @@ export class AddadvertisementComponent implements OnInit {
   uploaduserAdvApi:string=AppSettings.uploadcropimage;
   insertuseradRestApiUrl: string = AppSettings.Adduseradvertisement; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
+  uploadvideoProfileApi:string=AppSettings.uploadvideo;
   imageChangedEvent: any = '';
     croppedImage: any = '';
   
@@ -69,7 +71,9 @@ export class AddadvertisementComponent implements OnInit {
   {
     delete this.model.formEnable;
     this.model.user_id=localStorage.getItem('currentUserID');
-     this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+    if(this.model.formEnable==1)
+    {
+      this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
       .subscribe( (response) => {
          if(response.status=='success')
          {
@@ -81,23 +85,50 @@ export class AddadvertisementComponent implements OnInit {
               this.router.navigate(['/manageads']); 
           });
         }
-     })
-  }
-  fileEvent($event) {
-    const fileSelected: File = $event.target.files[0];
-    
-    this.CommonService.uploadFile(this.uploaduserAdvApi,fileSelected)
-    .subscribe( (response) => {
-       if(response.status=='success')
-       {
-        this.model.uploads = response.data;
-       }
         else{
           swal('',response.data,'Oops!');
           
           //this.toastr.errorToastr(response.data, 'Oops!');
         }
      })
+    }
+    else{
+      this.CommonService.uploadFile(this.uploadvideoProfileApi,this.videoFile)
+    .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.uploads = response.data;
+        
+           this.CommonService.insertdata(this.insertuseradRestApiUrl,this.model)
+          .subscribe(package_det =>{       
+               swal(package_det.status,package_det.message,package_det.status)
+              this.router.navigate(['/manageads']); 
+          });
+        }
+        else{
+          swal('',response.data,'Oops!');
+          
+          //this.toastr.errorToastr(response.data, 'Oops!');
+        }
+     })
+    }
+     
+  }
+  fileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.videoFile = fileSelected;
+    // this.CommonService.uploadFile(this.uploadvideoProfileApi,fileSelected)
+    // .subscribe( (response) => {
+    //    if(response.status=='success')
+    //    {
+    //     this.model.uploads = response.data;
+    //    }
+    //     else{
+    //       swal('',response.data,'Oops!');
+          
+    //       //this.toastr.errorToastr(response.data, 'Oops!');
+    //     }
+    //  })
   }
 
   fileChangeEvent(event: any): void {
