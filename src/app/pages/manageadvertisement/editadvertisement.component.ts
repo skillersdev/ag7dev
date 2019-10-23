@@ -31,12 +31,14 @@ export class EditadvertisementComponent implements OnInit {
   model: any = {};
   model1: any = {};
   alldata: any = {};
+  Istypecheck:any;
   id:number;
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchadRestApiUrl: string = AppSettings.editad; 
   updateadRestApiUrl: string = AppSettings.updatead; 
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   uploaduserAdvApi:string=AppSettings.uploadcropimage;
+  uploadvideoProfileApi:string=AppSettings.uploadvideo;
   image_url = AppSettings.IMAGE_BASE;
    imageChangedEvent: any = '';
     croppedImage: any = '';
@@ -89,17 +91,10 @@ export class EditadvertisementComponent implements OnInit {
   }
   fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
+    this.alldata.filename=fileSelected;
+    this.Istypecheck=1;
     
-    this.CommonService.uploadFile(this.uploaduserAdvApi,fileSelected)
-    .subscribe( (response) => {
-       if(response.status=='success')
-       {
-        this.model.uploads = response.data;
-       }
-        else{
-          swal('',response.data,'Oops!');
-        }
-     })
+    
   }
   editad(id:any)
   {
@@ -116,35 +111,64 @@ export class EditadvertisementComponent implements OnInit {
   updatead()
   {
      //this.model.is_deleted=1
+     if(this.Istypecheck==1)
+     {
+        this.CommonService.uploadFile(this.uploadvideoProfileApi,this.alldata.filename)
+        .subscribe( (response) => {
+           if(response.status=='success')
+           {
+            this.model.uploads = response.data;
+             delete this.model.formEnable;
+                 this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
+                .subscribe(package_det =>{       
+                     swal(
+                      package_det.status,
+                      package_det.message,
+                      package_det.status
+                    )
+                     this.router.navigate(['/manageads']);
+                    
+                });
+           }
+            else{
+              swal('',response.data,'Oops!');
+            }
+         })
+     }
+     else{
+         this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+           {
+            this.model.uploads = response.data;
+          delete this.model.formEnable;
+              this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
+                .subscribe(package_det =>{       
+                     swal(
+                      package_det.status,
+                      package_det.message,
+                      package_det.status
+                    )
+                     this.router.navigate(['/manageads']);
+                    
+                });
+          }
+       })
+     }
+    
 
-      delete this.model.formEnable;
-           this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
-          .subscribe(package_det =>{       
-               swal(
-                package_det.status,
-                package_det.message,
-                package_det.status
-              )
-               this.router.navigate(['/manageads']);
-              
-          });
+     
   }
 
    fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
+        this.Istypecheck==2;
     }
   imageCropped(event: ImageCroppedEvent) {
+      this.Istypecheck==2;
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
-        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
-      .subscribe( (response) => {
-         if(response.status=='success')
-         {
-          this.model.uploads = response.data;
         
-          
-        }
-     })
 
 
     }

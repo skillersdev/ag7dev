@@ -26,6 +26,7 @@ export class AddadvertisementComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  Istype:any;
   videoFile:any;
   model: any = {};
   model1: any = {};
@@ -69,9 +70,11 @@ export class AddadvertisementComponent implements OnInit {
   }
   adduseradvertisement()
   {
+    
+    this.Istype = this.model.formEnable;
     delete this.model.formEnable;
     this.model.user_id=localStorage.getItem('currentUserID');
-    if(this.model.formEnable==1)
+    if(this.Istype==1)
     {
       this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
       .subscribe( (response) => {

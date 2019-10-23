@@ -26,6 +26,7 @@ export class EditserviceComponent implements OnInit {
   currentUsergroup:any;
   currentUserStatus:any;
   currentAllUsers:any;
+  upload_type:any={};
   image_url = AppSettings.IMAGE_BASE;
   private sub: any;
   model: any = {};
@@ -41,6 +42,7 @@ export class EditserviceComponent implements OnInit {
   uploaduserProfileApi:string=AppSettings.uploadserviceimage; 
   uploaduserAdvApi:string=AppSettings.uploadcropimage;
   websitelist:Array<Object>;
+  uploadvideoProfileApi:string=AppSettings.uploadvideo;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -79,33 +81,62 @@ export class EditserviceComponent implements OnInit {
     fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
     
-    this.CommonService.uploadFile(this.uploaduserProfileApi,fileSelected)
-    .subscribe( (response) => {
-       if(response.status=='success')
-       {
-        this.model.service_image = response.data;
-       }
-        else{
-          swal('',"Error while on upload photo",'Oops!');
-          
-          //this.toastr.errorToastr(response.data, 'Oops!');
-        }
-     })
+    this.alldata.fileselected = fileSelected;
    }
 
   update_service()
   {
      //this.model.is_deleted=1
-     this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/manageservices']);
-        
-    });
+    if(this.upload_type.type==1)
+    {
+      this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
+      .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.service_image = response.data;
+          
+          this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
+            .subscribe(package_det =>{       
+                 swal(
+                  package_det.status,
+                  package_det.message,
+                  package_det.status
+                )
+                 this.router.navigate(['/manageservices']);
+                
+            });
+          
+        }
+     })
+    }
+    else{
+      this.CommonService.uploadFile(this.uploadvideoProfileApi,this.alldata.fileselected)
+        .subscribe( (response) => {
+           if(response.status=='success')
+           {
+            this.model.service_image = response.data;
+                this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
+                .subscribe(package_det =>{       
+                     swal(
+                      package_det.status,
+                      package_det.message,
+                      package_det.status
+                    )
+                     this.router.navigate(['/manageservices']);
+                    
+                });
+           }
+            else{
+              swal('',"Error while on upload photo",'Oops!');
+              
+              //this.toastr.errorToastr(response.data, 'Oops!');
+            }
+         })
+    }
+
+
+
+     
   }
 
   fileChangeEvent(event: any): void {
@@ -114,15 +145,7 @@ export class EditserviceComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
-        this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
-      .subscribe( (response) => {
-         if(response.status=='success')
-         {
-          this.model.service_image = response.data;
-        
-          
-        }
-     })
+       
 
 
     }
