@@ -19,7 +19,21 @@ if($array1[0]['username'])
 	$userid=$array1[0]['userid']; //PACKAGE user id
     $packid=$array1[0]['pack_id']; //pACKAGE id
     $pack_vs_users_id=$array1[0]['pack_id_user']; //pACKAGE id
-
+	
+	//checking website availability done by sridhar 24.12.2019
+    $checkwebsitesql="SELECT COUNT(*) AS websitecount FROM user_vs_packages where website = '".$website_name."'  AND user_id !='".$userid."'";
+    $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
+    $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
+    if($website_result['websitecount']==1){
+        $response['status']="error";
+        $response['message']="website name already exist";
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    //print_r($website_result); exit;
+    //checking code ends here
+    
+    
 	
 	// Retrieve username and password from database according to user's input, preventing sql injection
 	/* End condition for checking amount was removed by karthikeyan in below query */
