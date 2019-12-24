@@ -215,7 +215,12 @@ export class PackageinfoComponent implements OnInit {
        // this.payment_data=''; 
         //this.model='';
       }
+      else if(payment_status.status=='website_exists')
+        {
+          swal('',payment_status.message,'error');  
+        } 
       else{
+        onsole.log(payment_status.status,"test");
         swal('','Error while on activate package','error');
        // this.payment_data=''; 
         //this.model='';
