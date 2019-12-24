@@ -25,7 +25,7 @@ if($array1[0]['username'])
     $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
     $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
     if($website_result['websitecount']==1){
-        $response['status']="error";
+        $response['status']="website_exists";
         $response['message']="website name already exist";
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
