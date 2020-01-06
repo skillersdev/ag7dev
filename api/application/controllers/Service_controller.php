@@ -14,6 +14,8 @@ class Service_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Service Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
+
+        unset($model->type);
         
         $this->db->insert('services', $model);
 

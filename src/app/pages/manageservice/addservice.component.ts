@@ -67,13 +67,16 @@ export class AddserviceComponent implements OnInit {
     this.router.navigate(['/manageservices']);
   }
   add_service(){
-    if(this.upload_type.type==1)
+    $('.preloader').show();
+    console.log(this.model);
+    if(this.model.type==1)
     {
       this.CommonService.insertdata(this.uploaduserProfileApi,this.model1)
     .subscribe( (response) => {
        if(response.status=='success')
        {
         this.model.service_image = response.data;
+        $('.preloader').hide();
          this.CommonService.insertdata(this.insertserviceRestApiUrl,this.model)
         .subscribe(service_det =>{       
              swal(
@@ -92,7 +95,7 @@ export class AddserviceComponent implements OnInit {
          if(response.status=='success')
          {
           this.model.service_image = response.data;
-        
+          $('.preloader').hide();
            this.CommonService.insertdata(this.insertserviceRestApiUrl,this.model)
           .subscribe(service_det =>{       
                swal(

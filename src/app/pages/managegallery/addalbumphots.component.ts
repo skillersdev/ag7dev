@@ -7,6 +7,8 @@ import { CommonService } from '../../services/common.service';
 import { AppSettings } from '../../appSettings';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({ 
   selector: 'app-marketmanagers',
@@ -68,16 +70,18 @@ export class AddalbumphotsComponent implements OnInit {
       this.model1.album_id = this.model.id;       
       if(this.IsMediafileupload)
       {
-          console.log(this.uploadVideofile);
+        $('.preloader').show();
            this.CommonService.uploadFile(this.uploaduserProfileApi,this.uploadVideofile)
           .subscribe( (response) => {
              if(response.status=='success')
              {
               this.model1.photos = response.data;
+              $('.preloader').hide();
               this.CommonService.updatedata(AppSettings.uploadalbumphotosApi,this.model1) 
               .subscribe(package_det =>{       
                    swal(package_det.status,package_det.message,package_det.status)
-                   this.router.navigate(['/managegallery']);
+                   //this.router.navigate(['/managegallery']);
+                   window.location.reload();
                   
               });
              }

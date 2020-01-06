@@ -87,14 +87,15 @@ export class EditserviceComponent implements OnInit {
   update_service()
   {
      //this.model.is_deleted=1
-    if(this.upload_type.type==1)
+     $('.preloader').show();
+    if(this.model.type==1)
     {
       this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
       .subscribe( (response) => {
          if(response.status=='success')
          {
           this.model.service_image = response.data;
-          
+          $('.preloader').hide();
           this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
             .subscribe(package_det =>{       
                  swal(
@@ -115,6 +116,7 @@ export class EditserviceComponent implements OnInit {
            if(response.status=='success')
            {
             this.model.service_image = response.data;
+            $('.preloader').hide();
                 this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
                 .subscribe(package_det =>{       
                      swal(

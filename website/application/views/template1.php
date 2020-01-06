@@ -10,6 +10,8 @@ $image_path = $this->config->item('base_path');
 
 $last_slider_image = end($slider_image);
 
+//print_r($service_details);die;
+
 //    for($ct=0;$ct<count($contac_log_result);$ct++)
 //     {
 //       echo $contac_log_result[$ct]['image_name'];
@@ -387,7 +389,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 
         <div class="row">
           <?php 
-
+          
           for($j=0;$j<count($service_details);$j++)
           {
             $name = "'".$service_details[$j]['service_name']."'";
@@ -395,13 +397,19 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             $desc = "'".$service_details[$j]['desc']."'";
             $service_id = "'".$service_details[$j]['id']."'";
             $weblink = "'".$service_details[$j]['weblink']."'";
+
+           if($service_details[$j]['type']==1){
+            $path = $path_url."videosection/video.png";
+           }else{
+            $path = $path_url.$service_details[$j]['service_image'];
+           }
  
           ?>
           <div class="col-lg-3 col-md-3">
             <div class="hotel">
               <div class="hotel-img">
                <?php 
-                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.','.$service_id.','.$weblink.')"><img src="'.$path_url.$service_details[$j]['service_image'].' " class="img-fluid"></a>'; 
+                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage('.$name.','.$image.','.$desc.','.$service_id.','.$weblink.','.$service_details[$j]['type'].')"><img src="'.$path.'" class="img-fluid"></a>'; 
                 ?>
               </div>
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
@@ -918,10 +926,16 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
             });
     });
     
-  function servicepopupimage(name,image,desc,service_id,weblink){
+  function servicepopupimage(name,image,desc,service_id,weblink,type){
       
       $('#mtitle2').html(name);
-      $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
+      if(type==1)
+      {
+        $('#mimage2').html('<video width="280" height="1800" controls><source src="'+image+'" type="video/mp4"></video>'); 
+      }else{
+        $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
+      }
+      
       $('#desc2').append('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id"><br><div><b>WebLink</b>:'+weblink+'</div>');
 
        var serviceid = service_id;

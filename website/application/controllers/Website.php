@@ -59,8 +59,15 @@ class Website extends CI_Controller {
 
 				foreach($service_det_result as $key=>$value)
 		          {              
-		            
-		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description'],'weblink'=>$value['weblink'],'views'=>$value['total_views'],'likes'=>$value['total_likes']);
+					$file_ext = substr($value['service_image'], -3);
+					if(($file_ext=='mp4')||($file_ext=='AVI')||($file_ext=='MPEG')||($file_ext=='WMv'))
+					{
+						$type="1";//video
+					}
+					else{
+						$type="0";
+					}
+		            $serv_result[]=array('id'=>$value['id'],'service_image'=>$value['service_image'],'service_name'=>$value['title'],'desc'=>$value['description'],'weblink'=>$value['weblink'],'views'=>isset($value['total_views'])?$value['total_views']:'0','likes'=>isset($value['total_likes'])?$value['total_likes']:'0','type'=>$type);
 		          }
 
 			}
@@ -93,7 +100,7 @@ class Website extends CI_Controller {
 
 
 			$contac_log_result=[];
-			$contact_log_det=$this->db->select("*")->where(['contact_id'=>$contac_result[0]['id']])->order_by('id','desc')->get('contact_image_log'); 
+			$contact_log_det=$this->db->select("*")->where(['contact_id'=>isset($contac_result[0]['id'])?$contac_result[0]['id']:0])->order_by('id','desc')->get('contact_image_log'); 
 			$contac_log_result =$contact_log_det->result_array();
 
 

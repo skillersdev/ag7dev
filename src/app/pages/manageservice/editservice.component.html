@@ -41,7 +41,7 @@
                                                         <p><b>Upload type</b></p>
                                                         <div class="form-group">   
                                                             <div class="form-line">
-                                                               <select class="form-control show-tick" [(ngModel)]="upload_type.type" #upload_type="ngModel" name="upload_type"  required> 
+                                                               <select class="form-control show-tick" [(ngModel)]="model.type" #upload_type="ngModel" name="upload_type"  required> 
                                                                     <option value="select">Select Upload type</option>
                                                                     <option value="1">Image</option>
                                                                     <option value="2">Video</option>
@@ -49,7 +49,7 @@
                                                             </div>      
                                                         </div>
                                                     </div>
-                                                 <div class="col-md-6" *ngIf="upload_type.type==1">
+                                                 <div class="col-md-6" *ngIf="model.type==1">
                                                         <p><b>Service Image</b></p>
                                                         <div class="form-group">
                                                             <div class="form-line">
@@ -68,7 +68,7 @@
                                                         </div>
                                                         <img src="{{image_url}}{{model.service_image}}" style="width:20%;"> 
                                                     </div> 
-                                                    <div class="col-md-6" *ngIf="upload_type.type==2">
+                                                    <div class="col-md-6" *ngIf="model.type==2">
                                                         <p><b>Upload Video</b></p>
                                                         <div class="form-group">
                                                            <div class="form-line">
@@ -97,6 +97,16 @@
                                                     </div>                       
                                                 </div>
                                             </div> 
+                                            <div class="preloader pl-size-xs" style="display:none;">
+                                                <div class="spinner-layer pl-red-grey">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>    
                                                 </div>                
                                                 <button type="button" [disabled]="!addservice.form.valid"  class="btn btn-primary m-t-15 waves-effect" (click)="update_service()">Update Service</button>&nbsp;
                                                 &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
