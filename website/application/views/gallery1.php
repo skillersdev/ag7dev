@@ -27,6 +27,25 @@ $image_path = $this->config->item('base_path');
 		<script src="<?php echo base_url();?>assets/gallery1/js/modernizr.custom.70736.js"></script>
 		<noscript><link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/gallery1/css/noJS.css"/></noscript>
 		<!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+		<style>
+			.button {
+			  background-color: #407fbb; /* Blue */
+			  border: none;
+			  color: white;
+			  padding: 15px 32px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 16px;
+			  float: right;
+			}
+			.videoaudio {
+				  display: grid;
+				  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+				   list-style-type: none;
+				}
+			.videoaudio li{ margin: 10px;}
+		</style>
     </head>
     <body>
         <div class="container" style="background-color: #d8d8d8;">
@@ -49,6 +68,7 @@ $image_path = $this->config->item('base_path');
 					</div>
 					
 				</header>-->
+				<a href="<?php echo base_url();?><?php echo $gallery_details[0]['website'];?>" class="button">Goto Website</a>
 				
 				<div class="gamma-container gamma-loading" id="gamma-container">
 					<h3>Album Photos</h3>
@@ -89,9 +109,7 @@ $image_path = $this->config->item('base_path');
 					
 					<h3>Album Videos</h3>
 					
-					<ul>
-
-
+					<ul class="videoaudio">
 					<?php
 						foreach ($gallery_details as $key => $value)
 						{
@@ -105,6 +123,32 @@ $image_path = $this->config->item('base_path');
 							<video width="400" controls>
 								<source src="<?php echo $image_scr; ?>" type="video/mp4">
 							  </video>
+						</li>
+						<?php 
+							}
+						}
+						?>
+						
+					</ul>
+					
+					
+					<h3>Album Audios</h3>
+					<ul class="videoaudio">
+					<?php
+						foreach ($gallery_details as $key => $value)
+						{
+							$image_scr = $image_path.$value['photos'];
+							$filetype= $value['filetype'];
+							if($filetype=="mp3"||$filetype=="ogg"){
+						?>
+
+                     
+						<li>
+							<audio controls>
+							 
+							  <source src="<?php echo $image_scr; ?>" type="audio/mpeg">
+							  Your browser does not support the audio tag.
+							</audio>							
 						</li>
 						<?php 
 							}

@@ -22,9 +22,9 @@ class Gallery extends CI_Controller {
 	            
 		    if($value['photos']){
 			    $filedata=pathinfo($value['photos']);
-			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'filetype'=>$filedata['extension']);
+			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'website'=>$album_details[0]['website'],'filetype'=>$filedata['extension']);
 		    }else{
-			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'filetype'=>'');   
+			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'website'=>$album_details[0]['website'],'filetype'=>'');   
 		    }
 	           
 	          }
