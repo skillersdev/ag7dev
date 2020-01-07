@@ -1,7 +1,7 @@
 export class AppSettings{
 
 	
-	
+	 public static URL_BASE = "http://localhost:4200/";
 	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
   	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
 	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";

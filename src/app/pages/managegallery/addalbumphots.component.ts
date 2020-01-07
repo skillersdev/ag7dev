@@ -81,7 +81,9 @@ export class AddalbumphotsComponent implements OnInit {
               .subscribe(package_det =>{       
                    swal(package_det.status,package_det.message,package_det.status)
                    //this.router.navigate(['/managegallery']);
-                   window.location.reload();
+                 //  this.router.navigate(['/addalbumphotos',id]);
+                   window.location.href = AppSettings.URL_BASE+'/addalbumphotos'+this.id;
+                  // window.location.reload();
                   
               });
              }
