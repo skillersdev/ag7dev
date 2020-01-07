@@ -20,10 +20,17 @@ class Gallery extends CI_Controller {
 	       foreach($gallery_det_result as $key=>$value)
 	          {              
 	            
-	            $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname']);
+		    if($value['photos']){
+			    $filedata=pathinfo($value['photos']);
+			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'filetype'=>$filedata['extension']);
+		    }else{
+			 $gallery_details[]=array('id'=>$value['id'],'photos'=>$value['photos'],'album'=>$album_details[0]['albumname'],'filetype'=>'');   
+		    }
+	           
 	          }
 
 	      }
+	      //echo "<pre>";
 	      //print_r($gallery_details);die;
 	      $data['gallery_details']=$gallery_details;
 	      $this->load->helper('url');

@@ -26,7 +26,7 @@ export class EditvideoComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   select: any;
-  removeLastOnBackspace:any;
+  
   FetchvideodataRestApiUrl: string = AppSettings.Editvideo; 
   updateuserRestApiUrl: string = AppSettings.Updateuser; 
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
@@ -169,5 +169,9 @@ export class EditvideoComponent implements OnInit {
       this.videoFileupload =true;
       this.uploadVideofile = $event.target.files[0];
     
+    }
+
+    removeLastOnBackspace(){
+      
     }
 }

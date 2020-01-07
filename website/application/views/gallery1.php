@@ -51,6 +51,7 @@ $image_path = $this->config->item('base_path');
 				</header>-->
 				
 				<div class="gamma-container gamma-loading" id="gamma-container">
+					<h3>Album Photos</h3>
 
 					<ul class="gamma-gallery">
 
@@ -59,6 +60,8 @@ $image_path = $this->config->item('base_path');
 						foreach ($gallery_details as $key => $value)
 						{
 							$image_scr = $image_path.$value['photos'];
+							$filetype= $value['filetype'];
+							if($filetype=="jpg"||$filetype=="jpeg"||$filetype=="gif"||$filetype=="png"){
 						?>
 
                      
@@ -77,10 +80,40 @@ $image_path = $this->config->item('base_path');
 							</div>
 						</li>
 						<?php 
+							}
 						}
 						?>
 						
 					</ul>
+					
+					
+					<h3>Album Videos</h3>
+					
+					<ul>
+
+
+					<?php
+						foreach ($gallery_details as $key => $value)
+						{
+							$image_scr = $image_path.$value['photos'];
+							$filetype= $value['filetype'];
+							if($filetype=="mp4"||$filetype=="ogg" ||$filetype=="WebM"){
+						?>
+
+                     
+						<li>
+							<video width="400" controls>
+								<source src="<?php echo $image_scr; ?>" type="video/mp4">
+							  </video>
+						</li>
+						<?php 
+							}
+						}
+						?>
+						
+					</ul>
+					
+					
 
 					<div class="gamma-overlay"></div>
 

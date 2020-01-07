@@ -364,7 +364,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 
           <!-- Modal -->
         <div class="modal fade" id="myModal2" role="dialog">
-          <div class="modal-dialog">          
+          <div class="modal-dialog  modal-lg">          
             <!-- Modal content-->
             <div class="modal-content">           
               <div class="modal-header">
@@ -415,6 +415,12 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
               <h3><?php echo $service_details[$j]['service_name'];?></h3>
               
               <p><?php echo $service_details[$j]['desc'];?></p>
+	      <p><?php
+		if($service_details[$j]['weblink']!=""){
+			echo "<p><a href='".$service_details[$j]['weblink']."' target='_blank'>Website Link</a></p>"; 
+		}
+		?>
+	      </p>
                 <div class="image-container"  style="width:52%;">
                   <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
                   <span id=""><?php echo $service_details[$j]['views']; ?></span>
@@ -586,6 +592,19 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       <!--==========================
       Advertisement Section
     ============================-->
+    
+    <style>
+video {
+  width: 100%;
+  height: auto;
+}
+
+#mimage2 img {
+  width: 100%;
+  height: auto;
+}
+</style>
+
     <section id="hotels" class="section-with-bg wow fadeInUp">
 
       <div class="container">
@@ -612,7 +631,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
 						  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.','.$ad_details[$k]['id'].')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
 					  }
 					  else{
-						echo '<video width="280" height="200" controls>
+						echo '<video width="400" controls>
 								<source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
 							  </video>';
 					  }
@@ -931,12 +950,12 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
       $('#mtitle2').html(name);
       if(type==1)
       {
-        $('#mimage2').html('<video width="280" height="1800" controls><source src="'+image+'" type="video/mp4"></video>'); 
+        $('#mimage2').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
       }else{
-        $('#mimage2').html('<img src="'+image+'" width="460px" height="400px">');
+        $('#mimage2').html('<img src="'+image+'" width="400">');
       }
       
-      $('#desc2').append('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id"><br><div><b>WebLink</b>:'+weblink+'</div>');
+      $('#desc2').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id"><br><div><b>WebLink</b>:'+weblink+'</div>');
 
        var serviceid = service_id;
        $.ajax({
@@ -973,10 +992,10 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
      }
       function videopreviewimage(video,id){
         
-      $('#videoimage').html('<video width="280" height="200" controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
+      $('#videoimage').html('<video width="400"  controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
     }
      function popupimage1(image,ad_id){
-      $('#mimage1').html('<img src="'+image+'" width="460px" height="400px"><input type="hidden" value="'+ad_id+'" id="adv_id">');
+      $('#mimage1').html('<img src="'+image+'" width="400" ><input type="hidden" value="'+ad_id+'" id="adv_id">');
       var id = ad_id;
        $.ajax({
           type:'POST',

@@ -46,7 +46,7 @@ export class AddvideoComponent implements OnInit {
   imageChangedEvent: any = '';
   tagArray:Array<Object>;
   croppedImage: any = '';
-  removeLastOnBackspace:any;
+ 
   image_url = AppSettings.IMAGE_BASE;
 
   constructor(private loginService: LoginService,private CommonService:CommonService,private router: Router,private http:Http) { 
@@ -155,4 +155,7 @@ export class AddvideoComponent implements OnInit {
       console.log(this.uploadVideofile);
     }
 
+    removeLastOnBackspace(){
+      
+    }
 }
