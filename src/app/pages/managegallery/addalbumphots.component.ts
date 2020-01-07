@@ -82,14 +82,8 @@ export class AddalbumphotsComponent implements OnInit {
                    swal(package_det.status,package_det.message,package_det.status)
                    //this.router.navigate(['/managegallery']);
                  //  this.router.navigate(['/addalbumphotos',id]);
-                  // window.location.href = AppSettings.URL_BASE+'/addalbumphotos/'+this.id;
-                  
-                  //code added by sridhar
-                  this.sub = this.route.params.subscribe(params => {
-                    this.id = +params['id']; 
-                    this.editgallery(this.id);        
-                    });    
-                    //code ends here
+                   window.location.href = AppSettings.URL_BASE+'addalbumphotos/'+this.id;
+                  // window.location.reload();
                   
               });
              }
@@ -103,14 +97,8 @@ export class AddalbumphotsComponent implements OnInit {
           this.CommonService.updatedata(AppSettings.uploadalbumphotosApi,this.model1) 
           .subscribe(package_det =>{       
              swal(package_det.status,package_det.message,package_det.status)
-            // this.router.navigate(['/managegallery']);
-
-             //code added by sridhar
-             this.sub = this.route.params.subscribe(params => {
-              this.id = +params['id']; 
-              this.editgallery(this.id);        
-              });    
-              //code ends here
+            //  this.router.navigate(['/managegallery']);
+            window.location.href = AppSettings.URL_BASE+'addalbumphotos/'+this.id;
           });
       }
      
