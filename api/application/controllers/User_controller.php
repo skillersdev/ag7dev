@@ -918,10 +918,12 @@ class User_controller extends CI_Controller {
         else{
             $response['status']="failure";
             $response['message']="Error while upload on photos";    
-        }
+        }}else{
+          $response['status']="fail";
+          $response['message']="Error while upload on photos";    
+      }
        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
-         }
    }
 }

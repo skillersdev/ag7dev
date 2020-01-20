@@ -30,7 +30,7 @@ class Videosection_controller extends CI_Controller {
        $path = 'videosection/';
         $Response=[];
        //print_r($_FILES);die;
-        if (isset($_FILES['file'])) 
+        if (isset($_FILES['file']) && $_FILES['file']) 
           {
             $originalName = $_FILES['file']['name'];
             $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);

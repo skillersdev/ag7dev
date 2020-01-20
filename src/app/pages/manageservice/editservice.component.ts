@@ -39,7 +39,9 @@ export class EditserviceComponent implements OnInit {
   insertcategoryRestApiUrl: string = AppSettings.Addcategory; 
   FetchserviceRestApiUrl: string = AppSettings.getservicebyid; 
   updateserviceRestApiUrl: string = AppSettings.updateservice; 
-  uploaduserProfileApi:string=AppSettings.uploadserviceimage; 
+  
+  //uploaduserProfileApi:string=AppSettings.uploadserviceimage; 
+  uploaduserProfileApi:string=AppSettings.uploadcropimage;
   uploaduserAdvApi:string=AppSettings.uploadcropimage;
   websitelist:Array<Object>;
   uploadvideoProfileApi:string=AppSettings.uploadvideo;
@@ -74,7 +76,8 @@ export class EditserviceComponent implements OnInit {
   {
     this.CommonService.editdata(this.FetchserviceRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result;
+          this.model.previoustype = this.model.type;         
         });
   }
 
@@ -92,9 +95,9 @@ export class EditserviceComponent implements OnInit {
     {
       this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
       .subscribe( (response) => {
-         if(response.status=='success')
+         if(response)
          {
-          this.model.service_image = response.data;
+          this.model.service_image = (response.status=='fail')?this.model.service_image:response.data;
           $('.preloader').hide();
           this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
             .subscribe(package_det =>{       
@@ -113,9 +116,9 @@ export class EditserviceComponent implements OnInit {
     else{
       this.CommonService.uploadFile(this.uploadvideoProfileApi,this.alldata.fileselected)
         .subscribe( (response) => {
-           if(response.status=='success')
+           if(response)
            {
-            this.model.service_image = response.data;
+           this.model.service_image = (response.status=='fail')?this.model.service_image:response.data;
             $('.preloader').hide();
                 this.CommonService.updatedata(this.updateserviceRestApiUrl,this.model)
                 .subscribe(package_det =>{       

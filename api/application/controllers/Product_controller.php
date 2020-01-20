@@ -173,7 +173,7 @@ class Product_controller extends CI_Controller {
 
         if (isset($model)) {
         
-              $result=$this->db->query("update ".$this->db->dbprefix('product_master')." set product_name='".$model->product_name."',price='".$model->price."',currency='".$model->currency."',category_id='".$model->category_id."',sub_category_id='".$model->sub_category_id."',website='".$model->website."',product_image='".$model->product_image."' where id='".$model->id."'");
+              $result=$this->db->query("update ".$this->db->dbprefix('product_master')." set product_name='".$model->product_name."',price='".$model->price."',currency='".$model->currency."',category_id='".$model->category_id."',sub_category_id='".$model->sub_category_id."',website='".$model->website."',product_image='".$model->product_image."',long_desc='".$model->long_desc."',short_desc='".$model->short_desc."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Product has been updated successfully";

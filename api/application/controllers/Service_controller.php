@@ -67,6 +67,11 @@ class Service_controller extends CI_Controller {
             if($res->num_rows()>0){
                 $in_array=$res->result_array();
                 $result=$in_array[0];
+
+                $ext = '.'.pathinfo($result['service_image'], PATHINFO_EXTENSION);
+                $upper_Case_ext=strtoupper($ext);
+
+                $result['type'] = ($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG")?'1':'2';
                // print_r($level_value);die;
             }else{
                 $response['status']="failure";
