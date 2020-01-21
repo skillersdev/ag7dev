@@ -493,7 +493,7 @@ $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['abo
                 $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
                 $total_likes=$product_details[$i]['total_likes'];
                 $total_views = $product_details[$i]['total_views'];
-                $prod_desc = "'".$product_details[$i]['desc']."'";
+                $prod_desc = "'".$product_details[$i]['long_desc']."'";
                 $prod_short_desc = "'".$product_details[$i]['short_desc']."'";
                 ?>
                   <div class="col-lg-3 col-md-3">
@@ -977,7 +977,7 @@ video {
       $('#likecount').html(likes);
       $('#viewcount').html(views);
       //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
-      $('#mimage').html('<img src="'+image+'"  width="460px" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
+      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
       
       var id = p_id;
        $.ajax({

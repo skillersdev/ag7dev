@@ -108,12 +108,7 @@ export class EditvideoComponent implements OnInit {
              if(response.status=='success')
              { 
               this.model.video_file = response.data;
-              //console.log(this.videopreviewmodel);
-            }
-          });
-      }
-
-      if(this.isImageupload)
+              if(this.isImageupload)
       {
         //this.model.preview_image='';
         this.CommonService.insertdata(AppSettings.uploadvideoPreviewApi,this.videopreviewmodel)
@@ -127,14 +122,20 @@ export class EditvideoComponent implements OnInit {
            });
       }
       this.model.created_by = localStorage.getItem('currentUserID');
-      setTimeout(()=>{ 
+      //setTimeout(()=>{ 
          
           this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
           .subscribe(package_det =>{       
                swal(package_det.status,package_det.message,package_det.status)
                this.router.navigate(['/managevideos']);
           });
-      }, 3000);
+              //console.log(this.videopreviewmodel);
+            }
+          });
+      }
+
+      
+      //}, 3000);
        
          
   }

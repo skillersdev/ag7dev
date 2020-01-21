@@ -589,7 +589,7 @@
       $('#cname').html(cname);
       $('#scname').html(scname);
       $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
      }
 
      function popupimage1(image){

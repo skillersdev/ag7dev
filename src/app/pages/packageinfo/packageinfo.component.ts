@@ -220,7 +220,7 @@ export class PackageinfoComponent implements OnInit {
           swal('',payment_status.message,'error');  
         } 
       else{
-        //onsole.log(payment_status.status,"test");
+        //  onsole.log(payment_status.status,"test");
         swal('','Error while on activate package','error');
        // this.payment_data=''; 
         //this.model='';

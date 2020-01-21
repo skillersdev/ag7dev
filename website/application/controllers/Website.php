@@ -46,7 +46,7 @@ class Website extends CI_Controller {
 					}
 					
 					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image'],
-						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'desc'=>$value['desc'],'short_desc'=>$value['short_desc']);
+						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'long_desc'=>$value['long_desc'],'short_desc'=>$value['short_desc']);
 		          }
 
 			}
