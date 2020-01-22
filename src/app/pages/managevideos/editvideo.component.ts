@@ -108,7 +108,16 @@ export class EditvideoComponent implements OnInit {
              if(response.status=='success')
              { 
               this.model.video_file = response.data;
-              if(this.isImageupload)
+              this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
+              .subscribe(package_det =>{       
+                  swal(package_det.status,package_det.message,package_det.status)
+                  this.router.navigate(['/managevideos']);
+              });
+              //console.log(this.videopreviewmodel);
+            }
+          });
+      }
+      if(this.isImageupload)
       {
         //this.model.preview_image='';
         this.CommonService.insertdata(AppSettings.uploadvideoPreviewApi,this.videopreviewmodel)
@@ -117,23 +126,18 @@ export class EditvideoComponent implements OnInit {
              if(response.status=='success')
              {
                this.model.preview_image = response.data;
-               console.log("aaaaaa");
+               this.model.created_by = localStorage.getItem('currentUserID');
+            //setTimeout(()=>{ 
+              
+                this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
+                .subscribe(package_det =>{       
+                    swal(package_det.status,package_det.message,package_det.status)
+                    this.router.navigate(['/managevideos']);
+                });
              }
            });
       }
-      this.model.created_by = localStorage.getItem('currentUserID');
-      //setTimeout(()=>{ 
-         
-          this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
-          .subscribe(package_det =>{       
-               swal(package_det.status,package_det.message,package_det.status)
-               this.router.navigate(['/managevideos']);
-          });
-              //console.log(this.videopreviewmodel);
-            }
-          });
-      }
-
+      
       
       //}, 3000);
        
