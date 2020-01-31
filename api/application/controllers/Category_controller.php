@@ -34,23 +34,26 @@ class Category_controller extends CI_Controller {
         $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->
         where(['is_deleted'=>'0','created_by'=>$id])->get('sub_category_master');
 
-
+    //print_r($res->result_array());die;
         if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)
           { 
 
             $cat_det=$this->db->select("category_name")->where(['id'=>$value['category_id'],'is_deleted'=>'0'])->get('category_master'); 
-            $cat_data =$cat_det->result_array();  
+            $cat_data =$cat_det->result_array(); 
+            if(isset($cat_data[0]))
+            {
+              $value['category_name']=$cat_data[0]['category_name']; 
 
-            $value['category_name']=$cat_data[0]['category_name']; 
-
-            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
-            $data =$user_det->result_array();  
-
-            $value['created_by']=$data[0]['username'];
-
-            $result[]=array('id'=>$value['id'],'sub_category_name'=>$value['sub_category_name'],'created_date'=>$value['created_date'],'category_name'=>$value['category_name'],'created_by'=>$value['created_by']);
+              $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+              $data =$user_det->result_array();  
+  
+              $value['created_by']=$data[0]['username'];
+  
+              $result[]=array('id'=>$value['id'],'sub_category_name'=>$value['sub_category_name'],'created_date'=>$value['created_date'],'category_name'=>$value['category_name'],'created_by'=>$value['created_by']);
+            }
+           
           }
         }else{
             $response['status']="failure";
@@ -244,6 +247,7 @@ class Category_controller extends CI_Controller {
   {
       $res=$this->db->select("*")->where(['is_deleted'=>'0','created_by'=>$id])->get('category_master'); 
       $result=array();
+      
       if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)

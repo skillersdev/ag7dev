@@ -115,9 +115,10 @@ export class EditadvertisementComponent implements OnInit {
      {
         this.CommonService.uploadFile(this.uploadvideoProfileApi,this.alldata.filename)
         .subscribe( (response) => {
-           if(response.status=='success')
-           {
-            this.model.uploads = response.data;
+          if(response)
+          {
+           this.model.uploads = (response.status=='fail')?this.model.service_image:response.data;
+           // this.model.uploads = response.data;
              delete this.model.formEnable;
                  this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
                 .subscribe(package_det =>{       
@@ -138,9 +139,10 @@ export class EditadvertisementComponent implements OnInit {
      else{
          this.CommonService.insertdata(this.uploaduserAdvApi,this.model1)
       .subscribe( (response) => {
-         if(response.status=='success')
-           {
-            this.model.uploads = response.data;
+        if(response)
+        {
+         this.model.uploads = (response.status=='fail')?this.model.service_image:response.data;
+            //this.model.uploads = response.data;
           delete this.model.formEnable;
               this.CommonService.updatedata(this.updateadRestApiUrl,this.model)
                 .subscribe(package_det =>{       

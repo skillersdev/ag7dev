@@ -81,13 +81,26 @@ export class ManagesubcategoryComponent implements OnInit {
  {
    this.CommonService.deletedata(this.DeletesubcategoryRestApiUrl,idx)
         .subscribe(resultdata =>{
-         this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!="")
-            { 
-              this.sub_categorylist=det.result;
-            } 
-        });
+          if(this.model.usergroup==2)
+          {
+            let user_id = localStorage.getItem('currentUserID');
+            this.CommonService.editdata(this.getsubcatlistbyuser,user_id)
+              .subscribe(resultdata =>{   
+                this.sub_categorylist=resultdata.result; 
+              });
+          
+            }
+            else
+            {
+               this.CommonService.getdata(this.getsubcategorylistRestApiUrl)
+              .subscribe(det =>{
+                  if(det.result!="")
+                  { 
+                    this.sub_categorylist=det.result;
+                  } 
+                   
+              });
+            }
       });
  }
 }

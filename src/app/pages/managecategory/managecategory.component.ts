@@ -71,7 +71,7 @@ export class ManagecategoryComponent implements OnInit {
            self.removecategory(idx);
           swal(
             'Deleted!',
-            'Package Data has been deleted.',
+            'Category Data has been deleted.',
             'success'
           )
         }
@@ -80,16 +80,28 @@ export class ManagecategoryComponent implements OnInit {
   }
  removecategory(idx:any)
  {
+   
    this.CommonService.deletedata(this.DeletecategoryRestApiUrl,idx)
         .subscribe(resultdata =>{
-           this.CommonService.getdata(this.getcategorylistRestApiUrl)
-        .subscribe(det =>{
-            if(det.result!="")
-            { 
-              this.categorylist=det.result;
+          if(this.model.usergroup==2)
+          {
+            let user_id = localStorage.getItem('currentUserID');
+            this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
+              .subscribe(resultdata =>{   
+                this.categorylist=resultdata.result; 
+              });
+          
+            }
+            else{
+              this.CommonService.getdata(this.getcategorylistRestApiUrl)
+              .subscribe(det =>{
+                  if(det.result!="")
+                  { 
+                    this.categorylist=det.result;
+                  } 
+                   
+              });
             } 
-             
-        });
       });
  }
 
