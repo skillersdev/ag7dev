@@ -70,7 +70,7 @@ export class ManagesubcategoryComponent implements OnInit {
           self.removesubcategory(idx);
           swal(
             'Deleted!',
-            'Package Data has been deleted.',
+            'Sub category Data has been deleted.',
             'success'
           );
         }
