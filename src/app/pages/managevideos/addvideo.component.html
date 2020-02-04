@@ -103,9 +103,10 @@
                                     <p><b>Tag</b><span class="text-danger">*</span></p>
                                     <div class="form-group">
                                         <div class="form-line"> 
-                                           <ngx-tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="model.tags" name="tags"></ngx-tags-input>
+                                            <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.tags" #tags="ngModel">
+                                           <!-- <ngx-tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="model.tags" name="tags"></ngx-tags-input> -->
                                         </div>
-                                        <span [hidden]="title.valid || title.pristine" class="text-danger">Title is required</span>
+                                        <!-- <span [hidden]="title.valid || title.pristine" class="text-danger">Title is required</span> -->
                                     </div>
                                 </div>
                             </div>                            

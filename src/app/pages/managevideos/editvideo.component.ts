@@ -90,7 +90,8 @@ export class EditvideoComponent implements OnInit {
     this.CommonService.editdata(this.FetchvideodataRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result.video_det;
-          
+          this.videoFileupload =true;
+          this.isImageupload = true;
         });
   }
    
@@ -105,9 +106,10 @@ export class EditvideoComponent implements OnInit {
       {
         this.CommonService.uploadFile(this.uploadvideoProfileApi,this.uploadVideofile)
           .subscribe( (response) => {
-             if(response.status=='success')
+             if(response)
              { 
-              this.model.video_file = response.data;
+              this.model.video_file = (response.status=='fail')?this.model.video_file:response.data;
+             // this.model.video_file = response.data;
               this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
               .subscribe(package_det =>{       
                   swal(package_det.status,package_det.message,package_det.status)
@@ -123,9 +125,10 @@ export class EditvideoComponent implements OnInit {
         this.CommonService.insertdata(AppSettings.uploadvideoPreviewApi,this.videopreviewmodel)
       
           .subscribe( (response) => {
-             if(response.status=='success')
+             if(response)
              {
-               this.model.preview_image = response.data;
+              //  this.model.preview_image = response.data;
+               this.model.preview_image = (response.status=='fail')?this.model.preview_image:response.data;
                this.model.created_by = localStorage.getItem('currentUserID');
             //setTimeout(()=>{ 
               
