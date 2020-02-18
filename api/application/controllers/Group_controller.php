@@ -457,7 +457,8 @@ public function getgroupsdetails(){
         if($model->search_group_name!=''){
           $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
-            ->like('group_master.group_name',$model->search_group_name)
+            // ->like('group_master.group_name',$model->search_group_name) told sridhar
+            ->where('group_master.group_name',$model->search_group_name)
             // ->where('group_members.user_id', $model->currentUserID)
             ->where('group_master.private_public', '1')
             ->where('group_master.is_deleted', '0')
@@ -495,7 +496,8 @@ public function getgroupsdetails(){
      if($model->search_group_name!=''){
        $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
         //  ->join('group_members', 'group_members.group_id=group_master.id', 'left')
-         ->like('group_master.group_name',$model->search_group_name)
+         ->like('group_master.group_name',$model->search_group_name) 
+        //  ->where('group_master.group_name',$model->search_group_name)
          // ->where('group_members.user_id', $model->currentUserID)
          ->where('group_master.private_public', '3')
          ->where('group_master.is_deleted', '0')
