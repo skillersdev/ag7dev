@@ -93,6 +93,9 @@ import { AddvideoComponent } from './pages/managevideos/addvideo.component';
 import { EditvideoComponent } from './pages/managevideos/editvideo.component'; 
 
 import { MalldashboardComponent } from './malldashboard/malldashboard.component';
+import { ManagesectionComponent } from './pages/managesection/managesection.component';
+import { AddsectionComponent } from './pages/managesection/addsection/addsection.component';
+import { EditsectionComponent } from './pages/managesection/editsection/editsection.component';
 
 @NgModule({
   declarations: [
@@ -168,7 +171,10 @@ import { MalldashboardComponent } from './malldashboard/malldashboard.component'
     ManagevideoComponent,
     AddvideoComponent,
     EditvideoComponent,
-    MalldashboardComponent
+    MalldashboardComponent,
+    ManagesectionComponent,
+    AddsectionComponent,
+    EditsectionComponent
 	//ImageCropperComponent
   ],
   imports: [
