@@ -87,6 +87,12 @@ $route['fetchsubcategory/(:num)']='Category_controller/getsubcategorybyid/$1';
 $route['getsubcatlist/(:num)']='Category_controller/getsubcategorylistbyuser/$1';
 /*******/
 
+/***Manage Section****/
+$route['addsection'] = 'Section_controller/addsection';
+$route['getsectionlist'] = 'Section_controller/getsectionlist';
+
+/*******/
+
 
 /*User API */
 $route['adduser'] = 'User_controller/add_user_master';

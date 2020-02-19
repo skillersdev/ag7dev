@@ -25,10 +25,10 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr *ngFor="let data of advertisementlist let idx=index">
+                                  <tr *ngFor="let data of sectionList let idx=index">
                                       <th scope="row">{{idx+1}}</th>
-                                      <td>{{data.website}}</td>                                      
-                                      <td>{{data.created_by}}</td>
+                                      <td>{{data.section}}</td>
+                                      <td>{{data.website}}</td> 
                                       <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>

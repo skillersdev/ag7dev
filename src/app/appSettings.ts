@@ -63,6 +63,11 @@ export class AppSettings{
 	public static getsubcatlist =AppSettings.API_BASE+"/getsubcatlist/";
 	
 	/**/
+
+	/*Manage Section*/
+	public static addsection = AppSettings.API_BASE + "/addsection";
+	public static GetsectionsList= AppSettings.API_BASE + "/getsectionlist";
+	/**/
 	/*Contacts li*/
 	public static Addcontacts = AppSettings.API_BASE + "/addcontacts";
 	public static getcontactDetail = AppSettings.API_BASE + "/getcontact"; //common 
