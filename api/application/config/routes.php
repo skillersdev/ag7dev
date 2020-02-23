@@ -207,6 +207,9 @@ $route['deletesubscriber/(:num)']= 'Group_controller/deletesubscriber/$1';
 $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
 $route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
 $route['mychatgroup'] = 'Group_controller/mychatgroup';
+$route['chatmsgdelete'] = 'Group_controller/chatmsgdelete';
+$route['makegroupadmin'] = 'Group_controller/makegroupadmin';
+
 $route['insertalbum'] = 'Gallery_controller/addalbum';
 $route['getalbumbyuser']= 'Gallery_controller/getalbumbyuser';
 $route['getalbumlist']= 'Gallery_controller/getalbumlist';

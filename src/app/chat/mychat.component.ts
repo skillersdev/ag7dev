@@ -145,7 +145,8 @@ export class MychatComponent implements OnInit {
     
   }
   getuserlists(){
-    this.CommonService.getdata(AppSettings.getchatuserslist)
+    // this.CommonService.getdata(AppSettings.getchatuserslist)
+    this.CommonService.insertdata(AppSettings.getchatuserslist,{'currentUsername':this.Newgroupmodel.currentUser})
     .subscribe(det =>{
       
         if(det.result!=""){ this.userdropdownList=det.result;}
@@ -360,4 +361,7 @@ export class MychatComponent implements OnInit {
   logout(){
     this.loginService.logout();
   } 
+  chatimageclick(){
+    $('#chatimage').click();
+  }
 }

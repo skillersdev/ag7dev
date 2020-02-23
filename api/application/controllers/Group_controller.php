@@ -37,7 +37,12 @@ class Group_controller extends CI_Controller {
          // if(count($mem_group_array) > 0){
 
          // }else {
-            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
+           if($value->Id==$model->currentUserID){
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$g_id."','".$model->groupname."','".$value->Id."','".$value->username."',1,'".$model->currentUserID."')");
+           }else {
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$g_id."','".$model->groupname."','".$value->Id."','".$value->username."',0,'".$model->currentUserID."')");
+           }
+            
          // }
         
       }
@@ -65,7 +70,12 @@ class Group_controller extends CI_Controller {
          // if(count($mem_group_array) > 0){
 
          // }else {
-            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
+          if($value->Id==$model->currentUserID){
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."',1,'".$model->currentUserID."')");
+           }else {
+            $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."',0,'".$model->currentUserID."')");
+           }
+            // $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
          // }
         
       }
@@ -250,7 +260,7 @@ class Group_controller extends CI_Controller {
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
 
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
              $msg_group_array1 = array();
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
@@ -326,7 +336,7 @@ class Group_controller extends CI_Controller {
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
 
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."'");
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0");
              $msg_group_array1 = array();
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
@@ -388,7 +398,7 @@ public function getgroupsdetails(){
              
          $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='". $model->currentUserID."'");
          $check_user_array=$check_user->result_array();
-// print_r($check_user_array); die;
+// print_r($check_user_array); die; 
         if(count($check_user_array)==0){
           $response['check_user']=0;
         } else {
@@ -402,7 +412,7 @@ public function getgroupsdetails(){
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
 
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."'");
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0");
              $msg_group_array1 = array();
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
@@ -437,6 +447,8 @@ public function getgroupsdetails(){
               // die;
              $response['group_msg']=$msg_group_array1;
              $response['date_array']=$datearray;
+             $response['admin_normal']=$check_user_array[0]['admin_normal'];
+             
 
         }
              
@@ -737,6 +749,38 @@ public function getgroupsdetails(){
         die();
    }
 
-    
-  
+   public function chatmsgdelete(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"message deleted successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die; 
+        $result=$this->db->query("update ".$this->db->dbprefix('all_message')." set is_deleted=1 where id='".$model->id."'");
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   public function makegroupadmin(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Group admin rights changed successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        
+        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set admin_normal='".$model->val."' where id='".$model->id."'");
+
+        $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0");
+        $response['groupmemlists']=$check_user->result_array();
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+
+   
+   }
+
+   
 }

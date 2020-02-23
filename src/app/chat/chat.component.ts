@@ -69,6 +69,8 @@ export class ChatComponent implements OnInit {
     // this.Newgroupmodel.groupcode='';
 
     this.Newgroupmodel.userselectedItems=[]; 
+    this.Newgroupmodel.groupmemlists=[]; 
+    
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.loginService.viewsUploadoption();
@@ -151,7 +153,8 @@ export class ChatComponent implements OnInit {
     
   }
   getuserlists(){
-    this.CommonService.getdata(AppSettings.getchatuserslist)
+    this.CommonService.insertdata(AppSettings.getchatuserslist,{'currentUsername':this.Newgroupmodel.currentUser})
+    // this.CommonService.getdata(AppSettings.getchatuserslist)
     .subscribe(det =>{
       
         if(det.result!=""){ this.userdropdownList=det.result;}
@@ -227,15 +230,25 @@ export class ChatComponent implements OnInit {
             this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
             
             this.group_msg_model = resultdata.group_msg;
+            // console.log(this.group_msg_model); 
             this.date_array_model = resultdata.date_array;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
+            this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 
+            this.Newgroupmodel.admin_normal=resultdata.admin_normal;
             
             $('.message-area').addClass('d-sm-flex');
           }
           
         });
+  }
+  msgdeletefun(id:any){
+    this.CommonService.insertdata(AppSettings.chatmsgdelete,{'id':id})
+    .subscribe(package_det =>{     
+     
+        
+    });
   }
   
   updategroup()
@@ -249,6 +262,7 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  
   deletegroup()
   {
     this.CommonService.insertdata(AppSettings.deletegroup,this.Newgroupmodel)
@@ -365,4 +379,21 @@ export class ChatComponent implements OnInit {
   logout(){
     this.loginService.logout();
   } 
+  chatimageclick(){
+    $('#chatimage').click();
+  }
+  admintoadd(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':1})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+  admintoremove(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':0})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
 }
