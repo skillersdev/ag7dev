@@ -214,7 +214,7 @@ export class ChatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // this.refreshData();
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
@@ -247,7 +247,34 @@ export class ChatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.chatmsgdelete,{'id':id})
     .subscribe(package_det =>{     
      
-        
+        this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
+        .subscribe(resultdata =>{   
+          this.group_name=1;
+          if(resultdata.check_user==0){
+            this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
+          } else{
+            this.group_dt_model = resultdata.group_details[0];
+          
+            this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+            this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
+            this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
+            this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+            this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+            
+            this.group_msg_model = resultdata.group_msg;
+            // console.log(this.group_msg_model); 
+            this.date_array_model = resultdata.date_array;
+            this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
+            this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
+            this.group_members_model=resultdata.group_members;
+            this.group_profile_log_model=resultdata.group_profile_details; 
+            this.Newgroupmodel.admin_normal=resultdata.admin_normal;
+            
+            $('.message-area').addClass('d-sm-flex');
+          }
+          
+        });
+
     });
   }
   
@@ -285,7 +312,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id=''; 
     this.getgrouplists();
     this.ngOnInit();
-      // this.router.navigate(['./chat']); 
+      this.router.navigate(['./chat']); 
         swal('','Exit Group Successfully','success');  
         
     });
