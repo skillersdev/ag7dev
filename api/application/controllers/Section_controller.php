@@ -33,7 +33,7 @@ class Section_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' ");
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0");
         }
         /*BY all list*/ 
         else{
@@ -45,7 +45,7 @@ class Section_controller extends CI_Controller {
           foreach($res->result_array() as $key=>$value)
           {               
 
-            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate']);
+            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
           }
         }else{
             $response['status']="failure";
@@ -58,7 +58,7 @@ class Section_controller extends CI_Controller {
 
   }
   
-   public function editservice($id)
+   public function editsection($id)
     {
         //var_dump($id); die();
         $this->output->set_content_type('application/json');
@@ -66,77 +66,58 @@ class Section_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
+        $res=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where id='".$id."'");
 
-            $res=$this->db->query("select * from ".$this->db->dbprefix('services')." where id='".$id."'");
-
-            if($res->num_rows()>0){
-                $in_array=$res->result_array();
-                $result=$in_array[0];
-
-                $ext = '.'.pathinfo($result['service_image'], PATHINFO_EXTENSION);
-                $upper_Case_ext=strtoupper($ext);
-
-                $result['type'] = ($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG")?'1':'2';
-               // print_r($level_value);die;
-            }else{
-                $response['status']="failure";
-                $response['message']=" No Service record found!!";
-            }
-            $response['result']=$result;
+        if($res->num_rows()>0){
+            $in_array=$res->result_array();
+            $result=$in_array[0];
+        }else{
+            $response['status']="failure";
+            $response['message']=" No Service record found!!";
+        }
+        $response['result']=$result;
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-  public function updateservice() {
-        $this->output->set_content_type('application/json');
-        $response=array('status'=>"success");
+  public function updatesection() 
+    {
+      $this->output->set_content_type('application/json');
+      $response=array('status'=>"success");
+       $model = json_decode($this->input->post('model',FALSE));
 
-        $model = json_decode($this->input->post('model',FALSE));
-//       print_r($level_field);die();
-
-        if (isset($model)) {
-        
-          //   $this->db->where('id',$model->id);
-          //   $result=$this->db->update('package_info', $model);
-          // //  pr($this->db->last_query());die();
-            
-
-              $result=$this->db->query("update ".$this->db->dbprefix('services')." set  title='".$model->title."',description='".$model->description."',service_image='".$model->service_image."',website='".$model->website."' where id='".$model->id."'");
+        if (isset($model)) 
+          {
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section')." set  website='".$model->website."',section_name='".$model->section_name."',long_desc='".$model->long_desc."',Issection_show ='".$model->Issection_show."' where id='".$model->id."'");
 
             if ($result) {
-                $response['message']="Service has been updated successfully";
+                $response['message']="Section has been updated successfully";
             }
             else
             {
-                 $response['status']="failure";
-            $response['message']="Service has not been updated fully";
+              $response['status']="failure";
+              $response['message']="Section has not been updated fully";
             }
-            
-
-        } else {
-            $response['status']="failure";
-            $response['message']="Choose Service and continue!!..";
-        }
-
+        } 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
-    public function deleteservice($id)
+    public function deletesection($id)
     {
       $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
         
 
-        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('services')." where id='".$id."' ");
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$id."' ");
         //print_r($res_chk);die;
         if($res_chk->num_rows()>0){
 
             $data=array('is_deleted'=>'1');
             $this->db->where('id',$id);
-            $this->db->update($this->db->dbprefix('services'),$data);
+            $this->db->update($this->db->dbprefix('manage_section'),$data);
 
             $response['status']="success";
-            $response['message']="service record has been deleted successfully";
+            $response['message']="section record has been deleted successfully";
             
         }else{
             $response['status']="failure";
@@ -177,39 +158,37 @@ class Section_controller extends CI_Controller {
          die();
     }
 
-    public function getservicebyuser()
-    {
-      $this->output->set_content_type('application/json');
+   public function updatesectionbytoggle()
+   {
+    $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
-        $result=array();
-        $package=array();
-         $model = json_decode($this->input->post('model',FALSE));
+        $model = json_decode($this->input->post('model',FALSE));
+  
 
-       $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website!='' AND user_id='".$model->userId."' ");
-            if($res->num_rows()>0){
-                $in_array=$res->result_array();
-
-                foreach ($in_array as $key => $value) 
-                {
-                    $package[] =  $value['website'];  
-                }
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->sectionId."' ");
+        //print_r($res_chk);die;
+        if($res_chk->num_rows()>0){
+          if($model->Isshow==1)
+          {
+            $data=array('Issection_show'=>'0');
+          }
+            else{
+            $data=array('Issection_show'=>'1');   
             }
-        $query_parts = array();
-        foreach ($package as $val) {
-            $query_parts[] = "'".$val."'";
+            $this->db->where('id',$model->sectionId );
+            $this->db->update($this->db->dbprefix('manage_section'),$data);
+
+            $response['status']="success";
+            $response['message']="section record has been updated successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
         }
-
-        $string = implode(' OR website LIKE ', $query_parts);
-
-        //echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string}";die;
-
-        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string} ");
-        $result1=$tank->result_array();
-          $response['result']=$result1;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
-    }
+   }
 
    
 }

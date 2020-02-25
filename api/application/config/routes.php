@@ -90,7 +90,10 @@ $route['getsubcatlist/(:num)']='Category_controller/getsubcategorylistbyuser/$1'
 /***Manage Section****/
 $route['addsection'] = 'Section_controller/addsection';
 $route['getsectionlist'] = 'Section_controller/getsectionlist';
-
+$route['editsection/(:num)'] = 'Section_controller/editsection/$1';
+$route['updatesectiondata'] = 'Section_controller/updatesection';
+$route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
+$route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
 /*******/
 
 

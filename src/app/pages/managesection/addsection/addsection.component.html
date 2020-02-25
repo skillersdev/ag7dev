@@ -48,15 +48,24 @@
                                                 <p><b>Description</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">                             
-                                                    <textarea id="tinymce" [(ngModel)]="model.long_desc" #long_desc="ngModel" name="long_desc">
-                                                    </textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+	                                                    <textarea id="tinymce" [(ngModel)]="model.long_desc" #long_desc="ngModel" name="long_desc">
+	                                                    </textarea>
+	                                                </div>
+                                            	</div>
+                                       		 </div>
+                                          <!--   <div class="col-md-12">
+                                                <p><b>Show Section?</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">                             
+                                                    <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-red" checked="" [(ngModel)]="model.Issection_show">
+                                                    <label for="md_checkbox_21">RED</label>
+                                                	</div>
+                                            	</div>
+                                        	</div> -->
                                           
-                                        <button type="submit" [disabled]="!addsection.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="add_section()">Add Section</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
-                                    </form>
+	                                        <button type="submit" [disabled]="!addsection.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="add_section()">Add Section</button>&nbsp;
+	                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    	</form>
                                     </div>
                                 </div>
                             </div>

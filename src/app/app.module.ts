@@ -96,6 +96,10 @@ import { MalldashboardComponent } from './malldashboard/malldashboard.component'
 import { ManagesectionComponent } from './pages/managesection/managesection.component';
 import { AddsectionComponent } from './pages/managesection/addsection/addsection.component';
 import { EditsectionComponent } from './pages/managesection/editsection/editsection.component';
+import { UiSwitchModule } from 'ngx-toggle-switch';
+import { ReordersectionComponent } from './pages/managesection/reordersection/reordersection.component';
+
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -174,7 +178,8 @@ import { EditsectionComponent } from './pages/managesection/editsection/editsect
     MalldashboardComponent,
     ManagesectionComponent,
     AddsectionComponent,
-    EditsectionComponent
+    EditsectionComponent,
+    ReordersectionComponent
 	//ImageCropperComponent
   ],
   imports: [
@@ -185,7 +190,9 @@ import { EditsectionComponent } from './pages/managesection/editsection/editsect
     NgMultiSelectDropDownModule.forRoot(),
     HttpModule,
     ImageCropperModule,
-    NgxTagsInputModule
+    NgxTagsInputModule,
+    UiSwitchModule,
+    TableModule
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]

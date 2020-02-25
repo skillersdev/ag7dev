@@ -9,7 +9,7 @@
                       <div class="header">
                           <h2>
                               Manage Section                                              
-                              <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right">Reorder</button>&nbsp;&nbsp;&nbsp;                 
+                              <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">Reorder</button>
                                <button type="button" (click)="navigateAddsection()" class="btn btn-success waves-effect pull-right">Add Section</button>
                           </h2>
                       </div>
@@ -25,6 +25,16 @@
                                   </tr>
                               </thead>
                               <tbody>
+                                 <div class="preloader pl-size-xs" style="display:none;">
+                                      <div class="spinner-layer pl-red-grey">
+                                          <div class="circle-clipper left">
+                                              <div class="circle"></div>
+                                          </div>
+                                          <div class="circle-clipper right">
+                                              <div class="circle"></div>
+                                          </div>
+                                      </div>
+                                  </div> 
                                   <tr *ngFor="let data of sectionList let idx=index">
                                       <th scope="row">{{idx+1}}</th>
                                       <td>{{data.section}}</td>
@@ -32,7 +42,9 @@
                                       <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>
-                                        <a href="javascript:void(0);" (click)="showorhide(data.id)"><i class="material-icons">show/hide</i></a>
+                                        <ui-switch *ngIf="data.Issection_show==1" size="small" (change)="updatesectionData($event,data.id)" [checked]="false"></ui-switch>
+                                        <ui-switch *ngIf="data.Issection_show==0" size="small" (change)="updatesectionData($event,data.id)" checked></ui-switch>
+                                       <!--  <a href="javascript:void(0);" (click)="showorhide(data.id)"><i class="material-icons">show/hide</i></a> -->
                                     </td>
                                   </tr>
                                  
