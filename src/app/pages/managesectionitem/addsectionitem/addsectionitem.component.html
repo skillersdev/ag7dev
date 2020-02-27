@@ -1,0 +1,174 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Section Item
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addsectionitem="ngForm"> 
+                                             <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">Website</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                         <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
+                                                            <option [ngValue]="select">select website</option>    
+                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+                                                        </select>
+                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>                                           
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-2 control-label">Section Name</label>
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                         <select class="form-control show-tick" [(ngModel)]="model.section" #section="ngModel" name="section" required>
+                                                            <option [ngValue]="select">select section</option>    
+                                                            <option *ngFor="let data of sectionlist" value="{{data.id}}">{{date.section}}</option>
+                                                        </select>
+                                                        <span [hidden]="section.valid || section.pristine" class="text-danger">section is required</span>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div> 
+                                             <div class="col-md-6">
+                                                <p><b>Upload type</b></p>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <select class="form-control show-tick" [(ngModel)]="model.media_type" #media_type="ngModel" name="media_type"  required> 
+                                                            <option value="select">Select Upload type</option>
+                                                            <option value="1">Image</option>
+                                                            <option value="2">Video</option>
+                                                            <option value="3">Pdf</option>
+                                                            <option value="4">Doc</option>
+                                                            <option value="5">Audio</option>
+                                                        </select>
+                                                    </div>      
+                                                </div>
+                                       		 </div>
+                                       		 <div class="col-md-6">
+                                                <p><b>Title</b></p>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <input type="text" class="form-control" id="title" name="title" [(ngModel)]="model.title"  #title="ngModel" placeholder="Title" required>
+                                                    </div>      
+                                                </div>
+                                       		 </div>
+                                       		  <div class="col-md-6">
+                                                <p><b>Description</b></p>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <input type="text" class="form-control" id="description" name="description" [(ngModel)]="model.description"  #description="ngModel" placeholder="Description" required>
+                                                    </div>      
+                                                </div>
+                                       		 </div>
+                                       		 <!-- <div class="col-md-6">
+                                                <p><b>Add Attachment</b></p>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <input type="text" class="form-control" id="file_name" name="file_name" [(ngModel)]="model.file_name"  #file_name="ngModel" placeholder="Description" required>
+                                                    </div>      
+                                                </div>
+                                       		 </div> -->
+                                       		   <div class="col-md-6" *ngIf="model.type==1">
+	                                                <p><b>Service Image</b></p>
+	                                                <div class="form-group">
+	                                                    <div class="form-line">
+	                                                         <input type="file" (change)="getserviceImage($event)" />
+	                                                        <image-cropper
+	                                                            [imageChangedEvent]="serviceimageChangedEvent"
+	                                                            [maintainAspectRatio]="false"
+	                                                            [aspectRatio]="4 / 3"
+	                                                            format="png"
+	                                                            (imageCropped)="serviceimageCropped($event)"           
+	                                                        ></image-cropper>
+	                                                        <img [src]="croppedImage" style="width:30%;"/>
+	                                                    </div>
+	                                                </div>
+                                               </div>
+                                                <div class="col-md-6" *ngIf="model.type==2">
+	                                                <p><b>Upload Video</b></p>
+	                                                <div class="form-group">
+	                                                   <div class="form-line">
+	                                                         <input type="file" name="adimage" (change)=getVideodet($event) required>   
+	                                                    </div>
+	                                                    <!-- <span>*Accepts MP4 type video only</span> -->
+	                                                </div>
+                                            	</div> 
+                                            	 <div class="col-md-6" *ngIf="model.type==5">
+	                                                <p><b>Upload Audio</b></p>
+	                                                <div class="form-group">
+	                                                   <div class="form-line">
+	                                                         <input type="file" name="adimage" (change)=getAudiodet($event) required>   
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                             <div class="col-md-6" *ngIf="model.type==3 || model.type==4">
+	                                                <p><b>Upload Doc/Pdf</b></p>
+	                                                <div class="form-group">
+	                                                   <div class="form-line">
+	                                                         <input type="file" name="adimage" (change)=getDocOrPdf($event) required>   
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="col-md-6">
+				                                      <p><b>Media Preview Image</b></p>                   
+				                                      <input type="file" (change)="getservicePreviewImage($event)" />
+				                                      <image-cropper
+				                                          [imageChangedEvent]="ServicePreviewimageChangedEvent"
+				                                          [maintainAspectRatio]="false"
+				                                          [aspectRatio]="4 / 3"
+				                                          format="png"
+				                                          (imageCropped)="PreviewimageCropped($event)"           
+				                                      ></image-cropper>
+				                                    <img [src]="previewcroppedImage" style="width:30%;"/>
+				                                </div>
+				                                 <div class="col-md-6">
+				                                    <p><b>Description</b></p>
+				                                    <div class="form-group">
+				                                        <div class="form-line">
+				                                            <textarea class="form-control" name="attachment_desc" [(ngModel)]="model.attachment_desc" #attachment_desc="ngModel" required></textarea>
+				                                        </div>
+				                                    </div>
+				                                </div>
+                                          <!--   <div class="col-md-12">
+                                                <p><b>Show Section?</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">                             
+                                                    <input type="checkbox" id="md_checkbox_21" class="filled-in chk-col-red" checked="" [(ngModel)]="model.Issection_show">
+                                                    <label for="md_checkbox_21">RED</label>
+                                                	</div>
+                                            	</div>
+                                        	</div> -->
+                                          
+	                                        <button type="submit" [disabled]="!addsectionitem.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="add_section()">Add Section</button>&nbsp;
+	                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    	</form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
