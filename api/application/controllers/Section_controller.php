@@ -31,9 +31,9 @@ class Section_controller extends CI_Controller {
         global $api_path;  
         $model = json_decode($this->input->post('model',FALSE));
         /**Get list by user**/
-        if($model->usergroup==2)
+        if($model->usertype==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0");
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->userid."' AND is_deleted=0");
         }
         /*BY all list*/ 
         else{
@@ -191,34 +191,43 @@ class Section_controller extends CI_Controller {
          die();
     }
 
-   public function updatesectionbytoggle()
+   public function uploadcropserviceimage()
    {
     $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-  
+//print_r($model);die;
+        /*Converting base 64 image to image file and upload*/
+        if(isset($model->file_name))
+        {
 
-        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->sectionId."' ");
-        //print_r($res_chk);die;
-        if($res_chk->num_rows()>0){
-          if($model->Isshow==1)
-          {
-            $data=array('Issection_show'=>'0');
-          }
-            else{
-            $data=array('Issection_show'=>'1');   
-            }
-            $this->db->where('id',$model->sectionId );
-            $this->db->update($this->db->dbprefix('manage_section'),$data);
 
+        $image_parts = explode(";base64,", $model->file_name);
+        define('UPLOAD_DIR', 'section_uploads/');
+        $img = $model->file_name;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = UPLOAD_DIR . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+        $result = $success ? $file : 'fail';
+        
+        if($result!='fail')
+        {
             $response['status']="success";
-            $response['message']="section record has been updated successfully";
-            
-        }else{
-            $response['status']="failure";
-            $response['message']="Invalid Attempt!!.. Access denied..";    
+            $response['message']="Image upload successfully";
+            $response['data']=$file;
         }
+        else{
+            $response['status']="failure";
+            $response['message']="Error while upload on photos";    
+        }
+      }else{
+          $response['status']="fail";
+          $response['message']="Error while upload on photos";    
+      }
+       
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }

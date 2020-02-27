@@ -8,14 +8,14 @@ class Sectionitem_controller extends CI_Controller {
 		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
 	}
 
-   public function addsection(){
+   public function addsectionitem(){
        $this->output->set_content_type('application/json');
       
-        $response=array('status'=>"success",'message'=>"Service Inserted successfully");
+        $response=array('status'=>"success",'message'=>"Section Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        $this->db->insert('manage_section', $model);
+        $this->db->insert('manage_section_item', $model);
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();       

@@ -206,5 +206,38 @@ class Service_controller extends CI_Controller {
          die();
     }
 
+    public function uploadcropserviceimage()
+    {
+      if(isset($model->Imagefile))
+        {
+
+
+        $image_parts = explode(";base64,", $model->Imagefile);
+        define('UPLOAD_DIR', 'uploadserviceitem   image/');
+        $img = $model->Imagefile;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = UPLOAD_DIR . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+        $result = $success ? $file : 'fail';
+        
+        if($result!='fail')
+        {
+            $response['status']="success";
+            $response['message']="Image upload successfully";
+            $response['data']=$file;
+        }
+        else{
+            $response['status']="failure";
+            $response['message']="Error while upload on photos";    
+        }}else{
+          $response['status']="fail";
+          $response['message']="Error while upload on photos";    
+      }
+       
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
    
 }

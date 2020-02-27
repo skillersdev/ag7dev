@@ -97,6 +97,9 @@ $route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
 
 $route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
 $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
+$route['uploadcropserviceimage']='Section_controller/uploadcropserviceimage';
+$route['addsectionitem']= 'Sectionitem_controller/addsectionitem';
+$route['sectionitemvideoupload']= 'Sectionitem_controller/uploadsectionitemvideo';
 /*******/
 
 
