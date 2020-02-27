@@ -66,7 +66,7 @@ export class ManagesectionitemComponent implements OnInit {
   }
  removesection(idx:any)
  {
-   this.CommonService.deletedata(AppSettings.Deletesection,idx)
+   this.CommonService.deletedata(AppSettings.Deletesectionitem,idx)
         .subscribe(resultdata =>{
           if(resultdata!="")
           { 

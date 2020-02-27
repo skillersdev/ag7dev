@@ -31,10 +31,16 @@ export class AddsectionitemComponent implements OnInit {
   serviceimageChangedEvent:any={};
   previewcroppedImage:any='';
   sectioncroppedImage:any='';
+  uploadVideofile:any={};
 
   ngOnInit() {
+    this.model.media_type=1;
+    this.alldata.IspreviewImage= false;
   	this.alldata.usertype=localStorage.getItem('currentUsergroup');
     this.alldata.userid=localStorage.getItem('currentUserID');
+    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    this.model.user_id=localStorage.getItem('currentUserID');
+    this.model.created_by = this.alldata.userid;
   
    	this.CommonService.insertdata(this.getwebsiteRestApiUrl,this.alldata)
     .subscribe(package_det =>{       
@@ -46,30 +52,83 @@ export class AddsectionitemComponent implements OnInit {
     });
   }
 
-  add_section()
+  add_sectionItem()
   	{
-  		this.model.created_by = this.alldata.userid;
-	  	this.CommonService.insertdata(AppSettings.addsection,this.model)
-	      .subscribe( (response) => {
-	         if(response.status=='success')
-	         {
-	         	swal(response.status,response.message,response.status)
-            	this.router.navigate(['/managesection']); 
-	         }
+      $('.preloader').show();
+      /********Section Item Image upload******/
+      if(this.model.media_type==1)
+      {
+        this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
+        .subscribe( (response) => {
+         if(response.status=='success')
+         {
+            this.model.file_name = response.data;
+            this.CommonService.insertdata(AppSettings.AddsectionItem,this.model)
+            .subscribe(package_det =>{  
+              $('.preloader').hide();     
+                 swal(
+                  package_det.status,
+                  package_det.message,
+                  package_det.status
+                )
+                this.router.navigate(['/managesectionitem']); 
+            }); 
+         }
+          else{
+            swal('',"Error while on upload photo",'Oops!');
+          }
+        });
+      }
+      /**********End*****/
 
-	         else{
-	            swal('',response.data,'Oops!');
-	         }
-	     })
+      /*******Video Section Upload*******/
+      /*****For video and pdf and doc and  audio file upload*******/
+      if(this.model.media_type==2 || this.model.media_type==5 || this.model.media_type==4 || this.model.media_type==3)
+      {
+        this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
+        .subscribe( (response) => {
+         if(response.status=='success')
+         {
+          this.model.preview_file = response.data;
+          this.CommonService.uploadFile(AppSettings.sectionItemVideoupload,this.uploadVideofile)
+          .subscribe( (response) => {
+             if(response.status=='success')
+             { 
+                this.model.file_name = response.data;
+             
+                this.CommonService.insertdata(AppSettings.AddsectionItem,this.model)
+                .subscribe( (response) => {
+                  if(response.status=='success')
+                  {
+                    $('.preloader').hide();  
+                      swal(response.status,response.message, response.status)
+                      this.router.navigate(['/managesectionitem']); 
+                    }
+                  else{
+                    swal('',response.data,'Oops!');
+                  }
+                });
+              }
+              else{
+                swal('',response.data,'Oops!');
+              }
+         });
+         }
+        });
+       
+      }      
+      /*******/
+  	
   	}
   	back(){this.router.navigate(['/managesectionitem']);}
 	/*Preview File section*/
-		getservicePreviewImage(event: any): void {
-	        this.ServicePreviewimageChangedEvent = event;
+		getservicePreviewImage(event: any): void {        
+          this.ServicePreviewimageChangedEvent = event;
+          this.alldata.IspreviewImage= true;
 	    }
 	    PreviewimageCropped(event: ImageCroppedEvent) {
 	        this.previewcroppedImage = event.base64;
-	        this.model.preview_file = event.base64;
+	        this.model.file_name = event.base64;
 	    }
     /**/
     /*Service Image uplad section*/
@@ -83,14 +142,21 @@ export class AddsectionitemComponent implements OnInit {
     /**/
     /*Audio file section upload*/
     getAudiodet($event) {
-	    this.model.file_name = $event.target.files[0];
+      this.uploadVideofile = $event.target.files[0];
+      this.alldata.IspreviewImage= true;
 	 }
     /**/
 
     /*Video file section*/
     getVideodet($event) {
-      this.model.file_name = $event.target.files[0];
+      this.uploadVideofile = $event.target.files[0];
     }
     /**/
+
+    /*Doc/Pdf*/
+    getDocOrPdf($event)
+    {
+      this.uploadVideofile = $event.target.files[0];
+    }
 
 }

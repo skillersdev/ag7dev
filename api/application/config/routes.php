@@ -100,6 +100,7 @@ $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
 $route['uploadcropserviceimage']='Section_controller/uploadcropserviceimage';
 $route['addsectionitem']= 'Sectionitem_controller/addsectionitem';
 $route['sectionitemvideoupload']= 'Sectionitem_controller/uploadsectionitemvideo';
+$route['deletesectionitem/(:num)']= 'Sectionitem_controller/deletesectionitem/$1';
 /*******/
 
 

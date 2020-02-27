@@ -14,6 +14,8 @@ class Sectionitem_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Section Inserted successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
+
+        unset($model->usergroup);  unset($model->user_id); 
         
         $this->db->insert('manage_section_item', $model);
 
@@ -21,7 +23,7 @@ class Sectionitem_controller extends CI_Controller {
         die();       
     }
   
-  public function getsectionlist()
+  public function getsectionitemlist()
   {
      $this->output->set_content_type('application/json');
         $response=array();
@@ -33,19 +35,36 @@ class Sectionitem_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0");
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section_item')." where created_by='".$model->user_id."' AND is_deleted=0");
         }
         /*BY all list*/ 
         else{
-           $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
+           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section_item');
         }
 
         if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)
           {               
+            if($value['media_type']=='1'){
+              $type ="Image";
+            }
+            else if($value['media_type']=='2')
+            {
+              $type ="Video";
+            }else if($value['media_type']=='3')
+            {
+              $type ="Pdf";
+            }
+            else if($value['media_type']=='4')
+            {
+              $type ="Doc";
+            }else if($value['media_type']=='5')
+            {
+              $type ="Audio";
+            }
 
-            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
+            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section_item'=>$value['title'],'description'=>$value['description'],'created_date'=>$value['cdate'],'type'=>$type);
           }
         }else{
             $response['status']="failure";
@@ -101,20 +120,20 @@ class Sectionitem_controller extends CI_Controller {
         } 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
-    public function deletesection($id)
+    public function deletesectionitem($id)
     {
       $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
         
 
-        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$id."' ");
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section_item')." where id='".$id."' ");
         //print_r($res_chk);die;
         if($res_chk->num_rows()>0){
 
             $data=array('is_deleted'=>'1');
             $this->db->where('id',$id);
-            $this->db->update($this->db->dbprefix('manage_section'),$data);
+            $this->db->update($this->db->dbprefix('manage_section_item'),$data);
 
             $response['status']="success";
             $response['message']="section record has been deleted successfully";
@@ -189,6 +208,34 @@ class Sectionitem_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }
+   public function uploadsectionitemvideo()
+   {
+    $path = 'sectionitemvideos/';
+    $Response=[];
+   //print_r($_FILES);die;
+    if (isset($_FILES['file']) && $_FILES['file']) 
+      {
+        $originalName = $_FILES['file']['name'];
+        $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+       
+          $generatedName = md5($_FILES['file']['tmp_name']).$ext;
 
+          $filePath = $path.$generatedName;
+          $product_image=$filePath;
+       
+          if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+          {
+            $Response['status']="success"; 
+            $Response['data']=$product_image;
+          }
+        
+      }
+    else {
+        $Response['status']="fail"; 
+        $Response['data']="Error While upload on image";
+     }
+      echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+     die();
+   }
    
 }

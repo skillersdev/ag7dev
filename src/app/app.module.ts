@@ -196,7 +196,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     HttpModule,
     ImageCropperModule,
     NgxTagsInputModule,
-    UiSwitchModule,
+    UiSwitchModule,    
     DragDropModule
   ],
   providers: [LoginService,CommonService],
