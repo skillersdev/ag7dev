@@ -31,7 +31,7 @@ export class ReordersectionComponent implements OnInit {
  model:any={};
  sectionList:Array<Object>;
   ngOnInit() {
-  	 $('tbody').sortable();
+  	
   	this.model.user_id = localStorage.getItem('currentUserID');
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     
@@ -55,7 +55,7 @@ export class ReordersectionComponent implements OnInit {
   	this.router.navigate(['/editsection', id]);
   }
   drop(event: CdkDragDrop<string[]>) {  	
-    this.model.arraylist= moveItemInArray(this.sectionList, event.previousIndex, event.currentIndex);
+    this.model.arraylist= moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
     console.log(this.model.arraylist);
   }
 
