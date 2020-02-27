@@ -99,7 +99,6 @@ import { EditsectionComponent } from './pages/managesection/editsection/editsect
 import { UiSwitchModule } from 'ngx-toggle-switch';
 import { ReordersectionComponent } from './pages/managesection/reordersection/reordersection.component';
 
-import {TableModule} from 'primeng/table';
 import { ManagesectionitemComponent } from './pages/managesectionitem/managesectionitem.component';
 import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
 import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
@@ -198,7 +197,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ImageCropperModule,
     NgxTagsInputModule,
     UiSwitchModule,
-    TableModule,
     DragDropModule
   ],
   providers: [LoginService,CommonService],
