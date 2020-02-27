@@ -94,6 +94,9 @@ $route['editsection/(:num)'] = 'Section_controller/editsection/$1';
 $route['updatesectiondata'] = 'Section_controller/updatesection';
 $route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
 $route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
+
+$route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
+$route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
 /*******/
 
 

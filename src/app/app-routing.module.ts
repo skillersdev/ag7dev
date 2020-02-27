@@ -84,6 +84,9 @@ import { ManagesectionComponent } from './pages/managesection/managesection.comp
 import { AddsectionComponent } from './pages/managesection/addsection/addsection.component';
 import { EditsectionComponent } from './pages/managesection/editsection/editsection.component';
 import { ReordersectionComponent } from './pages/managesection/reordersection/reordersection.component';
+import { ManagesectionitemComponent } from './pages/managesectionitem/managesectionitem.component';
+import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
+import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
 
 const routes: Routes = [
   {
@@ -409,7 +412,18 @@ component:EditmallproductComponent
     path:'reordersection',
     component:ReordersectionComponent
   },
-  
+   {
+  path:'managesectionitem',
+  component:ManagesectionitemComponent  
+  },
+   {
+    path:'addsectionitem',
+    component:AddsectionitemComponent
+  },
+  {
+    path:'editsectionitem/:id',
+    component:EditsectionitemComponent
+  },
 
 ];
 

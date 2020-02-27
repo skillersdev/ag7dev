@@ -71,6 +71,9 @@ export class AppSettings{
 	public static updateSectiondata= AppSettings.API_BASE+"/updatesectiondata";
 	public static Deletesection = AppSettings.API_BASE+"/deletesection/";
 	public static updateSectionbytoggle= AppSettings.API_BASE+"/updatesectiontoggle";
+
+	public static GetsectionsItemList= AppSettings.API_BASE + "/getsectionitemlist";
+	public static GetsectionsListbyshow= AppSettings.API_BASE + "/getsectionlistbyshow";
 	/**/
 	/*Contacts li*/
 	public static Addcontacts = AppSettings.API_BASE + "/addcontacts";

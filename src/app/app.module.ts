@@ -100,7 +100,10 @@ import { UiSwitchModule } from 'ngx-toggle-switch';
 import { ReordersectionComponent } from './pages/managesection/reordersection/reordersection.component';
 
 import {TableModule} from 'primeng/table';
-
+import { ManagesectionitemComponent } from './pages/managesectionitem/managesectionitem.component';
+import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
+import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -179,7 +182,10 @@ import {TableModule} from 'primeng/table';
     ManagesectionComponent,
     AddsectionComponent,
     EditsectionComponent,
-    ReordersectionComponent
+    ReordersectionComponent,
+    ManagesectionitemComponent,
+    AddsectionitemComponent,
+    EditsectionitemComponent
 	//ImageCropperComponent
   ],
   imports: [
@@ -192,7 +198,8 @@ import {TableModule} from 'primeng/table';
     ImageCropperModule,
     NgxTagsInputModule,
     UiSwitchModule,
-    TableModule
+    TableModule,
+    DragDropModule
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]

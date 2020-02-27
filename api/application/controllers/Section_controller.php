@@ -54,8 +54,41 @@ class Section_controller extends CI_Controller {
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
-    
+  }
+  public function getsectionlistbyshow()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;  
+        $model = json_decode($this->input->post('model',FALSE));
+        /**Get list by user**/
+        if($model->usergroup==2)
+        {
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND Issection_show=1");
+        }
+        /*BY all list*/ 
+        else{
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where Issection_show=1 AND is_deleted=0");
+           // $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
+        }
 
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+
+            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No Service records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
   }
   
    public function editsection($id)
