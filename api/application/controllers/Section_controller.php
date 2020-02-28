@@ -20,7 +20,34 @@ class Section_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();       
     }
-  
+  public function getdefaultsectionlist()
+  {
+    $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;  
+        $model = json_decode($this->input->post('model',FALSE));
+        
+          $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where  is_deleted=0 AND isdefault=1");
+         
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+
+            $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No Service records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
   public function getsectionlist()
   {
      $this->output->set_content_type('application/json');
@@ -33,11 +60,12 @@ class Section_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0");
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND isdefault=0");
         }
         /*BY all list*/ 
         else{
-           $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
+          $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where  is_deleted=0 AND isdefault=0");
+          // $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
         }
 
         if($res->num_rows()>0)
@@ -228,6 +256,62 @@ class Section_controller extends CI_Controller {
           $response['message']="Error while upload on photos";    
       }
        
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+   }
+   public function updatesectionbytoggle()
+   {
+    $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+    
+        if($model->default==1)
+        {
+          $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->secId."' ");
+        //print_r($res_chk);die;
+        if($res_chk->num_rows()>0){
+          if($model->Isshow==1)
+          {
+            $data=array('Issection_show'=>'0');
+          }
+            else{
+            $data=array('Issection_show'=>'1');   
+            }
+            $this->db->where('id',$model->secId );
+            $this->db->update($this->db->dbprefix('manage_section'),$data);
+
+            $response['status']="success";
+            $response['message']="section record has been updated successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+
+        }else{
+          $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->sectionId."' ");
+          //print_r($res_chk);die;
+          if($res_chk->num_rows()>0){
+            if($model->Isshow==1)
+            {
+              $data=array('Issection_show'=>'0');
+            }
+              else{
+              $data=array('Issection_show'=>'1');   
+              }
+              $this->db->where('id',$model->sectionId );
+              $this->db->update($this->db->dbprefix('manage_section'),$data);
+  
+              $response['status']="success";
+              $response['message']="section record has been updated successfully";
+              
+          }else{
+              $response['status']="failure";
+              $response['message']="Invalid Attempt!!.. Access denied..";    
+          }
+        }
+        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }

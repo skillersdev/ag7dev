@@ -18,7 +18,9 @@ export class ManagesectionComponent implements OnInit {
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
  model:any={};
+ allmodel:any={};
  sectionList:Array<Object>;
+ defaultsectionlist:Array<Object>;
   ngOnInit() {
   	this.model.user_id = localStorage.getItem('currentUserID');
     this.model.usergroup=localStorage.getItem('currentUsergroup');
@@ -26,6 +28,11 @@ export class ManagesectionComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.GetsectionsList,this.model)
     .subscribe(resultdata =>{   
       this.sectionList=resultdata.result; 
+    });
+
+    this.CommonService.insertdata(AppSettings.GetDefaultsectionsList,this.model)
+    .subscribe(resultdata =>{   
+      this.defaultsectionlist=resultdata.result; 
     });
   	
    
@@ -86,9 +93,19 @@ export class ManagesectionComponent implements OnInit {
     .subscribe(resultdata =>{   
       this.ngOnInit();
       $('.preloader').hide();
-    });
-  	
+    });  	
  }
-
+ updatesectionDefault(eventValue:any,idx:any)
+ {
+   this.allmodel.section = eventValue;
+   this.allmodel.secId = idx;
+   this.allmodel.default=1;
+   this.allmodel.Isshow = (eventValue==true)?1:0;
+    this.CommonService.insertdata(AppSettings.updateSectionbytoggle,this.allmodel)
+    .subscribe(resultdata =>{   
+      this.ngOnInit();
+      $('.preloader').hide();
+    }); 
+ }
 
 }

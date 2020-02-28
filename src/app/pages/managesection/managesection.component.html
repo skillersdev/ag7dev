@@ -54,6 +54,49 @@
                       </div>
                   </div>
               </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            Default Section     
+                        </h2>
+                    </div>
+                    <div class="body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Section</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               <div class="preloader2 pl-size-xs" style="display:none;">
+                                    <div class="spinner-layer pl-red-grey">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <tr *ngFor="let sdata of defaultsectionlist let ind=index">
+                                    <td>{{ind+1}}</td> 
+                                    <td>{{sdata.section}}</td>                                    
+                                    <td>                                   
+                                      <ui-switch *ngIf="sdata.Issection_show==1" size="small" (change)="updatesectionDefault($event,sdata.id)" [checked]="false"></ui-switch>
+                                      <ui-switch *ngIf="sdata.Issection_show==0" size="small" (change)="updatesectionDefault($event,sdata.id)" checked></ui-switch>
+                                     <!--  <a href="javascript:void(0);" (click)="showorhide(data.id)"><i class="material-icons">show/hide</i></a> -->
+                                  </td>
+                                </tr>                               
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
           </div>
 </section>
