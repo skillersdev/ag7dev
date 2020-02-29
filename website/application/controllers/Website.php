@@ -1,4 +1,9 @@
 <?php
+echo "die";die;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Website extends CI_Controller {
@@ -10,6 +15,45 @@ class Website extends CI_Controller {
 		$data=[];
 		if(isset($websitename))
 		{
+
+			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where website='".$websitename."' AND website='default' AND Issection_show=0 "); 
+			$section_result_array =$Getsection->result_array();
+			echo "<pre>";print_r($section_result_array);die;
+			if(count($section_result_array)>0)
+			{
+				$result=[];
+
+				foreach($section_result_array as $key=>$value)
+		          {
+					$result['section_name']=$value['section_name'];
+
+					$Getsection_item=$this->db->select("*")->where(['section'=>$value['id'],'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');; 
+					$Getsection_item_result_array =$Getsection_item->result_array();
+
+					foreach($Getsection_item_result_array as $key_item=>$item_value)
+		          	{
+						$result[$key]['section_name'] = $value['section_name'];
+						$result[$key]['section_item_id'] = $item_value['id'];
+						$result[$key]['media_type'] = $item_value['media_type'];
+						$result[$key]['title'] = $item_value['title'];
+						$result[$key]['description'] = $item_value['description'];
+						$result[$key]['file_name'] = $item_value['file_name'];
+						$result[$key]['attachment_desc'] = $item_value['attachment_desc'];
+						$result[$key]['preview_file'] = $item_value['preview_file'];
+					}
+
+
+				// 	$result[] = array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image'],
+				// 	'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'long_desc'=>str_replace("\n","",$value['long_desc']),'short_desc'=>str_replace("\n","",$value['short_desc']))
+				//   }
+			}
+
+			echo "<pre>";print_r($result);die;
+
+
+
+
+
 			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
 			$val=$res->result_array();
 			if($val){
@@ -54,6 +98,11 @@ class Website extends CI_Controller {
 			$service_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('services'); 
 			$service_det_result =$service_det->result_array();
 			$serv_result=[];
+
+			
+			
+			
+
 			if(count($service_det_result)>0)
 			{	
 

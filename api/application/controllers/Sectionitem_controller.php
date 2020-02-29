@@ -77,7 +77,7 @@ class Sectionitem_controller extends CI_Controller {
 
   }
   
-   public function editsection($id)
+   public function editsectionitem($id)
     {
         //var_dump($id); die();
         $this->output->set_content_type('application/json');
@@ -85,7 +85,7 @@ class Sectionitem_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
-        $res=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where id='".$id."'");
+        $res=$this->db->query("select * from ".$this->db->dbprefix('manage_section_item')." where id='".$id."'");
 
         if($res->num_rows()>0){
             $in_array=$res->result_array();
@@ -99,7 +99,7 @@ class Sectionitem_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-  public function updatesection() 
+  public function updatesectionItem() 
     {
       $this->output->set_content_type('application/json');
       $response=array('status'=>"success");
@@ -107,7 +107,7 @@ class Sectionitem_controller extends CI_Controller {
 
         if (isset($model)) 
           {
-            $result=$this->db->query("update ".$this->db->dbprefix('manage_section')." set  website='".$model->website."',section_name='".$model->section_name."',long_desc='".$model->long_desc."',Issection_show ='".$model->Issection_show."' where id='".$model->id."'");
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Section has been updated successfully";

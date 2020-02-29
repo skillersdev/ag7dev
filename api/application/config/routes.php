@@ -92,7 +92,9 @@ $route['addsection'] = 'Section_controller/addsection';
 $route['getsectionlist'] = 'Section_controller/getsectionlist';
 $route['getdefaultsectionlist']= 'Section_controller/getdefaultsectionlist';
 $route['editsection/(:num)'] = 'Section_controller/editsection/$1';
+$route['editsectionitem/(:num)']= 'Sectionitem_controller/editsectionitem/$1';
 $route['updatesectiondata'] = 'Section_controller/updatesection';
+$route['updatesectionItem']= 'Sectionitem_controller/updatesectionItem';
 $route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
 $route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
 

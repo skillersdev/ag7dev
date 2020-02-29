@@ -69,7 +69,9 @@ export class AppSettings{
 	public static GetsectionsList= AppSettings.API_BASE + "/getsectionlist";
 	public static GetDefaultsectionsList= AppSettings.API_BASE + "/getdefaultsectionlist";
 	public static FetchSectionData=AppSettings.API_BASE+"/editsection/";
+	public static FetchSectionItemData=AppSettings.API_BASE+"/editsectionitem/";
 	public static updateSectiondata= AppSettings.API_BASE+"/updatesectiondata";
+	public static updatesectionItem= AppSettings.API_BASE+"/updatesectionItem";
 	public static Deletesection = AppSettings.API_BASE+"/deletesection/";
 	public static updateSectionbytoggle= AppSettings.API_BASE+"/updatesectiontoggle";
 
