@@ -763,6 +763,34 @@ public function getgroupsdetails(){
         die();
    }
 
+   public function chatmsgedit(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"message");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die; 
+        $res11=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where id='".$model->id."' ");
+        $response['msg']=$res11->result_array();
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+   public function chatmsgupdate(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"message update successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die; 
+        $result=$this->db->query("update ".$this->db->dbprefix('all_message')." set message='".$model->msgupdate."' where id='".$model->id."'");
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+   
    public function makegroupadmin(){
 
     $this->output->set_content_type('application/json');

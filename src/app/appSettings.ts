@@ -273,6 +273,8 @@ export class AppSettings{
 	public static Malllogin = AppSettings.API_BASE + "/malllogin";
 
 	public static chatmsgdelete = AppSettings.API_BASE + "/chatmsgdelete";
+	public static chatmsgedit = AppSettings.API_BASE + "/chatmsgedit";
+	public static chatmsgupdate = AppSettings.API_BASE + "/chatmsgupdate";	
 	public static makegroupadmin = AppSettings.API_BASE + "/makegroupadmin";
 	
 

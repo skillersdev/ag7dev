@@ -221,6 +221,8 @@ $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
 $route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
 $route['mychatgroup'] = 'Group_controller/mychatgroup';
 $route['chatmsgdelete'] = 'Group_controller/chatmsgdelete';
+$route['chatmsgedit'] = 'Group_controller/chatmsgedit';
+$route['chatmsgupdate'] = 'Group_controller/chatmsgupdate';
 $route['makegroupadmin'] = 'Group_controller/makegroupadmin';
 
 $route['insertalbum'] = 'Gallery_controller/addalbum';
