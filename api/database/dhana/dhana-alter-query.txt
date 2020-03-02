@@ -1,3 +1,6 @@
+01-03-2020
+
+ALTER TABLE `all_message` ADD `admin_normal` INT(10) NOT NULL COMMENT 'admin mem -1,normal mem 0' AFTER `chatimage`;
 
 ----------------
 01/07/2019
