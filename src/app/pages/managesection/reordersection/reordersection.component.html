@@ -9,13 +9,13 @@
                       <div class="header">
                           <h2>
                               Manage Section  Order                                             
-                             <!--  <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">Reorder</button> -->
+                              <button type="button" (click)="savereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">Save order</button>
                                <button type="button" (click)="navigatesection()" class="btn btn-success waves-effect pull-right">Back</button>
                           </h2>
                       </div>
                       <div class="body">
                         <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                          <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+                          <div class="example-box" *ngFor="let data of sectionList" cdkDrag>{{data.section}}</div>
                         </div>
                         
                       </div>

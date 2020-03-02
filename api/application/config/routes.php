@@ -97,6 +97,7 @@ $route['updatesectiondata'] = 'Section_controller/updatesection';
 $route['updatesectionItem']= 'Sectionitem_controller/updatesectionItem';
 $route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
 $route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
+$route['sectionreordersave']= 'Section_controller/sectionreordersave';
 
 $route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
 $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
