@@ -1,7 +1,44 @@
 01-03-2020
+ALTER TABLE `group_master` ADD `showinwebsite` TEXT NOT NULL AFTER `group_code`;
+ALTER TABLE `group_master` CHANGE `showinwebsite` `showinwebsite` INT(10) NOT NULL;
+
  
 ALTER TABLE `all_message` ADD `admin_normal` INT(10) NOT NULL COMMENT 'admin mem -1,normal mem 0' AFTER `chatimage`;
 
 ----------------
 01/07/2019
 ALTER TABLE `group_master` ADD `channelgroup` INT(10) NOT NULL AFTER `group_name`;
+
+
+//dhana
+	$channel_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>1,'showinwebsite'=>1,'is_deleted'=>'0'])->get('group_master'); 
+	$channel_list_query =$channel_list->result_array();
+	$channel_array = array();
+	foreach ($channel_list_query as $key => $value) {
+		$channel_array[$key]['group_name'] = $value['group_name'];
+		$channel_array[$key]['imagename'] = $value['imagename'];
+		$channel_array[$key]['group_code'] = $value['group_code'];
+
+		$mem_channel_list=$this->db->select("id")->where(['group_id'=>$value['id']])->get('group_members'); 
+		$mem_channel_list_query =$mem_channel_list->result_array();
+		$channel_array[$key]['count_mem'] = count($mem_channel_list_query);
+		// print_r(count($mem_channel_list_query)); die;		
+	}
+
+	$group_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>2,'showinwebsite'=>1,'is_deleted'=>'0'])->get('group_master'); 
+	$group_list_query =$group_list->result_array();
+	$group_array = array();
+	foreach ($group_list_query as $key => $value) {
+		$group_array[$key]['group_name'] = $value['group_name'];
+		$group_array[$key]['imagename'] = $value['imagename'];
+		$group_array[$key]['group_code'] = $value['group_code'];
+
+		$mem_group_list=$this->db->select("id")->where(['group_id'=>$value['id']])->get('group_members'); 
+		$mem_group_list_query =$mem_group_list->result_array();
+		$group_array[$key]['count_mem'] = count($mem_group_list_query);
+		// print_r(count($mem_channel_list_query)); die;		
+	}
+	echo "channel:";
+	print_r($channel_array)."<br>";
+	echo "group:";
+	print_r($group_array)."<br>"; die;
