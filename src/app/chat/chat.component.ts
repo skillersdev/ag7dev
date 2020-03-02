@@ -56,6 +56,7 @@ export class ChatComponent implements OnInit {
     this.slideIndex = 1; 
     this.Newgroupmodel.channelgroup=2;
     this.Newgroupmodel.privatepublic=2;
+    this.Newgroupmodel.showinwebsite=0;
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
@@ -368,7 +369,7 @@ export class ChatComponent implements OnInit {
     .subscribe(package_det =>{       
       this.Newgroupmodel.groupname='';
       this.Newgroupmodel.groupimagename='';
-      this.Newgroupmodel.privatepublic='';       
+      this.Newgroupmodel.privatepublic=2;       
       
         this.getgrouplists();
         swal('','Group Created Successfully','success');  
