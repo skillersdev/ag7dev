@@ -21,6 +21,7 @@ export class ReordersectionComponent implements OnInit {
  model:any={};
  movies:Array<Object>;
  sectionList:Array<Object>;
+ select:any;
   ngOnInit() {
   	
   	this.model.user_id = localStorage.getItem('currentUserID');

@@ -27,6 +27,7 @@ export class EditsectionitemComponent implements OnInit {
   private sub: any;
   model: any = {};
   alldata:any={};
+  select:any;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   id:any;
   ServicePreviewimageChangedEvent:any={};

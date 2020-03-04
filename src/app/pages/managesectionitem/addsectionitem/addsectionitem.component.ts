@@ -24,6 +24,7 @@ export class AddsectionitemComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
   model:any={};
   alldata:any={};
+  select:any;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   websitelist:Array<Object>;
   sectionlist:Array<Object>;
