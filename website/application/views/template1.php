@@ -353,6 +353,109 @@ $last_slider_image = end($slider_image);
 	
     <?php } ?>
 
+    <?php if(count($channel_array)>0){ ?>
+    <section id="videosection1" class="section-with-bg wow fadeInUp">
+
+<div class="container">
+  <div class="section-header">
+    <h2>My Channel</h2>
+    
+  </div>
+
+  <div class="row">
+    <?php 
+
+    for($mv=0;$mv<count($channel_array);$mv++)
+    {
+      $group_name = $channel_array[$mv]['group_name'];
+      $group_code = $channel_array[$mv]['group_code'];
+      $count_mem = $channel_array[$mv]['count_mem'];
+      $image = $path_url.$channel_array[$mv]['imagename'];
+    ?>
+    <div class="col-lg-3 col-md-3">
+
+      <div class="hotel">
+  <div class="hotel-img">
+  <?php echo '<img src="'.$image.'" class="img-fluid">'; ?>
+   
+  </div>
+  <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+  <?php 
+  if($group_name!=""){
+    echo "<p>Group Name : ".$group_name."</p>"; 
+  }
+  if($count_mem!=""){
+    ?>
+    <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                  
+                  <?php
+    echo "<span>".$count_mem."</span>"; 
+  }
+  ?>
+ 
+</div>
+
+    </div>
+  <?php } ?>
+
+
+  </div>
+</div>
+
+</section>
+<?php } ?>
+<?php if(count($group_array)>0){ ?>
+<section id="videosection2" class="section-with-bg wow fadeInUp">
+
+<div class="container">
+  <div class="section-header">
+    <h2>My Group</h2>
+    
+  </div>
+
+  <div class="row">
+    <?php 
+
+    for($mv=0;$mv<count($group_array);$mv++)
+    {
+      $group_name = $group_array[$mv]['group_name'];
+      $group_code = $group_array[$mv]['group_code'];
+      $count_mem = $group_array[$mv]['count_mem'];
+      $image = $path_url.$group_array[$mv]['imagename'];
+    ?>
+    <div class="col-lg-3 col-md-3">
+
+      <div class="hotel">
+  <div class="hotel-img">
+  <a target="_blank" href="https://roodabatoz.com/chat"><?php echo '<img src="'.$image.'" class="img-fluid">'; ?></a>
+   
+  </div>
+  <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+  <?php 
+  if($group_name!=""){
+    echo "<p>Group Name : ".$group_name."</p>"; 
+  }
+  if($count_mem!=""){
+    ?>
+    <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                  
+                  <?php
+    echo "<span>".$count_mem."</span>"; 
+  }
+  ?>
+ 
+</div>
+
+    </div>
+  <?php } ?>
+
+
+  </div>
+</div>
+
+</section>
+<?php } ?>
+
 
   <!--==========================
     Footer
