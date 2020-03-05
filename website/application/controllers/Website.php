@@ -147,7 +147,7 @@ class Website extends CI_Controller {
 				$channel_array = array();
 				foreach ($channel_list_query as $key => $value) {
 					$channel_array[$key]['group_name'] = $value['group_name'];
-					$channel_array[$key]['imagename'] = $value['imagename'];
+					$channel_array[$key]['imagename'] = "group_images/".$value['imagename'];
 					$channel_array[$key]['group_code'] = $value['group_code'];
 
 					$mem_channel_list=$this->db->select("id")->where(['group_id'=>$value['id']])->get('group_members'); 
@@ -161,7 +161,7 @@ class Website extends CI_Controller {
 				$group_array = array();
 				foreach ($group_list_query as $key => $value) {
 					$group_array[$key]['group_name'] = $value['group_name'];
-					$group_array[$key]['imagename'] = $value['imagename'];
+					$group_array[$key]['imagename'] = "group_images/".$value['imagename'];
 					$group_array[$key]['group_code'] = $value['group_code'];
 
 					$mem_group_list=$this->db->select("id")->where(['group_id'=>$value['id']])->get('group_members'); 
