@@ -215,7 +215,7 @@ export class ChatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // this.refreshData();
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
@@ -238,6 +238,8 @@ export class ChatComponent implements OnInit {
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 
             this.Newgroupmodel.admin_normal=resultdata.admin_normal;
+            this.Newgroupmodel.showinwebsite=resultdata.group_details[0].showinwebsite;
+            
             
             $('.message-area').addClass('d-sm-flex');
           }
@@ -270,6 +272,7 @@ export class ChatComponent implements OnInit {
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 
             this.Newgroupmodel.admin_normal=resultdata.admin_normal;
+            this.Newgroupmodel.showinwebsite=resultdata.group_details[0].showinwebsite;
             
             $('.message-area').addClass('d-sm-flex');
           }
@@ -313,6 +316,7 @@ export class ChatComponent implements OnInit {
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 
             this.Newgroupmodel.admin_normal=resultdata.admin_normal;
+            this.Newgroupmodel.showinwebsite=resultdata.group_details[0].showinwebsite;
             
             $('.message-area').addClass('d-sm-flex');
           }
@@ -324,6 +328,7 @@ export class ChatComponent implements OnInit {
   }
   updategroup()
   {
+    this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.updategroup,this.Newgroupmodel)
     .subscribe(package_det =>{     
       this.generateMessageArea(this.Newgroupmodel.g_id);
@@ -365,6 +370,7 @@ export class ChatComponent implements OnInit {
   addgroup()
   {
   this.Newgroupmodel.g_id='';
+  this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{       
       this.Newgroupmodel.groupname='';
