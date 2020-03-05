@@ -111,7 +111,7 @@ class Website extends CI_Controller {
 
 			/*******Section And Section Item Query************/
 
-			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where website='".$websitename."' OR website='default' AND Issection_show=0 "); 
+			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where website='".$websitename."' OR website='default' AND Issection_show=0 ORDER BY section_order ASC"); 
 			$section_result_array =$Getsection->result_array();
 			//echo "<pre>";print_r($section_result_array);die;
 			if(count($section_result_array)>0)

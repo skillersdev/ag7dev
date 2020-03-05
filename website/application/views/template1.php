@@ -685,7 +685,7 @@
               <h2><?php echo $key;?></h2>
 
               <!-- Modal -->
-              <div class="modal fade" id="myModal2" role="dialog">
+              <div class="modal fade" id="myModal_section" role="dialog">
                 <div class="modal-dialog  modal-lg">   
                   <div class="modal-content">           
                     <div class="modal-header">
@@ -708,7 +708,7 @@
             </div>
          
           <!-- Modal -->
-          <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal fade" id="myModal_section" role="dialog">
             <div class="modal-dialog  modal-lg">          
               <!-- Modal content-->
               <div class="modal-content">           
@@ -755,7 +755,7 @@
                   <div class="hotel">
                     <div class="hotel-img">
                      <?php 
-                       echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
+                       echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
                       ?>
                     </div>
                     <h3><?php echo $child_value['title'];?></h3>              
