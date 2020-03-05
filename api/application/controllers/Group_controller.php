@@ -16,7 +16,8 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Group added successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-      //   print_r($model); die;
+        
+        
         $length=10;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -25,8 +26,12 @@ class Group_controller extends CI_Controller {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         // echo $randomString; die;channelgroup
-      
-        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,channelgroup,group_code,imagename,private_public,created_by) values ('".$model->groupname."','".$model->channelgroup."','".$randomString."','".$model->groupimagename."','".$model->privatepublic."','".$model->currentUserID."')");
+        if($model->showinwebsite==1 || $model->showinwebsite==true){
+          $showinwebsite=1;
+        }else{
+          $showinwebsite=0;
+        }
+        $group_id=$this->db->query("insert into ".$this->db->dbprefix('group_master')." (group_name,channelgroup,group_code,imagename,private_public,showinwebsite,created_by) values ('".$model->groupname."','".$model->channelgroup."','".$randomString."','".$model->groupimagename."','".$model->privatepublic."','".$showinwebsite."','".$model->currentUserID."')");
         $g_id = $this->db->insert_id();
         // (`id`, `group_name`, `private_public`, `created_by`, `created_date`, `is_deleted`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])
        
@@ -59,8 +64,13 @@ class Group_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         // print_r($model); die;
-       
-         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."' where id='".$model->g_id."'");
+        if($model->showinwebsite==1 || $model->showinwebsite==true){
+          $showinwebsite=1;
+        }else{
+          $showinwebsite=0;
+        }
+        // echo "update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."',showinwebsite='".$showinwebsite."' where id='".$model->g_id."'"; die;
+         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."',showinwebsite='".$showinwebsite."' where id='".$model->g_id."'");
 
         $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
         foreach ($model->userselectedItems as $key => $value) {
