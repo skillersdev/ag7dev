@@ -191,6 +191,7 @@ class Website extends CI_Controller {
 			$data['website']=$val[0]['website'];
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
+			$data['websitename']=$websitename;
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');
@@ -215,7 +216,7 @@ class Website extends CI_Controller {
 		}
 		else
 		{
-			$this->load->view('template1');	
+			$this->load->view('template1',$data);	
 		}
 		
 		
@@ -466,4 +467,36 @@ class Website extends CI_Controller {
 			
 		}
 	}
+	
+	
+	public function addwebsitefollow()
+	{
+		//$model = json_decode($this->input->post('model',FALSE));
+		if(isset($_POST['websitename'])){
+		  $response['exist']=0;
+	      $website = $_POST['websitename'];
+	      $datastype = $_POST['datastype'];
+	      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages')->result_array();
+
+	      if(count($res)>0)
+	      {  
+				
+			 $follow=$res['total_follows']+1;		
+			 $data=array('total_follows'=>$follow);
+			 $this->db->where('website',$website);
+			 $this->db->update($this->db->dbprefix('user_vs_packages'),$data);
+			 $response['totalfollow']=$follow;
+	       
+	      }
+	      echo json_encode($response,JSON_UNESCAPED_SLASHES);
+	      die();
+		}else{
+			 $response['totalfollow']=0;
+			 echo json_encode($response,JSON_UNESCAPED_SLASHES);
+	      die();
+		}
+	      
+	}
+	
+	
 }

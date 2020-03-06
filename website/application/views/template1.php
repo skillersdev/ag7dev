@@ -216,7 +216,25 @@
             </a>
           </div>           
           <div class="col-lg-6">
-            <h2>About Me</h2>
+		 
+            <h2>About Me 
+			</h2>
+			<!-- follow like view button code starts here-->
+			<?php if($websitename !=''){ ?>
+				<p>
+					<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+					  Follows <span class="badge badge-light" id="totalfollow">4</span>
+					</button>
+					<button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+					  Like <span class="badge badge-light" id="totallike">4</span>
+					</button>
+					<button type="button" class="btn btn-primary" >
+					  View <span class="badge badge-light" id="totalview">4</span>
+					</button>
+				</p>
+			<?php } ?>
+			<!-- follow like view button code ends here-->
+			
             <?php
               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
             ?>
