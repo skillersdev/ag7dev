@@ -1958,6 +1958,16 @@
   .bg-deep-orange .content .number {
     color: #fff !important; }
 
+
+    .bg-deep-red {
+      background-color: #ff2822 !important;
+      color: #fff;
+    }
+    .bg-deep-red .content .text,
+  .bg-deep-red .content .number {
+    color: #fff !important; }
+
+
 .bg-brown {
   background-color: #795548 !important;
   color: #fff; }

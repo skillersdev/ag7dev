@@ -140,3 +140,7 @@
 }
 
 #floatingRectangle{display: none !important;}
+
+.message-item.self{width:100%; float:right;}
+
+.chat-wrapp{overflow-x:hidden;}

@@ -135,7 +135,7 @@
 </style>
 </head>
  
-<body style="font-size: 16px !important;">
+<body style="font-size: 16px !important;" class="chat-wrapp">
 	
 	<div class="container-fluid" id="main-container">
 
@@ -685,9 +685,20 @@
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
-						<div class="options">
-							<a href="javascript:void(0);"><i class="fas fa-angle-down text-muted px-2"></i></a>
+						
+						<!-- toggle edit,delete dropdown code starts here-->
+						<div class="options " *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" >
+							<a href="javascript:void(0);"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-angle-down text-muted px-2"></i></a>
+
+							<div class="dropdown-menu dropdown-menu-right" >
+								<a class="dropdown-item"  data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" href="#">Edit</a>
+								<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" href="#">Delete</a>
+								
+							</div>
+							
 						</div>
+						<!-- toggle edit,delete dropdown code ends here-->
+
 						
 						<div  *ngIf="group_name!=0" class="small font-weight-bold text-primary">
 							{{data.user_name}}
@@ -695,7 +706,9 @@
 					
 						<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="d-flex flex-row">
 							
-							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}<i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i></div>
+							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}
+								<!-- <i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i> -->
+							</div>
 							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}"  class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
 							<video *ngIf="data.video_type==1" width="320" height="240" controls>
 							  <source src="{{group_bases}}groupchat_images/{{data.chatimage}}" type="video/mp4">
@@ -709,7 +722,8 @@
 							<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:140px;">
 								{{data.created_date | date:'hh:mm a'}}
 								<!-- <i class="far fa-check-circle"></i> -->
-							</div><i  (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i>
+							</div>
+							<!-- <i  (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
 						</div>
 
 						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)" class="d-flex flex-row">
@@ -745,8 +759,11 @@
 					<a *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" href="javascript:void(0);"
 					id="my-button" (click)="chatimageclick()"  > <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;" ></i></a>
 					<!-- (click)="chatimage.click()"  -->
+					
+					<input contentEditable="true" *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+
 					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
-					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
 					 <input type="file" id="fupload" accept="image/*" #file>
@@ -756,10 +773,14 @@
 
 					-->
 
+					
+
 
 					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage >
 					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
 				</div>
+
+				
 			</div>
 		</div>
 	</div>

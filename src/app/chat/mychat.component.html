@@ -635,8 +635,10 @@ img {vertical-align: middle;}
 					<a *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" (click)="chatimageclick()" href="javascript:void(0);"
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
-					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
+					
 					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+
+					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
 					 <input type="file" id="fupload" accept="image/*" #file>

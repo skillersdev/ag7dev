@@ -510,8 +510,11 @@ img {vertical-align: middle;}
 					<a  href="javascript:void(0);" (click)="chatimageclick()"
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
-					<i  class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
+					
 					<input  name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+
+					<i  class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
+					
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
 					 <input type="file" id="fupload" accept="image/*" #file>

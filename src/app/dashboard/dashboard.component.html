@@ -155,10 +155,26 @@
                         </div>
                         </a>
                     </div> -->
+
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="javascript:void(0);"  data-toggle="modal" data-target="#myModalchangelanguage">
+                        <div class="info-box-3 bg-orange hover-zoom-effect">
+                            <div class="icon">
+                                <i class="material-icons">language</i>
+                            </div>
+                            <div class="content">
+                                <h5>Change Language</h5>
+                            </div>
+                        </div>
+                        </a>
+                    </div> 
+                  
+
                 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a href="javascript:void(0);" [routerLink]="['/']">
-                            <div class="info-box-3 bg-orange hover-zoom-effect">
+                            <div class="info-box-3  bg-deep-orange hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons">power_settings_new</i>
                                 </div>
@@ -168,6 +184,8 @@
                             </div>
                             </a>
                         </div>
+
+                        
 
 
             </div>
@@ -253,7 +271,6 @@
             <div class="row clearfix">
                 <!-- Task Info -->
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
                     <!-- <div class="card"> 
                         <div class="header">
                             <h2>Change Language</h2>
@@ -390,6 +407,12 @@
                                              <td *ngIf="data.status=='Expired'">
                                                 <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="label bg-orange">Expired</span></a>
                                             </td>
+
+                                            <td *ngIf="data.status=='Renewal'">
+                                                <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="label bg-orange">Expired</span></a>
+                                            </td>
+                                            
+
                                             <td>
                                                 <a href="{{websiteurl}}/{{data.website}}" target="_blank" (click)="userweb(data.website)">{{data.website}}</a>
                                             </td>
