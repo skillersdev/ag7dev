@@ -19,7 +19,7 @@ import { Injectable } from '@angular/core';
   templateUrl: './mychat.component.html',
   styleUrls: ['./style.css']
 })
-
+ 
 export class MychatComponent implements OnInit {
   currentUser:any;
   currentUserID:any;
@@ -87,9 +87,9 @@ export class MychatComponent implements OnInit {
     this.getuserlists();
     this.Newgroupmodel.g_id=''; 
     
-    // this.interval = setInterval(() => { 
-    //   this.getgrouplists();
-    // }, 15000);
+    this.interval = setInterval(() => { 
+      this.getgrouplists();
+    }, 25000);
 
     // this.selectedItems = [
     //   { Id: 3, username: 'Pune' },
@@ -207,7 +207,7 @@ export class MychatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    // this.refreshData();
+    this.refreshData();
     this.CommonService.insertdata(AppSettings.mychatgroup,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;

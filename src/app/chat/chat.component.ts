@@ -194,7 +194,7 @@ export class ChatComponent implements OnInit {
     $('.chat-list').addClass('d-flex');
     $('.message-area').addClass('d-none');
     
-  } 
+  }  
   generateMessageArea(g_id){
   
   if($(window).width() > 450){
