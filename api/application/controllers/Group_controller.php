@@ -270,10 +270,21 @@ class Group_controller extends CI_Controller {
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
 
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
              $msg_group_array1 = array();
              $datearray =array();
-             $msg_group_array=$msg_group_sql->result_array(); 
+
+
+             $group_sql1=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='".  $model->currentUserID."'  and  is_deleted='0' and private_public=3");
+             $login_group_array1=$group_sql1->result_array(); 
+
+
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+             $msg_group_array1=$msg_group_sql->result_array(); 
+
+             $other_msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $login_group_array1[0]['id']."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+             $other_msg_group_array=$other_msg_group_sql->result_array(); 
+
+             $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
 
              foreach ($msg_group_array as $msg_key => $msg_value) {
 
@@ -497,10 +508,11 @@ public function getgroupsdetails(){
             ->get('group_master');
           }
             $group_array=$group_sql->result_array(); 
-            // print_r($group_array); die;
+           $ss=  array_map("unserialize", array_unique(array_map("serialize", $group_array)));;
+           
             //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
             //   $group_array=$group_sql->result_array(); 
-              $response['result']=$group_array;
+              $response['result']=$ss;
            echo json_encode($response,JSON_UNESCAPED_SLASHES);
            die();
         
@@ -526,9 +538,24 @@ public function getgroupsdetails(){
         //  ->where('group_members.is_deleted', '0')
          ->group_by('group_master.id')
          ->get('group_master');
-
+         
+         $group_array=$group_sql->result_array();
      } else {
-       
+      $login_group_array1=array();
+      $login_group_sql=$this->db->query("select id from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='3' and  is_deleted='0'");
+      $login_group_array=$login_group_sql->result_array(); 
+      if(count($login_group_array)>0){
+        $login_group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
+         ->join('all_message', 'all_message.created_by=group_master.created_by', 'left')
+         ->where('all_message.group_id', $login_group_array[0]['id'])
+          ->where('group_master.private_public', '3')
+         ->where('group_master.is_deleted', '0')
+         ->where('all_message.is_deleted', '0')
+         ->group_by('group_master.id')
+         ->get('group_master');
+         $login_group_array1=$login_group_sql->result_array();
+        //  print_r($login_group_array1); die;
+      }
       $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
          ->join('all_message', 'all_message.group_id=group_master.id', 'left')
          ->where('all_message.created_by', $model->currentUserID)
@@ -537,8 +564,13 @@ public function getgroupsdetails(){
          ->where('all_message.is_deleted', '0')
          ->group_by('group_master.id')
          ->get('group_master');
+         $group_array1=$group_sql->result_array();
+
+         $ss = array_merge($group_array1,$login_group_array1);
+        $group_array =  array_map("unserialize", array_unique(array_map("serialize", $ss)));;
+       
        }
-         $group_array=$group_sql->result_array(); 
+        //  $group_array=$group_sql->result_array(); 
          // print_r($group_array); die;
          //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
          //   $group_array=$group_sql->result_array(); 
