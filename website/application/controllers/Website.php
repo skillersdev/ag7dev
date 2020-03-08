@@ -2,12 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Website extends CI_Controller {
+	public $global_website;
 
 	
 	public function index($websitename)
 	{
 		
 		$data=[];
+		$this->global_website=$websitename;
 		if(isset($websitename))
 		{
 			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
@@ -192,6 +194,9 @@ class Website extends CI_Controller {
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			$data['websitename']=$websitename;
+			$data['total_follows'] = $val[0]['total_follows'];
+			$data['total_views'] = $val[0]['total_views'];
+			$data['total_likes'] = $val[0]['total_likes'];
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');
@@ -472,24 +477,40 @@ class Website extends CI_Controller {
 	public function addwebsitefollow()
 	{
 		//$model = json_decode($this->input->post('model',FALSE));
-		if(isset($_POST['websitename'])){
-		  $response['exist']=0;
-	      $website = $_POST['websitename'];
-	      $datastype = $_POST['datastype'];
-	      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages')->result_array();
-
+		if(isset($_POST['website'])){
+		  //$response['exist']=0;
+	      $website = (isset($_POST['website']))?$_POST['website']:$this->global_website;
+	      $datastype = $_POST['type'];
+	      $res=$this->db->select("*")->where(['website'=>$website])->get('user_vs_packages')->result_array();
+	     // print_r($res);die;
 	      if(count($res)>0)
 	      {  
-				
-			 $follow=$res['total_follows']+1;		
-			 $data=array('total_follows'=>$follow);
+			if($datastype=='follow')
+			{
+				$follow=$res[0]['total_follows']+1;		
+			 	$data=array('total_follows'=>$follow);
+			 	$response['totalfollow']=$follow;
+			}
+			elseif ($datastype=='like') 
+			{
+				$likes=$res[0]['total_likes']+1;		
+			 	$data=array('total_likes'=>$likes);
+			 	$response['totallikes']=$likes;
+			}
+			elseif ($datastype=='views') 
+			{
+				$views=$res[0]['total_views']+1;		
+			 	$data=array('total_views'=>$views);
+			 	$response['totalviews']=$views;
+			}	
+			//print_r($data);die;
 			 $this->db->where('website',$website);
 			 $this->db->update($this->db->dbprefix('user_vs_packages'),$data);
-			 $response['totalfollow']=$follow;
-	       
+			 
+	       echo json_encode($response);
+	       die;
 	      }
-	      echo json_encode($response,JSON_UNESCAPED_SLASHES);
-	      die();
+	      
 		}else{
 			 $response['totalfollow']=0;
 			 echo json_encode($response,JSON_UNESCAPED_SLASHES);

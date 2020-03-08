@@ -1,3 +1,16 @@
+<style>
+.custom-switches {
+  .switch {
+    background: #fb6542;
+    small {
+      background: #375e97;
+    }
+    &.checked {
+      background: #3f681c;
+    }
+  }
+}
+</style>
 <app-topnav></app-topnav>
 <app-sidemenu></app-sidemenu> 
 
@@ -42,8 +55,8 @@
                                       <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>
-                                        <ui-switch *ngIf="data.Issection_show==1" size="small" (change)="updatesectionData($event,data.id)" [checked]="false"></ui-switch>
-                                        <ui-switch *ngIf="data.Issection_show==0" size="small" (change)="updatesectionData($event,data.id)" checked></ui-switch>
+                                        <ui-switch *ngIf="data.Issection_show==1" size="small" (change)="updatesectionData($event,data.id)" [checked]="false" checkedLabel="show"></ui-switch>
+                                        <ui-switch *ngIf="data.Issection_show==0" size="small" (change)="updatesectionData($event,data.id)" checked uncheckedLabel="hide"></ui-switch>
                                        <!--  <a href="javascript:void(0);" (click)="showorhide(data.id)"><i class="material-icons">show/hide</i></a> -->
                                     </td>
                                   </tr>

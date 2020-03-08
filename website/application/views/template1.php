@@ -223,13 +223,14 @@
 			<?php if($websitename !=''){ ?>
 				<p>
 					<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
-					  Follows <span class="badge badge-light" id="totalfollow">4</span>
+					  Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
 					</button>
 					<button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
-					  Like <span class="badge badge-light" id="totallike">4</span>
+					  Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
 					</button>
 					<button type="button" class="btn btn-primary" >
-					  View <span class="badge badge-light" id="totalview">4</span>
+					  View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+            <input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
 					</button>
 				</p>
 			<?php } ?>
@@ -255,6 +256,7 @@
             <div class="section-header">
               <h2>My Contact</h2>
               <p><?php echo $website;?></p>
+              <inp
             </div>
             <div class="row contact-info">
               <div class="col-md-3">
@@ -943,6 +945,24 @@
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url();?>/assets/js/main.js"></script>
   <script>
+    $(document).ready(function(){
+     // $("#totalview").click(function(){
+        var web = $('#viewweb').val();
+        //alert(web);
+         $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/addwebsitefollow"); ?>',
+          data:{'website':web,'type':'views'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#totalview').html(data.totalviews);
+          }
+        });
+     // })
+      
+    });
+
+
     $("#likesT").click(function() {      
       var id = $('#product_id1').val();
         $.ajax({
@@ -1134,6 +1154,24 @@
 
   function currentSlide(n) {
     showSlides(slideIndex = n);
+  }
+  function flvwebsite(website,type)
+  {
+    $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/addwebsitefollow"); ?>',
+          data:{'website':website,'type':type},
+           dataType:"JSON",                
+          success:function(data){ 
+          if(type=='like')  
+          {
+              $('#totallike').html(data.totallikes);
+          } else{
+            $('#totalfollow').html(data.totalfollow);
+          }             
+              
+          }
+      });
   }
 
   function showSlides(n) {
