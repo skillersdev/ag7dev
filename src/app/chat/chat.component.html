@@ -679,13 +679,25 @@
 							</div>
 						</div>
 					</div> -->
-					 
+					 <style>
+
+.message-item.self{width: 100% ; float:right;     max-width: fit-content;}
+
+.message-item.align-self-start{float: left; clear: both;}
+.message-item.align-self-start .in-msg{float: right;
+    width: 100%;
+    max-width: 100%;}
+.message-item.align-self-end{float: right; clear: right;}
+.message-item.align-self-start .in-msg{float: left;
+    width: 100%;
+    max-width: 100%;}
+					 </style>
 					
 					<div  *ngFor="let data of group_msg_model[datedata] let i=index"   [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
-						
+						<div class="in-msg">
 						<!-- toggle edit,delete dropdown code starts here-->
 						<div class="options " *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" >
 							<a href="javascript:void(0);"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-angle-down text-muted px-2"></i></a>
@@ -746,6 +758,7 @@
 								</div><i *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i>
 							</div>
 					</div>
+				</div>
 				</div>
 					<!-- date array -->
 

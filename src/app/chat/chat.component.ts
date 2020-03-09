@@ -215,7 +215,7 @@ export class ChatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // this.refreshData();
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
