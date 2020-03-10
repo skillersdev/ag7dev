@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient} from  '@angular/common/http';
 
 declare var $ :any;
-
+windowHeight:any;
 
 @Injectable()
 export class LoginService {
@@ -110,6 +110,20 @@ export class LoginService {
     $('#my-button').click(function(){
       alert("test here");
       $('#my-file').click();
+    });
+  }
+
+  loadmsgscreenadjustable(){
+    $(document).ready(function() {
+         
+      
+      $(window).resize(function() {
+        this.windowHeight = $(window).innerHeight();
+        $('#messages').css('min-height', this.windowHeight);
+      });
+      
+     
+       
     });
   }
 
