@@ -81,6 +81,25 @@
           
           .goog-tooltip skiptranslate {visibility: hidden !important}
       </style>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    function setHeight() {
+      windowHeight = $(window).innerHeight();
+      $('.message-area').css('min-height', windowHeight);
+    };
+    setHeight();
+    
+    $(window).resize(function() {
+      setHeight();
+    });
+    
+   
+     
+  });
+  
+  </script>
   
 
 </head>
