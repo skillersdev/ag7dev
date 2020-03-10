@@ -14,6 +14,12 @@ class Website extends CI_Controller {
 		{
 			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
 			$val=$res->result_array();
+
+			$web_follow_log=$this->db->select("*")->where(['website'=>$websitename,'action'=>'follow'])->get('website_logs');
+			$web_follow_count=$web_follow_log->result_array();
+
+			$web_like_log=$this->db->select("*")->where(['website'=>$websitename,'action'=>'like'])->get('website_logs');
+			$web_like_count=$web_like_log->result_array();
 			if($val){
 
 			
@@ -194,9 +200,9 @@ class Website extends CI_Controller {
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			$data['websitename']=$websitename;
-			$data['total_follows'] = $val[0]['total_follows'];
+			$data['total_follows'] = $web_follow_count[0]['count'];
 			$data['total_views'] = $val[0]['total_views'];
-			$data['total_likes'] = $val[0]['total_likes'];
+			$data['total_likes'] = $web_like_count[0]['count'];
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');
@@ -487,15 +493,72 @@ class Website extends CI_Controller {
 	      {  
 			if($datastype=='follow')
 			{
-				$follow=$res[0]['total_follows']+1;		
-			 	$data=array('total_follows'=>$follow);
+				$today =date("Y-m-d");
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+
+				$web_log=$this->db->select("*")->where(['website'=>$website,'action'=>$datastype])->get('website_logs')->result_array();
+				//print_r(count($web_log));die;
+
+				if(count($web_log)==0)
+				{		
+
+					$this->db->query("insert into ".$this->db->dbprefix('website_logs')." 
+                    (action,website,ip_address,created_date,count) values('follow','".$website."','".$ip_address."','".$today."','1')");	
+
+					$follow=1;		
+				 	$data=array('total_follows'=>$follow);					
+				}
+				else{
+					
+					$web_log_with_date=$this->db->query("select * from ".$this->db->dbprefix('website_logs')." where website='".$website."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND action='".$datastype."' ");
+					
+					if($web_log_with_date->num_rows()==0)
+					{
+						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today);
+			             $this->db->where('id',$web_log[0]['id']);
+			             $this->db->update($this->db->dbprefix('website_logs'),$data);
+			             $follow=$web_log[0]['count']+1;
+					}else{
+						$follow=$web_log[0]['count'];
+					}
+				}
+
 			 	$response['totalfollow']=$follow;
+				
 			}
 			elseif ($datastype=='like') 
 			{
-				$likes=$res[0]['total_likes']+1;		
-			 	$data=array('total_likes'=>$likes);
-			 	$response['totallikes']=$likes;
+				$today =date("Y-m-d");
+				$ip_address = $_SERVER['REMOTE_ADDR'];
+
+				$web_log=$this->db->select("*")->where(['website'=>$website,'action'=>$datastype])->get('website_logs')->result_array();
+				//print_r(count($web_log));die;
+
+				if(count($web_log)==0)
+				{		
+
+					$this->db->query("insert into ".$this->db->dbprefix('website_logs')." 
+                    (action,website,ip_address,created_date,count) values('like','".$website."','".$ip_address."','".$today."','1')");	
+
+					$follow=1;		
+				 	$data=array('total_likes'=>$follow);					
+				}
+				else{
+					
+					$web_log_with_date=$this->db->query("select * from ".$this->db->dbprefix('website_logs')." where website='".$website."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND action='".$datastype."' ");
+
+					if($web_log_with_date->num_rows()==0)
+					{
+						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today);
+			             $this->db->where('id',$web_log[0]['id']);
+			             $this->db->update($this->db->dbprefix('website_logs'),$data);
+			             $follow=$web_log[0]['count']+1;
+					}else{
+						$follow=$web_log[0]['count'];
+					}
+				}
+
+			 	$response['totallikes']=$follow;
 			}
 			elseif ($datastype=='views') 
 			{
@@ -504,8 +567,8 @@ class Website extends CI_Controller {
 			 	$response['totalviews']=$views;
 			}	
 			//print_r($data);die;
-			 $this->db->where('website',$website);
-			 $this->db->update($this->db->dbprefix('user_vs_packages'),$data);
+			 // $this->db->where('website',$website);
+			 // $this->db->update($this->db->dbprefix('user_vs_packages'),$data);
 			 
 	       echo json_encode($response);
 	       die;
