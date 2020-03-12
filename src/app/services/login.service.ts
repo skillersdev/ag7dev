@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { HttpClient} from  '@angular/common/http';
 
 declare var $ :any;
-windowHeight:any;
+
 
 @Injectable()
 export class LoginService {
-
+  windowHeight:any;
   constructor(private _http: HttpClient,private router: Router) { }
 
   //check user login from API

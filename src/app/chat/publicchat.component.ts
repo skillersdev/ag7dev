@@ -67,6 +67,7 @@ export class PublicchatComponent implements OnInit {
     //this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.loginService.viewsUploadoption();
+    this.loginService.loadmsgscreenadjustable();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
 

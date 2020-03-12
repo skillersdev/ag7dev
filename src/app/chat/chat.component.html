@@ -180,13 +180,13 @@
 							</div>
 						</div>
 
-						<div class="form-group m-b-0">
+						<!-- <div class="form-group m-b-0">
 							<div class="form-line radio-btns">
 								<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="Newgroupmodel.showinwebsite==1"  />
 								<label for="showinwebsite" class="m-r-3">Show in website</label>&nbsp;
 							</div>
 							 
-						</div>
+						</div> -->
 
 						<div class="form-group m-b-0">
 							<div class="form-line ">
@@ -263,8 +263,14 @@
 						</div>
 						<div class="form-group m-b-0">
 							<div class="form-line radio-btns">
-								<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="Newgroupmodel.showinwebsite==1"  />
-								<label for="showinwebsite" class="m-r-3">Show in website</label>&nbsp;
+								<label>Show in Website</label>
+								<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="radio" id="channel1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.showinwebsite==1" value="1" />
+								<label for="channel1" class="m-r-3">Yes</label>&nbsp;
+								<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="radio" id="group1" class="with-gap radio-col-grey" [checked]="Newgroupmodel.showinwebsite==0" value="0" />
+								<label for="group1">No</label>
+								<!-- <input *ngIf="Newgroupmodel.showinwebsite==1" name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="true"  />
+								<input *ngIf="Newgroupmodel.showinwebsite!=1" name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="false"  />
+								<label for="showinwebsite" class="m-r-3">Show in website</label>&nbsp; -->
 							</div>
 						</div>
 						<div class="form-group m-b-0">
@@ -703,8 +709,21 @@
 							<a href="javascript:void(0);"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-angle-down text-muted px-2"></i></a>
 
 							<div class="dropdown-menu dropdown-menu-right" >
-								<a class="dropdown-item"  data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" href="#">Edit</a>
-								<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" href="#">Delete</a>
+								<a class="dropdown-item"  data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a>
+								<a class="dropdown-item"  (click)="msgdeletefun(data.id)" >Delete</a>
+								
+							</div>
+							
+						</div>
+						<!-- toggle edit,delete dropdown code ends here-->
+						
+						<!-- toggle edit,delete dropdown code starts here-->
+						<div class="options " *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)">
+							<a href="javascript:void(0);"  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><i class="fas fa-angle-down text-muted px-2"></i></a>
+
+							<div class="dropdown-menu dropdown-menu-right" >
+								<!-- <a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a> -->
+								<a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" >Delete</a>
 								
 							</div>
 							
@@ -714,6 +733,7 @@
 						
 						<div  *ngIf="group_name!=0" class="small font-weight-bold text-primary">
 							{{data.user_name}}
+							
 						</div>
 					
 						<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="d-flex flex-row">
@@ -755,7 +775,8 @@
 								<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted" style="width:75px;">
 									{{data.created_date | date:'hh:mm a'}}
 									<!-- <i class="far fa-check-circle"></i> -->
-								</div><i *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i>
+								</div>
+								<!-- <i *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
 							</div>
 					</div>
 				</div>
