@@ -508,11 +508,15 @@ public function getgroupsdetails(){
             ->get('group_master');
           }
             $group_array=$group_sql->result_array(); 
-           $ss=  array_map("unserialize", array_unique(array_map("serialize", $group_array)));;
-           
+            $data=array();
+           $ss=  array_map("unserialize", array_unique(array_map("serialize", $group_array)));
+           foreach ($ss as $key => $value) {
+             $data[] =$value;
+           }
+          //  print_r($ss); die;
             //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
             //   $group_array=$group_sql->result_array(); 
-              $response['result']=$ss;
+              $response['result']=$data;
            echo json_encode($response,JSON_UNESCAPED_SLASHES);
            die();
         
@@ -570,11 +574,15 @@ public function getgroupsdetails(){
         $group_array =  array_map("unserialize", array_unique(array_map("serialize", $ss)));;
        
        }
+       $data=array();
+       foreach ($group_array as $key => $value) {
+        $data[] =$value;
+      }
         //  $group_array=$group_sql->result_array(); 
          // print_r($group_array); die;
          //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
          //   $group_array=$group_sql->result_array(); 
-           $response['result']=$group_array;
+           $response['result']=$data;
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
      
