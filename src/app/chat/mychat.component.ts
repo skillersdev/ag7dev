@@ -229,6 +229,7 @@ export class MychatComponent implements OnInit {
             this.group_profile_log_model=resultdata.group_profile_details; 
             
             $('.message-area').addClass('d-sm-flex');
+            $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
           }
           
         });

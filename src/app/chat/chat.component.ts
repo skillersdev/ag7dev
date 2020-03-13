@@ -97,8 +97,12 @@ export class ChatComponent implements OnInit {
      this.getgrouplists();
      this.getuserlists();
      this.Newgroupmodel.g_id=''; 
-     this.windowHeight = $(window).innerHeight();
+     var rehigh=107;
+     this.windowHeight = ($(window).innerHeight()-rehigh);
+     console.log('height:'+ $(window).innerHeight());
+     console.log('addedheight:'+this.windowHeight);
         $('#messages').css('height', this.windowHeight);
+        $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
     
       // this.interval = setInterval(() => { 
       //   this.getgrouplists();
@@ -151,7 +155,7 @@ export class ChatComponent implements OnInit {
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 20000);
+    }, 20000000);
   }  else {
     clearInterval(this.interval);
   }
@@ -246,9 +250,20 @@ export class ChatComponent implements OnInit {
             
             
             $('.message-area').addClass('d-sm-flex');
+
+            // $('html, body').animate({
+              
+            //   scrollBottom: $('#messages').offset().top - $('').height()
+            // }, 'slow');
+            // alert('testing here');
+
+            $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+
           }
           
         });
+
+
   }
   msgdeletefun(id:any){
     this.CommonService.insertdata(AppSettings.chatmsgdelete,{'id':id})

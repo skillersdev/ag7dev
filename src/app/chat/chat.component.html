@@ -581,7 +581,7 @@
 				<!-- col-12 col-sm-5 col-md-4 flex-column d-none  used to hide -->
 				<!-- col-12 col-sm-5 col-md-4 flex-column used to show -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 " id="navbar"
+				<div class="row d-flex flex-row align-items-center p-2" id="navbar"
 					style="background: #b84033 !important">
 					<img src="{{api_bases}}images/logo.png" alt="Profile Photo"
 						style="height: 35px;cursor:pointer;width: 185px;margin-left: auto;" id="display-pic"
@@ -665,7 +665,7 @@
 				<!-- w-100 h-100 overlay            shows blank screen  -->
 				<!-- w-100 h-100 overlay d-none      used to hide the blank screen -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100" *ngIf="group_name!=0" id="navbar"
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100 msg-nav-bar" *ngIf="group_name!=0" id="navbar"
 					style="background: #b84033 !important">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;"
@@ -826,122 +826,131 @@
 								max-width: 100%;
 							}
 						</style>
+						
+						<section *ngFor="let data of group_msg_model[datedata] let i=index" >
 
-						<div *ngFor="let data of group_msg_model[datedata] let i=index" [ngClass]="{
-						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
-						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
-					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
-							<div class="in-msg">
-								<!-- toggle edit,delete dropdown code starts here-->
-								<div class="options "
-									*ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false"><i
-											class="fas fa-angle-down text-muted px-2"></i></a>
-
-									<div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item" data-toggle="modal" data-target="#msgeditModal"
-											(click)="msgeditfun(data.id)">Edit</a>
-										<a class="dropdown-item" (click)="msgdeletefun(data.id)">Delete</a>
-
+							<div [ngClass]="{
+								'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
+								'align-self-end self':Newgroupmodel.currentUserID==data.created_by
+							}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item">
+									<div class="in-msg">
+										<!-- toggle edit,delete dropdown code starts here-->
+										<div class="options "
+											*ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)">
+											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"><i
+													class="fas fa-angle-down text-muted px-2"></i></a>
+		
+											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" data-toggle="modal" data-target="#msgeditModal"
+													(click)="msgeditfun(data.id)">Edit</a>
+												<a class="dropdown-item" (click)="msgdeletefun(data.id)">Delete</a>
+		
+											</div>
+		
+										</div>
+										<!-- toggle edit,delete dropdown code ends here-->
+		
+										<!-- toggle edit,delete dropdown code starts here-->
+										<div class="options "
+											*ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)">
+											<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"><i
+													class="fas fa-angle-down text-muted px-2"></i></a>
+		
+											<div class="dropdown-menu dropdown-menu-right">
+												<!-- <a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a> -->
+												<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1"
+													(click)="msgdeletefun(data.id)">Delete</a>
+		
+											</div>
+		
+										</div>
+										<!-- toggle edit,delete dropdown code ends here-->
+		
+		
+										<div *ngIf="group_name!=0" class="small font-weight-bold text-primary">
+											{{data.user_name}}
+		
+										</div>
+		
+										<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)"
+											class="d-flex flex-row">
+		
+											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
+												style="color:'#666 !important'">{{data.message}}
+												<!-- <i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i> -->
+											</div>
+											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
+												style="color:'#666 !important'"><a target="_blank"
+													href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img
+														*ngIf="data.video_type==0"
+														src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
+												<video *ngIf="data.video_type==1" width="320" height="240" controls>
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="video/mp4">
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="video/ogg">
+												</video>
+												<audio *ngIf="data.video_type==2" controls>
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="audio/ogg">
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="audio/mpeg">
+												</audio>
+											</div>
+											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
+												style="width:140px;">
+												{{data.created_date | date:'hh:mm a'}}
+												<!-- <i class="far fa-check-circle"></i> -->
+											</div>
+											<!-- <i  (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
+										</div>
+		
+										<div *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)"
+											class="d-flex flex-row">
+		
+											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
+												style="color:'#666 !important'">{{data.message}}</div>
+											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
+												style="color:'#666 !important'">
+												<a target="_blank"
+													href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img
+														*ngIf="data.video_type==0"
+														src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
+												<video *ngIf="data.video_type==1" width="320" height="240" controls>
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="video/mp4">
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="video/ogg">
+												</video>
+												<audio *ngIf="data.video_type==2" controls>
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="audio/ogg">
+													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
+														type="audio/mpeg">
+												</audio>
+											</div>
+											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
+												style="width:75px;">
+												{{data.created_date | date:'hh:mm a'}}
+												<!-- <i class="far fa-check-circle"></i> -->
+											</div>
+											<!-- <i *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
+										</div>
 									</div>
-
+									
 								</div>
-								<!-- toggle edit,delete dropdown code ends here-->
 
-								<!-- toggle edit,delete dropdown code starts here-->
-								<div class="options "
-									*ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false"><i
-											class="fas fa-angle-down text-muted px-2"></i></a>
-
-									<div class="dropdown-menu dropdown-menu-right">
-										<!-- <a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a> -->
-										<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1"
-											(click)="msgdeletefun(data.id)">Delete</a>
-
-									</div>
-
-								</div>
-								<!-- toggle edit,delete dropdown code ends here-->
-
-
-								<div *ngIf="group_name!=0" class="small font-weight-bold text-primary">
-									{{data.user_name}}
-
-								</div>
-
-								<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)"
-									class="d-flex flex-row">
-
-									<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-										style="color:'#666 !important'">{{data.message}}
-										<!-- <i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i> -->
-									</div>
-									<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
-										style="color:'#666 !important'"><a target="_blank"
-											href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img
-												*ngIf="data.video_type==0"
-												src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
-										<video *ngIf="data.video_type==1" width="320" height="240" controls>
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="video/mp4">
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="video/ogg">
-										</video>
-										<audio *ngIf="data.video_type==2" controls>
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="audio/ogg">
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="audio/mpeg">
-										</audio>
-									</div>
-									<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
-										style="width:140px;">
-										{{data.created_date | date:'hh:mm a'}}
-										<!-- <i class="far fa-check-circle"></i> -->
-									</div>
-									<!-- <i  (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
-								</div>
-
-								<div *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)"
-									class="d-flex flex-row">
-
-									<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-										style="color:'#666 !important'">{{data.message}}</div>
-									<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
-										style="color:'#666 !important'">
-										<a target="_blank"
-											href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img
-												*ngIf="data.video_type==0"
-												src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
-										<video *ngIf="data.video_type==1" width="320" height="240" controls>
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="video/mp4">
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="video/ogg">
-										</video>
-										<audio *ngIf="data.video_type==2" controls>
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="audio/ogg">
-											<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-												type="audio/mpeg">
-										</audio>
-									</div>
-									<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
-										style="width:75px;">
-										{{data.created_date | date:'hh:mm a'}}
-										<!-- <i class="far fa-check-circle"></i> -->
-									</div>
-									<!-- <i *ngIf="Newgroupmodel.admin_normal==1" (click)="msgdeletefun(data.id)" class="far fa fa-trash"></i> -->
-								</div>
-							</div>
-						</div>
+								<div class="clearfix"></div>
+						</section>
+						
+						
 					</div>
 					<!-- date array -->
+					
 
 				</div>
 

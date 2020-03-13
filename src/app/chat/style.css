@@ -21,8 +21,10 @@
 
 #navbar {
 	background: #009688;
+	
 }
-
+.msg-nav-bar{position: fixed;
+	z-index: 999; width: 100%; }
 .dropdown-toggle::after {
 	display: none;
 }
@@ -105,7 +107,9 @@
 	flex: 1!important;
 	background: hsl(0, 0%, 80%);
 	overflow: auto;
+	margin-top: 55px;
 }
+
 
 #profile-settings {
 	position: absolute;
@@ -156,4 +160,9 @@
 .message-item.align-self-end{float: right; clear: right;}
 .message-item.align-self-start .in-msg{float: left;
     width: 100%;
-    max-width: 100%;}
+	max-width: 100%;}
+	
+	#input-area{position: relative;}
+	@media screen and (max-width:767px) {
+	.msg-nav-bar{ left:0; top: 0;}
+	}

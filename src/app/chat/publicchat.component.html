@@ -317,7 +317,7 @@ img {vertical-align: middle;}
 				<!-- w-100 h-100 overlay            shows blank screen  -->
 				<!-- w-100 h-100 overlay d-none      used to hide the blank screen -->
 				<!-- Navbar -->
-				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100"  id="navbar" style="background: #b84033 !important">
+				<div class="row d-flex flex-row align-items-center p-2 m-0 w-100 msg-nav-bar"  id="navbar" style="background: #b84033 !important">
 					<div class="d-block d-sm-none">
 						<i class="fas fa-arrow-left p-2 mr-2 text-white" style="font-size: 1.5rem; cursor: pointer;" (click)="hideshow()" ></i>
 					</div>
@@ -437,8 +437,9 @@ img {vertical-align: middle;}
 						</div>
 					</div> -->
 					
+					<section *ngFor="let data of group_msg_model[datedata] let i=index">
 					
-					<div  *ngFor="let data of group_msg_model[datedata] let i=index"   [ngClass]="{
+					<div   [ngClass]="{
 						'align-self-start':Newgroupmodel.currentUserID!=data.created_by,
 						'align-self-end self':Newgroupmodel.currentUserID==data.created_by
 					}" class="p-1 my-1 mx-3 rounded bg-white shadow-sm message-item" >
@@ -481,6 +482,11 @@ img {vertical-align: middle;}
 								</div>
 							</div>
 					</div>
+
+					<div class="clearfix"></div>
+
+					</section>
+					
 				</div>
 					<!-- date array -->
 
