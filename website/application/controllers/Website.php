@@ -119,7 +119,7 @@ class Website extends CI_Controller {
 
 			/*******Section And Section Item Query************/
 
-			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where website='".$websitename."' OR website='default' AND Issection_show=0 ORDER BY section_order ASC"); 
+			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where (website='".$websitename."' OR website='default') AND Issection_show=0 ORDER BY section_order ASC"); 
 			$section_result_array =$Getsection->result_array();
 			//echo "<pre>";print_r($section_result_array);die;
 			if(count($section_result_array)>0)
@@ -497,7 +497,7 @@ class Website extends CI_Controller {
 				$ip_address = $_SERVER['REMOTE_ADDR'];
 
 				$web_log=$this->db->select("*")->where(['website'=>$website,'action'=>$datastype])->get('website_logs')->result_array();
-				//print_r(count($web_log));die;
+				
 
 				if(count($web_log)==0)
 				{		
@@ -511,10 +511,11 @@ class Website extends CI_Controller {
 				else{
 					
 					$web_log_with_date=$this->db->query("select * from ".$this->db->dbprefix('website_logs')." where website='".$website."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND action='".$datastype."' ");
+					//print_r("select * from ".$this->db->dbprefix('website_logs')." where website='".$website."' AND date(created_date)='".$today."' AND ip_address='".$ip_address."' AND action='".$datastype."' ");die;
 					
 					if($web_log_with_date->num_rows()==0)
 					{
-						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today);
+						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today,'ip_address'=>$ip_address);
 			             $this->db->where('id',$web_log[0]['id']);
 			             $this->db->update($this->db->dbprefix('website_logs'),$data);
 			             $follow=$web_log[0]['count']+1;
@@ -549,7 +550,7 @@ class Website extends CI_Controller {
 
 					if($web_log_with_date->num_rows()==0)
 					{
-						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today);
+						  $data=array('count'=>$web_log[0]['count']+1,'created_date'=>$today,'ip_address'=>$ip_address);
 			             $this->db->where('id',$web_log[0]['id']);
 			             $this->db->update($this->db->dbprefix('website_logs'),$data);
 			             $follow=$web_log[0]['count']+1;

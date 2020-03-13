@@ -78,13 +78,25 @@ export class SignupComponent implements OnInit {
     delete this.model.confirmp;
     this.model.user_type=2;
     this.CommonService.insertdata(this.AddUserRestApiUrl,this.model)
-    .subscribe(user_det =>{       
+    .subscribe(user_det =>{ 
+      if(user_det.status=='fail')
+      {
+         swal(
+          user_det.status,
+          user_det.message,
+          user_det.status
+        )
+         return false;
+       }  
+       else{
          swal(
           user_det.status,
           "Website Activated Successfully",
           user_det.status
         )
         this.router.navigate(['/login']); 
+       }    
+         
     });
   }
   checkUserexist(event:any)

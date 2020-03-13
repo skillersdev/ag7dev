@@ -10,9 +10,7 @@ class User_controller extends CI_Controller {
 
    public function add_user_master(){
        $this->output->set_content_type('application/json');
-        $response=array('status'=>"success");
-        $response['message']="User inserted successfully";
-
+        
         $model = json_decode($this->input->post('model',FALSE));
 
        // print_r($model);die;
@@ -22,49 +20,61 @@ class User_controller extends CI_Controller {
         $model->doj = date("Y-m-d H:i:s");
 
         unset($model->cpassword);
-        
-        $this->db->insert('affiliateuser', $model);
+        $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','referedby'=>$model->referedby])->get('affiliateuser');  
+        if($check_exists->num_rows()>0)
+        {
+            $response=array('status'=>"fail");
+            $response['message']="Creator/Website are already exists";
 
-        $last_insert_id = $this->db->insert_id();
+        }else{
+            $response=array('status'=>"success");
+            $response['message']="User inserted successfully";
+            $this->db->insert('affiliateuser', $model);
+
+             $last_insert_id = $this->db->insert_id();
 
         /*Create a chat group for the corressponding user*/
-        $group_image = 'default-profile.png';
+            $group_image = 'default-profile.png';
 
-        for ($i=1; $i<=2; $i++) 
-        { 
+            for ($i=1; $i<=2; $i++) 
+            { 
 
-           $length=10;
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $randomString = '';
-            for ($j = 0; $j < $length; $j++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
+               $length=10;
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($j = 0; $j < $length; $j++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
 
-            $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
-            (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."','".$i."','".$group_image."',4,'".$randomString."','".$last_insert_id."','". $model->doj."',0)");
-            $group_id = $this->db->insert_id();
-
-            if($i==2)
-            {
                 $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
-                (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."',2,'".$group_image."',3,'".$randomString."','".$last_insert_id."','". $model->doj."',0)");
-                $group_id_1 = $this->db->insert_id();
-            }
+                (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."','".$i."','".$group_image."',4,'".$randomString."','".$last_insert_id."','". $model->doj."',0)");
+                $group_id = $this->db->insert_id();
 
-            $this->db->query("insert into ".$this->db->dbprefix('group_members')." 
-            (group_id,group_name,user_id,user_name,created_by,created_date,is_deleted) values('".$group_id."','".$model->username."','".$last_insert_id."','".$model->username."','".$last_insert_id."','". $model->doj."',0)");
-        }
+                if($i==2)
+                {
+                    $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
+                    (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$model->username."',2,'".$group_image."',3,'".$randomString."','".$last_insert_id."','". $model->doj."',0)");
+                    $group_id_1 = $this->db->insert_id();
+                }
+
+                $this->db->query("insert into ".$this->db->dbprefix('group_members')." 
+                (group_id,group_name,user_id,user_name,created_by,created_date,is_deleted) values('".$group_id."','".$model->username."','".$last_insert_id."','".$model->username."','".$last_insert_id."','". $model->doj."',0)");
+             }
 
         /*End*/
 
 
-        if(isset($model->user_type)&&($model->user_type==2))
-        {
-          $last_inserted_user_id = $this->db->insert_id();
-          $package_id =isset($model->pcktaken)?$model->pcktaken:0;
-          $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_insert_id."','".$package_id."','".$model->website."')");
+            if(isset($model->user_type)&&($model->user_type==2))
+            {
+              $last_inserted_user_id = $this->db->insert_id();
+              $package_id =isset($model->pcktaken)?$model->pcktaken:0;
+              $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_insert_id."','".$package_id."','".$model->website."')");
+            }
+
         }
+        
+       
 
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
