@@ -155,7 +155,7 @@ export class ChatComponent implements OnInit {
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 20000000);
+    }, 30000);
   }  else {
     clearInterval(this.interval);
   }
