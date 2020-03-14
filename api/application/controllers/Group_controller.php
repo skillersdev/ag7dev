@@ -860,11 +860,11 @@ public function getgroupsdetails(){
    
    }
 
-   public function sendrequestforgroup()
+     public function sendrequestforgroup()
    {
-      $this->output->set_content_type('application/json');
+     $this->output->set_content_type('application/json');
       
-        $response=array('status'=>"success",'message'=>"Group added successfully");
+        $response=array('status'=>"success",'message'=>"Request sent successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
 
@@ -875,7 +875,7 @@ public function getgroupsdetails(){
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
-
+    
   public function getgrouprequestlist()
   {
     $this->output->set_content_type('application/json');
@@ -904,11 +904,12 @@ public function getgroupsdetails(){
                 $res11=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='".$value['group_id']."' ");
                 $in_array11=$res11->result_array();
                 $status= ($value['request_status']==1)?'Pending':'Rejected';
-                $result[]=array('id'=>$value['id'],'group_name'=>$in_array11[0]['group_name'],'created_date'=>$value['created_date'],'status'=>$status);
+                $result[]=array('id'=>$value['id'],'group_id'=>$in_array11[0]['id'],'group_name'=>$in_array11[0]['group_name'],'created_date'=>$value['created_date'],'status'=>$status);
               }
         }
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
+
 
   }
   public function updategrouprequest()
@@ -919,18 +920,14 @@ public function getgroupsdetails(){
 
         $model = json_decode($this->input->post('model',FALSE));
 
-       // print_r($model);die;
-
-         $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");
-
-         $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,created_by) values ('".$model->group_id."','".$model->created_by."','".$model->created_by."')");
-
+        $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");
         
+        
+         $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,created_by) values ('".$model->group_id."','".$model->created_by."','".$model->created_by."')");
 
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
   }
-
   public function rejectgrouprequest($id)
   {
      $subscriber_delete=$this->db->query("DELETE FROM send_group_request_log where id='".$id."' "); 
