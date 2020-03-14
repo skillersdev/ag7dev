@@ -860,5 +860,86 @@ public function getgroupsdetails(){
    
    }
 
+   public function sendrequestforgroup()
+   {
+      $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Group added successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        foreach ($model->selectedmarketeritems as $key => $value) {
+          $this->db->query("insert into ".$this->db->dbprefix('send_group_request_log')." ( marketer_id,group_id,request_status) values ('".$value->Id."','".$model->groupId."','".$model->requeststatus."')");
+        }
+
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+  public function getgrouprequestlist()
+  {
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+        //print_r($model);die;
+
+        if($model->usergroup==2)
+        {
+           $res=$this->db->select("*,DATE_FORMAT(requested_date,'%d/%m/%Y')as created_date")->where(['request_status'=>'1','marketer_id'=>$model->currentuserid])->get('send_group_request_log'); 
+        }else{
+           $res=$this->db->select("*,DATE_FORMAT(requested_date,'%d/%m/%Y')as created_date")->where(['request_status'=>'1'])->get('send_group_request_log'); 
+        }
+
+      
+       $result=[];
+       $response=[];
+        if(count($res->result_array())>0)
+        {   
+            foreach($res->result_array() as $key=>$value)
+              { 
+
+                $res11=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='".$value['group_id']."' ");
+                $in_array11=$res11->result_array();
+                $status= ($value['request_status']==1)?'Pending':'Rejected';
+                $result[]=array('id'=>$value['id'],'group_name'=>$in_array11[0]['group_name'],'created_date'=>$value['created_date'],'status'=>$status);
+              }
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die();
+
+  }
+  public function updategrouprequest()
+  {
+     $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+
+       // print_r($model);die;
+
+         $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");
+
+         $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,created_by) values ('".$model->group_id."','".$model->created_by."','".$model->created_by."')");
+
+        
+
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+  }
+
+  public function rejectgrouprequest($id)
+  {
+     $subscriber_delete=$this->db->query("DELETE FROM send_group_request_log where id='".$id."' "); 
+
+      $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+        //$response['message']="Subscribers deleted successfully";
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+  }
    
 }

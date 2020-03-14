@@ -87,7 +87,7 @@ import { ReordersectionComponent } from './pages/managesection/reordersection/re
 import { ManagesectionitemComponent } from './pages/managesectionitem/managesectionitem.component';
 import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
 import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
-
+import { ManagechatgrouprequestComponent } from './managechatgrouprequest/managechatgrouprequest.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -424,6 +424,10 @@ component:EditmallproductComponent
     path:'editsectionitem/:id',
     component:EditsectionitemComponent
   },
+  {
+    path:'managegrouprequest',
+    component:ManagechatgrouprequestComponent
+  }
 
 ];
 

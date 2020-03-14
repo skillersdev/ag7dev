@@ -103,6 +103,7 @@ import { ManagesectionitemComponent } from './pages/managesectionitem/managesect
 import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
 import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ManagechatgrouprequestComponent } from './managechatgrouprequest/managechatgrouprequest.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -184,7 +185,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ReordersectionComponent,
     ManagesectionitemComponent,
     AddsectionitemComponent,
-    EditsectionitemComponent
+    EditsectionitemComponent,
+    ManagechatgrouprequestComponent
 	//ImageCropperComponent
   ],
   imports: [

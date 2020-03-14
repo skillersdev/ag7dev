@@ -36,6 +36,8 @@ export class ChatComponent implements OnInit {
   group_det:Array<Object>;
   userdropdownList:any;
   userdropdownSettings:any={};
+  sharedropdownSettings:any={};
+  sendreqestmodel:any={};
   interval: any;
   group_bases:any;
   slideIndex:any;
@@ -89,6 +91,16 @@ export class ChatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    this.sharedropdownSettings={
+       singleSelection: false,
+      idField: 'Id',
+      textField: 'username',
+      enableCheckAll:false,
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
 
     //this.getparamas = this.route.params.subscribe(params => {
      //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
@@ -231,6 +243,7 @@ export class ChatComponent implements OnInit {
             this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
           } else{
             this.group_dt_model = resultdata.group_details[0];
+            this.sendreqestmodel.groupId=resultdata.group_details[0].id;
           
             this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
             this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
@@ -433,6 +446,20 @@ export class ChatComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':0})
     .subscribe(package_det =>{     
       this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+
+  /*Request send code by mani*/
+  sendrequest()
+  {
+    this.sendreqestmodel.requeststatus=1;
+    //this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+    this.CommonService.insertdata(AppSettings.sendrequestforgroup,this.sendreqestmodel)
+    .subscribe(package_det =>{     
+      // this.generateMessageArea(this.Newgroupmodel.g_id);
+      //   this.getgrouplists();
+      //   swal('','Group Updated Successfully','success');  
         
     });
   }

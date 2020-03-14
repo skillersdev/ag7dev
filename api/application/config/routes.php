@@ -213,7 +213,10 @@ $route['exitgroup']= 'Group_controller/exitgroup';
 $route['msggroupimage']= 'Group_controller/msggroupimage'; 
 $route['checkuserhavinggroup']= 'Group_controller/checkuserhavinggroup'; 
 $route['addusertogroup'] = 'Group_controller/addusertogroup'; 
-
+$route['sendrequestforgroup']= 'Group_controller/sendrequestforgroup'; 
+$route['getgrouprequestlist']= 'Group_controller/getgrouprequestlist';
+$route['updategrouprequest'] = 'Group_controller/updategrouprequest';
+$route['rejectgrouprequest/(:num)']= 'Group_controller/rejectgrouprequest/$1';
 $route['getchatgroupslist'] = 'Group_controller/getchatgroupslist';
 $route['getchatsbygrouplist/(:num)']= 'Group_controller/getchatslistbygroup/$1';
 $route['getsubscribersbygrouplist/(:num)']= 'Group_controller/getsubscribersbygrouplist/$1';

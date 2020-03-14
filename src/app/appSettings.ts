@@ -202,12 +202,15 @@ export class AppSettings{
 	public static msggroupimage=AppSettings.API_BASE+"/msggroupimage";
 	public static checkuserIsgroupRestApiUrl=AppSettings.API_BASE+"/checkuserhavinggroup";
 	public static addusergroupApiUrl=AppSettings.API_BASE+"/addusertogroup";
-    
+    public static sendrequestforgroup=AppSettings.API_BASE+"/sendrequestforgroup";
     public static getchatgroupslist=AppSettings.API_BASE+"/getchatgroupslist";
     public static FetchchatbygroupRestApiUrl=AppSettings.API_BASE+"/getchatsbygrouplist/";
     public static codetogroup=AppSettings.API_BASE+"/getcodetogroup";
     public static getmychatcodetogroup=AppSettings.API_BASE+"/getmychatcodetogroup";    
     public static mychatgroup=AppSettings.API_BASE+"/mychatgroup";
+    public static getgrouprequestlist=AppSettings.API_BASE+"/getgrouprequestlist";
+    public static updategrouprequest=AppSettings.API_BASE+"/updategrouprequest";
+    public static rejectgrouprequest=AppSettings.API_BASE+"/rejectgrouprequest/";
 
 	public static FetchsubscribersbygroupRestApiUrl=AppSettings.API_BASE+"/getsubscribersbygrouplist/"; 
 	public static DeletesubscriberRestApiUrl=AppSettings.API_BASE+"/deletesubscriber/"; 
