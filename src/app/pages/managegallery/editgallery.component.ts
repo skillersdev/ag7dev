@@ -62,29 +62,35 @@ export class EditgalleryComponent implements OnInit {
   imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
-        this.CommonService.insertdata(this.uploadalbumApi,this.model1)
-      .subscribe( (response) => {
-         if(response.status=='success')
-         {
-          this.model.service_image = response.data;
+     //    this.CommonService.insertdata(this.uploadalbumApi,this.model1)
+     //  .subscribe( (response) => {
+     //     if(response.status=='success')
+     //     {
+     //      this.model.service_image = response.data;
         
           
-        }
-     })
+     //    }
+     // })
     }
     updatealbum()
     {
-      this.CommonService.updatedata(AppSettings.updatealbumRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/managegallery']);
-        
+      
+      this.CommonService.insertdata(this.uploadalbumApi,this.model1)
+      .subscribe( (response) => {
+          this.model.service_image = (response.data)?response.data:this.model.album_image;
+            this.CommonService.updatedata(AppSettings.updatealbumRestApiUrl,this.model)
+            .subscribe(package_det =>{       
+               swal(
+                package_det.status,
+                package_det.message,
+                package_det.status
+              )
+               this.router.navigate(['/managegallery']);
+              
+            });
+       
     });
-    }
+  }
      back(){
     this.router.navigate(['/managegallery']);
   }

@@ -51,7 +51,7 @@ class Gallery_controller extends CI_Controller {
            // $model->photos = $file;
             $this->db->insert('album_photos', $data);
             $response['status']="success";
-            $response['message']="Alubm photos added successfully";
+            $response['message']="Album photos added successfully";
             //$response['data']=$file;
       
         // else{
@@ -343,9 +343,15 @@ class Gallery_controller extends CI_Controller {
             $response['message']="Error while upload on photos";    
         }
        
+        
+         }
+         else{
+          $response['status']="fail";
+          $response['message']="Error while upload on photos";    
+        }
+       
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
-         }
    }
 
 }
