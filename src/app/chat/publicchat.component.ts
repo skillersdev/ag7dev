@@ -33,12 +33,15 @@ export class PublicchatComponent implements OnInit {
   date_array_model:Array<Object>;
   group_profile_log_model:Array<Object>;
   group_det:Array<Object>;
+  marketerdropdownlist:Array<Object>;
   userdropdownList:any;
+  sharedropdownSettings:any={};
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
   slideIndex:any;
   grouplink:any;
+  sendreqestmodel:any={};
 
  private ngNavigatorShareService: NgNavigatorShareService;
 
@@ -82,12 +85,23 @@ export class PublicchatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    this.sharedropdownSettings={
+       singleSelection: false,
+      idField: 'Id',
+      textField: 'username',
+      enableCheckAll:false,
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    }
     this.getparamas = this.route.params.subscribe(params => {
        this.Newgroupmodel.groupcode = params['code']; // (+) converts string 'id' to a number
     }); 
     //console.log(this.Newgroupmodel.groupcode);
     //this.getgrouplists();
     this.getuserlists();
+    this.getmarketerslist();
     this.Newgroupmodel.g_id=1; 
     
     this.Codetogroup();
@@ -158,6 +172,17 @@ export class PublicchatComponent implements OnInit {
         
     });
   }
+   getmarketerslist()
+  {
+    this.CommonService.insertdata(AppSettings.getallmarketers,{'currentUsername':this.Newgroupmodel.currentUser})
+    // this.CommonService.getdata(AppSettings.getchatuserslist)
+    .subscribe(det =>{
+      
+        if(det!=""){ this.marketerdropdownlist=det;}
+        
+    });
+    
+  }
   groupdetails(){
    
   }
@@ -201,7 +226,7 @@ export class PublicchatComponent implements OnInit {
           //} else{
             //this.group_dt_model = resultdata.group_details[0];
           
-
+            this.sendreqestmodel.groupId=resultdata.group_details[0].id;
             this.group_msg_model = resultdata.group_msg;
             this.date_array_model = resultdata.date_array;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
@@ -350,5 +375,18 @@ export class PublicchatComponent implements OnInit {
   } 
   chatimageclick(){
     $('#chatimage').click();
+  }
+    /*Request send code by mani*/
+  sendrequest()
+  {
+    this.sendreqestmodel.requeststatus=1;
+    //this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+    this.CommonService.insertdata(AppSettings.sendrequestforgroup,this.sendreqestmodel)
+    .subscribe(package_det =>{     
+      // this.generateMessageArea(this.Newgroupmodel.g_id);
+      //   this.getgrouplists();
+        swal('','Request sent successfully','success');  
+        
+    });
   }
 }

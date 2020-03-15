@@ -34,6 +34,7 @@ export class ChatComponent implements OnInit {
   date_array_model:Array<Object>;
   group_profile_log_model:Array<Object>;
   group_det:Array<Object>;
+  marketerdropdownlist:Array<Object>;
   userdropdownList:any;
   userdropdownSettings:any={};
   sharedropdownSettings:any={};
@@ -108,6 +109,7 @@ export class ChatComponent implements OnInit {
     
      this.getgrouplists();
      this.getuserlists();
+     this.getmarketerslist();
      this.Newgroupmodel.g_id=''; 
      var rehigh=107;
      this.windowHeight = ($(window).innerHeight()-rehigh);
@@ -181,6 +183,17 @@ export class ChatComponent implements OnInit {
         if(det.result!=""){ this.userdropdownList=det.result;}
         
     });
+  }
+  getmarketerslist()
+  {
+    this.CommonService.insertdata(AppSettings.getallmarketers,{'currentUsername':this.Newgroupmodel.currentUser})
+    // this.CommonService.getdata(AppSettings.getchatuserslist)
+    .subscribe(det =>{
+      
+        if(det!=""){ this.marketerdropdownlist=det;}
+        
+    });
+    
   }
   getgrouplists(){    
 

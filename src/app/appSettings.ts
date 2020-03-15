@@ -129,6 +129,7 @@ export class AppSettings{
 	public static updateibadetails=AppSettings.API_BASE+"/updateibadetails";
 	public static getcategorybywebsite=AppSettings.API_BASE+"/checkcategorybyweb";
 	public static getMarketerslistDetail = 	AppSettings.API_BASE+"/getMarketerslist";
+	public static getallmarketers = AppSettings.API_BASE+"/getAllmarketers";
 	public static reactivatepackagevsuser= 	AppSettings.API_BASE+"/reactivatepackage";
 
 	/**Earnings*/

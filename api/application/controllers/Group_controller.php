@@ -916,15 +916,27 @@ public function getgroupsdetails(){
   {
      $this->output->set_content_type('application/json');
       
-        $response=array('status'=>"success");
+       
 
         $model = json_decode($this->input->post('model',FALSE));
 
-        $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");
-        
-        
-         $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,created_by) values ('".$model->group_id."','".$model->created_by."','".$model->created_by."')");
 
+        $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='".$model->group_id."' AND user_id='".$model->created_by."'");
+             $mem_group_array=$mem_group_sql->result_array(); 
+
+             if(count($mem_group_array)>0)
+             {
+               $response=array('status'=>"fail");
+             }else{
+               $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");        
+        
+                $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,user_id,created_by) values ('".$model->group_id."','".$model->created_by."','".$model->created_by."')");
+
+                 $response=array('status'=>"success");
+
+             }
+
+       
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
   }

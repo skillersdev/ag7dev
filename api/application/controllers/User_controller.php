@@ -213,6 +213,31 @@ class User_controller extends CI_Controller {
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
   }
+  public function getallmarketers(){
+        $model = json_decode($this->input->post('model',FALSE));    
+        $username = trim($model->currentUsername);
+        if(isset($model->currentUsername)){
+            $res=$this->db->select("*")->where(['is_deleted'=>'0'])->get('affiliateuser');    
+        }
+       
+       $response=[];
+
+        if(count($res->result_array())>0)
+        {
+          // $data = $res->result_array();
+            $result=[];
+
+             foreach($res->result_array() as $key=>$value)
+              { 
+                //$value['username']=$data[0]['username']; 
+
+                $result[]=array('Id'=>$value['Id'],'username'=>$value['username']);
+              }
+            //$response['message']="User name already exists";
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die(); 
+  }
   public function get_template_list()
   {
      

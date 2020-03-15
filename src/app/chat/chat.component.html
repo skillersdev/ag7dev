@@ -15,6 +15,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
 	<style>
+	
+#message-area{position: relative;}
+.msg-nav-bar{position:absolute;}
+.msg-nav-bar .nav-item.dropdown{margin-right:20px;}
 		#floatingRectangle {
 			display: none !important;
 		}
@@ -688,12 +692,12 @@
 								data-toggle="modal" data-target="#myModaledit">Edit Group</a>
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);"
 								data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
+
+							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+								data-target="#sendrequestmodal">Send Join Request</a>
+									
 							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
 								data-target="#exitmyModaledit">Exit Group</a>
-
-							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-								data-target="#sendrequestmodal">Send Join Request</a>	
-
 
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);">
 								<strong (click)='share()'>Share group link</strong></a>
@@ -1017,7 +1021,7 @@
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
 									<label for="groupname" class="m-r-3">Select Marketer:</label>&nbsp;
-									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList"
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="marketerdropdownlist"
 										[(ngModel)]="sendreqestmodel.selectedmarketeritems" [settings]="sharedropdownSettings"
 										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
 									</ng-multiselect-dropdown>

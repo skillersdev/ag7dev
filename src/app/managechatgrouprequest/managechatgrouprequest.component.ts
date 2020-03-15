@@ -43,9 +43,14 @@ export class ManagechatgrouprequestComponent implements OnInit {
           requestData.created_by = currentuserid;
 	  	  requestData.request_status = 2;
 	  	  self.CommonService.insertdata(AppSettings.updategrouprequest,requestData)
-	        .subscribe(resultdata =>{   
-	          self.requestlist=resultdata.result;
+	        .subscribe(resultdata =>{
+	        if(resultdata.status=='fail')
+	        {
+	        	 swal('','Already you are in selected group','error'); 
+	        }else{
+	        	self.requestlist=resultdata.result;
 	          self.ngOnInit();
+	        }  
 	         // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
 	        });
          	
