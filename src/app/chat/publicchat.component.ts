@@ -68,6 +68,7 @@ export class PublicchatComponent implements OnInit {
     this.date_array_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems=[]; 
+    this.sendreqestmodel.Isloading=false;
     //this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.loginService.viewsUploadoption();
@@ -397,6 +398,25 @@ export class PublicchatComponent implements OnInit {
       //   this.getgrouplists();
         swal('','Request sent successfully','success');  
         
+    });
+  }
+  findmarketer()
+  {
+    
+     this.CommonService.insertdata(AppSettings.findmarketers,this.sendreqestmodel)
+    .subscribe(det =>{      
+        if(det.status=='error')
+        {
+          this.group_det=[];
+
+          swal('','Marketer doesnot exists','error'); 
+        }
+        else
+          { 
+            this.sendreqestmodel.Isloading= true;
+            this.group_det=det.result;
+            this.sendreqestmodel.selectedmarketeritems=det;
+          }
     });
   }
 }

@@ -16,9 +16,9 @@
 	<style>
 		#floatingRectangle{display: none !important;}
 	
-#message-area{position: relative;}
-.msg-nav-bar{position:absolute;}
-.msg-nav-bar .nav-item.dropdown{margin-right:20px;}
+#message-area{position: relative !important;}
+.msg-nav-bar{position:absolute !important;}
+.msg-nav-bar .nav-item.dropdown{margin-right:20px !important;}
 .mySlides {display: none;}
 .pimage0{display:block;}
 img {vertical-align: middle;}
@@ -290,20 +290,23 @@ img {vertical-align: middle;}
 						<!-- Modal body -->
 						<div class="modal-body">							
 							<div class="form-group m-b-0">
-								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
-									<label for="groupname" class="m-r-3">Select Marketer:</label>&nbsp;
+								<div class="form-line radio-btns">
+									<!-- <label for="groupname" class="m-r-3">Select Marketer:</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="marketerdropdownlist"
 										[(ngModel)]="sendreqestmodel.selectedmarketeritems" [settings]="sharedropdownSettings"
 										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
-									</ng-multiselect-dropdown>
+									</ng-multiselect-dropdown> --> 
+									<input name="groupmsgtxt" [(ngModel)]="sendreqestmodel.marketer" type="text" id="groupmsgtxt" placeholder="Type a message"/>
+									<button type="button"  class="btn btn-success" (click)="findmarketer()">Find Marketer</button>
 
 								</div>
 							</div>
 						</div>
 						<!-- Modal footer -->
 						<div class="modal-footer">							
-							<button type="button" [disabled]="!groupForm.form.valid" class="btn btn-success"
-								(click)="sendrequest()" data-dismiss="modal">Send Request</button>
+							<button type="button" [disabled]="!sendreqestmodel.Isloading" class="btn btn-success"
+								(click)="sendrequest()" data-dismiss="modal">
+								Send Request</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						</div>
 					</div>

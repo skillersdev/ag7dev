@@ -84,7 +84,7 @@ export class SignupComponent implements OnInit {
          swal(
           user_det.status,
           user_det.message,
-          user_det.status
+          'error'
         )
          return false;
        }  
@@ -92,7 +92,7 @@ export class SignupComponent implements OnInit {
          swal(
           user_det.status,
           "Website Activated Successfully",
-          user_det.status
+          'success'
         )
         this.router.navigate(['/login']); 
        }    

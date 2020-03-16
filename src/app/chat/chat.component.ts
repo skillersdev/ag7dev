@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit {
   windowHeight:any;
 
 
+
  private ngNavigatorShareService: NgNavigatorShareService;
 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http,ngNavigatorShareService: NgNavigatorShareService) { 
@@ -64,6 +65,7 @@ export class ChatComponent implements OnInit {
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
+    this.group_det=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
    
@@ -71,6 +73,7 @@ export class ChatComponent implements OnInit {
     this.group_msg_model=[];
     this.date_array_model=[];
     this.group_members_model=[];
+    this.sendreqestmodel.Isloading=false;
     // this.Newgroupmodel.groupcode='';
 
     this.Newgroupmodel.userselectedItems=[]; 
@@ -194,6 +197,25 @@ export class ChatComponent implements OnInit {
         
     });
     
+  }
+  findmarketer()
+  {
+    
+     this.CommonService.insertdata(AppSettings.findmarketers,this.sendreqestmodel)
+    .subscribe(det =>{      
+        if(det.status=='error')
+        {
+          this.group_det=[];
+
+          swal('','Marketer doesnot exists','error'); 
+        }
+        else
+          { 
+            this.sendreqestmodel.Isloading= true;
+            this.group_det=det.result;
+            this.sendreqestmodel.selectedmarketeritems=det;
+          }
+    });
   }
   getgrouplists(){    
 
@@ -470,10 +492,21 @@ export class ChatComponent implements OnInit {
     //this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.sendrequestforgroup,this.sendreqestmodel)
     .subscribe(package_det =>{     
-      // this.generateMessageArea(this.Newgroupmodel.g_id);
-      //   this.getgrouplists();
-      //   swal('','Group Updated Successfully','success');  
+      if(package_det.status=='success')
+      {
+         swal(
+          '',
+          "Request sent Successfully",
+          'success'
+        )
+      }else{
+          swal(
+          '',
+          "Error while on sent request",
+          'error'
+        )
+      }
         
     });
-  }
+      }
 }

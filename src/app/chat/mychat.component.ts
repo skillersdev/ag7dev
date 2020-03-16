@@ -22,6 +22,7 @@ import { Injectable } from '@angular/core';
  
 export class MychatComponent implements OnInit {
   currentUser:any;
+  sendreqestmodel:any={};
   currentUserID:any;
   api_bases:any;
   Newgroupmodel: any = {}; 
@@ -62,6 +63,7 @@ export class MychatComponent implements OnInit {
    // this.Newgroupmodel.groupcode='';
     this.group_name=0;
     this.group_msg_model=[];
+    this.sendreqestmodel.Isloading=false;
     this.date_array_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems=[]; 
@@ -227,7 +229,7 @@ export class MychatComponent implements OnInit {
             // this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
           } else{
             this.group_dt_model = resultdata.group_details[0];
-          
+            this.sendreqestmodel.groupId=resultdata.group_details[0].id;
             this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
             this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
             this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
@@ -376,5 +378,36 @@ export class MychatComponent implements OnInit {
   } 
   chatimageclick(){
     $('#chatimage').click();
+  }
+   sendrequest()
+  {
+    this.sendreqestmodel.requeststatus=1;
+    //this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+    this.CommonService.insertdata(AppSettings.sendrequestforgroup,this.sendreqestmodel)
+    .subscribe(package_det =>{     
+      // this.generateMessageArea(this.Newgroupmodel.g_id);
+      //   this.getgrouplists();
+        swal('','Request sent successfully','success');  
+        
+    });
+  }
+  findmarketer()
+  {
+    
+     this.CommonService.insertdata(AppSettings.findmarketers,this.sendreqestmodel)
+    .subscribe(det =>{      
+        if(det.status=='error')
+        {
+          this.group_det=[];
+
+          swal('','Marketer doesnot exists','error'); 
+        }
+        else
+          { 
+            this.sendreqestmodel.Isloading= true;
+            this.group_det=det.result;
+            this.sendreqestmodel.selectedmarketeritems=det;
+          }
+    });
   }
 }

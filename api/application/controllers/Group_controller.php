@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Group_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    
    public function addgroup()
@@ -432,10 +432,12 @@ public function getgroupsdetails(){
             //  print_r($mem_group_array1); die;
              $response['group_members']=$mem_group_array;
              $response['select_group_members']=$mem_group_array1;
-
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0");
+            //  id>'". $model->msgstartid."' and
+             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where  group_id='". $model->g_id."' and is_deleted=0");
              $msg_group_array1 = array();
              $datearray =array();
+             $last_msg_group_sql=$this->db->query("select id from ".$this->db->dbprefix('all_message')." ORDER BY id  DESC LIMIT 1")->result_array();
+            //  print_r($last_msg_group_sql); die;
              $msg_group_array=$msg_group_sql->result_array(); 
              foreach ($msg_group_array as $msg_key => $msg_value) {
 
@@ -466,6 +468,7 @@ public function getgroupsdetails(){
              // $datearray = array_unique($datearray);
               // print_r($msg_group_array1);
               // die;
+              $response['msgstartid']=(int)$last_msg_group_sql[0]['id'];
              $response['group_msg']=$msg_group_array1;
              $response['date_array']=$datearray;
              $response['admin_normal']=$check_user_array[0]['admin_normal'];
@@ -859,15 +862,14 @@ public function getgroupsdetails(){
 
    
    }
-
-     public function sendrequestforgroup()
+    public function sendrequestforgroup()
    {
      $this->output->set_content_type('application/json');
       
         $response=array('status'=>"success",'message'=>"Request sent successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-
+        //print_r($model->selectedmarketeritems);die;
         foreach ($model->selectedmarketeritems as $key => $value) {
           $this->db->query("insert into ".$this->db->dbprefix('send_group_request_log')." ( marketer_id,group_id,request_status) values ('".$value->Id."','".$model->groupId."','".$model->requeststatus."')");
         }
@@ -912,7 +914,7 @@ public function getgroupsdetails(){
 
 
   }
-  public function updategrouprequest()
+ public function updategrouprequest()
   {
      $this->output->set_content_type('application/json');
       

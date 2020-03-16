@@ -15,9 +15,9 @@
 
 	<style>
 	
-#message-area{position: relative;}
-.msg-nav-bar{position:absolute;}
-.msg-nav-bar .nav-item.dropdown{margin-right:20px;}
+#message-area{position: relative !important;}
+.msg-nav-bar{position:absolute !important;}
+.msg-nav-bar .nav-item.dropdown{margin-right:20px !important;}
 		#floatingRectangle{display: none !important;}
 	
 .mySlides {display: none;}
@@ -207,6 +207,44 @@ img {vertical-align: middle;}
 				</div>
 			</div>
 			<!-- new group-->
+
+			<!-- The Modal -->
+		<div class="modal" id="sendrequestmodal">
+			<div class="modal-dialog">
+				<form name="groupForm" #groupForm="ngForm">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Send Join Request</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<!-- Modal body -->
+						<div class="modal-body">							
+							<div class="form-group m-b-0">
+								<div class="form-line radio-btns">
+									<!-- <label for="groupname" class="m-r-3">Select Marketer:</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="marketerdropdownlist"
+										[(ngModel)]="sendreqestmodel.selectedmarketeritems" [settings]="sharedropdownSettings"
+										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
+									</ng-multiselect-dropdown> --> 
+									<input name="groupmsgtxt" [(ngModel)]="sendreqestmodel.marketer" type="text" id="groupmsgtxt" placeholder="Type a message"/>
+									<button type="button"  class="btn btn-success" (click)="findmarketer()">Find Marketer</button>
+
+								</div>
+							</div>
+						</div>
+						<!-- Modal footer -->
+						<div class="modal-footer">							
+							<button type="button" [disabled]="!sendreqestmodel.Isloading" class="btn btn-success"
+								(click)="sendrequest()" data-dismiss="modal">
+								Send Request</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- new group-->
 
 			<!-- The Modal -->
 		<div class="modal" id="myModaledit">
@@ -473,6 +511,8 @@ img {vertical-align: middle;}
 							<i class="fas fa-ellipsis-v text-white"></i></a>
 							<div class="dropdown-menu dropdown-menu-right">
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
+									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+								data-target="#sendrequestmodal">Send Join Request</a>
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#exitmyModaledit">Exit Group</a>
 									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>

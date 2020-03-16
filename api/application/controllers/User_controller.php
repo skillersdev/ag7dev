@@ -3,13 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+    public function index() {
+        $this->output->set_content_type('application/json');
+        die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+    }
 
    public function add_user_master(){
-       $this->output->set_content_type('application/json');
+      $this->output->set_content_type('application/json');
         
         $model = json_decode($this->input->post('model',FALSE));
 
@@ -21,10 +21,10 @@ class User_controller extends CI_Controller {
 
         unset($model->cpassword);
         $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','referedby'=>$model->referedby])->get('affiliateuser');  
-        if($check_exists->num_rows()>0)
+        if($check_exists->num_rows()==0)
         {
             $response=array('status'=>"fail");
-            $response['message']="Creator/Website are already exists";
+            $response['message']="Enter a valid creator name";
 
         }else{
             $response=array('status'=>"success");
@@ -217,7 +217,7 @@ class User_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));    
         $username = trim($model->currentUsername);
         if(isset($model->currentUsername)){
-            $res=$this->db->select("*")->where(['is_deleted'=>'0'])->get('affiliateuser');    
+            $res=$this->db->select("*")->where(['is_deleted'=>'0','user_type'=>'2'])->get('affiliateuser');    
         }
        
        $response=[];
@@ -234,6 +234,29 @@ class User_controller extends CI_Controller {
                 $result[]=array('Id'=>$value['Id'],'username'=>$value['username']);
               }
             //$response['message']="User name already exists";
+        }
+        echo json_encode($result,JSON_UNESCAPED_SLASHES);
+        die(); 
+  }
+   public function findmarketers()
+  {
+     $model = json_decode($this->input->post('model',FALSE));    
+        $username = trim($model->currentUsername);
+        //if(isset($model->currentUsername)){
+            $res=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->marketer,'user_type'=>'2'])->get('affiliateuser');    
+        //}
+       
+       $response=[];
+        if(count($res->result_array())>0)
+        {
+            $result=[];
+            // $result['status']='success';
+            foreach($res->result_array() as $key=>$value)
+              { 
+                $result[]=array('Id'=>$value['Id'],'username'=>$value['username']);
+              }
+        }else{
+            $result['status']='error';
         }
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die(); 
