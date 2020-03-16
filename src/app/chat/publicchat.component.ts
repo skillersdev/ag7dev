@@ -42,6 +42,7 @@ export class PublicchatComponent implements OnInit {
   slideIndex:any;
   grouplink:any;
   sendreqestmodel:any={};
+  windowHeight:any;
 
  private ngNavigatorShareService: NgNavigatorShareService;
 
@@ -73,6 +74,15 @@ export class PublicchatComponent implements OnInit {
     this.loginService.loadmsgscreenadjustable();
     this.Newgroupmodel.currentUserID=localStorage.getItem('currentUserID');
     this.Newgroupmodel.currentUser=localStorage.getItem('currentUser');
+    
+    //code added for auto height
+    var rehigh=107;
+     this.windowHeight = ($(window).innerHeight()-rehigh);
+     console.log('height:'+ $(window).innerHeight());
+     console.log('addedheight:'+this.windowHeight);
+        $('#messages').css('height', this.windowHeight);
+        $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+    //code ends here
 
     console.log(this.Newgroupmodel.currentUser);
     this.Newgroupmodel.userselectedItems=[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];

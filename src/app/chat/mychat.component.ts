@@ -38,6 +38,7 @@ export class MychatComponent implements OnInit {
   group_bases:any;
   slideIndex:any;
   grouplink:any;
+  windowHeight:any;
 
  private ngNavigatorShareService: NgNavigatorShareService;
 
@@ -79,6 +80,17 @@ export class MychatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+     //code added for auto height
+     var rehigh=107;
+     this.windowHeight = ($(window).innerHeight()-rehigh);
+     console.log('height:'+ $(window).innerHeight());
+     console.log('addedheight:'+this.windowHeight);
+        $('#messages').css('height', this.windowHeight);
+        $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+    //code ends here
+
+    
     //this.getparamas = this.route.params.subscribe(params => {
      //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
     //}); 
