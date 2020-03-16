@@ -174,7 +174,7 @@
                   for($ct=0;$ct<count($contac_log_result);$ct++)
                     { ?>
                       <div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
-                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:80%; height: 400px;">
+                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:100%;">
                       </div>
                       <?php
                     }
