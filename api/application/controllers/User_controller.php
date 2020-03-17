@@ -20,7 +20,7 @@ class User_controller extends CI_Controller {
         $model->doj = date("Y-m-d H:i:s");
 
         unset($model->cpassword);
-        $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','referedby'=>$model->referedby])->get('affiliateuser');  
+        $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->referedby])->get('affiliateuser');  
         if($check_exists->num_rows()==0)
         {
             $response=array('status'=>"fail");
