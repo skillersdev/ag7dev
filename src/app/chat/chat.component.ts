@@ -59,6 +59,8 @@ export class ChatComponent implements OnInit {
     this.api_bases = AppSettings.IMAGE_BASE_CHAT;
     this.group_bases = AppSettings.IMAGE_BASE;
     this.slideIndex = 1; 
+    this.Newgroupmodel.groupname='';
+    this.Newgroupmodel.msgstartid=0;
     this.Newgroupmodel.channelgroup=2;
     this.Newgroupmodel.privatepublic=2;
     this.Newgroupmodel.showinwebsite=0;
@@ -68,7 +70,7 @@ export class ChatComponent implements OnInit {
     this.group_det=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
-   
+    
     this.group_name=0;
     this.group_msg_model=[];
     this.date_array_model=[];
@@ -116,8 +118,8 @@ export class ChatComponent implements OnInit {
      this.Newgroupmodel.g_id=''; 
      var rehigh=107;
      this.windowHeight = ($(window).innerHeight()-rehigh);
-     console.log('height:'+ $(window).innerHeight());
-     console.log('addedheight:'+this.windowHeight);
+    //  console.log('height:'+ $(window).innerHeight());
+    //  console.log('addedheight:'+this.windowHeight);
         $('#messages').css('height', this.windowHeight);
         $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
     
@@ -168,6 +170,7 @@ export class ChatComponent implements OnInit {
     this.Newgroupmodel.g_id='';
       clearInterval(this.interval);
     } else {
+      
       this.generateMessageArea(this.Newgroupmodel.g_id);
     }
    
@@ -227,11 +230,13 @@ export class ChatComponent implements OnInit {
   }
 
   generateMessageArea1(id,p_p,g_code){
+    this.Newgroupmodel.msgstartid=0;
     if(p_p==4){
     //alert(g_code);
       this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
+      this.refreshData();
     }
   }
   groupsearch(){
@@ -251,7 +256,7 @@ export class ChatComponent implements OnInit {
     
   }  
   generateMessageArea(g_id){
-  
+   
   if($(window).width() > 450){
   
     $('.mainmenu_navbar').removeClass('dhana');
@@ -270,31 +275,37 @@ export class ChatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    
     this.CommonService.insertdata(AppSettings.getgroupsdetails,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
           if(resultdata.check_user==0){
             this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
           } else{
-            this.group_dt_model = resultdata.group_details[0];
+            // if(this.Newgroupmodel.msgstartid==0){
+              this.group_dt_model = resultdata.group_details[0];
             this.sendreqestmodel.groupId=resultdata.group_details[0].id;
           
-            this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
-            this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
-            this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
-            this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
-            this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+              this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
+              this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
+              this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
+              this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
+              this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+              
+              this.group_msg_model = resultdata.group_msg;
+              this.Newgroupmodel.msgstartid=resultdata.msgstartid; 
+              // console.log(this.group_msg_model); 
+              this.date_array_model = resultdata.date_array;
+              this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
+              this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
+              this.group_members_model=resultdata.group_members;
+              this.group_profile_log_model=resultdata.group_profile_details; 
+              this.Newgroupmodel.admin_normal=resultdata.admin_normal;
+              this.Newgroupmodel.showinwebsite=resultdata.group_details[0].showinwebsite;
+            // } else {
+            //   this.group_msg_model.push(resultdata.group_msg);
+            // }
             
-            this.group_msg_model = resultdata.group_msg;
-            // console.log(this.group_msg_model); 
-            this.date_array_model = resultdata.date_array;
-            this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
-            this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
-            this.group_members_model=resultdata.group_members;
-            this.group_profile_log_model=resultdata.group_profile_details; 
-            this.Newgroupmodel.admin_normal=resultdata.admin_normal;
-            this.Newgroupmodel.showinwebsite=resultdata.group_details[0].showinwebsite;
             
             
             $('.message-area').addClass('d-sm-flex');
@@ -381,7 +392,8 @@ export class ChatComponent implements OnInit {
   addgroup()
   {
   this.Newgroupmodel.g_id='';
-  this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+  if(this.Newgroupmodel.groupname!=''){
+    this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{       
       this.Newgroupmodel.groupname='';
@@ -392,6 +404,10 @@ export class ChatComponent implements OnInit {
         swal('','Group Created Successfully','success');  
         
     });
+  }else {
+    swal('','groupname is required','error');  
+  }
+  
     
   }
 

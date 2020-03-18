@@ -265,7 +265,7 @@
 
 						<!-- Modal footer -->
 						<div class="modal-footer">
-							<button type="button" [disabled]="!groupForm.form.valid" class="btn btn-success"
+							<button type="button" [disabled]="!groupForm.form.valid || Newgroupmodel.groupname==''" class="btn btn-success"
 								(click)="addgroup()" data-dismiss="modal">Save</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 						</div>
