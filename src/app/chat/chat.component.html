@@ -693,7 +693,7 @@
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);"
 								data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
 
-							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+							<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1" href="javascript:void(0);" data-toggle="modal"
 								data-target="#sendrequestmodal">Send Join Request</a>
 									
 							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"

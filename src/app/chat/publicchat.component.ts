@@ -79,13 +79,11 @@ export class PublicchatComponent implements OnInit {
     //code added for auto height
     var rehigh=107;
      this.windowHeight = ($(window).innerHeight()-rehigh);
-     console.log('height:'+ $(window).innerHeight());
-     console.log('addedheight:'+this.windowHeight);
+     
         $('#messages').css('height', this.windowHeight);
         $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
     //code ends here
 
-    console.log(this.Newgroupmodel.currentUser);
     this.Newgroupmodel.userselectedItems=[{'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser}];
     this.userdropdownSettings = {
       singleSelection: false,
@@ -116,6 +114,7 @@ export class PublicchatComponent implements OnInit {
     this.Newgroupmodel.g_id=1; 
     
     this.Codetogroup();
+    this.refreshData();
    
   }
 
@@ -163,12 +162,12 @@ export class PublicchatComponent implements OnInit {
 
   refreshData(){
   if(this.Newgroupmodel.g_id!=''){
-   //this.interval = setInterval(() => {
+   this.interval = setInterval(() => {
 
-    //this.generateMessageArea(this.Newgroupmodel.g_id);
+    this.generateMessageArea(this.Newgroupmodel.g_id);
    
      
-    //}, 20000);
+    }, 35000);
   }  else {
     clearInterval(this.interval);
   }
@@ -228,7 +227,7 @@ export class PublicchatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // this.refreshData();
     this.CommonService.insertdata(AppSettings.getgroupsdetailspublic,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;

@@ -1,29 +1,29 @@
 export class AppSettings{
 
-	//  public static URL_BASE = "http://localhost:4200/";
-	//  public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
-  	//  public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
-	//  public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
-	//  public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
-	//  public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
-	//  public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
-	//  public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
-	//  public static share_link= "http://localhost:4200/chat/join/";
-	//  public static chatshare= "http://localhost:4200/chat/public/";
-	//  public static mallshopurl= "https://mall.roodabatoz.com/shop/";
-
-
-	public static URL_BASE = "https://roodabatoz.com/";
-	 public static API_BASE = "https://roodabatoz.com/api";	
-  	 public static USER_TEMPLATE= "https://roodabatoz.com/website";
-	 public static IMAGE_BASE = "https://roodabatoz.com/api/";
-	 public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
-	 public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
-	 public static WEBSITE_URL="https://roodabatoz.com/website/";
-	 public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
-	 public static share_link= "https://roodabatoz.com/chat/join/";
-	 public static chatshare= "https://roodabatoz.com/chat/public/";
+	 public static URL_BASE = "http://localhost:4200/";
+	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
+  	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
+	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
+	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	 public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
+	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+	 public static share_link= "http://localhost:4200/chat/join/";
+	 public static chatshare= "http://localhost:4200/chat/public/";
 	 public static mallshopurl= "https://mall.roodabatoz.com/shop/";
+
+
+	// public static URL_BASE = "https://roodabatoz.com/";
+	//  public static API_BASE = "https://roodabatoz.com/api";	
+  	//  public static USER_TEMPLATE= "https://roodabatoz.com/website";
+	//  public static IMAGE_BASE = "https://roodabatoz.com/api/";
+	//  public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
+	//  public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
+	//  public static WEBSITE_URL="https://roodabatoz.com/website/";
+	//  public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
+	//  public static share_link= "https://roodabatoz.com/chat/join/";
+	//  public static chatshare= "https://roodabatoz.com/chat/public/";
+	//  public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 
 
 	//public static share_link= "https://roodabatoz.com/chat/join/";

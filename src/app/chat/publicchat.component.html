@@ -372,7 +372,7 @@ img {vertical-align: middle;}
 							<div class="dropdown-menu dropdown-menu-right">
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
-									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
 								data-target="#sendrequestmodal">Send Join Request</a>
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#exitmyModaledit">Exit Group</a>
 									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>
@@ -559,7 +559,8 @@ img {vertical-align: middle;}
 					<!-- <input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
 				</div>
 
-				<div *ngIf="Newgroupmodel.channelgroup==2" class="justify-self-end align-items-center flex-row d-flex" id="input-area" >
+				<!-- <div *ngIf="Newgroupmodel.channelgroup==2" class="justify-self-end align-items-center flex-row d-flex" id="input-area" > -->
+					<div *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="justify-self-end align-items-center flex-row d-flex" id="input-area" >
 					<a  href="javascript:void(0);" (click)="chatimageclick()"
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
