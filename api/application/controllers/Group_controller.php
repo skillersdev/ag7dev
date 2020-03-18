@@ -928,7 +928,11 @@ public function getgroupsdetails(){
 
              if(count($mem_group_array)>0)
              {
-               $response=array('status'=>"fail");
+              $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");        
+              
+              $this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted=0 where group_id='".$model->group_id."' AND user_id='".$model->created_by."'");
+
+               $response=array('status'=>"success");
              }else{
                $result=$this->db->query("update ".$this->db->dbprefix('send_group_request_log')." set request_status='".$model->request_status."' where id='".$model->id."'");        
         

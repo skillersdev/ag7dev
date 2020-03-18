@@ -241,7 +241,7 @@ class User_controller extends CI_Controller {
    public function findmarketers()
   {
      $model = json_decode($this->input->post('model',FALSE));    
-        $username = trim($model->currentUsername);
+        // $username = trim($model->currentUsername);
         //if(isset($model->currentUsername)){
             $res=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->marketer,'user_type'=>'2'])->get('affiliateuser');    
         //}
