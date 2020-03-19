@@ -136,7 +136,7 @@ class Group_controller extends CI_Controller {
             $upper_Case_ext=strtoupper($ext);
 
             //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
-            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
+            if($upper_Case_ext==".DOC"||$upper_Case_ext==".PDF"||$upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
             {
               $chatimage = time().$_FILES['file']['name'];
               $filePath = $path.$chatimage;
@@ -303,6 +303,9 @@ class Group_controller extends CI_Controller {
                 if($ext[1]=="mp3"){
                   $msg_value['video_type'] = 2;
                 }
+                if($ext[1]=="pdf"){
+                  $msg_value['video_type'] = 3;
+                }
               }
 
                $msg_group_array1[$newDate][] = $msg_value;
@@ -377,6 +380,9 @@ class Group_controller extends CI_Controller {
                 }
                 if($ext[1]=="mp3"){
                   $msg_value['video_type'] = 2;
+                }
+                if($ext[1]=="pdf"){
+                  $msg_value['video_type'] = 3;
                 }
               }
 
@@ -455,6 +461,9 @@ public function getgroupsdetails(){
                 }
                 if($ext[1]=="mp3"){
                   $msg_value['video_type'] = 2;
+                }
+                if($ext[1]=="pdf"){
+                  $msg_value['video_type'] = 3;
                 }
               }
 
