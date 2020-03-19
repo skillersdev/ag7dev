@@ -908,6 +908,8 @@
 													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
 														type="audio/mpeg">
 												</audio>
+												<a *ngIf="data.video_type==3" target="_blank"
+													href="{{group_bases}}groupchat_images/{{data.chatimage}}">{{data.chatimage}}</a>
 											</div>
 											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
 												style="width:140px;">
@@ -941,6 +943,8 @@
 													<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
 														type="audio/mpeg">
 												</audio>
+												<a *ngIf="data.video_type==3" target="_blank"
+													href="{{group_bases}}groupchat_images/{{data.chatimage}}">{{data.chatimage}}</a>
 											</div>
 											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
 												style="width:75px;">
