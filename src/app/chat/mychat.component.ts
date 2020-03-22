@@ -358,13 +358,15 @@ export class MychatComponent implements OnInit {
   }
 
   msgfileEvent($event) {
+    $('.loader').css('display','block');
     const fileSelected: File = $event.target.files[0];
 
     this.CommonService.chatuploadFile(AppSettings.msggroupimage,fileSelected)
     .subscribe( (response) => {
        if(response.status=='success')
        {
-        console.log(response);
+        // console.log(response);
+        $('.loader').css('display','none');
         
          this.Newgroupmodel.groupimagename = response.data;
           this.Newgroupmodel.groupmsgtxt='';

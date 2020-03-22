@@ -256,7 +256,13 @@ export class PublicchatComponent implements OnInit {
     .subscribe(package_det =>{     
       this.generateMessageArea(this.Newgroupmodel.g_id);
         //this.getgrouplists();
-        swal('','Group Updated Successfully','success');  
+        // swal('','Group Updated Successfully','success');  
+        if(this.Newgroupmodel.channelgroup==2 || this.Newgroupmodel.channelgroup=="2"){
+          swal('','Group Created Successfully','success');
+        }else if(this.Newgroupmodel.channelgroup==1 || this.Newgroupmodel.channelgroup=="1"){
+          swal('','Channel Created Successfully','success');
+        }
+           
         //this.router.navigate(['./chat']); 
         
     });
@@ -365,13 +371,15 @@ export class PublicchatComponent implements OnInit {
   }
 
   msgfileEvent($event) {
+    $('.loader').css('display','block');
     const fileSelected: File = $event.target.files[0];
 
     this.CommonService.chatuploadFile(AppSettings.msggroupimage,fileSelected)
     .subscribe( (response) => {
        if(response.status=='success')
        {
-        console.log(response);
+        $('.loader').css('display','none');
+        // console.log(response);
         
          this.Newgroupmodel.groupimagename = response.data;
           this.Newgroupmodel.groupmsgtxt='';
@@ -418,4 +426,30 @@ export class PublicchatComponent implements OnInit {
           }
     });
   }
+
+  msgdeletefun(id:any){
+    this.CommonService.insertdata(AppSettings.chatmsgdelete,{'id':id})
+    .subscribe(package_det =>{  
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+    });
+  }
+
+  msgeditfun(id:any){
+    this.CommonService.insertdata(AppSettings.chatmsgedit,{'id':id})
+    .subscribe(response =>{    
+      this.Newgroupmodel.msgid=response.msg[0].id;
+      this.Newgroupmodel.msgupdate=response.msg[0].message;
+    });
+  }
+  msgupdatefun(){
+
+    this.CommonService.insertdata(AppSettings.chatmsgupdate,{'id':this.Newgroupmodel.msgid,'msgupdate':this.Newgroupmodel.msgupdate})
+    .subscribe(package_det =>{     
+     
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+
+    });
+
+  }
+
 }

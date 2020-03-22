@@ -236,7 +236,7 @@ export class ChatComponent implements OnInit {
       this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
-      this.refreshData();
+      // this.refreshData();
     }
   }
   groupsearch(){
@@ -350,12 +350,18 @@ export class ChatComponent implements OnInit {
   }
   updategroup()
   {
-    this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+    // this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.updategroup,this.Newgroupmodel)
-    .subscribe(package_det =>{     
+    .subscribe(package_det =>{  
+      if(this.Newgroupmodel.channelgroup==2 || this.Newgroupmodel.channelgroup=="2"){
+        swal('','Group Created Successfully','success');
+      }else if(this.Newgroupmodel.channelgroup==1 || this.Newgroupmodel.channelgroup=="1"){
+        swal('','Channel Created Successfully','success');
+      }
+            
       this.generateMessageArea(this.Newgroupmodel.g_id);
         this.getgrouplists();
-        swal('','Group Updated Successfully','success');  
+        // swal('','Group Updated Successfully','success');  
         
     });
   }
@@ -395,13 +401,19 @@ export class ChatComponent implements OnInit {
   if(this.Newgroupmodel.groupname!=''){
     this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
-    .subscribe(package_det =>{       
+    .subscribe(package_det =>{
+      if(this.Newgroupmodel.channelgroup==2 || this.Newgroupmodel.channelgroup=="2"){
+        swal('','Group Created Successfully','success');
+      }else if(this.Newgroupmodel.channelgroup==1 || this.Newgroupmodel.channelgroup=="1"){
+        swal('','Channel Created Successfully','success');
+      }
+               
       this.Newgroupmodel.groupname='';
       this.Newgroupmodel.groupimagename='';
       this.Newgroupmodel.privatepublic=2;       
       
         this.getgrouplists();
-        swal('','Group Created Successfully','success');  
+       
         
     });
   }else {
@@ -466,13 +478,13 @@ export class ChatComponent implements OnInit {
 
   msgfileEvent($event) {
     const fileSelected: File = $event.target.files[0];
-
+$('.loader').css('display','block');
     this.CommonService.chatuploadFile(AppSettings.msggroupimage,fileSelected)
     .subscribe( (response) => {
        if(response.status=='success')
        {
         // console.log(response);
-        
+        $('.loader').css('display','none');
          this.Newgroupmodel.groupimagename = response.data;
           this.Newgroupmodel.groupmsgtxt='';
           this.sendMessage(); 

@@ -15,6 +15,29 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
 	<style>
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 	
 #message-area{position: relative !important;}
 .msg-nav-bar{position:absolute!important;}
@@ -302,11 +325,11 @@
 								<div class="form-line radio-btns">
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="channel" class="with-gap radio-col-grey"
-										[checked]="Newgroupmodel.channelgroup==1" [value]="1" />
+										[checked]="Newgroupmodel.channelgroup==1" value="1" />
 									<label for="channel" class="m-r-3">Channel</label>&nbsp;
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="group" class="with-gap radio-col-grey"
-										[checked]="Newgroupmodel.channelgroup==2" [value]="2" />
+										[checked]="Newgroupmodel.channelgroup==2" value="2" />
 									<label for="group">Group</label>
 								</div>
 							</div>
@@ -623,6 +646,9 @@
 							<div class="name">{{data.group_name}}</div>
 							<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
 						</div>
+						<!-- channelgroup -->
+						<div *ngIf="data.channelgroup==1" class="flex-grow-1 text-right"><div class="small time">C</div></div>
+						<div *ngIf="data.channelgroup==2" class="flex-grow-1 text-right"><div class="small time">G</div></div>
 						<!-- <div class="flex-grow-1 text-right">
 									<div class="small time">14/06/2019</div>
 									<div class="badge badge-success badge-pill small d-none" id="unread-count">2</div>
@@ -995,7 +1021,7 @@
 
 					-->
 
-
+					<div class="loader" style="display: none;"></div>
 
 
 					<input
