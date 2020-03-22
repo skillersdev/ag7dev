@@ -500,7 +500,7 @@ public function getgroupsdetails(){
 
           $model = json_decode($this->input->post('model',FALSE));
         if($model->search_group_name!=''){
-          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
+          $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.channelgroup,group_master.private_public,group_master.group_code')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             // ->like('group_master.group_name',$model->search_group_name) told sridhar
             ->where('group_master.group_name',$model->search_group_name)
@@ -511,7 +511,7 @@ public function getgroupsdetails(){
             ->group_by('group_master.id')
             ->get('group_master');
         } else {
-         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.private_public,group_master.group_code')
+         $group_sql = $this->db->select('group_master.id as id,group_master.group_name as group_name,group_master.imagename,group_master.channelgroup,group_master.private_public,group_master.group_code')
             ->join('group_members', 'group_members.group_id=group_master.id', 'left')
             ->where('group_members.user_id', $model->currentUserID)
             // ->where('group_master.private_public', '2')
