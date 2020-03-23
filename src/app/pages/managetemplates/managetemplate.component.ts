@@ -102,21 +102,14 @@ export class ManagetemplateComponent implements OnInit {
           );
         }
       },function(dismiss) {
-  // dismiss can be "cancel" | "close" | "outside"
+  
 });
  }
  removeuser(idx:any)
  {
-   this.CommonService.deletedata(this.DeleteuserRestApiUrl,idx)
+   this.CommonService.deletedata(AppSettings.deletetemplateslider,idx)
         .subscribe(resultdata =>{
-           this.CommonService.getdata(this.gettemplatelistRestApiUrl)
-        .subscribe(packagedet =>{
-            if(packagedet.result!="")
-            { 
-              this.userlist= packagedet.result;
-            } 
-             
-        });
+         this.ngOnInit();
       });
  }
 

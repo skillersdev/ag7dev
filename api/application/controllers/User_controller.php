@@ -39,7 +39,7 @@ class User_controller extends CI_Controller {
             for ($i=1; $i<=2; $i++) 
             { 
 
-               $length=10;
+                $length=10;
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
                 $randomString = '';
@@ -80,6 +80,74 @@ class User_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
+    public function updategroupandchatforolduser()
+    {
+        /***Get Group Members Id by distinct***/
+        $get_group_members=$this->db->query("select DISTINCT(user_id) as userId from ".$this->db->dbprefix('group_members')." where user_id !=0 AND is_deleted=0");
+          
+         $group_user_ids = $get_group_members->result_array();
+
+         foreach ($group_user_ids as $key => $value) {
+             $ids[] = $value['userId'];
+         }
+         
+       // echo "<pre>";print_r(implode(',',$ids));die;
+          $ids =implode(',',$ids);
+          
+          $get_users_not_in_group = $this->db->query("SELECT * FROM affiliateuser WHERE id NOT IN (".$ids.") AND id!=1");
+         
+          $user_ids = $get_users_not_in_group->result_array();
+
+         
+         //echo "<pre>"; print_r($user_ids);die;
+         //echo "SELECT * FROM affiliateuser WHERE id NOT IN (".$ids.")";die;
+        
+         if(count($user_ids)>0)
+         {
+
+            foreach ($user_ids as $key => $value) 
+            {
+                /*Create a chat group for the corressponding user*/
+                $group_image = 'default-profile.png';
+                $current_date = date("Y-m-d h:i:sa");
+
+                for ($i=1; $i<=2; $i++) 
+                { 
+
+                    $length=10;
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $charactersLength = strlen($characters);
+                    $randomString = '';
+                    for ($j = 0; $j < $length; $j++) {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                    }
+
+                    $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
+                    (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$value['username']."','".$i."','".$group_image."',4,'".$randomString."','".$value['Id']."','".$current_date."',0)");
+                    $group_id = $this->db->insert_id();
+
+                    if($i==2)
+                    {
+                        $this->db->query("insert into ".$this->db->dbprefix('group_master')." 
+                        (group_name,channelgroup,imagename,private_public,group_code,created_by,created_date,is_deleted) values('".$value['username']."',2,'".$group_image."',3,'".$randomString."','".$value['Id']."','".$current_date."',0)");
+                        $group_id_1 = $this->db->insert_id();
+                    }
+
+                    $this->db->query("insert into ".$this->db->dbprefix('group_members')." 
+                    (group_id,group_name,user_id,user_name,created_by,created_date,is_deleted) values('".$group_id."','".$value['username']."','".$value['Id']."','".$value['username']."','".$value['Id']."','".$current_date."',0)");
+                }
+
+                 /*End*/
+            }
+            $response['message'] = "User has been successfully updated to group";
+         }else{
+            $response['message'] = "User doesn't exist for updating to group";
+         }
+
+           echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+    }
+
 
     public function add_template_master()
     {
@@ -282,6 +350,31 @@ class User_controller extends CI_Controller {
         echo json_encode($result,JSON_UNESCAPED_SLASHES);
         die();
   }
+  public function deletetemplateslider($id)
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        
+
+        $res_chk=$this->db->query("select id from ".$this->db->dbprefix('template_settings')." where id='".$id."' ");
+        
+        if($res_chk->num_rows()>0){
+
+            $data=array('is_deleted'=>'1');
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('template_settings'),$data);
+
+            $response['status']="success";
+            $response['message']="Template has been deleted successfully";
+            
+        }else{
+            $response['status']="failure";
+            $response['message']="Invalid Attempt!!.. Access denied..";    
+        }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
   public function get_templatelistby_user($id)
   {
     $model = json_decode($this->input->post('model',FALSE));

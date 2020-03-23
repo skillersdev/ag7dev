@@ -760,6 +760,7 @@
                 $service_id = "'".$child_value['section_item_id']."'";
                 $weblink = "'".$child_value['file_name']."'";
                 $media_type =$child_value['media_type'];
+                $web_url = "'".$child_value['website_link']."'";
 
                  if($child_value['media_type']==1) {
                     $path = $path_url.$child_value['file_name'];
@@ -775,11 +776,12 @@
                   <div class="hotel">
                     <div class="hotel-img">
                      <?php 
-                       echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
+                       echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
                       ?>
                     </div>
                     <h3><?php echo $child_value['title'];?></h3>              
                     <p><?php echo $child_value['description'];?></p>
+                     <p><?php echo $web_url;?></p>
                     <p> <?php
                         // if($service_details[$j]['weblink']!=""){
                         //   echo "<p><a href='".$service_details[$j]['weblink']."' target='_blank'>Website Link</a></p>"; 
@@ -1057,7 +1059,7 @@
                 }
             });
     });
-  function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file)
+  function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url)
   {
     $('#mtitle2_section').html(name);
       
@@ -1071,7 +1073,7 @@
         $('#mimage2_section').html('<audio width="400" controls><source src="'+src_file+'" type="audio/mpeg"></audio>');
       }
       
-      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><b>WebLink </b>: <a href="'+image+'" target="_blank">'+image+'</a></div>');
+      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><b>WebLink </b>:<span>"'+web_url+'"</span></div>');
 
        var serviceid = update_id;
        $.ajax({

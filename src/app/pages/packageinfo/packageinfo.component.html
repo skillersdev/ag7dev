@@ -267,11 +267,11 @@
                                         </a></td>
                                         <td>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#renewModal">
-                                            <span *ngIf="data.package_status==2">Renew</span>
+                                            <span *ngIf="data.status=='Renewal'">Renew</span>
                                         </a>
-                                            <span *ngIf="data.package_status==0">Activated</span>
+                                            <span *ngIf="data.status=='Active'">Activated</span>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#exampleModal">
-                                                <span *ngIf="data.package_status==1">Yet to activate</span>
+                                                <span *ngIf="data.status=='Inactivate'">Yet to activate</span>
                                             </a>
                                            <!--  <a href="#" data-toggle="modal" data-target="#templatesetting"><i class="material-icons">settings</i></a> -->
                                         </td>

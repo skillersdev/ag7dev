@@ -104,6 +104,9 @@ import { AddsectionitemComponent } from './pages/managesectionitem/addsectionite
 import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ManagechatgrouprequestComponent } from './managechatgrouprequest/managechatgrouprequest.component';
+import { ManagechannelsComponent } from './managechannels/managechannels.component';
+import { AddchannelComponent } from './managechannels/addchannel/addchannel.component';
+import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -186,7 +189,10 @@ import { ManagechatgrouprequestComponent } from './managechatgrouprequest/manage
     ManagesectionitemComponent,
     AddsectionitemComponent,
     EditsectionitemComponent,
-    ManagechatgrouprequestComponent
+    ManagechatgrouprequestComponent,
+    ManagechannelsComponent,
+    AddchannelComponent,
+    EditchannelComponent
 	//ImageCropperComponent
   ],
   imports: [

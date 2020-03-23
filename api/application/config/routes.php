@@ -58,6 +58,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['common'] = 'Api_controller/index';
 $route['checkuser'] = 'Login_controller/checklogin';
 $route['resetpassword'] = 'User_controller/resetpassword';
+$route['updategroupandchatforolduser']= 'User_controller/updategroupandchatforolduser';
 
 /******Package Module API List*********/
 $route['addpackage'] = 'Package_controller/add_package_master';
@@ -112,6 +113,7 @@ $route['deletesectionitem/(:num)']= 'Sectionitem_controller/deletesectionitem/$1
 $route['adduser'] = 'User_controller/add_user_master';
 $route['addtemplate']= 'User_controller/add_template_master';
 $route['gettemplatelistbyuser/(:num)']='User_controller/get_templatelistby_user/$1';
+$route['deletetemplateslider/(:num)']='User_controller/deletetemplateslider/$1';
 $route['getuserslist'] = 'User_controller/get_users_detail';
 $route['getchatuserslist'] = 'User_controller/get_chatusers_detail';
 $route['gettemplatelist']= 'User_controller/get_template_list';
@@ -294,6 +296,13 @@ $route['malllogin'] = 'Malllogin_controller/checklogin';
 $route['getrtubevideolist']= 'Home_controller/getrvideolist';
 $route['editvideodetail/(:num)']= "Home_controller/editvideodetail/$1";
 
+
+/**Channel creation*/
+$route['uploadchannelimage']="Channel_controller/uploadchannelimage";
+$route['addchanneldata'] = "Channel_controller/addchanneldata";
+$route['getchannellist']= "Channel_controller/getchannellist";
+$route['editchannel/(:num)']= "Channel_controller/editchannel/$1";
+/*****/
 ?>
 
 

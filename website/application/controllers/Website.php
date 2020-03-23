@@ -140,6 +140,7 @@ class Website extends CI_Controller {
 						$section_result[$value['section_name']][$key_item]['media_type'] = $item_value['media_type'];
 						$section_result[$value['section_name']][$key_item]['title'] = $item_value['title'];
 						$section_result[$value['section_name']][$key_item]['description'] = $item_value['description'];
+						$section_result[$value['section_name']][$key_item]['website_link'] = $item_value['website_link'];
 						$section_result[$value['section_name']][$key_item]['file_name'] = $item_value['file_name'];
 						$section_result[$value['section_name']][$key_item]['attachment_desc'] = $item_value['attachment_desc'];
 						$section_result[$value['section_name']][$key_item]['preview_file'] = $item_value['preview_file'];

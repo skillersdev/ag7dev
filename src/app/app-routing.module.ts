@@ -88,6 +88,9 @@ import { ManagesectionitemComponent } from './pages/managesectionitem/managesect
 import { AddsectionitemComponent } from './pages/managesectionitem/addsectionitem/addsectionitem.component';
 import { EditsectionitemComponent } from './pages/managesectionitem/editsectionitem/editsectionitem.component';
 import { ManagechatgrouprequestComponent } from './managechatgrouprequest/managechatgrouprequest.component';
+import { ManagechannelsComponent } from './managechannels/managechannels.component';
+import { AddchannelComponent } from './managechannels/addchannel/addchannel.component';
+import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -427,6 +430,18 @@ component:EditmallproductComponent
   {
     path:'managegrouprequest',
     component:ManagechatgrouprequestComponent
+  },
+  {
+    path:'managechannels',
+    component:ManagechannelsComponent
+  },
+  {
+    path:'addchannel',
+    component:AddchannelComponent
+  },
+  {
+    path:'editchannel/:id',
+    component:EditchannelComponent
   }
 
 ];

@@ -21,7 +21,7 @@ if($array1[0]['username'])
 	
 	// Retrieve username and password from database according to user's input, preventing sql injection
 	/* End condition for checking amount was removed by karthikeyan in below query */
-	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '" .$array1[0]['username']. "') AND (password = '" .$array1[0]['password']. "') AND (active = 0)";
+	$query ="SELECT COUNT(*) AS ucount FROM affiliateuser WHERE (username = '" .$array1[0]['username']. "') AND (password = '" .$array1[0]['password']. "') AND (active = 1)";
 	//echo $query;die;
 	if ($stmt = mysqli_query($con, $query)) {
 		
@@ -35,7 +35,7 @@ if($array1[0]['username'])
 	//echo $num['ucount'];die;
 	//mysqli_close($con);
 	// Check username and password match
-if (($num['ucount']) == 1) {
+	if (($num['ucount']) == 1) {
 		
 		// $queryuser="SELECT id,pcktaken FROM  affiliateuser where username = '$userid'"; 
 		// $resultuser = mysqli_query($con,$queryuser);

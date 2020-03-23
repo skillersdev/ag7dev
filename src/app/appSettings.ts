@@ -1,28 +1,28 @@
 export class AppSettings{
 
-	 public static URL_BASE = "http://localhost:4200/";
-	 public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
-  	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
-	 public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
-	 public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
-	 public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
-	 public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
-	 public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
-	 public static share_link= "http://localhost:4200/chat/join/";
-	 public static chatshare= "http://localhost:4200/chat/public/";
+	 // public static URL_BASE = "http://localhost:4200/";
+	 // public static API_BASE = "http://localhost/ag7dev.git/trunk/api";	
+  // 	 public static USER_TEMPLATE= "http://localhost/ag7dev.git/trunk/website";
+	 // public static IMAGE_BASE = "http://localhost/ag7dev.git/trunk/api/";
+	 // public static IMAGE_BASE_CHAT = "http://localhost/ag7dev.git/trunk/assets/chat/";
+	 // public static PACKAGE_ACTIVATE = "http://localhost/ag7dev.git/trunk/api/database/checkbalance.php";
+	 // public static WEBSITE_URL="http://localhost/ag7dev.git/trunk/website/";
+	 // public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
+	 // public static share_link= "http://localhost:4200/chat/join/";
+	 // public static chatshare= "http://localhost:4200/chat/public/";
 	 public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 
 
-	// public static URL_BASE = "https://roodabatoz.com/";
-	//  public static API_BASE = "https://roodabatoz.com/api";	
-  	//  public static USER_TEMPLATE= "https://roodabatoz.com/website";
-	//  public static IMAGE_BASE = "https://roodabatoz.com/api/";
-	//  public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
-	//  public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
-	//  public static WEBSITE_URL="https://roodabatoz.com/website/";
-	//  public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
-	//  public static share_link= "https://roodabatoz.com/chat/join/";
-	//  public static chatshare= "https://roodabatoz.com/chat/public/";
+	public static URL_BASE = "https://roodabatoz.com/";
+	 public static API_BASE = "https://roodabatoz.com/api";	
+  	 public static USER_TEMPLATE= "https://roodabatoz.com/website";
+	 public static IMAGE_BASE = "https://roodabatoz.com/api/";
+	 public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
+	 public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
+	 public static WEBSITE_URL="https://roodabatoz.com/website/";
+	 public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
+	 public static share_link= "https://roodabatoz.com/chat/join/";
+	 public static chatshare= "https://roodabatoz.com/chat/public/";
 	//  public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 
 
@@ -224,8 +224,14 @@ export class AppSettings{
 	public static getvideolistbywebsiteApiUrl= AppSettings.API_BASE+"/getvideolistbyid";
 	public static Editvideo = AppSettings.API_BASE+"/editvideodata/";
 	public static updatevideosectiondata=AppSettings.API_BASE+"/uploadvideodata";
-	
-	
+
+
+	/*Channel Api*/
+	public static uploadchannellImage = AppSettings.API_BASE+"/uploadchannelimage";
+	public static AddchanneldataApi = AppSettings.API_BASE+"/addchanneldata";
+	public static getChannellist= AppSettings.API_BASE+"/getchannellist";
+	public static editchannel= AppSettings.API_BASE+"/editchannel/";
+	/***/
 	public static getalbumlistRestApiUrl= AppSettings.API_BASE+"/getalbumlist";
 	public static uploadalbumimage=AppSettings.API_BASE+"/uploadalbumimage";
 	public static FetchAlbumbyidRestApiUrl= AppSettings.API_BASE+"/editalbum/";
@@ -235,6 +241,8 @@ export class AppSettings{
 	public static uploadvideoPreviewApi= AppSettings.API_BASE+"/uploadvideopreview";
 	public static addvideosectiondata = AppSettings.API_BASE+"/insertvideosectiondata";
 	public static DeletegalleryimagesRestApiUrl =AppSettings.API_BASE+"/deletealbumphotos/";
+	public static deletetemplateslider=AppSettings.API_BASE+"/deletetemplateslider/";
+
  
 	
 	/*mall add*/

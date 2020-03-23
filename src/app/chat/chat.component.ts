@@ -208,14 +208,14 @@ export class ChatComponent implements OnInit {
     .subscribe(det =>{      
         if(det.status=='error')
         {
-          this.group_det=[];
+          //this.group_det=[];
 
           swal('','Marketer doesnot exists','error'); 
         }
         else
           { 
             this.sendreqestmodel.Isloading= true;
-            this.group_det=det.result;
+           // this.group_det=det.result;
             this.sendreqestmodel.selectedmarketeritems=det;
           }
     });

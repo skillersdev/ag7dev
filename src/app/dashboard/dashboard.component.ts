@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   currentUsername:any;
   currentUsergroup:any;
   currentUserStatus:any;
+  details_array:any=[];
   currentAllUsers:any;
   tamount:any;
   payment_details:any
@@ -34,16 +35,22 @@ export class DashboardComponent implements OnInit {
   package_vs_user_list:Array<Object>;
   model: any = {};
   alldata: any = {};
+  payment_data:any={};
   transferdata: any = {};
+  renew_payment_details:any=false;
   select: any;
+  isPaid:Boolean=false;
   userwebsiteurl:string=AppSettings.userweburl;
   getpackageinfodetApiUrl:string = AppSettings.getPackageInfo; 
+  checkIswebsite:Boolean=false;
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   checkpackageisactivated:string = AppSettings.packageisactivated; 
   checkUserCreditRestApiUrl:string = AppSettings.checkusercredit;
   inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
   getpackagevsuserApiUrl:string = AppSettings.getPackageNotbuy;
   insertpackagevsuserApiUrl:string = AppSettings.insertpackagevsuser;
+  packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
+  showButton:Boolean=false;
 
   websiteurl:string=AppSettings.USER_TEMPLATE;
  
@@ -55,6 +62,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
+    this.renew_payment_details=true;
+    this.showButton=false;
     console.log('testing here commit issue');
     let id=localStorage.getItem('currentUserID');
       this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
@@ -106,6 +115,15 @@ export class DashboardComponent implements OnInit {
          this.model.mname='';
       }       
     });
+  }
+  pay_via_voucher()
+  {
+    this.payment_details=true;
+    
+  }
+  pay_via_voucher_renew()
+  {
+    this.renew_payment_details=false;
   }
   savepackages()
   {
@@ -181,6 +199,71 @@ export class DashboardComponent implements OnInit {
           package_det.status
         )
         this.router.navigate(['/dashboard']); 
+    });
+  }
+  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any)
+  {
+    
+    this.model.package_name = package_name;
+    this.model.package_price = package_price;
+    this.payment_data.userid = userid;//user_vs_package user id
+    this.payment_data.pack_id =pack_id;//user_vs_pacakge package if
+    this.payment_data.pack_id_user=pack_id_user;//user_vs_packeg mastr id
+    this.model.website = website;
+    this.checkIswebsite=(this.model.website!='')?true:false;
+    this.model.template = template;
+    this.model.p_id = pack_id_user;
+    
+    
+    
+  }
+  
+   paytoactivate()
+  { 
+    this.payment_data.website = this.model.website;
+    this.details_array.push(this.payment_data);
+   // $('.preloader').show();
+    this.isPaid=true;
+    //return false;
+    this.showButton=true;
+     this.CommonService.insertdata(this.packageActivateApiUrl,this.details_array)
+    .subscribe(payment_status =>{ 
+      if(payment_status.status=='success')
+      {
+        swal('','Package activated successfully','success');
+        this.payment_data='';
+        this.model='';
+        this.isPaid=false;
+         $('#exampleModal').modal('toggle');
+          let user_id = localStorage.getItem('currentUserID');
+          this.CommonService.editdata(this.getpackageinfodetApiUrl,user_id)
+              .subscribe(resultdata =>{   
+                this.packagelist=resultdata.result; 
+              });
+              //$('.preloader').hide();
+              
+              this.showButton=false;
+            }
+      else if(payment_status.status=='user_error'){
+        swal('','Not a valid user or invalid user data','error');        
+        //this.payment_data='';
+        //this.model='';
+         //this.isPaid=true;
+        $('.preloader').hide();
+      }
+      else if(payment_status.status=='fail'){
+        swal('','user has less amount on his own','error');
+        $('.preloader').hide();
+       // this.payment_data=''; 
+        //this.model='';
+      }
+      else{
+        swal('','Error while on activate package','error');
+        $('.preloader').hide();
+       // this.payment_data=''; 
+        //this.model='';
+      }
+     
     });
   }
 
