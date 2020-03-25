@@ -182,6 +182,7 @@ export class MychatComponent implements OnInit {
       // this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
+      // this.refreshData();
     }
   }
   groupsearch(){
@@ -221,7 +222,7 @@ export class MychatComponent implements OnInit {
 
    
     this.Newgroupmodel.g_id=g_id;
-    this.refreshData();
+    // 
     this.CommonService.insertdata(AppSettings.mychatgroup,this.Newgroupmodel)
         .subscribe(resultdata =>{   
           this.group_name=1;
@@ -411,5 +412,31 @@ export class MychatComponent implements OnInit {
             this.sendreqestmodel.selectedmarketeritems=det;
           }
     });
+  }
+
+  msgdeletefun(id:any){
+    this.CommonService.insertdata(AppSettings.chatmsgdelete,{'id':id})
+    .subscribe(package_det =>{  
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+    });
+  }
+
+  msgeditfun(id:any){
+    // alert(id);
+    this.CommonService.insertdata(AppSettings.chatmsgedit,{'id':id})
+    .subscribe(response =>{    
+      this.Newgroupmodel.msgid=response.msg[0].id;
+      this.Newgroupmodel.msgupdate=response.msg[0].message;
+    });
+  }
+  msgupdatefun(){
+
+    this.CommonService.insertdata(AppSettings.chatmsgupdate,{'id':this.Newgroupmodel.msgid,'msgupdate':this.Newgroupmodel.msgupdate})
+    .subscribe(package_det =>{     
+     
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+
+    });
+
   }
 }
