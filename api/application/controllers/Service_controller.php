@@ -199,7 +199,7 @@ class Service_controller extends CI_Controller {
 
         //echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string}";die;
 
-        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string} ");
+        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND created_by ='".$model->userId."' AND website LIKE {$string} ");
         $result1=$tank->result_array();
           $response['result']=$result1;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);

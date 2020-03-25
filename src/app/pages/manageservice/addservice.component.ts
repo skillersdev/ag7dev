@@ -77,6 +77,7 @@ export class AddserviceComponent implements OnInit {
        {
         this.model.service_image = response.data;
         $('.preloader').hide();
+        this.model.created_by = this.alldata.userid;
          this.CommonService.insertdata(this.insertserviceRestApiUrl,this.model)
         .subscribe(service_det =>{       
              swal(

@@ -94,16 +94,18 @@ export class EditsectionitemComponent implements OnInit {
       /*****For video and pdf and doc and  audio file upload*******/
       if(this.model.media_type==2 || this.model.media_type==5 || this.model.media_type==4 || this.model.media_type==3)
       {
+        /******Api for preview image upload********/
+        
         this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
         .subscribe( (response) => {
-        //  if(response.status=='success')
-        //  {
+       
           this.model.preview_file =(response.data)?response.data:this.model.preview_file;
+          
+          /******Api for doc/video/ upload********/
           this.CommonService.uploadFile(AppSettings.sectionItemVideoupload,this.uploadVideofile)
           .subscribe( (response) => {
-            //  if(response.status=='success')
-            //  { 
-              this.model.file_name = (response.data)?response.data:this.model.file_name;
+           
+              this.model.file_name = (response.status=='fail')?this.model.file_name:response.data;
              
                 this.CommonService.insertdata(AppSettings.updatesectionItem,this.model)
                 .subscribe( (response) => {
@@ -117,10 +119,7 @@ export class EditsectionitemComponent implements OnInit {
                     swal('',response.data,'Oops!');
                   }
                 });
-              // }
-              // else{
-              //   swal('',response.data,'Oops!');
-              // }
+           
          });
          //}
         });
@@ -135,7 +134,8 @@ export class EditsectionitemComponent implements OnInit {
   /*Preview File section*/
   getservicePreviewImage(event: any): void {        
     this.ServicePreviewimageChangedEvent = event;
-    this.alldata.IspreviewImage= true;
+    this.model.IspreviewImage= true;
+    console.log(this.model);
 }
 PreviewimageCropped(event: ImageCroppedEvent) {
     this.previewcroppedImage = event.base64;
@@ -154,7 +154,7 @@ serviceimageCropped(event: ImageCroppedEvent) {
 /*Audio file section upload*/
 getAudiodet($event) {
 this.uploadVideofile = $event.target.files[0];
-this.alldata.IspreviewImage= true;
+//this.alldata.IspreviewImage= true;
 }
 /**/
 
