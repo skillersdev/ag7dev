@@ -175,7 +175,7 @@ class Group_controller extends CI_Controller {
             $upper_Case_ext=strtoupper($ext);
 
             //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
-            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
+            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4" || upper_Case_ext=="DOC" || upper_Case_ext=="DOCX" || upper_Case_ext=="PPT" || upper_Case_ext=="XLS" || upper_Case_ext=="XLSX")
             {
 
             //   $generatedName = md5($_FILES['file']['tmp_name']).$ext;
@@ -277,40 +277,42 @@ class Group_controller extends CI_Controller {
              $group_sql1=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='".  $model->currentUserID."'  and  is_deleted='0' and private_public=3");
              $login_group_array1=$group_sql1->result_array(); 
 
-
+// print_r($login_group_array1); die;
              $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
              $msg_group_array1=$msg_group_sql->result_array(); 
+          // if(count($login_group_array1)>0){
+            $other_msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $login_group_array1[0]['id']."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+            $other_msg_group_array=$other_msg_group_sql->result_array(); 
 
-             $other_msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $login_group_array1[0]['id']."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
-             $other_msg_group_array=$other_msg_group_sql->result_array(); 
+            $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
 
-             $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
+            foreach ($msg_group_array as $msg_key => $msg_value) {
 
-             foreach ($msg_group_array as $msg_key => $msg_value) {
-
-              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
-              if(in_array($newDate,$datearray)){
-               
-              } else{
-                 $datearray[] = $newDate;  
-              }
-               $msg_value['video_type'] = 0;
-              if($msg_value['chatimage']!=''){
-                $ext = explode(".", $msg_value['chatimage']);
-                if($ext[1]=="mp4"){
-                  $msg_value['video_type'] = 1;
-                }
-                if($ext[1]=="mp3"){
-                  $msg_value['video_type'] = 2;
-                }
-                if($ext[1]=="pdf"){
-                  $msg_value['video_type'] = 3;
-                }
-              }
-
-               $msg_group_array1[$newDate][] = $msg_value;
-               // print_r($msg_value['created_date']);
+             $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
+             if(in_array($newDate,$datearray)){
+              
+             } else{
+                $datearray[] = $newDate;  
              }
+              $msg_value['video_type'] = 0;
+             if($msg_value['chatimage']!=''){
+               $ext = explode(".", $msg_value['chatimage']);
+               if($ext[1]=="mp4"){
+                 $msg_value['video_type'] = 1;
+               }
+               if($ext[1]=="mp3"){
+                 $msg_value['video_type'] = 2;
+               }
+               if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
+                 $msg_value['video_type'] = 3;
+               }
+             }
+
+              $msg_group_array1[$newDate][] = $msg_value;
+              // print_r($msg_value['created_date']);
+            }
+          // }
+            
              
              $group_image_sql=$this->db->query("select * from ".$this->db->dbprefix('group_profile_images_log')." where group_id='". $model->g_id."'");
              $group_image_array=$group_image_sql->result_array(); 
@@ -381,7 +383,7 @@ class Group_controller extends CI_Controller {
                 if($ext[1]=="mp3"){
                   $msg_value['video_type'] = 2;
                 }
-                if($ext[1]=="pdf"){
+                if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
                   $msg_value['video_type'] = 3;
                 }
               }
@@ -462,7 +464,7 @@ public function getgroupsdetails(){
                 if($ext[1]=="mp3"){
                   $msg_value['video_type'] = 2;
                 }
-                if($ext[1]=="pdf"){
+                if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
                   $msg_value['video_type'] = 3;
                 }
               }
