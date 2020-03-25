@@ -16,7 +16,11 @@ websiteurl:string=AppSettings.USER_TEMPLATE;
 model: any = {};
   constructor(
   	private loginService: LoginService,private CommonService: CommonService,
-  	private router: Router,private http:Http) { }
+  	private router: Router,private http:Http) {
+
+      document.body.className=" ";
+
+     }
 
   ngOnInit() {
     this.loginService.localStorageData();
@@ -65,6 +69,10 @@ model: any = {};
   navigatetologin()
   {
     this.router.navigate(['./login']);
+  }
+
+  navigatetosignup(){
+    this.router.navigate(['./signup']);
   }
 
 }
