@@ -1,0 +1,98 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Channel
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <div class="body">
+                                        <form class="" #addchannel="ngForm">
+	                                        <div class="row clearfix">
+	                                           <div class="col-md-6">
+	                                                <p><b>Select Website</b></p>
+	                                                <div class="form-group">
+	                                                   <div class="form-line">
+	                                                        <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
+	                                                            <option [ngValue]="select">select website</option>    
+	                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
+	                                                        </select>
+	                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+	                                                        </div>
+	                                                </div>
+	                                            </div>
+	                                             <div class="col-md-6">
+	                                                <div class="form-group">
+	                                                 	<label for="NameSurname" class="col-sm-2 control-label">Channel Name</label>
+	                                                	<div class="col-sm-10">
+		                                                    <div class="form-line">
+		                                                        <input type="text" class="form-control" id="channel_name" name="channel_name" [(ngModel)]="model.channel_name"  #channel_name="ngModel" placeholder="channel Name" required>
+		                                                    </div>
+	                                                	</div>
+	                                                </div>
+	                                            </div>                
+	                                        </div> 
+	                                        <div class="row clearfix">
+	                                            <div class="col-md-6">
+	                                                <p><b>Channel Profile Image</b></p>                     
+	                                                 <input type="file" (change)="profileImageUpload($event)" />
+			                                            <image-cropper
+			                                                [imageChangedEvent]="profileimageChangedEvent"
+			                                                [maintainAspectRatio]="false"
+			                                                [aspectRatio]="4 / 3"
+			                                                format="png"
+			                                                (imageCropped)="profileimageCropped($event)"           
+			                                            ></image-cropper>
+	                                            	<img [src]="profilecroppedImage" style="width:30%;"/>
+	                                            </div> 
+	                                            <div class="col-md-6">
+	                                                <p><b>Channel Banner</b></p>                     
+	                                                 <input type="file" (change)="bannerImageUpload($event)" />
+			                                            <image-cropper
+			                                                [imageChangedEvent]="bannerimageChangedEvent"
+			                                                [maintainAspectRatio]="false"
+			                                                [aspectRatio]="4 / 3"
+			                                                format="png"
+			                                                (imageCropped)="bannerimageCropped($event)"           
+			                                            ></image-cropper>
+	                                            	<img [src]="bannercroppedImage" style="width:30%;"/>
+	                                            </div> 
+	                                        </div>
+                                           <div class="row clearfix" >
+	                                            <div class="col-md-6">
+	                                                <p><b>About channel</b></p>                     
+	                                                <textarea #about_channel="ngModel" [(ngModel)]="model.about_channel"  name="about_channel">
+                                                        
+                                                    </textarea>
+	                                            </div> 
+	                                            <div class="col-md-6">
+	                                                <p><b>Channel URL</b></p>                     
+	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="channel Url" required>
+	                                            </div> 
+	                                        </div>
+                                        	<button type="submit" [disabled]="!addchannel.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addchannel_form()">Add Channel</button>&nbsp;
+                                        	&nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                    	</form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
