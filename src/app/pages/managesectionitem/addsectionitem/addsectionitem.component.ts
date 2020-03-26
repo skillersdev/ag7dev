@@ -47,6 +47,11 @@ export class AddsectionitemComponent implements OnInit {
     .subscribe(package_det =>{       
       if(package_det.result!=""){ this.websitelist=package_det.result;}
     });
+   
+  }
+  getsection(website:any){
+    console.log(website);
+    this.model.websiteSelected = website;
     this.CommonService.insertdata(AppSettings.GetsectionsList,this.model)
     .subscribe(resultdata =>{   
       this.sectionlist=resultdata.result; 

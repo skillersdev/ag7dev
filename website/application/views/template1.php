@@ -152,7 +152,7 @@
         <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%;">
         <?php 
       }else{ ?>
-        <img src="assets/img/intro-bg.jpg" style="width:100%;">
+        <img src="assets/img/intro-bg.jpg" style="width:100%; height:60%">
         <?php 
       } ?>
     <div class="intro-container wow fadeIn"></div>
@@ -174,7 +174,7 @@
                   for($ct=0;$ct<count($contac_log_result);$ct++)
                     { ?>
                       <div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
-                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:100%;">
+                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:80%; height: 400px;">
                       </div>
                       <?php
                     }
@@ -216,26 +216,26 @@
             </a>
           </div>           
           <div class="col-lg-6">
-		 
+     
             <h2>About Me 
-			</h2>
-			<!-- follow like view button code starts here-->
-			<?php if($websitename !=''){ ?>
-				<p>
-					<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
-					  Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
-					</button>
-					<button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
-					  Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
-					</button>
-					<button type="button" class="btn btn-primary" >
-					  View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+      </h2>
+      <!-- follow like view button code starts here-->
+      <?php if($websitename !=''){ ?>
+        <p>
+          <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+            Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+            Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+          </button>
+          <button type="button" class="btn btn-primary" >
+            View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
             <input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
-					</button>
-				</p>
-			<?php } ?>
-			<!-- follow like view button code ends here-->
-			
+          </button>
+        </p>
+      <?php } ?>
+      <!-- follow like view button code ends here-->
+      
             <?php
               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
             ?>
@@ -752,6 +752,7 @@
 
           <div class="row">
             <?php
+           
               foreach ($all_details[$key] as $child_key => $child_value) {
 
                 $name = "'".$child_value['section_name']."'";
@@ -761,7 +762,8 @@
                 $weblink = "'".$child_value['file_name']."'";
                 $media_type =$child_value['media_type'];
                 $web_url = "'".$child_value['website_link']."'";
-
+               // echo $web_url;die;
+                
                  if($child_value['media_type']==1) {
                     $path = $path_url.$child_value['file_name'];
                     $file_name_path = "'".$path_url.$child_value['file_name']."'";
@@ -781,7 +783,8 @@
                     </div>
                     <h3><?php echo $child_value['title'];?></h3>              
                     <p><?php echo $child_value['description'];?></p>
-                     <p><?php echo $web_url;?></p>
+                    <p><?php echo $web_url;?></p>
+                    
                     <p> <?php
                         // if($service_details[$j]['weblink']!=""){
                         //   echo "<p><a href='".$service_details[$j]['weblink']."' target='_blank'>Website Link</a></p>"; 
@@ -1070,10 +1073,10 @@
       else if(type==1 || type==3 || type==4){
         $('#mimage2_section').html('<img src="'+src_file+'" width="400">');
       }else{
-        $('#mimage2_section').html('<audio width="400" controls><source src="'+src_file+'" type="audio/mpeg"></audio>');
+        $('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
       }
       
-      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><b>WebLink </b>:<span>"'+web_url+'"</span></div>');
+      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><b>WebLink </b>:<span>"'+web_url+'"</span></div>');
 
        var serviceid = update_id;
        $.ajax({

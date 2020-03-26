@@ -60,7 +60,15 @@ export class EditsectionitemComponent implements OnInit {
     this.CommonService.editdata(AppSettings.FetchSectionItemData,id)
     .subscribe(resultdata =>{   
       this.model = resultdata.result; 
+      this.getsection(this.model.website);
       this.model.Issection_show = (this.model.Issection_show==1)?true:false;      
+    });
+  }
+  getsection(website:any){
+    this.model.websiteSelected = website;
+    this.CommonService.insertdata(AppSettings.GetsectionsList,this.model)
+    .subscribe(resultdata =>{   
+      this.sectionlist=resultdata.result; 
     });
   }
   updatesectionitem()

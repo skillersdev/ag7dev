@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Section_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    public function addsection(){
        $this->output->set_content_type('application/json');
@@ -66,11 +66,11 @@ class Section_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND isdefault=0");
+           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND website='".$model->websiteSelected."' AND is_deleted=0 AND isdefault=0");
         }
         /*BY all list*/ 
         else{
-          $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where  is_deleted=0 AND isdefault=0");
+          $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where  is_deleted=0 AND website='".$model->websiteSelected."' AND isdefault=0");
           // $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
         }
 
@@ -231,36 +231,37 @@ class Section_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-//print_r($model);die;
+       //print_r($model->IspreviewImage);die;
         /*Converting base 64 image to image file and upload*/
         if($model->IspreviewImage==1)
         {
-          if(isset($model->file_name))
-          {
+            if(isset($model->file_name))
+        {
 
 
-          $image_parts = explode(";base64,", $model->file_name);
-          define('UPLOAD_DIR', 'section_uploads/');
-          $img = $model->file_name;
-          $img = str_replace('data:image/png;base64,', '', $img);
-          $img = str_replace(' ', '+', $img);
-          $data = base64_decode($img);
-          $file = UPLOAD_DIR . uniqid() . '.png';
-          $success = file_put_contents($file, $data);
-          $result = $success ? $file : 'fail';
-          
-          if($result!='fail')
-          {
-              $response['status']="success";
-              $response['message']="Image upload successfully";
-              $response['data']=$file;
-          }
-          else{
-              $response['status']="failure";
-              $response['message']="Error while upload on photos";    
-          }
+        $image_parts = explode(";base64,", $model->file_name);
+        define('UPLOAD_DIR', 'section_uploads/');
+        $img = $model->file_name;
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $data = base64_decode($img);
+        $file = UPLOAD_DIR . uniqid() . '.png';
+        $success = file_put_contents($file, $data);
+        $result = $success ? $file : 'fail';
+        
+        if($result!='fail')
+        {
+            $response['status']="success";
+            $response['message']="Image upload successfully";
+            $response['data']=$file;
         }
-      }else{
+        else{
+            $response['status']="failure";
+            $response['message']="Error while upload on photos";    
+        }
+      } 
+        }
+       else{
           $response['status']="fail";
           $response['message']="Error while upload on photos";    
       }
