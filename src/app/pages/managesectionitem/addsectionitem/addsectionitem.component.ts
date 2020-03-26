@@ -59,6 +59,7 @@ export class AddsectionitemComponent implements OnInit {
       /********Section Item Image upload******/
       if(this.model.media_type==1)
       {
+        this.model.IspreviewImage= true;
         this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
         .subscribe( (response) => {
          if(response.status=='success')
@@ -125,6 +126,7 @@ export class AddsectionitemComponent implements OnInit {
 	/*Preview File section*/
 		getservicePreviewImage(event: any): void {        
           this.ServicePreviewimageChangedEvent = event;
+          
           this.alldata.IspreviewImage= true;
 	    }
 	    PreviewimageCropped(event: ImageCroppedEvent) {
