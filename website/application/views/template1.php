@@ -216,26 +216,26 @@
             </a>
           </div>           
           <div class="col-lg-6">
-     
+		 
             <h2>About Me 
-      </h2>
-      <!-- follow like view button code starts here-->
-      <?php if($websitename !=''){ ?>
-        <p>
-          <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
-            Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
-          </button>
-          <button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
-            Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
-          </button>
-          <button type="button" class="btn btn-primary" >
-            View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+			</h2>
+			<!-- follow like view button code starts here-->
+			<?php if($websitename !=''){ ?>
+				<p>
+					<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+					  Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+					</button>
+					<button type="button" class="btn btn-secondary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+					  Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+					</button>
+					<button type="button" class="btn btn-primary" >
+					  View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
             <input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
-          </button>
-        </p>
-      <?php } ?>
-      <!-- follow like view button code ends here-->
-      
+					</button>
+				</p>
+			<?php } ?>
+			<!-- follow like view button code ends here-->
+			
             <?php
               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
             ?>
@@ -1076,7 +1076,7 @@
         $('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
       }
       
-      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><b>WebLink </b>:<span>"'+web_url+'"</span></div>');
+      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+web_url+'" target="_blank"><b>Website Link</b></a></div>');
 
        var serviceid = update_id;
        $.ajax({

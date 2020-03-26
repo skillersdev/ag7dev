@@ -16,6 +16,7 @@ class Sectionitem_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
 
         unset($model->usergroup);  unset($model->user_id); 
+        unset($model->websiteSelected);
         
         $this->db->insert('manage_section_item', $model);
 
