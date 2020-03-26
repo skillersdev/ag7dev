@@ -80,7 +80,20 @@ export class ManageserviceComponent implements OnInit {
  {
    this.CommonService.deletedata(this.DeleteserviceRestApiUrl,idx)
         .subscribe(resultdata =>{
-         this.ngOnInit();
+          if(this.model.usergroup==2)
+          {
+             this.CommonService.insertdata(AppSettings.getservicebyuser,this.model)
+              .subscribe(det =>{
+                  if(det.result!=""){ this.service_det=det.result;}
+              });
+          
+          }
+          else{
+            this.CommonService.getdata(this.getservicelistRestApiUrl)
+            .subscribe(det =>{
+                if(det.result!=""){ this.service_det=det.result;}
+            });
+          }
       });
  }
 

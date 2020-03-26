@@ -145,6 +145,7 @@ export class AddsectionitemComponent implements OnInit {
     /**/
     /*Audio file section upload*/
     getAudiodet($event) {
+      this.model.IspreviewImage= true;
       this.uploadVideofile = $event.target.files[0];
       this.alldata.IspreviewImage= true;
 	 }
@@ -152,6 +153,7 @@ export class AddsectionitemComponent implements OnInit {
 
     /*Video file section*/
     getVideodet($event) {
+      this.model.IspreviewImage= true;
       this.uploadVideofile = $event.target.files[0];
     }
     /**/
@@ -159,6 +161,7 @@ export class AddsectionitemComponent implements OnInit {
     /*Doc/Pdf*/
     getDocOrPdf($event)
     {
+      this.model.IspreviewImage= true;
       this.uploadVideofile = $event.target.files[0];
     }
 
