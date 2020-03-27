@@ -302,6 +302,8 @@ $route['uploadchannelimage']="Channel_controller/uploadchannelimage";
 $route['addchanneldata'] = "Channel_controller/addchanneldata";
 $route['getchannellist']= "Channel_controller/getchannellist";
 $route['editchannel/(:num)']= "Channel_controller/editchannel/$1";
+$route['updatechanneldata'] = 'Channel_controller/updatechanneldata';
+$route['deletechanneldata/(:num)']= 'Channel_controller/deletechanneldata/$1';
 /*****/
 ?>
 

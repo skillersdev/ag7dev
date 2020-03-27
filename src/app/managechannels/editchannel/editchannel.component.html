@@ -69,14 +69,23 @@
 			                                            ></image-cropper>
 	                                            	<img [src]="bannercroppedImage" style="width:30%;"/>
 	                                            </div> 
-	                                            <div class="col-md-2">
-                                                <p><b>Preview</b></p>
-                                                <div class="form-group">
-                                                   <div class="form-line">
-                                                        <img src="{{image_url}}{{model.channel_banner_img}}" style="width:100%;">  
-                                                    </div>
-                                                </div>
-                                            </div> 
+	                                           
+												<div class="col-md-2">
+													<p><b>Preview Profile</b></p>
+													<div class="form-group">
+													<div class="form-line">
+															<img src="{{image_url}}{{model.channel_banner_img}}" style="width:100%;">  
+														</div>
+													</div>
+												</div> 
+												<div class="col-md-2">
+													<p><b>Preview Banner Profile</b></p>
+													<div class="form-group">
+														<div class="form-line">
+															<img src="{{image_url}}{{model.channel_profile_img}}" style="width:100%;">  
+														</div>
+													</div>
+												</div> 
 	                                        </div>
                                            <div class="row clearfix" >
 	                                            <div class="col-md-6">
@@ -90,7 +99,7 @@
 	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="channel Url" required>
 	                                            </div> 
 	                                        </div>
-                                        	<button type="submit" [disabled]="!addchannel.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addchannel_form()">Update Channel</button>&nbsp;
+                                        	<button type="submit" [disabled]="!addchannel.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatechannel_form()">Update Channel</button>&nbsp;
                                         	&nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     	</form>
                                     </div>

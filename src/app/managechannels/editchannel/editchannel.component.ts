@@ -24,14 +24,14 @@ export class EditchannelComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,
     private route: ActivatedRoute,private router: Router,private http:Http) { }
   private sub: any;
-  model:any;
+  model:any={};
   alldata:any={};
   select:any;
   websitelist:Array<Object>;
   profileimageChangedEvent:any;
-  profilecroppedImage:any;
+  profilecroppedImage:any='';
   bannerimageChangedEvent:any;
-  bannercroppedImage:any;
+  bannercroppedImage:any='';
   image_url = AppSettings.IMAGE_BASE;
   id:number;
   ngOnInit() {
@@ -75,9 +75,34 @@ export class EditchannelComponent implements OnInit {
        this.bannercroppedImage= event.base64;
        this.alldata.bannerImage = event.base64;
     }
-    addchannel_form()
+   
+    updatechannel_form()
     {
-    	
+    	this.model.created_by = this.alldata.userid;
+    	//console.log(this.model);
+    	this.CommonService.insertdata(AppSettings.uploadchannellImage,this.alldata)
+    	.subscribe( (response) => {
+    		// console.log(response);
+	       if(response[0])
+	       {
+	       	this.model.channel_profile_img = response[0]['file'];
+	       }
+	       if(response[1]){
+	       	this.model.channel_banner_img = response[1]['file'];	        
+	       }
+	       //this.model.product_image = response.data;
+	          this.CommonService.insertdata(AppSettings.UpdatechanneldataApi,this.model)
+	          .subscribe(package_det =>{       
+	               swal(
+	                package_det.status,
+	                package_det.message,
+	                package_det.status
+	              )
+	              this.router.navigate(['/managechannels']); 
+	          });  
+
+     	})
     }
+    
 
 }

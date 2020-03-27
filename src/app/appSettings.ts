@@ -229,8 +229,11 @@ export class AppSettings{
 	/*Channel Api*/
 	public static uploadchannellImage = AppSettings.API_BASE+"/uploadchannelimage";
 	public static AddchanneldataApi = AppSettings.API_BASE+"/addchanneldata";
+	public static UpdatechanneldataApi = AppSettings.API_BASE+"/updatechanneldata";
 	public static getChannellist= AppSettings.API_BASE+"/getchannellist";
 	public static editchannel= AppSettings.API_BASE+"/editchannel/";
+	public static deleteChanneldata = AppSettings.API_BASE+"/deletechanneldata/";
+
 	/***/
 	public static getalbumlistRestApiUrl= AppSettings.API_BASE+"/getalbumlist";
 	public static uploadalbumimage=AppSettings.API_BASE+"/uploadalbumimage";

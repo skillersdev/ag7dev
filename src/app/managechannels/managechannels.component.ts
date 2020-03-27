@@ -58,8 +58,44 @@ export class ManagechannelsComponent implements OnInit {
   {
   	this.router.navigate(['/addchannel']);
   }
-  editad(id:any)
+  editchannel(id:any)
   {
      this.router.navigate(['/editchannel', id]);
   }
+  deletechannel(id:any)
+  {
+    let idx = id;
+    let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removechannel(idx);
+         
+        }        
+      },function(dismiss) {
+    });
+  }
+  removechannel(idx:any)
+ {
+   this.CommonService.deletedata(AppSettings.deleteChanneldata,idx)
+        .subscribe(resultdata =>{
+          if(resultdata!="")
+          { 
+            // this.advertisementlist=[];
+            swal('Deleted!','Data has been deleted.','success');
+            this.CommonService.insertdata(AppSettings.getChannellist,this.userdata)
+            .subscribe(resultdata =>{   
+              this.channellist=resultdata.result; 
+            });
+          } 
+
+      });
+ }
 }

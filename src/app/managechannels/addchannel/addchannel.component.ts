@@ -89,13 +89,13 @@ export class AddchannelComponent implements OnInit {
 	                package_det.message,
 	                package_det.status
 	              )
-	              this.router.navigate(['/manageproducts']); 
+	              this.router.navigate(['/managechannels']); 
 	          });  
 
      	})
     }
     back(){
-
+        this.router.navigate(['/managechannels']); 
     }
 
 

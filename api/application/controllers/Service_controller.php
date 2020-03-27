@@ -96,7 +96,7 @@ class Service_controller extends CI_Controller {
           // //  pr($this->db->last_query());die();
             
 
-              $result=$this->db->query("update ".$this->db->dbprefix('services')." set  title='".$model->title."',description='".$model->description."',service_image='".$model->service_image."',website='".$model->website."' where id='".$model->id."'");
+              $result=$this->db->query("update ".$this->db->dbprefix('services')." set  title='".$model->title."',weblink='".$model->weblink."',description='".$model->description."',service_image='".$model->service_image."',website='".$model->website."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Service has been updated successfully";
@@ -197,47 +197,15 @@ class Service_controller extends CI_Controller {
 
         $string = implode(' OR website LIKE ', $query_parts);
 
-        //echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND website LIKE {$string}";die;
-
-        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0  AND website LIKE {$string} ");
+        //  echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND (website LIKE {$string})";die;
+   // echo $string;die;
+        $tank = $this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('services')." WHERE is_deleted=0 AND (website LIKE {$string} )");
         $result1=$tank->result_array();
+        //print_r($result1);die;
           $response['result']=$result1;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
 
-    public function uploadcropserviceimage()
-    {
-      if(isset($model->Imagefile))
-        {
-
-
-        $image_parts = explode(";base64,", $model->Imagefile);
-        define('UPLOAD_DIR', 'uploadserviceitem   image/');
-        $img = $model->Imagefile;
-        $img = str_replace('data:image/png;base64,', '', $img);
-        $img = str_replace(' ', '+', $img);
-        $data = base64_decode($img);
-        $file = UPLOAD_DIR . uniqid() . '.png';
-        $success = file_put_contents($file, $data);
-        $result = $success ? $file : 'fail';
-        
-        if($result!='fail')
-        {
-            $response['status']="success";
-            $response['message']="Image upload successfully";
-            $response['data']=$file;
-        }
-        else{
-            $response['status']="failure";
-            $response['message']="Error while upload on photos";    
-        }}else{
-          $response['status']="fail";
-          $response['message']="Error while upload on photos";    
-      }
-       
-         echo json_encode($response,JSON_UNESCAPED_SLASHES);
-         die();
-    }
    
 }
