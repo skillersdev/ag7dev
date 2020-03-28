@@ -66,7 +66,12 @@ class Section_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND website='".$model->websiteSelected."' AND is_deleted=0 AND isdefault=0");
+			if($model->websiteSelected){
+					$res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND website='".$model->websiteSelected."' AND is_deleted=0 AND isdefault=0");
+			}else{
+				$res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND isdefault=0");
+			}
+           
         }
         /*BY all list*/ 
         else{
