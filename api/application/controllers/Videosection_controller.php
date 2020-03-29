@@ -15,9 +15,11 @@ class Videosection_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
 
-        //unset($model->tags);
+        unset($model->channelWebsite);
+        unset($model->Iswebsite);
+        
         //$model->tags = implode (", ", $model->taglist);
-//print_r($model);die;
+		//print_r($model);die;
         //unset($model->taglist);
         $this->db->insert('video_sections', $model);
 

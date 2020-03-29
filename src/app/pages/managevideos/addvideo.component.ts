@@ -45,6 +45,7 @@ export class AddvideoComponent implements OnInit {
   AddUserRestApiUrl:string = AppSettings.Adduser; 
   imageChangedEvent: any = '';
   tagArray:Array<Object>;
+  channellist:Array<Object>;
   croppedImage: any = '';
  
   image_url = AppSettings.IMAGE_BASE;
@@ -65,8 +66,17 @@ export class AddvideoComponent implements OnInit {
         .subscribe(package_det =>{       
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         }); 
+        this.alldata.usergroup=localStorage.getItem('currentUsergroup');
+        this.alldata.user_id=localStorage.getItem('currentUserID');
+        this.CommonService.insertdata(AppSettings.getChannellist,this.alldata)
+        .subscribe(resultdata =>{       
+          if(resultdata.result!=""){ 
+            this.channellist=resultdata.result; 
+          }
+        }); 
         this.model.tags=[];
         this.tagArray=[];
+        this.model.Iswebsite =0;
   }
   
   logout(){
@@ -157,5 +167,18 @@ export class AddvideoComponent implements OnInit {
 
     removeLastOnBackspace(){
       
+    }
+    getwebsitebychannel(value:any)
+    {
+      if(value)
+      {
+        const items = this.channellist.filter(item => item['id'].indexOf(value) !== -1);
+        if(items.length>0)
+        {
+          this.model.Iswebsite =1;
+          this.model.channelWebsite = items[0]['website'];
+        }
+      }
+     
     }
 }

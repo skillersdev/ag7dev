@@ -59,6 +59,7 @@
                                                 <option value="select">Select Video category</option>
                                                 <option value="1">Roodab videos</option>
                                                 <option value="2">My website</option>
+                                                <option value="3">Channels</option>
                                                 <!-- <option value="3">To Marketer website</opti -->on>
                                             </select> 
                                         </div>
@@ -90,8 +91,28 @@
                                             </div>
                                     </div>
                                 </div> 
+                                <div class="col-md-6" *ngIf="model.videocategory==3">
+                                    <p><b>Select Channel</b></p>
+                                    <div class="form-group">
+                                       <div class="form-line">
+                                            <select class="form-control show-tick" [(ngModel)]="model.channel" #channel="ngModel" name="channel" (change)="getwebsitebychannel($event.target.value)" required>
+                                                <option [ngValue]="select">select channel</option>    
+                                                <option *ngFor="let cdata of channellist" value="{{cdata.id}}">{{cdata.channel_name}}</option>
+                                            </select>
+                                            <span [hidden]="channel.valid || channel.pristine" class="text-danger">channel is required</span>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6" *ngIf="model.Iswebsite==1">
+                                    <p><b>Website for selected channel:</b></p>
+                                    <div class="form-group">
+                                       <div class="form-line">
+                                        <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.channelWebsite" #channelWebsite="ngModel" readonly>
+                                        </div>
+                                    </div>
+                                </div>  
                                 <div class="col-md-6">
-                                    <p><b>Tag</b><span class="text-danger">*</span></p>
+                                    <p><b>Tag</b></p>
                                     <div class="form-group">
                                         <div class="form-line"> 
                                             <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.tags" #tags="ngModel">

@@ -44,6 +44,7 @@ export class EditvideoComponent implements OnInit {
   packagelist:Array<Object>;
   alldata: any = {};
   private sub: any;
+  channellist:Array<Object>;
   id:number;
   stage_of_packages:Array<Object>;stage_of_packages_prev:Array<Object>;
   
@@ -75,7 +76,15 @@ export class EditvideoComponent implements OnInit {
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         }); 
 
-        
+      this.alldata.usergroup=localStorage.getItem('currentUsergroup');
+      this.alldata.user_id=localStorage.getItem('currentUserID');
+      this.CommonService.insertdata(AppSettings.getChannellist,this.alldata)
+      .subscribe(resultdata =>{       
+        if(resultdata.result!=""){ 
+          this.channellist=resultdata.result; 
+        }
+      }); 
+      this.model.Iswebsite =0;
   }
   
   logout(){
@@ -181,5 +190,14 @@ export class EditvideoComponent implements OnInit {
 
     removeLastOnBackspace(){
       
+    }
+    getwebsitebychannel(value:any)
+    {
+      const items = this.channellist.filter(item => item['id'].indexOf(value) !== -1);
+      if(items.length>0)
+      {
+        this.model.Iswebsite =1;
+        this.model.channelWebsite = items[0]['website'];
+      }
     }
 }
