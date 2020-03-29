@@ -324,13 +324,13 @@
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns">
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
-										id="channel" class="with-gap radio-col-grey"
-										[checked]="Newgroupmodel.channelgroup==1" value="1" />
-									<label for="channel" class="m-r-3">Channel</label>&nbsp;
+										id="channele" class="with-gap radio-col-grey"
+										 value="1" />
+									<label for="channele" class="m-r-3">Channel</label>&nbsp;
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
-										id="group" class="with-gap radio-col-grey"
-										[checked]="Newgroupmodel.channelgroup==2" value="2" />
-									<label for="group">Group</label>
+										id="groupe" class="with-gap radio-col-grey"
+										[checked]="true" value="2" />
+									<label for="groupe">Group</label>
 								</div>
 							</div>
 							<div class="form-group m-b-0">
@@ -619,7 +619,7 @@
 							role="button" aria-haspopup="true" aria-expanded="false"><i
 								class="fas fa-ellipsis-v text-white"></i></a>
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+							<a class="dropdown-item" href="javascript:void(0);" (click)="clearoldval()" data-toggle="modal"
 								data-target="#myModal">New Group</a>
 							<a class="dropdown-item" href="javascript:void(0);"
 								[routerLink]="['/dashboard']">Dashboard</a>
@@ -647,8 +647,8 @@
 							<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
 						</div>
 						<!-- channelgroup -->
-						<div *ngIf="data.channelgroup==1" class="flex-grow-1 text-right"><div class="small time">C</div></div>
-						<div *ngIf="data.channelgroup==2" class="flex-grow-1 text-right"><div class="small time">G</div></div>
+						<div *ngIf="data.channelgroup==1" class="flex-grow-1 text-right"><div class="small time" style="margin-right: 10px;">C</div></div>
+						<div *ngIf="data.channelgroup==2" class="flex-grow-1 text-right"><div class="small time" style="margin-right: 10px;">G</div></div>
 						<!-- <div class="flex-grow-1 text-right">
 									<div class="small time">14/06/2019</div>
 									<div class="badge badge-success badge-pill small d-none" id="unread-count">2</div>
@@ -727,6 +727,9 @@
 
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);">
 								<strong (click)='share()'>Share group link</strong></a>
+								<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);">
+									<strong (click)="copyMessage(grouplink)">Copy group link</strong></a>
+
 
 						</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
@@ -877,7 +880,7 @@
 													class="fas fa-angle-down text-muted px-2"></i></a>
 		
 											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" data-toggle="modal" data-target="#msgeditModal"
+												<a class="dropdown-item" *ngIf="data.chatimage==''" data-toggle="modal" data-target="#msgeditModal"
 													(click)="msgeditfun(data.id)">Edit</a>
 												<a class="dropdown-item" (click)="msgdeletefun(data.id)">Delete</a>
 		
@@ -1020,8 +1023,8 @@
 
 					-->
 
-					<div class="loader" style="display: none;"></div>
-
+					<!-- <div class="loader" style="display: none;"></div> -->
+					<div class="loader" style="width: 10px;height: 10px;"></div>
 
 					<input
 						*ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by"

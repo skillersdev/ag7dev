@@ -37,6 +37,7 @@ export class MychatComponent implements OnInit {
   userdropdownSettings:any={};
   interval: any;
   group_bases:any;
+  imageuploadmsg:any;
   slideIndex:any;
   grouplink:any;
   windowHeight:any;
@@ -61,6 +62,7 @@ export class MychatComponent implements OnInit {
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
    // this.Newgroupmodel.groupcode='';
+   this.imageuploadmsg=0;
     this.group_name=0;
     this.group_msg_model=[];
     this.sendreqestmodel.Isloading=false;
@@ -306,15 +308,29 @@ export class MychatComponent implements OnInit {
   }
 
   sendMessage(){
-
-    this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
-    .subscribe(package_det =>{       
-      
-        this.Newgroupmodel.groupmsgtxt='';
-        this.generateMessageArea(this.Newgroupmodel.g_id);
-        // swal('','Message sent Successfully','success');  
+    if(this.Newgroupmodel.groupmsgtxt!='' && this.Newgroupmodel.groupmsgtxt!=undefined || this.imageuploadmsg==1){
+      this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
+      .subscribe(package_det =>{       
         
-    }); 
+          this.Newgroupmodel.groupmsgtxt='';
+          this.imageuploadmsg=0;
+          this.generateMessageArea(this.Newgroupmodel.g_id);
+          // swal('','Message sent Successfully','success');  
+          
+      }); 
+    }
+    else {
+      swal('','message is required','error');  
+    }
+
+    // this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
+    // .subscribe(package_det =>{       
+      
+    //     this.Newgroupmodel.groupmsgtxt='';
+    //     this.generateMessageArea(this.Newgroupmodel.g_id);
+    //     // swal('','Message sent Successfully','success');  
+        
+    // }); 
   }
    
   fileEvent($event) {
@@ -370,6 +386,7 @@ export class MychatComponent implements OnInit {
         $('.loader').css('display','none');
         
          this.Newgroupmodel.groupimagename = response.data;
+         this.imageuploadmsg=1;
           this.Newgroupmodel.groupmsgtxt='';
           this.sendMessage(); 
        }

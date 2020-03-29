@@ -44,6 +44,7 @@ export class ChatComponent implements OnInit {
   slideIndex:any;
   grouplink:any;
   windowHeight:any;
+  imageuploadmsg:any;
 
 
 
@@ -70,6 +71,7 @@ export class ChatComponent implements OnInit {
     this.group_det=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
+    this.imageuploadmsg=0;
     
     this.group_name=0;
     this.group_msg_model=[];
@@ -246,6 +248,20 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
   hideshow(){
   this.Newgroupmodel.g_id = '';
   $('.mainmenu_navbar').removeClass('dhana');
@@ -288,9 +304,11 @@ export class ChatComponent implements OnInit {
           
               this.Newgroupmodel.groupname = resultdata.group_details[0].group_name;
               this.Newgroupmodel.groupcode = resultdata.group_details[0].group_code;
+              this.Newgroupmodel.channelgroup = resultdata.group_details[0].channelgroup;              
               this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
               this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
               this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
+              this.grouplink = AppSettings.chatshare+this.Newgroupmodel.groupcode;
               
               this.group_msg_model = resultdata.group_msg;
               this.Newgroupmodel.msgstartid=resultdata.msgstartid; 
@@ -394,7 +412,15 @@ export class ChatComponent implements OnInit {
         
     });
   }
-
+  clearoldval()
+{
+  this.Newgroupmodel.userselectedItems=[];
+  this.Newgroupmodel.groupname='';
+  this.Newgroupmodel.groupimagename='';
+  this.Newgroupmodel.privatepublic=2;
+  this.Newgroupmodel.channelgroup=2;  
+  this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+}
   addgroup()
   {
   this.Newgroupmodel.g_id='';
@@ -411,8 +437,7 @@ export class ChatComponent implements OnInit {
       this.Newgroupmodel.groupname='';
       this.Newgroupmodel.groupimagename='';
       this.Newgroupmodel.privatepublic=2;       
-      
-        this.getgrouplists();
+      this.getgrouplists();
        
         
     });
@@ -424,15 +449,22 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(){
-
+    
+  if(this.Newgroupmodel.groupmsgtxt!='' && this.Newgroupmodel.groupmsgtxt!=undefined || this.imageuploadmsg==1){
     this.CommonService.insertdata(AppSettings.sendmsg,this.Newgroupmodel)
     .subscribe(package_det =>{       
       
         this.Newgroupmodel.groupmsgtxt='';
+        this.imageuploadmsg=0;
         this.generateMessageArea(this.Newgroupmodel.g_id);
         // swal('','Message sent Successfully','success');  
         
     }); 
+  }
+  else {
+    swal('','message is required','error');  
+  }
+    
   }
    
   fileEvent($event) {
@@ -486,8 +518,10 @@ $('.loader').css('display','block');
         // console.log(response);
         $('.loader').css('display','none');
          this.Newgroupmodel.groupimagename = response.data;
+         this.imageuploadmsg=1;
           this.Newgroupmodel.groupmsgtxt='';
           this.sendMessage(); 
+          
        }
        
      })
