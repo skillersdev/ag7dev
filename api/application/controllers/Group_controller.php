@@ -136,8 +136,8 @@ class Group_controller extends CI_Controller {
             $upper_Case_ext=strtoupper($ext);
 
             //3GPP, AVI, FLV, MOV, MPEG4, MPEGPS, WebM and WMV. MPEG4
-            if($upper_Case_ext==".DOC"||$upper_Case_ext==".PDF"||$upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
-            {
+            // if($upper_Case_ext==".DOC"||$upper_Case_ext==".PDF"||$upper_Case_ext==".IMG"||$upper_Case_ext==".DOCX"||$upper_Case_ext==".PPT"||$upper_Case_ext==".MP3"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG" ||$upper_Case_ext==".MP4" ||$upper_Case_ext==".AVI" ||$upper_Case_ext==".3GPP" ||$upper_Case_ext==".FLV" ||$upper_Case_ext==".MOV" ||$upper_Case_ext==".MPEG4" ||$upper_Case_ext==".MPEGPS" ||$upper_Case_ext==".WebM" ||$upper_Case_ext==".WMV" ||$upper_Case_ext==".MPEG4")
+            // {
               $chatimage = time().$_FILES['file']['name'];
               $filePath = $path.$chatimage;
            
@@ -147,12 +147,12 @@ class Group_controller extends CI_Controller {
                 $Response['status']="success"; 
                 $Response['data']=$chatimage;
               }
-            }
-            else 
-            {
-                $Response['status']="fail"; 
-                $Response['data']="Not a valid format";
-            }
+            // }
+            // else 
+            // {
+            //     $Response['status']="fail"; 
+            //     $Response['data']="Not a valid format";
+            // }
           }
         else {
             $Response['status']="fail"; 
@@ -297,13 +297,14 @@ class Group_controller extends CI_Controller {
               $msg_value['video_type'] = 0;
              if($msg_value['chatimage']!=''){
                $ext = explode(".", $msg_value['chatimage']);
-               if($ext[1]=="mp4"){
+               $upper_Case_ext=strtoupper($ext[1]);
+               if($upper_Case_ext=="MP4"){
                  $msg_value['video_type'] = 1;
                }
-               if($ext[1]=="mp3"){
+               if($upper_Case_ext=="MP3"){
                  $msg_value['video_type'] = 2;
                }
-               if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
+               if($upper_Case_ext=="PDF" || $upper_Case_ext=="DOC" || $upper_Case_ext=="DOCX" || $upper_Case_ext=="PPT" || $upper_Case_ext=="XLS" || $upper_Case_ext=="XLSX"){
                  $msg_value['video_type'] = 3;
                }
              }
@@ -377,13 +378,14 @@ class Group_controller extends CI_Controller {
                $msg_value['video_type'] = 0;
               if($msg_value['chatimage']!=''){
                 $ext = explode(".", $msg_value['chatimage']);
-                if($ext[1]=="mp4"){
+                $upper_Case_ext=strtoupper($ext[1]);
+                if($upper_Case_ext=="MP4"){
                   $msg_value['video_type'] = 1;
                 }
-                if($ext[1]=="mp3"){
+                if($upper_Case_ext=="MP3"){
                   $msg_value['video_type'] = 2;
                 }
-                if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
+                if($upper_Case_ext=="PDF" || $upper_Case_ext=="DOC" || $upper_Case_ext=="DOCX" || $upper_Case_ext=="PPT" || $upper_Case_ext=="XLS" || $upper_Case_ext=="XLSX"){
                   $msg_value['video_type'] = 3;
                 }
               }
@@ -458,13 +460,15 @@ public function getgroupsdetails(){
                $msg_value['video_type'] = 0;
               if($msg_value['chatimage']!=''){
                 $ext = explode(".", $msg_value['chatimage']);
-                if($ext[1]=="mp4"){
+                $upper_Case_ext=strtoupper($ext[1]);
+                // echo $upper_Case_ext; die;
+                if($upper_Case_ext=="MP4"){
                   $msg_value['video_type'] = 1;
                 }
-                if($ext[1]=="mp3"){
+                if($upper_Case_ext=="MP3"){
                   $msg_value['video_type'] = 2;
                 }
-                if($ext[1]=="pdf" || $ext[1]=="doc" || $ext[1]=="docx" || $ext[1]=="ppt" || $ext[1]=="xls" || $ext[1]=="xlsx"){
+                if($upper_Case_ext=="PDF" || $upper_Case_ext=="DOC" || $upper_Case_ext=="DOCX" || $upper_Case_ext=="PPT" || $upper_Case_ext=="XLS" || $upper_Case_ext=="XLSX"){
                   $msg_value['video_type'] = 3;
                 }
               }
