@@ -154,7 +154,7 @@ export class MychatComponent implements OnInit {
     }
    
      // this.generateMessageArea(this.Newgroupmodel.g_id);
-    }, 20000);
+    }, 35000);
   }  else {
     clearInterval(this.interval);
   }
@@ -184,7 +184,7 @@ export class MychatComponent implements OnInit {
       // this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
-      // this.refreshData();
+      this.refreshData();
     }
   }
   groupsearch(){
