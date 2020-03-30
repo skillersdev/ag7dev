@@ -23,7 +23,7 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                     </div>
-                                    <div class="modal-body">update
+                                    <div class="modal-body">
                                         <form class="" #addpackage="ngForm">
                                             <div class="">
                                                 <p><b>Package Name</b></p>
@@ -43,7 +43,7 @@
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
                                             </div>
-                                            <div class="">
+                                            <div class="" *ngIf="model.pck_type==1">
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line" *ngIf="checkIswebsite">
@@ -56,6 +56,21 @@
                                                     <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
                                             </div>
+                                            <!--e learing code starts here-->
+                                            <div class="" *ngIf="model.pck_type==2">
+                                                <p><b> Create E-learning Login</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="eusername" name="eusername" class="form-control" placeholder="Enter E-learning Username " [(ngModel)]="model.eusername"  #eusername="ngModel" 
+                                                         required>
+                                                    </div>
+                                                    <div class="form-line">
+                                                        <input type="text" id="epassword" name="epassword" class="form-control" placeholder="Enter E-learning password" [(ngModel)]="model.epassword" #website="ngModel" required >
+                                                    </div>
+                                                   
+                                                </div>
+                                            </div>
+                                            <!--e learning code ends here-->
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary">Pay with paypal</button>
                                                 <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">Pay with voucher</button>
@@ -130,7 +145,7 @@
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
                                             </div>
-                                            <div class="">
+                                            <div class="" *ngIf="model.pck_type==1">
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
@@ -141,6 +156,11 @@
                                                     <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
                                             </div>
+
+
+
+
+
                                             <div class="modal-footer">
                                                <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
                                                 <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">Pay with voucher</button>
@@ -261,16 +281,16 @@
                                 <tbody>
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
-                                          <td><a href="website/{{data.website}}">website</a></td>
-                                        <td><a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#ctemplateModal">
+                                          <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">website</a></td>
+                                        <td><a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>Change Template</span>
                                         </a></td>
                                         <td>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#renewModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#renewModal">
                                             <span *ngIf="data.status=='Renewal'">Renew</span>
                                         </a>
                                             <span *ngIf="data.status=='Active'">Activated</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template)" data-toggle="modal" data-target="#exampleModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#exampleModal">
                                                 <span *ngIf="data.status=='Inactivate'">Yet to activate</span>
                                             </a>
                                            <!--  <a href="#" data-toggle="modal" data-target="#templatesetting"><i class="material-icons">settings</i></a> -->

@@ -92,7 +92,7 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
-  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any)
+  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any,pck_type:any)
   {
     
     this.model.package_name = package_name;
@@ -104,6 +104,7 @@ export class PackageinfoComponent implements OnInit {
     this.checkIswebsite=(this.model.website!='')?true:false;
     this.model.template = template;
     this.model.p_id = pack_id_user;
+    this.model.pck_type=pck_type;
     
     
     
@@ -143,6 +144,13 @@ export class PackageinfoComponent implements OnInit {
   paytoactivate()
   { 
     this.payment_data.website = this.model.website;
+    
+    //added for e learning code started here
+    this.payment_data.pck_type  = this.model.pck_type;
+    this.payment_data.eusername = this.model.eusername;
+    this.payment_data.epassword = this.model.epassword;
+    //code ended here
+
     this.details_array.push(this.payment_data);
     $('.preloader').show();
     this.isPaid=true;

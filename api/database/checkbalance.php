@@ -6,8 +6,9 @@ $tes1=json_decode($array);
 
 $array1 = json_decode(json_encode($tes1), True);
 $website_name = $array1[0]['website'];
+	
+//  print_r($array1);die;
 
-// print_r($array1);die;
 
 if($array1[0]['username'])
 {
@@ -75,6 +76,7 @@ if (($num['ucount']) == 1) {
 			$pprice="$row[price]";
 			$pcur="$row[currency]";
 			$ptax="$row[tax]";
+
 			$gatewayid="$row[gateway]";
             $validity="$row[validity]";
 			$pay_via_voucher="$row[pay_via_voucher]";// This line was added by karthikeyan
@@ -113,7 +115,29 @@ if (($num['ucount']) == 1) {
             //$result222=mysqli_query($con,"UPDATE affiliateuser SET active=1 WHERE username='$tomake'");
             $result=mysqli_query($con,"UPDATE user_vs_packages SET package_status=0,website='".$website_name."',activated_date='".$current_date."',renew_date='".$renew_date."' WHERE id='".$pack_vs_users_id."'");//activate package_vs_user
             
-            //code added by sridhar
+			//code added by sridhar
+			
+		
+			//code added for e-learning account creation 
+			if($array1[0]['pck_type']==2){
+				$eusername=$array1[0]['eusername'];
+				$epassword=$array1[0]['epassword'];
+				$result=mysqli_query($con,"UPDATE user_vs_packages SET eusername='".$eusername."',epassword='".$epassword."' WHERE id='".$array1[0]['pack_id_user']."'");//activate package_vs_user and add e-learning account
+			}
+			//code ended for e-learning account creation
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             $ref_query11=mysqli_query($con,"SELECT  * FROM affiliateuser WHERE id='$tomake'");
             $ref_list11=$ref_query11->fetch_array(MYSQLI_ASSOC);

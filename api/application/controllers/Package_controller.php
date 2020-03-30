@@ -58,7 +58,7 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->get('packages');
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('pck_type','1')->get('packages');
 
 
         if($res->num_rows()>0)
@@ -293,6 +293,8 @@ class Package_controller extends CI_Controller {
                     $package['package_name'] = $in_array_1[0]['name'];
 
                     $package['package_price'] = $in_array_1[0]['price'];
+                    $package['pck_type']= $in_array_1[0]['pck_type'];
+
                     $package['tamount']= $data[0]['tamount'];
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
@@ -323,9 +325,13 @@ class Package_controller extends CI_Controller {
                     $package['renew_date'] = ($value['renew_date']!=NULL)?date("Y/m/d",strtotime($value['renew_date'])):'--';
                     $package['package_status']=$value['package_status'];
                     array_push($result,$package);
+
+                   
                     
                 }
                 
+               
+
             }else{
                 $response['status']="failure";
                 $response['message']=" No Package record found!!";
