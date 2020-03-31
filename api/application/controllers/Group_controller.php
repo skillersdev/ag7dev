@@ -263,7 +263,7 @@ class Group_controller extends CI_Controller {
         //   $response['check_user']=1;
          
          $response['check_user']=1;
-             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  GROUP BY user_name");
              $mem_group_array=$mem_group_sql->result_array(); 
              $mem_group_array1=$mem_group_sql->result_object(); 
             //  print_r($mem_group_array1); die;
@@ -356,7 +356,7 @@ class Group_controller extends CI_Controller {
           $response['check_user']=1;
          
 
-             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  GROUP BY user_name");
              $mem_group_array=$mem_group_sql->result_array(); 
              $mem_group_array1=$mem_group_sql->result_object(); 
             //  print_r($mem_group_array1); die;
@@ -436,11 +436,12 @@ public function getgroupsdetails(){
           $response['check_user']=1;
          
 
-             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' GROUP BY user_name");
              $mem_group_array=$mem_group_sql->result_array(); 
              $mem_group_array1=$mem_group_sql->result_object(); 
             //  print_r($mem_group_array1); die;
              $response['group_members']=$mem_group_array;
+
              $response['select_group_members']=$mem_group_array1;
             //  id>'". $model->msgstartid."' and
              $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where  group_id='". $model->g_id."' and is_deleted=0");
