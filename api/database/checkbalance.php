@@ -26,7 +26,8 @@ if($array1[0]['username'])
     $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
     $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
     if($website_result['websitecount']==1){
-        $response['status']="website_exists";
+		//$response['status']="website_exists";
+		$response['status']="error";
         $response['message']="website name already exist";
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
@@ -119,7 +120,7 @@ if (($num['ucount']) == 1) {
 			
 
 
-			
+
 		
 			//code added for e-learning account creation 
 			if($array1[0]['pck_type']==2){
