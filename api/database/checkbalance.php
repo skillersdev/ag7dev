@@ -117,12 +117,49 @@ if (($num['ucount']) == 1) {
             
 			//code added by sridhar
 			
+
+
+			
 		
 			//code added for e-learning account creation 
 			if($array1[0]['pck_type']==2){
 				$eusername=$array1[0]['eusername'];
 				$epassword=$array1[0]['epassword'];
 				$result=mysqli_query($con,"UPDATE user_vs_packages SET eusername='".$eusername."',epassword='".$epassword."' WHERE id='".$array1[0]['pack_id_user']."'");//activate package_vs_user and add e-learning account
+				
+				$data=array();
+
+				$elearn_first_name =$eusername;
+				$elearn_last_name  = "Learner";
+				$elearn_email  = $eusername;
+				$elearn_password  = sha1($epassword);
+				$verification_code =  md5(rand(100000000, 200000000));
+        		$elearn_verification_code = $verification_code;
+				$elearn_status = 1;
+				$elearn_wishlist= json_encode(array());
+				$elearn_watch_history = json_encode(array());
+				$elearn_date_added = strtotime(date("Y-m-d H:i:s"));
+				$social_links = array(
+					'facebook' => "",
+					'twitter'  => "",
+					'linkedin' => ""
+				);
+				$elearn_social_links = json_encode($social_links);
+				$elearn_role_id  = 2;
+				 // Add paypal keys
+				 $paypal_info = array();
+				 $paypal['production_client_id'] = "";
+				 array_push($paypal_info, $paypal);
+				 $elearn_paypal_keys = json_encode($paypal_info);
+				 // Add Stripe keys
+				 $stripe_info = array();
+				 $stripe_keys = array(
+					 'public_live_key' => "",
+					 'secret_live_key' => ""
+				 );
+				 array_push($stripe_info, $stripe_keys);
+				 $elearn_stripe_keys = json_encode($stripe_info);
+				 $elearn_query=mysqli_query($con,"insert into elearn_users(first_name,last_name,email,password,social_links,role_id,date_added,watch_history,wishlist,paypal_keys,stripe_keys,verification_code,status) values('$elearn_first_name','$elearn_last_name','$elearn_email','$elearn_password','$elearn_social_links','$elearn_role_id','$elearn_date_added','$elearn_watch_history','$elearn_wishlist','$elearn_paypal_keys','$elearn_stripe_keys','$elearn_verification_code','1')");
 			}
 			//code ended for e-learning account creation
 
