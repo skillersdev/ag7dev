@@ -238,7 +238,7 @@ export class ChatComponent implements OnInit {
       this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
-      this.refreshData();
+      // this.refreshData();
     }
   }
   groupsearch(){
@@ -312,7 +312,12 @@ export class ChatComponent implements OnInit {
               
               this.group_msg_model = resultdata.group_msg;
               this.Newgroupmodel.msgstartid=resultdata.msgstartid; 
-              // console.log(this.group_msg_model); 
+              
+              // this.Newgroupmodel.userselectedItems.filter(function(element2){
+              //   if(element2.Id == this.Newgroupmodel.currentUserID){
+              //     dummyarray.push(element2.Route_Id);
+              //   }
+              // });
               this.date_array_model = resultdata.date_array;
               this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
               this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
@@ -426,6 +431,7 @@ export class ChatComponent implements OnInit {
   this.Newgroupmodel.g_id='';
   if(this.Newgroupmodel.groupname!=''){
     this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});
+    
     this.CommonService.insertdata(AppSettings.addgroup,this.Newgroupmodel)
     .subscribe(package_det =>{
       if(this.Newgroupmodel.channelgroup==2 || this.Newgroupmodel.channelgroup=="2"){

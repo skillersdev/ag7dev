@@ -727,7 +727,7 @@ img {vertical-align: middle;}
 					-->
 					<i *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
 					<!-- <div class="loader" style="display: none;"></div> -->
-					<div class="loader" style="width: 10px;height: 10px;"></div>
+					<div class="loader" style="width: 10px;height: 10px;display: none;"></div>
 					<input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage >
 					<!-- <input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
 				</div>
