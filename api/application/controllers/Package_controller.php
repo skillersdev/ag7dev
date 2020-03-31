@@ -579,17 +579,32 @@ class Package_controller extends CI_Controller {
     public function check_website_exists()
     {
       $model = json_decode($this->input->post('model',FALSE));
-
+		
       $response['exist']=0;
-      $website = trim($model->website);
-      
-      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
-
-      if(count($res->result_array())>0)
-      {         
-        $response['exist']=1;
-        $response['message']="website already exists";
-      }
+		
+		if($model->website!=""){
+			$website = trim($model->website);
+			$res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
+			if(count($res->result_array())>0)
+			{         
+				$response['exist']=1;
+				$response['message']="website already exists";
+			}
+		}
+		
+		if(isset($model->pck_type)){
+			$eusername = trim($model->eusername);
+			$res=$this->db->select("email")->where(['email'=>$eusername])->get('elearn_users');
+			if(count($res->result_array())>0)
+			{         
+				$response['exist']=1;
+				$response['message']="E-Learning username already exists";
+			}
+		}
+		
+		
+		
+		
       echo json_encode($response,JSON_UNESCAPED_SLASHES);
       die();
     }

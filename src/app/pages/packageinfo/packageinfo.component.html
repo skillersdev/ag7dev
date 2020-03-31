@@ -61,7 +61,8 @@
                                                 <p><b> Create E-learning Login</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="eusername" name="eusername" class="form-control" placeholder="Enter E-learning Username " [(ngModel)]="model.eusername"  #eusername="ngModel" 
+                                                        <input type="text" id="eusername" name="eusername" class="form-control" placeholder="Enter E-learning Username " [(ngModel)]="model.eusername" 
+                                                        (blur)="checkelearnuserexist($event)" #eusername="ngModel" 
                                                          required>
                                                     </div>
                                                     <div class="form-line">

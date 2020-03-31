@@ -141,6 +141,20 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
+  //code added for checl elearn username exist
+  checkelearnuserexist(){
+    this.model.pck_type=2;
+    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
+    .subscribe(package_det =>{
+      if(package_det.exist==1)
+      {
+        swal('',package_det.message,'error')
+        this.model.eusername='';
+      }  
+    });
+
+  }
+  //code ended here for elearn code exists
   paytoactivate()
   { 
     this.payment_data.website = this.model.website;
