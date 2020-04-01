@@ -38,6 +38,7 @@ export class ChatComponent implements OnInit {
   userdropdownList:any;
   userdropdownSettings:any={};
   sharedropdownSettings:any={};
+  websitedropdownSettings:any={};
   sendreqestmodel:any={};
   interval: any;
   group_bases:any;
@@ -45,7 +46,7 @@ export class ChatComponent implements OnInit {
   grouplink:any;
   windowHeight:any;
   imageuploadmsg:any;
-
+  websitelists:any;
 
 
  private ngNavigatorShareService: NgNavigatorShareService;
@@ -68,6 +69,7 @@ export class ChatComponent implements OnInit {
     this.showSlides(this.slideIndex);
     this.group_dt_model=[];
     this.userdropdownList=[];
+    this.websitelists=[];
     this.group_det=[];
     this.Newgroupmodel.groupimagename = '';
     this.Newgroupmodel.search_group_name = '';
@@ -82,6 +84,7 @@ export class ChatComponent implements OnInit {
 
     this.Newgroupmodel.userselectedItems=[]; 
     this.Newgroupmodel.groupmemlists=[]; 
+    this.Newgroupmodel.websitelists=[];
     
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
@@ -109,7 +112,17 @@ export class ChatComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     }
-
+    this.websitedropdownSettings={
+      singleSelection: false,
+     idField: 'website',
+     textField: 'website',
+     enableCheckAll:false,
+     selectAllText: 'Select All',
+     unSelectAllText: 'UnSelect All',
+     itemsShowLimit: 3,
+     allowSearchFilter: true
+   }
+    
     //this.getparamas = this.route.params.subscribe(params => {
      //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
     //}); 
@@ -133,7 +146,16 @@ export class ChatComponent implements OnInit {
     //   { Id: 3, username: 'Pune' },
     //   { Id: 4, username: 'Navsari' }
     // ];
+    this.getwebsitelist();
     
+  }
+
+  getwebsitelist(){
+    this.CommonService.insertdata(AppSettings.getwebsitelist,{'userid':this.Newgroupmodel.currentUser,'usertype':2}).subscribe(det =>{
+        if(det.result){
+          this.websitelists = det.result;
+        }
+    });
   }
 
   share() {
@@ -547,6 +569,21 @@ $('.loader').css('display','block');
   }
   admintoremove(id:any,group_id:any){
     this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':0})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+
+  usertoremove(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.groupuseraddreove,{'id':id,'group_id':group_id,'val':1})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+  usertoadd(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.groupuseraddreove,{'id':id,'group_id':group_id,'val':0})
     .subscribe(package_det =>{     
       this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
         

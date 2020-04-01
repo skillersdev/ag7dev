@@ -365,6 +365,19 @@
 								<label for="showinwebsite" class="m-r-3">Show in website</label>&nbsp; -->
 								</div>
 							</div>
+
+							<div *ngIf="Newgroupmodel.showinwebsite==1" class="form-group m-b-0">
+								<div class="form-line radio-btns">
+									<label for="groupname" class="m-r-3">Select Website:</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="websitelists"
+										[(ngModel)]="Newgroupmodel.websitelists1" [settings]="websitedropdownSettings"
+										[ngModelOptions]="{standalone: true}" #websitelists1="ngModel" ></ng-multiselect-dropdown>
+								
+								</div>
+							</div>
+
+							
+
 							<div class="form-group m-b-0">
 								<div class="form-line ">
 									<label for="groupname" class="m-r-3">Image :<span
@@ -435,6 +448,53 @@
 												<button *ngIf="data.admin_normal==1" type="button"
 													class="btn btn-danger"
 													(click)="admintoremove(data.id,data.group_id)">Remove</button></td>
+										</tr>
+
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- new group-->
+
+		<!-- The Modal -->
+		<div class="modal" id="makegroupuser">
+			<div class="modal-dialog">
+				<form name="groupForm" #groupForm="ngForm">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Group Members list</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<div class="form-group m-b-0">
+								<div class="form-line radio-btns">
+									<table>
+										<tr>
+											<th>Username</th>
+											<th>Action</th>
+										</tr>
+										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
+											<td>{{data.user_name}}</td>
+											<td><button *ngIf="data.is_deleted!=1" type="button"
+													class="btn btn-success"
+													(click)="usertoremove(data.id,data.group_id)">Active</button>
+												<button *ngIf="data.is_deleted==1" type="button"
+													class="btn btn-danger"
+													(click)="usertoadd(data.id,data.group_id)">Remove</button></td>
 										</tr>
 
 									</table>
@@ -706,7 +766,8 @@
 							class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
-						<div class="text-white small" id="details">{{group_members_model.length}} members</div>
+						<div class="text-white small" id="details"><a href="javascript:void(0);" data-toggle="modal"
+							data-target="#makegroupuser">{{group_members_model.length}} members</a></div>
 					</div>
 					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"

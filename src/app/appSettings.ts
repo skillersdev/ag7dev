@@ -289,6 +289,7 @@ export class AppSettings{
 	public static chatmsgedit = AppSettings.API_BASE + "/chatmsgedit";
 	public static chatmsgupdate = AppSettings.API_BASE + "/chatmsgupdate";	
 	public static makegroupadmin = AppSettings.API_BASE + "/makegroupadmin";
+	public static groupuseraddreove = AppSettings.API_BASE + "/groupuseraddreove";
 	
 
 	

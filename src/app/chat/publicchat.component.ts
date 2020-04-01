@@ -69,6 +69,7 @@ export class PublicchatComponent implements OnInit {
     this.date_array_model=[];
     this.group_members_model=[];
     this.Newgroupmodel.userselectedItems=[]; 
+    this.Newgroupmodel.groupmemlists=[]; 
     this.sendreqestmodel.Isloading=false;
     //this.loginService.localStorageData();
     this.loginService.viewsActivate();
@@ -198,6 +199,21 @@ export class PublicchatComponent implements OnInit {
   groupdetails(){
    
   }
+
+  admintoadd(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':1})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+  admintoremove(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':0})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
   
   hideshow(){
   this.router.navigate(['./chat']); 
@@ -244,6 +260,7 @@ export class PublicchatComponent implements OnInit {
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 
+            this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
             
             $('.message-area').addClass('d-sm-flex');
             $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
