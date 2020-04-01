@@ -39,14 +39,26 @@ class Channel_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where created_by='".$model->user_id."' AND is_delete=0");
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where created_by='".$model->user_id."' AND is_delete=0 ORDER BY id DESC");
         }
         /*BY all list*/ 
         else{
-           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where('is_delete','0')->get('tbl_channel');
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where is_delete=0 ORDER BY id DESC");
         }
 
         $result= $res->result_array();
+         foreach($result as $key=>$value)
+          {               
+            
+            $userData=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            $user_array=$userData->result_array();
+        
+            $result[$key]['username'] = $user_array[0]['username'];  
+           
+            $result[]=$value;
+          }
+        
+        
         $response['result']=$result;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
@@ -151,6 +163,23 @@ class Channel_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $result=array();
+        
+         /*Update View for channe*/
+        $today =date("Y-m-d");
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    $check_view=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."' AND date(views_updated_date)='".$today."' AND ip_address='".$ip_address."'");
+    
+    if($check_view->num_rows()==0)
+    {
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."'");
+        
+         $channel_data=$update_channel_data->result_array();
+         
+        $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'views_updated_date'=>$today);
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('tbl_channel'),$data);
+    }
+        /****/
 
         $res=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."'");
         
@@ -168,6 +197,7 @@ class Channel_controller extends CI_Controller {
         
         $result['username'] = $user_array[0]['username'];  
         $response['result']=$result;
+       
         
          $video_list=$this->db->select("*")->where(['is_deleted'=>'0','channel'=>$id])->get('video_sections'); 
          $response['total_videos']=$video_list->result_array();

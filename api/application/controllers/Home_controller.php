@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
     
   public function getrvideolist()
@@ -28,8 +28,12 @@ class Home_controller extends CI_Controller {
         {
           foreach($res->result_array() as $key=>$value)
           { 
-
-            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate']);
+            $userData=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            $user_array=$userData->result_array();
+        
+            //$result[$key]['username'] = $user_array[0]['username'];      
+            
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate'],'username'=>$user_array[0]['username']);
           }
         }else{
             $response['status']="failure";
@@ -55,7 +59,6 @@ class Home_controller extends CI_Controller {
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
-            $in_array[0]['tags_list'] = explode(',', $in_array[0]['tags']);
             $result['video_det']=$in_array[0];
         }else{
             $response['status']="failure";
