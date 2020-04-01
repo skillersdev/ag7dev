@@ -153,7 +153,9 @@ class Channel_controller extends CI_Controller {
         $result=array();
 
         $res=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."'");
-
+        
+       
+         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
             $result=$in_array[0];
@@ -161,7 +163,15 @@ class Channel_controller extends CI_Controller {
             $response['status']="failure";
             $response['message']=" No Service record found!!";
         }
+          $userData=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$result['created_by']])->get('affiliateuser'); 
+         $user_array=$userData->result_array();
+        
+        $result['username'] = $user_array[0]['username'];  
         $response['result']=$result;
+        
+         $video_list=$this->db->select("*")->where(['is_deleted'=>'0','channel'=>$id])->get('video_sections'); 
+         $response['total_videos']=$video_list->result_array();
+        
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
