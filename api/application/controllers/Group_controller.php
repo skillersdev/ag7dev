@@ -63,30 +63,33 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Group added successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
+        $websitelists1 = '';
         // print_r($model); die;
         if($model->showinwebsite==1 || $model->showinwebsite==true){
           $showinwebsite=1;
+         $websitelists1 = isset($model->websitelists1)?$model->websitelists1[0]->website:'';
         }else{
           $showinwebsite=0;
+         
         }
         // echo "update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."',showinwebsite='".$showinwebsite."' where id='".$model->g_id."'"; die;
-         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."',showinwebsite='".$showinwebsite."' where id='".$model->g_id."'");
+         $result=$this->db->query("update ".$this->db->dbprefix('group_master')." set group_name='".$model->groupname."',channelgroup='".$model->channelgroup."',imagename='".$model->groupimagename."',private_public='".$model->privatepublic."',showinwebsite='".$showinwebsite."',websitename='".$websitelists1."' where id='".$model->g_id."'");
 
         $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
         foreach ($model->userselectedItems as $key => $value) {
-         // $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
-         // $mem_group_array=$mem_group_sql->result_array();
+         $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
+         $mem_group_array=$mem_group_sql->result_array();
 
-         // if(count($mem_group_array) > 0){
+         if(count($mem_group_array) > 0){
 
-         // }else {
+         }else {
           if($value->Id==$model->currentUserID){
             $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."',1,'".$model->currentUserID."')");
            }else {
             $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."',0,'".$model->currentUserID."')");
            }
             // $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,created_by) values ('".$model->g_id."','".$model->groupname."','".$value->Id."','".$value->username."','".$model->currentUserID."')");
-         // }
+         }
         
       }
      $this->db->query("insert into ".$this->db->dbprefix('group_profile_images_log')." (group_id,image_name) values ('".$model->g_id."','".$model->groupimagename."')");
@@ -878,6 +881,28 @@ public function getgroupsdetails(){
 
    
    }
+
+   public function groupuseraddreove(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"changed successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        
+        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted='".$model->val."' where id='".$model->id."'");
+
+        $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0");
+        $response['groupmemlists']=$check_user->result_array();
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+
+   
+   }
+
+   
+
     public function sendrequestforgroup()
    {
      $this->output->set_content_type('application/json');
