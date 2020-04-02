@@ -1,4 +1,5 @@
 
+ALTER TABLE `group_master` ADD `websitename` VARCHAR(500) NOT NULL AFTER `showinwebsite`;
 
 //dhana
 	$channel_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>1,'showinwebsite'=>1,'is_deleted'=>'0'])->get('group_master'); 
