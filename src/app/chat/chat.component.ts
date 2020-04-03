@@ -255,7 +255,7 @@ export class ChatComponent implements OnInit {
 
   generateMessageArea1(id,p_p,g_code){
     this.Newgroupmodel.msgstartid=0;
-    if(p_p==4){
+    if(p_p==1){
     //alert(g_code);
       this.router.navigate(['./chat/public/',g_code]); 
     }else {

@@ -699,7 +699,7 @@
 						#search_group_name="ngModel" />
 					<div *ngFor="let data of group_det let i=index"
 						class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active"
-						(click)="generateMessageArea1(data.id,data.private_public,data.group_code)">
+						(click)="generateMessageArea1(data.id,data.channelgroup,data.group_code)">
 						<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo"
 							class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
 						<div class="w-50">
@@ -766,8 +766,8 @@
 							class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;" id="pic"></a>
 					<div class="d-flex flex-column">
 						<div class="text-white font-weight-bold" id="name">{{group_dt_model.group_name}}</div>
-						<div class="text-white small" id="details"><a href="javascript:void(0);" data-toggle="modal"
-							data-target="#makegroupuser">{{group_members_model.length}} members</a></div>
+						<div class="text-white small" id="details"><a href="javascript:void(0);" *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal"
+							data-target="#makegroupuser">{{group_members_model.length}} members</a><a href="javascript:void(0);" *ngIf="Newgroupmodel.admin_normal!=1">{{group_members_model.length}} members</a></div>
 					</div>
 					<div class=" nav-item dropdown d-flex flex-row align-items-center ml-auto">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"
