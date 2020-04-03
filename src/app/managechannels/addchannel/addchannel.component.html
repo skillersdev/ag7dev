@@ -25,8 +25,8 @@
 	                                                <p><b>Select Website</b></p>
 	                                                <div class="form-group">
 	                                                   <div class="form-line">
-	                                                        <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
-	                                                            <option [ngValue]="select">select website</option>    
+	                                                        <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required (change)="updateChannelUrl()">
+	                                                            <option [ngValue]="select" value="">select website</option>    
 	                                                            <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
 	                                                        </select>
 	                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
@@ -38,9 +38,12 @@
 	                                                 	<label for="NameSurname" class="col-sm-2 control-label">Channel Name</label>
 	                                                	<div class="col-sm-10">
 		                                                    <div class="form-line">
-		                                                        <input type="text" class="form-control" id="channel_name" name="channel_name" [(ngModel)]="model.channel_name"  #channel_name="ngModel" placeholder="channel Name" required>
+		                                                        <input type="text" class="form-control" id="channel_name" name="channel_name" [(ngModel)]="model.channel_name"  #channel_name="ngModel" placeholder="channel Name"  required (blur)="updateChannelUrl()">
 		                                                    </div>
-	                                                	</div>
+														</div>
+														<span class="text-danger" *ngIf="!model.Isvalidate">
+															Enter valid channel name
+														</span>
 	                                                </div>
 	                                            </div>                
 	                                        </div> 
@@ -79,10 +82,10 @@
 	                                            </div> 
 	                                            <div class="col-md-6">
 	                                                <p><b>Channel URL</b></p>                     
-	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="channel Url" required>
+	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="channel Url" readonly>
 	                                            </div> 
 	                                        </div>
-                                        	<button type="submit" [disabled]="!addchannel.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addchannel_form()">Add Channel</button>&nbsp;
+                                        	<button type="submit" [disabled]="!addchannel.form.valid || !model.Isvalidate" class="btn btn-primary m-t-15 waves-effect" (click)="addchannel_form()">Add Channel</button>&nbsp;
                                         	&nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
                                     	</form>
                                     </div>

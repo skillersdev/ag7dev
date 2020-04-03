@@ -47,6 +47,7 @@ export class AddchannelComponent implements OnInit {
         .subscribe(package_det =>{       
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         }); 
+        this.model.Isvalidate = true;
   }
 
    profileImageUpload(event: any): void {
@@ -94,8 +95,39 @@ export class AddchannelComponent implements OnInit {
 
      	})
     }
+    restrictNumbers(event: any)
+    {
+        const pattern = /[0-9\+\-\ ]/;
+        const inputChar = String.fromCharCode(event.charCode);
+
+        if (pattern.test(inputChar)) {    
+            // invalid character, prevent input
+            event.preventDefault();
+        }
+    }
     back(){
         this.router.navigate(['/managechannels']); 
+    }
+    updateChannelUrl()
+    {
+        this.model.Isvalidate = true;
+        if(this.model.channel_name)
+        {
+            if(this.model.channel_name.match(/^(?![0-9]*$)[a-zA-Z0-9]+$/))
+            {
+                this.model.Isvalidate = true;
+            }else{
+                this.model.Isvalidate = false;
+            }
+        }
+
+        
+        this.model.channel_url='';
+        if(this.model.website && this.model.channel_name && this.model.Isvalidate)
+        {
+            this.model.channel_url = this.model.website+'/'+this.model.channel_name;
+        }
+       
     }
 
 

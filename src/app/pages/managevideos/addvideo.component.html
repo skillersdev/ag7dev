@@ -75,8 +75,20 @@
                                     </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6" *ngIf="model.videocategory==3">
+                                    <b>Select Channel</b>
+                                    <div class="form-group">
+                                       <div class="form-line">
+                                            <select class="form-control show-tick" [(ngModel)]="model.channel" #channel="ngModel" name="channel" required (change)="getwebsitebychannel($event.target.value)">
+                                                <option [ngValue]="select">select channel</option>    
+                                                <option *ngFor="let cdata of channellist" value="{{cdata.id}}">{{cdata.channel_name}}</option>
+                                            </select>
+                                            <span [hidden]="channel.valid || channel.pristine" class="text-danger">channel is required</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
-                                      <p><b>Video Preview Image</b></p>                   
+                                      <b>Video Preview Image</b>
                                       <input type="file" (change)="fileChangeEvent($event)" />
                                       <image-cropper
                                           [imageChangedEvent]="imageChangedEvent"
@@ -88,7 +100,7 @@
                                     <img [src]="croppedImage" style="width:30%;"/>
                                 </div>
                                 <div class="col-md-6" *ngIf="model.videocategory==2">
-                                    <p><b>Select Website</b></p>
+                                    <b>Select Website</b>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.website_name" #website_name="ngModel" name="website_name" required>
@@ -99,20 +111,9 @@
                                         </div>
                                     </div>
                                 </div> 
-                                <div class="col-md-6" *ngIf="model.videocategory==3">
-                                    <p><b>Select Channel</b></p>
-                                    <div class="form-group">
-                                       <div class="form-line">
-                                            <select class="form-control show-tick" [(ngModel)]="model.channel" #channel="ngModel" name="channel" required (change)="getwebsitebychannel($event.target.value)">
-                                                <option [ngValue]="select">select channel</option>    
-                                                <option *ngFor="let cdata of channellist" value="{{cdata.id}}">{{cdata.channel_name}}</option>
-                                            </select>
-                                            <span [hidden]="channel.valid || channel.pristine" class="text-danger">channel is required</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-6" *ngIf="model.Iswebsite==1">
-                                    <p><b>Website for selected channel:</b></p>
+                                    <b>Website for selected channel:</b>
                                     <div class="form-group">
                                        <div class="form-line">
                                         <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.channelWebsite" #channelWebsite="ngModel" readonly>

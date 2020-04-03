@@ -47,12 +47,15 @@ export class EditchannelComponent implements OnInit {
         .subscribe(package_det =>{       
           if(package_det.result!=""){ this.websitelist=package_det.result;}
         });
+       
+        //this.model.Isvalidate = true;
   }
   editchannel(id:any)
   {
   	this.CommonService.editdata(AppSettings.editchannel,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;                  
+          this.model = resultdata.result;    
+          this.updateChannelUrl()               
         });
   }
   back()
@@ -104,5 +107,26 @@ export class EditchannelComponent implements OnInit {
      	})
     }
     
+    updateChannelUrl()
+    {
+        
+      this.model.Isvalidate = true;
+        if(this.model.channel_name)
+        {
+            if(this.model.channel_name.match(/^(?![0-9]*$)[a-zA-Z0-9]+$/))
+            {
+                this.model.Isvalidate = true;
+            }else{
+                this.model.Isvalidate = false;
+            }
+        }
 
+        
+        this.model.channel_url='';
+        if(this.model.website && this.model.channel_name && this.model.Isvalidate)
+        {
+            this.model.channel_url = this.model.website+'/'+this.model.channel_name;
+        }
+       
+    }
 }

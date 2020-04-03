@@ -47,19 +47,21 @@ class Channel_controller extends CI_Controller {
         }
 
         $result= $res->result_array();
+        $result1=[];
          foreach($result as $key=>$value)
           {               
             
             $userData=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
             $user_array=$userData->result_array();
         
-            $result[$key]['username'] = $user_array[0]['username'];  
+             
            
-            $result[]=$value;
+            $result1[]=$value;
+             $result1[$key]['username'] = $user_array[0]['username'];
           }
         
-        
-        $response['result']=$result;
+        //print_r($result1);die;
+        $response['result']=$result1;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }
