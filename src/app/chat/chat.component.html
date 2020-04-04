@@ -440,7 +440,7 @@
 											<th>Action</th>
 										</tr>
 										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
-											<td>{{data.user_name}}</td>
+											<td>{{data.username}}</td>
 											<td><button *ngIf="data.admin_normal!=1" type="button"
 													class="btn btn-success"
 													(click)="admintoadd(data.id,data.group_id)">Make group
@@ -488,7 +488,7 @@
 											<th>Action</th>
 										</tr>
 										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
-											<td>{{data.user_name}}</td>
+											<td>{{data.username}}</td>
 											<td><button *ngIf="data.is_deleted!=1" type="button"
 													class="btn btn-success"
 													(click)="usertoremove(data.id,data.group_id)">Active</button>

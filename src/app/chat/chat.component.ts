@@ -260,7 +260,7 @@ export class ChatComponent implements OnInit {
       this.router.navigate(['./chat/public/',g_code]); 
     }else {
       this.generateMessageArea(id);
-      // this.refreshData();
+      this.refreshData();
     }
   }
   groupsearch(){
