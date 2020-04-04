@@ -304,6 +304,7 @@ $route['getchannellist']= "Channel_controller/getchannellist";
 $route['editchannel/(:num)']= "Channel_controller/editchannel/$1";
 $route['updatechanneldata'] = 'Channel_controller/updatechanneldata';
 $route['deletechanneldata/(:num)']= 'Channel_controller/deletechanneldata/$1';
+$route['checkchannelexist']="Channel_controller/checkchannelexist";
 /*****/
 ?>
 

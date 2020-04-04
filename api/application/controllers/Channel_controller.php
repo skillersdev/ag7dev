@@ -26,6 +26,26 @@ class Channel_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
+     public function checkchannelexist()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        
+        $model = json_decode($this->input->post('model',FALSE));
+        
+         $res= $this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." WHERE  website='".$model->website."' AND channel_name='".$model->channel_name."' AND is_delete=0");
+         $result= $res->result_array();
+         
+         if(count($result)>0)
+         {
+              $response['status']="fail";
+              $response['message']="Channel already exist";
+         }
+         
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
     public function getchannellist()
     {
 
