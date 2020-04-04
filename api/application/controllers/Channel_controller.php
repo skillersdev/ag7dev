@@ -19,7 +19,7 @@ class Channel_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
         
         //print_r($model);die;
-        
+        unset($model->Isvalidate);
         $this->db->insert('tbl_channel', $model);        
 
 
