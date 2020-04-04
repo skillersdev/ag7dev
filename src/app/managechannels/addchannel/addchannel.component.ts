@@ -125,6 +125,20 @@ export class AddchannelComponent implements OnInit {
         this.model.channel_url='';
         if(this.model.website && this.model.channel_name && this.model.Isvalidate)
         {
+            this.CommonService.insertdata(AppSettings.checkChannelduplciation,this.model)
+    	    .subscribe( (response) => {
+                if(response.status=='success')
+                {
+                    this.model.Isvalidate = true;
+                }else{
+                    this.model.Isvalidate = false;
+                    this.model.channel_url = '';
+                    swal('error',response.message,'error');
+                    return false;
+                }
+            
+            });
+
             this.model.channel_url = this.model.website+'/'+this.model.channel_name;
         }
        

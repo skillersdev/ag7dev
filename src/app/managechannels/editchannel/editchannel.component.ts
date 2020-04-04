@@ -54,7 +54,8 @@ export class EditchannelComponent implements OnInit {
   {
   	this.CommonService.editdata(AppSettings.editchannel,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;    
+          this.model = resultdata.result;  
+          this.alldata.IseditchannelName = resultdata.result.channel_name;  
           this.updateChannelUrl()               
         });
   }
@@ -125,6 +126,24 @@ export class EditchannelComponent implements OnInit {
         this.model.channel_url='';
         if(this.model.website && this.model.channel_name && this.model.Isvalidate)
         {
+            if(this.alldata.IseditchannelName != this.model.channel_name)
+            {
+                this.CommonService.insertdata(AppSettings.checkChannelduplciation,this.model)
+    	    .subscribe( (response) => {
+                if(response.status=='success')
+                {
+                    this.model.Isvalidate = true;
+                }else{
+                    this.model.Isvalidate = false;
+                    this.model.channel_url = '';
+                    swal('error',response.message,'error');
+                    return false;
+                }
+            
+            });
+            }
+            
+
             this.model.channel_url = this.model.website+'/'+this.model.channel_name;
         }
        
