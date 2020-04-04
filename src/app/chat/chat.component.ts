@@ -353,7 +353,7 @@ export class ChatComponent implements OnInit {
             
             
             
-            $('.message-area').addClass('d-sm-flex');
+            // $('.message-area').addClass('d-sm-flex');
 
             // $('html, body').animate({
               
@@ -361,7 +361,7 @@ export class ChatComponent implements OnInit {
             // }, 'slow');
             // alert('testing here');
 
-            $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+            // $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
 
           }
           
@@ -484,7 +484,9 @@ export class ChatComponent implements OnInit {
       
         this.Newgroupmodel.groupmsgtxt='';
         this.imageuploadmsg=0;
+        $('.message-area').addClass('d-sm-flex');
         this.generateMessageArea(this.Newgroupmodel.g_id);
+        $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
         // swal('','Message sent Successfully','success');  
         
     }); 
