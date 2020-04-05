@@ -281,14 +281,14 @@ class Group_controller extends CI_Controller {
              $login_group_array1=$group_sql1->result_array(); 
 
 // print_r($login_group_array1); die;
-             $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
-             $msg_group_array1=$msg_group_sql->result_array(); 
+            //  $msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+            //  $msg_group_array1=$msg_group_sql->result_array(); 
           // if(count($login_group_array1)>0){
-            $other_msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where group_id='". $login_group_array1[0]['id']."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )");
+            $other_msg_group_sql=$this->db->query("select * from ".$this->db->dbprefix('all_message')." where (group_id='". $model->g_id."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' ) ) or (group_id='". $login_group_array1[0]['id']."' and is_deleted=0 and  (created_by='". $model->currentUserID."' or created_by='". $group_array[0]['created_by']."' )) ORDER BY id");
             $other_msg_group_array=$other_msg_group_sql->result_array(); 
 
-            $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
-
+            // $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
+            $msg_group_array = $other_msg_group_array;
             foreach ($msg_group_array as $msg_key => $msg_value) {
 
              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
@@ -358,8 +358,12 @@ class Group_controller extends CI_Controller {
         } else {
           $response['check_user']=1;
          
-
-             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  GROUP BY user_name");
+          $mem_group_sql = $this->db->select('group_members.user_id as Id,affiliateuser.username as username,affiliateuser.username as user_name,group_members.is_deleted,group_members.group_id,group_members.admin_normal,group_members.created_by,group_members.group_name')
+          ->join('affiliateuser', 'group_members.user_id=affiliateuser.Id', 'left')
+          ->where('group_members.group_id',$model->g_id)
+          ->group_by('affiliateuser.username')
+          ->get('group_members');
+            //  $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  GROUP BY user_name");
              $mem_group_array=$mem_group_sql->result_array(); 
              $mem_group_array1=$mem_group_sql->result_object(); 
             //  print_r($mem_group_array1); die;
@@ -438,8 +442,13 @@ public function getgroupsdetails(){
         } else {
           $response['check_user']=1;
          
-
-             $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' GROUP BY user_name");
+          $mem_group_sql = $this->db->select('group_members.user_id as Id,affiliateuser.username as username,affiliateuser.username as user_name,group_members.is_deleted,group_members.group_id,group_members.admin_normal,group_members.created_by,group_members.group_name')
+          ->join('affiliateuser', 'group_members.user_id=affiliateuser.Id', 'left')
+          ->where('group_members.group_id',$model->g_id)
+          ->group_by('affiliateuser.username')
+          ->get('group_members');
+// echo  $mem_group_sql; die;
+            //  $mem_group_sql=$this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' GROUP BY user_name");
              $mem_group_array=$mem_group_sql->result_array(); 
              $mem_group_array1=$mem_group_sql->result_object(); 
             //  print_r($mem_group_array1); die;
