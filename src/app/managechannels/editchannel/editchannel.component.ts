@@ -144,7 +144,7 @@ export class EditchannelComponent implements OnInit {
             }
             
 
-            this.model.channel_url = this.model.website+'/'+this.model.channel_name;
+            this.model.channel_url = "https://video.roodabatoz.com/"+this.model.website+'/'+this.model.channel_name;
         }
        
     }
