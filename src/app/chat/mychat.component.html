@@ -401,8 +401,10 @@
 
 				<div class="form-group">
 					<label>Message :</label>
-					<input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
-						class="form-control" #msgupdate="ngModel" />
+					<!-- <input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
+						class="form-control" #msgupdate="ngModel" /> -->
+						<textarea name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
+								class="form-control" #msgupdate="ngModel"></textarea>
 				</div>
 
 			</div>
@@ -549,7 +551,24 @@
 
 				<!-- Chat List -->
 
-				<div class="row chat-list" id="chat-list" style="overflow:auto;">
+				
+					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
+						<div class="w-50">
+							<div class="name">Dashboard</div>
+						</div>
+					</div>
+					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
+						<div class="w-50">
+							<div class="name">Chat</div>
+						</div>
+					</div>
+					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
+						<div class="w-50" (click)=logout()>
+							<div class="name">Logout</div>
+						</div>
+					
+					</div>
+
 					<input name="search_group_name" [(ngModel)]="Newgroupmodel.search_group_name" type="text" id="search_group_name" placeholder="Type a Mychat Group/Channel" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="groupsearch()" #search_group_name="ngModel"/>
 						<div *ngFor="let data of group_det let i=index" class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active" (click)="generateMessageArea1(data.id,data.private_public,data.group_code)">
 								<img src="{{group_bases}}group_images/{{data.imagename}}" alt="Profile Photo" class="img-fluid rounded-circle mr-2" style="height: 45px;width: 50px;">
@@ -841,8 +860,8 @@
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
 					
-					<input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
-
+					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/> -->
+					<textarea *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" #groupmsgtxt="ngModel"></textarea>
 					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 

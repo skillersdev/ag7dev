@@ -316,8 +316,10 @@ img {vertical-align: middle;}
 
 						<div class="form-group">
 							<label>Message :</label>
-							<input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
-								class="form-control" #msgupdate="ngModel" />
+							<!-- <input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
+								class="form-control" #msgupdate="ngModel" /> -->
+								<textarea name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
+								class="form-control" #msgupdate="ngModel"></textarea>
 						</div>
 
 					</div>
@@ -762,7 +764,8 @@ img {vertical-align: middle;}
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
 					<!-- (click)="chatimage.click()" -->
 					
-					<input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/>
+					<!-- <input *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/> -->
+					<textarea *ngIf="Newgroupmodel.currentUserID==Newgroupmodel.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"  #groupmsgtxt="ngModel"></textarea>
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
 					 <input type="file" id="fupload" accept="image/*" #file>
