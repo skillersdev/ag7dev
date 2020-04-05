@@ -18,15 +18,16 @@ class Channel_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        //print_r($model);die;
         unset($model->Isvalidate);
+        //print_r($model);die;
+        
         $this->db->insert('tbl_channel', $model);        
 
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-     public function checkchannelexist()
+    public function checkchannelexist()
     {
         $this->output->set_content_type('application/json');
         $response=array();
@@ -178,32 +179,33 @@ class Channel_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }
-   public function editchannel($id)
+   public function editchannel()
     {
         //var_dump($id); die();
         $this->output->set_content_type('application/json');
         $response=array();
         $response['status']="success";
+         $model = json_decode($this->input->post('model',FALSE));
         $result=array();
         
          /*Update View for channe*/
         $today =date("Y-m-d");
     $ip_address = $_SERVER['REMOTE_ADDR'];
-    $check_view=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."' AND date(views_updated_date)='".$today."' AND ip_address='".$ip_address."'");
+    $check_view=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' AND date(views_updated_date)='".$today."' AND ip_address='".$ip_address."'");
     
     if($check_view->num_rows()==0)
     {
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."'");
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
         
          $channel_data=$update_channel_data->result_array();
          
         $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'views_updated_date'=>$today);
-            $this->db->where('id',$id);
+            $this->db->where('id',$channel_data[0]['id']);
             $this->db->update($this->db->dbprefix('tbl_channel'),$data);
     }
         /****/
 
-        $res=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where id='".$id."'");
+        $res=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where  website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
         
        
          

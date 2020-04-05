@@ -200,6 +200,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row clearfix">
+                                                <div class="col-md-8">
+                                                        <p><b>Package Type</b></p>
+                                                    <input name="group6" type="radio" id="radio_6" class="with-gap radio-col-grey" [(ngModel)]="model.pck_type"  name="pck_type" value="1">
+                                                    <label for="radio_6">Website</label>
+
+                                                    <input name="group7" type="radio" id="radio_7" class="with-gap radio-col-grey" [(ngModel)]="model.pck_type"  name="pck_type" value="2">
+                                                    <label for="radio_7">Student</label>
+
+                                                    <!-- <input name="group8" type="radio" id="radio_8" class="with-gap radio-col-grey" [(ngModel)]="model.pck_type"  name="pck_type" value="3">
+                                                    <label for="radio_8">Instructor</label> -->
+                                                </div>
+                                            </div>
                                         </form>
                                         <button type="submit" [disabled]="!addpackage.form.valid" (click)="addpackages()" class="btn btn-primary m-t-15 waves-effect">Add Package</button>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>

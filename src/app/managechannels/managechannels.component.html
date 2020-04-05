@@ -35,6 +35,9 @@
                                         <a href="javascript:void(0);" (click)="deletechannel(data.id)"><i class="material-icons">delete</i></a>
                                         <input *ngIf="model.usergroup==1" type="button" name="iba_ad" (click)="changeibastatus(data.id)" class="btn btn-warning btn-xs" value="Enable IBA">
                                     </td>
+                                    <td>
+                                        <a href="javascript:void(0);" (click)="viewchannel(data.website,data.channel_name)">view channel</a>
+                                    </td>
                                   </tr>
                                  
                               </tbody>

@@ -152,7 +152,7 @@ class Package_controller extends CI_Controller {
             
 
               $result=$this->db->query("update ".$this->db->dbprefix('packages')." set  name='".$model->name."',price='".$model->price."',currency='".$model->currency."',
-              details='".$model->details."',tax='".$model->tax."',sbonus='".$model->sbonus."',minimum_voucher='".$model->minimum_voucher."',maximum_transfer='".$model->maximum_transfer."',".$level_field.",".$stage_field_column.",validity='".$model->validity."',indirect_ref_amt='".$model->indirect_ref_amt."',pay_via_voucher='".$model->pay_via_voucher."' where id='".$model->id."'");
+              details='".$model->details."',tax='".$model->tax."',sbonus='".$model->sbonus."',minimum_voucher='".$model->minimum_voucher."',maximum_transfer='".$model->maximum_transfer."',".$level_field.",".$stage_field_column.",validity='".$model->validity."',indirect_ref_amt='".$model->indirect_ref_amt."',pay_via_voucher='".$model->pay_via_voucher."',pck_type='".$model->pck_type."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Package has been updated successfully";
@@ -416,7 +416,7 @@ class Package_controller extends CI_Controller {
                 $ids = implode($pack_vs_usr_ids,',');
                 
                 // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")"); //comment by sridhar
-				 $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')."");
+				 $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
                   foreach ($in_array_1 as $key => $value1) 
