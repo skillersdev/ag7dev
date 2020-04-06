@@ -302,7 +302,7 @@
                                         <td>{{data.Delivered_date}}</td>
                                         <td>{{data.status}}</td>
                                         <a href="javascript:void(0);" 
-                                        (click)="deletepackagedetails(data.pck_user_master_id,data.website)" *ngIf="model.usergroup!=2"><td><i class="material-icons">delete</i>
+                                        (click)="deletepackagedetails(data.pck_user_master_id,data.website)" *ngIf="model.usergroup!=2 && data.status!='Active'"><td><i class="material-icons">delete</i>
                                        </td></a>
                                     </tr>
                                     <tr *ngIf="packagelist.length==0">
