@@ -120,6 +120,19 @@ export class PublicchatComponent implements OnInit {
     this.refreshData();
    
   }
+  copyMessage(val: string){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
 
   share() {
   this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
@@ -257,6 +270,7 @@ export class PublicchatComponent implements OnInit {
             this.sendreqestmodel.groupId=resultdata.group_details[0].id;
             this.group_msg_model = resultdata.group_msg;
             this.date_array_model = resultdata.date_array;
+            this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
             this.group_members_model=resultdata.group_members;
             this.group_profile_log_model=resultdata.group_profile_details; 

@@ -159,7 +159,7 @@ export class ChatComponent implements OnInit {
   }
 
   share() {
-  this.grouplink = AppSettings.chatshare+this.Newgroupmodel.groupcode;
+  this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
   
     this.ngNavigatorShareService.share({
       title: 'My Awesome app',
@@ -330,7 +330,7 @@ export class ChatComponent implements OnInit {
               this.Newgroupmodel.privatepublic = resultdata.group_details[0].private_public;
               this.Newgroupmodel.groupimagename = resultdata.group_details[0].imagename;
               this.Newgroupmodel.created_by = resultdata.group_details[0].created_by;
-              this.grouplink = AppSettings.chatshare+this.Newgroupmodel.groupcode;
+              this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
               
               this.group_msg_model = resultdata.group_msg;
               this.Newgroupmodel.msgstartid=resultdata.msgstartid; 
@@ -343,6 +343,7 @@ export class ChatComponent implements OnInit {
               this.date_array_model = resultdata.date_array;
               this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
               this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
+              console.log(this.Newgroupmodel.groupmemlists,'this.Newgroupmodel.groupmemlists');
               this.group_members_model=resultdata.group_members;
               this.group_profile_log_model=resultdata.group_profile_details; 
               this.Newgroupmodel.admin_normal=resultdata.admin_normal;
@@ -563,8 +564,10 @@ $('.loader').css('display','block');
     $('#chatimage').click();
   }
   admintoadd(id:any,group_id:any){
+    
     this.CommonService.insertdata(AppSettings.makegroupadmin,{'id':id,'group_id':group_id,'val':1})
-    .subscribe(package_det =>{     
+    .subscribe(package_det =>{   
+      console.log(package_det,'package_det');  
       this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
         
     });

@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
 	<style>
-		#chat-list {overflow-y: scroll; height:510px;}
-
+		/* #chat-list {overflow-y: scroll; height:510px;} */
+		#groupmsgtxt{ min-width: 260px !important;}
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -401,10 +401,8 @@
 
 				<div class="form-group">
 					<label>Message :</label>
-					<!-- <input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
-						class="form-control" #msgupdate="ngModel" /> -->
-						<textarea name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
-								class="form-control" #msgupdate="ngModel"></textarea>
+					<input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
+						class="form-control" #msgupdate="ngModel" />
 				</div>
 
 			</div>
@@ -551,21 +549,28 @@
 
 				<!-- Chat List -->
 
-				
+				<div class="row chat-list" id="chat-list" style="overflow:auto;">
+
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
-						<div class="w-50">
-							<div class="name">Dashboard</div>
-						</div>
+						<a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/dashboard']" >
+							<div class="w-50">
+								<div class="name">Dashboard</div>
+							</div>
+						</a>
 					</div>
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
-						<div class="w-50">
-							<div class="name">Chat</div>
-						</div>
+						<a class="dropdown-item" href="javascript:void(0);"
+								[routerLink]="['/chat']">
+							<div class="w-50">
+								<div class="name">Chat</div>
+							</div>
+						</a>
 					</div>
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
-						<div class="w-50" (click)=logout()>
-							<div class="name">Logout</div>
-						</div>
+						<a class="dropdown-item" href="javascript:void(0);"><div class="w-50" (click)=logout()>
+								<div class="name">Logout</div>
+							</div>
+						</a>
 					
 					</div>
 
@@ -636,7 +641,7 @@
 								data-target="#sendrequestmodal">Send Join Request</a> -->
 									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
 									<!-- <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#exitmyModaledit">Exit Group</a> -->
-									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>
+									 <!-- <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a> -->
 
 							</div>
 						<!-- <a href="javascript:void(0);"><i class="fas fa-search mx-3 text-white d-none d-md-block"></i></a>
@@ -860,8 +865,9 @@
 					id="my-button" 
 					> <i class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"  ></i></a>
 					
-					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/> -->
 					<textarea *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" #groupmsgtxt="ngModel"></textarea>
+					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm" (keyup.enter)="sendMessage()" #groupmsgtxt="ngModel"/> -->
+
 					<i *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" class="fas fa-paper-plane text-muted px-3"  style="cursor:pointer;"  (click)="sendMessage()"></i>	
 					<!-- <input type="text" name="message" id="input" placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"> 
 
@@ -878,6 +884,7 @@
 					<!-- <input *ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by" type="file" style="visibility: hidden;" name="chatimage" id="chatimage" (change)="msgfileEvent($event)" #chatimage > -->
 				</div>
 			</div>
+		</div>
 	</div>
 
 	
