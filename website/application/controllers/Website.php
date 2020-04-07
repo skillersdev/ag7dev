@@ -151,7 +151,7 @@ class Website extends CI_Controller {
 			}
 			/****************************/
 			/**My channel and group****/
-				$channel_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>1,'showinwebsite'=>1,'is_deleted'=>'0'])->get('group_master'); 
+				$channel_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>1,'showinwebsite'=>1,'websitename'=>$websitename,'is_deleted'=>'0'])->get('group_master'); 
 				$channel_list_query =$channel_list->result_array();
 				$channel_array = array();
 				foreach ($channel_list_query as $key => $value) {
@@ -165,7 +165,7 @@ class Website extends CI_Controller {
 					// print_r(count($mem_channel_list_query)); die;		
 				}
 
-				$group_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>2,'showinwebsite'=>1,'is_deleted'=>'0'])->get('group_master'); 
+				$group_list=$this->db->select("*")->where(['created_by'=>$val[0]['user_id'],'channelgroup'=>2,'showinwebsite'=>1,'websitename'=>$websitename,'is_deleted'=>'0'])->get('group_master'); 
 				$group_list_query =$group_list->result_array();
 				$group_array = array();
 				foreach ($group_list_query as $key => $value) {
