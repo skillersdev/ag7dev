@@ -143,6 +143,24 @@ img {vertical-align: middle;}
   .prev, .next,.text {font-size: 11px}
 }
 
+table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+
+
 .chat-wrapp{
 			overflow-x:hidden;
 		}
@@ -290,6 +308,8 @@ img {vertical-align: middle;}
 
 					<!-- Modal footer -->
 					<div class="modal-footer">
+						<button type="button" class="btn btn-success" data-toggle="modal"
+								data-target="#makegroupadmin">Make group admin</button>
 						<button type="button" [disabled]="!groupForm.form.valid" class="btn btn-success" (click)="updategroup()" data-dismiss="modal">Update</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					</div>
@@ -471,7 +491,7 @@ img {vertical-align: middle;}
 									</tr>
 									<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
 										<td>{{data.username}}</td>
-										<td><button *ngIf="data.is_deleted!=1" type="button"
+										<td *ngIf="Newgroupmodel.created_by!=data.Id"><button *ngIf="data.is_deleted!=1" type="button"
 												class="btn btn-success"
 												(click)="usertoremove(data.id,data.group_id)">Active</button>
 											<button *ngIf="data.is_deleted==1" type="button"
@@ -494,6 +514,56 @@ img {vertical-align: middle;}
 		</div>
 	</div>
 	<!-- new group-->
+
+		<!-- new group-->
+
+		<!-- The Modal -->
+		<div class="modal" id="makegroupadmin">
+			<div class="modal-dialog">
+				<form name="groupForm" #groupForm="ngForm">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Make Group Admin</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<div class="form-group m-b-0">
+								<div class="form-line radio-btns">
+									<table>
+										<tr>
+											<th>Username</th>
+											<th>Action</th>
+										</tr>
+										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
+											<td>{{data.username}}</td>
+											<td><button *ngIf="data.admin_normal!=1" type="button"
+													class="btn btn-success"
+													(click)="admintoadd(data.Id,data.group_id)">Make group
+													admin</button>
+												<button *ngIf="data.admin_normal==1" type="button"
+													class="btn btn-danger"
+													(click)="admintoremove(data.Id,data.group_id)">Remove Admin</button></td>
+										</tr>
+
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- new group-->
 
 			<!-- The delete Modal -->
 		<div class="modal" id="deletemyModaledit">

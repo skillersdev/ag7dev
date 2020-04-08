@@ -150,6 +150,7 @@ export class PublicchatComponent implements OnInit {
   }
     
   Codetogroup(){
+    console.log(this.Newgroupmodel,'this.Newgroupmodel');
     this.CommonService.insertdata(AppSettings.codetogroup,this.Newgroupmodel)
     .subscribe(package_det =>{  
     
@@ -227,6 +228,21 @@ export class PublicchatComponent implements OnInit {
         
     });
   }
+  usertoremove(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.groupuseraddreove,{'id':id,'group_id':group_id,'val':1})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+  usertoadd(id:any,group_id:any){
+    this.CommonService.insertdata(AppSettings.groupuseraddreove,{'id':id,'group_id':group_id,'val':0})
+    .subscribe(package_det =>{     
+      this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+
   
   hideshow(){
   this.router.navigate(['./chat']); 
@@ -273,6 +289,7 @@ export class PublicchatComponent implements OnInit {
             this.grouplink = AppSettings.share_link+this.Newgroupmodel.groupcode;
             this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
             this.group_members_model=resultdata.group_members;
+            this.Newgroupmodel.admin_normal=resultdata.admin_normal;
             this.group_profile_log_model=resultdata.group_profile_details; 
             this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
             
