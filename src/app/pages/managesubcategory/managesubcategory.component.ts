@@ -30,6 +30,7 @@ export class ManagesubcategoryComponent implements OnInit {
       this.CommonService.editdata(this.getsubcatlistbyuser,user_id)
         .subscribe(resultdata =>{   
           this.sub_categorylist=resultdata.result; 
+          this.loginService.viewCommontdataTable('subcategory_table','subcategory_table');
         });
     
       }
@@ -40,6 +41,7 @@ export class ManagesubcategoryComponent implements OnInit {
             if(det.result!="")
             { 
               this.sub_categorylist=det.result;
+              this.loginService.viewCommontdataTable('subcategory_table','subcategory_table');
             } 
              
         });
@@ -87,6 +89,7 @@ export class ManagesubcategoryComponent implements OnInit {
             this.CommonService.editdata(this.getsubcatlistbyuser,user_id)
               .subscribe(resultdata =>{   
                 this.sub_categorylist=resultdata.result; 
+                this.loginService.viewCommontdataTable('subcategory_table','subcategory_table');
               });
           
             }
@@ -97,6 +100,7 @@ export class ManagesubcategoryComponent implements OnInit {
                   if(det.result!="")
                   { 
                     this.sub_categorylist=det.result;
+                    this.loginService.viewCommontdataTable('subcategory_table','subcategory_table');
                   } 
                    
               });

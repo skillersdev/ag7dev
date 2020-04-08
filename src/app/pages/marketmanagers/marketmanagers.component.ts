@@ -26,6 +26,7 @@ export class MarketmanagersComponent implements OnInit {
       this.CommonService.insertdata(this.getmarketerslistRestApiUrl,this.model)
     .subscribe(package_det =>{ 
         this.userlist = package_det;
+        this.loginService.viewCommontdataTable('marketmgers_table','marketmgers_table');
         //  swal(
         //   package_det.status,
         //   package_det.message,

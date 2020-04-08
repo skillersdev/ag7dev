@@ -31,6 +31,7 @@ export class ManagecategoryComponent implements OnInit {
       this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.categorylist=resultdata.result; 
+          this.loginService.viewCommontdataTable('category_table','category_table');
         });
     
       }
@@ -40,6 +41,7 @@ export class ManagecategoryComponent implements OnInit {
             if(det.result!="")
             { 
               this.categorylist=det.result;
+              this.loginService.viewCommontdataTable('category_table','category_table');
             } 
              
         });
@@ -89,6 +91,7 @@ export class ManagecategoryComponent implements OnInit {
             this.CommonService.editdata(this.getcategorybyUserRestApiUrl,user_id)
               .subscribe(resultdata =>{   
                 this.categorylist=resultdata.result; 
+                this.loginService.viewCommontdataTable('category_table','category_table');
               });
           
             }
@@ -98,6 +101,7 @@ export class ManagecategoryComponent implements OnInit {
                   if(det.result!="")
                   { 
                     this.categorylist=det.result;
+                    this.loginService.viewCommontdataTable('category_table','category_table');
                   } 
                    
               });

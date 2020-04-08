@@ -26,14 +26,18 @@ export class ManagegalleryComponent implements OnInit {
     {
        this.CommonService.insertdata(AppSettings.getalbumbyuser,this.model)
         .subscribe(det =>{
-            if(det.result!=""){ this.albumlist=det.result[0];}
+            if(det.result!=""){ this.albumlist=det.result[0];
+              this.loginService.viewCommontdataTable('gallery','gallery');
+            }
         });
     
     }
     else{
       this.CommonService.getdata(AppSettings.getalbumlistRestApiUrl)
       .subscribe(det =>{
-          if(det.result!=""){ this.albumlist=det.result[0];}
+          if(det.result!=""){ this.albumlist=det.result[0];
+            this.loginService.viewCommontdataTable('gallery','gallery');
+          }
       });
     }
   }

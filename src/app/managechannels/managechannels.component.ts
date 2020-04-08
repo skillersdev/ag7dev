@@ -50,6 +50,7 @@ export class ManagechannelsComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.getChannellist,this.userdata)
     .subscribe(resultdata =>{   
       this.channellist=resultdata.result; 
+      this.loginService.viewCommontdataTable('channelTable','channelTable'); 
     });
     
   }
@@ -93,6 +94,7 @@ export class ManagechannelsComponent implements OnInit {
             this.CommonService.insertdata(AppSettings.getChannellist,this.userdata)
             .subscribe(resultdata =>{   
               this.channellist=resultdata.result; 
+              this.loginService.viewCommontdataTable('channelTable','channelTable');
             });
           } 
 

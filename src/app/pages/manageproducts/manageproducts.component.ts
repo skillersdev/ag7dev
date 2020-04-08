@@ -46,6 +46,7 @@ export class ManageproductsComponent implements OnInit {
                      this.product_det=resultdata.result;
                      
                      this.categoryDet=resultdata.category_name;
+                     this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                      //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                   }
                 });
@@ -55,11 +56,12 @@ export class ManageproductsComponent implements OnInit {
                 .subscribe(det =>{
                     if(det.result!=""){ 
                       this.product_det=det.result;
+                      this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                       //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
                     }
                 });   
               }
-              this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+             // this.loginService.viewCommontdataTable('dataTable','productinfo_table');
       });
       
        

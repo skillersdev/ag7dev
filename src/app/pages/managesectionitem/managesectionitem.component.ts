@@ -27,6 +27,7 @@ export class ManagesectionitemComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.GetsectionsItemList,this.model)
     .subscribe(resultdata =>{   
       this.sectionList=resultdata.result; 
+      this.loginService.viewCommontdataTable('sectionitem_table','sectionitem_table');
     });
   	
    

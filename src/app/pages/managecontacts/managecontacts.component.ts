@@ -38,6 +38,7 @@ export class ManagecontactsComponent implements OnInit {
       this.CommonService.editdata(this.getcontactbyUserRestApiUrl,user_id)
         .subscribe(det =>{   
           this.contactlist=det.result;
+          this.loginService.viewCommontdataTable('contactdataTable','contactdataTable');
         });
     
       }
@@ -47,6 +48,7 @@ export class ManagecontactsComponent implements OnInit {
             if(det.result!="")
             { 
               this.contactlist=det.result;
+              this.loginService.viewCommontdataTable('contactdataTable','contactdataTable');
             }   
              
         });

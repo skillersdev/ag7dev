@@ -58,7 +58,7 @@ export class ManagevideoComponent implements OnInit {
                this.videolist=resultdata.result;
                
                // this.categoryDet=resultdata.category_name;
-               //this.loginService.viewCommontdataTable('dataTable','productinfo_table');
+               this.loginService.viewCommontdataTable('videosdataTable','videosdataTable');
             }
           });
         }

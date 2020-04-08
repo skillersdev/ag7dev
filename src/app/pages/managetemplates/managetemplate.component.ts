@@ -53,7 +53,7 @@ export class ManagetemplateComponent implements OnInit {
       this.CommonService.getdatabyid(this.gettemplistbyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.userlist=resultdata; 
-         // this.loginService.viewCommontdataTable('dataTable','adsinfo_table');
+         this.loginService.viewCommontdataTable('templateslider','templateslider');
         });
     
       }
@@ -63,6 +63,7 @@ export class ManagetemplateComponent implements OnInit {
               if(userdet)
               { 
                 this.userlist= userdet;
+                this.loginService.viewCommontdataTable('templateslider','templateslider');
               }
           });
       }

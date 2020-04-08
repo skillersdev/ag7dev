@@ -31,14 +31,18 @@ export class ManageserviceComponent implements OnInit {
     {
        this.CommonService.insertdata(AppSettings.getservicebyuser,this.model)
         .subscribe(det =>{
-            if(det.result!=""){ this.service_det=det.result;}
+            if(det.result!=""){ this.service_det=det.result;
+              this.loginService.viewCommontdataTable('servicedataTable','servicedataTable');
+            }
         });
     
     }
     else{
       this.CommonService.getdata(this.getservicelistRestApiUrl)
       .subscribe(det =>{
-          if(det.result!=""){ this.service_det=det.result;}
+          if(det.result!=""){ this.service_det=det.result;
+            this.loginService.viewCommontdataTable('servicedataTable','servicedataTable');
+          }
       });
     }
      
@@ -84,14 +88,17 @@ export class ManageserviceComponent implements OnInit {
           {
              this.CommonService.insertdata(AppSettings.getservicebyuser,this.model)
               .subscribe(det =>{
-                  if(det.result!=""){ this.service_det=det.result;}
+                  if(det.result!=""){ this.service_det=det.result;
+                    this.loginService.viewCommontdataTable('servicedataTable','servicedataTable');
+                  }
               });
           
           }
           else{
             this.CommonService.getdata(this.getservicelistRestApiUrl)
             .subscribe(det =>{
-                if(det.result!=""){ this.service_det=det.result;}
+                if(det.result!=""){ this.service_det=det.result;
+                  this.loginService.viewCommontdataTable('servicedataTable','servicedataTable');}
             });
           }
       });
