@@ -540,13 +540,13 @@ table {
 										</tr>
 										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
 											<td>{{data.username}}</td>
-											<td><button *ngIf="data.admin_normal!=1" type="button"
+											<td *ngIf="Newgroupmodel.created_by!=data.Id"><button *ngIf="data.admin_normal!=1" type="button"
 													class="btn btn-success"
 													(click)="admintoadd(data.Id,data.group_id)">Make group
 													admin</button>
-												<button *ngIf="data.admin_normal==1" type="button"
+													<button *ngIf="data.admin_normal==1" type="button"
 													class="btn btn-danger"
-													(click)="admintoremove(data.Id,data.group_id)">Remove Admin</button></td>
+													(click)="admintoremove(data.Id,data.group_id)">Remove group admin</button></td>
 										</tr>
 
 									</table>
@@ -620,13 +620,13 @@ table {
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-ellipsis-v text-white"></i></a>
 							<div class="dropdown-menu dropdown-menu-right">
-									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
-									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
-									<a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+									<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#myModaledit">Edit Group</a>
+									<a *ngIf="Newgroupmodel.admin_normal==1 && Newgroupmodel.currentUser!=Newgroupmodel.groupname" class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
+									<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
 								data-target="#sendrequestmodal">Send Join Request</a>
 									<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#exitmyModaledit">Exit Group</a>
-									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>
-									 <a *ngIf="Newgroupmodel.created_by==Newgroupmodel.currentUserID" class="dropdown-item" href="javascript:void(0);"> <strong (click)="copyMessage(grouplink)">Copy group link</strong></a>
+									 <a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);"> <strong (click)='share()'>Share group link</strong></a>
+									 <a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);"> <strong (click)="copyMessage(grouplink)">Copy group link</strong></a>
 									 <a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/chat']">Chat</a>
 
 							</div>

@@ -151,7 +151,7 @@ export class ChatComponent implements OnInit {
   }
 
   getwebsitelist(){
-    this.CommonService.insertdata(AppSettings.getwebsitelist,{'userid':this.Newgroupmodel.currentUser,'usertype':2}).subscribe(det =>{
+    this.CommonService.insertdata(AppSettings.getwebsitelist,{'userid':this.Newgroupmodel.currentUserID,'usertype':2}).subscribe(det =>{
         if(det.result){
           this.websitelists = det.result;
         }
