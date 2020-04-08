@@ -343,14 +343,14 @@ class Group_controller extends CI_Controller {
          $result=array();
 
          $model = json_decode($this->input->post('model',FALSE));
-   // print_r($model); die;
+   // print_r($model); die;and private_public=4
 
-    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0' and private_public=4");
+    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='". $model->g_id."'  and  is_deleted='0' ");
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
 
              
-         $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'");
+         $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='". $model->currentUserID."'");
          $check_user_array=$check_user->result_array();
 // print_r($check_user_array); die;
         if(count($check_user_array)==0){
@@ -409,6 +409,7 @@ class Group_controller extends CI_Controller {
               // die;
              $response['group_msg']=$msg_group_array1;
              $response['date_array']=$datearray;
+             $response['admin_normal']=$check_user_array[0]['admin_normal'];
 
         }
              
@@ -669,8 +670,8 @@ public function getgroupsdetails(){
 
          $model = json_decode($this->input->post('model',FALSE));
     
-
-    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where group_code='". $model->groupcode."'  and private_public=4 and  is_deleted='0'");
+//and private_public=4
+    $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where group_code='". $model->groupcode."' and  is_deleted='0'");
              $group_array=$group_sql->result_array(); 
              $response['group_details']=$group_array;
 
@@ -880,9 +881,9 @@ public function getgroupsdetails(){
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set admin_normal='".$model->val."' where id='".$model->id."'");
-
-        $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0");
+        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set admin_normal=".$model->val." where user_id='".$model->id."' and group_id='". $model->group_id."'");
+       
+        $check_user = $this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0 GROUP BY user_id");
         $response['groupmemlists']=$check_user->result_array();
         
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
@@ -899,9 +900,9 @@ public function getgroupsdetails(){
 
         $model = json_decode($this->input->post('model',FALSE));
         
-        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted='".$model->val."' where id='".$model->id."'");
+        $result=$this->db->query("update ".$this->db->dbprefix('group_members')." set is_deleted=".$model->val." where user_id='".$model->id."' and group_id='". $model->group_id."'");
 
-        $check_user = $this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0");
+        $check_user = $this->db->query("select *,user_id as Id,user_name as username from ".$this->db->dbprefix('group_members')." where group_id='". $model->group_id."' and is_deleted=0 GROUP BY user_id");
         $response['groupmemlists']=$check_user->result_array();
         
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
