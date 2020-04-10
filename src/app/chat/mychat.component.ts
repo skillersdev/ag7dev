@@ -246,7 +246,7 @@ export class MychatComponent implements OnInit {
             this.group_profile_log_model=resultdata.group_profile_details; 
             
             $('.message-area').addClass('d-sm-flex');
-            $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+            //$("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
           }
           
         });
@@ -316,7 +316,9 @@ export class MychatComponent implements OnInit {
           this.imageuploadmsg=0;
           this.generateMessageArea(this.Newgroupmodel.g_id);
           // swal('','Message sent Successfully','success');  
-          
+          $('.message-area').addClass('d-sm-flex');
+          $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
+
       }); 
     }
     else {
