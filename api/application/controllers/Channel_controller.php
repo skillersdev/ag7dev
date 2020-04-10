@@ -202,9 +202,13 @@ class Channel_controller extends CI_Controller {
         $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'views_updated_date'=>$today);
             $this->db->where('id',$channel_data[0]['id']);
             $this->db->update($this->db->dbprefix('tbl_channel'),$data);
+    }else{
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
+        
+         $channel_data=$update_channel_data->result_array();
     }
         /****/
-
+            
         $res=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where  website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
         
        
@@ -223,7 +227,7 @@ class Channel_controller extends CI_Controller {
         $response['result']=$result;
        
         
-         $video_list=$this->db->select("*")->where(['is_deleted'=>'0','channel'=>$id])->get('video_sections'); 
+         $video_list=$this->db->select("*")->where(['is_deleted'=>'0','channel'=>$channel_data[0]['id']])->get('video_sections'); 
          $response['total_videos']=$video_list->result_array();
         
 

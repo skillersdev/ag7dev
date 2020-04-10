@@ -53,9 +53,30 @@ class Home_controller extends CI_Controller {
         $response['status']="success";
         $result=array();
 
-        $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+        // $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+        
+        $today =date("Y-m-d");
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    
+        $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(view_updated_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
+        
+        if($check_view->num_rows()==0)
+    {
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+        
+         $channel_data=$update_channel_data->result_array();
        
-       
+         
+        $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'view_updated_date'=>$today);
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('video_sections'),$data);
+    }else{
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
+        
+         //$channel_data=$update_channel_data->result_array();
+    }
+    
+    $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where  id='".$id."'");
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
