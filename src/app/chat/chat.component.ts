@@ -318,6 +318,7 @@ export class ChatComponent implements OnInit {
         .subscribe(resultdata =>{   
           this.group_name=1;
           if(resultdata.check_user==0){
+            // alert(resultdata.check_user);
             this.router.navigate(['./chat/join/',resultdata.group_details[0].group_code]); 
           } else{
             // if(this.Newgroupmodel.msgstartid==0){
