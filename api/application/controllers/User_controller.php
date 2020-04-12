@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_controller extends CI_Controller {
 
-    public function index() {
-        $this->output->set_content_type('application/json');
-        die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-    }
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    public function add_user_master(){
       $this->output->set_content_type('application/json');
@@ -21,6 +21,9 @@ class User_controller extends CI_Controller {
 
         unset($model->cpassword);
         $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->referedby])->get('affiliateuser');  
+        
+        //print_r($check_exists);die;
+        
         if($check_exists->num_rows()==0)
         {
             $response=array('status'=>"fail");
@@ -39,7 +42,7 @@ class User_controller extends CI_Controller {
             for ($i=1; $i<=2; $i++) 
             { 
 
-                $length=10;
+               $length=10;
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
                 $randomString = '';
@@ -84,23 +87,19 @@ class User_controller extends CI_Controller {
     {
         /***Get Group Members Id by distinct***/
         $get_group_members=$this->db->query("select DISTINCT(user_id) as userId from ".$this->db->dbprefix('group_members')." where user_id !=0 AND is_deleted=0");
-          
+       
          $group_user_ids = $get_group_members->result_array();
 
          foreach ($group_user_ids as $key => $value) {
              $ids[] = $value['userId'];
          }
-         
-       // echo "<pre>";print_r(implode(',',$ids));die;
+       
           $ids =implode(',',$ids);
           
           $get_users_not_in_group = $this->db->query("SELECT * FROM affiliateuser WHERE id NOT IN (".$ids.") AND id!=1");
          
           $user_ids = $get_users_not_in_group->result_array();
 
-         
-         //echo "<pre>"; print_r($user_ids);die;
-         //echo "SELECT * FROM affiliateuser WHERE id NOT IN (".$ids.")";die;
         
          if(count($user_ids)>0)
          {
@@ -309,7 +308,7 @@ class User_controller extends CI_Controller {
    public function findmarketers()
   {
      $model = json_decode($this->input->post('model',FALSE));    
-        // $username = trim($model->currentUsername);
+        $username = trim($model->currentUsername);
         //if(isset($model->currentUsername)){
             $res=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->marketer,'user_type'=>'2'])->get('affiliateuser');    
         //}
@@ -421,13 +420,13 @@ class User_controller extends CI_Controller {
     $model = json_decode($this->input->post('model',FALSE));
     $user_id = trim($model->user_id);
     $share_amount_from_user = $model->share_amt;
-    $res=$this->db->select("username,tamount,pcktaken")->where(['is_deleted'=>'0','id'=>$user_id])->get('affiliateuser');    
+    $res=$this->db->select("username,tamount,pcktaken,eamount")->where(['is_deleted'=>'0','id'=>$user_id])->get('affiliateuser');    
     
 
     if(count($res->result_array())>0)
     {
         $data =$res->result_array();  
-        $response['total_amount']=$data[0]['tamount'];
+        $response['total_amount']=($model->shareType==1)?$data[0]['tamount']:$data[0]['eamount'];
         $curret_user_name=$data[0]['username'];
 
         /*Check Maximum trasnfer*/

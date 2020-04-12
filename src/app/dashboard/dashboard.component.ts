@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   packagelist:Array<Object>;
   package_vs_user_list:Array<Object>;
   model: any = {};
+  elearningmodel:any={};
   alldata: any = {};
   payment_data:any={};
   transferdata: any = {};
@@ -80,6 +81,7 @@ export class DashboardComponent implements OnInit {
           .subscribe(resultdata =>{   
             this.packagelist=resultdata.result; 
             this.model.tot_amt=resultdata.result[0]['tamount']; 
+            this.model.e_amt=resultdata.result[0]['eamount']; 
                       });
 
       this.CommonService.editdata(this.getpackagevsuserApiUrl,user_id)
@@ -145,9 +147,11 @@ export class DashboardComponent implements OnInit {
         //this.router.navigate(['/dashboard']) ; 
     });
   }
-  checkbalance()
+  checkbalance(type:any)
   {     
     this.alldata.user_id=localStorage.getItem('currentUserID');
+    this.model.share_amt = (type==1)?this.model.share_amt:this.elearningmodel.share_amt;
+    this.alldata.shareType = type;
     if((this.model.share_amt!='')&&(this.model.share_amt!=undefined))
       {
         this.alldata.share_amt=this.model.share_amt;
@@ -167,15 +171,27 @@ export class DashboardComponent implements OnInit {
         });
       }
   }
-  transferamount()
+  transferamount(type:any)
   {
     this.transferdata.transfer_to=this.model.username;
     this.transferdata.transfer_from=localStorage.getItem('currentUser');
-    this.transferdata.amt=this.model.share_amt;
-    $('.preloader').show();
+    this.transferdata.type = type;
+    this.transferdata.amt=(type==1)?this.model.share_amt:this.elearningmodel.share_amt;
+    if(type==1)
+    {
+      $('.preloader loader-2').show();
+    }else{
+      $('.preloader loader-1').show();
+    }
+    
+    
     this.CommonService.insertdata(this.inserttrasnfeprocessRestApiUrl,this.transferdata)
     .subscribe(package_det =>{
-    $('.preloader').hide();       
+      if(type==1){
+        $('.preloader loader-2').hide();
+      }else{
+        $('.preloader loader-1').hide();
+      }       
          swal(
           package_det.status,
           package_det.message,

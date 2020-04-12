@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Package_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    public function add_package_master(){
        $this->output->set_content_type('application/json');
@@ -285,7 +285,7 @@ class Package_controller extends CI_Controller {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
 
-                    $user_det=$this->db->select("username,tamount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $user_det=$this->db->select("username,tamount,eamount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
                     $data =$user_det->result_array();  
 
                     $package['marketer']=$data[0]['username']; 
@@ -298,6 +298,7 @@ class Package_controller extends CI_Controller {
                     $package['tamount']= $data[0]['tamount'];
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
+                    $package['eamount']= $data[0]['eamount'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
                     if($value['package_status']=='0')
@@ -416,7 +417,7 @@ class Package_controller extends CI_Controller {
                 $ids = implode($pack_vs_usr_ids,',');
                 
                 // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")"); //comment by sridhar
-				 $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0");
+         $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
                   foreach ($in_array_1 as $key => $value1) 
@@ -579,32 +580,32 @@ class Package_controller extends CI_Controller {
     public function check_website_exists()
     {
       $model = json_decode($this->input->post('model',FALSE));
-		
+    
       $response['exist']=0;
-		
-		if($model->website!=""){
-			$website = trim($model->website);
-			$res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
-			if(count($res->result_array())>0)
-			{         
-				$response['exist']=1;
-				$response['message']="website already exists";
-			}
-		}
-		
-		if(isset($model->pck_type)){
-			$eusername = trim($model->eusername);
-			$res=$this->db->select("email")->where(['email'=>$eusername])->get('elearn_users');
-			if(count($res->result_array())>0)
-			{         
-				$response['exist']=1;
-				$response['message']="E-Learning username already exists";
-			}
-		}
-		
-		
-		
-		
+    
+    if($model->website!=""){
+      $website = trim($model->website);
+      $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
+      if(count($res->result_array())>0)
+      {         
+        $response['exist']=1;
+        $response['message']="website already exists";
+      }
+    }
+    
+    if(isset($model->pck_type)){
+      $eusername = trim($model->eusername);
+      $res=$this->db->select("email")->where(['email'=>$eusername])->get('elearn_users');
+      if(count($res->result_array())>0)
+      {         
+        $response['exist']=1;
+        $response['message']="E-Learning username already exists";
+      }
+    }
+    
+    
+    
+    
       echo json_encode($response,JSON_UNESCAPED_SLASHES);
       die();
     }

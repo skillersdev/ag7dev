@@ -318,61 +318,109 @@
                         <div class="header">
                             <h2>Share Balance to Marketer</h2>
                             <span>(to share the balance, you should have more than RV 1)</span>
-                            
-                           
-                            
                         </div>
-                          
                         <div class="body">
                             <div>
-                                    <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
-                                    <div class="col-sm-2">
-                                        <span class="label bg-orange"> {{model.tot_amt}} </span>
-                                    </div>
+                                <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                                <div class="col-sm-2">
+                                    <span class="label bg-orange"> {{model.tot_amt}} </span>
+                                </div>
                             </div>
                             <br/>
-                                <form name="transferform" #transfer=ngForm>
+                            <form name="transferform" #transfer=ngForm>
                                 <div class="form-group ">
-                                        <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
-                                        <div class="col-sm-3">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
-                                            </div>
-                                            <span [hidden]="mname.valid || mname.pristine" class="text-danger">Name is required</span>
+                                    <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
                                         </div>
-
-                                        <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
-                                        <div class="col-sm-3">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (blur)="checkbalance()" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
-                                            </div>
-                                            <div *ngIf="share_amt.errors && (share_amt.dirty || share_amt.touched)" class="">
-                                                <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
-                                                <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
-                                            </div>
-                                            
+                                        <div *ngIf="mname.invalid && (mname.dirty || mname.touched)" class="" style="color: red;">
+                                            <span *ngIf="mname.errors.required">
+                                                Name is required.
+                                            </span>                                        
                                         </div>
-                                        <div class="col-sm-2">
-                                            <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount()" class="btn btn-success">Transfer</button>
-                                             <div class="preloader pl-size-xs" style="display:none;">
-                                                    <div class="spinner-layer pl-red-grey">
-                                                        <div class="circle-clipper left">
-                                                            <div class="circle"></div>
-                                                        </div>
-                                                        <div class="circle-clipper right">
-                                                            <div class="circle"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                            
-
                                     </div>
-                                    </form>
-                                    <br/> <br/> <br/>
-                                          
-                                        
+                                    <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                        </div>
+                                        <div *ngIf="share_amt.invalid && (share_amt.dirty || share_amt.touched)" class="" style="color: red;">
+                                            <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
+                                            <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount('1')" class="btn btn-success">Transfer</button>
+                                        <div class="preloader loader-2 pl-size-xs" style="display:none;">
+                                            <div class="spinner-layer pl-red-grey">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div>
+                                                <div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br/> <br/> <br/>
+                        </div>
+                    </div>
 
+                    <div class="card">
+                        <div class="header">
+                            <h2>E-Learning Voucher</h2>
+                            <span>(to share the balance, you should have more than RV 1)</span>
+                        </div>
+                        <div class="body">
+                            <div>
+                                <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                                <div class="col-sm-2">
+                                    <span class="label bg-orange"> {{model.e_amt}} </span>
+                                </div>
+                            </div>
+                            <br/>
+                            <form name="elearningform" #elearning=ngForm>
+                                <div class="form-group ">
+                                    <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="elearningmodel.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
+                                        </div>
+                                        <div *ngIf="emname.invalid && (emname.dirty || emname.touched)" class="" style="color: red;">
+                                            <span *ngIf="emname.errors.required">
+                                                Name is required.
+                                            </span>                                        
+                                        </div>
+                                    </div>
+                                    <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                        </div>
+                                        <div *ngIf="eshare_amt.invalid && (eshare_amt.dirty || eshare_amt.touched)" class="" style="color: red;">
+                                            <span *ngIf="eshare_amt.errors.required" class="text-danger">Amount is required</span>
+                                            <span [hidden]="!eshare_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>                                      
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" [disabled]="!elearning.form.valid" (click)="transferamount('2')" class="btn btn-success">Transfer</button>
+                                        <div class="preloader loader-1 pl-size-xs" style="display:none;">
+                                            <div class="spinner-layer pl-red-grey">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div>
+                                                <div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br/> <br/> <br/>
                         </div>
                     </div>
 
