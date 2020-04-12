@@ -65,7 +65,7 @@ class Group_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
         $websitelists1 = '';
         // print_r($model); die;
-        if($model->showinwebsite==1 || $model->showinwebsite==true){
+        if(isset($model->showinwebsite) && ($model->showinwebsite==1 || $model->showinwebsite==true)){
           $showinwebsite=1;
          $websitelists1 = isset($model->websitelists1)?$model->websitelists1[0]->website:'';
         }else{
@@ -77,11 +77,17 @@ class Group_controller extends CI_Controller {
 
         $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('group_members')."  WHERE group_id='".$model->g_id."'");
 
-        $group_members_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='".$model->g_id."'");
+        // $group_members_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where id='".$model->g_id."'");
+
+        $group_members_sql = $this->db->select('group_master.id,group_master.group_name,affiliateuser.username,group_master.created_by')
+        ->join('affiliateuser', 'group_master.created_by=affiliateuser.Id', 'left')
+        ->where('group_master.id',$model->g_id)
+        ->get('group_master');
+
         $group_members_array=$group_members_sql->result_array();
         // print_r($group_members_array);
         if(count($group_members_array) > 0){ 
-          $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$group_members_array[0]['id']."','".$group_members_array[0]['group_name']."','".$group_members_array[0]['created_by']."','".$group_members_array[0]['created_by']."',1,'".$group_members_array[0]['created_by']."')");
+          $this->db->query("insert into ".$this->db->dbprefix('group_members')." ( group_id,group_name,user_id,user_name,admin_normal,created_by) values ('".$group_members_array[0]['id']."','".$group_members_array[0]['group_name']."','".$group_members_array[0]['created_by']."','".$group_members_array[0]['username']."',1,'".$group_members_array[0]['created_by']."')");
          
           foreach ($model->userselectedItems as $key => $value) {
             $mem_group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."' and user_id='".$value->Id."'");
