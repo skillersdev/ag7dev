@@ -347,12 +347,27 @@ class Package_controller extends CI_Controller {
    {
      $this->output->set_content_type('application/json');
       
-        $response=array('status'=>"success",'message'=>"Package assigned successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-        //print_r($model);die;
-      
-        //$this->db->insert('package_info', $model);
+        /*Get package type*/
+         $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$model->packuser."' AND is_deleted=0");
+         
+        $in_array_1=$res1->result_array(); 
+        
+        if($in_array_1[0]['pck_type']==2)
+        {
+            $check_package_exist = $this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where user_id='".$model->user_id."' AND package_id='".$model->packuser."' ");
+            if($check_package_exist->num_rows()>0)
+            {
+                $response=array('status'=>"0",'message'=>"User cannot buy a same package");
+                 echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                 die();
+            }
+           
+        }
+        
+        $response=array('status'=>"1",'message'=>"Package assigned successfully");          
+        
         $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id) values ('".$model->user_id."','".$model->packuser."')");
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);

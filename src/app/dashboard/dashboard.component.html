@@ -343,7 +343,7 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (keypress)="restrictNumbers($event)" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
                                         </div>
                                         <div *ngIf="share_amt.invalid && (share_amt.dirty || share_amt.touched)" class="" style="color: red;">
                                             <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
@@ -376,7 +376,7 @@
                         </div>
                         <div class="body">
                             <div>
-                                <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                                <label for="NameSurname" class="col-sm-4 control-label">Total Available voucher amount</label>
                                 <div class="col-sm-2">
                                     <span class="label bg-orange"> {{model.e_amt}} </span>
                                 </div>
@@ -395,10 +395,10 @@
                                             </span>                                        
                                         </div>
                                     </div>
-                                    <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
+                                    <label for="NameSurname" class="col-sm-2 control-label">Voucher to Share</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="Enter Amount to share" (keypress)="restrictNumbers($event)" value="" required>
                                         </div>
                                         <div *ngIf="eshare_amt.invalid && (eshare_amt.dirty || eshare_amt.touched)" class="" style="color: red;">
                                             <span *ngIf="eshare_amt.errors.required" class="text-danger">Amount is required</span>

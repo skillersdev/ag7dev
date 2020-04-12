@@ -22,15 +22,21 @@ if($array1[0]['username'])
     $pack_vs_users_id=$array1[0]['pack_id_user']; //pACKAGE id
 	
 	//checking website availability done by sridhar 24.12.2019
-    $checkwebsitesql="SELECT COUNT(*) AS websitecount FROM user_vs_packages where website = '".$website_name."'  AND user_id !='".$userid."'";
-    $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
-    $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
-    if($website_result['websitecount']==1){
-		//$response['status']="website_exists";
-		$response['status']="error";
-        $response['message']="website name already exist";
-        echo json_encode($response,JSON_UNESCAPED_SLASHES);
-        die();
+    /*
+        pck_type==1 => website
+        pck_type==2 => Online
+    */
+    if($array1[0]['pck_type']==1){
+        $checkwebsitesql="SELECT COUNT(*) AS websitecount FROM user_vs_packages where website = '".$website_name."'  AND user_id !='".$userid."'";
+        $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
+        $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
+        if($website_result['websitecount']==1){
+    		//$response['status']="website_exists";
+    		$response['status']="error";
+            $response['message']="website name already exist";
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+        }
     }
     //print_r($website_result); exit;
     //checking code ends here
@@ -84,9 +90,16 @@ if (($num['ucount']) == 1) {
 			$total=$pprice+$ptax;
 		}
 		
-		$query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt FROM affiliateuser WHERE username = '$username'");
+		$query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt,eamount FROM affiliateuser WHERE username = '$username'");
 		$row4=$query4->fetch_array(MYSQLI_ASSOC);
-		$tot_amt=$row4['TotalAmt']-$pay_via_voucher; 
+        /*Pck type code modified by mani for Online emaount*/
+        if($array1[0]['pck_type']==1)
+        {
+            $tot_amt=$row4['TotalAmt']-$pay_via_voucher;     
+        }else{
+            $tot_amt=$row4['eamount']-$pay_via_voucher;
+        }
+		
 		/* Code by karthikeyan starts */
 		$pcktaken = $row4['pcktaken'];
 		$querypackage="SELECT minimum_voucher,maximum_register FROM  packages where id = $pcktaken";
@@ -101,7 +114,14 @@ if (($num['ucount']) == 1) {
 		{
 			$query=mysqli_query($con,"insert into paypalpayments(orderid,transacid,price,currency,date,cod,pckid,gateway) values('$uaid','R.V','$pay_via_voucher','$pcur',NOW(),1,'$pckid','R.B')");
 			/* Code by karthikeyan ends */
-			$up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'");
+            /*Pck type code modified by manimaran for Online emaount*/
+            if($array1[0]['pck_type']==1)
+            {
+                $up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'");    
+            }else{
+                $up_query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt."' where username='".$username."'");
+            }
+			
 			/* Code by karthikeyan starts */
 			
 			/* Code by karthikeyan ends */
@@ -167,32 +187,28 @@ if (($num['ucount']) == 1) {
 
 
 
-
-
-
-
-
-
-
-
-
-
             $ref_query11=mysqli_query($con,"SELECT  * FROM affiliateuser WHERE id='$tomake'");
             $ref_list11=$ref_query11->fetch_array(MYSQLI_ASSOC);
             $ref=$ref_list11['referedby'];
             $userid=$tomake;
            // print_r($ref_list11);die;
             //signup bonus
-            $tot_marketer_earning=$ref_list11['tamount'];
+            $tot_marketer_earning=($array1[0]['pck_type']==1)?$ref_list11['tamount']:$ref_list11['eamount'];
             $sbonus_query="SELECT sbonus FROM packages where id = $package"; //fetching no of days validity from package table from databse
             $sbonus_result=mysqli_query($con,$sbonus_query);
             $sbonus_list = mysqli_fetch_row($sbonus_result);
             $sbonus=$sbonus_list[0];
             $tot_amt9s=$tot_marketer_earning+$sbonus;
-            $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt9s."'where username='".$tomake."'");
+            if($array1[0]['pck_type']==1)
+            {
+                $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt9s."'where username='".$tomake."'");    
+            }else{
+                $query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt9s."'where username='".$tomake."'");
+            }
+            
             //signup bonus	
     
-    //echo $_SESSION['adminidusername']; exit;
+            //echo $_SESSION['adminidusername']; exit;
     
                 $c1=mysqli_query($con,"SELECT  COUNT(*) as STAGETOTUSER FROM affiliate_bonus_history WHERE (user_id = '$userid')");
                 $c1_list=$c1->fetch_array(MYSQLI_ASSOC);

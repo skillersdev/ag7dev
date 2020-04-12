@@ -92,7 +92,7 @@ export class PackageinfoComponent implements OnInit {
       }  
     });
   }
-  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any,pck_type:any)
+  onGoToPage2(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any,pck_type:any,eusername:any)
   {
     
     this.model.package_name = package_name;
@@ -105,7 +105,7 @@ export class PackageinfoComponent implements OnInit {
     this.model.template = template;
     this.model.p_id = pack_id_user;
     this.model.pck_type=pck_type;
-    
+    this.model.eusername = eusername;
     
     
   }

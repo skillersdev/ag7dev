@@ -81,8 +81,8 @@ class Transferhistory_controller extends CI_Controller {
              foreach($res->result_array() as $key=>$value)
               { 
                 //$value['username']=$data[0]['username']; 
-
-                $result[]=array('transfer_from'=>$value['transfer_from'],'transfer_to'=>$value['transfer_to'],'amt'=>$value['amt']);
+                $voucher_type = ($value['voucher_type']==1)?'Website':'E-Learning';
+                $result[]=array('transfer_from'=>$value['transfer_from'],'transfer_to'=>$value['transfer_to'],'amt'=>$value['amt'],'voucher_type'=>$voucher_type);
               }
             //$response['message']="User name already exists";
         }

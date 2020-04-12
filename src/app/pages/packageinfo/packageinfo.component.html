@@ -63,7 +63,7 @@
                                                     <div class="form-line">
                                                         <input type="text" id="eusername" name="eusername" class="form-control" placeholder="Enter E-learning Username " [(ngModel)]="model.eusername" 
                                                         (blur)="checkelearnuserexist($event)" #eusername="ngModel" 
-                                                         required>
+                                                         required readonly> 
                                                     </div>
                                                     <div class="form-line">
                                                         <input type="text" id="epassword" name="epassword" class="form-control" placeholder="Enter E-learning password" [(ngModel)]="model.epassword" #website="ngModel" required >
@@ -283,15 +283,15 @@
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
                                           <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">website</a></td>
-                                        <td><a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#ctemplateModal">
+                                        <td><a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>Change Template</span>
                                         </a></td>
                                         <td>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#renewModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#renewModal">
                                             <span *ngIf="data.status=='Renewal'">Renew</span>
                                         </a>
                                             <span *ngIf="data.status=='Active'">Activated</span>
-                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type)" data-toggle="modal" data-target="#exampleModal">
+                                            <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#exampleModal">
                                                 <span *ngIf="data.status=='Inactivate'">Yet to activate</span>
                                             </a>
                                            <!--  <a href="#" data-toggle="modal" data-target="#templatesetting"><i class="material-icons">settings</i></a> -->

@@ -130,20 +130,26 @@ export class DashboardComponent implements OnInit {
   savepackages()
   {
     this.CommonService.insertdata(this.insertpackagevsuserApiUrl,this.model)
-    .subscribe(package_det =>{       
+    .subscribe(package_det =>{   
+      if(package_det.status==1)
+      {
         Swal.fire({
-        title: 'Package has been alloted',
-        type: 'success',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Activate Package now?'
-      }).then((result) => {
-        if (result.value) {
-          this.router.navigate(['/packageinfo']);
-        }
-      })
-         $('#largeModal').modal('toggle');
+          title: 'Package has been alloted',
+          type: 'success',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Activate Package now?'
+        }).then((result) => {
+          if (result.value) {
+            this.router.navigate(['/packageinfo']);
+          }
+        })
+           $('#largeModal').modal('toggle');
+      } else{
+        swal('Oops...',package_det.message, 'error');
+      }   
+        
         //this.router.navigate(['/dashboard']) ; 
     });
   }
@@ -282,5 +288,14 @@ export class DashboardComponent implements OnInit {
      
     });
   }
+  restrictNumbers(event: any)
+  {
+      const pattern = /[0-9\+\-\ ]/;
+      const inputChar = String.fromCharCode(event.charCode);
 
+      if (!pattern.test(inputChar)) {    
+          // invalid character, prevent input
+          event.preventDefault();
+      }
+  }
 }
