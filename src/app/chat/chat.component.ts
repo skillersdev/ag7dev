@@ -619,5 +619,10 @@ $('.loader').css('display','block');
       }
         
     });
-      }
+  }
+  videomyModalfun(val:any,type:any){
+    this.Newgroupmodel.videopopupval = val;
+    this.Newgroupmodel.video_type = type;
+    
+  }
 }

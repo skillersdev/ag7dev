@@ -767,18 +767,9 @@ table {
 							
 							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'">{{data.message}}</div>
 							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}"  class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
-								<video *ngIf="data.video_type==1" width="320" height="240" controls>
-									<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-										type="video/mp4">
-									<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-										type="video/ogg">
-								</video>
-								<audio *ngIf="data.video_type==2" controls>
-									<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-										type="audio/ogg">
-									<source src="{{group_bases}}groupchat_images/{{data.chatimage}}"
-										type="audio/mpeg">
-								</audio>
+								<a href="javascript:void(0);" *ngIf="data.video_type==1" (click)="videomyModalfun(data.chatimage,data.video_type)" data-toggle="modal" data-target="#videomyModal">{{data.chatimage}}</a>
+								<a href="javascript:void(0);" *ngIf="data.video_type==2" (click)="videomyModalfun(data.chatimage,data.video_type)" data-toggle="modal" data-target="#videomyModal">{{data.chatimage}}</a>
+										
 								<a *ngIf="data.video_type==3" target="_blank"
 									href="{{group_bases}}groupchat_images/{{data.chatimage}}">{{data.chatimage}}</a>
 								</div>

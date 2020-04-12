@@ -519,4 +519,10 @@ export class PublicchatComponent implements OnInit {
 
   }
 
+  videomyModalfun(val:any,type:any){
+    this.Newgroupmodel.videopopupval = val;
+    this.Newgroupmodel.video_type = type;
+    
+  }
+
 }
