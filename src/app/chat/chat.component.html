@@ -1061,7 +1061,7 @@
 											class="d-flex flex-row">
 		
 											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-												style="color:'#666 !important'">{{data.message}}
+												style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a>
 												<!-- <i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i> -->
 											</div>
 											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
@@ -1076,6 +1076,7 @@
 												
 												
 												<a *ngIf="data.video_type==3" target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}">{{data.chatimage}}</a>
+												
 											</div>
 											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
 												style="width:140px;">
@@ -1089,7 +1090,7 @@
 											class="d-flex flex-row">
 		
 											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-												style="color:'#666 !important'">{{data.message}}</div>
+												style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
 											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
 												style="color:'#666 !important'">
 												<a target="_blank"
@@ -1110,6 +1111,7 @@
 														type="audio/mpeg">
 												</audio>
 												<a *ngIf="data.video_type==3" target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}">{{data.chatimage}}</a>
+												
 											</div>
 											<div class="time ml-auto small text-right flex-shrink-0 align-self-end text-muted"
 												style="width:75px;">
