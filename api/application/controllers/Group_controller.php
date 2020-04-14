@@ -481,6 +481,10 @@ public function getgroupsdetails(){
             //  print_r($last_msg_group_sql); die;
              $msg_group_array=$msg_group_sql->result_array(); 
              foreach ($msg_group_array as $msg_key => $msg_value) {
+              $msg_value['message_link']=0;
+              if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
+                $msg_value['message_link'] = 1;
+              }
 
               $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
               if(in_array($newDate,$datearray)){
