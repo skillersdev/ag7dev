@@ -60,11 +60,11 @@ class Channel_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where created_by='".$model->user_id."' AND is_delete=0 ORDER BY id DESC");
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where created_by='".$model->user_id."' AND is_delete=0 ORDER BY RAND()");
         }
         /*BY all list*/ 
         else{
-           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where is_delete=0 ORDER BY id DESC");
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('tbl_channel')." where is_delete=0 ORDER BY RAND()");
         }
 
         $result= $res->result_array();
@@ -274,6 +274,40 @@ class Channel_controller extends CI_Controller {
             $response['status']="failure";
             $response['message']="Invalid Attempt!!.. Access denied..";    
         }
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+    public function searchchannelresult()
+    {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;       
+
+        $model = json_decode($this->input->post('model',FALSE));
+       
+        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_delete'=>'0'])->like('channel_name',$model->searchword)->get('tbl_channel');
+
+        //  $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." WHERE  is_deleted='0' AND title='".$model->searchword."' OR tags REGEXP CONCAT('(^|,)(', REPLACE('".$model->searchword."', ',', '|'), ')(,|$)')");
+       
+        $result1=[];
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          { 
+             $userData=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            $user_array=$userData->result_array();
+           
+             $result1[]=$value;
+             $result1[$key]['username'] = $user_array[0]['username'];
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result1;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     }

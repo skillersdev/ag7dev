@@ -21,7 +21,7 @@ class Home_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
        
         
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0','videocategory'=>'1'])->get('video_sections');
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d %b %Y')as cdate")->where(['is_deleted'=>'0','videocategory'=>'1'])->order_by('id', 'DESC')->get('video_sections');
        
 
         if($res->num_rows()>0)
@@ -33,7 +33,7 @@ class Home_controller extends CI_Controller {
         
             //$result[$key]['username'] = $user_array[0]['username'];      
             
-            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate'],'username'=>$user_array[0]['username']);
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate'],'username'=>$user_array[0]['username'],'total_views'=>$value['total_views']);
           }
         }else{
             $response['status']="failure";
@@ -86,6 +86,42 @@ class Home_controller extends CI_Controller {
             $response['message']=" No Package record found!!";
         }
         $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+    }
+    public function likevideodetail($id)
+    {
+        //var_dump($id); die();
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+       
+        
+        $today =date("Y-m-d");
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    
+        $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(like_update_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
+        
+        if($check_view->num_rows()==0)
+    {
+        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+        
+         $channel_data=$update_channel_data->result_array();
+       
+         
+        $data=array('total_likes'=>$channel_data[0]['total_likes']+1,'ip_address'=>$ip_address,'like_update_date'=>$today);
+            $this->db->where('id',$id);
+            $this->db->update($this->db->dbprefix('video_sections'),$data);
+            $response['likes'] = $channel_data[0]['total_likes']+1;
+    }
+      else{
+            $response['status']="failure";
+            $response['message']="Like not updated!!";
+        }
+       
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();

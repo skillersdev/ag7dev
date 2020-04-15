@@ -245,6 +245,7 @@ $route['uploadvideopreview']='Videosection_controller/addvideopreview';
 $route['insertvideosectiondata']='Videosection_controller/addvideosection';
 $route['getvideolistbyid']= 'Videosection_controller/getvideolistbyuser';
 $route['getvideopagesearchresult']= 'Videosection_controller/searchvideoresult';
+$route['getchannelpagesearchresult']= 'Channel_controller/searchchannelresult';
 
 $route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
 
@@ -295,6 +296,7 @@ $route['malllogin'] = 'Malllogin_controller/checklogin';
 
 $route['getrtubevideolist']= 'Home_controller/getrvideolist';
 $route['editvideodetail/(:num)']= "Home_controller/editvideodetail/$1";
+$route['likevideodetail/(:num)']= "Home_controller/likevideodetail/$1";
 
 
 /**Channel creation*/
