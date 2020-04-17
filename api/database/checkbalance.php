@@ -166,7 +166,7 @@ if (($num['ucount']) == 1) {
 					'linkedin' => ""
 				);
 				$elearn_social_links = json_encode($social_links);
-				$elearn_role_id  = 2;
+				$elearn_role_id  = 2; //0- student ,1- instructor,2-super admin,3-admin
 				 // Add paypal keys
 				 $paypal_info = array();
 				 $paypal['production_client_id'] = "";
