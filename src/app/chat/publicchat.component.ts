@@ -525,4 +525,9 @@ export class PublicchatComponent implements OnInit {
     
   }
 
+  addcaptionfun(){
+    this.Newgroupmodel.groupmsgtxt=this.Newgroupmodel.addcaption;
+    this.sendMessage();
+  }
+
 }

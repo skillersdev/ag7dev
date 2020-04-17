@@ -464,5 +464,10 @@ export class MychatComponent implements OnInit {
     this.Newgroupmodel.video_type = type;
     
   }
+
+  addcaptionfun(){
+    this.Newgroupmodel.groupmsgtxt=this.Newgroupmodel.addcaption;
+    this.sendMessage();
+  }
   
 }

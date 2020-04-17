@@ -498,6 +498,11 @@ export class ChatComponent implements OnInit {
   }
     
   }
+
+  addcaptionfun(){
+    this.Newgroupmodel.groupmsgtxt=this.Newgroupmodel.addcaption;
+    this.sendMessage();
+  }
    
   fileEvent($event) {
     const fileSelected: File = $event.target.files[0];
