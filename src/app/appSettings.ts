@@ -291,6 +291,8 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	public static chatmsgupdate = AppSettings.API_BASE + "/chatmsgupdate";	
 	public static makegroupadmin = AppSettings.API_BASE + "/makegroupadmin";
 	public static groupuseraddreove = AppSettings.API_BASE + "/groupuseraddreove";
+
+	public static activateInstructorApi = AppSettings.API_BASE + "/activateInstructor";
 	
 
 	

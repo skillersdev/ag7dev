@@ -84,7 +84,7 @@
                                                 <p><b>User Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event,'1')" #user_name="ngModel" required>
                                                     </div>
                                                     <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -283,9 +283,16 @@
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
                                           <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">website</a></td>
-                                        <td><a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#ctemplateModal">
+                                        <td>
+                                            <a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>Change Template</span>
-                                        </a></td>
+                                        </a>
+                                        <a *ngIf="data.pck_type==2 && data.elearn_usert_status==0" href="javascript:void(0);" (click)="openInstructorModal(data.package_price,data.elearn_user_id,data.pck_id,data.pck_user_master_id,data.pck_type)" data-toggle="modal">
+                                                <button type="button" class="btn bg-red waves-effect">Become A Instructor</button>
+                                        </a>
+                                        <span *ngIf="data.pck_type==2 && data.elearn_usert_status==0">Instructor</span>
+                                    </td>
+                                        
                                         <td>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#renewModal">
                                             <span *ngIf="data.status=='Renewal'">Renew</span>
@@ -352,6 +359,46 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="modal fade" id="InstructorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="InstructorModal">Become a Instructor</h5>
+                                            <span class="col-red">(* Become a instructor and add your course in online)</span>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                        </div> 
+                                        <div class="modal-body">
+                                            <form  class="" #InstructorModalForm="ngForm">
+                                                <div class="col-md-12">
+                                                    <p><b>User Name</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="instructorModal.username" (blur)="checkUserexist($event,'2')" #user_name="ngModel" required>
+                                                        </div>
+                                                        <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p><b>Password</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="instructorModal.password" #password="ngModel" required>
+                                                        </div>
+                                                        <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" [disabled]="!InstructorModalForm.form.valid" class="btn btn-primary" (click)="activateInstructor()">Activate</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

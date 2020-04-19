@@ -29,6 +29,8 @@ export class PackageinfoComponent implements OnInit {
   Rmodel:any={};
   payment_data:any={}; 
   details_array:any=[];
+  instructordata:any=[];
+  instructorModal:any={};
   deleteDetails:any={};
   payment_details:any=false;
   showButton:Boolean=false;
@@ -77,7 +79,7 @@ export class PackageinfoComponent implements OnInit {
   {
     this.renew_payment_details=false;
   }
-  checkUserexist(event:any)
+  checkUserexist(event:any,modelV:any)
   {
     //console.log(event.target.value);
     this.model.username=event.target.value;
@@ -87,8 +89,15 @@ export class PackageinfoComponent implements OnInit {
       if(package_det.exist==0)
       {
         swal('','User doesnot exist','error')
-        this.payment_data.username='';
-        this.payment_data.password='';
+        if(modelV==1)
+        {
+          this.payment_data.username='';
+          this.payment_data.password='';
+        }else{
+          this.instructorModal.username='';
+          this.instructorModal.password='';
+        }
+        
       }  
     });
   }
@@ -301,5 +310,30 @@ export class PackageinfoComponent implements OnInit {
                 this.packagelist=resultdata.result; 
               });
       });
+ }
+ openInstructorModal(packagePrice:any,elaernuser:any,package_id:any,pack_id_user:any,pack_type:any)
+ {
+   $('#InstructorModal').modal('show');
+   this.instructorModal.package_amt = packagePrice;
+   this.instructorModal.elaernuser = elaernuser;
+   this.instructorModal.pack_id = package_id;
+   this.instructorModal.pack_id_user=pack_id_user;//user_vs_packeg mastr id
+   this.instructorModal.pck_type = pack_type;
+ }
+ activateInstructor()
+ {   
+    this.instructorModal.user_id = localStorage.getItem('currentUserID');
+    this.instructordata.push(this.instructorModal);
+    this.CommonService.updatedata(AppSettings.activateInstructorApi,this.instructordata)
+      .subscribe(resultdata =>{
+        if(resultdata.status==1)
+        {
+          swal('',resultdata.message,'success');          
+        }else{
+          swal('',resultdata.message,'error');
+        }
+        this.ngOnInit();
+        $('#InstructorModal').modal('hide');
+    });
  }
 }

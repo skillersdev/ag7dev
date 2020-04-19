@@ -285,11 +285,14 @@ class Package_controller extends CI_Controller {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
 
-                    $user_det=$this->db->select("username,tamount,eamount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $user_det=$this->db->select("username,tamount,eamount,elearn_user_id")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
                     $data =$user_det->result_array();  
-
+                    
+                    $elearn_user_det=$this->db->select("*")->where(['id'=>$data[0]['elearn_user_id']])->get('elearn_users'); 
+                    $elearn_data =$elearn_user_det->result_array(); 
+                    
                     $package['marketer']=$data[0]['username']; 
-
+                    $package['elearn_usert_status'] = $elearn_data[0]['user_type'];    
                     $package['package_name'] = $in_array_1[0]['name'];
 
                     $package['package_price'] = $in_array_1[0]['price'];
@@ -299,6 +302,7 @@ class Package_controller extends CI_Controller {
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
                     $package['eamount']= $data[0]['eamount'];
+                    $package['elearn_user_id']= $data[0]['elearn_user_id'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
                     if($value['package_status']=='0')
