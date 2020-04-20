@@ -307,7 +307,10 @@ class Group_controller extends CI_Controller {
             // $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
             $msg_group_array = $other_msg_group_array;
             foreach ($msg_group_array as $msg_key => $msg_value) {
-
+              $msg_value['message_link']=0;
+              if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
+                $msg_value['message_link'] = 1;
+              }
              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
              if(in_array($newDate,$datearray)){
               
@@ -392,7 +395,10 @@ class Group_controller extends CI_Controller {
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
              foreach ($msg_group_array as $msg_key => $msg_value) {
-
+              $msg_value['message_link']=0;
+              if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
+                $msg_value['message_link'] = 1;
+              }
               $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
               if(in_array($newDate,$datearray)){
                
@@ -1027,5 +1033,19 @@ public function getgroupsdetails(){
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
   }
-   
+
+  public function chatprofilesave()
+  {
+    $this->output->set_content_type('application/json');
+
+    $model = json_decode($this->input->post('model',FALSE));
+    if($model->currentUserID){
+      $this->db->query("update ".$this->db->dbprefix('affiliateuser')." set aliasname='".$model->aliasname."' where Id='".$model->currentUserID."'");
+    }
+    $response=array('status'=>"success");
+    echo json_encode($response,JSON_UNESCAPED_SLASHES);
+    die();
+
+  }
+  
 }
