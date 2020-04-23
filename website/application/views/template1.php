@@ -149,10 +149,10 @@
       if(count($slider_image)>0)
       { 
         ?>
-        <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%;">
+        <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%; margin-top:70px">
         <?php 
       }else{ ?>
-        <img src="assets/img/intro-bg.jpg" style="width:100%; height:60%">
+        <img src="assets/img/intro-bg.jpg" style="width:100%; height:60%;margin-top:70px;">
         <?php 
       } ?>
     <div class="intro-container wow fadeIn"></div>
