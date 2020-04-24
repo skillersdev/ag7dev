@@ -67,7 +67,7 @@ export class PackageinfoComponent implements OnInit {
              
         });
     }
-    
+    this.instructorModal.showVoucherform =false;
         
   }
   pay_via_voucher()
@@ -335,5 +335,9 @@ export class PackageinfoComponent implements OnInit {
         this.ngOnInit();
         $('#InstructorModal').modal('hide');
     });
+ }
+ activateVoucher()
+ {
+  this.instructorModal.showVoucherform =true;
  }
 }

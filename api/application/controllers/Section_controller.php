@@ -66,12 +66,11 @@ class Section_controller extends CI_Controller {
         /**Get list by user**/
         if($model->usergroup==2)
         {
-			if($model->websiteSelected){
-					$res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND website='".$model->websiteSelected."' AND is_deleted=0 AND isdefault=0");
-			}else{
-				$res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND isdefault=0");
-			}
-           
+           if($model->websiteSelected){
+          $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND website='".$model->websiteSelected."' AND is_deleted=0 AND isdefault=0");
+      }else{
+        $res=$this->db->query("select *,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section')." where created_by='".$model->user_id."' AND is_deleted=0 AND isdefault=0");
+      }
         }
         /*BY all list*/ 
         else{
@@ -83,14 +82,16 @@ class Section_controller extends CI_Controller {
         {
           foreach($res->result_array() as $key=>$value)
           {               
-
+            $Ischecked = ($value['Issection_show']==1)?true:false;
             $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
+            $checkdresult[]=array('IsEnable'=>$Ischecked);
           }
         }else{
             $response['status']="failure";
             $response['message']="No Service records found..";
         }
         $response['result']=$result;
+        $response['checkedresult']= $checkdresult;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
@@ -157,7 +158,7 @@ class Section_controller extends CI_Controller {
       $this->output->set_content_type('application/json');
       $response=array('status'=>"success");
        $model = json_decode($this->input->post('model',FALSE));
-
+       
         if (isset($model)) 
           {
             $result=$this->db->query("update ".$this->db->dbprefix('manage_section')." set  website='".$model->website."',section_name='".$model->section_name."',long_desc='".$model->long_desc."',Issection_show ='".$model->Issection_show."' where id='".$model->id."'");
@@ -301,7 +302,7 @@ class Section_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $model = json_decode($this->input->post('model',FALSE));
-    
+        // print_r($model);die;
         if($model->default==1)
         {
           $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->secId."' ");
@@ -309,10 +310,10 @@ class Section_controller extends CI_Controller {
         if($res_chk->num_rows()>0){
           if($model->Isshow==1)
           {
-            $data=array('Issection_show'=>'0');
+            $data=array('Issection_show'=>'1');
           }
             else{
-            $data=array('Issection_show'=>'1');   
+            $data=array('Issection_show'=>'0');   
             }
             $this->db->where('id',$model->secId );
             $this->db->update($this->db->dbprefix('manage_section'),$data);

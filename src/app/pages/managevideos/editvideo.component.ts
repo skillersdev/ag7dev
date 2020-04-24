@@ -46,6 +46,7 @@ export class EditvideoComponent implements OnInit {
   private sub: any;
   channellist:Array<Object>;
   id:number;
+  videoTag: string[];
   stage_of_packages:Array<Object>;stage_of_packages_prev:Array<Object>;
   
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
@@ -85,6 +86,7 @@ export class EditvideoComponent implements OnInit {
         }
       }); 
       this.model.Iswebsite =0;
+      this.videoTag=[];
   }
   
   logout(){
@@ -99,6 +101,7 @@ export class EditvideoComponent implements OnInit {
     this.CommonService.editdata(this.FetchvideodataRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result.video_det;
+          this.videoTag=this.model.tags_list;
           this.videoFileupload =true;
           this.isImageupload = true;
         });
@@ -109,8 +112,15 @@ export class EditvideoComponent implements OnInit {
     this.model.tags_list.push(value.tag.displayValue);
     
   }
+  Taglist()
+  {
+    //console.log(this.videoTag);
+    this.videoTag = this.videoTag;
+  }
     updateVideos()
     {
+     
+      this.model.tags_list = this.videoTag;
       if(this.videoFileupload)
       {
         this.CommonService.uploadFile(this.uploadvideoProfileApi,this.uploadVideofile)
@@ -140,7 +150,7 @@ export class EditvideoComponent implements OnInit {
                this.model.preview_image = (response.status=='fail')?this.model.preview_image:response.data;
                this.model.created_by = localStorage.getItem('currentUserID');
             //setTimeout(()=>{ 
-              
+
                 this.CommonService.updatedata(AppSettings.updatevideosectiondata,this.model) 
                 .subscribe(package_det =>{       
                     swal(package_det.status,package_det.message,package_det.status)

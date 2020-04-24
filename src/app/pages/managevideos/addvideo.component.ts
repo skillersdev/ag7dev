@@ -10,7 +10,7 @@ import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService} from '../../services/common.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
-import { TagInputModule } from 'ngx-chips';
+// import { TagInputModule } from 'ngx-chips';
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -47,6 +47,7 @@ export class AddvideoComponent implements OnInit {
   tagArray:Array<Object>;
   channellist:Array<Object>;
   croppedImage: any = '';
+  videoTag: string[];
  
   image_url = AppSettings.IMAGE_BASE;
 
@@ -59,6 +60,7 @@ export class AddvideoComponent implements OnInit {
      this.loginService.localStorageData();
       this.loginService.viewsActivate();
       //this.model.active=1;
+     
       this.alldata.usertype=localStorage.getItem('currentUsergroup');
         this.alldata.userid=localStorage.getItem('currentUserID');
       
@@ -77,12 +79,28 @@ export class AddvideoComponent implements OnInit {
         this.model.tags=[];
         this.tagArray=[];
         this.model.Iswebsite =0;
+        this.videoTag=[];
+        $('#tags_1').tagsInput({width:'auto','onAddTag':this.onAddTag,'interactive':true,'onChange' : this.onAddTag,});
+        //$('input.tags').tagsInput({onAddTag:this.onAddTag,onRemoveTag:this.onRemoveTag,onChange: this.onChangeTag});
   }
   
   logout(){
     this.loginService.logout();
   }
-
+  onAddTag(){
+    console.log(this.videoTag);
+  }
+  onRemoveTag()
+  {
+  
+  }
+  onChangeTag()
+  {
+  
+  }
+  addInput(){
+    console.log(this.model);
+  }
   back(){
     this.router.navigate(['/managevideos']);
   }
@@ -130,13 +148,13 @@ export class AddvideoComponent implements OnInit {
     }
     addVideos()
     {
+      this.model.tags = this.videoTag;
       $('.preloader').show();
        this.CommonService.uploadFile(this.uploadvideoProfileApi,this.uploadVideofile)
           .subscribe( (response) => {
              if(response.status=='success')
              { 
               this.model.video_file = response.data;
-              console.log(this.videopreviewmodel);
               this.CommonService.insertdata(AppSettings.uploadvideoPreviewApi,this.videopreviewmodel)
             .subscribe( (response) => {
                if(response.status=='success')

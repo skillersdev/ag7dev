@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { CommonService } from '../../services/common.service';
@@ -20,7 +21,11 @@ export class ManagesectionComponent implements OnInit {
  model:any={};
  allmodel:any={};
  sectionList:Array<Object>;
+ buttonlist:Array<Object>;
  defaultsectionlist:Array<Object>;
+ qtd:any={};
+ checked_hide:any={};
+ checked_show:any={};
   ngOnInit() {
   	this.model.user_id = localStorage.getItem('currentUserID');
     this.model.usergroup=localStorage.getItem('currentUsergroup');
@@ -28,6 +33,7 @@ export class ManagesectionComponent implements OnInit {
     this.CommonService.insertdata(AppSettings.GetsectionsList,this.model)
     .subscribe(resultdata =>{   
       this.sectionList=resultdata.result; 
+      this.buttonlist=resultdata.checkedresult; 
       this.loginService.viewCommontdataTable('section_table','section_table');
     });
 
@@ -86,13 +92,14 @@ export class ManagesectionComponent implements OnInit {
       });
  }
  updatesectionData(event:any,id:any)
- {
- 	$('.preloader').show();
- 	this.model.Isshow = (event==true)?1:0;
- 	this.model.sectionId = id;
+ {   
+   $('.preloader').show();   
+ 	this.model.Isshow = (event.checked==true)?1:0;
+   this.model.secId = id;
+   this.model.default=1;
  	 this.CommonService.insertdata(AppSettings.updateSectionbytoggle,this.model)
     .subscribe(resultdata =>{   
-      this.ngOnInit();
+     // this.ngOnInit();
       $('.preloader').hide();
     });  	
  }
@@ -108,5 +115,6 @@ export class ManagesectionComponent implements OnInit {
       $('.preloader').hide();
     }); 
  }
+ 
 
 }

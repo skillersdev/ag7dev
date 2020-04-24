@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxTagsInputModule } from 'ngx-tags-input';
+// import { NgxTagsInputModule } from 'ngx-tags-input';
 import { AppComponent } from './app.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
@@ -96,7 +97,8 @@ import { MalldashboardComponent } from './malldashboard/malldashboard.component'
 import { ManagesectionComponent } from './pages/managesection/managesection.component';
 import { AddsectionComponent } from './pages/managesection/addsection/addsection.component';
 import { EditsectionComponent } from './pages/managesection/editsection/editsection.component';
-import { UiSwitchModule } from 'ngx-toggle-switch';
+// import { UiSwitchModule } from 'ngx-toggle-switch';
+// import { TagInputModule } from 'ngx-chips';
 import { ReordersectionComponent } from './pages/managesection/reordersection/reordersection.component';
 
 import { ManagesectionitemComponent } from './pages/managesectionitem/managesectionitem.component';
@@ -107,6 +109,8 @@ import { ManagechatgrouprequestComponent } from './managechatgrouprequest/manage
 import { ManagechannelsComponent } from './managechannels/managechannels.component';
 import { AddchannelComponent } from './managechannels/addchannel/addchannel.component';
 import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
+import {ChipsModule} from 'primeng/chips';
+import {InputSwitchModule} from 'primeng/inputswitch';
 @NgModule({
   declarations: [
     AppComponent,
@@ -203,9 +207,14 @@ import { EditchannelComponent } from './managechannels/editchannel/editchannel.c
     NgMultiSelectDropDownModule.forRoot(),
     HttpModule,
     ImageCropperModule,
-    NgxTagsInputModule,
-    UiSwitchModule,    
-    DragDropModule
+    DragDropModule,
+    InputSwitchModule,
+    //UiSwitchModule,
+   // TagInputModule,
+   ChipsModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]

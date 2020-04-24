@@ -114,7 +114,10 @@
                                     <p><b>Tag</b></p>
                                     <div class="form-group">
                                         <div class="form-line"> 
-                                            <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.tags" #tags="ngModel">
+                                            <!-- <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.tags" #tags="ngModel" > -->
+                                            <!-- <input id="tags_1" type="text" class="tags" [(ngModel)]="model.tags" #tags="ngModel"  name="tagslist" (keyup.enter)="addInput()"/> -->
+                                            <p-chips [(ngModel)]="videoTag" name="videoTag" (onAdd)="onAddTag()"></p-chips>
+                                            <!-- <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" /> -->
                                            <!-- <ngx-tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="model.tags" name="tags"></ngx-tags-input> -->
                                         </div>
                                         <!-- <span [hidden]="title.valid || title.pristine" class="text-danger">Title is required</span> -->
