@@ -118,6 +118,7 @@ export class PublicchatComponent implements OnInit {
     
     this.Codetogroup();
     this.refreshData();
+    this.getwebsitelist();
    
   }
   copyMessage(val: string){
@@ -528,6 +529,30 @@ export class PublicchatComponent implements OnInit {
   addcaptionfun(){
     this.Newgroupmodel.groupmsgtxt=this.Newgroupmodel.addcaption;
     this.sendMessage();
+  }
+
+  
+  otheruseroverviewModal(id:any){
+    this.CommonService.insertdata(AppSettings.chatwebsiteflag,{'userid':id,'usertype':2}).subscribe(det =>{
+      if(det.result){
+        this.Newgroupmodel.otherprofilewebsitelists = det.result;
+        this.Newgroupmodel.otherusername = det.username;
+        
+      }
+  });
+  }
+
+  getwebsitelist(){
+   
+    this.CommonService.insertdata(AppSettings.chatwebsiteflag,{'userid':this.Newgroupmodel.currentUserID,'usertype':2}).subscribe(det =>{
+      if(det.result){
+        this.Newgroupmodel.profilewebsitelists = det.result;
+        this.Newgroupmodel.username = det.username;
+        this.Newgroupmodel.aliasname = det.username;
+        
+      }
+  });
+    
   }
 
 }

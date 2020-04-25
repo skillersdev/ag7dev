@@ -39,6 +39,7 @@ export class ChatComponent implements OnInit {
   userdropdownSettings:any={};
   sharedropdownSettings:any={};
   websitedropdownSettings:any={};
+  profilewebsitedropdownSettings:any={};
   sendreqestmodel:any={};
   interval: any;
   group_bases:any;
@@ -122,6 +123,17 @@ export class ChatComponent implements OnInit {
      itemsShowLimit: 3,
      allowSearchFilter: true
    }
+
+   this.profilewebsitedropdownSettings={
+    singleSelection: false,
+   idField: 'website',
+   textField: 'website',
+   enableCheckAll:false,
+   selectAllText: 'Select All',
+   unSelectAllText: 'UnSelect All',
+   itemsShowLimit: 3,
+   allowSearchFilter: true
+ }
     
     //this.getparamas = this.route.params.subscribe(params => {
      //this.Newgroupmodel.groupcode = params['id']; // (+) converts string 'id' to a number
@@ -146,6 +158,7 @@ export class ChatComponent implements OnInit {
     //   { Id: 3, username: 'Pune' },
     //   { Id: 4, username: 'Navsari' }
     // ];
+    this.Newgroupmodel.profilewebsitelists=[];
     this.getwebsitelist();
     
   }
@@ -156,6 +169,16 @@ export class ChatComponent implements OnInit {
           this.websitelists = det.result;
         }
     });
+
+    this.CommonService.insertdata(AppSettings.chatwebsiteflag,{'userid':this.Newgroupmodel.currentUserID,'usertype':2}).subscribe(det =>{
+      if(det.result){
+        this.Newgroupmodel.profilewebsitelists = det.result;
+        this.Newgroupmodel.username = det.username;
+        this.Newgroupmodel.aliasname = det.username;
+        
+      }
+  });
+    
   }
 
   share() {
@@ -629,5 +652,24 @@ $('.loader').css('display','block');
     this.Newgroupmodel.videopopupval = val;
     this.Newgroupmodel.video_type = type;
     
+  }
+
+  profilesave(){
+    
+    this.CommonService.insertdata(AppSettings.chatprofilesave,{'currentUserID':localStorage.getItem('currentUserID'),'aliasname':this.Newgroupmodel.aliasname,'profilewebsitelists':this.Newgroupmodel.profilewebsitelists})
+    .subscribe(package_det =>{     
+      this.getwebsitelist();
+      // this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
+        
+    });
+  }
+  otheruseroverviewModal(id:any){
+    this.CommonService.insertdata(AppSettings.chatwebsiteflag,{'userid':id,'usertype':2}).subscribe(det =>{
+      if(det.result){
+        this.Newgroupmodel.otherprofilewebsitelists = det.result;
+        this.Newgroupmodel.otherusername = det.username;
+        
+      }
+  });
   }
 }

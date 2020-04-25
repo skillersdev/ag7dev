@@ -300,6 +300,153 @@
 		</div>
 		<!-- new group-->
 
+			<!-- The Modal -->
+			<div class="modal" id="profilemyModal">
+				<div class="modal-dialog">
+					<form name="groupForm" #groupForm="ngForm">
+						<div class="modal-content">
+	
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Profile</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+	
+							<!-- Modal body -->
+							<div class="modal-body">
+								<div class="form-group m-b-0">
+									<div class="form-line radio-btns">
+										<label for="aliasname" class="m-r-3">Alias Name :<span
+												style="color: red;">*</span></label>&nbsp;
+										<input name="aliasname" [(ngModel)]="Newgroupmodel.aliasname" type="text"
+											id="aliasname" class="form-control" required #aliasname="ngModel" />
+									</div>
+									
+								</div>
+								<div class="form-group m-b-0">
+									<div class="form-line radio-btns">
+										<label for="groupname" class="m-r-3">Select Websites:</label>&nbsp;
+									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="websitelists"
+										[(ngModel)]="Newgroupmodel.profilewebsitelists" [settings]="profilewebsitedropdownSettings"
+										[ngModelOptions]="{standalone: true}" #profilewebsitelists="ngModel" ></ng-multiselect-dropdown>
+									</div>
+								</div>
+	
+							</div>
+	
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success"
+									(click)="profilesave()" data-dismiss="modal">Save</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+	
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- new group-->
+
+			<!-- The Modal -->
+			<div class="modal" id="useroverviewModal">
+				<div class="modal-dialog">
+					<form name="groupForm" #groupForm="ngForm">
+						<div class="modal-content">
+	
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Profile</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+	
+							<!-- Modal body -->
+							<div class="modal-body">
+								<div class="form-group m-b-0">
+									<div class="form-line radio-btns">
+										<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.aliasname}}
+									</div>
+									
+								</div>
+								<div class="form-group m-b-0">
+									<div class="form-line radio-btns">
+										<label for="groupname" class="m-r-3">Selected Websites:</label>&nbsp;
+										<table>
+											
+											<tr *ngFor="let data of Newgroupmodel.profilewebsitelists let i=index">
+												<td>{{data.website}}</td>
+											</tr>
+	
+										</table>
+									
+									</div>
+								</div>
+	
+							</div>
+	
+							<!-- Modal footer -->
+							<!-- <div class="modal-footer">
+								<button type="button" class="btn btn-success"
+									(click)="profilesave()" data-dismiss="modal">Save</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div> -->
+	
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- user over view group-->
+
+				<!-- The Modal -->
+				<div class="modal" id="otheruseroverviewModal">
+					<div class="modal-dialog">
+						<form name="groupForm" #groupForm="ngForm">
+							<div class="modal-content">
+		
+								<!-- Modal Header -->
+								<div class="modal-header">
+									<h4 class="modal-title">Profile</h4>
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+		
+								<!-- Modal body -->
+								<div class="modal-body">
+									<div class="form-group m-b-0">
+										<div class="form-line radio-btns">
+											<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.otherusername}}
+										</div>
+										
+									</div>
+									<div class="form-group m-b-0">
+										<div class="form-line radio-btns">
+											<label for="groupname" class="m-r-3">Selected Websites:</label>&nbsp;
+											<table>
+												
+												<tr *ngFor="let data of Newgroupmodel.otherprofilewebsitelists let i=index">
+													<td>{{data.website}}</td>
+												</tr>
+		
+											</table>
+										
+										</div>
+									</div>
+		
+								</div>
+		
+								<!-- Modal footer -->
+								<!-- <div class="modal-footer">
+									<button type="button" class="btn btn-success"
+										(click)="profilesave()" data-dismiss="modal">Save</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								</div> -->
+		
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- otheruseroverviewModal-->
+
+			
+
 		<!-- The Modal -->
 		<div class="modal" id="myModaledit">
 			<div class="modal-dialog">
@@ -781,6 +928,14 @@
 				<div class="row chat-list" id="chat-list" style="overflow:auto;">
 
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
+						<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
+								data-target="#profilemyModal">
+							<div class="w-50">
+								<div class="name">Profile</div>
+							</div>
+						</a>
+					</div>
+					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
 						<a class="dropdown-item" href="javascript:void(0);" (click)="clearoldval()" data-toggle="modal"
 								data-target="#myModal">
 							<div class="w-50">
@@ -1088,9 +1243,13 @@
 										<!-- toggle edit,delete dropdown code ends here-->
 		
 		
-										<div *ngIf="group_name!=0" class="small font-weight-bold text-primary">
+										<div style="cursor: pointer;" *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)" (click)="otheruseroverviewModal(data.created_by);" class="small font-weight-bold text-primary" data-toggle="modal" data-target="#otheruseroverviewModal">
 											{{data.user_name}}
 		
+										</div>
+
+										<div style="cursor: pointer;" *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="small font-weight-bold text-primary"  data-toggle="modal" data-target="#useroverviewModal">
+											{{Newgroupmodel.username}}
 										</div>
 		
 										<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)"
