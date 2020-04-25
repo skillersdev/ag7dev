@@ -310,6 +310,9 @@ class Group_controller extends CI_Controller {
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
+              }elseif(preg_match("/www./", $msg_value['message'])){
+                $msg_value['message_link'] = 1;
+                $msg_value['message'] = "https://".$msg_value['message'];
               }
              $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
              if(in_array($newDate,$datearray)){
@@ -398,6 +401,9 @@ class Group_controller extends CI_Controller {
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
+              }elseif(preg_match("/www./", $msg_value['message'])){
+                $msg_value['message_link'] = 1;
+                $msg_value['message'] = "https://".$msg_value['message'];
               }
               $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
               if(in_array($newDate,$datearray)){
@@ -490,6 +496,9 @@ public function getgroupsdetails(){
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
+              }elseif(preg_match("/www./", $msg_value['message'])){
+                $msg_value['message_link'] = 1;
+                $msg_value['message'] = "https://".$msg_value['message'];
               }
 
               $newDate = date("m-d-Y", strtotime($msg_value['created_date']));
@@ -1034,6 +1043,7 @@ public function getgroupsdetails(){
         die();
   }
 
+  
   public function chatprofilesave()
   {
     $this->output->set_content_type('application/json');
@@ -1041,8 +1051,43 @@ public function getgroupsdetails(){
     $model = json_decode($this->input->post('model',FALSE));
     if($model->currentUserID){
       $this->db->query("update ".$this->db->dbprefix('affiliateuser')." set aliasname='".$model->aliasname."' where Id='".$model->currentUserID."'");
+      // print_r($model->profilewebsitelists);
+      foreach ($model->profilewebsitelists as $key => $value) {
+        // print_r($value); die;
+        $this->db->query("update ".$this->db->dbprefix('user_vs_packages')." set chat_active_flag=1 where user_id='".$model->currentUserID."' AND website='".$value->website."'");
+        
+      }
+      
     }
     $response=array('status'=>"success");
+    echo json_encode($response,JSON_UNESCAPED_SLASHES);
+    die();
+
+  }
+
+  public function chatwebsiteflag()
+  {
+    $this->output->set_content_type('application/json');
+    $response=array();
+    $response['status']="success";
+    $model = json_decode($this->input->post('model',FALSE));
+    if($model->userid){
+      $res=$this->db->query("select * from ".$this->db->dbprefix('user_vs_packages')." where website!='' AND user_id='".$model->userid."' AND chat_active_flag=1 ");
+      if($res->num_rows()>0){
+        $response['result']=$res->result_array();
+      }else{
+        $response['result']=[];
+      }
+
+      $res1=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where Id='".$model->userid."'")->result_array();
+      if($res1[0]['aliasname']!=''){
+        $response['username']=$res1[0]['aliasname'];
+      }else{
+        $response['username']=$res1[0]['username'];
+      }
+
+    }
+    
     echo json_encode($response,JSON_UNESCAPED_SLASHES);
     die();
 
