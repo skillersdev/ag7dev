@@ -111,6 +111,7 @@ import { AddchannelComponent } from './managechannels/addchannel/addchannel.comp
 import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
 import {ChipsModule} from 'primeng/chips';
 import {InputSwitchModule} from 'primeng/inputswitch';
+import { QueryParamsHandling } from '@angular/router/src/config';
 @NgModule({
   declarations: [
     AppComponent,

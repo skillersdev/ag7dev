@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Videosection_controller extends CI_Controller {
 
-  public function index() {
-    $this->output->set_content_type('application/json');
-    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-  }
+	public function index() {
+		$this->output->set_content_type('application/json');
+		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+	}
 
    public function addvideosection(){
         $this->output->set_content_type('application/json');
@@ -168,8 +168,11 @@ class Videosection_controller extends CI_Controller {
         if (isset($model)) {
             $this->db->where('id',$model->id);
              //unset($model->tags);
-            $model->tags = implode (", ", $model->tags_list);
+             
+            $model->tags = implode (",", $model->tags_list);
             //print_r($model->tags);die;
+            // $model->tags = array_map($model->tags);
+            
             //unset($model->tags_list);
             $result=$this->db->update('video_sections', $model);
             if ($result) {
@@ -224,17 +227,17 @@ class Videosection_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
        
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0'])->like('title',$model->searchword)->get('video_sections');
+        // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate")->where(['is_deleted'=>'0'])->like('title',$model->searchword)->get('video_sections');
 
-        //  $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." WHERE  is_deleted='0' AND title='".$model->searchword."' OR tags REGEXP CONCAT('(^|,)(', REPLACE('".$model->searchword."', ',', '|'), ')(,|$)')");
-       
+          $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('video_sections')." WHERE  is_deleted='0' AND title='".$model->searchword."' OR FIND_IN_SET('".$model->searchword."',tags)");
+    //   echo "select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('video_sections')." WHERE  is_deleted='0' AND title='".$model->searchword."' OR tags REGEXP CONCAT('(^|,)(', REPLACE('".$model->searchword."', ',', '|'), ')(,|$)')";die;
 
         if($res->num_rows()>0)
         {
           foreach($res->result_array() as $key=>$value)
           { 
 
-            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['created_date'],'total_views'=>$value['total_views']);
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['created_date'],'total_views'=>$value['total_views'],'tags'=>$value['tags']);
           }
         }else{
             $response['status']="failure";

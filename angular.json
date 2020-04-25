@@ -24,7 +24,11 @@
             ],
             "styles": [
              "src/assets/css/style.css",
-             "src/assets/css/materialize.css"
+             "src/assets/css/materialize.css",
+             "src/assets/css/jquery.tagsinput.css",
+             "node_modules/primeng/resources/primeng.min.css",
+             "node_modules/primeng/resources/themes/nova-light/theme.css",
+             "node_modules/primeicons/primeicons.css"             
             ],
             
             "scripts": [
@@ -48,7 +52,8 @@
               "src/assets/js/pages/examples/profile.js",
               "src/assets/js/demo.js",
               "src/assets/plugins/ckeditor/ckeditor.js",
-              "src/assets/plugins/tinymce/tinymce.js" 
+              "src/assets/plugins/tinymce/tinymce.js" ,
+              "src/assets/js/jquery.tagsinput.js"
             ]
           },
           "configurations": {

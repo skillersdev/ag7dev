@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home_controller extends CI_Controller {
 
-  public function index() {
-    $this->output->set_content_type('application/json');
-    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-  }
+	public function index() {
+		$this->output->set_content_type('application/json');
+		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+	}
 
     
   public function getrvideolist()
@@ -33,7 +33,7 @@ class Home_controller extends CI_Controller {
         
             //$result[$key]['username'] = $user_array[0]['username'];      
             
-            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate'],'username'=>$user_array[0]['username'],'total_views'=>$value['total_views']);
+            $result[]=array('id'=>$value['id'],'title'=>$value['title'],'description'=>$value['description'],'video_file'=>$value['video_file'],'preview_image'=>$value['preview_image'],'website_name'=>$value['website_name'],'created_date'=>$value['cdate'],'username'=>$user_array[0]['username'],'total_views'=>$value['total_views'],'tags'=>$value['tags']);
           }
         }else{
             $response['status']="failure";
@@ -56,27 +56,27 @@ class Home_controller extends CI_Controller {
         // $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
         
         $today =date("Y-m-d");
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    
-        $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(view_updated_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
-        
-        if($check_view->num_rows()==0)
-    {
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
-        
-         $channel_data=$update_channel_data->result_array();
-       
-         
-        $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'view_updated_date'=>$today);
+		$ip_address = $_SERVER['REMOTE_ADDR'];
+		
+       	$check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(view_updated_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
+       	
+       	if($check_view->num_rows()==0)
+		{
+	      $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+	      
+	       $channel_data=$update_channel_data->result_array();
+	     
+	       
+		    $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'view_updated_date'=>$today);
             $this->db->where('id',$id);
             $this->db->update($this->db->dbprefix('video_sections'),$data);
-    }else{
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
-        
-         //$channel_data=$update_channel_data->result_array();
-    }
-    
-    $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where  id='".$id."'");
+		}else{
+		    $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
+	      
+	       //$channel_data=$update_channel_data->result_array();
+		}
+		
+		$res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where  id='".$id."'");
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
@@ -101,23 +101,23 @@ class Home_controller extends CI_Controller {
        
         
         $today =date("Y-m-d");
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    
-        $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(like_update_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
-        
-        if($check_view->num_rows()==0)
-    {
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
-        
-         $channel_data=$update_channel_data->result_array();
-       
-         
-        $data=array('total_likes'=>$channel_data[0]['total_likes']+1,'ip_address'=>$ip_address,'like_update_date'=>$today);
+		$ip_address = $_SERVER['REMOTE_ADDR'];
+		
+       	$check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(like_update_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
+       	
+       	if($check_view->num_rows()==0)
+		{
+	      $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+	      
+	       $channel_data=$update_channel_data->result_array();
+	     
+	       
+		    $data=array('total_likes'=>$channel_data[0]['total_likes']+1,'ip_address'=>$ip_address,'like_update_date'=>$today);
             $this->db->where('id',$id);
             $this->db->update($this->db->dbprefix('video_sections'),$data);
             $response['likes'] = $channel_data[0]['total_likes']+1;
-    }
-      else{
+		}
+	    else{
             $response['status']="failure";
             $response['message']="Like not updated!!";
         }
