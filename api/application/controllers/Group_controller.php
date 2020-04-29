@@ -223,6 +223,46 @@ class Group_controller extends CI_Controller {
          die();
     }
 
+    public function pimage()
+    {
+        $path = 'user_profile/';
+        $Response=[];
+       
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+            //print_r($ext);die;
+            $upper_Case_ext=strtoupper($ext);
+
+            if($upper_Case_ext==".IMG"||$upper_Case_ext==".JPG"||$upper_Case_ext==".JPEG"||$upper_Case_ext==".PNG")
+            {
+
+            //   $generatedName = md5($_FILES['file']['tmp_name']).$ext;
+            $pp = time().$ext;
+              $filePath = $path.$originalName;
+            //   $product_image=$filePath;
+           
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+              {
+                $Response['status']="success"; 
+                $Response['data']=$originalName;
+              }
+            }
+            else 
+            {
+                $Response['status']="fail"; 
+                $Response['data']="Not a valid format";
+            }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
    public function sendmsg(){
       $this->output->set_content_type('application/json');
       
@@ -307,6 +347,14 @@ class Group_controller extends CI_Controller {
             // $msg_group_array = array_merge($msg_group_array1,$other_msg_group_array);
             $msg_group_array = $other_msg_group_array;
             foreach ($msg_group_array as $msg_key => $msg_value) {
+
+              $res1=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where Id='".$msg_value['created_by']."'")->result_array();
+              if($res1[0]['aliasname']!=''){
+                $msg_value['user_name']=$res1[0]['aliasname'];
+              }else{
+                $msg_value['user_name']=$res1[0]['username'];
+              }
+
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -398,6 +446,14 @@ class Group_controller extends CI_Controller {
              $datearray =array();
              $msg_group_array=$msg_group_sql->result_array(); 
              foreach ($msg_group_array as $msg_key => $msg_value) {
+
+              $res1=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where Id='".$msg_value['created_by']."'")->result_array();
+              if($res1[0]['aliasname']!=''){
+                $msg_value['user_name']=$res1[0]['aliasname'];
+              }else{
+                $msg_value['user_name']=$res1[0]['username'];
+              }
+
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -490,9 +546,17 @@ public function getgroupsdetails(){
              $msg_group_array1 = array();
              $datearray =array();
              $last_msg_group_sql=$this->db->query("select id from ".$this->db->dbprefix('all_message')." ORDER BY id  DESC LIMIT 1")->result_array();
-            //  print_r($last_msg_group_sql); die;
+             
              $msg_group_array=$msg_group_sql->result_array(); 
+            //  print_r($msg_group_array); die;
              foreach ($msg_group_array as $msg_key => $msg_value) {
+              $res1=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where Id='".$msg_value['created_by']."'")->result_array();
+              if($res1[0]['aliasname']!=''){
+                $msg_value['user_name']=$res1[0]['aliasname'];
+              }else{
+                $msg_value['user_name']=$res1[0]['username'];
+              }
+
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -1050,11 +1114,11 @@ public function getgroupsdetails(){
 
     $model = json_decode($this->input->post('model',FALSE));
     if($model->currentUserID){
-      $this->db->query("update ".$this->db->dbprefix('affiliateuser')." set aliasname='".$model->aliasname."' where Id='".$model->currentUserID."'");
+      $this->db->query("update ".$this->db->dbprefix('affiliateuser')." set aliasname='".$model->aliasname."' , pimage='".$model->pimage."' where Id='".$model->currentUserID."'");
       // print_r($model->profilewebsitelists);
       foreach ($model->profilewebsitelists as $key => $value) {
-        // print_r($value); die;
-        $this->db->query("update ".$this->db->dbprefix('user_vs_packages')." set chat_active_flag=1 where user_id='".$model->currentUserID."' AND website='".$value->website."'");
+        
+        $this->db->query("update ".$this->db->dbprefix('user_vs_packages')." set chat_active_flag=1 where user_id='".$model->currentUserID."' AND website='".$value."'");
         
       }
       
@@ -1080,6 +1144,8 @@ public function getgroupsdetails(){
       }
 
       $res1=$this->db->query("select * from ".$this->db->dbprefix('affiliateuser')." where Id='".$model->userid."'")->result_array();
+      $response['websitelock']=$res1[0]['username'];
+      $response['pimage']=$res1[0]['pimage'];
       if($res1[0]['aliasname']!=''){
         $response['username']=$res1[0]['aliasname'];
       }else{

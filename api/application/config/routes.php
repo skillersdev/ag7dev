@@ -234,6 +234,8 @@ $route['chatmsgupdate'] = 'Group_controller/chatmsgupdate';
 $route['makegroupadmin'] = 'Group_controller/makegroupadmin';
 $route['groupuseraddreove'] = 'Group_controller/groupuseraddreove';
 $route['chatprofilesave'] = 'Group_controller/chatprofilesave';
+$route['chatwebsiteflag'] = 'Group_controller/chatwebsiteflag';
+$route['pimage']= 'Group_controller/pimage';
 
 
 $route['insertalbum'] = 'Gallery_controller/addalbum';
