@@ -91,6 +91,7 @@ import { ManagechatgrouprequestComponent } from './managechatgrouprequest/manage
 import { ManagechannelsComponent } from './managechannels/managechannels.component';
 import { AddchannelComponent } from './managechannels/addchannel/addchannel.component';
 import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
+import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -442,6 +443,9 @@ component:EditmallproductComponent
   {
     path:'editchannel/:id',
     component:EditchannelComponent
+  },{
+    path:'premiumsettings',
+    component:PremiumpackageComponent
   }
 
 ];

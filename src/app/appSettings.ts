@@ -9,7 +9,7 @@ export class AppSettings{
 	// public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 	// public static share_link= "http://localhost:4200/chat/join/";
 	// public static chatshare= "http://localhost:4200/chat/public/";
-	// public static mallshopurl= "https://mall.roodabatoz.com/shop/";
+	public static mallshopurl= "https://mall.roodabatoz.com/shop/";
  
 	public static URL_BASE = "https://roodabatoz.com/";
 public static API_BASE = "https://roodabatoz.com/api";	
@@ -21,7 +21,7 @@ public static WEBSITE_URL="https://roodabatoz.com/website/";
 public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
 public static share_link= "https://roodabatoz.com/chat/join/";
 public static chatshare= "https://roodabatoz.com/chat/public/";
-public static mallshopurl= "https://mall.roodabatoz.com/shop/";
+// public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 
 	//public static share_link= "https://roodabatoz.com/chat/join/";
 
@@ -296,6 +296,8 @@ public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 	public static chatwebsiteflag = AppSettings.API_BASE + "/chatwebsiteflag";
 	
 	public static activateInstructorApi = AppSettings.API_BASE + "/activateInstructor";
+
+	public static getpremiumpackagesettings= AppSettings.API_BASE + "/getpremiumpackagesettings";
 	
 
 	public static pimage=AppSettings.API_BASE+"/pimage";

@@ -112,6 +112,7 @@ import { EditchannelComponent } from './managechannels/editchannel/editchannel.c
 import {ChipsModule} from 'primeng/chips';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { QueryParamsHandling } from '@angular/router/src/config';
+import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -197,7 +198,8 @@ import { QueryParamsHandling } from '@angular/router/src/config';
     ManagechatgrouprequestComponent,
     ManagechannelsComponent,
     AddchannelComponent,
-    EditchannelComponent
+    EditchannelComponent,
+    PremiumpackageComponent
 	//ImageCropperComponent
   ],
   imports: [
