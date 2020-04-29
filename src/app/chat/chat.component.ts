@@ -175,6 +175,7 @@ export class ChatComponent implements OnInit {
         this.Newgroupmodel.profilewebsitelists = det.result;
         this.Newgroupmodel.username = det.username;
         this.Newgroupmodel.aliasname = det.username;
+        this.Newgroupmodel.otherpimage = det.pimage;
         
       }
   });
@@ -541,6 +542,17 @@ export class ChatComponent implements OnInit {
        
      })
   }
+
+  pfileEvent($event) {
+    const fileSelected: File = $event.target.files[0];
+    this.Newgroupmodel.pimage =$event.target.files[0].name;
+    this.CommonService.chatuploadFile(AppSettings.pimage,fileSelected)
+    .subscribe( (response) => {
+       
+       
+     })
+  }
+
   plusSlides(n,m){
   this.showSlides(this.slideIndex += n);
   }
@@ -656,7 +668,7 @@ $('.loader').css('display','block');
 
   profilesave(){
     
-    this.CommonService.insertdata(AppSettings.chatprofilesave,{'currentUserID':localStorage.getItem('currentUserID'),'aliasname':this.Newgroupmodel.aliasname,'profilewebsitelists':this.Newgroupmodel.profilewebsitelists})
+    this.CommonService.insertdata(AppSettings.chatprofilesave,{'currentUserID':localStorage.getItem('currentUserID'),'aliasname':this.Newgroupmodel.aliasname,'profilewebsitelists':this.Newgroupmodel.profilewebsitelists,'pimage':this.Newgroupmodel.pimage})
     .subscribe(package_det =>{     
       this.getwebsitelist();
       // this.Newgroupmodel.groupmemlists= package_det.groupmemlists;
@@ -668,8 +680,23 @@ $('.loader').css('display','block');
       if(det.result){
         this.Newgroupmodel.otherprofilewebsitelists = det.result;
         this.Newgroupmodel.otherusername = det.username;
+        this.Newgroupmodel.websitelock = det.websitelock;
+        this.Newgroupmodel.otherpimage = det.pimage;
         
       }
   });
   }
+  useroverviewModal(id:any){
+    this.CommonService.insertdata(AppSettings.chatwebsiteflag,{'userid':this.Newgroupmodel.currentUserID,'usertype':2}).subscribe(det =>{
+      if(det.result){
+        this.Newgroupmodel.profilewebsitelists = det.result;
+        this.Newgroupmodel.username = det.username;
+        this.Newgroupmodel.aliasname = det.username;
+        this.Newgroupmodel.otherpimage = det.pimage;
+        
+      }
+  });
+  }
+
+ 
 }

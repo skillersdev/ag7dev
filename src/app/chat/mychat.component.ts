@@ -476,6 +476,9 @@ this.getwebsitelist();
       if(det.result){
         this.Newgroupmodel.otherprofilewebsitelists = det.result;
         this.Newgroupmodel.otherusername = det.username;
+        this.Newgroupmodel.websitelock = det.websitelock;
+        this.Newgroupmodel.otherpimage = det.pimage;
+        
         
       }
   });
@@ -488,6 +491,8 @@ this.getwebsitelist();
         this.Newgroupmodel.profilewebsitelists = det.result;
         this.Newgroupmodel.username = det.username;
         this.Newgroupmodel.aliasname = det.username;
+        // this.Newgroupmodel.websitelock = det.websitelock;
+        this.Newgroupmodel.otherpimage = det.pimage;
         
       }
   });

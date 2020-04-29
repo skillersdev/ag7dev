@@ -298,6 +298,6 @@ public static mallshopurl= "https://mall.roodabatoz.com/shop/";
 	public static activateInstructorApi = AppSettings.API_BASE + "/activateInstructor";
 	
 
-	
+	public static pimage=AppSettings.API_BASE+"/pimage";
 
 }

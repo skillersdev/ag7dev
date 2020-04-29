@@ -336,13 +336,27 @@ table {
 								<div class="modal-body">
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
+											<label for="aliasname" class="m-r-3">Website Lock :</label>&nbsp;{{Newgroupmodel.currentUser}}
+										</div>
+										
+									</div>
+									<div class="form-group m-b-0">
+										<div class="form-line radio-btns">
 											<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.aliasname}}
 										</div>
 										
 									</div>
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
-											<label for="groupname" class="m-r-3">Selected Websites:</label>&nbsp;
+											<label for="aliasname" class="m-r-3">Image :</label>&nbsp;
+											<img src="{{group_bases}}user_profile/{{Newgroupmodel.otherpimage}}"
+											style="width:100px; height: 100px;">
+										</div>
+										
+									</div>
+									<div class="form-group m-b-0">
+										<div class="form-line radio-btns">
+											<label for="groupname" class="m-r-3">Websites:</label>&nbsp;
 											<table>
 												
 												<tr *ngFor="let data of Newgroupmodel.profilewebsitelists let i=index">
@@ -383,6 +397,14 @@ table {
 			
 									<!-- Modal body -->
 									<div class="modal-body">
+										
+										<div class="form-group m-b-0">
+											<div class="form-line radio-btns">
+												<label for="aliasname" class="m-r-3">Website Lock :</label>&nbsp;{{Newgroupmodel.websitelock}}
+											</div>
+											
+										</div>
+
 										<div class="form-group m-b-0">
 											<div class="form-line radio-btns">
 												<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.otherusername}}
@@ -391,7 +413,15 @@ table {
 										</div>
 										<div class="form-group m-b-0">
 											<div class="form-line radio-btns">
-												<label for="groupname" class="m-r-3">Selected Websites:</label>&nbsp;
+												<label for="aliasname" class="m-r-3">Image :</label>&nbsp;
+												<img src="{{group_bases}}user_profile/{{Newgroupmodel.otherpimage}}"
+												style="width:100px; height: 100px;">
+											</div>
+											
+										</div>
+										<div class="form-group m-b-0">
+											<div class="form-line radio-btns">
+												<label for="groupname" class="m-r-3">Websites:</label>&nbsp;
 												<table>
 													
 													<tr *ngFor="let data of Newgroupmodel.otherprofilewebsitelists let i=index">
@@ -899,7 +929,7 @@ table {
 
 					</div>
 
-					<div style="cursor: pointer;" *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="small font-weight-bold text-primary"  data-toggle="modal" data-target="#useroverviewModal">
+					<div style="cursor: pointer;" *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="small font-weight-bold text-primary" (click)="getwebsitelist()"  data-toggle="modal" data-target="#useroverviewModal">
 						{{Newgroupmodel.username}}
 					</div>
 					
