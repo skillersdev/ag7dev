@@ -16,7 +16,7 @@
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover premiumdataTable" id="premiumdataTable">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -28,14 +28,14 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr *ngFor="let item of userlist let idx=index">
+                                    <tr *ngFor="let item of premiumlist let idx=index">
                                         <td>{{idx+1}}</td>
-                                        <td>{{item.package_name}}</td>
-                                        <td>{{item.downline_count}}</td>
-                                        <td>{{item.earning_amt}}</td> 
+                                        <td>{{item.premium_days}}</td>
+                                        <td>{{item.premium_amount}}</td>
+                                        <td>{{item.created_date}}</td> 
                                         <td>
-                                            <a href="javascript:void(0);" (click)="editearnings(item.id)"><i class="material-icons">edit</i></a>
-                                            <a href="javascript:void(0);" (click)="deleteearnings(item.id)"><i class="material-icons">delete</i></a>
+                                            <a href="javascript:void(0);" (click)="editpremium(item.id)"><i class="material-icons">edit</i></a>
+                                            <a href="javascript:void(0);" (click)="deletepremium(item.id)"><i class="material-icons">delete</i></a>
                                         </td>
                                     </tr>
 

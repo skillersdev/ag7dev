@@ -16,7 +16,7 @@ import { Injectable } from '@angular/core';
 @Component({
   selector: 'app-premiumpackage',
   templateUrl: './premiumpackage.component.html',
-  styleUrls: ['./premiumpackage.component.css']
+  // styleUrls: ['./premiumpackage.component.css']
 })
 export class PremiumpackageComponent implements OnInit {
 
@@ -35,22 +35,68 @@ export class PremiumpackageComponent implements OnInit {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
     this.model.usergroup=localStorage.getItem('currentUsergroup');
+    this.premiumlist = [];
     if(this.model.usergroup==2)
     {
       this.loginService.logout();
     }
-    this.CommonService.getdata(AppSettings.getpremiumpackagesettings)
+    this.CommonService.insertdata(AppSettings.getpremiumpackagesettings,this.model)
     .subscribe(data =>{
-        if(data.result!="")  
+        if(data.status="success")  
         { 
           this.premiumlist= data.result;
+          console.log(this.premiumlist);
+          this.loginService.viewCommontdataTable('dataTable','premiumdataTable'); 
         } 
-         
+       else{
+        this.loginService.viewCommontdataTable('dataTable','premiumdataTable'); 
+       }
     });
   }
   navigateAddPremiumPackage()
   {
-    
+    this.router.navigate(['/addpremium']);
   }
+  editpremium(id:any)
+  {
+    this.router.navigate(['/editpremium',id]);
+  }
+  deletepremium(id:any)
+  {
+    let idx = id;
+      let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removeservice(idx);
+          swal(
+            'Deleted!',
+            'Premium Data has been deleted.',
+            'success'
+          );
+        }
+      },function(dismiss) {
+    });
+  }
+ removeservice(idx:any)
+ {
+   this.CommonService.deletedata(AppSettings.Deletepremiumpackage,idx)
+    .subscribe(resultdata =>{
+      this.CommonService.insertdata(AppSettings.getpremiumpackagesettings,this.model)
+      .subscribe(data =>{
+        if(data.status="success")  
+        { 
+          this.premiumlist= data.result;
+        } 
+      });
+    });
+ }
 
 }

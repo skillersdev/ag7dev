@@ -1,0 +1,52 @@
+<app-topnav></app-topnav>
+<app-sidemenu></app-sidemenu>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 class="font-bold">
+                            Add Premium
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card">                                    
+                                    <div class="body"> 
+                                        <form #addservice="ngForm">                                     
+                                            <div class="row clearfix">                 
+                                                <div class="col-md-6">
+                                                    <p><b>Number of days</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="Enter Days" [(ngModel)]="model.no_of_days" #title="ngModel" name="title" required>
+                                                        </div>
+                                                        <span [hidden]="title.valid || title.pristine" class="text-danger">Days is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><b>Amount</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="Enter amount" [(ngModel)]="model.total_amount" #description="ngModel" name="description">
+                                                            <span [hidden]="description.valid || description.pristine" class="text-danger">Amount is required</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                                            
+                                            <button type="button" [disabled]="!addservice.form.valid"  class="btn btn-primary m-t-15 waves-effect" (click)="add_premium()">Add Premium</button>&nbsp;
+                                            &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
