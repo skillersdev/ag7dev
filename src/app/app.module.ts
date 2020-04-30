@@ -113,6 +113,8 @@ import {ChipsModule} from 'primeng/chips';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import { QueryParamsHandling } from '@angular/router/src/config';
 import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
+import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
+import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -199,7 +201,9 @@ import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.c
     ManagechannelsComponent,
     AddchannelComponent,
     EditchannelComponent,
-    PremiumpackageComponent
+    PremiumpackageComponent,
+    AddpremiumpackageComponent,
+    EditpremiumpackageComponent
 	//ImageCropperComponent
   ],
   imports: [

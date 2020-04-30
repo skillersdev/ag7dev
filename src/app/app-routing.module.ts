@@ -92,6 +92,8 @@ import { ManagechannelsComponent } from './managechannels/managechannels.compone
 import { AddchannelComponent } from './managechannels/addchannel/addchannel.component';
 import { EditchannelComponent } from './managechannels/editchannel/editchannel.component';
 import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
+import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
+import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -446,6 +448,13 @@ component:EditmallproductComponent
   },{
     path:'premiumsettings',
     component:PremiumpackageComponent
+  },{
+    path:'addpremium',
+    component:AddpremiumpackageComponent
+  }
+  ,{
+    path:'editpremium/:id',
+    component:EditpremiumpackageComponent
   }
 
 ];

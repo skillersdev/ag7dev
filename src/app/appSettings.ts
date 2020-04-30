@@ -298,6 +298,11 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	public static activateInstructorApi = AppSettings.API_BASE + "/activateInstructor";
 
 	public static getpremiumpackagesettings= AppSettings.API_BASE + "/getpremiumpackagesettings";
+	public static addpremiumpackage= AppSettings.API_BASE + "/addpremiumpackage";
+	public static Deletepremiumpackage= AppSettings.API_BASE + "/deletepremiumpackage/";
+	public static Editpremium= AppSettings.API_BASE+"/editpremium/";
+	public static updatePremium= AppSettings.API_BASE+"/updatepremium";
+	
 	
 
 	public static pimage=AppSettings.API_BASE+"/pimage";

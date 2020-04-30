@@ -1,4 +1,5 @@
 <?php
+//ini_set('display_errors', 1);
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -302,6 +303,12 @@ $route['malllogin'] = 'Malllogin_controller/checklogin';
 $route['getrtubevideolist']= 'Home_controller/getrvideolist';
 $route['editvideodetail/(:num)']= "Home_controller/editvideodetail/$1";
 $route['likevideodetail/(:num)']= "Home_controller/likevideodetail/$1";
+$route['getpremiumpackagesettings']= 'Home_controller/getpremiumpackagesettings';
+$route['addpremiumpackage']= 'Home_controller/addpremiumpackage';
+$route['deletepremiumpackage/(:num)']='Home_controller/deletepremiumpackage/$1';
+$route['editpremium/(:num)'] = 'Home_controller/editpremium/$1';
+$route['updatepremium']= 'Home_controller/updatepremium';
+
 
 
 /**Channel creation*/
