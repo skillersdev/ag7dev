@@ -115,6 +115,7 @@ import { QueryParamsHandling } from '@angular/router/src/config';
 import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
 import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
+import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -203,7 +204,8 @@ import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiump
     EditchannelComponent,
     PremiumpackageComponent,
     AddpremiumpackageComponent,
-    EditpremiumpackageComponent
+    EditpremiumpackageComponent,
+    PremiumrequestvideosComponent
 	//ImageCropperComponent
   ],
   imports: [

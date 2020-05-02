@@ -310,6 +310,8 @@ $route['editpremium/(:num)'] = 'Home_controller/editpremium/$1';
 $route['updatepremium']= 'Home_controller/updatepremium';
 $route['checkpremiumuserandbalanceexist']= 'Home_controller/checkpremiumuserandbalanceexist';
 $route['savepremiumdata']='Home_controller/savepremiumdata';
+$route['getpremiumrequestvideos']='Home_controller/getpremiumrequestvideos';
+$route['savepremiumrequest']='Home_controller/savepremiumrequest';
 
 
 /**Channel creation*/

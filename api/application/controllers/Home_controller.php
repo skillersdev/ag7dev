@@ -40,6 +40,28 @@ class Home_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }
+   public function getpremiumrequestvideos()
+   {
+       $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;       
+
+        $model = json_decode($this->input->post('model',FALSE));
+       
+        
+      $res=$this->db->select("*,DATE_FORMAT(created_date,'%d %b %Y')as cdate")->where(['is_deleted'=>'0','is_premium_videos'=>'2'])->order_by('id')->get('video_sections');
+      
+       if($res->num_rows()>0)
+        {
+        $result[]=$res->result_array();
+        }
+        $response['data'] = $result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+   }
   public function getrvideolist()
   {
      $this->output->set_content_type('application/json');
@@ -294,7 +316,7 @@ class Home_controller extends CI_Controller {
                 $this->db->where('Id',$value['Id']);
                 $this->db->update($this->db->dbprefix('affiliateuser'),$data);
                 
-                $data=array('Is_premium_videos'=>'1');
+                $data=array('Is_premium_videos'=>'2');
                 $this->db->where('id',$model->videoId);
                 $this->db->update($this->db->dbprefix('video_sections'),$data);
                 
@@ -305,6 +327,27 @@ class Home_controller extends CI_Controller {
          die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
 
-
+    public function savepremiumrequest()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+           
+        $model = json_decode($this->input->post('model',FALSE));
+        if($model->Isaccept==1)
+        {
+            $data=array('Is_premium_videos'=>'1'); 
+             $response['message']="video is upgraded to premium";
+        }
+        else{
+            $data=array('Is_premium_videos'=>'0');  
+             $response['message']="Upgrade to premium is cancelled";
+        }
+        $this->db->where('id',$model->videoId);
+        $this->db->update($this->db->dbprefix('video_sections'),$data);
+        
+        $response['status']="success";
+       
+         die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
 
 }

@@ -157,6 +157,12 @@
                         <span>Manage Group/Channel</span>                        
                     </a>
                 </li>
+                <li *ngIf="model.usergroup==1">
+                        <a href="javascript:void(0);" [routerLink]="['/premiumrequestvideos']">
+                            <i class="material-icons  col-green">view_module</i>
+                            <span>Premium request videos</span>
+                        </a>
+                    </li>
                 <li>
                     <a href="javascript:void(0);" [routerLink]="['/managegrouprequest']">
                         <i class="material-icons">chat</i>

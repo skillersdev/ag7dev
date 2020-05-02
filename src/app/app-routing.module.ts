@@ -94,6 +94,7 @@ import { EditchannelComponent } from './managechannels/editchannel/editchannel.c
 import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.component';
 import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
+import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -455,6 +456,10 @@ component:EditmallproductComponent
   ,{
     path:'editpremium/:id',
     component:EditpremiumpackageComponent
+  }
+  ,{
+    path:'premiumrequestvideos',
+    component:PremiumrequestvideosComponent
   }
 
 ];
