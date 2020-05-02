@@ -252,5 +252,59 @@ class Home_controller extends CI_Controller {
 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
+    public function checkpremiumuserandbalanceexist()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+           
+        $model = json_decode($this->input->post('model',FALSE));
+        
+       // print_r($model);die;
+        
+        $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->username])->get('affiliateuser');  
+        if($check_exists->num_rows()==0)
+        {
+            $response=array('status'=>"fail");
+            $response['message']="Enter a valid creator name";
+        }else{
+           
+                foreach($check_exists->result_array() as $key=>$value)
+                {
+                    if($value['tamount']<$model->premiumamount)
+                    {
+                         $response=array('status'=>"fail",'message'=>"Premium Amount should not be more than user amount");
+                    }
+                }  
+             
+        }
+         die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+      public function savepremiumdata()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+           
+        $model = json_decode($this->input->post('model',FALSE));
+        
+         $check_exists=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->username])->get('affiliateuser'); 
+         foreach($check_exists->result_array() as $key=>$value)
+            {
+                $tot_amount = $value['tamount'] - $model->premiumamount;
+                $data=array('tamount'=>$tot_amount);
+                $this->db->where('Id',$value['Id']);
+                $this->db->update($this->db->dbprefix('affiliateuser'),$data);
+                
+                $data=array('Is_premium_videos'=>'1');
+                $this->db->where('id',$model->videoId);
+                $this->db->update($this->db->dbprefix('video_sections'),$data);
+                
+                $response['status']="success";
+                $response['message']="Your video is upgraded to premium";
+            }  
+         
+         die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+
+
 
 }

@@ -302,6 +302,8 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	public static Deletepremiumpackage= AppSettings.API_BASE + "/deletepremiumpackage/";
 	public static Editpremium= AppSettings.API_BASE+"/editpremium/";
 	public static updatePremium= AppSettings.API_BASE+"/updatepremium";
+	public static checkpremiumuserandbalanceexist= AppSettings.API_BASE+"/checkpremiumuserandbalanceexist";
+	public static savepremiumdata= AppSettings.API_BASE+"/savepremiumdata";
 	
 	
 

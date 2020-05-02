@@ -9,6 +9,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 import { CommonService} from '../../services/common.service';
+import Swal from 'sweetalert2'
 declare var jquery:any;
 declare var $ :any;
 import { Injectable } from '@angular/core';
@@ -27,8 +28,10 @@ export class ManagevideoComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  premiumModal:any={};
   alldata: any = {};
   videolist:Array<Object>;
+  premiumdays:Array<Object>;
   datalist:Array<Object>;
   getuserlistRestApiUrl:string=AppSettings.getuserslist;
   DeleteuserRestApiUrl:string = AppSettings.deleteuser; 
@@ -44,7 +47,11 @@ export class ManagevideoComponent implements OnInit {
   ngOnInit() {
       this.loginService.localStorageData();
     this.loginService.viewsActivate();
-
+    this.premiumdays=[];
+    this.videolist=[];
+    this.model.showpremiumamount =false;
+    this.premiumModal.IsshowPremiumButton =true;
+    this.premiumModal.premdays='select';
     let user_id = localStorage.getItem('currentUserID');
     
      this.model.usergroup=localStorage.getItem('currentUsergroup');
@@ -62,6 +69,14 @@ export class ManagevideoComponent implements OnInit {
             }
           });
         }
+
+        this.CommonService.insertdata(AppSettings.getpremiumpackagesettings,this.model)
+        .subscribe(data =>{
+          if(data.status="success")  
+          { 
+            this.premiumdays= data.result;
+          }       
+        });
        
   }
   
@@ -110,5 +125,53 @@ export class ManagevideoComponent implements OnInit {
           this.ngOnInit();
       });
  }
-
+ showAmount(amount:any)
+ {
+    if(amount)
+    {
+      this.premiumModal.showpremiumamount =true;
+      this.premiumModal.premiumamount = amount;
+    }
+ }
+ checkUserexist(username:any)
+ {
+  $('.preloader').show();
+  this.CommonService.insertdata(AppSettings.checkpremiumuserandbalanceexist,this.premiumModal)
+  .subscribe(data =>{
+    if(data.status=="success")  
+    { 
+      this.premiumModal.IsshowPremiumButton = false;
+      $('.preloader').hide();
+    }else{   
+      swal('',data.message,'error');
+      this.premiumModal.IsshowPremiumButton = false;
+    }       
+  });
+ }
+ getVideodet(videoId:any)
+ {
+  this.premiumModal.videoId = videoId;
+ }
+ savepremiumpck()
+ {
+    this.CommonService.insertdata(AppSettings.savepremiumdata,this.premiumModal)
+    .subscribe(data =>{
+      if(data.status=="success")  
+      {         
+        $('.preloader').hide();
+        swal('',data.message,'success');
+        $('#premiummodal').modal('hide');
+        this.CommonService.insertdata(AppSettings.getvideolistbywebsiteApiUrl,this.model)
+            .subscribe(resultdata =>{   
+             if(resultdata.result!='')
+             { 
+               this.videolist=resultdata.result;
+               this.loginService.viewCommontdataTable('videosdataTable','videosdataTable');
+            }
+          });
+      } else{
+        swal('','Errow while on upgrading premium','error');
+      }      
+    });
+ }
 }

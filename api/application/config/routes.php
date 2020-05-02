@@ -308,7 +308,8 @@ $route['addpremiumpackage']= 'Home_controller/addpremiumpackage';
 $route['deletepremiumpackage/(:num)']='Home_controller/deletepremiumpackage/$1';
 $route['editpremium/(:num)'] = 'Home_controller/editpremium/$1';
 $route['updatepremium']= 'Home_controller/updatepremium';
-
+$route['checkpremiumuserandbalanceexist']= 'Home_controller/checkpremiumuserandbalanceexist';
+$route['savepremiumdata']='Home_controller/savepremiumdata';
 
 
 /**Channel creation*/

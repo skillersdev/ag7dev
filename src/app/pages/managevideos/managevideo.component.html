@@ -46,6 +46,9 @@
                                             <a href="javascript:void(0);" (click)="editvideo(item.id)">
                                                 <i class="material-icons">edit</i></a>
                                             <a href="javascript:void(0);" (click)="deletevideo(item.id)"><i class="material-icons">delete</i></a>
+                                            <a  href="javascript:void(0);" data-toggle="modal" data-target="#premiummodal" (click)="getVideodet(item.id)">
+                                            <button type="button" class="btn bg-primary waves-effect">Show in premium</button>
+                                        </a>
                                         </td>
                                     </tr>
                                     <tr *ngIf="videolist.length==0">
@@ -54,6 +57,68 @@
 
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="premiummodal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="largeModalLabel">Show Premium videos</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form #addpackage="ngForm">
+                                        <div class="col-md-6">
+                                            <p><b>Select Premium days</b></p> 
+                                            <select class="form-control show-tick" [(ngModel)]="premiumModal.premdays" #premdays="ngModel" name="premdays" (change)="showAmount($event.target.value)" required>
+                                                <option [ngValue]="select">select premium days</option>    
+                                                <option *ngFor="let model of premiumdays" value="{{model.premium_amount}}">{{model.premium_days}}</option>
+                                            </select>
+                                            <span [hidden]="premdays.valid || premdays.pristine" class="text-danger">days is required</span>
+                                        </div>
+                                        <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
+                                            <p><b>Premium Amount</b></p>
+                                            <span>
+                                                {{premiumModal.premiumamount}}
+                                            </span>
+                                        </div>
+                                        <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
+                                            <p><b>User Name</b></p>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="premiumModal.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                </div>
+                                                <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
+                                            <p><b>Password</b></p>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="premiumModal.password" #password="ngModel" required>
+                                                </div>
+                                                <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                            </div>
+                                        </div>                                      
+                                        <div class="col-md-12">
+                                            <div class="preloader pl-size-xs" style="display:none;">
+                                                <div class="spinner-layer pl-red-grey">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <button type="button" class="btn btn-primary" (click)="savepremiumpck()" [disabled]="premiumModal.IsshowPremiumButton">Submit</button>
+                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
