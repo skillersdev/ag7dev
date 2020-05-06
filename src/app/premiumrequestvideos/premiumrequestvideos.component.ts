@@ -79,4 +79,9 @@ export class PremiumrequestvideosComponent implements OnInit {
     });   
     });
   }
+  navigateTodetails(id:any)
+  {
+    localStorage.setItem('transactionvideoid',id);
+    this.router.navigate(['/premiumtransactiondetails']);
+  }
 }

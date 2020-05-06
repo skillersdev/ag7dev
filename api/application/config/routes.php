@@ -312,7 +312,7 @@ $route['checkpremiumuserandbalanceexist']= 'Home_controller/checkpremiumuserandb
 $route['savepremiumdata']='Home_controller/savepremiumdata';
 $route['getpremiumrequestvideos']='Home_controller/getpremiumrequestvideos';
 $route['savepremiumrequest']='Home_controller/savepremiumrequest';
-
+$route['getpremiumtransactiondetails']='Home_controller/getpremiumtransactiondetails';
 
 /**Channel creation*/
 $route['uploadchannelimage']="Channel_controller/uploadchannelimage";

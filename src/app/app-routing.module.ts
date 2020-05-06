@@ -95,6 +95,7 @@ import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.c
 import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
+import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumtransaction.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -460,6 +461,9 @@ component:EditmallproductComponent
   ,{
     path:'premiumrequestvideos',
     component:PremiumrequestvideosComponent
+  },{
+    path:'premiumtransactiondetails',
+    component:PremiumtransactionComponent
   }
 
 ];

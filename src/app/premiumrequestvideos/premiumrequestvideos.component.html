@@ -31,9 +31,12 @@
                                         <td>{{item.description}}</td>
                                         <td>{{item.created_date}}</td>
                                         <td>                                         
-                                          <a  href="javascript:void(0);" data-toggle="modal" data-target="#premiummodal" (click)="acceptrequest(item.id)">
-                                          <button type="button" class="btn bg-primary waves-effect">Accept</button>
-                                        </a>&nbsp;&nbsp;
+                                            <a  href="javascript:void(0);" (click)="navigateTodetails(item.id)"> 
+                                                <span>
+                                                    Transaction Details
+                                                </span>
+                                            </a>
+                                            &nbsp;&nbsp;
                                         <a  href="javascript:void(0);" data-toggle="modal" data-target="#premiummodal" (click)="cancelrequest(item.id)">
                                             <button type="button" class="btn bg-red waves-effect">Cancel</button>
                                           </a>

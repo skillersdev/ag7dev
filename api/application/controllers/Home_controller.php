@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home_controller extends CI_Controller {
 
-  public function index() {
-    $this->output->set_content_type('application/json');
-    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-  }
+    public function index() {
+        $this->output->set_content_type('application/json');
+        die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+    }
 
   public function getpremiumpackagesettings()
     {
@@ -52,7 +52,7 @@ class Home_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
        
         
-      $res=$this->db->select("*,DATE_FORMAT(created_date,'%d %b %Y')as cdate")->where(['is_deleted'=>'0','is_premium_videos'=>'2'])->order_by('id')->get('video_sections');
+      $res=$this->db->select("*,DATE_FORMAT(created_date,'%d %b %Y')as cdate")->where(['is_deleted'=>'0','is_premium_videos'=>'1'])->order_by('id')->get('video_sections');
       
        if($res->num_rows()>0)
         {
@@ -114,27 +114,27 @@ class Home_controller extends CI_Controller {
         // $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
         
         $today =date("Y-m-d");
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        
         $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(view_updated_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
         
         if($check_view->num_rows()==0)
-    {
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
-        
-         $channel_data=$update_channel_data->result_array();
-       
+        {
+          $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+          
+           $channel_data=$update_channel_data->result_array();
          
-        $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'view_updated_date'=>$today);
+           
+            $data=array('total_views'=>$channel_data[0]['total_views']+1,'ip_address'=>$ip_address,'view_updated_date'=>$today);
             $this->db->where('id',$id);
             $this->db->update($this->db->dbprefix('video_sections'),$data);
-    }else{
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
+        }else{
+            $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('tbl_channel')." where website='".$model->currentwebsite."' AND channel_name='".$model->currentchannel."' ");
+          
+           //$channel_data=$update_channel_data->result_array();
+        }
         
-         //$channel_data=$update_channel_data->result_array();
-    }
-    
-    $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where  id='".$id."'");
+        $res=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where  id='".$id."'");
         
         if($res->num_rows()>0){
             $in_array=$res->result_array();
@@ -159,23 +159,23 @@ class Home_controller extends CI_Controller {
        
         
         $today =date("Y-m-d");
-    $ip_address = $_SERVER['REMOTE_ADDR'];
-    
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        
         $check_view=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where date(like_update_date)='".$today."' AND ip_address='".$ip_address."' AND id='".$id."'");
         
         if($check_view->num_rows()==0)
-    {
-        $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
-        
-         $channel_data=$update_channel_data->result_array();
-       
+        {
+          $update_channel_data=$this->db->query("select * from ".$this->db->dbprefix('video_sections')." where id='".$id."'");
+          
+           $channel_data=$update_channel_data->result_array();
          
-        $data=array('total_likes'=>$channel_data[0]['total_likes']+1,'ip_address'=>$ip_address,'like_update_date'=>$today);
+           
+            $data=array('total_likes'=>$channel_data[0]['total_likes']+1,'ip_address'=>$ip_address,'like_update_date'=>$today);
             $this->db->where('id',$id);
             $this->db->update($this->db->dbprefix('video_sections'),$data);
             $response['likes'] = $channel_data[0]['total_likes']+1;
-    }
-      else{
+        }
+        else{
             $response['status']="failure";
             $response['message']="Like not updated!!";
         }
@@ -301,7 +301,7 @@ class Home_controller extends CI_Controller {
         }
          die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
-      public function savepremiumdata()
+    public function savepremiumdata()
     {
         $this->output->set_content_type('application/json');
         $response=array('status'=>"success");
@@ -312,11 +312,25 @@ class Home_controller extends CI_Controller {
          foreach($check_exists->result_array() as $key=>$value)
             {
                 $tot_amount = $value['tamount'] - $model->premiumamount;
-                $data=array('tamount'=>$tot_amount);
+                $data_user=array('tamount'=>$tot_amount);
                 $this->db->where('Id',$value['Id']);
-                $this->db->update($this->db->dbprefix('affiliateuser'),$data);
+                $this->db->update($this->db->dbprefix('affiliateuser'),$data_user);
                 
-                $data=array('Is_premium_videos'=>'2');
+                $date = date("Y-m-d");
+                $date = strtotime($date);
+                $date = strtotime("".$model->selectedPremiumdays." day", $date);
+                $expire_premium_days = date('Y-m-d', $date);
+                
+                 $transaction_data = array(
+                        'premium_video'=>$model->videoId,
+                        'premium_activated_to'=>$model->current_userid,
+                        'premium_activated_from'=>$value['Id'],
+                        'premium_amount'=>$model->premiumamount
+                    );
+                //print_r($transaction_data);die;        
+                $this->db->insert($this->db->dbprefix('premium_transaction_details'),$transaction_data);
+                
+                $data=array('Is_premium_videos'=>'1','premium_expires_in'=>$expire_premium_days);
                 $this->db->where('id',$model->videoId);
                 $this->db->update($this->db->dbprefix('video_sections'),$data);
                 
@@ -348,6 +362,37 @@ class Home_controller extends CI_Controller {
         $response['status']="success";
        
          die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+    
+    public function getpremiumtransactiondetails()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response=array('status'=>"success");
+        $model = json_decode($this->input->post('model',FALSE));
+        $result=[];
+        $get_transaction_det=$this->db->select("*")->where(['id'=>$model->videoId])->get('premium_transaction_details'); 
+        
+       foreach($get_transaction_det->result_array() as $key=>$value)
+        {
+             $get_user_premiunm_video_activated = $this->db->select("username")->where(['is_deleted'=>'0','Id'=>$value['premium_activated_to']])->get('affiliateuser'); 
+             $user_array_1=$get_user_premiunm_video_activated->result_array();
+             
+            
+             
+             $get_user_premiunm_video_activated_from = $this->db->select("username")->where(['is_deleted'=>'0','Id'=>$model->userid])->get('affiliateuser'); 
+             $user_array_2=$get_user_premiunm_video_activated_from->result_array();
+             
+              
+             $video_det = $this->db->select("title")->where(['is_deleted'=>'0','Id'=>$value['premium_video']])->get('video_sections'); 
+             $video_details=$video_det->result_array();
+             
+             $result['data'][]=array('premium_video'=>$video_details[0]['title'],'premium_video_user'=>$user_array_1[0]['username'],'premium_activated_from'=>$user_array_2[0]['username'],'premium_amount'=>$value['premium_amount']);
+        }
+       // $response['result']=$result;
+         echo json_encode($result,JSON_UNESCAPED_SLASHES);
+         die();
+         
     }
 
 }

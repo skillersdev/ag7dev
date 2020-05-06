@@ -116,6 +116,7 @@ import { PremiumpackageComponent } from './pages/premiumpackage/premiumpackage.c
 import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpackage/addpremiumpackage.component';
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
+import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumtransaction.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -205,7 +206,8 @@ import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumreq
     PremiumpackageComponent,
     AddpremiumpackageComponent,
     EditpremiumpackageComponent,
-    PremiumrequestvideosComponent
+    PremiumrequestvideosComponent,
+    PremiumtransactionComponent
 	//ImageCropperComponent
   ],
   imports: [

@@ -305,7 +305,8 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	public static checkpremiumuserandbalanceexist= AppSettings.API_BASE+"/checkpremiumuserandbalanceexist";
 	public static savepremiumdata= AppSettings.API_BASE+"/savepremiumdata";
 	public static getpremiumrequestvideos= AppSettings.API_BASE+"/getpremiumrequestvideos";
-	public static savepremiumrequest= AppSettings.API_BASE+"/savepremiumrequest";
+	public static savepremiumrequest = AppSettings.API_BASE+"/savepremiumrequest";
+	public static getpremiumtransactiondetails= AppSettings.API_BASE+"/getpremiumtransactiondetails";
 	
 	
 

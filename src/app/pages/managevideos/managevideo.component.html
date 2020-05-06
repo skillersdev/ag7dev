@@ -69,7 +69,7 @@
                                     <form #addpackage="ngForm">
                                         <div class="col-md-6">
                                             <p><b>Select Premium days</b></p> 
-                                            <select class="form-control show-tick" [(ngModel)]="premiumModal.premdays" #premdays="ngModel" name="premdays" (change)="showAmount($event.target.value)" required>
+                                            <select class="form-control show-tick" [(ngModel)]="premiumModal.premdays" #premdays="ngModel" name="premdays" (change)="showAmount($event.target.value)" id="pdays" required>
                                                 <option [ngValue]="select">select premium days</option>    
                                                 <option *ngFor="let model of premiumdays" value="{{model.premium_amount}}">{{model.premium_days}}</option>
                                             </select>

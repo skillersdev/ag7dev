@@ -126,11 +126,12 @@ export class ManagevideoComponent implements OnInit {
       });
  }
  showAmount(amount:any)
- {
+ { 
     if(amount)
     {
       this.premiumModal.showpremiumamount =true;
       this.premiumModal.premiumamount = amount;
+      this.premiumModal.selectedPremiumdays = $("#pdays option:selected").text();
     }
  }
  checkUserexist(username:any)
@@ -154,6 +155,7 @@ export class ManagevideoComponent implements OnInit {
  }
  savepremiumpck()
  {
+  this.premiumModal.current_userid = localStorage.getItem('currentUserID');
     this.CommonService.insertdata(AppSettings.savepremiumdata,this.premiumModal)
     .subscribe(data =>{
       if(data.status=="success")  
