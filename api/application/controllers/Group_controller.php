@@ -269,7 +269,7 @@ class Group_controller extends CI_Controller {
         $response=array('status'=>"success",'message'=>"Msg sent successfully");
 
         $model = json_decode($this->input->post('model',FALSE));
-        // print_r($model); die;
+        // print_r($model->groupmsgtxt); die;
         if($model){
           if($model->groupmsgtxt!=''){
             $model->groupimagename='';
@@ -556,7 +556,8 @@ public function getgroupsdetails(){
               }else{
                 $msg_value['user_name']=$res1[0]['username'];
               }
-
+              htmlspecialchars_decode(stripslashes($msg_value['message']));
+               
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -969,6 +970,22 @@ public function getgroupsdetails(){
         // print_r($model); die; 
         $result=$this->db->query("update ".$this->db->dbprefix('all_message')." set message='".$model->msgupdate."' where id='".$model->id."'");
         
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   public function chatmsgreply(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"reply message added successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die; replyid to database
+        // $result=$this->db->query("update ".$this->db->dbprefix('all_message')." set message='".$model->msgupdate."' where id='".$model->id."'"); replymsgid
+        
+        $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,replyid,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->replymsgupdate."','".$model->replymsgid."','','".$model->currentUserID."','".$model->currentUser."')");
+
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
