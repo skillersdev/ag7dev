@@ -419,6 +419,25 @@ export class ChatComponent implements OnInit {
     });
 
   }
+
+  replymsgeditfun(id:any){
+    this.Newgroupmodel.replymsgid = id;
+  }
+
+  replymsgupdatefun(){
+
+    // this.CommonService.insertdata(AppSettings.chatmsgreply,{'replymsgid':this.Newgroupmodel.replymsgid,'replymsgupdate':this.Newgroupmodel.replymsgupdate})
+    this.CommonService.insertdata(AppSettings.chatmsgreply,this.Newgroupmodel)
+    .subscribe(package_det =>{     
+     
+      this.generateMessageArea(this.Newgroupmodel.g_id);
+
+    });
+
+  }
+
+  
+
   updategroup()
   {
     // this.Newgroupmodel.userselectedItems.push({'Id':this.Newgroupmodel.currentUserID,'username':this.Newgroupmodel.currentUser});

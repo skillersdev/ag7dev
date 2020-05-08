@@ -731,6 +731,42 @@
 		</div>
 		<!-- msg edit popup-->
 
+			<!--  reply msg edit popup -->
+			<div class="modal" id="replymsgeditModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+	
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title"></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+	
+						<!-- Modal body -->
+						<div class="modal-body">
+	
+							<div class="form-group">
+								<label>Reply Message :</label>
+								
+									<textarea name="replymsgupdate" [(ngModel)]="Newgroupmodel.replymsgupdate" type="text" id="replymsgupdate"
+									class="form-control" #replymsgupdate="ngModel"></textarea>
+							</div>
+	
+						</div>
+	
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" (click)="replymsgupdatefun()"
+								data-dismiss="modal">Reply</button>
+						</div>
+	
+					</div>
+				</div>
+			</div>
+			<!-- reply msg  edit popup-->
+
+			
+
 			<!--  msg add caption popup -->
 			<div class="modal" id="addcaptionModal">
 				<div class="modal-dialog">
@@ -1252,6 +1288,8 @@
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" *ngIf="data.chatimage==''" data-toggle="modal" data-target="#msgeditModal"
 													(click)="msgeditfun(data.id)">Edit</a>
+													<a class="dropdown-item" data-toggle="modal" data-target="#replymsgeditModal"
+													(click)="replymsgeditfun(data.id)">Reply</a>
 												<a class="dropdown-item" (click)="msgdeletefun(data.id)">Delete</a>
 												<a class="dropdown-item" *ngIf="data.chatimage!='' && data.video_type==0" data-toggle="modal" data-target="#addcaptionModal" (click)="addcaption(data.id)">Add Caption</a>
 		
@@ -1268,6 +1306,8 @@
 													class="fas fa-angle-down text-muted px-2"></i></a>
 		
 											<div class="dropdown-menu dropdown-menu-right">
+												<a class="dropdown-item" data-toggle="modal" data-target="#replymsgeditModal"
+													(click)="replymsgeditfun(data.id)">Reply</a>
 												<!-- <a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a> -->
 												<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1"
 													(click)="msgdeletefun(data.id)">Delete</a>
@@ -1291,7 +1331,7 @@
 											class="d-flex flex-row">
 		
 											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-												style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a>
+												style="color:'#666 !important'"><p *ngIf="data.message_link==0" style="white-space: pre-line">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a>
 												<!-- <i data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" class="far fa fa-edit"></i> -->
 											</div>
 											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
@@ -1320,7 +1360,7 @@
 											class="d-flex flex-row">
 		
 											<div *ngIf="data.chatimage==''" class="body m-1 mr-2"
-												style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
+												style="color:'#666 !important'"><p *ngIf="data.message_link==0" style="white-space: pre-line">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
 											<div *ngIf="data.chatimage!=''" class="body m-1 mr-2"
 												style="color:'#666 !important'">
 												<a target="_blank"
@@ -1376,13 +1416,17 @@
 						href="javascript:void(0);" id="my-button" (click)="chatimageclick()"> <i
 							class="fas fa-paperclip text-muted px-3" style="font-size:1.5rem;"></i></a>
 					<!-- (click)="chatimage.click()"  -->
+					<!-- <ckeditor [config]="{ toolbar: [  ] }"
+					[(ngModel)]="Newgroupmodel.groupmsgtxt">
+						
+					</ckeditor> -->
 
 					<!-- <input contentEditable="true"
 						*ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by"
 						name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt"
 						placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"
 						(keyup.enter)="sendMessage()" #groupmsgtxt="ngModel" /> -->
-					<textarea contentEditable="true"
+					<textarea contentEditable="false"
 					*ngIf="group_dt_model.private_public!=1 || group_dt_model.channelgroup!=1 || Newgroupmodel.currentUserID==group_dt_model.created_by"
 					name="groupmsgtxt" [(ngModel)]="Newgroupmodel.groupmsgtxt" type="text" id="groupmsgtxt"
 					placeholder="Type a message" class="flex-grow-1 border-0 px-3 py-2 my-3 rounded shadow-sm"
