@@ -1015,7 +1015,7 @@
 					
 						<div *ngIf="(Newgroupmodel.currentUserID==data.created_by) && (group_name!=0)" class="d-flex flex-row">
 							
-							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
+							<div  *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'"><p *ngIf="data.message_link==0" style="white-space: pre-line">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
 							<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'"><a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}"  class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
 								
 								<a href="javascript:void(0);" *ngIf="data.video_type==1" (click)="videomyModalfun(data.chatimage,data.video_type)" data-toggle="modal" data-target="#videomyModal">{{data.chatimage}}</a>
@@ -1032,7 +1032,7 @@
 
 						<div *ngIf="Newgroupmodel.currentUserID!=data.created_by && (group_name!=0)" class="d-flex flex-row">
 							
-								<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'"><p *ngIf="data.message_link==0">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
+								<div *ngIf="data.chatimage==''" class="body m-1 mr-2" style="color:'#666 !important'"><p *ngIf="data.message_link==0" style="white-space: pre-line">{{data.message}}</p><a *ngIf="data.message_link==1" target="_blank" href="{{data.message}}">{{data.message}}</a></div>
 								<div *ngIf="data.chatimage!=''" class="body m-1 mr-2" style="color:'#666 !important'">
 									<a target="_blank" href="{{group_bases}}groupchat_images/{{data.chatimage}}"><img  *ngIf="data.video_type==0" src="{{group_bases}}groupchat_images/{{data.chatimage}}" class="img-fluid mr-2" style="height: 75px;width: 100px;"></a>
 									<!-- <video *ngIf="data.video_type==1" width="320" height="240" controls>
