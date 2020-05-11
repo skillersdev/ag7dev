@@ -276,6 +276,16 @@ class Group_controller extends CI_Controller {
           } 
 
          $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->groupmsgtxt."','".$model->groupimagename."','".$model->currentUserID."','".$model->currentUser."')");
+        $insert_id = $this->db->insert_id();
+
+        $group_members=$this->db->query("select user_id from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  and  is_deleted='0'");
+        $group_members_array=$group_members->result_array(); 
+          foreach ($group_members_array as $key => $value) {
+            if($model->currentUserID!=$value['user_id']){
+              $this->db->query("insert into ".$this->db->dbprefix('msg_readorunread')." (msg_id,group_id,user_id,status) values ('".$insert_id."','".$model->g_id."','".$value['user_id']."',1)");
+            }
+            
+          }
         }
       
         
@@ -292,6 +302,16 @@ class Group_controller extends CI_Controller {
     //   print_r($model); die;
       if($model){
        $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->chatimage."','".$model->currentUserID."','".$model->currentUser."')");
+       $insert_id = $this->db->insert_id();
+
+       $group_members=$this->db->query("select user_id from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  and  is_deleted='0'");
+       $group_members_array=$group_members->result_array(); 
+         foreach ($group_members_array as $key => $value) {
+           if($model->currentUserID!=$value['user_id']){
+             $this->db->query("insert into ".$this->db->dbprefix('msg_readorunread')." (msg_id,group_id,user_id,status) values ('".$insert_id."','".$model->g_id."','".$value['user_id']."',1)");
+           }
+           
+         }
       }
     
       
@@ -354,7 +374,7 @@ class Group_controller extends CI_Controller {
               }else{
                 $msg_value['user_name']=$res1[0]['username'];
               }
-
+              htmlspecialchars_decode(stripslashes($msg_value['message']));
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -453,7 +473,7 @@ class Group_controller extends CI_Controller {
               }else{
                 $msg_value['user_name']=$res1[0]['username'];
               }
-
+              htmlspecialchars_decode(stripslashes($msg_value['message']));
               $msg_value['message_link']=0;
               if(preg_match("/https:/", $msg_value['message']) || preg_match("/http:/",$msg_value['message'])){
                 $msg_value['message_link'] = 1;
@@ -644,7 +664,12 @@ public function getgroupsdetails(){
             $data=array();
            $ss=  array_map("unserialize", array_unique(array_map("serialize", $group_array)));
            foreach ($ss as $key => $value) {
-             $data[] =$value;
+            //  print_r($value); die;
+            $group_members_count=$this->db->query("select id from ".$this->db->dbprefix('msg_readorunread')." where group_id='". $value['id']."'  and  user_id='".$model->currentUserID."'");
+            $group_members_count1=$group_members_count->result_array();
+            $count = count($group_members_count1);
+            //  $data[] =$value;
+            $data[] = array('id'=>$value['id'],'group_name'=>$value['group_name'],'imagename'=>$value['imagename'],'channelgroup'=>$value['channelgroup'],'private_public'=>$value['private_public'],'group_code'=>$value['group_code'],'count_msg'=>$count);
            }
           //  print_r($ss); die;
             //   $group_sql=$this->db->query("select * from ".$this->db->dbprefix('group_master')." where created_by='". $model->currentUserID."' and private_public='2' and  is_deleted='0'");
@@ -985,7 +1010,14 @@ public function getgroupsdetails(){
         // $result=$this->db->query("update ".$this->db->dbprefix('all_message')." set message='".$model->msgupdate."' where id='".$model->id."'"); replymsgid
         
         $this->db->query("insert into ".$this->db->dbprefix('all_message')." (group_id,message,replyid,chatimage,created_by,user_name) values ('".$model->g_id."','".$model->replymsgupdate."','".$model->replymsgid."','','".$model->currentUserID."','".$model->currentUser."')");
-
+        $group_members=$this->db->query("select user_id from ".$this->db->dbprefix('group_members')." where group_id='". $model->g_id."'  and  is_deleted='0'");
+        $group_members_array=$group_members->result_array(); 
+          foreach ($group_members_array as $key => $value) {
+            if($model->currentUserID!=$value['user_id']){
+              $this->db->query("insert into ".$this->db->dbprefix('msg_readorunread')." (msg_id,group_id,user_id,status) values ('".$insert_id."','".$model->g_id."','".$value['user_id']."',1)");
+            }
+            
+          }
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
    }
