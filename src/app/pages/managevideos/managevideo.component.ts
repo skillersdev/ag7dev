@@ -28,6 +28,7 @@ export class ManagevideoComponent implements OnInit {
   currentUserStatus:any;
   currentAllUsers:any;
   model: any = {};
+  select:any;
   premiumModal:any={};
   alldata: any = {};
   videolist:Array<Object>;

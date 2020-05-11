@@ -10,6 +10,9 @@
     }
   }
 }
+body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-inputswitch-slider{
+    background-color: #3f681c !important;
+}
 </style>
 <app-topnav></app-topnav>
 <app-sidemenu></app-sidemenu> 
@@ -55,7 +58,7 @@
                                       <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>
-                                        <p-inputSwitch styleClass="ui-inputswitch-checked" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="buttonlist[idx].IsEnable" ></p-inputSwitch>
+                                        <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="buttonlist[idx].IsEnable" ></p-inputSwitch>
                                         <!-- <p-inputSwitch styleClass="ui-inputswitch-checked" *ngIf="data.Issection_show==0" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="data.IsEnable" ></p-inputSwitch> -->
                                         <!-- <ui-switch *ngIf="data.Issection_show==1" size="small" (change)="updatesectionData($event,data.id)" [checked]="false" checkedLabel="show"></ui-switch>
                                         <ui-switch *ngIf="data.Issection_show==0" size="small" (change)="updatesectionData($event,data.id)" checked uncheckedLabel="hide"></ui-switch> -->

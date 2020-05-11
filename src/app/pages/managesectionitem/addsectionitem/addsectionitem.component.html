@@ -20,6 +20,7 @@
                                     </div>
                                     <div class="body">
                                         <form class="" #addsectionitem="ngForm"> 
+                                            <div class="row clearfix">
                                              <div class="col-md-6">
                                                 <div class="form-group">
                                                  <label for="NameSurname" class="col-sm-2 control-label">Website</label>
@@ -139,21 +140,23 @@
                                                 </div>
                                        		 </div>
                                        		
-	                                            <div class="col-md-6"  *ngIf="model.media_type!=1">
-				                                      <p><b>Media Preview Image</b></p>                   
-				                                      <input type="file" (change)="getservicePreviewImage($event)" />
-				                                      <image-cropper
-				                                          [imageChangedEvent]="ServicePreviewimageChangedEvent"
-				                                          [maintainAspectRatio]="false"
-				                                          [aspectRatio]="4 / 3"
-				                                          format="png"
-				                                          (imageCropped)="PreviewimageCropped($event)"           
-				                                      ></image-cropper>
-				                                    <img [src]="previewcroppedImage" style="width:30%;"/>
-				                                </div>
-				                              
-	                                        <button type="submit" [disabled]="!addsectionitem.form.valid || (!alldata.IspreviewImage && model.media_type!=1)|| (!alldata.IspreviewImage && model.media_type==5)" class="btn btn-primary m-t-15 waves-effect" (click)="add_sectionItem()">Add Section</button>&nbsp;
-	                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                            <div class="col-md-6"  *ngIf="model.media_type!=1">
+                                                    <p><b>Media Preview Image</b></p>                   
+                                                    <input type="file" (change)="getservicePreviewImage($event)" />
+                                                    <image-cropper
+                                                        [imageChangedEvent]="ServicePreviewimageChangedEvent"
+                                                        [maintainAspectRatio]="false"
+                                                        [aspectRatio]="4 / 3"
+                                                        format="png"
+                                                        (imageCropped)="PreviewimageCropped($event)"           
+                                                    ></image-cropper>
+                                                <img [src]="previewcroppedImage" style="width:30%;"/>
+                                            </div>
+                                            <div class="col-md-12">
+	                                        <button type="submit" [disabled]="!addsectionitem.form.valid || (!alldata.IspreviewImage && model.media_type!=1)|| (!alldata.IspreviewImage && model.media_type==5)" class="btn btn-primary m-t-15 waves-effect" (click)="add_sectionItem()">Add Section Item</button>&nbsp;
+                                            &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                            </div>
+                                            </div>
                                     	</form>
                                     </div>
                                 </div>

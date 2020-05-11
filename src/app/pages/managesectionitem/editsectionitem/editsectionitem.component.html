@@ -20,6 +20,7 @@
                                     </div>
                                     <div class="body">
                                         <form class="" #addsectionitem="ngForm"> 
+                                            <div class="row clearfix">
                                              <div class="col-md-6">
                                                 <div class="form-group">
                                                  <label for="NameSurname" class="col-sm-2 control-label">Website</label>
@@ -163,8 +164,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-	                                        <button type="submit" [disabled]="!addsectionitem.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesectionitem()">Update Section</button>&nbsp;
-	                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                                <div class="col-md-12">
+                                                    <button type="submit" [disabled]="!addsectionitem.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesectionitem()">Update Section Item</button>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                                </div>
+                                                </div>
                                     	</form>
                                     </div>
                                 </div>

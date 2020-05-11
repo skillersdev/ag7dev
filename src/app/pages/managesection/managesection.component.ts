@@ -85,7 +85,13 @@ export class ManagesectionComponent implements OnInit {
           { 
             // this.advertisementlist=[];
             swal('Deleted!','Data has been deleted.','success');
-            this.ngOnInit();
+
+            this.CommonService.insertdata(AppSettings.GetsectionsList,this.model)
+            .subscribe(resultdata =>{   
+              this.sectionList=resultdata.result; 
+              this.buttonlist=resultdata.checkedresult; 
+            });
+            // this.ngOnInit();
            
           } 
 

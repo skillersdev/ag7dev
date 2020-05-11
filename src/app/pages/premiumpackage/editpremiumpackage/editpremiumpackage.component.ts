@@ -60,5 +60,8 @@ export class EditpremiumpackageComponent implements OnInit {
         }
      })
   }
+  back(){
+    this.router.navigate(['/premiumsettings']);
+  }
 
 }

@@ -42,4 +42,7 @@ export class AddpremiumpackageComponent implements OnInit {
         this.router.navigate(['/premiumsettings']); 
     });
   }
+  back(){
+    this.router.navigate(['/premiumsettings']);
+  }
 }

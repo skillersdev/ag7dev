@@ -15,6 +15,7 @@ class Section_controller extends CI_Controller {
 
         $model = json_decode($this->input->post('model',FALSE));
         
+        $model->Issection_show = 1;
         $this->db->insert('manage_section', $model);
 
         $section_id = $this->db->insert_id();
