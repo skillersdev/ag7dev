@@ -232,6 +232,7 @@ $route['mychatgroup'] = 'Group_controller/mychatgroup';
 $route['chatmsgdelete'] = 'Group_controller/chatmsgdelete';
 $route['chatmsgedit'] = 'Group_controller/chatmsgedit';
 $route['chatmsgupdate'] = 'Group_controller/chatmsgupdate';
+$route['chatmsgreply'] = 'Group_controller/chatmsgreply';
 $route['makegroupadmin'] = 'Group_controller/makegroupadmin';
 $route['groupuseraddreove'] = 'Group_controller/groupuseraddreove';
 $route['chatprofilesave'] = 'Group_controller/chatprofilesave';
