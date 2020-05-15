@@ -971,6 +971,22 @@ public function getgroupsdetails(){
         die();
    }
 
+   public function chatmsgcountdelete(){
+
+    $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"message deleted successfully");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        // print_r($model); die; 
+        $group_id=$this->db->query("DELETE FROM ".$this->db->dbprefix('msg_readorunread')."  WHERE group_id='".$model->g_id."' AND user_id='".$model->userid."'");
+        
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
+   }
+
+   
+
    public function chatmsgedit(){
 
     $this->output->set_content_type('application/json');
