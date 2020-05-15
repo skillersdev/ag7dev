@@ -150,9 +150,9 @@ export class ChatComponent implements OnInit {
         $('#messages').css('height', this.windowHeight);
         $("#messages").stop().animate({ scrollTop: $("#messages")[0].scrollHeight}, 1000);
     
-      // this.interval = setInterval(() => { 
-      //   this.getgrouplists();
-      // }, 15000);
+      this.interval = setInterval(() => { 
+        this.getgrouplists();
+      }, 20000);
 
     // this.selectedItems = [
     //   { Id: 3, username: 'Pune' },
@@ -368,7 +368,7 @@ export class ChatComponent implements OnInit {
               this.date_array_model = resultdata.date_array;
               this.Newgroupmodel.userselectedItems=resultdata.select_group_members;
               this.Newgroupmodel.groupmemlists=resultdata.select_group_members;
-              console.log(this.Newgroupmodel.groupmemlists,'this.Newgroupmodel.groupmemlists');
+              // console.log(this.Newgroupmodel.groupmemlists,'this.Newgroupmodel.groupmemlists');
               this.group_members_model=resultdata.group_members;
               this.group_profile_log_model=resultdata.group_profile_details; 
               this.Newgroupmodel.admin_normal=resultdata.admin_normal;
@@ -392,6 +392,11 @@ export class ChatComponent implements OnInit {
           }
           
         });
+
+        this.CommonService.insertdata(AppSettings.chatmsgcountdelete,{'userid':this.Newgroupmodel.currentUserID,'g_id':this.Newgroupmodel.g_id})
+        .subscribe(package_det =>{  
+        });
+
 
 
   }
