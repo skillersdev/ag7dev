@@ -299,6 +299,9 @@ export class PublicchatComponent implements OnInit {
          // }
           
         });
+        this.CommonService.insertdata(AppSettings.chatmsgcountdelete,{'userid':this.Newgroupmodel.currentUserID,'g_id':this.Newgroupmodel.g_id})
+        .subscribe(package_det =>{  
+        });
   }
   
   updategroup()

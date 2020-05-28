@@ -1052,13 +1052,14 @@
 							<!-- <div class="small last-message">+91 98232 37261:  yeah, i'm online</div> -->
 						</div>
 						<!-- channelgroup -->
+					
 						<div *ngIf="data.channelgroup==1" class="flex-grow-1 text-right"><div class="small time" style="margin-right: 10px;">C</div></div>
 						<div *ngIf="data.channelgroup==2" class="flex-grow-1 text-right"><div class="small time" style="margin-right: 10px;">G</div></div>
-						<div class="flex-grow-1 text-right" *ngIf="data.count_msg!=0">
+						<!-- <div class="flex-grow-1 text-right" *ngIf="data.count_msg!=0"> -->
 									<!-- <div class="small time">14/06/2019</div> -->
-									<div class="small time" id="unread-count">{{data.count_msg}}</div>
+									<div class="small time" *ngIf="data.count_msg!=0"  style="border-radius: 30%; font-size: 15px; color: #fff;text-align: center; background: rgb(26, 167, 26); width: 20px; height: 20px;" id="unread-count" id="unread-count">{{data.count_msg}}</div>
 									<!-- badge badge-success badge-pill small d-none -->
-								</div>
+								<!-- </div> -->
 					</div>
 
 				</div>
