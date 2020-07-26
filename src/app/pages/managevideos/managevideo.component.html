@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Manage Video
+                            {{'Manage' | translate}}{{'Video' | translate}}
                             <button type="button" (click)="navigateAddvideo()" class="btn btn-success waves-effect pull-right">Add Video</button>
                         </h2>
                     </div>
@@ -24,12 +24,12 @@
                             <table  class="table table-bordered table-striped table-hover dataTable videosdataTable" id="videosdataTable">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Title</th>
-                                        <th>preview_image</th>
-                                        <th>Description</th>
-                                        <th>created_date</th>
-                                        <th>Action</th>
+                                        <th>{{'Id' | translate}}</th>
+                                        <th>{{'Title' | translate}}</th>
+                                        <th>{{'preview' | translate}}{{'image' | translate}}</th>
+                                        <th>{{'Description' | translate}}</th>
+                                        <th>{{'created-date' | translate}}</th>
+                                        <th>{{'actions' | translate}}</th>
                                     </tr>
                                 </thead>
 
@@ -63,12 +63,12 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="largeModalLabel">Show Premium videos</h4>
+                                    <h4 class="modal-title" id="largeModalLabel">{{'Show Premium videos' | translate}}</h4>
                                 </div>
                                 <div class="modal-body">
                                     <form #addpackage="ngForm">
                                         <div class="col-md-6">
-                                            <p><b>Select Premium days</b></p> 
+                                            <p><b>{{'Select Premium days' | translate}}</b></p> 
                                             <select class="form-control show-tick" [(ngModel)]="premiumModal.premdays" #premdays="ngModel" name="premdays" (change)="showAmount($event.target.value)" id="pdays" required>
                                                 <option [ngValue]="select">select premium days</option>    
                                                 <option *ngFor="let model of premiumdays" value="{{model.premium_amount}}">{{model.premium_days}}</option>
@@ -76,13 +76,13 @@
                                             <span [hidden]="premdays.valid || premdays.pristine" class="text-danger">days is required</span>
                                         </div>
                                         <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
-                                            <p><b>Premium Amount</b></p>
+                                            <p><b>{{'Premium Amount' | translate}}</b></p>
                                             <span>
                                                 {{premiumModal.premiumamount}}
                                             </span>
                                         </div>
                                         <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
-                                            <p><b>User Name</b></p>
+                                            <p><b>{{'UserName' | translate}}</b></p>
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="premiumModal.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12" *ngIf="premiumModal.showpremiumamount">
-                                            <p><b>Password</b></p>
+                                            <p><b>{{'Password' | translate}}</b></p>
                                             <div class="form-group">
                                                 <div class="form-line">
                                                     <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="premiumModal.password" #password="ngModel" required>
@@ -110,8 +110,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <button type="button" class="btn btn-primary" (click)="savepremiumpck()" [disabled]="premiumModal.IsshowPremiumButton">Submit</button>
-                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                             <button type="button" class="btn btn-primary" (click)="savepremiumpck()" [disabled]="premiumModal.IsshowPremiumButton">{{'Submit Button Label' | translate}}</button>
+                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">{{'Close' | translate}}</button>
                                         </div>
                                     </form>
                                 </div>

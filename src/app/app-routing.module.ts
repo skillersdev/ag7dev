@@ -96,6 +96,7 @@ import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpac
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
 import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumtransaction.component';
+import { NearbyComponent } from './pages/nearby/nearby.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -464,6 +465,9 @@ component:EditmallproductComponent
   },{
     path:'premiumtransactiondetails',
     component:PremiumtransactionComponent
+  },{
+    path:'nearby',
+    component:NearbyComponent
   }
 
 ];

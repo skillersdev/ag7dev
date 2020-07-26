@@ -15,8 +15,8 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Manage Template slider
-                            <button type="button" (click)="navigateAddtemplate()" class="btn btn-success waves-effect pull-right">Add Template Slider</button>
+                            {{'Manage-template-slider' | translate}}
+                            <button type="button" (click)="navigateAddtemplate()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'template' | translate}} {{'Slider' | translate}}</button>
                         </h2>
                     </div>
                     <div class="body">
@@ -24,11 +24,11 @@
                             <table class="table table-bordered table-striped table-hover dataTable templateslider" id="templateslider"> 
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Template Name</th>
-                                        <th>Created By</th>
-                                        <th>Created Date</th>
-                                        <th>Action</th>
+                                        <th>{{'Id' | translate}}</th>
+                                        <th>{{'template' | translate}} {{'Name' | translate}}</th>
+                                        <th>{{'created-by' | translate}}</th>
+                                        <th>{{'created-date' | translate}}</th>
+                                        <th>{{'actions' | translate}}</th>
 
                                     </tr>
                                 </thead>

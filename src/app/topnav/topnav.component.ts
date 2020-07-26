@@ -3,6 +3,7 @@ import { CommonService } from '../services/common.service';
 import { Routes,Router,RouterModule}  from '@angular/router';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var jquery:any;
 declare var $ :any;
@@ -13,8 +14,9 @@ declare var $ :any;
 })
 export class TopnavComponent implements OnInit {
   checkpackageisactivated:string = AppSettings.packageisactivated;
-  constructor(private CommonService: CommonService,private router: Router,private loginService: LoginService) {
-
+  constructor(private CommonService: CommonService,private router: Router,private loginService: LoginService,public translate: TranslateService) {
+    // translate.addLangs(['en', 'nl']);
+    //translate.setDefaultLang('');
    }
 
   ngOnInit() {
@@ -35,7 +37,9 @@ export class TopnavComponent implements OnInit {
     // let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     // this.loadScript(translate_url);
   }
-
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
    public loadScript(url) {
     console.log('preparing to load...')
     let node = document.createElement('script');

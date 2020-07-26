@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Product
+                            {{'Add' | translate}} {{'Product' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -24,7 +24,7 @@
                                         <form class="" #addproduct="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6"  *ngIf="(malltypeid==null) || (malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
-                                                <p><b>Select Mall</b></p>
+                                                <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.mall_id" (change)="getfloorlists()" #mall_id="ngModel" name="mall_id" required>
@@ -36,7 +36,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6" *ngIf="(malltypeid==null) || (malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
-                                                <p><b>Select Floor</b></p>
+                                                <p><b>{{'Floor' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.floor_id" (change)="getshoplists()" #floor_id="ngModel" name="floor_id" required>
@@ -48,7 +48,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6" *ngIf="(malltypeid==null) || (malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
-                                                <p><b>Select Shop</b></p>
+                                                <p><b>{{'Shop' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.shop_id" #shop_id="ngModel" name="shop_id" required>
@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Product Name</b></p>
+                                                <p><b>{{'Product' | translate}}{{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.product_name" name="product_name" #product_name="ngModel" required>
@@ -69,7 +69,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Paypal Email</b></p>
+                                                <p><b>{{'Paypal Email' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter Paypal Email" [(ngModel)]="model.paypal_email" name="paypal_email" #paypal_email="ngModel" required>
@@ -79,25 +79,16 @@
                                             </div>
                                            
                                             <div class="col-md-6">
-                                                <b>Image</b>
+                                                <b>{{'image' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
                                                     </div>
                                                      
                                                 </div>
-                                            </div>
-                                           <!--  <div class="col-md-6">
-                                                    <b>Banner</b>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="file"  name="banner" id="banner"  (change)="banneronSelectFile($event)" class="btn btn-primary disabledsave" name="banner" >
-                                                        </div>
-                                                         
-                                                    </div>
-                                                </div> -->
+                                            </div>                                         
                                                 <div class="col-md-6">
-                                                        <b>Description</b>
+                                                        <b>{{'Description' | translate}}</b>
                                                         <div class="form-group">
                                                             <div class="form-line">
                                                                     <input type="text" class="form-control" placeholder="Enter Description" [(ngModel)]="model.description" name="description" #description="ngModel">
@@ -108,8 +99,8 @@
                                             
 
                                         </div>       
-                                        <button type="submit" [disabled]="!addproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproductlist()">Add product</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="submit" [disabled]="!addproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproductlist()">{{'Add' | translate}} {{'Product' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

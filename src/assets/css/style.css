@@ -9438,4 +9438,8 @@ header .intro-text form input[type="submit"]{ width:100%;margin:0px 2px;}
     from, to { border-color: transparent !important}
     50% { border-color: orange !important}
   }
+  .lang-div{
+    height:auto !important;
+    margin-bottom: 0 !important;
+  }
 

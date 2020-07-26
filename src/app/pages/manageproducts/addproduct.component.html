@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Product
+                            {{'Add' | translate}} {{'Product' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -24,7 +24,7 @@
                                         <form #adddproduct="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Category</b></p>
+                                                <p><b>{{'Category' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                          <select class="form-control show-tick" [(ngModel)]="model.category_id" #category_id="ngModel" name="category_id" (change)="getsubcategory($event.target.value)" required>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="row clearfix">
                                                 <div class="col-md-6">
-                                                    <p><b>SubCategory</b></p>
+                                                    <p><b>{{'SubCategory' | translate}}</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <select class="form-control show-tick" [(ngModel)]="model.sub_category_id" #sub_category_id="ngModel" name="sub_category_id" required>
@@ -52,7 +52,7 @@
                                             </div>     
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Product Name</b></p>
+                                                <p><b>{{'Product' | translate}}{{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter Product" [(ngModel)]="model.product_name" #product_name="ngModel" name="product_name" required>
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Product Price</b></p>
+                                                <p><b>{{'Product Price' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="number" class="form-control" [(ngModel)]="model.price" #price="ngModel" name="price" required>     
@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Currency Type</b></p>
+                                                <p><b>{{'Currency Type' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.currency" #currency="ngModel" name="currency" required>
@@ -165,7 +165,7 @@
                                         </div>  
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Select Website</b></p>
+                                                <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
@@ -177,7 +177,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Prodcut Image</b></p>
+                                                <p><b>{{'Product Image' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                        <!--   <input name="file" type="file" (change)=fileEvent($event) [(ngModel)]="model.product_image" #product_image="ngModel" name="product_image" required/> 
@@ -197,7 +197,7 @@
                                         </div> 
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Short Description</b></p>
+                                                <p><b>{{'Short Description' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">                                                      
                                                     <textarea id="tinymce" [(ngModel)]="model.short_desc" #short_desc="ngModel" name="short_desc">
@@ -207,7 +207,7 @@
                                                 </div>
                                              </div>
                                             <div class="col-md-6">
-                                                <p><b>Description</b></p>
+                                                <p><b>{{'Description' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">                                                      
                                                     <textarea id="tinymce" [(ngModel)]="model.long_desc" #desc="ngModel" name="desc">
@@ -219,8 +219,8 @@
                                         </div> 
                                             
                                                                     
-                                        <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproduct()">Add Product</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproduct()"> {{'Add' | translate}} {{'Product' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <!-- Hover Zoom Effect -->
             <div class="block-header">
-                <h2>DASHBOARD</h2>
+                <h2>{{'User Dashboard Label' | translate}}</h2>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -16,7 +16,7 @@
                                 <i class="material-icons">dashboard</i>
                             </div>
                             <div class="content"> 
-                                <h5>Dashboard</h5>
+                                <h5>{{'User Dashboard Label' | translate}}</h5>
                                 <!-- <div class="number">15</div> -->
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                     <i class="material-icons">supervisor_account</i>
                                 </div>
                                 <div class="content">
-                                    <h5>Manage Marketers</h5>
+                                    <h5>{{'Manage Marketers' | translate}}</h5>
                                     <!-- <div class="number">15</div> -->
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <i class="material-icons">devices</i>
                         </div>
                         <div class="content">
-                            <h5>Buy more services</h5>
+                            <h5>{{'Buy More Services' | translate}}</h5>
                             <!-- <div class="number">2</div> -->
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                             <i class="material-icons">fingerprint</i>
                         </div>
                         <div class="content">
-                            <h5>Account Info</h5>
+                            <h5>{{'Account Info' | translate}}</h5>
                             
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                             <i class="material-icons">account_circle</i>
                         </div>
                         <div class="content">
-                            <h5>Profile</h5>
+                            <h5>{{'Profile' | translate}}</h5>
                             
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             <i class="material-icons">list</i>
                         </div>
                         <div class="content">
-                            <h5>Manage Products</h5>
+                            <h5>{{'Manage' | translate}} {{'Product' | translate}}</h5>
                         </div>
                     </div>
                     </a>
@@ -110,7 +110,7 @@
                             <i class="material-icons">contacts</i>
                         </div>
                         <div class="content">
-                            <h5>Manage Contacts</h5>
+                            <h5>{{'Manage' | translate}} {{'Contact' | translate}}</h5>
                         </div>
                     </div>
                     </a>
@@ -123,7 +123,7 @@
                                 <i class="material-icons">developer_board</i>
                             </div>
                             <div class="content">
-                                <h5>Manage Services</h5>
+                                <h5>{{'Manage' | translate}} {{'Services' | translate}}</h5>
                             </div>
                         </div>
                         </a>
@@ -136,27 +136,12 @@
                                 <i class="material-icons">chat</i>
                             </div>
                             <div class="content">
-                                <h5>Chat</h5>
+                                <h5>{{'Chat' | translate}}</h5>
                             </div>
                         </div>
                         </a>
                     </div>
 
-
-                   <!--  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a href="javascript:void(0);">
-                        <div class="info-box-3 bg-light-green hover-zoom-effect">
-                            <div class="icon">
-                               {{tamount}}
-                            </div>
-                            <div class="content">
-                                <h5>Total Amount</h5>
-                            </div>
-                        </div>
-                        </a>
-                    </div> -->
-
-                    
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <a href="javascript:void(0);"  data-toggle="modal" data-target="#myModalchangelanguage">
                         <div class="info-box-3 bg-orange hover-zoom-effect">
@@ -164,7 +149,7 @@
                                 <i class="material-icons">language</i>
                             </div>
                             <div class="content">
-                                <h5>Change Language</h5>
+                                <h5>{{'Change Language' | translate}}</h5>
                             </div>
                         </div>
                         </a>
@@ -179,7 +164,7 @@
                                     <i class="material-icons">power_settings_new</i>
                                 </div>
                                 <div class="content">
-                                    <h5>Logout</h5>
+                                    <h5>{{'Logout' | translate}}</h5>
                                 </div>
                             </div>
                             </a>
@@ -316,12 +301,12 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>Share Balance to Marketer</h2>
+                            <h2>{{'Dashboard Share Balance to Marketer' | translate}}</h2>
                             <span>(to share the balance, you should have more than RV 1)</span>
                         </div>
                         <div class="body">
                             <div>
-                                <label for="NameSurname" class="col-sm-4 control-label">Total Available balance amount</label>
+                                <label for="NameSurname" class="col-sm-4 control-label">{{'Total Available balance amount'| translate}}</label>
                                 <div class="col-sm-2">
                                     <span class="label bg-orange"> {{model.tot_amt}} </span>
                                 </div>
@@ -329,7 +314,7 @@
                             <br/>
                             <form name="transferform" #transfer=ngForm>
                                 <div class="form-group ">
-                                    <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
                                             <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
@@ -340,7 +325,7 @@
                                             </span>                                        
                                         </div>
                                     </div>
-                                    <label for="NameSurname" class="col-sm-2 control-label">Amount to Share</label>
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Amount to share Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
                                             <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (keypress)="restrictNumbers($event)" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
@@ -351,7 +336,7 @@
                                         </div>                                        
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount('1')" class="btn btn-success">Transfer</button>
+                                        <button type="submit" [disabled]="!transfer.form.valid" (click)="transferamount('1')" class="btn btn-success">{{'Transfer Button Label' | translate}}</button>
                                         <div class="preloader loader-2 pl-size-xs" style="display:none;">
                                             <div class="spinner-layer pl-red-grey">
                                                 <div class="circle-clipper left">
@@ -371,12 +356,12 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>E-Learning Voucher</h2>
+                            <h2>{{'E-Learning Voucher' | translate}}</h2>
                             <span>(to share the balance, you should have more than RV 1)</span>
                         </div>
                         <div class="body">
                             <div>
-                                <label for="NameSurname" class="col-sm-4 control-label">Total Available voucher amount</label>
+                                <label for="NameSurname" class="col-sm-4 control-label">{{'Total Available voucher amount'| translate}}</label>
                                 <div class="col-sm-2">
                                     <span class="label bg-orange"> {{model.e_amt}} </span>
                                 </div>
@@ -384,7 +369,7 @@
                             <br/>
                             <form name="elearningform" #elearning=ngForm>
                                 <div class="form-group ">
-                                    <label for="NameSurname" class="col-sm-2 control-label">Marketer Name</label>
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
                                             <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="elearningmodel.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
@@ -395,7 +380,7 @@
                                             </span>                                        
                                         </div>
                                     </div>
-                                    <label for="NameSurname" class="col-sm-2 control-label">Voucher to Share</label>
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Voucher to Share'|translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
                                             <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="Enter Amount to share" (keypress)="restrictNumbers($event)" value="" required>
@@ -426,7 +411,7 @@
 
                     <div class="card">                                             
                         <div class="header">
-                            <h2>WEBSITE INFO</h2>
+                            <h2>{{'WEBSITE INFO'|translate}}</h2>
                             
                         </div>
                         <div class="body">
@@ -435,9 +420,9 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Package Name</th>
-                                            <th>Status</th>
-                                            <th>Website Link</th>
+                                            <th>{{'Package Name' | translate}}</th>
+                                            <th>{{'Status' | translate}}</th>
+                                            <th>{{'Website link' | translate}}</th>
                                             
                                         </tr>
                                     </thead>

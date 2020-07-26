@@ -8,7 +8,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Package Info
+                        <h2>{{'Package Info' | translate}}
                         </h2>
                         <span class="col-red">(* Activate your website from any Roodab Worldwide Area Center)</span>
                     </div>
@@ -18,7 +18,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Package Activation</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Package' | translate}}{{'Activation' | translate}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -26,7 +26,7 @@
                                     <div class="modal-body">
                                         <form class="" #addpackage="ngForm">
                                             <div class="">
-                                                <p><b>Package Name</b></p>
+                                                <p><b>{{'Package Name' | translate}}</b></p>
                                                 <div class="form-group"> 
                                                     <div class="form-line">
                                                         <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
@@ -35,7 +35,7 @@
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <p><b>Package price</b></p>
+                                                <p><b>{{'Package Price' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
@@ -44,7 +44,7 @@
                                                 </div>
                                             </div>
                                             <div class="" *ngIf="model.pck_type==1">
-                                                <p><b>Website Name</b></p>
+                                                <p><b>{{'website-name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line" *ngIf="checkIswebsite">
                                                         <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website"  #website="ngModel" 
@@ -58,7 +58,7 @@
                                             </div>
                                             <!--e learing code starts here-->
                                             <div class="" *ngIf="model.pck_type==2">
-                                                <p><b> Create E-learning Login</b></p>
+                                                <p><b> {{'Create'|translate}} {{'E-learning'|translate}}{{'Login' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="eusername" name="eusername" class="form-control" placeholder="Enter E-learning Username " [(ngModel)]="model.eusername" 
@@ -73,15 +73,15 @@
                                             </div>
                                             <!--e learning code ends here-->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">Pay with paypal</button>
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">Pay with voucher</button>
+                                                <button type="button" class="btn btn-primary">{{'Pay' | translate}}{{'with' | translate}}{{'paypal' | translate}}</button>
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">{{'Pay' | translate}}{{'with' | translate}}{{'Voucher' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="">
                                         <form *ngIf="payment_details" class="" #voucher="ngForm">
                                             <div class="col-md-12">
-                                                <p><b>User Name</b></p>
+                                                <p><b>{{'UserName' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event,'1')" #user_name="ngModel" required>
@@ -90,7 +90,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <p><b>Password</b></p>
+                                                <p><b>{{'Password' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
@@ -109,8 +109,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button type="button" [disabled]="!voucher.form.valid || isPaid" class="btn btn-primary" (click)="paytoactivate()">Pay</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                                <button type="button" [disabled]="!voucher.form.valid || isPaid" class="btn btn-primary" (click)="paytoactivate()">{{'Pay' | translate}}</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">{{'Cancel' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -121,7 +121,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Package Renew</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Package' |translate}} {{'Renew' | translate}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -129,7 +129,7 @@
                                     <div class="modal-body">
                                         <form class="" #addpackage="ngForm">
                                             <div class="">
-                                                <p><b>Package Name</b></p>
+                                                <p><b>{{'Package Name' |translate}}</b></p>
                                                 <div class="form-group"> 
                                                     <div class="form-line">
                                                         <input type="text" id="package_name " name="package_name" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
@@ -138,7 +138,7 @@
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <p><b>Package price</b></p>
+                                                <p><b>{{'Package Price' |translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
@@ -147,7 +147,7 @@
                                                 </div>
                                             </div>
                                             <div class="" *ngIf="model.pck_type==1">
-                                                <p><b>Website Name</b></p>
+                                                <p><b>{{'website-name' |translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
@@ -158,20 +158,16 @@
                                                 </div>
                                             </div>
 
-
-
-
-
                                             <div class="modal-footer">
                                                <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">Pay with voucher</button>
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">{{'Pay via voucher' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="">
                                         <form *ngIf="!renew_payment_details" class="" #renew_voucher="ngForm">
                                             <div class="col-md-12">
-                                                <p><b>User Name</b></p>
+                                                <p><b>{{'UserName' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
@@ -180,7 +176,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <p><b>Password</b></p>
+                                                <p><b>{{'Password' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
@@ -189,8 +185,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" [disabled]="!renew_voucher.form.valid" class="btn btn-primary" (click)="paytorenew()">Pay</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                                <button type="button" [disabled]="!renew_voucher.form.valid" class="btn btn-primary" (click)="paytorenew()">{{'Pay' | translate}}</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">{{'Cancel' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -204,7 +200,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Change Template</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Change Template' | translate}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -212,7 +208,7 @@
                                     <div class="modal-body">
                                         <form class="" #addpackage="ngForm">
                                             <div class="">
-                                                <p><b>Package Name</b></p>
+                                                <p><b>{{'Package Name' | translate}}</b></p>
                                                 <div class="form-group"> 
                                                     <div class="form-line">
                                                         <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel"  [readonly]="true">
@@ -222,7 +218,7 @@
                                             </div>
                                             
                                             <div class="">
-                                                <p><b>Website Name</b></p>
+                                                <p><b>{{'website-name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
@@ -234,7 +230,7 @@
                                             </div>
 
                                             <div class="">
-                                                <p><b>Change Template</b></p>
+                                                <p><b>{{'Change Template' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.template" #template="ngModel" name="template" required>
@@ -254,7 +250,7 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="updatetemplate()" class="btn btn-primary">Change Template</button>
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="updatetemplate()" class="btn btn-primary">{{'Change Template' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -268,40 +264,40 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Website link</th>
-                                        <th>Change Template</th>
-                                        <th>Action</th>
-                                        <th>Package Taken</th>
-                                        <th>Marketer</th>
-                                        <th>Expired</th>
-                                        <th>Delivered Date</th>
-                                        <th>Status</th>
-                                        <th *ngIf="model.usergroup!=2">Actions</th>
+                                        <th>{{'Website link' | translate}}</th>
+                                        <th>{{'Change Template' | translate}}</th>
+                                        <th>{{'actions' | translate}}</th>
+                                        <th>{{'Package' | translate}}{{'Taken' | translate}}</th>
+                                        <th>{{'Marketers' | translate}}</th>
+                                        <th>{{'Expired' | translate}}</th>
+                                        <th>{{'delivery date' | translate}}</th>
+                                        <th>{{'Status' | translate}}</th>
+                                        <th *ngIf="model.usergroup!=2">{{'actions' | translate}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
-                                          <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">website</a></td>
+                                          <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">{{'website' | translate}}</a></td>
                                         <td>
                                             <a *ngIf="data.pck_type==1" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#ctemplateModal">
-                                            <span>Change Template</span>
+                                            <span>{{'Change Template' | translate}}</span>
                                         </a>
                                         <!-- && data.elearn_usert_status==0 -->
                                         <a *ngIf="data.pck_type==2  && data.elearn_usert_status==0" href="javascript:void(0);" (click)="openInstructorModal(data.package_price,data.elearn_user_id,data.pck_id,data.pck_user_master_id,data.pck_type)" data-toggle="modal">
                                                 <button type="button" class="btn bg-red waves-effect">Become A Instructor</button>
                                         </a>
                                         <!-- && data.elearn_usert_status==1 -->
-                                        <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">Instructor</span>
+                                        <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">{{'Instructor' | translate}}</span>
                                     </td>
                                         
                                         <td>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#renewModal">
-                                            <span *ngIf="data.status=='Renewal'">Renew</span>
+                                            <span *ngIf="data.status=='Renewal'">{{'Renew' | translate}}</span>
                                         </a>
-                                            <span *ngIf="data.status=='Active'">Activated</span>
+                                            <span *ngIf="data.status=='Active'">{{'Activated' | translate}}</span>
                                             <a href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#exampleModal">
-                                                <span *ngIf="data.status=='Inactivate'">Yet to activate</span>
+                                                <span *ngIf="data.status=='Inactivate'">{{'Yet to' | translate}} {{'Activated' | translate}}</span>
                                             </a>
                                            <!--  <a href="#" data-toggle="modal" data-target="#templatesetting"><i class="material-icons">settings</i></a> -->
                                         </td>
@@ -336,7 +332,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Package Activation</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Package' | translate}} {{'Activation' | translate}}</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -344,7 +340,7 @@
                                     <div class="modal-body">
                                         <form class="" #addpackaged="ngForm">
                                             <div class="">
-                                                <p><b>Website Name</b></p>
+                                                <p><b>{{'website-name' | translate}}</b></p>
                                                 <div class="form-group">                            
                                                     <div class="form-line">
                                                         <input type="text" id="Rwebsite" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="Rmodel.website" (blur)="checkwebsite()" #Rwebsite="ngModel" required="">
@@ -353,7 +349,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" (click)="activateweb()" [disabled]="!addpackaged.form.valid">Activate website
+                                                <button type="button" class="btn btn-primary" (click)="activateweb()" [disabled]="!addpackaged.form.valid">{{'Activate' | translate}} {{'Website' | translate}}
                                                 </button>                                               
                                             </div>
                                         </form>
@@ -379,13 +375,13 @@
                                                 </span>
                                             </div>
                                             <div>
-                                                <button type="button" class="btn btn-primary" (click)="activateVoucher()">Pay voucher
+                                                <button type="button" class="btn btn-primary" (click)="activateVoucher()">{{'Pay' | translate}} {{'Voucher' | translate}}
                                                     </button>         
                                             </div>
                                             <div>
                                                 <form  class="" #InstructorModalForm="ngForm" *ngIf="instructorModal.showVoucherform">
                                                     <div class="col-md-12">
-                                                        <p><b>User Name</b></p>
+                                                        <p><b>{{'UserName' | translate}}</b></p>
                                                         <div class="form-group">
                                                             <div class="form-line">
                                                                 <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="instructorModal.username" (blur)="checkUserexist($event,'2')" #user_name="ngModel" required>
@@ -394,7 +390,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <p><b>Password</b></p>
+                                                        <p><b>{{'Password' | translate}}</b></p>
                                                         <div class="form-group">
                                                             <div class="form-line">
                                                                 <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="instructorModal.password" #password="ngModel" required>
@@ -403,8 +399,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" [disabled]="!InstructorModalForm.form.valid" class="btn btn-primary" (click)="activateInstructor()">Activate</button>
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                                        <button type="button" [disabled]="!InstructorModalForm.form.valid" class="btn btn-primary" (click)="activateInstructor()">{{'Activate' | translate}}</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">{{'Cancel' | translate}}</button>
                                                     </div>
                                                 </form>
                                             </div>    

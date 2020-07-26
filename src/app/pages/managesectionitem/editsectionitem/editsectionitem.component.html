@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Edit Section Item
+                            {{'Edit' | translate}}{{'Section Item' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -23,7 +23,7 @@
                                             <div class="row clearfix">
                                              <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">Website</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Website' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                          <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required (change)="getsection($event.target.value)">
@@ -37,7 +37,7 @@
                                             </div>                                           
                                               <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">Section Name</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Section Name' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                          <select class="form-control show-tick" [(ngModel)]="model.section" #section="ngModel" name="section" required>
@@ -50,7 +50,7 @@
                                                 </div>
                                             </div> 
                                              <div class="col-md-6">
-                                                <p><b>Upload type</b></p>
+                                                <p><b>{{'Upload type' | translate}}</b></p>
                                                 <div class="form-group">   
                                                     <div class="form-line">
                                                        <select class="form-control show-tick" [(ngModel)]="model.media_type" #media_type="ngModel" name="media_type"  required> 
@@ -75,7 +75,7 @@
 			                                    </div>
                                                 </div>
                                                 <div class="col-md-6" *ngIf="model.media_type==1">
-	                                                <p><b>Service Image</b></p>
+	                                                <p><b>{{'Service Image' | translate}}</b></p>
 	                                                <div class="form-group">
 	                                                    <div class="form-line">
 	                                                         <input type="file" (change)="getserviceImage($event)" />
@@ -92,7 +92,7 @@
                                                     <img src="{{image_url}}{{model.file_name}}" style="width:20%;"> 
                                                </div>
                                                <div class="col-md-6" *ngIf="model.media_type==2">
-                                                <p><b>Upload Video</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'Video' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=getVideodet($event) required>   
@@ -101,7 +101,7 @@
                                                 </div>
                                             </div> 
                                              <div class="col-md-6" *ngIf="model.media_type==5">
-                                                <p><b>Upload Audio</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'audio' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=getAudiodet($event) required>   
@@ -109,7 +109,7 @@
                                                 </div>
                                             </div>
                                              <div class="col-md-6" *ngIf="model.media_type==3 || model.media_type==4">
-                                                <p><b>Upload Doc/Pdf</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'doc' | translate}}/{{'pdf' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=getDocOrPdf($event) required>   
@@ -117,7 +117,7 @@
                                                 </div>
                                             </div>
                                        		 <div class="col-md-6">
-                                                <p><b>Title</b></p>
+                                                <p><b>{{'Title' | translate}}</b></p>
                                                 <div class="form-group">   
                                                     <div class="form-line">
                                                        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="model.title"  #title="ngModel" placeholder="Title" required>
@@ -125,7 +125,7 @@
                                                 </div>
                                        		 </div>
                                        		  <div class="col-md-6">
-                                                <p><b>Website link</b></p>
+                                                <p><b>{{'Website link' | translate}}</b></p>
                                                 <div class="form-group">   
                                                     <div class="form-line">
                                                        <input type="text" class="form-control" id="website_link" name="website_link" [(ngModel)]="model.website_link"  #website_link="ngModel" placeholder="Weblink" required>
@@ -133,7 +133,7 @@
                                                 </div>
                                        		 </div>
                                        		  <div class="col-md-6">
-                                                <p><b>Description</b></p>
+                                                <p><b>{{'Description' | translate}}</b></p>
                                                 <div class="form-group">   
                                                     <div class="form-line">
                                                        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="model.description"  #description="ngModel" placeholder="Description" required>
@@ -142,7 +142,7 @@
                                        		 </div>
                                        		
 	                                            <div class="col-md-6"  *ngIf="model.media_type!=1">
-				                                      <p><b>Media Preview Image</b></p>                   
+				                                      <p><b>{{'mdeia' | translate}}{{'preview' | translate}} {{'image' | translate}}</b></p>                   
 				                                      <input type="file" (change)="getservicePreviewImage($event)" />
 				                                      <image-cropper
 				                                          [imageChangedEvent]="ServicePreviewimageChangedEvent"
@@ -165,8 +165,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <button type="submit" [disabled]="!addsectionitem.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesectionitem()">Update Section Item</button>&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                                    <button type="submit" [disabled]="!addsectionitem.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesectionitem()">{{'Update' | translate}}{{'Section Item' | translate}}</button>&nbsp;
+                                                    &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                                 </div>
                                                 </div>
                                     	</form>

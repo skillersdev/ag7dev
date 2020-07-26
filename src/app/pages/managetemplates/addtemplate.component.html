@@ -15,14 +15,14 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Template Slider
+                            {{'Add' | translate}} {{'template' | translate}} {{'Slider' | translate}}
                         </h2>
                     </div>
                     <div class="body">
                         <form class="" #registerForm="ngForm">
                             <div class="row clearfix">
                                 <div class="col-md-6">
-                                    <p><b>Select Website</b></p>
+                                    <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="url" required>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                   <p><b>Upload Image</b></p>
+                                   <p><b> {{'Upload' | translate}} {{'image' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <!-- <input type="file" name="adimage" (change)=fileEvent($event) required>    -->
@@ -65,8 +65,8 @@
                             </div>
                             
                         </form>
-                        <button type="submit" [disabled]="!registerForm.form.valid || !showbutton || !Iserror" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">Add Template Slider</button>&nbsp; &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
+                        <button type="submit" [disabled]="!registerForm.form.valid || !showbutton || !Iserror" class="btn btn-primary m-t-15 waves-effect" (click)="addtemplate()">{{'Add' | translate}} {{'template' | translate}} {{'Slider' | translate}}</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">{{'Cancel' | translate}}</button>
                     </div>
                 </div>
             </div>

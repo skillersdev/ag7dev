@@ -7,98 +7,103 @@
 <header id="home">
   <div class="container">
     <div class="intro-text">
-      <p class="intro-heading">Welcome to Roodabatoz</p>
-      <h1 class="intro-lead-in" >Search & Create Website</h1>
+      <p class="intro-heading">{{'welcome text'| translate}}</p>
+      <h1 class="intro-lead-in" >{{'Search Text'| translate}}</h1>
       <form id="signsignup_up" #signup="ngForm">
-        <input type="text" placeholder="Search Website" [(ngModel)]="model.website" #website="ngModel" name="website"  required>
+        <input type="text" placeholder="{{'search website'|translate}}" [(ngModel)]="model.website" #website="ngModel" name="website"  required>
         <div *ngIf="website.errors && (website.dirty || website.touched)">
         <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
       </div>
-        <input type="submit" value="Search & Create" (click)="checkwebsite()" [disabled]="!signup.form.valid">
+        <input type="submit" value="{{'Search & Create' | translate}}" (click)="checkwebsite()" [disabled]="!signup.form.valid">
 		<p class="intro-heading" style="text-align: center !important;">OR</p>
-    <input type="submit" value="Login To Your Website" (click)="navigatetologin()">
+    <input type="submit" value="{{'Login To Your Website'| translate}}" (click)="navigatetologin()">
     <p class="intro-heading" style="text-align: center !important;">OR</p>
-    <input type="submit" value="Create Website" (click)="navigatetosignup()">
+    <input type="submit" value="{{'Create Website'|translate}}" (click)="navigatetosignup()">
 	  </form>
 
-
-
-     <!-- language code-->
-            <!-- <div class="row" style="margin-top: 19px;">  
-                    <div class="col-xs-6" style="text-align: right;margin-top: 13px;">Change Language:</div>
-                    <div class="col-xs-3">
-                        <div id="google_translate_element" class="form-group"></div>
-                    </div>
+    <div data-target="#myModalchangelanguage1" data-toggle="modal" id="floatingRectangle">{{'Change Language'|translate}}</div>
+          <style>
+            #floatingRectangle {
+                z-index: 9999;
+                width: 165px;
+                height: 28px;
+                position: fixed;
+                /* left: 0; */
+                right: 10px;
+                bottom: 0px;
+                cursor: pointer;
+                /* top: 0; */
+                background-color: #f16528;
+                color: white;
+                padding: 3px;
         
-                   <script type="text/javascript">
-          function googleTranslateElementInit() {
-          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-              
-          }
-          
-      </script>
-      <style>
-          .goog-logo-link{
-          display:none;
-          }
-          .skiptranslate{color:white !important;}
-          .goog-te-combo{ 
-              color: #666 !important;
-              display: block !important;
-              width: 100% !important;
-              height: 34px !important;
-              padding: 6px 12px !important;
-              font-size: 14px !important;
-              line-height: 1.42857143 !important;
-              background-color: #fff !important;
-              background-image: none !important;
-              border: 1px solid #ccc !important;
-              border-radius: 4px !important;
-              }
-          .goog-te-banner-frame{visibility:hidden !important;}
-          
-          .goog-tooltip skiptranslate {visibility: hidden !important}
-      </style>
-                </div> -->
-                <!-- language code ends here -->
-
-                <style>
-                  #floatingRectangle {
-                      z-index: 9999;
-                      width: 165px;
-                      height: 28px;
-                      position: fixed;
-                      /* left: 0; */
-                      right: 10px;
-                      bottom: 0px;
-                      cursor: pointer;
-                      /* top: 0; */
-                      background-color: #f16528;
-                      color: white;
-                      padding: 3px;
-              
-                  }
-              </style>
-
-                <div id="floatingRectangle" data-toggle="modal" data-target="#myModalchangelanguage">
-                  Change Language
-              </div>
-
+            }
+        </style>
     </div>
     
+  </div>
+
+  <div id="myModalchangelanguage1" class="modal fade" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">         
+        <div class="modal-body">
+            <!-- language code-->
+          <div class="row" style="margin-top: 19px;">  
+              <div class="col-xs-6" style="text-align: right;margin-top: 13px;">{{'Change Language'| translate}}</div>
+              <div class="col-xs-6">
+                <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+                  <option *ngFor="let language of translate.getLangs()" [value]="language"
+                    [selected]="language === translate.currentLang">
+                    {{ language }}
+                  </option>
+                </select>
+              </div>
+            <style>
+                .goog-logo-link{
+                display:none;
+                }
+                .skiptranslate{color:white !important;}
+                .goog-te-combo{ 
+                    color: #666 !important;
+                    display: block !important;
+                    
+                    height: 34px !important;
+                    padding: 6px 12px !important;
+                    font-size: 14px !important;
+                    line-height: 1.42857143 !important;
+                    background-color: #fff !important;
+                    background-image: none !important;
+                    border: 1px solid #ccc !important;
+                    border-radius: 4px !important;
+                    }
+                .goog-te-banner-frame{visibility:hidden !important;}
+                
+                .goog-tooltip skiptranslate {visibility: hidden !important}
+  
+                .goog-tooltip {
+                    display: none !important;
+                }
+                .goog-tooltip:hover {
+                    display: none !important;
+                }
+                .goog-text-highlight {
+                    background-color: transparent !important;
+                    border: none !important; 
+                    box-shadow: none !important;
+                }
+                .goog-te-balloon-frame { display: none; }
+  
+            </style>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
  
 <!-- Copyright -->
-<section id="copyright" class="copyright">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="copyright-text">Copyright All Rightes Reserved Roodab.</div>
-      </div>
-    </div>
-  </div>
-</section>
+<section _ngcontent-c1="" class="copyright" id="copyright"><div _ngcontent-c1="" class="container"><div _ngcontent-c1="" class="row"><div _ngcontent-c1="" class="col-lg-12"><div _ngcontent-c1="" class="copyright-text">Copyright All Rightes Reserved Roodab.</div></div></div></div></section>
 <!-- /.Copyright -->
 

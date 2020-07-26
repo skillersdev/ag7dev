@@ -77,8 +77,6 @@ export class EditsectionitemComponent implements OnInit {
       {
         this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
         .subscribe( (response) => {
-        //  if(response.status=='success')
-        //  {
             this.model.file_name = (response.data)?response.data:this.model.file_name;
             this.CommonService.insertdata(AppSettings.updatesectionItem,this.model)
             .subscribe(package_det =>{  
@@ -89,11 +87,7 @@ export class EditsectionitemComponent implements OnInit {
                   package_det.status
                 )
                 this.router.navigate(['/managesectionitem']); 
-            }); 
-        //  }
-        //   else{
-        //     swal('',"Error while on upload photo",'Oops!');
-        //   }
+            });
         });
       }
       /**********End*****/
@@ -143,7 +137,6 @@ export class EditsectionitemComponent implements OnInit {
   getservicePreviewImage(event: any): void {        
     this.ServicePreviewimageChangedEvent = event;
     this.model.IspreviewImage= true;
-    console.log(this.model);
 }
 PreviewimageCropped(event: ImageCroppedEvent) {
     this.previewcroppedImage = event.base64;
@@ -153,9 +146,10 @@ PreviewimageCropped(event: ImageCroppedEvent) {
 /*Service Image uplad section*/
 getserviceImage(event: any): void {
   this.serviceimageChangedEvent = event;
+  this.model.IspreviewImage= true;
 }
 serviceimageCropped(event: ImageCroppedEvent) {
-  this.sectioncroppedImage = event.base64;
+  this.previewcroppedImage = event.base64;
   this.model.file_name = event.base64;
 }
 /**/

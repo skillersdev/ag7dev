@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Add Contact
+                            {{'Add' | translate}} {{'Contact' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -24,7 +24,7 @@
                                     <form class="" #addcontact="ngForm">                                    
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Select Website</b></p>
+                                                <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
@@ -37,7 +37,7 @@
                                             </div>
                                           
                                              <div class="col-md-6">
-                                                <p><b>Twitter Url</b></p>
+                                                <p><b>{{'Twitter Url' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter Contact" [(ngModel)]="model.contact" #contact="ngModel" name="contact" required>
@@ -49,7 +49,7 @@
 
                                          <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>web Profile</b></p>
+                                                <p><b>{{'Web Profile' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                       <input type="file" (change)="fileChangeEvent($event)" />
@@ -76,7 +76,7 @@
                                             </div>
                                           
                                              <div class="col-md-6">
-                                                <p><b>About Profile</b></p>
+                                                <p><b>{{'About Profile' | translate}} </b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter your info" [(ngModel)]="model.about_website" #about_website="ngModel" name="contact" required>
@@ -89,7 +89,7 @@
 
                                         <div class="row clearfix">                                            
                                                 <div class="col-md-6">
-                                                    <p><b>Facebook Url</b></p>
+                                                    <p><b>{{'Facebook Url' | translate}} </b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input type="text" class="form-control" placeholder="Enter facebook Url" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link">
@@ -98,7 +98,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <p><b>linkedin Url</b></p>
+                                                    <p><b>{{'LinkedIn Url' | translate}}</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input type="text" class="form-control" placeholder="Enter linkedin Url" [(ngModel)]="model.linked_url" #linked_url="ngModel" name="linked_url">
@@ -109,7 +109,7 @@
                                         </div>
                                          <div class="row clearfix">                                            
                                                  <div class="col-md-6">
-                                                <p><b>Phone numbers</b></p>
+                                                <p><b>{{'Mobile Phone Number' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.phonenumber" #phonenumber="ngModel" name="phonenumber">
@@ -118,7 +118,7 @@
                                             </div> 
 
                                              <div class="col-md-6">
-                                                <p><b>Home numbers</b></p>
+                                                <p><b>{{'Home numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.homenumber" #homenumber="ngModel" name="homenumber">
@@ -129,7 +129,7 @@
                                             </div>
                                              <div class="row clearfix">                                            
                                                  <div class="col-md-6">
-                                                <p><b>Office numbers</b></p>
+                                                <p><b>{{'Office numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.officenumber" #officenumber="ngModel" name="officenumber">
@@ -138,7 +138,7 @@
                                             </div> 
 
                                              <div class="col-md-6">
-                                                <p><b>FAX numbers</b></p>
+                                                <p><b>{{'FAX numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.faxnumber" #faxnumber="ngModel" name="homenumber">
@@ -149,7 +149,7 @@
                                             </div>
                                              <div class="row clearfix">                                            
                                                  <div class="col-md-6">
-                                                <p><b>WhatsApp</b></p>
+                                                <p><b>{{'WhatsApp' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.whatsapp" #whatsapp="ngModel" name="whatsapp">
@@ -158,7 +158,7 @@
                                             </div> 
 
                                              <div class="col-md-6">
-                                                <p><b>Telegram</b></p>
+                                                <p><b>{{'Telegram' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.telegram" #telegram="ngModel" name="telegram">
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="row clearfix">                                            
                                                  <div class="col-md-6">
-                                                <p><b>Address</b></p>
+                                                <p><b>{{'Address Label' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <textarea class="form-control" placeholder="Enter number" [(ngModel)]="model.address" #address="ngModel" name="address"></textarea>
@@ -178,7 +178,7 @@
                                             </div> 
 
                                              <div class="col-md-6">
-                                                <p><b>Mail Id</b></p>
+                                                <p><b>{{'Email Label' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel">
@@ -187,8 +187,8 @@
                                             </div> 
                                           
                                             </div>           
-                                        <button type="button" [disabled]="!addcontact.form.valid && model1.Imagefile!='undefined' " class="btn btn-primary m-t-15 waves-effect" (click)="addcontactlist()">Add Contact</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()"class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="button" [disabled]="!addcontact.form.valid && model1.Imagefile!='undefined' " class="btn btn-primary m-t-15 waves-effect" (click)="addcontactlist()"> {{'Add' | translate}} {{'Contact' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()"class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Floor
+                            {{'Add' | translate}} {{'Floor' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -24,7 +24,7 @@
                                         <form class="" #addfloor="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6" *ngIf="(malltypeid==null) || (malltypeid=='')  || (malltypeid==1)">
-                                                <p><b>Select Mall</b></p>
+                                                <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel" name="mall_id" required>
@@ -36,7 +36,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Floor Name</b></p>
+                                                <p><b>{{'Floor' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter floor" [(ngModel)]="model.floor_name" name="floor_name" #floor_name="ngModel" required>
@@ -45,7 +45,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>User Name</b>
+                                                <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter username" [(ngModel)]="model.username" name="username" #username="ngModel" required>
@@ -54,7 +54,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>Password</b>
+                                                <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.password" name="password" #password="ngModel" required>
@@ -64,8 +64,8 @@
                                             </div>
 
                                         </div>       
-                                        <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">Add Floor</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">{{'Add' | translate}} {{'Floor' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
 import { CommonService} from '../services/common.service';
+import { TranslateService } from '@ngx-translate/core';
 declare let swal: any;
 @Component({
   selector: 'app-landingpage',
@@ -16,27 +17,35 @@ websiteurl:string=AppSettings.USER_TEMPLATE;
 model: any = {};
   constructor(
   	private loginService: LoginService,private CommonService: CommonService,
-  	private router: Router,private http:Http) {
+  	private router: Router,private http:Http,private translate:TranslateService) {
 
       document.body.className=" ";
+      translate.addLangs(['English', 'Persian']);
+      translate.setDefaultLang('English');
 
      }
 
   ngOnInit() {
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
-     let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    //this.loadScript(translate_url);
+    if(localStorage.getItem('languageType'))
+    {
+      var stringLang = localStorage.getItem('languageType');
+      this.switchLang(stringLang);
+    }
 
   }
-
-  public loadScript(url) {
-    console.log('preparing to load...')
-    let node = document.createElement('script');
-    node.src = url;
-    node.type = 'text/javascript';
-    document.getElementsByTagName('head')[0].appendChild(node);
+  switchLang(lang: string) {    
+    this.translate.use(lang);
+    localStorage.setItem('languageType',lang);
   }
+  // public loadScript(url) {
+  //   console.log('preparing to load...')
+  //   let node = document.createElement('script');
+  //   node.src = url;
+  //   node.type = 'text/javascript';
+  //   document.getElementsByTagName('head')[0].appendChild(node);
+  // }
 
 
    checkwebsite()

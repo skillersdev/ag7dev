@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule,HttpClient } from  '@angular/common/http';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
@@ -117,6 +117,10 @@ import { AddpremiumpackageComponent } from './pages/premiumpackage/addpremiumpac
 import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiumpackage/editpremiumpackage.component';
 import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
 import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumtransaction.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NearbyComponent } from './pages/nearby/nearby.component';
+import {GMapModule} from 'primeng/gmap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -207,7 +211,8 @@ import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumt
     AddpremiumpackageComponent,
     EditpremiumpackageComponent,
     PremiumrequestvideosComponent,
-    PremiumtransactionComponent
+    PremiumtransactionComponent,
+    NearbyComponent
 	//ImageCropperComponent
   ],
   imports: [
@@ -223,11 +228,22 @@ import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumt
     //UiSwitchModule,
    // TagInputModule,
    ChipsModule,
+   GMapModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [LoginService,CommonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -24,9 +24,9 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                   <div class="card">
                       <div class="header">
                           <h2>
-                              Manage Section                                              
-                              <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">Reorder</button>
-                               <button type="button" (click)="navigateAddsection()" class="btn btn-success waves-effect pull-right">Add Section</button>
+                              {{'Manage' | translate}} {{'Section' | translate}}
+                              <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">{{'Reorder' | translate}}</button>
+                               <button type="button" (click)="navigateAddsection()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}}{{'Section' | translate}}</button>
                           </h2>
                       </div>
                       <div class="body">
@@ -35,9 +35,9 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                               <thead>
                                   <tr>
                                       <th>#</th>
-                                      <th>Section</th>
-                                      <th>Website</th>
-                                      <th>Actions</th>
+                                      <th>{{'Section' | translate}}</th>
+                                      <th>{{'Website' | translate}}</th>
+                                      <th>{{'actions' | translate}}</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -71,49 +71,7 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                           </div>
                       </div>
                   </div>
-              </div>
-             <!--  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>
-                            Default Section     
-                        </h2>
-                    </div>
-                    <div class="body">
-                          <div class="table-responsive">
-                              <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Section</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               <div class="preloader2 pl-size-xs" style="display:none;">
-                                    <div class="spinner-layer pl-red-grey">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
-                                        </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <tr *ngFor="let sdata of defaultsectionlist let ind=index">
-                                    <td>{{ind+1}}</td> 
-                                    <td>{{sdata.section}}</td>                                    
-                                    <td>                                   
-                                      <ui-switch *ngIf="sdata.Issection_show==1" size="small" (change)="updatesectionDefault($event,sdata.id)" [checked]="false"></ui-switch>
-                                      <ui-switch *ngIf="sdata.Issection_show==0" size="small" (change)="updatesectionDefault($event,sdata.id)" checked></ui-switch>
-                                  </td>
-                                </tr>                               
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+              </div>          
             </div>
           </div>
 </section>

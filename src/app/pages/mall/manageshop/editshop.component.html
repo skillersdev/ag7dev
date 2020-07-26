@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Edit Shop
+                            {{'Edit' | translate}}{{'Shop' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -24,7 +24,7 @@
                                         <form class="" #addshop="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Select Mall</b></p>
+                                                <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" required>
@@ -36,7 +36,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Select Floor</b></p>
+                                                <p><b>{{'Floor' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" required>
@@ -49,7 +49,7 @@
                                             </div> 
                                             
                                             <div class="col-md-6">
-                                                <b>Shop Name</b>
+                                                <b>{{'Shop' | translate}} {{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter shop" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" required>
@@ -58,7 +58,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>Logo</b>
+                                                <b>{{'Logo' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
@@ -67,7 +67,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                    <b>Banner</b>
+                                                    <b>{{'Banner' | translate}}</b>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input type="file"  name="banner" id="banner"  (change)="banneronSelectFile($event)" class="btn btn-primary disabledsave" name="banner" >
@@ -76,7 +76,7 @@
                                                     </div>
                                                 </div>
                                             <div class="col-md-6">
-                                                <b>User Name</b>
+                                                <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter username" [(ngModel)]="model.username" name="username" #username="ngModel" required>
@@ -85,7 +85,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6"> 
-                                                <b>Password</b>
+                                                <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.password" name="password" #password="ngModel" required>
@@ -94,8 +94,8 @@
                                                 </div>
                                             </div>
                                         </div>       
-                                        <button type="submit" [disabled]="!addshop.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateshoplist()">Update Shop</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="submit" [disabled]="!addshop.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateshoplist()">{{'Update' | translate}} {{'Shop' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

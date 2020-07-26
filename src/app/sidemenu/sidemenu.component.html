@@ -29,162 +29,162 @@
                 <li  *ngIf="model.usergroup==2" class="active">
                     <a [routerLink]="['/dashboard']">
                         <i class="material-icons col-red">home</i>
-                        <span>Dashboard</span>
+                        <span>{{'User Dashboard Label' | translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==1" class="active">
                     <a [routerLink]="['/admindashboard']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Dashboard</span>
+                        <span>{{'User Dashboard Label' | translate}}</span>
                     </a>
                 </li>
                
                 <li *ngIf="model.usergroup==1 || model.usergroup==3">
                     <a href="javascript:void(0);" [routerLink]="['/manageuser']">
                         <i class="material-icons  col-amber">supervisor_account</i>
-                        <span>Manage User</span>
+                        <span>{{'Manage User Label' | translate}}</span>
                     </a>
                 </li>
 
                 <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managepackages']">
                         <i class="material-icons  col-blue">view_list</i>
-                        <span>Manage Packages</span>
+                        <span>{{'Manage Packages' | translate}}</span>
                     </a>
                 </li>
                  <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/manageearnings']">
                         <i class="material-icons  col-blue">view_list</i>
-                        <span>Manage Earnings</span>
+                        <span>{{'Manage Earnings' | translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managepayments']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span>Manage Payments</span>
+                        <span>{{'Manage Payments' | translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/premiumsettings']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span>Premium Package Settings</span>
+                        <span>{{'Premium Package list' | translate}}</span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageads']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span>Manage Ads</span>
+                        <span>{{'Manage'|translate}}{{'Ads' | translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==2">
                     <a href="javascript:void(0);" [routerLink]="['/managemarketers']">
                         <i class="material-icons  col-pink">work</i>
-                        <span>Manage Marketers</span>
+                        <span>{{'Manage Marketers' | translate}}</span>
                     </a>
                 </li>
                  <li >
                     <a [routerLink]="['/managesection']"> 
                         <i class="material-icons col-red">list</i>
-                        <span>Manage Section</span>
+                        <span>{{'Manage'|translate}} {{'Section' | translate}}</span>
                     </a>
                 </li>
                 <li >
                     <a [routerLink]="['/managesectionitem']"> 
                         <i class="material-icons col-red">list</i>
-                        <span>Manage Section Item</span>
+                        <span>{{'Manage'|translate}} {{'Section Item' | translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==2">
                     <a href="javascript:void(0);" [routerLink]="['/accountinfo']">
                         <i class="material-icons  col-pink">account_circle</i>
-                        <span>Account Info</span>
+                        <span>{{'Account Info'|translate}}</span>
                     </a>
                 </li>
                 <li  *ngIf="model.usergroup==2">
                     <a href="javascript:void(0);" [routerLink]="['/transferinfo']">
                         <i class="material-icons col-teal">transfer_within_a_station</i>
-                        <span>Transfer Info</span>
+                        <span>{{'transfer-info'|translate}}</span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/packageinfo']">
                         <i class="material-icons col-purple">shop_two</i>
-                        <span>Package Info</span>
+                        <span>{{'Package Info' | translate}}</span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managecategory']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span>Manage Category</span>
+                        <span>{{'Manage'|translate}} {{'Category'|translate}}</span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managesubcategory']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span>Manage Subcategory </span>
+                        <span>{{'Manage'|translate}} {{'SubCategory'|translate}} </span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageproducts']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span *ngIf="model.usergroup==1">Manage Products </span>
-                        <span *ngIf="model.usergroup==2">My Products </span>
+                        <span *ngIf="model.usergroup==1">{{'Manage'|translate}} {{'Product'|translate}}</span>
+                        <span *ngIf="model.usergroup==2">{{'My-products'|translate}} </span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/manageservices']">
                         <i class="material-icons  col-green">view_module</i>
-                        <span *ngIf="model.usergroup==2">My Services</span>
-                        <span *ngIf="model.usergroup==1">Manage Services</span>
+                        <span *ngIf="model.usergroup==2">{{'My-services'|translate}}</span>
+                        <span *ngIf="model.usergroup==1">{{'Manage'|translate}} {{'Services'|translate}}</span>
                     </a>
                 </li>
                 <li *ngIf="model.usergroup!=3">
                     <a href="javascript:void(0);" [routerLink]="['/managecontacts']">
                         <i class="material-icons col-indigo">contacts</i>
-                        <span *ngIf="model.usergroup==1">Manage Contacts</span>
-                        <span *ngIf="model.usergroup==2">My Contacts</span>
+                        <span *ngIf="model.usergroup==1">{{'Manage'|translate}} {{'Contact'|translate}}</span>
+                        <span *ngIf="model.usergroup==2">{{'My-contacts' | translate}}</span>
                     </a>
                 </li>
                  <li *ngIf="model.usergroup!=1">
                     <a href="javascript:void(0);" [routerLink]="['/managetemplates']">
                         <i class="material-icons col-indigo">contacts</i>
-                        <span>Manage Template slider</span>                        
+                        <span>{{'Manage-template-slider' | translate}}</span>                        
                     </a>
                 </li>
                 <li *ngIf="model.usergroup==1">
                     <a href="javascript:void(0);" [routerLink]="['/managegroupchannel']">
                         <i class="material-icons">chat</i>
-                        <span>Manage Group/Channel</span>                        
+                        <span>{{'Manage'|translate}} {{'Group-channel'|translate}}</span>                        
                     </a>
                 </li>
                 <li *ngIf="model.usergroup==1">
                         <a href="javascript:void(0);" [routerLink]="['/premiumrequestvideos']">
                             <i class="material-icons  col-green">view_module</i>
-                            <span>Premium request videos</span>
+                            <span>{{'Premium video requests' | translate}}</span>
                         </a>
                     </li>
                 <li>
                     <a href="javascript:void(0);" [routerLink]="['/managegrouprequest']">
                         <i class="material-icons">chat</i>
-                        <span>Manage Group Request</span>                        
+                        <span>{{'Manage Group Request' | translate}}</span>                        
                     </a>
                 </li>
                  <li *ngIf="model.usergroup!=1">
                     <a href="javascript:void(0);"  [routerLink]="['/managegallery']">
                         <i class="material-icons col-indigo">contacts</i>
-                        <span>Manage Gallery</span>                         
+                        <span>{{'Manage'|translate}} {{'Gallery'|translate}}</span>                         
                     </a>
                 </li>
                  <li *ngIf="model.usergroup!=1">
                     <a href="javascript:void(0);" [routerLink]="['/managechannels']">
-                       <i class="material-icons">live_tv</i> <span class="icon-name">Manage Channel</span>
+                       <i class="material-icons">live_tv</i> <span class="icon-name">{{'Manage'|translate}} {{'Channel'|translate}}</span>
                     </a>
                 </li>
 
                 <li *ngIf="model.usergroup==2">
                     <a href="javascript:void(0);" [routerLink]="['/profile']">
                         <i class="material-icons col-deep-orange">person</i>
-                        <span>My Profile</span>
+                        <span>{{'my-profile'|translate}}</span>
                     </a>
                 </li>
                 <!--  <li >
@@ -197,13 +197,13 @@
                  <li>
                     <a href="javascript:void(0);" [routerLink]="['/managevideos']">
                         <i class="material-icons col-deep-orange">video_call</i>
-                        <span>Manage Videos</span>
+                        <span>{{'Manage'|translate}} {{'Video'|translate}}</span>
                     </a>
                 </li>
                 <li >
                     <a [routerLink]="['/mall/managemall']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Manage Mall</span>
+                        <span>{{'Manage'|translate}} {{'Mall'|translate}}</span>
                     </a>
                 </li>
                 
@@ -216,26 +216,32 @@
                 <li>
                     <a [routerLink]="['/mall/managefloor']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Mange Floor</span>
+                        <span>{{'Manage'|translate}} {{'Floor'|translate}}</span>
                     </a>
                 </li>
                 <li >
                     <a [routerLink]="['/mall/manageshop']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Manage Shop</span>
+                        <span>{{'Manage'|translate}} {{'Shop'|translate}}</span>
                     </a>
                 </li>
                 <li >
                     <a [routerLink]="['/mall/managemallproduct']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Manage Mallproduct</span>
+                        <span>{{'Manage'|translate}} {{'Mall-product'|translate}}</span>
                     </a>
                 </li>
 
                 <li >
                     <a [routerLink]="['/mall/login']"> 
                         <i class="material-icons col-red">home</i>
-                        <span>Mall/Floor/Shop Login</span>
+                        <span>{{'Mall'|translate}}/{{'Floor'|translate}}/{{'Shop'|translate}}</span>
+                    </a>
+                </li>
+                <li >
+                    <a [routerLink]="['/nearby']"> 
+                        <i class="material-icons col-red">my_location</i>
+                        <span>{{'Near By'|translate}}</span>
                     </a>
                 </li>
                 <!-- <li>

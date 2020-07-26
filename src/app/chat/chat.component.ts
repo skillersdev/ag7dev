@@ -432,12 +432,12 @@ export class ChatComponent implements OnInit {
   replymsgupdatefun(){
 
     // this.CommonService.insertdata(AppSettings.chatmsgreply,{'replymsgid':this.Newgroupmodel.replymsgid,'replymsgupdate':this.Newgroupmodel.replymsgupdate})
-    this.CommonService.insertdata(AppSettings.chatmsgreply,this.Newgroupmodel)
-    .subscribe(package_det =>{     
+    // this.CommonService.insertdata(AppSettings.chatmsgreply,this.Newgroupmodel)
+    // .subscribe(package_det =>{     
      
-      this.generateMessageArea(this.Newgroupmodel.g_id);
+    //   this.generateMessageArea(this.Newgroupmodel.g_id);
 
-    });
+    // });
 
   }
 

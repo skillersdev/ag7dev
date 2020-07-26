@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add SubCategory
+                            {{'Edit' | translate}} {{'SubCategory' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -19,7 +19,7 @@
                                     <div class="body">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Select Website</b></p>
+                                                <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
@@ -31,7 +31,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>Category</b></p>
+                                                <p><b>{{'Category' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.category_id" #category_id="ngModel" name="category_id" required>
@@ -45,7 +45,7 @@
                                         </div>     
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Sub Category Name</b></p>
+                                                <p><b>{{'SubCategory' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter Sub category" [(ngModel)]="model.sub_category_name" #sub_category_name="ngModel" name="sub_category_name" required>
@@ -53,8 +53,8 @@
                                                 </div>
                                             </div>
                                         </div>                                         
-                                        <button type="button" [disabled]="!addsubcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesubcategorylist()">Update Subcategory</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="button" [disabled]="!addsubcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatesubcategorylist()">{{'Update' | translate}} {{'SubCategory' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </div>
                                 </form>
                                 </div>

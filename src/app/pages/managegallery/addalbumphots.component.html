@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Album Photos
+                            {{'Add' | translate}}{{'Album' | translate}}{{'Photos' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -21,14 +21,14 @@
                                         <form class="" #addalbum="ngForm">
                                         <div class="row clearfix">
                                           <div class="col-md-6">
-                                                <p><b>Website : </b></p>
+                                                <p><b>{{'website' | translate}} : </b></p>
                                                 <div class="form-group">
                                                    <h4>{{model.website}}</h4>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">Album Name</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Album' | translate}}{{'Name' | translate}}</label>
                                                <div class="form-group">
                                                    <h4>{{model.albumname}}</h4>
                                                 </div>
@@ -38,7 +38,7 @@
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">Select Media Type</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Select' | translate}}{{'media' | translate}}{{'type' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">    
                                                       <select class="form-control show-tick" 
@@ -55,7 +55,7 @@
                                         </div>
                                         <div class="row clearfix">
                                              <div class="col-md-6" *ngIf="model.type==1">
-                                                <p><b>Album Image</b></p>
+                                                <p><b>{{'Album' | translate}}{{'image' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="file" (change)="fileChangeEvent($event)" />
@@ -71,7 +71,7 @@
                                                 </div>
                                             </div>
                                              <div class="col-md-6" *ngIf="model.type==2">
-                                                <p><b>Upload Video</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'Video' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=fileEvent($event) required>   
@@ -79,7 +79,7 @@
                                                 </div>
                                             </div>
                                              <div class="col-md-6" *ngIf="model.type==3">
-                                                <p><b>Upload Audio</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'audio' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=fileEvent($event) required>   
@@ -98,14 +98,14 @@
                                             </div>
                                         </div>                                          
                                         <button type="submit"  class="btn btn-primary m-t-15 waves-effect" 
-                                        (click)="updatealbum()">Update Album</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        (click)="updatealbum()">{{'Update' | translate}}{{'Album' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                         
                                     </form>
                                     </div>
                                     <div class="header">
                                       <h2>
-                                          Gallery Image List
+                                        {{'Gallery' | translate}}{{'image' | translate}}{{'List' | translate}}
                                       </h2>
                                   </div>
                                     <div class="body">
@@ -114,8 +114,8 @@
                                           <thead>
                                               <tr>
                                                   <th>#</th>
-                                                  <th>Gallery Images</th>
-                                                  <th>Actions</th>
+                                                  <th>{{'Gallery' | translate}}{{'image' | translate}}</th>
+                                                  <th>{{'actions' | translate}}</th>
                                               </tr>
                                           </thead>
                                           <tbody>

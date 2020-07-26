@@ -8,8 +8,8 @@
                   <div class="card">
                       <div class="header">
                           <h2>
-                              Category List
-                              <button type="button" (click)="navigateAddcategory()" class="btn btn-success waves-effect pull-right">Add Category</button>                 
+                            {{'Category' | translate}} {{'List' | translate}}
+                              <button type="button" (click)="navigateAddcategory()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Category' | translate}}</button>                 
                           </h2>
                       </div>
                       <div class="body">
@@ -18,10 +18,10 @@
                               <thead>
                                   <tr>
                                       <th>#</th>
-                                      <th>CATEGORY NAME</th>
-                                      <th>CREATED DATE</th>
-                                      <th>CREATED BY</th>
-                                      <th>Actions</th>
+                                      <th>{{'Category' | translate}} {{'Name' | translate}}</th>
+                                      <th>{{'created-date' | translate}}</th>
+                                      <th>{{'created-by' | translate}}</th>
+                                      <th>{{'actions' | translate}}</th>
                                   </tr>
                               </thead>
                               <tbody>

@@ -16,7 +16,12 @@
             <div class="row" style="margin-top: 19px;">  
                     <div class="col-xs-6" style="text-align: right;margin-top: 13px;">Change Language:</div>
                     <div class="col-xs-6">
-                        <div id="google_translate_element" class="form-group"></div>
+                        <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+                            <option *ngFor="let language of translate.getLangs()" [value]="language"
+                              [selected]="language === translate.currentLang">
+                              {{ language }}
+                            </option>
+                          </select>
                     </div>
         
                 <script type="text/javascript">

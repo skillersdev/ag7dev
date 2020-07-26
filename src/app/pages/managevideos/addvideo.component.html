@@ -15,14 +15,14 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Video Post
+                            {{'Add' | translate}}{{'Video' | translate}}
                         </h2>
                     </div>
                     <div class="body">
                         <form class="" #registerForm="ngForm">
                             <div class="row clearfix">
                                 <div class="col-md-6">
-                                    <p><b>Title</b><span class="text-danger">*</span></p>
+                                    <p><b>{{'Title' | translate}}</b><span class="text-danger">*</span></p>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <input type="text" class="form-control" name="title" placeholder="Enter Your video title" required [(ngModel)]="model.title" #title="ngModel">
@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><b>Description</b></p>
+                                    <p><b>{{'Description' | translate}}</b></p>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <textarea class="form-control" name="desc" [(ngModel)]="model.description" #description="ngModel" required></textarea>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="row clearfix">
                                 <div class="col-md-6">                                    
-                                    <p><b>Upload Video</b></p>
+                                    <p><b>{{'Upload' | translate}}{{'Video' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">
                                              <input type="file" name="videoFor" (change)=fileEvent($event) required>   
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                     <label for="NameSurname" class="col-sm-2 control-label">Select video category</label>
+                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Video' | translate}}{{'Category' | translate}}</label>
                                     <div class="col-sm-10">
                                         <div class="form-line">    
                                           <select class="form-control show-tick" 
@@ -66,7 +66,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6" *ngIf="model.videocategory==3">
-                                    <b>Select Channel</b>
+                                    <b>{{'Channel' | translate}}</b>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.channel" #channel="ngModel" name="channel" required (change)="getwebsitebychannel($event.target.value)">
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                      <b>Video Preview Image</b>
+                                      <b>{{'Video' | translate}} {{'preview' | translate}} {{'image' | translate}}</b>
                                       <input type="file" (change)="fileChangeEvent($event)" />
                                       <image-cropper
                                           [imageChangedEvent]="imageChangedEvent"
@@ -90,7 +90,7 @@
                                     <img [src]="croppedImage" style="width:30%;"/>
                                 </div>
                                 <div class="col-md-6" *ngIf="model.videocategory==2">
-                                    <b>Select Website</b>
+                                    <b>{{'website' | translate}}</b>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.website_name" #website_name="ngModel" name="website_name" required>
@@ -103,7 +103,7 @@
                                 </div> 
                                 
                                 <div class="col-md-6" *ngIf="model.Iswebsite==1">
-                                    <b>Website for selected channel:</b>
+                                    <b>{{'website' | translate}} {{'for' | translate}} {{'Selected' | translate}}{{'Channel' | translate}}:</b>
                                     <div class="form-group">
                                        <div class="form-line">
                                         <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.channelWebsite" #channelWebsite="ngModel" readonly>
@@ -111,7 +111,7 @@
                                     </div>
                                 </div>  
                                  <div class="col-md-6">
-                                    <p><b>Tag</b></p>
+                                    <p><b>{{'Tag' | translate}}</b></p>
                                     <div class="form-group">
                                         <div class="form-line"> 
                                             <!-- <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.tags" #tags="ngModel" > -->
@@ -135,8 +135,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addVideos()">Add Video</button>&nbsp; &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
+                        <button type="submit" [disabled]="!registerForm.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addVideos()">{{'Add' | translate}}{{'Video' | translate}}</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">{{'Cancel' | translate}}</button>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AppSettings } from '../appSettings';
 import { LoginService } from '../services/login.service';
 import { CommonService } from '../services/common.service';
+import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2'
 
 declare var jquery:any;
@@ -55,7 +56,7 @@ export class DashboardComponent implements OnInit {
 
   websiteurl:string=AppSettings.USER_TEMPLATE;
  
-  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
+  constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http,private translate:TranslateService) { 
       document.body.className="theme-red";
 
   }
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
     this.loginService.viewsActivate();
     this.renew_payment_details=true;
     this.showButton=false;
-    console.log('testing here commit issue');
+
     let id=localStorage.getItem('currentUserID');
       this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
          if(data.exist==2)
@@ -88,11 +89,17 @@ export class DashboardComponent implements OnInit {
           .subscribe(resultdata =>{   
             this.package_vs_user_list=resultdata.result; 
           });    
-    //  setTimeout(() => {
-    //     this.router.navigate(['./packageinfo']);
-    // }, 5000); 
+  
     let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    //this.loadScript(translate_url);
+    
+    if(localStorage.getItem('languageType'))
+    {
+      var stringLang = localStorage.getItem('languageType');
+      this.switchLang(stringLang);
+    }else{
+      this.switchLang('English');
+    }
+    
   }
 
   public loadScript(url) {
@@ -106,7 +113,11 @@ export class DashboardComponent implements OnInit {
   logout(){
     this.loginService.logout();
   }
-
+  switchLang(lang: string) {    
+    this.translate.use(lang);
+    localStorage.setItem('languageType',lang);
+  }
+  // p
  checkmarketer(marketer_name:any)
  {
    this.model.username=marketer_name;

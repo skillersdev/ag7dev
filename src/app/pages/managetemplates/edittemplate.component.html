@@ -15,14 +15,14 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Edit Template Slider
+                            {{'Edit' | translate}} {{'template' | translate}} {{'Slider' | translate}}
                         </h2>
                     </div>
                     <div class="body">
                         <form class="" #registerForm="ngForm">
                             <div class="row clearfix">
                                 <div class="col-md-6">
-                                    <p><b>Select Website</b></p>
+                                    <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">
                                             <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="url" required>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                  <div class="col-md-7">
-                                                <p><b>Preview</b></p>
+                                                <p><b>{{'preview' | translate}}</b></p>
                                                 <div class="">
                                                    <div class="form-line">
                                                       <img src="{{image_url}}{{model.slider_image}}" style="width:40%;">     
@@ -42,7 +42,7 @@
                                                 </div>
                                             </div>
                                 <div class="col-md-6">
-                                   <p><b>Upload Image</b></p>
+                                   <p><b>{{'Upload' | translate}} {{'image' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">
                                            <!--  <input type="file" name="adimage" (change)=fileEvent($event) required>   --> 
@@ -74,8 +74,8 @@
                             </div>
                             
                         </form>
-                        <button type="submit" [disabled]="!registerForm.form.valid || !Iserror" class="btn btn-primary m-t-15 waves-effect" (click)="updatetemp()">Update Template slider</button>&nbsp; &nbsp;&nbsp;&nbsp;
-                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">Cancel</button>
+                        <button type="submit" [disabled]="!registerForm.form.valid || !Iserror" class="btn btn-primary m-t-15 waves-effect" (click)="updatetemp()">{{'Update' | translate}} {{'template' | translate}} {{'Slider' | translate}}</button>&nbsp; &nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="back()">{{'Cancel' | translate}}</button>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,9 @@
 <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>Admin Dashboard</h2>
+                <h2>{{'Admin Dashboard Label' | translate}} 
+                    <!-- <label>{{'Name' | translate}}</label> -->
+                </h2>
             </div>
               <!-- Widgets -->
             <div class="row clearfix">
@@ -15,7 +17,7 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Users</div>
+                            <div class="text">{{'Dashboard Total Users Label' | translate}}</div>
                             <div class="">
                                 {{model.tot_users}}
                             </div>
@@ -28,7 +30,7 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total website Register</div>
+                            <div class="text">{{'Dashboard Total Website Register Label' | translate}}</div>
                             <div class="">
                                 {{model.total_web_count}}
                             </div>
@@ -41,7 +43,7 @@
                             <i class="material-icons">forum</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total Active website</div>
+                            <div class="text">{{'Dashboard Total Active website Label' | translate}}</div>
                             <div class="">
                                 {{model.total_active_web_count}} 
                             </div>
@@ -54,7 +56,7 @@
                             <i class="material-icons">help</i>
                         </div>
                         <div class="content">
-                            <div class="text">Total website Yet to active</div>
+                            <div class="text">{{'Dashboard Total website Yet to active Label' | translate}}</div>
                             <div class="">
                                 {{model.total_yet_to_active}}
                             </div>
@@ -71,7 +73,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngIf="data.usertype==1">
                     <div class="card">
                         <div class="header">
-                            <h2>Share Balance to Marketer<small>(to share the balance, you should have more than RV 1 balance)</small></h2>
+                            <h2>{{'Dashboard Share Balance to Marketer' | translate}}<small>(to share the balance, you should have more than RV 1 balance)</small></h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -90,19 +92,19 @@
                             <div class="row clearfix">
                                
                                 <div class="col-md-6">
-                                    <p><b>Marketer name</b></p>                                   
+                                    <p><b>{{'Marketer Name Label' | translate}}</b></p>                                   
                                     <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>                                    
                                     <span [hidden]="mname.valid || mname.pristine" class="text-danger">Name is required</span>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><b>Enter Amount to share</b></p>
+                                    <p><b>{{'Amount to share Label' | translate}}</b></p>
                                     <input type="text" class="form-control" placeholder="Enter Amount to share" [(ngModel)]="model.share_amt" #share_amt="ngModel" name="share_amt" required>
                                     <div *ngIf="share_amt.errors && (share_amt.dirty || share_amt.touched)" class="">
                                     <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
                                     <span [hidden]="!share_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>
                                 </div>
                                 </div>                                 
-                                 <button type="submit"  (click)="transferamount()" [disabled]="!transfer.form.valid" class="btn btn-success m-t-15 waves-effect">Transfer</button> 
+                                 <button type="submit"  (click)="transferamount()" [disabled]="!transfer.form.valid" class="btn btn-success m-t-15 waves-effect">{{'Transfer Button Label' | translate}}</button> 
                                                            
                             </div>
                             </form>   

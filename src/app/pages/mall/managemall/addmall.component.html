@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Mall
+                            {{'Add' | translate}} {{'Mall' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -25,7 +25,7 @@
                                         <div class="row clearfix">
                                             
                                             <div class="col-md-6">
-                                                <p><b>Mall Name</b></p>
+                                                <p><b>{{'Mall' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter mall" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
@@ -34,7 +34,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>Image</b>
+                                                <b>{{'image' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
@@ -43,7 +43,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>User Name</b>
+                                                <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter username" [(ngModel)]="model.username" name="username" #username="ngModel" required>
@@ -52,7 +52,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>Password</b>
+                                                <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.password" name="password" #password="ngModel" required>
@@ -62,8 +62,8 @@
                                             </div>
 
                                         </div>       
-                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Add Mall</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">{{'Add' | translate}} {{'Mall' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>
