@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="header">
                         <h2 class="font-bold">
-                            Add Advertisemets
+                            {{'Edit' | translate}} {{'Advertisements' | translate}}
                         </h2>
                     </div>
                     <div class="body">
@@ -22,7 +22,7 @@
                                         <form class="" #addcategory="ngForm">
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>Ad type</b></p>
+                                                <p><b>{{'Ads' | translate}} {{'type' | translate}}</b></p>
                                                 <div class="form-group">   
                                                     <div class="form-line">
                                                        <select class="form-control show-tick" [(ngModel)]="model.ad_type" #ad_type="ngModel" name="ad_type" (change)="gettype()" required> 
@@ -54,7 +54,7 @@
                                         </div> 
                                         <div class="row clearfix" *ngIf="model.formEnable==1">
                                             <div class="col-md-6">
-                                                <p><b>Select Website</b></p>
+                                                <p><b>{{'Website' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
@@ -66,7 +66,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                                                <p><b>Preview</b></p>
+                                                <p><b>{{'preview'|translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <img src="{{image_url}}{{model.uploads}}" style="width:100%;">  
@@ -74,7 +74,7 @@
                                                 </div>
                                             </div> 
                                             <div class="col-md-6">
-                                                <p><b>Upload Image</b></p>
+                                                <p><b>{{'Upload' | translate}} {{'image' | translate}}</b></p>
                                                 <div class="form-group">
                                                  <!--   <div class="form-line">
                                                         <input type="file" name="adimage" (change)=fileEvent($event) required>    
@@ -92,7 +92,7 @@
                                             </div> 
                                              <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">weblink</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'weblink' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="weblink" name="weblink" [(ngModel)]="model.weblink"  #weblink="ngModel" placeholder="weblink" required>
@@ -102,7 +102,7 @@
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">About Image</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'About' | translate}} {{'image' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="desc" name="desc" [(ngModel)]="model.desc" #desc="ngModel" placeholder="About Image">
@@ -113,7 +113,7 @@
                                         </div>
                                         <div class="row clearfix" *ngIf="model.formEnable==2">
                                             <div class="col-md-6">
-                                                <p><b>Select Website</b></p>
+                                                <p><b>{{'Website' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.url" #url="ngModel" name="url" required>
@@ -125,7 +125,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-7">
-                                                <p><b>Preview video</b></p>
+                                                <p><b>{{'preview'|translate}}{{'Video'|translate}}</b></p>
                                                 <div class="">
                                                    <div class="form-line">
                                                      <video width="320" height="200" controls>
@@ -135,7 +135,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <p><b>Upload Video</b></p>
+                                                <p><b>{{'Upload' | translate}}{{'Video' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                          <input type="file" name="adimage" (change)=fileEvent($event) required>   
@@ -145,7 +145,7 @@
                                             </div> 
                                              <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">weblink</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'weblink' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="weblink" name="weblink" [(ngModel)]="model.weblink"  #weblink="ngModel" placeholder="weblink" required>
@@ -155,7 +155,7 @@
                                             </div> 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">About Video</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'About' | translate}} {{'Video' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="desc" name="desc" [(ngModel)]="model.desc"  #desc="ngModel" placeholder="About Video">
@@ -164,8 +164,8 @@
                                                 </div>
                                             </div> 
                                         </div>      
-                                        <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatead()">Update Advertisement</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">Cancel</button>
+                                        <button type="submit" [disabled]="!addcategory.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updatead()">{{'Update' | translate}} {{'Advertisements' | translate}}</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                     </form>
                                     </div>
                                 </div>

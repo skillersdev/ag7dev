@@ -210,7 +210,7 @@
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Create New Group/Channel</h4>
+							<h4 class="modal-title">{{'Create' | translate}} {{'Group-channel' | translate}}</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 
@@ -218,7 +218,7 @@
 						<div class="modal-body">
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns">
-									<label for="groupname" class="m-r-3">Name :<span
+									<label for="groupname" class="m-r-3">{{'Name' | translate}} :<span
 											style="color: red;">*</span></label>&nbsp;
 									<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text"
 										id="groupname" class="form-control" required #groupname="ngModel" />
@@ -230,11 +230,11 @@
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="channel" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.channelgroup==1" [value]="1" />
-									<label for="channel" class="m-r-3">Channel</label>&nbsp;
+									<label for="channel" class="m-r-3">{{'Channel' | translate}}</label>&nbsp;
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="group" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.channelgroup==2" [value]="2" />
-									<label for="group">Group</label>
+									<label for="group">{{'group' | translate}}</label>
 								</div>
 							</div>
 
@@ -243,15 +243,15 @@
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="marketer" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==1" value="1" />
-									<label for="marketer" class="m-r-3">Marketer</label>&nbsp;
+									<label for="marketer" class="m-r-3">{{'Marketers' | translate}}</label>&nbsp;
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="private" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==2" value="2" />
-									<label for="private">Private</label>
+									<label for="private">{{'Private' | translate}}</label>
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="public" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==4" value="4" />
-									<label for="public">Public</label>
+									<label for="public">{{'Public' | translate}}</label>
 								</div>
 							</div>
 
@@ -265,7 +265,7 @@
 
 							<div class="form-group m-b-0">
 								<div class="form-line ">
-									<label for="groupname" class="m-r-3">Image :<span
+									<label for="groupname" class="m-r-3">{{'image' | translate}} :<span
 											style="color: red;">*</span></label>&nbsp;
 									<input type="file" name="adimage" (change)=fileEvent($event) required>
 								</div>
@@ -273,7 +273,7 @@
 
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
-									<label for="groupname" class="m-r-3">Marketer Lists :</label>&nbsp;
+									<label for="groupname" class="m-r-3">{{'Marketers' | translate}} {{'List' | translate}} :</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList"
 										[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings"
 										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
@@ -290,8 +290,8 @@
 						<!-- Modal footer -->
 						<div class="modal-footer">
 							<button type="button" [disabled]="!groupForm.form.valid || Newgroupmodel.groupname==''" class="btn btn-success"
-								(click)="addgroup()" data-dismiss="modal">Save</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								(click)="addgroup()" data-dismiss="modal">{{'Save' | translate}}</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 						</div>
 
 					</div>
@@ -308,7 +308,7 @@
 	
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h4 class="modal-title">Profile</h4>
+								<h4 class="modal-title">{{'Profile' | translate}}</h4>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 	
@@ -316,7 +316,7 @@
 							<div class="modal-body">
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="aliasname" class="m-r-3">Alias Name :<span
+										<label for="aliasname" class="m-r-3">{{'Alias' | translate}} {{'Name' | translate}}:<span
 												style="color: red;">*</span></label>&nbsp;
 										<input name="aliasname" [(ngModel)]="Newgroupmodel.aliasname" type="text"
 											id="aliasname" class="form-control" required #aliasname="ngModel" />
@@ -325,14 +325,14 @@
 								</div>
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="aliasname" class="m-r-3">Picture :</label>&nbsp;
+										<label for="aliasname" class="m-r-3">{{'Picture' | translate}} :</label>&nbsp;
 										<input type="file" name="adimage1" (change)=pfileEvent($event) >
 									</div>
 									
 								</div>
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="groupname" class="m-r-3">Select Websites:</label>&nbsp;
+										<label for="groupname" class="m-r-3">{{'website' | translate}}:</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="websitelists"
 										[(ngModel)]="Newgroupmodel.profilewebsitelists" [settings]="profilewebsitedropdownSettings"
 										[ngModelOptions]="{standalone: true}" #profilewebsitelists="ngModel" ></ng-multiselect-dropdown>
@@ -344,8 +344,8 @@
 							<!-- Modal footer -->
 							<div class="modal-footer">
 								<button type="button" class="btn btn-success"
-									(click)="profilesave()" data-dismiss="modal">Save</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+									(click)="profilesave()" data-dismiss="modal">{{'Save' | translate}}</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 							</div>
 	
 						</div>
@@ -362,7 +362,7 @@
 	
 							<!-- Modal Header -->
 							<div class="modal-header">
-								<h4 class="modal-title">Profile</h4>
+								<h4 class="modal-title">{{'Profile' | translate}}</h4>
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 							</div>
 	
@@ -370,19 +370,19 @@
 							<div class="modal-body">
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="aliasname" class="m-r-3">Website Lock :</label>&nbsp;{{Newgroupmodel.currentUser}}
+										<label for="aliasname" class="m-r-3">{{'website' | translate}}{{'Lock' | translate}}:</label>&nbsp;{{Newgroupmodel.currentUser}}
 									</div>
 									
 								</div>
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.aliasname}}
+										<label for="aliasname" class="m-r-3">{{'Alias' | translate}} {{'Name' | translate}} :</label>&nbsp;{{Newgroupmodel.aliasname}}
 									</div>
 									
 								</div>
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="aliasname" class="m-r-3">Image :</label>&nbsp;
+										<label for="aliasname" class="m-r-3">{{'image' | translate}} :</label>&nbsp;
 										<img src="{{group_bases}}user_profile/{{Newgroupmodel.otherpimage}}"
 										style="width:100px; height: 100px;">
 									</div>
@@ -390,7 +390,7 @@
 								</div>
 								<div class="form-group m-b-0">
 									<div class="form-line radio-btns">
-										<label for="groupname" class="m-r-3">Websites:</label>&nbsp;
+										<label for="groupname" class="m-r-3">{{'website' | translate}}:</label>&nbsp;
 										<table>
 											
 											<tr *ngFor="let data of Newgroupmodel.profilewebsitelists let i=index">
@@ -425,7 +425,7 @@
 		
 								<!-- Modal Header -->
 								<div class="modal-header">
-									<h4 class="modal-title">Profile</h4>
+									<h4 class="modal-title">{{'Profile' | translate}}</h4>
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 								</div>
 		
@@ -433,19 +433,19 @@
 								<div class="modal-body">
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
-											<label for="aliasname" class="m-r-3">Website Lock :</label>&nbsp;{{Newgroupmodel.websitelock}}
+											<label for="aliasname" class="m-r-3">{{'website' | translate}}{{'Lock' | translate}} :</label>&nbsp;{{Newgroupmodel.websitelock}}
 										</div>
 										
 									</div>
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
-											<label for="aliasname" class="m-r-3">Alias Name :</label>&nbsp;{{Newgroupmodel.otherusername}}
+											<label for="aliasname" class="m-r-3">{{'Alias' | translate}} {{'Name' | translate}} :</label>&nbsp;{{Newgroupmodel.otherusername}}
 										</div>
 										
 									</div>
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
-											<label for="aliasname" class="m-r-3">Image :</label>&nbsp;
+											<label for="aliasname" class="m-r-3">{{'image' | translate}} :</label>&nbsp;
 											<img src="{{group_bases}}user_profile/{{Newgroupmodel.otherpimage}}"
 											style="width:100px; height: 100px;">
 										</div>
@@ -453,7 +453,7 @@
 									</div>
 									<div class="form-group m-b-0">
 										<div class="form-line radio-btns">
-											<label for="groupname" class="m-r-3">Websites:</label>&nbsp;
+											<label for="groupname" class="m-r-3">{{'website' | translate}}:</label>&nbsp;
 											<table>
 												
 												<tr *ngFor="let data of Newgroupmodel.otherprofilewebsitelists let i=index">
@@ -490,7 +490,7 @@
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Edit Group/Channel</h4>
+							<h4 class="modal-title">{{'Edit' | translate}} {{'Group-channel' | translate}}</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 
@@ -498,7 +498,7 @@
 						<div class="modal-body">
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns">
-									<label for="groupname" class="m-r-3">Name :<span
+									<label for="groupname" class="m-r-3">{{'Name' | translate}} :<span
 											style="color: red;">*</span></label>&nbsp;
 									<input name="groupname" [(ngModel)]="Newgroupmodel.groupname" type="text"
 										id="groupname" class="form-control" required #groupname="ngModel" />
@@ -509,11 +509,11 @@
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="channele" class="with-gap radio-col-grey"
 										 value="1" />
-									<label for="channele" class="m-r-3">Channel</label>&nbsp;
+									<label for="channele" class="m-r-3">{{'Channel' | translate}}</label>&nbsp;
 									<input name="channelgroup" [(ngModel)]="Newgroupmodel.channelgroup" type="radio"
 										id="groupe" class="with-gap radio-col-grey"
 										[checked]="true" value="2" />
-									<label for="groupe">Group</label>
+									<label for="groupe">{{'group' | translate}}</label>
 								</div>
 							</div>
 							<div class="form-group m-b-0">
@@ -521,28 +521,28 @@
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="marketer1" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==1" value="1" />
-									<label for="marketer1" class="m-r-3">Marketer</label>&nbsp;
+									<label for="marketer1" class="m-r-3">{{'Marketers' | translate}}</label>&nbsp;
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="private1" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==2" value="2" />
-									<label for="private1">Private</label>
+									<label for="private1">{{'Private' | translate}}</label>
 									<input name="privatepublic" [(ngModel)]="Newgroupmodel.privatepublic" type="radio"
 										id="public1" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.privatepublic==4" value="4" />
-									<label for="public1">Public</label>
+									<label for="public1">{{'Public' | translate}}</label>
 								</div>
 							</div>
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns">
-									<label>Show in Website</label>
+									<label>{{'Show in' | translate}} {{'website' | translate}}</label>
 									<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="radio"
 										id="channel1" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.showinwebsite==1" value="1" />
-									<label for="channel1" class="m-r-3">Yes</label>&nbsp;
+									<label for="channel1" class="m-r-3">{{'Yes' | translate}}</label>&nbsp;
 									<input name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="radio"
 										id="group1" class="with-gap radio-col-grey"
 										[checked]="Newgroupmodel.showinwebsite==0" value="0" />
-									<label for="group1">No</label>
+									<label for="group1">{{'No' | translate}}</label>
 									<!-- <input *ngIf="Newgroupmodel.showinwebsite==1" name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="true"  />
 								<input *ngIf="Newgroupmodel.showinwebsite!=1" name="showinwebsite" [(ngModel)]="Newgroupmodel.showinwebsite" type="checkbox" id="showinwebsite" class="with-gap radio-col-grey" [checked]="false"  />
 								<label for="showinwebsite" class="m-r-3">Show in website</label>&nbsp; -->
@@ -551,7 +551,7 @@
 
 							<div *ngIf="Newgroupmodel.showinwebsite==1" class="form-group m-b-0">
 								<div class="form-line radio-btns">
-									<label for="groupname" class="m-r-3">Select Website:</label>&nbsp;
+									<label for="groupname" class="m-r-3">{{'website' | translate}}:</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="websitelists"
 										[(ngModel)]="Newgroupmodel.websitelists1" [settings]="websitedropdownSettings"
 										[ngModelOptions]="{standalone: true}" #websitelists1="ngModel" ></ng-multiselect-dropdown>
@@ -563,7 +563,7 @@
 
 							<div class="form-group m-b-0">
 								<div class="form-line ">
-									<label for="groupname" class="m-r-3">Image :<span
+									<label for="groupname" class="m-r-3">{{'image' | translate}} :<span
 											style="color: red;">*</span></label>&nbsp;
 									<input type="file" name="adimage" (change)=fileEvent($event) required>
 								</div>
@@ -571,7 +571,7 @@
 
 							<div class="form-group m-b-0">
 								<div class="form-line radio-btns" *ngIf="userdropdownList!=0">
-									<label for="groupname" class="m-r-3">Marketer Lists :</label>&nbsp;
+									<label for="groupname" class="m-r-3">{{'Marketers' | translate}}{{'List' | translate}}:</label>&nbsp;
 									<ng-multiselect-dropdown [placeholder]="'Select'" [data]="userdropdownList"
 										[(ngModel)]="Newgroupmodel.userselectedItems" [settings]="userdropdownSettings"
 										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
@@ -586,10 +586,10 @@
 						<!-- Modal footer -->
 						<div class="modal-footer">
 							<button type="button" class="btn btn-success" data-toggle="modal"
-								data-target="#makegroupadmin">Make group admin</button>
+								data-target="#makegroupadmin">{{'Make' | translate}} {{'group' | translate}} {{'Admin' | translate}}</button>
 							<button type="button" [disabled]="!groupForm.form.valid" class="btn btn-success"
-								(click)="updategroup()" data-dismiss="modal">Update</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								(click)="updategroup()" data-dismiss="modal">{{'Update' | translate}}</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 						</div>
 
 					</div>
@@ -609,7 +609,7 @@
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Make Group Admin</h4>
+							<h4 class="modal-title">{{'Make' | translate}} {{'group' | translate}} {{'Admin' | translate}}</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 
@@ -619,18 +619,17 @@
 								<div class="form-line radio-btns">
 									<table>
 										<tr>
-											<th>Username</th>
-											<th>Action</th>
+											<th>{{'UserName' | translate}}</th>
+											<th>{{'actions' | translate}}</th>
 										</tr>
 										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
 											<td>{{data.username}}</td>
 											<td *ngIf="Newgroupmodel.created_by!=data.Id"><button *ngIf="data.admin_normal!=1" type="button"
 													class="btn btn-success"
-													(click)="admintoadd(data.Id,data.group_id)">Make group
-													admin</button>
+													(click)="admintoadd(data.Id,data.group_id)">{{'Make' | translate}} {{'group' | translate}} {{'Admin' | translate}}</button>
 												<button *ngIf="data.admin_normal==1" type="button"
 													class="btn btn-danger"
-													(click)="admintoremove(data.Id,data.group_id)">Remove group admin</button></td>
+													(click)="admintoremove(data.Id,data.group_id)">{{'Remove' | translate}} {{'group' | translate}} {{'Admin' | translate}}</button></td>
 										</tr>
 
 									</table>
@@ -640,7 +639,7 @@
 
 						<!-- Modal footer -->
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 						</div>
 
 					</div>
@@ -657,7 +656,7 @@
 
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Group Members list</h4>
+							<h4 class="modal-title">{{'group' | translate}} {{'Member' | translate}} {{'List' | translate}}</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 
@@ -667,17 +666,17 @@
 								<div class="form-line radio-btns">
 									<table>
 										<tr>
-											<th>Username</th>
-											<th>Action</th>
+											<th>{{'UserName' | translate}}</th>
+											<th>{{'actions' | translate}}</th>
 										</tr>
 										<tr *ngFor="let data of Newgroupmodel.groupmemlists let i=index">
 											<td>{{data.username}}</td>
 											<td><button *ngIf="data.is_deleted!=1" type="button"
 													class="btn btn-success"
-													(click)="usertoremove(data.Id,data.group_id)">Active</button>
+													(click)="usertoremove(data.Id,data.group_id)">{{'Activate' | translate}}</button>
 												<button *ngIf="data.is_deleted==1" type="button"
 													class="btn btn-danger"
-													(click)="usertoadd(data.Id,data.group_id)">Remove</button></td>
+													(click)="usertoadd(data.Id,data.group_id)">{{'Remove' | translate}}</button></td>
 										</tr>
 
 									</table>
@@ -687,7 +686,7 @@
 
 						<!-- Modal footer -->
 						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 						</div>
 
 					</div>
@@ -711,7 +710,7 @@
 					<div class="modal-body">
 
 						<div class="form-group">
-							<label>Message :</label>
+							<label>{{'Message' | translate}} :</label>
 							<!-- <input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
 								class="form-control" #msgupdate="ngModel" /> -->
 								<textarea name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
@@ -723,7 +722,7 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-success" (click)="msgupdatefun()"
-							data-dismiss="modal">Update</button>
+							data-dismiss="modal">{{'Update' | translate}}</button>
 					</div>
 
 				</div>
@@ -746,7 +745,7 @@
 						<div class="modal-body">
 	
 							<div class="form-group">
-								<label>Reply Message :</label>
+								<label>{{'Reply' | translate}} {{'Message' | translate}} :</label>
 								
 									<textarea name="replymsgupdate" [(ngModel)]="Newgroupmodel.replymsgupdate" type="text" id="replymsgupdate"
 									class="form-control" #replymsgupdate="ngModel"></textarea>
@@ -757,7 +756,7 @@
 						<!-- Modal footer -->
 						<div class="modal-footer">
 							<button type="button" class="btn btn-success" (click)="replymsgupdatefun()"
-								data-dismiss="modal">Reply</button>
+								data-dismiss="modal">{{'Reply' | translate}}</button>
 						</div>
 	
 					</div>
@@ -782,7 +781,7 @@
 						<div class="modal-body">
 	
 							<div class="form-group">
-								<label>Add Caption :</label>
+								<label>{{'Add' | translate}} {{'Caption' | translate}} :</label>
 								<!-- <input name="msgupdate" [(ngModel)]="Newgroupmodel.msgupdate" type="text" id="msgupdate"
 									class="form-control" #msgupdate="ngModel" /> -->
 									<textarea name="addcaption" [(ngModel)]="Newgroupmodel.addcaption" type="text" id="addcaption"
@@ -794,7 +793,7 @@
 						<!-- Modal footer -->
 						<div class="modal-footer">
 							<button type="button" class="btn btn-success" (click)="addcaptionfun()"
-								data-dismiss="modal">Add</button>
+								data-dismiss="modal">{{'Add' | translate}}</button>
 						</div>
 	
 					</div>
@@ -908,7 +907,7 @@
 
 					<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Exit Group</h4>
+						<h4 class="modal-title">{{'Exit' | translate}} {{'group' | translate}}</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
@@ -924,8 +923,8 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-success" (click)="exitgroup()"
-							data-dismiss="modal">Exit</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+							data-dismiss="modal">{{'Exit' | translate}}</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Cancel' | translate}}</button>
 					</div>
 
 				</div>
@@ -941,7 +940,7 @@
 
 					<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Delete Group</h4>
+						<h4 class="modal-title">{{'Delete' | translate}} {{'group' | translate}}</h4>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 
@@ -957,8 +956,8 @@
 					<!-- Modal footer -->
 					<div class="modal-footer">
 						<button type="button" class="btn btn-success" (click)="deletegroup()"
-							data-dismiss="modal">Delete</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+							data-dismiss="modal">{{'Delete' | translate}}</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">{{'No' | translate}}</button>
 					</div>
 
 				</div>
@@ -984,12 +983,12 @@
 								class="fas fa-ellipsis-v text-white"></i></a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="javascript:void(0);" (click)="clearoldval()" data-toggle="modal"
-								data-target="#myModal">New Group</a>
+								data-target="#myModal">{{'group' | translate}}</a>
 							<a class="dropdown-item" href="javascript:void(0);"
-								[routerLink]="['/dashboard']">Dashboard</a>
-							<a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/mychat']">Mychat</a>
+								[routerLink]="['/dashboard']">{{'User Dashboard Label' | translate}}</a>
+							<a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/mychat']">{{'Mychat' | translate}}</a>
 
-							<a class="dropdown-item" href="javascript:void(0);" (click)=logout()>Log Out</a>
+							<a class="dropdown-item" href="javascript:void(0);" (click)=logout()>{{'Logout' | translate}}</a>
 						</div>
 					</div>
 				</div>
@@ -1002,7 +1001,7 @@
 						<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
 								data-target="#profilemyModal">
 							<div class="w-50">
-								<div class="name">Profile</div>
+								<div class="name">{{'Profile' | translate}}</div>
 							</div>
 						</a>
 					</div>
@@ -1010,7 +1009,7 @@
 						<a class="dropdown-item" href="javascript:void(0);" (click)="clearoldval()" data-toggle="modal"
 								data-target="#myModal">
 							<div class="w-50">
-								<div class="name">New Group</div>
+								<div class="name">{{'New' | translate}} {{'New' | translate}}</div>
 							</div>
 						</a>
 					</div>
@@ -1018,21 +1017,21 @@
 						<a class="dropdown-item" href="javascript:void(0);"
 								[routerLink]="['/dashboard']">
 							<div class="w-50">
-								<div class="name">Dashboard</div>
+								<div class="name">{{'User Dashboard Label' | translate}}</div>
 							</div>
 						</a>
 					</div>
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
 						<a class="dropdown-item" href="javascript:void(0);" [routerLink]="['/mychat']">
 							<div class="w-50">
-								<div class="name">Mychat</div>
+								<div class="name">{{'Mychat' | translate}}</div>
 							</div>
 						</a>
 					</div>
 					<div class="chat-list-item d-flex flex-row w-100 p-2 border-bottom active">
 						<a class="dropdown-item" href="javascript:void(0);" (click)=logout()>
 							<div class="w-50">
-								<div class="name">Log Out</div>
+								<div class="name">{{'Logout' | translate}}</div>
 							</div>
 						</a>
 					
@@ -1070,21 +1069,21 @@
 						style="background:#009688; min-height:65px;">
 						<i class="fas fa-arrow-left p-2 mx-3 my-1 text-white"
 							style="font-size: 1.5rem; cursor: pointer;"></i>
-						<div class="text-white font-weight-bold">Profile</div>
+						<div class="text-white font-weight-bold">{{'Profile' | translate}}</div>
 					</div>
 					<div class="d-flex flex-column" style="overflow:auto;">
 						<img alt="Profile Photo" class="img-fluid rounded-circle my-5 justify-self-center mx-auto"
 							id="profile-pic">
 						<input type="file" id="profile-pic-input" class="d-none">
 						<div class="bg-white px-3 py-2">
-							<div class="text-muted mb-2"><label for="input-name">Your Name</label></div>
+							<div class="text-muted mb-2"><label for="input-name">{{'Your' | translate}} {{'Name' | translate}}</label></div>
 							<input type="text" name="name" id="input-name" class="w-100 border-0 py-2 profile-input">
 						</div>
 						<div class="text-muted p-3 small">
 							This is not your username or pin. This name will be visible to your WhatsApp contacts.
 						</div>
 						<div class="bg-white px-3 py-2">
-							<div class="text-muted mb-2"><label for="input-about">About</label></div>
+							<div class="text-muted mb-2"><label for="input-about">{{'About' | translate}}</label></div>
 							<input type="text" name="name" id="input-about" value=""
 								class="w-100 border-0 py-2 profile-input">
 						</div>
@@ -1123,20 +1122,20 @@
 						<div class="dropdown-menu dropdown-menu-right">
 							<!-- Newgroupmodel.created_by==Newgroupmodel.currentUserID -->
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);"
-								data-toggle="modal" data-target="#myModaledit">Edit Group</a>
+								data-toggle="modal" data-target="#myModaledit">{{'Edit' | translate}} {{'group' | translate}}</a>
 							<a *ngIf="Newgroupmodel.admin_normal==1 && Newgroupmodel.currentUser!=Newgroupmodel.groupname" class="dropdown-item" href="javascript:void(0);"
-								data-toggle="modal" data-target="#deletemyModaledit">Delete Group</a>
+								data-toggle="modal" data-target="#deletemyModaledit">{{'Delete' | translate}} {{'group' | translate}}</a>
 
 							<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1" href="javascript:void(0);" data-toggle="modal"
-								data-target="#sendrequestmodal">Send Join Request</a>
+								data-target="#sendrequestmodal">{{'Send' | translate}} {{'Join' | translate}} {{'Requested' | translate}}</a>
 									
 							<a class="dropdown-item" href="javascript:void(0);" data-toggle="modal"
-								data-target="#exitmyModaledit">Exit Group</a>
+								data-target="#exitmyModaledit">{{'Exit' | translate}} {{'group' | translate}}</a>
 
 							<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);">
-								<strong (click)='share()'>Share group link</strong></a>
+								<strong (click)='share()'>{{'Share' | translate}} {{'group' | translate}} {{'link' | translate}}</strong></a>
 								<a *ngIf="Newgroupmodel.admin_normal==1" class="dropdown-item" href="javascript:void(0);">
-									<strong (click)="copyMessage(grouplink)">Copy group link</strong></a>
+									<strong (click)="copyMessage(grouplink)">{{'Copy' | translate}} {{'group' | translate}} {{'link' | translate}}</strong></a>
 
 
 						</div>
@@ -1289,11 +1288,11 @@
 		
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" *ngIf="data.chatimage==''" data-toggle="modal" data-target="#msgeditModal"
-													(click)="msgeditfun(data.id)">Edit</a>
+													(click)="msgeditfun(data.id)">{{'Edit' | translate}}</a>
 													<a class="dropdown-item" data-toggle="modal" data-target="#replymsgeditModal"
-													(click)="replymsgeditfun(data.id)">Reply</a>
-												<a class="dropdown-item" (click)="msgdeletefun(data.id)">Delete</a>
-												<a class="dropdown-item" *ngIf="data.chatimage!='' && data.video_type==0" data-toggle="modal" data-target="#addcaptionModal" (click)="addcaption(data.id)">Add Caption</a>
+													(click)="replymsgeditfun(data.id)">{{'Reply' | translate}}</a>
+												<a class="dropdown-item" (click)="msgdeletefun(data.id)">{{'Delete' | translate}}</a>
+												<a class="dropdown-item" *ngIf="data.chatimage!='' && data.video_type==0" data-toggle="modal" data-target="#addcaptionModal" (click)="addcaption(data.id)">{{'Add' | translate}} {{'Caption' | translate}}</a>
 		
 											</div>
 		
@@ -1309,10 +1308,10 @@
 		
 											<div class="dropdown-menu dropdown-menu-right">
 												<a class="dropdown-item" data-toggle="modal" data-target="#replymsgeditModal"
-													(click)="replymsgeditfun(data.id)">Reply</a>
+													(click)="replymsgeditfun(data.id)">{{'Reply' | translate}}</a>
 												<!-- <a class="dropdown-item"  *ngIf="Newgroupmodel.admin_normal==1" data-toggle="modal" data-target="#msgeditModal" (click)="msgeditfun(data.id)" >Edit</a> -->
 												<a class="dropdown-item" *ngIf="Newgroupmodel.admin_normal==1"
-													(click)="msgdeletefun(data.id)">Delete</a>
+													(click)="msgdeletefun(data.id)">{{'Delete' | translate}}</a>
 		
 											</div>
 		
@@ -1467,7 +1466,7 @@
 					<div class="modal-content">
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Send Join Request</h4>
+							<h4 class="modal-title">{{'Send' | translate}} {{'Join' | translate}} {{'Requested' | translate}}</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<!-- Modal body -->
@@ -1480,7 +1479,7 @@
 										[ngModelOptions]="{standalone: true}" #userselectedItems="ngModel">
 									</ng-multiselect-dropdown> --> 
 									<input name="groupmsgtxt" [(ngModel)]="sendreqestmodel.marketer" type="text" id="groupmsgtxt" placeholder="Type a message"/>
-									<button type="button"  class="btn btn-success" (click)="findmarketer()">Find Marketer</button>
+									<button type="button"  class="btn btn-success" (click)="findmarketer()">{{'find' | translate}} {{'Marketers' | translate}}</button>
 
 								</div>
 							</div>
@@ -1489,8 +1488,8 @@
 						<div class="modal-footer">							
 							<button type="button" [disabled]="!sendreqestmodel.Isloading" class="btn btn-success"
 								(click)="sendrequest()" data-dismiss="modal">
-								Send Request</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								{{'Send' | translate}} {{'Requested' | translate}}</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button>
 						</div>
 					</div>
 				</form>

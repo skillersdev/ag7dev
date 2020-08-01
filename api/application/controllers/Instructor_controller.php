@@ -30,6 +30,7 @@ class Instructor_controller extends CI_Controller {
             
             /*set as instructor status from student*/
                 $new_model->user_type = 1;
+                $new_model->is_instructor = 1;
                 $this->db->where('id',$model[0]->elaernuser);
                 $result=$this->db->update('elearn_users', $new_model);
             /********/    

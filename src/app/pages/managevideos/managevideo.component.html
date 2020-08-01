@@ -16,7 +16,7 @@
                     <div class="header">
                         <h2 class="font-bold">
                             {{'Manage' | translate}}{{'Video' | translate}}
-                            <button type="button" (click)="navigateAddvideo()" class="btn btn-success waves-effect pull-right">Add Video</button>
+                            <button type="button" (click)="navigateAddvideo()" class="btn btn-success waves-effect pull-right"> {{'Add' | translate}}{{'Video' | translate}}</button>
                         </h2>
                     </div>
                     <div class="body">
@@ -47,7 +47,7 @@
                                                 <i class="material-icons">edit</i></a>
                                             <a href="javascript:void(0);" (click)="deletevideo(item.id)"><i class="material-icons">delete</i></a>
                                             <a  href="javascript:void(0);" data-toggle="modal" data-target="#premiummodal" (click)="getVideodet(item.id)">
-                                            <button type="button" class="btn bg-primary waves-effect">Show in premium</button>
+                                            <button type="button" class="btn bg-primary waves-effect">{{'Show Premium videos' | translate}}</button>
                                         </a>
                                         </td>
                                     </tr>

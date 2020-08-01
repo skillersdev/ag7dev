@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'adminpanel';
-  constructor(private translate:TranslateService)
+  constructor(public translate:TranslateService)
   {
     translate.addLangs(['English', 'Persian']);
       translate.setDefaultLang('English');

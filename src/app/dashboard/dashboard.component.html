@@ -479,7 +479,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="largeModalLabel">Activate Package</h4>
+                            <h4 class="modal-title" id="largeModalLabel">{{'Activate' | translate}}{{'Package' | translate}}</h4>
                         </div>
                         <div class="modal-body">
                             <form #addpackage="ngForm">
@@ -494,8 +494,8 @@
                                 <div class="col-md-12">&nbsp;&nbsp;</div>
                                 <div class="col-md-12">&nbsp;&nbsp;</div>
                                 <div class="col-md-12">
-                                     <button type="button" class="btn btn-primary" (click)="savepackages()">Buy Package</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                     <button type="button" class="btn btn-primary" (click)="savepackages()">{{'Buy Package' | translate}}</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">{{'Close' | translate}}</button>
                                 </div>
                             </form>
                         </div>

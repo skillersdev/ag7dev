@@ -17,7 +17,7 @@ websiteurl:string=AppSettings.USER_TEMPLATE;
 model: any = {};
   constructor(
   	private loginService: LoginService,private CommonService: CommonService,
-  	private router: Router,private http:Http,private translate:TranslateService) {
+  	private router: Router,private http:Http,public translate:TranslateService) {
 
       document.body.className=" ";
       translate.addLangs(['English', 'Persian']);
