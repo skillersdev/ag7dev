@@ -243,5 +243,7 @@
     "Join":"Join",
     "Share":"Share",
     "Copy":"Copy",
-    "find":"find"
+    "find":"find",
+    "required":"ضروری",
+    "Enter":"Enter"
 }

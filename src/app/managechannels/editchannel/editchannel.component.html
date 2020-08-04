@@ -38,7 +38,7 @@
 	                                                 	<label for="NameSurname" class="col-sm-2 control-label">{{'Channel' | translate}} {{'Name' | translate}}</label>
 	                                                	<div class="col-sm-10">
 		                                                    <div class="form-line">
-		                                                        <input type="text" class="form-control" id="channel_name" name="channel_name" [(ngModel)]="model.channel_name"  #channel_name="ngModel" placeholder="channel Name" required (blur)="updateChannelUrl()">
+		                                                        <input type="text" class="form-control" id="channel_name" name="channel_name" [(ngModel)]="model.channel_name"  #channel_name="ngModel" placeholder="{{'Channel' | translate}} {{'Name' | translate}}" required (blur)="updateChannelUrl()">
 		                                                    </div>
 														</div>
 														<span class="text-danger" *ngIf="!model.Isvalidate">
@@ -99,7 +99,7 @@
 	                                            </div> 
 	                                            <div class="col-md-6">
 	                                                <p><b>{{'Channel URL' | translate}}</b></p>                     
-	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="channel Url" readonly>
+	                                                <input type="text" class="form-control" id="channel_url" name="channel_url" [(ngModel)]="model.channel_url"  #channel_url="ngModel" placeholder="{{'Channel URL' | translate}}" readonly>
 	                                            </div> 
 	                                        </div>
                                         	<button type="submit" [disabled]="!addchannel.form.valid  || !model.Isvalidate" class="btn btn-primary m-t-15 waves-effect" (click)="updatechannel_form()">{{'Update' | translate}}{{'Channel' | translate}}</button>&nbsp;

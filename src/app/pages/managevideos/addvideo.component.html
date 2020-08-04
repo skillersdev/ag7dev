@@ -25,7 +25,7 @@
                                     <p><b>{{'Title' | translate}}</b><span class="text-danger">*</span></p>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" name="title" placeholder="Enter Your video title" required [(ngModel)]="model.title" #title="ngModel">
+                                            <input type="text" class="form-control" name="title" placeholder="{{'Title' | translate}}" required [(ngModel)]="model.title" #title="ngModel">
                                         </div>
                                         <span [hidden]="title.valid || title.pristine" class="text-danger">Title is required</span>
                                     </div>
@@ -106,7 +106,7 @@
                                     <b>{{'website' | translate}} {{'for' | translate}} {{'Selected' | translate}}{{'Channel' | translate}}:</b>
                                     <div class="form-group">
                                        <div class="form-line">
-                                        <input type="text" class="form-control" name="tags" placeholder="" [(ngModel)]="model.channelWebsite" #channelWebsite="ngModel" readonly>
+                                        <input type="text" class="form-control" name="tags" placeholder="{{'website' | translate}}" [(ngModel)]="model.channelWebsite" #channelWebsite="ngModel" readonly>
                                         </div>
                                     </div>
                                 </div>  

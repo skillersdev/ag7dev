@@ -30,7 +30,7 @@
                         </span>
                     <div class="form-line">
 
-                        <input type="text" id="username" [(ngModel)]="model.user_name" #username="ngModel" name="user_name" class="form-control" placeholder="username" required autofocus />
+                        <input type="text" id="username" [(ngModel)]="model.user_name" #username="ngModel" name="user_name" class="form-control" placeholder="{{'UserName' | translate}}" required autofocus />
                         <div *ngIf="username.errors && (username.dirty || username.touched)">
                             <span [hidden]="!username.errors.required" style="color:white;">
                                   *Username is required
@@ -43,7 +43,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                     <div class="form-line">
-                        <input type="password" id="password" [(ngModel)]="model.user_password" #password="ngModel" name="user_password" class="form-control" placeholder="Password" required />
+                        <input type="password" id="password" [(ngModel)]="model.user_password" #password="ngModel" name="user_password" class="form-control" placeholder="{{'Password' | translate}}" required />
                         <div *ngIf="password.errors && (password.dirty || password.touched)">
                             <span [hidden]="!password.errors.required" style="color:white;">
                                   *Password is required

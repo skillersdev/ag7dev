@@ -37,7 +37,7 @@
                                                 <p><b>>{{'Category' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter Category" [(ngModel)]="model.category_name" name="category_name" #category_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Category' | translate}} {{'Name' | translate}}" [(ngModel)]="model.category_name" name="category_name" #category_name="ngModel" required>
                                                     </div>
                                                       <span [hidden]="category_name.valid || category_name.pristine" class="text-danger">Category Name is required</span>
                                                 </div>

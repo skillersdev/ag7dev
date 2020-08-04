@@ -40,7 +40,7 @@
                                                 <p><b>{{'Twitter Url' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter Contact" [(ngModel)]="model.contact" #contact="ngModel" name="contact" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Twitter Url' | translate}}" [(ngModel)]="model.contact" #contact="ngModel" name="contact" required>
                                                     </div>
                                                      <span [hidden]="contact.valid || contact.pristine" class="text-danger">url is required</span>
                                                 </div>
@@ -79,7 +79,7 @@
                                                 <p><b>{{'About Profile' | translate}} </b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter your info" [(ngModel)]="model.about_website" #about_website="ngModel" name="contact" required>
+                                                        <input type="text" class="form-control" placeholder="{{'About Profile' | translate}}" [(ngModel)]="model.about_website" #about_website="ngModel" name="contact" required>
                                                     </div>
                                                      <span [hidden]="about_website.valid || about_website.pristine" class="text-danger">About  is required</span>
                                                 </div>
@@ -92,7 +92,7 @@
                                                     <p><b>{{'Facebook Url' | translate}} </b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="Enter facebook Url" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link">
+                                                            <input type="text" class="form-control" placeholder="{{'Facebook Url' | translate}}" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link">
                                                         </div>
                                                         <span [hidden]="fb_link.valid || fb_link.pristine" class="text-danger">Eacebook link is required</span>
                                                     </div>
@@ -101,7 +101,7 @@
                                                     <p><b>{{'LinkedIn Url' | translate}}</b></p>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="Enter linkedin Url" [(ngModel)]="model.linked_url" #linked_url="ngModel" name="linked_url">
+                                                            <input type="text" class="form-control" placeholder="{{'LinkedIn Url' | translate}}" [(ngModel)]="model.linked_url" #linked_url="ngModel" name="linked_url">
                                                         </div>
                                                         <span [hidden]="linked_url.valid || linked_url.pristine" class="text-danger"> linked is required</span>
                                                     </div>
@@ -112,7 +112,7 @@
                                                 <p><b>{{'Mobile Phone Number' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.phonenumber" #phonenumber="ngModel" name="phonenumber">
+                                                        <input type="text" class="form-control" placeholder="{{'Mobile Phone Number' | translate}}" [(ngModel)]="model.phonenumber" #phonenumber="ngModel" name="phonenumber">
                                                     </div>                                                                              
                                                 </div>
                                             </div> 
@@ -121,7 +121,7 @@
                                                 <p><b>{{'Home numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.homenumber" #homenumber="ngModel" name="homenumber">
+                                                        <input type="text" class="form-control" placeholder="{{'Home numbers' | translate}}" [(ngModel)]="model.homenumber" #homenumber="ngModel" name="homenumber">
                                                     </div>                       
                                                 </div>
                                             </div> 
@@ -132,7 +132,7 @@
                                                 <p><b>{{'Office numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.officenumber" #officenumber="ngModel" name="officenumber">
+                                                        <input type="text" class="form-control" placeholder=">{{'Office numbers' | translate}}" [(ngModel)]="model.officenumber" #officenumber="ngModel" name="officenumber">
                                                     </div>                                                                              
                                                 </div>
                                             </div> 
@@ -141,7 +141,7 @@
                                                 <p><b>{{'FAX numbers' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.faxnumber" #faxnumber="ngModel" name="homenumber">
+                                                        <input type="text" class="form-control" placeholder="{{'FAX numbers' | translate}}" [(ngModel)]="model.faxnumber" #faxnumber="ngModel" name="homenumber">
                                                     </div>                       
                                                 </div>
                                             </div> 
@@ -152,7 +152,7 @@
                                                 <p><b>{{'WhatsApp' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.whatsapp" #whatsapp="ngModel" name="whatsapp">
+                                                        <input type="text" class="form-control" placeholder="{{'WhatsApp' | translate}}" [(ngModel)]="model.whatsapp" #whatsapp="ngModel" name="whatsapp">
                                                     </div>                                                                              
                                                 </div>
                                             </div> 
@@ -161,7 +161,7 @@
                                                 <p><b>{{'Telegram' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter number" [(ngModel)]="model.telegram" #telegram="ngModel" name="telegram">
+                                                        <input type="text" class="form-control" placeholder="{{'Telegram' | translate}}" [(ngModel)]="model.telegram" #telegram="ngModel" name="telegram">
                                                     </div>                       
                                                 </div>
                                             </div> 
@@ -172,7 +172,7 @@
                                                 <p><b>{{'Address Label' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <textarea class="form-control" placeholder="Enter number" [(ngModel)]="model.address" #address="ngModel" name="address"></textarea>
+                                                        <textarea class="form-control" placeholder="{{'Address Label' | translate}}" [(ngModel)]="model.address" #address="ngModel" name="address"></textarea>
                                                     </div>                                                                              
                                                 </div>
                                             </div> 
@@ -181,7 +181,7 @@
                                                 <p><b>{{'Email Label' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" [(ngModel)]="model.email"  #email="ngModel">
+                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="{{'Email Label' | translate}}" [(ngModel)]="model.email"  #email="ngModel">
                                                     </div>                       
                                                 </div>
                                             </div> 

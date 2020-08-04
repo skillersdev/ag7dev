@@ -12,7 +12,7 @@
                             <i class="material-icons">view_comfys</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="Enter Website Name" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="{{'Enter' | translate}}{{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                          <div *ngIf="website.errors && (website.dirty || website.touched)" class="">
                             <span [hidden]="website.errors.required" class="text-danger">website is required</span>
@@ -36,7 +36,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="Enter Website lock" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="{{'Enter' | translate}}{{'Website' | translate}} {{'Lock'|translate}}" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                         <div *ngIf="username.errors && (username.dirty || username.touched)" class="">
                             <span [hidden]="username.errors.required" class="text-danger">username is required</span>
@@ -63,7 +63,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" autocomplete="off" class="form-control" [(ngModel)]="model.password" #password="ngModel" name="password" minlength="6" (blur)="passwordMatch()" placeholder="Password" required>
+                            <input type="password" autocomplete="off" class="form-control" [(ngModel)]="model.password" #password="ngModel" name="password" minlength="6" (blur)="passwordMatch()" placeholder="{{'Password'|translate}}" required>
                         </div>
                         <div *ngIf="password.errors && (password.dirty || password.touched)" class="">
                             <span *ngIf="password.errors.required" class="text-danger">Password is required</span>
@@ -75,7 +75,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" [(ngModel)]="model.confirmp" #confirmp="ngModel" name="confirmp" minlength="6" placeholder="Confirm Password" (blur)="passwordMatch()" required>
+                            <input type="password" class="form-control" [(ngModel)]="model.confirmp" #confirmp="ngModel" name="confirmp" minlength="6" placeholder="{{'Confirm Password'|translate}}" (blur)="passwordMatch()" required>
                         </div>
                         <div *ngIf="confirmp.errors && (confirmp.dirty || confirmp.touched)" class="">
                             <span *ngIf="confirmp.errors.required" class="text-danger">Confirm Password is required</span>
@@ -359,13 +359,13 @@
                     </div>
 
                     <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="material-icons">group</i>
-                            </span>
-                            <div class="form-line">
-                                <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Creator/Website Name" required autofocus>
-                            </div>
+                        <span class="input-group-addon">
+                            <i class="material-icons">group</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Creator/Website Name" required autofocus>
                         </div>
+                    </div>
                     
 
                     

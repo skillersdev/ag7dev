@@ -55,7 +55,7 @@
                                                 <p><b>{{'Product' | translate}}{{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter Product" [(ngModel)]="model.product_name" #product_name="ngModel" name="product_name" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Product' | translate}}{{'Name' | translate}}" [(ngModel)]="model.product_name" #product_name="ngModel" name="product_name" required>
                                                     </div>
                                                     <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product is required</span>
                                                 </div>

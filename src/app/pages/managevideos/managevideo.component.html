@@ -85,7 +85,7 @@
                                             <p><b>{{'UserName' | translate}}</b></p>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="premiumModal.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                    <input type="text" id="username " name="username" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="premiumModal.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
                                                 </div>
                                                 <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
                                             </div>
@@ -94,7 +94,7 @@
                                             <p><b>{{'Password' | translate}}</b></p>
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="premiumModal.password" #password="ngModel" required>
+                                                    <input type="password" id="password" name="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="premiumModal.password" #password="ngModel" required>
                                                 </div>
                                                 <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                             </div>

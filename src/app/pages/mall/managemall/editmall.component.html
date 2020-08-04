@@ -27,7 +27,7 @@
                                                 <b>{{'Mall' | translate}} {{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter mall" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
                                                     </div>
                                                       <span [hidden]="mall_name.valid || mall_name.pristine" class="text-danger">mall Name is required</span>
                                                 </div>
@@ -45,7 +45,7 @@
                                                 <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter username" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
                                                     </div>
                                                       <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -54,7 +54,7 @@
                                                 <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>

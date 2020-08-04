@@ -191,7 +191,7 @@
                                                 <p><b>Package Name</b></p>
                                                 <div class="form-group"> 
                                                     <div class="form-line">
-                                                        <input type="text" id="package_name " name="package_name " class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
+                                                        <input type="text" id="package_name " name="package_name " class="form-control" placeholder="{{'Enter' | translate}} {{'Package Name' | translate}}" [(ngModel)]="model.package_name " #package_name="ngModel" required [readonly]="true">
                                                     </div>
                                                     <span [hidden]="package_name.valid || package_name.pristine" class="text-danger">Package Name is required</span>
                                                 </div>
@@ -200,7 +200,7 @@
                                                 <p><b>Package price</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="Enter PackageName" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
+                                                        <input type="text" id="package_price" name="package_price" class="form-control" placeholder="{{'Enter' | translate}} {{'Package Name' | translate}}" [(ngModel)]="model.package_price" #package_price="ngModel" required [readonly]="true">
                                                     </div>
                                                     <span [hidden]="package_price.valid || package_price.pristine" class="text-danger">Package price is required</span>
                                                 </div>
@@ -209,7 +209,7 @@
                                                 <p><b>Website Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" required>
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="{{'Enter' | translate}}{{'Website' | translate}}" [(ngModel)]="model.website" #website="ngModel" required>
                                                     </div>
                                                     <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
                                                 </div>
@@ -226,7 +226,7 @@
                                                 <p><b>User Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="{{'Enter' | translate}}{{'UserName' | translate}}" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
                                                     </div>
                                                     <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -235,7 +235,7 @@
                                                 <p><b>Password</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" [(ngModel)]="payment_data.password" #password="ngModel" required>
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="{{'Enter' | translate}}{{'Password' | translate}}" [(ngModel)]="payment_data.password" #password="ngModel" required>
                                                     </div>
                                                     <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
@@ -317,7 +317,7 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="{{'Enter' | translate}}{{'Marketers' | translate}}{{'Name' | translate}}" [(ngModel)]="model.mname" #mname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
                                         </div>
                                         <div *ngIf="mname.invalid && (mname.dirty || mname.touched)" class="" style="color: red;">
                                             <span *ngIf="mname.errors.required">
@@ -328,7 +328,7 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Amount to share Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (keypress)="restrictNumbers($event)" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="Enter Amount to share" value="" required>
+                                            <input type="text" class="form-control" id="share_amt" name="share_amt" pattern="[0-9/.]*" [(ngModel)]="model.share_amt" (keypress)="restrictNumbers($event)" (blur)="checkbalance('1')" #share_amt="ngModel" placeholder="{{'Amount to share Label' | translate}}" value="" required>
                                         </div>
                                         <div *ngIf="share_amt.invalid && (share_amt.dirty || share_amt.touched)" class="" style="color: red;">
                                             <span *ngIf="share_amt.errors.required" class="text-danger">Amount is required</span>
@@ -372,7 +372,7 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="Enter Marketer Name" [(ngModel)]="elearningmodel.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="{{'Marketer Name Label' | translate}}" [(ngModel)]="elearningmodel.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
                                         </div>
                                         <div *ngIf="emname.invalid && (emname.dirty || emname.touched)" class="" style="color: red;">
                                             <span *ngIf="emname.errors.required">
@@ -383,7 +383,7 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Voucher to Share'|translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="Enter Amount to share" (keypress)="restrictNumbers($event)" value="" required>
+                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="{{'Voucher to Share'|translate}}" (keypress)="restrictNumbers($event)" value="" required>
                                         </div>
                                         <div *ngIf="eshare_amt.invalid && (eshare_amt.dirty || eshare_amt.touched)" class="" style="color: red;">
                                             <span *ngIf="eshare_amt.errors.required" class="text-danger">Amount is required</span>

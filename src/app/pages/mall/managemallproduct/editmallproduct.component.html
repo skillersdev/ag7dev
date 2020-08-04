@@ -62,7 +62,7 @@
                                                 <b>{{'Product' | translate}}{{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter product" [(ngModel)]="model.product_name" name="product_name" #product_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Product' | translate}}{{'Name' | translate}}" [(ngModel)]="model.product_name" name="product_name" #product_name="ngModel" required>
                                                     </div>
                                                       <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product Name is required</span>
                                                 </div>
@@ -71,7 +71,7 @@
                                                 <p><b>{{'Paypal Email' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Enter Paypal Email" [(ngModel)]="model.paypal_email" name="paypal_email" #paypal_email="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Paypal Email' | translate}}" [(ngModel)]="model.paypal_email" name="paypal_email" #paypal_email="ngModel" required>
                                                     </div>
                                                       <span [hidden]="paypal_email.valid || paypal_email.pristine" class="text-danger">Paypal Email id is required</span>
                                                 </div>
@@ -98,7 +98,7 @@
                                                         <b>{{'Description' | translate}}</b>
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                    <input type="text" class="form-control" placeholder="Enter Description" [(ngModel)]="model.description" name="description" #description="ngModel">
+                                                                    <input type="text" class="form-control" placeholder="{{'Description' | translate}}" [(ngModel)]="model.description" name="description" #description="ngModel">
                                                             </div>
                                                              
                                                         </div>
