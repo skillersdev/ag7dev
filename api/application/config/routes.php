@@ -230,10 +230,8 @@ $route['getcodetogroup'] = 'Group_controller/getcodetogroup';
 $route['getmychatcodetogroup'] = 'Group_controller/getmychatcodetogroup';
 $route['mychatgroup'] = 'Group_controller/mychatgroup';
 $route['chatmsgdelete'] = 'Group_controller/chatmsgdelete';
-$route['chatmsgcountdelete'] = 'Group_controller/chatmsgcountdelete';
 $route['chatmsgedit'] = 'Group_controller/chatmsgedit';
 $route['chatmsgupdate'] = 'Group_controller/chatmsgupdate';
-$route['chatmsgreply'] = 'Group_controller/chatmsgreply';
 $route['makegroupadmin'] = 'Group_controller/makegroupadmin';
 $route['groupuseraddreove'] = 'Group_controller/groupuseraddreove';
 $route['chatprofilesave'] = 'Group_controller/chatprofilesave';
@@ -325,6 +323,12 @@ $route['updatechanneldata'] = 'Channel_controller/updatechanneldata';
 $route['deletechanneldata/(:num)']= 'Channel_controller/deletechanneldata/$1';
 $route['checkchannelexist']="Channel_controller/checkchannelexist";
 /*****/
+
+/**Became Instructor added by sri 02.08.2020**/
+$route['activateInstructor']="Instructor_controller/check_user_credit";
+
+$route['updateelearnuserpassword']="Package_controller/updateelearnuserpassword";
+
 ?>
 
 

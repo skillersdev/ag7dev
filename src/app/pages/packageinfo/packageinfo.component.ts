@@ -23,6 +23,7 @@ export class PackageinfoComponent implements OnInit {
   websiteurl:any;
   appwebsiteurl:string=AppSettings.WEBSITE_URL;
   DeletepackageRestApiUrl:string = AppSettings.deletePackageDetails;
+  InstructorPasswordmodel:any={};
 
   packagelist:Array<Object>;
   model:any={};
@@ -41,6 +42,7 @@ export class PackageinfoComponent implements OnInit {
 
   ngOnInit() {
     this.websiteurl=this.appwebsiteurl;
+    this.model.passwordmatch=false;
     this.showButton=false;
     this.loginService.localStorageData();
     this.loginService.viewsActivate();
@@ -340,4 +342,36 @@ export class PackageinfoComponent implements OnInit {
  {
   this.instructorModal.showVoucherform =true;
  }
+
+ updatePassword()
+ {
+  this.CommonService.insertdata(AppSettings.Updateelearnuserpassword,this.InstructorPasswordmodel)
+  .subscribe(resultdata =>{
+    if(resultdata.status=='success')
+    {
+      swal('',resultdata.message,'success');          
+    }else{
+      swal('',resultdata.message,'error');
+    }
+    this.ngOnInit();
+   $('#changePassword').modal('hide');
+  });
+ }
+ openChangepasswordmodal(elearnuserid:any)
+ {
+    this.InstructorPasswordmodel.elearnuserid = elearnuserid;
+    $('#changePassword').modal('show');
+ }
+ passwordMatch()
+   {
+     this.model.passwordmatch=false;
+     if((this.InstructorPasswordmodel.cpassword!='')&&(this.InstructorPasswordmodel.password!=''))
+     {
+       if(this.InstructorPasswordmodel.cpassword!=this.InstructorPasswordmodel.password)
+       {
+         this.model.passwordmatch = true;
+
+       }
+     }
+   }
 }

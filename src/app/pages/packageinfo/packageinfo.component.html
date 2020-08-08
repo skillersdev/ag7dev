@@ -287,8 +287,16 @@
                                         <a *ngIf="data.pck_type==2  && data.elearn_usert_status==0" href="javascript:void(0);" (click)="openInstructorModal(data.package_price,data.elearn_user_id,data.pck_id,data.pck_user_master_id,data.pck_type)" data-toggle="modal">
                                                 <button type="button" class="btn bg-red waves-effect">Become A Instructor</button>
                                         </a>
+                                        <a *ngIf="data.pck_type==2  && data.elearn_usert_status==0" href="javascript:void(0);" (click)="openInstructorModal(data.package_price,data.elearn_user_id,data.pck_id,data.pck_user_master_id,data.pck_type)" data-toggle="modal">
+                                            <button type="button" class="btn bg-red waves-effect"></button>
+                                    </a>
                                         <!-- && data.elearn_usert_status==1 -->
                                         <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">{{'Instructor' | translate}}</span>
+                                        <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">
+                                             <a href="javascript:void(0);" (click)="openChangepasswordmodal(data.elearn_user_id)">
+                                                    Change Password
+                                             </a>                                          
+                                        </span>
                                     </td>
                                         
                                         <td>
@@ -408,6 +416,85 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="changePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">{{'Profile Tab Change Password Label' | translate}}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="" #addpackage="ngForm">
+                                                    <div class="">
+                                                        <div class="form-group">
+                                                            <label for="NewPassword" class="col-sm-3 control-label">{{'Password' | translate}}</label>
+                                                            <div class="col-sm-9">
+                                                                <div class="form-line">
+                                                                    <input type="password" class="form-control" [(ngModel)]="InstructorPasswordmodel.password" #password="ngModel" name="password" minlength="6" (keyup)="passwordMatch()" placeholder="{{'Password' | translate}}" required>
+                                                                </div>
+                                                                    <div *ngIf="password.errors && (password.dirty || password.touched)" class="">
+                                                                    <span *ngIf="password.errors.required" class="text-danger">Password is required</span>
+                                                                    <span [hidden]="!password.errors.minlength" class="text-danger"> *Password should consist minimum six characters. </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                            <div class="form-group">
+                                                                <label for="NewPassword" class="col-sm-3 control-label">{{'Confirm Password' | translate}}</label>
+                                                                <div class="col-sm-9">
+                                                                    <div class="form-line">
+                                                                        <input type="password" class="form-control" [(ngModel)]="InstructorPasswordmodel.cpassword" #cpassword="ngModel" name="cpassword" minlength="6" (keyup)="passwordMatch()" placeholder="{{'Confirm Password' | translate}}" required>
+                                                                    </div>
+                                                                        <div *ngIf="cpassword.errors && (cpassword.dirty || cpassword.touched)" class="">
+                                                                        <span *ngIf="cpassword.errors.required" class="text-danger">Password is required</span>
+                                                                        <span [hidden]="!cpassword.errors.minlength" class="text-danger"> *Password should consist minimum six characters. </span>
+                                                                    </div>
+                                                                    <div *ngIf="model.passwordmatch">
+                                                                        <span class="text-danger"> *Passwors and confirm password is not match. </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                  
+                                                    <div class="modal-footer">
+                                                       <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
+                                                        <button type="button"  (click)="updatePassword()" class="btn btn-primary"  [disabled]="model.passwordmatch">Update Password</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div >
+                                                <form *ngIf="payment_details"  #voucher="ngForm">
+                                                    <div class="col-md-12">
+                                                        <p><b>User Name</b></p>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" id="username " name="username" class="form-control" placeholder="{{'Enter' | translate}}{{'UserName' | translate}}" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                            </div>
+                                                            <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p><b>Password</b></p>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="password" id="password" name="password" class="form-control" placeholder="{{'Enter' | translate}}{{'Password' | translate}}" [(ngModel)]="payment_data.password" #password="ngModel" required>
+                                                            </div>
+                                                            <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" [disabled]="!voucher.form.valid || showButton" class="btn btn-primary" (click)="paytoactivate()">Pay</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="CancelPayment()">Cancel</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>    
                     </div>
                 </div>
             </div>

@@ -293,6 +293,7 @@ class Package_controller extends CI_Controller {
                     
                     $package['marketer']=$data[0]['username']; 
                     $package['elearn_usert_status'] = $elearn_data[0]['user_type'];    
+                    $package['elearn_user_id'] = $elearn_data[0]['id'];    
                     $package['package_name'] = $in_array_1[0]['name'];
 
                     $package['package_price'] = $in_array_1[0]['price'];
@@ -758,5 +759,39 @@ class Package_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
         
+    }
+    
+    public function updateelearnuserpassword()
+    {
+        $this->output->set_content_type('application/json');
+        $response=array('status'=>"success");
+
+        $model = json_decode($this->input->post('model',FALSE));
+        
+        $password_model->password =sha1($model->password);
+        //print_r($model);die();
+
+        if (isset($model)) {
+        
+            $this->db->where('id',$model->elearnuserid);
+            $result=$this->db->update('elearn_users', $password_model);
+          //  pr($this->db->last_query());die();
+
+            if ($result) {
+                $response['message']="Password has been updated successfully";
+            }
+            else
+            {
+                 $response['status']="failure";
+            $response['message']="Password  has not been updated fully";
+            }
+            
+
+        } else {
+            $response['status']="failure";
+            $response['message']="Choose User and continue!!..";
+        }
+
+        die(json_encode($response, JSON_UNESCAPED_SLASHES));
     }
 }
