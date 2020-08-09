@@ -74,7 +74,7 @@
                                             <!--e learning code ends here-->
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary">{{'Pay' | translate}}{{'with' | translate}}{{'paypal' | translate}}</button>
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher()" class="btn btn-primary">{{'Pay' | translate}}{{'with' | translate}}{{'Voucher' | translate}}</button>
+                                                <button type="button"  (click)="pay_via_voucher()" class="btn btn-primary">{{'Pay' | translate}}{{'with' | translate}}{{'Voucher' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -160,7 +160,7 @@
 
                                             <div class="modal-footer">
                                                <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">{{'Pay via voucher' | translate}}</button>
+                                                <button type="button"  (click)="pay_via_voucher_renew()" class="btn btn-primary">{{'Pay via voucher' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -170,7 +170,7 @@
                                                 <p><b>{{'UserName' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event)" #user_name="ngModel" required>
+                                                        <input type="text" id="username " name="username" class="form-control" placeholder="Enter username" [(ngModel)]="payment_data.username" (blur)="checkUserexist($event,'1')" #user_name="ngModel" required>
                                                     </div>
                                                     <span [hidden]="user_name.valid || user_name.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -250,7 +250,7 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="updatetemplate()" class="btn btn-primary">{{'Change Template' | translate}}</button>
+                                                <button type="button"  (click)="updatetemplate()" class="btn btn-primary">{{'Change Template' | translate}}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -357,7 +357,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" (click)="activateweb()" [disabled]="!addpackaged.form.valid">{{'Activate' | translate}} {{'Website' | translate}}
+                                                <button type="button" class="btn btn-primary" (click)="activateweb()" >{{'Activate' | translate}} {{'Website' | translate}}
                                                 </button>                                               
                                             </div>
                                         </form>
