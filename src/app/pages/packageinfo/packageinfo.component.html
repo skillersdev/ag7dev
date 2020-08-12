@@ -377,13 +377,23 @@
                                       </button>
                                         </div> 
                                         <div class="modal-body">
-                                            <div>
+                                            <form #addpackage="ngForm">
+                                            <div class="">
+                                                <p><b>Select Package</b></p> 
+                                                <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  (change)="getPackagevalue($event)" required>
+                                                    <option [ngValue]="select">select website</option>    
+                                                    <option *ngFor="let model of package_list_byInstructor" value="{{model.package_price}}">{{model.package_name}}</option>
+                                                </select>
+                                                <span [hidden]="packuser.valid || packuser.pristine" class="text-danger">Package is required</span>
+                                            </div>
+                                            <div class="">
                                                 <span>
-                                                    Pay voucher amount {{instructorModal.package_amt}} to became instructor
+                                                    Select Packagr and Pay voucher amount {{instructorModal.package_amt}} to became instructor
                                                 </span>
                                             </div>
+                                            </form>
                                             <div>
-                                                <button type="button" class="btn btn-primary" (click)="activateVoucher()">{{'Pay' | translate}} {{'Voucher' | translate}}
+                                                <button type="button" class="btn btn-primary" (click)="activateVoucher()" [disabled]="!Isinstructormodal">{{'Pay' | translate}} {{'Voucher' | translate}}
                                                     </button>         
                                             </div>
                                             <div>

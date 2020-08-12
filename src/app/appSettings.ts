@@ -150,6 +150,7 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
     public static getPackageNotbuy= AppSettings.API_BASE+"/getpackagenotbuy/";
 	public static insertpackagevsuser= AppSettings.API_BASE+"/addpackagevsuser";
 	public static updatetemplatepackagevsuser= AppSettings.API_BASE+"/updatetemplatepackagevsuser";
+	public static getPackagebyinstructor= AppSettings.API_BASE+"/getpackagebyinstructor/";
 
     /**/
 

@@ -37,11 +37,14 @@ export class PackageinfoComponent implements OnInit {
   showButton:Boolean=false;
   renew_payment_details:any=false;
   checkIswebsite:Boolean=false;
+  Isinstructormodal:Boolean=false;
   isPaid:Boolean=false;
+  package_list_byInstructor:Array<Object>;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     this.websiteurl=this.appwebsiteurl;
+    //this.instructorModal.package_amt = 0;
     this.model.passwordmatch=false;
     this.showButton=false;
     this.loginService.localStorageData();
@@ -69,8 +72,23 @@ export class PackageinfoComponent implements OnInit {
              
         });
     }
+
+    this.CommonService.getdata(AppSettings.getPackagebyinstructor)
+    .subscribe(resultdata =>{   
+      this.package_list_byInstructor=resultdata.result; 
+    });    
     this.instructorModal.showVoucherform =false;
         
+  }
+  getPackagevalue(event:any)
+  {
+    this.Isinstructormodal = false;
+    console.log(event.target.selectedOptions[0].innerHTML);
+    if(event.target.value>0){
+      this.Isinstructormodal = true;
+      this.instructorModal.package_amt = event.target.value;
+      this.instructorModal.package_name = event.target.selectedOptions[0].innerHTML;
+    }
   }
   pay_via_voucher()
   {
@@ -199,7 +217,10 @@ export class PackageinfoComponent implements OnInit {
               this.showButton=false;
             }
       else if(payment_status.status=='user_error'){
-        swal('','Not a valid user or invalid user data','error');        
+        swal('','Not a valid user or invalid user data','error');  
+        this.isPaid=false;
+        this.payment_data.username='';
+        this.payment_data.password='';      
         //this.payment_data='';
         //this.model='';
          //this.isPaid=true;
@@ -207,8 +228,11 @@ export class PackageinfoComponent implements OnInit {
       }
       else if(payment_status.status=='fail'){
         swal('','user has less amount on his own','error');
+        this.isPaid=false;
+        this.payment_data.username='';
+        this.payment_data.password='';
         $('.preloader').hide();
-       // this.payment_data=''; 
+       // this.payment_data='';  
         //this.model='';
       }
       else{
@@ -316,7 +340,8 @@ export class PackageinfoComponent implements OnInit {
  openInstructorModal(packagePrice:any,elaernuser:any,package_id:any,pack_id_user:any,pack_type:any)
  {
    $('#InstructorModal').modal('show');
-   this.instructorModal.package_amt = packagePrice;
+   //this.instructorModal.package_amt = packagePrice;
+   //this.instructorModal.package_amt = 0;
    this.instructorModal.elaernuser = elaernuser;
    this.instructorModal.pack_id = package_id;
    this.instructorModal.pack_id_user=pack_id_user;//user_vs_packeg mastr id
