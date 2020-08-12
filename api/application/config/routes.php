@@ -173,6 +173,7 @@ $route['getwebsitelist']= 'Package_controller/get_website_list';
 $route['getpaymentdetails/(:num)'] = 'Paymentinfo_controller/get_payment_details/$1';
 $route['getallpaymentdetails'] = 'Paymentinfo_controller/get_all_payment_details'; 
 $route['getpackagenotbuy/(:num)'] = 'Package_controller/get_package_not_buy/$1';
+$route['getpackagebyinstructor']= 'Package_controller/getpackagebyinstructor';
 $route['addpackagevsuser']= 'Package_controller/addpackagevsuser';
 $route['updatetemplatepackagevsuser']= 'Package_controller/updatetemplatepackagevsuser';
 

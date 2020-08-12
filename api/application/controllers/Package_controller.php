@@ -48,7 +48,38 @@ class Package_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
-  
+  public function getpackagebyinstructor()
+  {
+      $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('pck_type','3')->get('packages');
+
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {             
+          
+            $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
+
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+
+
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+  }
   public function get_package_list()
   {
      $this->output->set_content_type('application/json');
@@ -58,7 +89,7 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('pck_type','1')->get('packages');
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->get('packages');
 
 
         if($res->num_rows()>0)
