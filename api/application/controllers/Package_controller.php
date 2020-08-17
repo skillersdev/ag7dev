@@ -89,6 +89,40 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('pck_type != ',3,FALSE)->where('pck_type != ',2,FALSE)->get('packages');
+
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {             
+          
+            $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
+
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+
+
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No User records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+    
+
+  }
+  
+  public function get_package_list_by_admin()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;        
+
         $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->get('packages');
 
 
@@ -316,8 +350,10 @@ class Package_controller extends CI_Controller {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
 
-                    $user_det=$this->db->select("username,tamount,eamount,elearn_user_id")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $user_det=$this->db->select("username,tamount,eamount,elearn_user_id,instructor_amount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
                     $data =$user_det->result_array();  
+                    
+                    //echo "<pre>";print_r($data);die;
                     
                     $elearn_user_det=$this->db->select("*")->where(['id'=>$data[0]['elearn_user_id']])->get('elearn_users'); 
                     $elearn_data =$elearn_user_det->result_array(); 
@@ -334,6 +370,7 @@ class Package_controller extends CI_Controller {
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
                     $package['eamount']= $data[0]['eamount'];
+                    $package['Instructoramount']= $data[0]['instructor_amount'];
                     $package['elearn_user_id']= $data[0]['elearn_user_id'];
 
                     $package['status']=$value['package_status']=='1'?'Inactivate':($value['package_status']=='0'?'Active':'Expired');
@@ -468,7 +505,7 @@ class Package_controller extends CI_Controller {
                 $ids = implode($pack_vs_usr_ids,',');
                 
                 // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")"); //comment by sridhar
-         $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0");
+         $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0 AND pck_type!=3");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
                   foreach ($in_array_1 as $key => $value1) 

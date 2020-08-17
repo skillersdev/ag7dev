@@ -151,6 +151,7 @@ $route['getAllmarketers']= 'User_controller/getallmarketers';
 $route['findmarketers']= 'User_controller/findmarketers';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
+ $route['transferInstructoramount']= 'Transferhistory_controller/transferinstructoramount';
  $route['gettransferlist'] ='Transferhistory_controller/gettransferlist';
 /**/
 
@@ -166,6 +167,7 @@ $route['deleteearnings/(:num)'] = 'Package_controller/deleteearnings/$1';
 
 /*Package vs info API*/
 $route['getpackagelist/(:num)'] = 'Package_controller/get_package_info/$1';
+$route['getpackagebyadmin'] = 'Package_controller/get_package_list_by_admin';
 $route['getpackagealllist']='Package_controller/get_all_package';
 $route['checkwebsiteexists'] = 'Package_controller/check_website_exists';
 $route['getwebsitelist']= 'Package_controller/get_website_list';
