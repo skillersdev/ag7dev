@@ -28,6 +28,7 @@ export class ManagepackagesComponent implements OnInit {
   currentAllUsers:any;
   packagelist:Array<Object>;
   getpackagelistRestApiUrl:string = AppSettings.getPackageDetail; 
+  getPackagelistbyAdmin:string= AppSettings.getPackagelistbyAdmin; 
   DeletepackageRestApiUrl:string = AppSettings.deletepackage; 
   model: any = {};
   alldata: any = {};
@@ -42,7 +43,7 @@ export class ManagepackagesComponent implements OnInit {
         {
           this.loginService.logout();
         }
-      this.CommonService.getdata(this.getpackagelistRestApiUrl)
+      this.CommonService.getdata(this.getPackagelistbyAdmin)
         .subscribe(packagedet =>{
             if(packagedet.result!="")
             { 

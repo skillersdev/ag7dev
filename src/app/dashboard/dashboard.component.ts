@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   alldata: any = {};
   payment_data:any={};
   transferdata: any = {};
+  InstructorTransferDate:any={};
   renew_payment_details:any=false;
   select: any;
   isPaid:Boolean=false;
@@ -83,6 +84,7 @@ export class DashboardComponent implements OnInit {
             this.packagelist=resultdata.result; 
             this.model.tot_amt=resultdata.result[0]['tamount']; 
             this.model.e_amt=resultdata.result[0]['eamount']; 
+            this.model.instructor_amt=resultdata.result[0]['Instructoramount']; 
                       });
 
       this.CommonService.editdata(this.getpackagevsuserApiUrl,user_id)
@@ -219,7 +221,29 @@ export class DashboardComponent implements OnInit {
         this.ngOnInit(); 
     });
   }
-   
+  transferInstructoramount()
+  {
+    this.InstructorTransferDate.transfer_to=this.model.username;
+    this.InstructorTransferDate.transfer_from=localStorage.getItem('currentUser');
+    this.InstructorTransferDate.type = 3;
+    this.InstructorTransferDate.amt=this.InstructorTransferDate.share_amt;
+
+    $('.preloader loader-3').show();    
+    
+    this.CommonService.insertdata(AppSettings.trasnferInstructorRestApiUrl,this.InstructorTransferDate)
+    .subscribe(package_det =>{
+      
+        $('.preloader loader-3').hide();      
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.model.mname = '';
+         this.model.share_amt = '';
+        this.ngOnInit(); 
+    });
+  } 
   userweb(website_name:any)
   {
     this.model.user_web_url=website_name;

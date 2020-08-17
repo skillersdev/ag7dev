@@ -90,6 +90,7 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	/**Package APi list**/
 	public static Addpackage = AppSettings.API_BASE + "/addpackage"; //common api
 	public static getPackageDetail = AppSettings.API_BASE + "/getpackage"; //common api
+	public static getPackagelistbyAdmin= AppSettings.API_BASE + "/getpackagebyadmin"; //common api
 	public static Editpackage = AppSettings.API_BASE+"/editpackage/";
 	public static Updatepackage= AppSettings.API_BASE+"/updatepackage";
 	public static deletepackage=AppSettings.API_BASE+"/deletepackage/";
@@ -138,6 +139,7 @@ public static chatshare= "https://roodabatoz.com/chat/public/";
 	public static deleteearnings = AppSettings.API_BASE+"/deleteearnings/";
 	/*trasnfer history*/
 	public static inserttransferprocess=AppSettings.API_BASE+"/addtransferdetails";
+	public static trasnferInstructorRestApiUrl=AppSettings.API_BASE+"/transferInstructoramount";
 	public static gettransferlistDetail = 	AppSettings.API_BASE+"/gettransferlist";
 	
 	/**/

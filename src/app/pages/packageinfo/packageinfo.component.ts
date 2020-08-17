@@ -36,6 +36,7 @@ export class PackageinfoComponent implements OnInit {
   payment_details:any=false;
   showButton:Boolean=false;
   renew_payment_details:any=false;
+  select:any;
   checkIswebsite:Boolean=false;
   Isinstructormodal:Boolean=false;
   isPaid:Boolean=false;

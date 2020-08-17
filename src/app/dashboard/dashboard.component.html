@@ -356,8 +356,8 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>{{'E-Learning Voucher' | translate}}</h2>
-                            <span>(to share the balance, you should have more than RV 1)</span>
+                            <h2>{{'E-Learning' | translate}}{{'Student' | translate}}{{'Voucher' | translate}}</h2>
+                            <span>(to share the balance, you should have more than SV 1)</span>
                         </div>
                         <div class="body">
                             <div>
@@ -409,6 +409,61 @@
                         </div>
                     </div>
 
+
+                    <div class="card">
+                        <div class="header">
+                            <h2>{{'E-Learning' | translate}}{{'Instructor' | translate}}{{'Voucher' | translate}}</h2>
+                            <span>(to share the balance, you should have more than IV 1)</span>
+                        </div>
+                        <div class="body">
+                            <div>
+                                <label for="NameSurname" class="col-sm-4 control-label">{{'Total Available voucher amount'| translate}}</label>
+                                <div class="col-sm-2">
+                                    <span class="label bg-orange"> {{model.instructor_amt}} </span>
+                                </div>
+                            </div>
+                            <br/>
+                            <form name="elearningform" #elearning=ngForm>
+                                <div class="form-group ">
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="{{'Marketer Name Label' | translate}}" [(ngModel)]="InstructorTransferDate.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
+                                        </div>
+                                        <div *ngIf="emname.invalid && (emname.dirty || emname.touched)" class="" style="color: red;">
+                                            <span *ngIf="emname.errors.required">
+                                                Name is required.
+                                            </span>                                        
+                                        </div>
+                                    </div>
+                                    <label for="NameSurname" class="col-sm-2 control-label">{{'Voucher to Share'|translate}}</label>
+                                    <div class="col-sm-3">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="InstructorTransferDate.share_amt" (blur)="checkbalance('3')" #eshare_amt="ngModel" placeholder="{{'Voucher to Share'|translate}}" (keypress)="restrictNumbers($event)" value="" required>
+                                        </div>
+                                        <div *ngIf="eshare_amt.invalid && (eshare_amt.dirty || eshare_amt.touched)" class="" style="color: red;">
+                                            <span *ngIf="eshare_amt.errors.required" class="text-danger">Amount is required</span>
+                                            <span [hidden]="!eshare_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>                                      
+                                        </div>                                        
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" [disabled]="!elearning.form.valid" (click)="transferInstructoramount()" class="btn btn-success">Transfer</button>
+                                        <div class="preloader loader-2 pl-size-xs" style="display:none;">
+                                            <div class="spinner-layer pl-red-grey">
+                                                <div class="circle-clipper left">
+                                                    <div class="circle"></div>
+                                                </div>
+                                                <div class="circle-clipper right">
+                                                    <div class="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br/> <br/> <br/>
+                        </div>
+                    </div>
                     <div class="card">                                             
                         <div class="header">
                             <h2>{{'WEBSITE INFO'|translate}}</h2>

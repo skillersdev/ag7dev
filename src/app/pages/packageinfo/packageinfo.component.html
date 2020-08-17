@@ -292,7 +292,7 @@
                                     </a>
                                         <!-- && data.elearn_usert_status==1 -->
                                         <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">{{'Instructor' | translate}}</span>
-                                        <span *ngIf="data.pck_type==2  && data.elearn_usert_status==1">
+                                        <span *ngIf="((data.pck_type==2 || data.pck_type==2)  && (data.elearn_usert_status==1))">
                                              <a href="javascript:void(0);" (click)="openChangepasswordmodal(data.elearn_user_id)">
                                                     Change Password
                                              </a>                                          
@@ -388,7 +388,7 @@
                                             </div>
                                             <div class="">
                                                 <span>
-                                                    Select Packagr and Pay voucher amount {{instructorModal.package_amt}} to became instructor
+                                                    Select Package and Pay voucher amount {{instructorModal.package_amt}} to became instructor
                                                 </span>
                                             </div>
                                             </form>
