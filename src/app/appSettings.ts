@@ -11,7 +11,7 @@ export class AppSettings {
   // public static chatshare= "http://localhost:4200/chat/public/";
  //Dev
 
- public static mallshopurl = "http://localhost:4200/shop/";
+ public static mallshopurl = "http://localhost:4401/shop/";
  public static URL_BASE = "http://localhost:4200/";
  public static API_BASE = "http://localhost/3abc7dev/ag7dev/api";
  public static USER_TEMPLATE = "http://localhost/3abc7dev/ag7dev/website";

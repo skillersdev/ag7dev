@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/ag7dev1/trunk/api/';
+$config['base_url'] = 'http://http://localhost/3abc7dev/ag7dev/api/';
 
 /*
 |--------------------------------------------------------------------------
