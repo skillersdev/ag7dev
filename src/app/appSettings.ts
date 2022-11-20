@@ -9,29 +9,29 @@ export class AppSettings{
 	// public static package_renew= "http://localhost/ag7dev.git/trunk/api/database/checkbalance1.php";
 	// public static share_link= "http://localhost:4200/chat/join/";
 	// public static chatshare= "http://localhost:4200/chat/public/";
-	public static mallshopurl= "https://mall.roodabatoz.com/shop/";
+	public static mallshopurl= "https://mall.3abc7.com/shop/";
  
-	public static URL_BASE = "https://roodabatoz.com/";
-public static API_BASE = "https://roodabatoz.com/api";	
-  public static USER_TEMPLATE= "https://roodabatoz.com/website";
-public static IMAGE_BASE = "https://roodabatoz.com/api/";
-public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
-public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
-public static WEBSITE_URL="https://roodabatoz.com/website/";
-public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
-public static share_link= "https://roodabatoz.com/chat/join/";
-public static chatshare= "https://roodabatoz.com/chat/public/";
-//public static mallshopurl= "https://mall.roodabatoz.com/shop/";
+	public static URL_BASE = "https://3abc7.com/";
+public static API_BASE = "https://3abc7.com/api";	
+  public static USER_TEMPLATE= "https://3abc7.com/website";
+public static IMAGE_BASE = "https://3abc7.com/api/";
+public static IMAGE_BASE_CHAT = "https://3abc7.com/assets/chat/";
+public static PACKAGE_ACTIVATE = "https://3abc7.com/api/database/checkbalance.php";
+public static WEBSITE_URL="https://3abc7.com/website/";
+public static package_renew= "https://3abc7.com/api/database/checkbalance1.php";
+public static share_link= "https://3abc7.com/chat/join/";
+public static chatshare= "https://3abc7.com/chat/public/";
+//public static mallshopurl= "https://mall.3abc7.com/shop/";
 
-	//public static share_link= "https://roodabatoz.com/chat/join/";
+	//public static share_link= "https://3abc7.com/chat/join/";
 
- //	public static API_BASE = "https://roodabatoz.com/api";
-//	public static USER_TEMPLATE= "https://roodabatoz.com/website";
-//	public static IMAGE_BASE = "https://roodabatoz.com/api/";
-//	public static IMAGE_BASE_CHAT = "https://roodabatoz.com/assets/chat/";
-//	public static PACKAGE_ACTIVATE = "https://roodabatoz.com/api/database/checkbalance.php";
-//	public static WEBSITE_URL="https://roodabatoz.com/website/";
-//	public static package_renew= "https://roodabatoz.com/api/database/checkbalance1.php";
+ //	public static API_BASE = "https://3abc7.com/api";
+//	public static USER_TEMPLATE= "https://3abc7.com/website";
+//	public static IMAGE_BASE = "https://3abc7.com/api/";
+//	public static IMAGE_BASE_CHAT = "https://3abc7.com/assets/chat/";
+//	public static PACKAGE_ACTIVATE = "https://3abc7.com/api/database/checkbalance.php";
+//	public static WEBSITE_URL="https://3abc7.com/website/";
+//	public static package_renew= "https://3abc7.com/api/database/checkbalance1.php";
 
 	 
 	//public static testinfo = AppSettings.LOCAL_API_BASE; //dashboard api
