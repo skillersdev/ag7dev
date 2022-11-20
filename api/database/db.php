@@ -2,7 +2,7 @@
  $dbhost = 'localhost';
  $dbuser = 'root';
  $dbpass = '';
- $db_name='roodadae_mlm';
+ $db_name='thrabcse_new';
  $con = mysqli_connect($dbhost, $dbuser, $dbpass,$db_name);
 
  if(! $con ){

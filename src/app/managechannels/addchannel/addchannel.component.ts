@@ -139,7 +139,7 @@ export class AddchannelComponent implements OnInit {
             
             });
 
-            this.model.channel_url = "https://video.roodabatoz.com/"+this.model.website+'/'+this.model.channel_name;
+            this.model.channel_url = "https://video.3ABC7.com/"+this.model.website+'/'+this.model.channel_name;
         }
        
     }

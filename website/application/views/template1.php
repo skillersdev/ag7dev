@@ -16,7 +16,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Roodabatoz</title>
+  <title>3ABC7</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -888,7 +888,7 @@
 
       <div class="hotel">
   <div class="hotel-img">
-  <a target="_blank" href="https://roodabatoz.com/chat"><?php echo '<img src="'.$image.'" class="img-fluid">'; ?></a>
+  <a target="_blank" href="https://3ABC7.com/chat"><?php echo '<img src="'.$image.'" class="img-fluid">'; ?></a>
    
   </div>
   <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
@@ -931,7 +931,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Roodab</strong>. All Rights Reserved
+        &copy; Copyright <strong>3ABC7</strong>. All Rights Reserved
       </div>
     </div>
   </footer><!-- #footer -->

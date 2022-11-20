@@ -356,7 +356,7 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>{{'E-Learning' | translate}}{{'Student' | translate}}{{'Voucher' | translate}}</h2>
+                            <h2>{{'E-Learning' | translate}} {{'Student' | translate}} {{'Voucher' | translate}}</h2>
                             <span>(to share the balance, you should have more than SV 1)</span>
                         </div>
                         <div class="body">
@@ -372,9 +372,9 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="{{'Marketer Name Label' | translate}}" [(ngModel)]="elearningmodel.emname" #emname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
+                                            <input type="text" class="form-control" id="marketername" name="mname" placeholder="{{'Marketer Name Label' | translate}}" [(ngModel)]="elearningmodel.emname" #studentemname="ngModel" value="" (blur)="checkmarketer($event.target.value)" required>
                                         </div>
-                                        <div *ngIf="emname.invalid && (emname.dirty || emname.touched)" class="" style="color: red;">
+                                        <div *ngIf="studentemname.invalid && (studentemname.dirty || studentemname.touched)" class="" style="color: red;">
                                             <span *ngIf="emname.errors.required">
                                                 Name is required.
                                             </span>                                        
@@ -383,11 +383,11 @@
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Voucher to Share'|translate}}</label>
                                     <div class="col-sm-3">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #eshare_amt="ngModel" placeholder="{{'Voucher to Share'|translate}}" (keypress)="restrictNumbers($event)" value="" required>
+                                            <input type="text" class="form-control" id="eshare_amt" name="eshare_amt" pattern="[0-9/.]*" [(ngModel)]="elearningmodel.share_amt" (blur)="checkbalance('2')" #student_eshare_amt="ngModel" placeholder="{{'Voucher to Share'|translate}}" (keypress)="restrictNumbers($event)" value="" required>
                                         </div>
-                                        <div *ngIf="eshare_amt.invalid && (eshare_amt.dirty || eshare_amt.touched)" class="" style="color: red;">
-                                            <span *ngIf="eshare_amt.errors.required" class="text-danger">Amount is required</span>
-                                            <span [hidden]="!eshare_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>                                      
+                                        <div *ngIf="student_eshare_amt.invalid && (student_eshare_amt.dirty || student_eshare_amt.touched)" class="" style="color: red;">
+                                            <span *ngIf="student_eshare_amt.errors.required" class="text-danger">Amount is required</span>
+                                            <span [hidden]="!student_eshare_amt.hasError('pattern')" class="text-danger"> *Amount should have numbers only. </span>                                      
                                         </div>                                        
                                     </div>
                                     <div class="col-sm-2">
@@ -412,7 +412,7 @@
 
                     <div class="card">
                         <div class="header">
-                            <h2>{{'E-Learning' | translate}}{{'Instructor' | translate}}{{'Voucher' | translate}}</h2>
+                            <h2>{{'E-Learning' | translate}} {{'Instructor' | translate}} {{'Voucher' | translate}}</h2>
                             <span>(to share the balance, you should have more than IV 1)</span>
                         </div>
                         <div class="body">
@@ -423,7 +423,7 @@
                                 </div>
                             </div>
                             <br/>
-                            <form name="elearningform" #elearning=ngForm>
+                            <form name="elearningInstrucorform" #elearningInstructor=ngForm>
                                 <div class="form-group ">
                                     <label for="NameSurname" class="col-sm-2 control-label">{{'Marketer Name Label' | translate}}</label>
                                     <div class="col-sm-3">
@@ -447,7 +447,7 @@
                                         </div>                                        
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="submit" [disabled]="!elearning.form.valid" (click)="transferInstructoramount()" class="btn btn-success">Transfer</button>
+                                        <button type="submit" [disabled]="!elearningInstructor.form.valid" (click)="transferInstructoramount()" class="btn btn-success">Transfer</button>
                                         <div class="preloader loader-2 pl-size-xs" style="display:none;">
                                             <div class="spinner-layer pl-red-grey">
                                                 <div class="circle-clipper left">

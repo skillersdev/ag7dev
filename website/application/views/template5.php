@@ -7,7 +7,7 @@
   $this->load->view('index.html');
   ?>
   <meta charset="utf-8">
-  <title>Roodabatoz</title>
+  <title>3ABC7</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -549,7 +549,7 @@
     
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Roodab</strong>. All Rights Reserved
+        &copy; Copyright <strong>3ABC7</strong>. All Rights Reserved
       </div>
    
     </div>

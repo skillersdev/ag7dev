@@ -102,7 +102,7 @@ export class ManagechannelsComponent implements OnInit {
  }
  viewchannel(website:any,channel:any)
  {
-  let url =  window.open('https://video.roodabatoz.com/channel/' + website+'/'+channel,"_blank");
+  let url =  window.open('https://video.3ABC7.com/channel/' + website+'/'+channel,"_blank");
   
  }
 }

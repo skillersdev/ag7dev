@@ -37,7 +37,7 @@ export class MarketmanagersComponent implements OnInit {
   }
   redirectWebsite()
   {
-    window.open("http://roodabatoz.com/newsite/marketerpage/","_blank");
+    window.open("http://3ABC7.com/newsite/marketerpage/","_blank");
   }
 
 }

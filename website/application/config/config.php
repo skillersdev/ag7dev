@@ -27,11 +27,11 @@ $config['base_url'] = '';
 
 $config['login_url'] = 'http://localhost:4200/login';
 
-$config['base_path'] = 'http://localhost/ag7dev.git/trunk/api/';
+$config['base_path'] = 'http://localhost/3abc7dev/ag7dev/api/';
 
-$config['path_url'] = 'http://localhost/ag7dev/trunk/api/';
+$config['path_url'] = 'http://localhost/3abc7dev/ag7dev/api/';
 
-$config['website_path']= 'http://localhost/ag7dev.git/trunk/website/';
+$config['website_path']= 'http://localhost/3abc7dev/ag7dev/website/';
 
 /*
 |--------------------------------------------------------------------------

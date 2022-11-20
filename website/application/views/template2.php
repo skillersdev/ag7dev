@@ -15,10 +15,10 @@ $image_path = $this->config->item('base_path');
         <meta charset="utf-8">
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Roodabatoz</title>		
+        <title>3ABC7</title>		
 		<!-- Meta Description -->
-        <meta name="description" content="Roodabatoz">
-        <meta name="keywords" content="Roodabatoz">
+        <meta name="description" content="3ABC7">
+        <meta name="keywords" content="3ABC7">
         <meta name="author" content="skillers">
 		
 		<!-- Mobile Specific Meta -->
@@ -644,7 +644,7 @@ $image_path = $this->config->item('base_path');
 							</ul>
 						</div>
 						
-						<p> &copy; Copyright <strong>Roodab</strong>. All Rights Reserved</p>
+						<p> &copy; Copyright <strong>3ABC7</strong>. All Rights Reserved</p>
 					</div>
 				</div>
 			</div>

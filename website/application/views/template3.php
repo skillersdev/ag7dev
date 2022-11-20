@@ -14,9 +14,9 @@ $this->load->view('index.html');
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<!-- Page Title -->
-        <title>Roodabatoz</title>		
+        <title>3ABC7</title>		
 		<!-- Meta Description -->
-        <meta name="description" content="Roodabatoz">
+        <meta name="description" content="3ABC7">
         <meta name="keywords" content="">
         <meta name="author" content="">
 		<!-- Mobile Specific Meta -->
@@ -70,7 +70,7 @@ $this->load->view('index.html');
 					<!-- logo -->
                     <a class="navbar-brand" href="#body">
 						<h1 id="logo">
-							<img src="<?php echo base_url();?>assets/template3/img/logo.png" alt="Roodabatoz" style="width: 123px;">
+							<img src="<?php echo base_url();?>assets/template3/img/logo.png" alt="3ABC7" style="width: 123px;">
 						</h1>
 					</a>
 					<!-- /logo -->
@@ -558,7 +558,7 @@ $this->load->view('index.html');
 				<div class="row">
 					<div class="col-md-12">
 						<p class="copyright text-center">
-						&copy; Copyright <strong>Roodab</strong>. All Rights Reserved
+						&copy; Copyright <strong>3ABC7</strong>. All Rights Reserved
 						</p>
 					</div>
 				</div>

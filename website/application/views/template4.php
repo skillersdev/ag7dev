@@ -15,7 +15,7 @@ $this->load->view('index.html');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Roodabatoz</title>
+    <title>3ABC7</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>assets/template4/asset/css/bootstrap.min.css" rel="stylesheet">
@@ -98,7 +98,7 @@ $this->load->view('index.html');
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-					 <img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="Roodabatoz" style="width: 123px;">
+					 <img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="3ABC7" style="width: 123px;">
 				</a>
             </div>
 
@@ -597,7 +597,7 @@ $this->load->view('index.html');
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
-                        <span class="copyright"> &copy; Copyright <strong>Roodab</strong>. All Rights Reserved</span>
+                        <span class="copyright"> &copy; Copyright <strong>3ABC7</strong>. All Rights Reserved</span>
                     </div>
                    
                    
