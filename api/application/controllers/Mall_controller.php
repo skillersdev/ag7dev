@@ -60,11 +60,11 @@ class Mall_controller extends CI_Controller {
         global $api_path;        
 
         $model = json_decode($this->input->post('model',FALSE));
-        // print_r($model);
+         //print_r($model); exit;
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');
         }else{
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by])->get('mall_master');
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','username'=>$model->created_by])->get('mall_master');
         }        
 
         if($res->num_rows()>0)

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>3ABC7</title>
-        <meta name="description" content="Roodab Image Gallery"/>
+        <meta name="description" content="3ABC7 Image Gallery"/>
         <meta name="keywords" content="3ABC7, gallery, image gallery, album"/>
         <meta name="author" content="Sridhar"/>
         <link rel="shortcut icon" href="../favicon.ico"> 
