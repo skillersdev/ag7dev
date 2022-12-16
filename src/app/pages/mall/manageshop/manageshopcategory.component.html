@@ -1,0 +1,96 @@
+<app-topnav *ngIf="malltypeid=='' || malltypeid==null"></app-topnav>
+<app-sidemenu *ngIf="malltypeid=='' || malltypeid==null"></app-sidemenu> 
+
+<app-malldashboard *ngIf="malltypeid!=null"></app-malldashboard>
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                            {{'Category' | translate}} {{'List' | translate}}
+                              <button type="button"  *ngIf="malltypeid!=3 && malltypeid!=4" data-toggle="modal"
+                              data-target="#viewAddCategoryModal" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Category' | translate}}</button>                 
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>{{'Category' | translate}}{{'Code' | translate}}</th>
+                                      <th>{{'Category' | translate}}{{'Name' | translate}}</th>
+                                      <th>{{'created-date' | translate}}</th>
+                                      <th>{{'actions' | translate}}</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of shopcategorylist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.category_code}}</td>
+                                      <td>{{data.category_name}}</td>
+                                      <td>{{data.created_at}}</td>
+                                      <td>
+                                        <a *ngIf="malltypeid!=3 && malltypeid!=4" href="javascript:void(0);" (click)="deleteshopcategory(data.id)"><i class="material-icons">delete</i></a>
+                                    </td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+              <!-- The Modal -->
+		<div class="modal" id="viewAddCategoryModal">
+			<div class="modal-dialog">
+					<div class="modal-content">
+
+            <form  name="groupForm" #groupForm="ngForm" >
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">{{'Add' | translate}} {{'Category' | translate}}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+            
+              <!-- Modal body -->
+              <div class="modal-body">
+              
+                <div class="form-group m-b-0">
+                  <div class="form-line radio-btns">
+                    <label for="groupname" class="m-r-3">{{'Category' | translate}} {{'Code' | translate}} :<span style="color: red;">*</span></label>&nbsp;
+                    <input name="category_code" [(ngModel)]="addmodel.category_code" type="text" id="category_code" class="form-control" required  #groupname="ngModel"/>
+                  </div>
+                    <span [hidden]="(addmodel.category_code!='') || groupname.pristine" class="text-danger">Category Code is required</span>
+                </div>
+                  
+                <div class="form-group m-b-0">
+                  <div class="form-line radio-btns">
+                    <label for="groupname" class="m-r-3">{{'Category' | translate}} {{'Name' | translate}} :<span style="color: red;">*</span></label>&nbsp;
+                    <input name="category_name" [(ngModel)]="addmodel.category_name" type="text" id="category_name" class="form-control" required  #groupname="ngModel"/>
+                  </div>
+                  <span [hidden]="(addmodel.category_name!='') || groupname.pristine" class="text-danger">Category Name is required</span>
+                </div>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" [disabled]="!groupForm.form.valid || addmodel.category_name==''" class="btn btn-success"
+                  (click)="addcategory()" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+					</div>
+		
+			</div>
+		</div>
+
+
+</section>
+<!-- #END# Striped Rows -->

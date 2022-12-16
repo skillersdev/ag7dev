@@ -44,6 +44,17 @@
                                                       <span [hidden]="floor_name.valid || floor_name.pristine" class="text-danger">floor Name is required</span>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6">
+                                                <b>{{'image' | translate}}</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+                                            
                                             <div class="col-md-6">
                                                 <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
@@ -62,6 +73,8 @@
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
                                             </div>
+
+                                            
 
                                         </div>       
                                         <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">{{'Add' | translate}} {{'Floor' | translate}}</button>&nbsp;

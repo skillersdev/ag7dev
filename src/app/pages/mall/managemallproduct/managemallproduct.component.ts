@@ -4,7 +4,8 @@ import { CommonService } from '../../../services/common.service';
 import { AppSettings } from '../../../appSettings';
 
 import { LoginService } from '../../../services/login.service';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-managemallproduct',
   templateUrl: './managemallproduct.component.html',
@@ -17,6 +18,7 @@ export class ManagemallproductComponent implements OnInit {
   productlist:Array<Object>;
   model:any={};
   malltypeid:any;
+  shopid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class ManagemallproductComponent implements OnInit {
     this.loginService.viewsActivate();
 
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.shopid =localStorage.getItem('shopid'); 
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
@@ -50,7 +53,15 @@ export class ManagemallproductComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!="")
             { 
-              this.productlist=det.result;
+              if(this.shopid!="" && this.malltypeid==3 ){
+                this.productlist=det.result;
+                this.productlist = det.result.filter(
+                  res => res.shop_id == this.shopid);
+              }else{
+                this.productlist=det.result;
+              }
+
+
             } 
              
         });

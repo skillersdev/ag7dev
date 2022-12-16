@@ -50,12 +50,15 @@ export class MalldashboardComponent implements OnInit {
  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
-
+      
   }
 
   ngOnInit() {
     this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
+    this.loginService.sidemenuActive();
+    
+
     
     this.malltypeid = localStorage.getItem('malltypeid');    
     // console.log(this.malltypeid)
@@ -63,7 +66,7 @@ export class MalldashboardComponent implements OnInit {
 
 
   logout(){
-    this.loginService.logout();
+    this.loginService.logout2();
   }
 
 }

@@ -4,7 +4,8 @@ import { CommonService } from '../../../services/common.service';
 import { AppSettings } from '../../../appSettings';
 
 import { LoginService } from '../../../services/login.service';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-managemall',
   templateUrl: './managemall.component.html',
@@ -29,8 +30,9 @@ export class ManagemallComponent implements OnInit {
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
       this.loginService.malllocalStorageData();  
-     this.model.created_by = localStorage.getItem('mallcurrentUser'); 
-     
+     //this.model.created_by = localStorage.getItem('mallcurrentUser'); //comment by sridhar
+     this.model.created_by = localStorage.getItem('currentUserID');
+     this.model.username = localStorage.getItem('mallcurrentUser'); 
     }
     
     // this.malltypeid = localStorage.getItem('malltypeid');

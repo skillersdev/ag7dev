@@ -55,7 +55,11 @@ class Floor_controller extends CI_Controller {
   {
     $model = json_decode($this->input->post('model',FALSE));
 
-     $res=$this->db->select("id,floor_name")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('floor_master'); 
+   
+      $res=$this->db->select("id,floor_name")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('floor_master');
+ 
+      
+
      $result=array();
       if($res->num_rows()>0)
         {
@@ -69,6 +73,27 @@ class Floor_controller extends CI_Controller {
          die();
   }
 
+  public function getfloorbyid()
+  {
+    $model = json_decode($this->input->post('model',FALSE));
+    $res=$this->db->select("id,floor_name")->where(['is_deleted'=>'0','id'=>$model->floor_id])->get('floor_master');
+   
+      
+
+     $result=array();
+      if($res->num_rows()>0)
+        {
+          $result= $res->result_array();
+        }else{
+            $response['status']="failure";
+            $response['message']="No floor records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+
+
   public function get_floor_list()
   {
      $this->output->set_content_type('application/json');
@@ -79,11 +104,19 @@ class Floor_controller extends CI_Controller {
         global $api_path;       
         
         $model = json_decode($this->input->post('model',FALSE));
-       print_r($model); exit;
+       
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('floor_master');
         }else{
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('floor_master');
+         
+          if($model->mall_id!=null){
+            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('floor_master');
+          }
+          else{
+            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('floor_master');
+          }
+
+
         }
 
 
@@ -101,7 +134,7 @@ class Floor_controller extends CI_Controller {
 
             $value['mall_name']=$mall_data[0]['mall_name'];
 
-            $result[]=array('id'=>$value['id'],'floor_name'=>$value['floor_name'],'mall_name'=>$value['mall_name'],
+            $result[]=array('id'=>$value['id'],'floor_name'=>$value['floor_name'],'image_name'=>$value['image_name'],'mall_name'=>$value['mall_name'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
           }
         }else{
@@ -145,7 +178,7 @@ class Floor_controller extends CI_Controller {
 
         if (isset($model)) {
               
-           $result=$this->db->query("update ".$this->db->dbprefix('floor_master')." set  floor_name='".$model->floor_name."',mall_id='".$model->mall_id."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('floor_master')." set  floor_name='".$model->floor_name."',image_name='".$model->image_name."',mall_id='".$model->mall_id."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
            
           $response['message']="floor has been updated successfully";          
 

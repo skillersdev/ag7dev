@@ -1,0 +1,163 @@
+<app-topnav *ngIf="malltypeid=='' || malltypeid==null"></app-topnav>
+<app-sidemenu *ngIf="malltypeid=='' || malltypeid==null"></app-sidemenu> 
+
+<app-malldashboard *ngIf="malltypeid!=null"></app-malldashboard>
+
+<section class="content">
+        <div class="container-fluid">           
+            <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                            {{'Shop' | translate}} {{'order' | translate}} {{'List' | translate}}
+                                           
+                          </h2>
+                      </div>
+                      <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-hover">
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>{{'Shop' | translate}}{{'Name' | translate}}</th>
+                                      <th>{{'Order-No' | translate}}</th>
+                                      <th>{{'created-date' | translate}}</th>
+                                      <th>{{'customer-name' | translate}}</th>
+                                      <th>{{'customer-mobno' | translate}}</th>
+                                      <th>{{'order-status' | translate}}</th>
+                                      <th>{{'actions' | translate}}</th>
+
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of shoporderlist let idx=index">
+                                      <th scope="row">{{idx+1}}</th>
+                                      <td>{{data.shopname}}</td>
+                                      <td>{{data.id}}</td>
+                                      <td>{{data.order_date}}</td>
+                                      <td>{{data.cus_name}}</td>
+                                      <td>{{data.cus_mobno}}</td>
+                                      <td>{{data.order_status}}</td>
+                                      <td>
+                                        <a href="javascript:void(0);"  data-toggle="modal"
+                                        data-target="#viewOrderInfoModal" (click)="vieworder(data)"><i class="material-icons">visibility</i></a>
+                                       
+                                    </td>
+                                  </tr>
+                                 
+                              </tbody>
+                          </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- The Modal -->
+		<div class="modal" id="viewOrderInfoModal">
+			<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">{{'order-Info' | translate}}</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+														
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p class="font-bold" ><b>{{'Order-No'| translate}} #</b> {{vieworderInfo.id}}</p>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p>
+                                        <b>{{'customer-name'| translate}}:</b> {{vieworderInfo.cus_name}}
+                                    </p>
+
+                                    <p>
+                                        <b>{{'customer-email'| translate}}:</b> {{vieworderInfo.cus_email}}
+                                    </p>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <p>
+                                        <b>{{'customer-mobno'| translate}}:</b> {{vieworderInfo.cus_mobno}}
+                                    </p>
+
+                                    <p>
+                                        <b>{{'customer-address'| translate}}:</b> {{vieworderInfo.cus_address}}
+                                    </p>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{'product-code'| translate}}</th>
+                                                    <th>{{'product-name'| translate}}</th>
+                                                    <th>{{'product-price'| translate}}</th>
+                                                    <th>{{'selectedQty'| translate}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th>{{vieworderInfo.product_code}}</th>
+                                                    <td>{{vieworderInfo.product_name}}</td>
+                                                    <td>{{vieworderInfo.product_price}}</td>
+                                                    <td>{{vieworderInfo.selectedQty}}</td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <p>
+                                        <b>{{'order-status'| translate}}:</b> <b class="font-bold col-orange"> {{vieworderInfo.order_status}}</b>
+                                    </p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">    
+                                    <p>
+                                        <b>{{'order-date'| translate}}:</b> {{vieworderInfo.order_date}}
+                                    </p>
+
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+                                    <p>
+                                        <b>{{'tot-order-price'| translate}}:</b> ${{vieworderInfo.tot_order_price}}
+                                    </p>
+                                </div>
+
+                            </div>
+                                    
+                           
+
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<!-- <button type="button" [disabled]="!groupForm.form.valid || Newgroupmodel.groupname==''" class="btn btn-success"
+								(click)="addgroup()" data-dismiss="modal">{{'Save' | translate}}</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">{{'Close' | translate}}</button> -->
+						</div>
+
+					</div>
+		
+			</div>
+		</div>
+
+
+
+</section>
+<!-- #END# Striped Rows -->

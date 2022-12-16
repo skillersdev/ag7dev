@@ -1,14 +1,14 @@
 
 <div class="overlay"></div>
 <!-- Top Bar -->
-<nav class="navbar">
+<nav class="navbar" style="background-color: #1754be !important;">
     <div class="container-fluid">
         <div class="navbar-header">
             <!-- <a class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> -->
             <a class="bars"></a>
             <!-- <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a> -->
             <a class="navbar-brand" [routerLink]="['/']">
-                <img src="assets/images/logo2.png" style="width: 200px;height: 35px;margin-left: 24px;"/>
+                <img src="assets/images/logo2.png" style="width: 200px;height: 35px;margin-left: 24px;border-radius: 15px;"/>
             </a>
 
         </div>
@@ -23,18 +23,18 @@
     <aside id="leftsidebar" class="sidebar">
         <!-- User Info -->
         <div class="user-info">
-            <div class="image">
+            <!-- <div class="image">
                 <img src="assets/images/user.png" width="48" height="48" alt="User" />
-            </div>
+            </div> -->
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{model.name}}</div>
-                <div class="email">{{model.email}}</div>
+                <!-- <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{model.name}}</div>
+                <div class="email">{{model.email}}</div> -->
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
-                        <li>
+                        <!-- <li>
                             <a href="javascript:void(0);" [routerLink]="['/profile']"><i class="material-icons">person</i>Profile</a>
-                        </li>
+                        </li> -->
                         <li role="seperator" class="divider"></li>
                         <li><a href="" (click)=logout()><i class="material-icons">input</i>Sign Out</a></li>
                     </ul>
@@ -45,29 +45,29 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>
+                <!-- <li class="header">MAIN NAVIGATION</li> -->
                 
                 <li *ngIf="malltypeid==1" >
                     <a [routerLink]="['/mall/managemall']"> 
-                        <i class="material-icons col-red">home</i>
+                        <i class="material-icons col-red">business</i>
                         <span>Mall</span>
                     </a>
                 </li>
                 <li *ngIf="(malltypeid==1) || (malltypeid==2)">
                     <a [routerLink]="['/mall/managefloor']"> 
-                        <i class="material-icons col-red">home</i>
+                        <i class="material-icons col-indigo">view_stream</i>
                         <span>Floor</span>
                     </a>
                 </li>
                 <li *ngIf="(malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
                     <a [routerLink]="['/mall/manageshop']"> 
-                        <i class="material-icons col-red">home</i>
+                        <i class="material-icons col-red">shop</i>
                         <span>Shop</span>
                     </a>
                 </li>
                 <li *ngIf="(malltypeid==1) || (malltypeid==2) || (malltypeid==3) || (malltypeid==4)">
                     <a [routerLink]="['/mall/managemallproduct']"> 
-                        <i class="material-icons col-red">home</i>
+                        <i class="material-icons col-indigo">store</i>
                         <span>Mallproduct</span>
                     </a>
                 </li>

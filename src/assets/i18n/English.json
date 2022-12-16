@@ -8,6 +8,7 @@
     "Group-channel":"Group / Channel",
     "transfer-info":"Transfer Info",
     "website-login":"My Website login",
+    "website-mall-login":"Mall login",
     "Search & Create":"Search & Create",
     "search website":"Search Website",
     "welcome text":"Welcome to 3ABC7",
@@ -126,6 +127,7 @@
     "Product":"Product",
     "My-products":"My Products",
     "Product Price":"Product Price",
+    "Product Code":"Product Code",
     "Currency Type":"Currency Type",
     "Product Image":"Product Image",
     "Short Description":"Short Description",
@@ -246,5 +248,25 @@
     "find":"find",
     "required":"ضروری",
     "Enter":"Enter",
-    "Student":"Student"
+    "Student":"Student",
+
+    "Order-No":"Order No",
+    "customer-name":"Cutomer Name",
+    "customer-email":"Cutomer Email",
+    "customer-address":"Cutomer Address",
+    "customer-mobno":"Cutomer Mobile",
+    "order-status":"Order Status",
+    "order-complete-date":"Order Complete Date",
+    "tot-order-price":"Total Order Amount",
+    "selectedQty":"Ordered Qty",
+    "order-Info":"Order Info",
+    "order-date":"Order Date",
+    "product-code":"Product Code",
+    "product-name":"Product Name",
+    "product-price":"Product Price"
+
+
+
+    
+
 }

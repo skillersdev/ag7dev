@@ -11,7 +11,7 @@
                       <div class="header">
                           <h2>
                             {{'Shop' | translate}} {{'List' | translate}}
-                              <button type="button" (click)="navigateAddshop()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Shop' | translate}}</button>                 
+                              <button type="button"  *ngIf="malltypeid!=3 && malltypeid!=4" (click)="navigateAddshop()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Shop' | translate}}</button>                 
                           </h2>
                       </div>
                       <div class="body">
@@ -35,11 +35,15 @@
                                       <td>{{data.mall_name}}</td>
                                       <td>{{data.created_date}}</td>
                                       <td>{{data.created_by}}</td>
-                                      <td><a href="{{mallshopurl}}{{data.shop_name}}" target="_blank">View Shop</a></td>
                                       <td>
-                                        <a href="javascript:void(0);" (click)="editshop(data.id)"><i class="material-icons">edit</i></a>
-                                        <a href="javascript:void(0);" (click)="deleteshop(data.id)"><i class="material-icons">delete</i></a>
-                                    </td>
+                                        <a href="{{mallshopurl}}{{data.shop_name}}" target="_blank">View Shop</a> <br/> <br/>
+                                        <a href="javascript:void(0);" (click)="viewOrders(data.shop_name)" >View Orders</a>
+                                      </td>
+                                      <td>
+                                        <a href="javascript:void(0);" *ngIf="malltypeid!=4" (click)="editshop(data.id)"><i class="material-icons">edit</i></a>
+                                        <a *ngIf="malltypeid!=3 && malltypeid!=4" href="javascript:void(0);" (click)="deleteshop(data.id)"><i class="material-icons">delete</i></a>
+                                        <a href="javascript:void(0);" (click)="viewCategory(data.id)" data-toggle="tooltip" data-placement="top" title="Add Category" alt="View Category"><i class="material-icons">add</i></a>
+                                      </td>
                                   </tr>
                                  
                               </tbody>

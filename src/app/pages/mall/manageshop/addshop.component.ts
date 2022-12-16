@@ -23,6 +23,7 @@ export class AddshopComponent implements OnInit {
   model: any = {};
   select:any;
   malltypeid:any;
+  floorid:any;
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
@@ -35,8 +36,13 @@ export class AddshopComponent implements OnInit {
     // this.loginService.malllocalStorageData();
     // this.model.created_by=localStorage.getItem('currentUserID'); 
 
-    this.malltypeid = localStorage.getItem('malltypeid');  
+    this.malltypeid = localStorage.getItem('malltypeid'); 
+    this.floorid=localStorage.getItem('floorid');  
     this.model.usergroup=localStorage.getItem('currentUsergroup');
+    if( this.model.usergroup==""|| this.model.usergroup==null){
+      this.model.usergroup=localStorage.getItem('usergroup');
+    }
+    
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
       this.model.owner_id=localStorage.getItem('currentUserID');
@@ -58,7 +64,7 @@ export class AddshopComponent implements OnInit {
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
-    
+    console.log("getmalllists-->",this.model);
     this.CommonService.insertdata(this.getmalllistRestApiUrl,this.model)
         .subscribe(det =>{
             if(det.result!="")
@@ -73,7 +79,14 @@ export class AddshopComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!="")
             { 
-              this.floorlist=det.result;
+              if(this.floorid && this.malltypeid==2){
+                this.floorlist=det.result;
+                this.floorlist = det.result.filter(
+                  res => res.id === this.floorid);
+              }else{
+                this.floorlist=det.result;
+              }
+              
             } 
              
         });

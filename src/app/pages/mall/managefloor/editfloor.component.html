@@ -44,11 +44,23 @@
                                                       <span [hidden]="floor_name.valid || floor_name.pristine" class="text-danger">floor Name is required</span>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6">
+                                                <b>{{'image' | translate}}</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
+
+
                                             <div class="col-md-6">
                                                 <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                                                        <input type="text" readonly class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
                                                     </div>
                                                       <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
                                                 </div>

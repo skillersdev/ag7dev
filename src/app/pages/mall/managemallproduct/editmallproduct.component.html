@@ -26,7 +26,7 @@
                                                 <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" required>
+                                                        <select  class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" disabled>
                                                             <option [ngValue]="select">select Mall</option>    
                                                             <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
                                                         </select>
@@ -38,7 +38,7 @@
                                                 <p><b>{{'Floor' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" (change)="getshoplists()" #floor_id="ngModel" name="floor_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" (change)="getshoplists()" #floor_id="ngModel" name="floor_id" disabled>
                                                             <option [ngValue]="select">select Floor</option>    
                                                             <option *ngFor="let model of floorlist" value="{{model.id}}">{{model.floor_name}}</option>
                                                         </select>
@@ -50,7 +50,7 @@
                                                 <p><b>{{'Shop' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.shop_id" #shop_id="ngModel" name="shop_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.shop_id" #shop_id="ngModel" name="shop_id" disabled>
                                                             <option [ngValue]="select">select Shop</option>    
                                                             <option *ngFor="let model of shoplist" value="{{model.id}}">{{model.shop_name}}</option>
                                                         </select>
@@ -67,7 +67,22 @@
                                                       <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product Name is required</span>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
+                                                <p><b>{{'Category' | translate}}</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.category_id" (change)="getshopcategorylists()" #category_id="ngModel" name="category_id" disabled>
+                                                            <option [ngValue]="select">select Category</option>    
+                                                            <option *ngFor="let model of shopcategorylist" value="{{model.id}}">{{model.category_name}}</option>
+                                                        </select>
+                                                        <span [hidden]="category_id.valid || category_id.pristine" class="text-danger">Category is required</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- <div class="col-md-6">
                                                 <p><b>{{'Paypal Email' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
@@ -75,7 +90,19 @@
                                                     </div>
                                                       <span [hidden]="paypal_email.valid || paypal_email.pristine" class="text-danger">Paypal Email id is required</span>
                                                 </div>
+                                            </div> -->
+
+                                            <div class="col-md-6">
+                                                <p><b>{{'Product Price' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="{{'Product Price' | translate}}" [(ngModel)]="model.product_price" name="product_price" #product_price="ngModel" required>
+                                                    </div>
+                                                      <span [hidden]="product_price.valid || product_price.pristine" class="text-danger">Product Price is required</span>
+                                                </div>
                                             </div>
+
+
                                             <div class="col-md-6">
                                                 <b>{{'image' | translate}}</b>
                                                 <div class="form-group">

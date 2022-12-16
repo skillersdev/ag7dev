@@ -4,7 +4,8 @@ import { CommonService } from '../../../services/common.service';
 import { AppSettings } from '../../../appSettings';
 
 import { LoginService } from '../../../services/login.service';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-manageshop',
   templateUrl: './manageshop.component.html',
@@ -17,7 +18,10 @@ export class ManageshopComponent implements OnInit {
   shoplist:Array<Object>;
   model:any={};
   mallshopurl:any;
+  mallshopordersurl:any;
+  mallshopcategorysurl:any;
   malltypeid:any;
+  shopid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -25,8 +29,12 @@ export class ManageshopComponent implements OnInit {
     this.loginService.viewsActivate();
 
     this.mallshopurl=AppSettings.mallshopurl;
+    this.mallshopordersurl="mall/manageshoporders/";
+    this.mallshopcategorysurl="mall/manageshopcategory/";
+    
 
-    this.malltypeid = localStorage.getItem('malltypeid');  
+    this.malltypeid = localStorage.getItem('malltypeid'); 
+    this.shopid=localStorage.getItem('shopid');  
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -48,7 +56,15 @@ export class ManageshopComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!="")
             { 
-              this.shoplist=det.result;
+              
+              if(this.shopid!="" && this.malltypeid==3 ){
+                this.shoplist=det.result;
+                this.shoplist = det.result.filter(
+                  res => res.id === this.shopid);
+              }else{
+                this.shoplist=det.result;
+              }
+              console.log("shoplist--->",this.shoplist);
             } 
              
         });
@@ -56,6 +72,15 @@ export class ManageshopComponent implements OnInit {
   navigateAddshop()
   {
     this.router.navigate(['/mall/addshop']);
+  }
+
+  viewCategory(viewshopid:any){
+    this.router.navigate([this.mallshopcategorysurl,viewshopid]);
+  }
+
+  viewOrders(viewshopid:any)
+  {
+    this.router.navigate([this.mallshopordersurl,viewshopid]);
   }
   editshop(id:any)
   {

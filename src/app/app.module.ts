@@ -84,6 +84,9 @@ import { EditfloorComponent } from './pages/mall/managefloor/editfloor.component
 import { ManageshopComponent } from './pages/mall/manageshop/manageshop.component';
 import { AddshopComponent } from './pages/mall/manageshop/addshop.component';
 import { EditshopComponent } from './pages/mall/manageshop/editshop.component';
+import { ManageshopordersComponent } from './pages/mall/manageshop/manageshoporders.component';
+import { ManageshopCategoryComponent } from "./pages/mall/manageshop/manageshopcategory.component";
+
 
 import { ManagemallproductComponent } from './pages/mall/managemallproduct/managemallproduct.component';
 import { AddmallproductComponent } from './pages/mall/managemallproduct/addmallproduct.component';
@@ -186,6 +189,7 @@ import {GMapModule} from 'primeng/gmap';
     AddfloorComponent,
     EditfloorComponent,
     ManageshopComponent,
+    ManageshopordersComponent,
     AddshopComponent,
     EditshopComponent,
     ManagemallproductComponent,
@@ -212,7 +216,8 @@ import {GMapModule} from 'primeng/gmap';
     EditpremiumpackageComponent,
     PremiumrequestvideosComponent,
     PremiumtransactionComponent,
-    NearbyComponent
+    NearbyComponent,
+    ManageshopCategoryComponent
 	//ImageCropperComponent
   ],
   imports: [

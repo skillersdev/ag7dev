@@ -30,6 +30,7 @@ export class MallloginComponent implements OnInit {
   ngOnInit() {
      this.entered = 0;
     this.model.type=1;
+    this.loginService.viewsActivate();
     //  let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     //this.loadScript(translate_url);
      
@@ -79,6 +80,10 @@ export class MallloginComponent implements OnInit {
                 localStorage.setItem('mallcurrentUser', user_det.username);
                 
                 localStorage.setItem('malltypeid', this.model.type);
+                localStorage.setItem('mallLogin', "true");
+                localStorage.setItem('usergroup',user_det.usergroup);
+
+                //console.log("user_det-->",user_det);
                 
                   if(this.model.type==1)
                   {
@@ -180,6 +185,7 @@ export class MallloginComponent implements OnInit {
         // remove user from local storage to log user out
       	// swal('', 'You have Successfully Logged Out', 'success');        
         localStorage.removeItem('currentUser');
+        localStorage.clear();
     }
 
 

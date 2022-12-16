@@ -267,6 +267,7 @@ $route['deletemall/(:num)']='Mall_controller/deletemall/$1';
 $route['fetchmallbyid/(:num)']='Mall_controller/fetchmallbyid/$1';
 $route['useridbymallid'] = 'Mall_controller/useridbymallid';
 $route['getmalllist']='Mall_controller/getmalllist';
+$route['getmallshoplist']='Mall_controller/getmallshoplist';
 /*******/
 
 /*** floor****/
@@ -287,6 +288,19 @@ $route['updateshop'] = 'Shop_controller/updateshop';
 $route['deleteshop/(:num)']='Shop_controller/deleteshop/$1';
 $route['fetchshopbyid/(:num)']='Shop_controller/fetchshopbyid/$1';
 $route['getshopbyfloorid'] = 'Shop_controller/getshopbyfloorid';
+$route['getshopbymallidfloorid'] = 'Shop_controller/getshopbymallidfloorid';
+$route['createorder'] = 'Shop_controller/add_order';
+$route['getorders'] = 'Shop_controller/getOrdersbyShopid/$1';
+
+$route['createcategory'] = 'Shop_controller/add_product_category';
+$route['getcategory'] = 'Shop_controller/getCategorybyShopid/$1';
+$route['deleteshopcategory/(:num)']='Shop_controller/deleteshopcategory/$1';
+
+
+
+
+
+
 /*******/
 /*** Product****/
 $route['addmallproduct'] = 'Mallproduct_controller/add_mallproduct';

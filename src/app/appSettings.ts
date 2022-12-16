@@ -25,19 +25,19 @@ export class AppSettings {
  //Dev
 
   //Live
-//   public static mallshopurl = "https://mall.3abc7.com/shop/";
-//   public static URL_BASE = "https://3abc7.com/";
-//   public static API_BASE = "https://3abc7.com/api";
-//   public static USER_TEMPLATE = "https://3abc7.com/website";
-//   public static IMAGE_BASE = "https://3abc7.com/api/";
-//   public static IMAGE_BASE_CHAT = "https://3abc7.com/assets/chat/";
-//   public static PACKAGE_ACTIVATE =
-//     "https://3abc7.com/api/database/checkbalance.php";
-//   public static WEBSITE_URL = "https://3abc7.com/website/";
-//   public static package_renew =
-//     "https://3abc7.com/api/database/checkbalance1.php";
-//   public static share_link = "https://3abc7.com/chat/join/";
-//   public static chatshare = "https://3abc7.com/chat/public/";
+  // public static mallshopurl = "https://mall.3abc7.com/shop/";
+  // public static URL_BASE = "https://3abc7.com/";
+  // public static API_BASE = "https://3abc7.com/api";
+  // public static USER_TEMPLATE = "https://3abc7.com/website";
+  // public static IMAGE_BASE = "https://3abc7.com/api/";
+  // public static IMAGE_BASE_CHAT = "https://3abc7.com/assets/chat/";
+  // public static PACKAGE_ACTIVATE =
+  //   "https://3abc7.com/api/database/checkbalance.php";
+  // public static WEBSITE_URL = "https://3abc7.com/website/";
+  // public static package_renew =
+  //   "https://3abc7.com/api/database/checkbalance1.php";
+  // public static share_link = "https://3abc7.com/chat/join/";
+  // public static chatshare = "https://3abc7.com/chat/public/";
   //Live	
 
 
@@ -342,6 +342,11 @@ export class AppSettings {
   public static updateshop = AppSettings.API_BASE + "/updateshop";
   public static deleteshop = AppSettings.API_BASE + "/deleteshop/";
   public static getfloorbymallid = AppSettings.API_BASE + "/getfloorbymallid";
+  public static getshopOrderDetail = AppSettings.API_BASE + "/getorders/"; //common api
+  public static getshopCategoryDetail = AppSettings.API_BASE + "/getcategory/"; //common api
+  public static deleteshopcategory = AppSettings.API_BASE + "/deleteshopcategory/";
+  public static createcategory = AppSettings.API_BASE + "/createcategory";
+  
   /**/
 
   /*mall product add*/

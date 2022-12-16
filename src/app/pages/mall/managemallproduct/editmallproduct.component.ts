@@ -28,12 +28,14 @@ export class EditmallproductComponent implements OnInit {
   shoplist:Array<Object>;
   select:any;
   malltypeid:any;
+  shopcategorylist:any;
   insertproductRestApiUrl: string = AppSettings.Addmallproduct; 
   FetchproductRestApiUrl: string = AppSettings.editmallproduct; 
   updateproductRestApiUrl: string = AppSettings.updatemallproduct;  
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
   getshoplistRestApiUrl:string = AppSettings.getshopbyfloorid;  
+  getshopcategorylistRestApiUrl:string = AppSettings.getshopCategoryDetail;
   constructor(private loginService: LoginService,private CommonService: CommonService,private route: ActivatedRoute,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -86,6 +88,7 @@ export class EditmallproductComponent implements OnInit {
           this.model = resultdata.result;      
           this.getfloorlists();   
           this.getshoplists();
+          this.getshopcategorylists();
         });
   }
   getfloorlists(){
@@ -109,6 +112,22 @@ export class EditmallproductComponent implements OnInit {
              
         });
   }
+
+  getshopcategorylists(){
+    this.shopcategorylist=[];
+    // this.CommonService.getdata(this.getshoplistRestApiUrl)
+    this.CommonService.insertdata(this.getshopcategorylistRestApiUrl,this.model)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              
+              this.shopcategorylist=det.result;
+            } 
+             
+        });
+  }
+
+
   updateproductlist()
   {
      //this.model.is_deleted=1

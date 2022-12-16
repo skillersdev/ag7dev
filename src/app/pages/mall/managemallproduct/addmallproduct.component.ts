@@ -24,10 +24,14 @@ export class AddmallproductComponent implements OnInit {
   model: any = {};
   select:any;
   malltypeid:any;
+  floorid:any;
+  shopid:any;
+  shopcategorylist:any;
   insertproductRestApiUrl: string = AppSettings.Addmallproduct; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
   getshoplistRestApiUrl:string = AppSettings.getshopbyfloorid;  
+  getshopcategorylistRestApiUrl:string = AppSettings.getshopCategoryDetail;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
 
@@ -35,15 +39,18 @@ export class AddmallproductComponent implements OnInit {
 
   ngOnInit() {
     
-    
+    this.model.usergroup=localStorage.getItem('usergroup');
     this.malltypeid = localStorage.getItem('malltypeid');  
+    this.floorid=localStorage.getItem('floorid');
+    this.shopid=localStorage.getItem('shopid');
+     
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
       this.model.owner_id=localStorage.getItem('currentUserID');  
     } else{
       
       this.model.mall_id = localStorage.getItem('mallid'); 
-      this.model.usergroup=localStorage.getItem('currentUsergroup');
+      this.model.usergroup=localStorage.getItem('usergroup');
       this.CommonService.insertdata(AppSettings.useridbymallid,this.model)
       .subscribe(package_det =>{       
         this.model.owner_id=package_det.created_by;
@@ -55,7 +62,9 @@ export class AddmallproductComponent implements OnInit {
     }
       this.loginService.viewsActivate();
       this.getmalllists();
-      // this.getfloorlists();
+      this.getfloorlists();
+      this.getshoplists();
+      this.getshopcategorylists();
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
@@ -73,7 +82,15 @@ export class AddmallproductComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!="")
             { 
-              this.floorlist=det.result;
+              
+              if(this.floorid && (this.malltypeid==2||this.malltypeid==3||this.malltypeid==4)){
+                this.floorlist=det.result;
+                this.floorlist = det.result.filter(
+                  res => res.id === this.floorid);
+              }else{
+                this.floorlist=det.result;
+              }
+
             } 
              
         });
@@ -83,17 +100,45 @@ export class AddmallproductComponent implements OnInit {
         .subscribe(det =>{
             if(det.result!="")
             { 
-              this.shoplist=det.result;
+              
+
+              if(this.shopid && (this.malltypeid==3||this.malltypeid==4)){
+                this.shoplist=det.result;
+                this.shoplist = det.result.filter(
+                  res => res.id === this.shopid);
+              }else{
+                this.shoplist=det.result;
+              }
+
+              
             } 
              
         });
   }
+
+  getshopcategorylists(){
+    this.shopcategorylist=[];
+    // this.CommonService.getdata(this.getshoplistRestApiUrl)
+    this.CommonService.insertdata(this.getshopcategorylistRestApiUrl,this.model)
+        .subscribe(det =>{
+            if(det.result!="")
+            { 
+              
+              this.shopcategorylist=det.result;
+            } 
+             
+        });
+  }
+
+
   logout(){
     this.loginService.logout();
   }
   addproductlist()
   {
-    // this.model.created_by=localStorage.getItem('currentUserID');
+    
+    console.log(this.model);
+
     this.CommonService.insertdata(this.insertproductRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

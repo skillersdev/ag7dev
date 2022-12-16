@@ -59,13 +59,24 @@ class Mall_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
+        
         $model = json_decode($this->input->post('model',FALSE));
-         //print_r($model); exit;
+        
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');
         }else{
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','username'=>$model->created_by])->get('mall_master');
+
+          if($model->created_by!=null){
+            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by])->or_where("username",$model->created_by)->or_where("id",$model->mall_id)->get('mall_master');
+          }
+          else{
+            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','username'=>$model->username])->get('mall_master');
+          }
+          
+          
         }        
+
+         
 
         if($res->num_rows()>0)
         {
@@ -99,7 +110,7 @@ class Mall_controller extends CI_Controller {
 
         // $model = json_decode($this->input->post('model',FALSE));
         // print_r($model);
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mall_master');     
+        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->order_by('rand()')->get('mall_master');     
         $shop=array();
         if($res->num_rows()>0)
         {
@@ -126,6 +137,53 @@ class Mall_controller extends CI_Controller {
          die();
     
 
+  }
+
+  public function getmallshoplist()
+  {
+    $this->output->set_content_type('application/json');
+    $response=array();
+    $response['status']="success";
+    $result=array();
+
+    $model = json_decode($this->input->post('model',FALSE));
+    $mall_det=$this->db->select("id,mall_name,image_name,usergroup,created_by")->where(['is_deleted'=>'0','id'=>$model->mallid])->get('mall_master')->result_array();
+    $result["mall_det"]=$mall_det;
+    $floor_det=$this->db->select("id,floor_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid])->get('floor_master');
+    if($floor_det->num_rows()>0){
+
+      foreach($floor_det->result_array() as $key=>$value)
+      {
+        //$result[$key]=array("floorData"=>$value);
+        $shop_det=$this->db->select("shop_name,mall_id,floor_id,logo,banner,usergroup")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'floor_id'=>$value['id'] ])->get('shop_master');
+        if($shop_det->num_rows()>0){
+          // print_r($shop_det->result_array());
+          // print_r($value);
+          $shopData=array();
+          foreach($shop_det->result_array() as $key2=>$value2)
+          {
+            array_push($shopData,$value2);
+          }
+          $result[]=array("floorData"=>$value,"shopList"=>$shopData);
+         
+
+        }else{
+          $result[]=array("floorData"=>$value,"shopList"=>[]);
+          
+        }
+      }
+      // echo "<pre>";
+      // print_r($result);
+      
+      $response['result']=$result;
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
+       die();
+      
+
+    }
+   
+
+    
   }
   
    public function editmall($id)
@@ -177,7 +235,7 @@ class Mall_controller extends CI_Controller {
 
       if (isset($model)) {
             
-         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  mall_name='".$model->mall_name."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
+         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  mall_name='".$model->mall_name."',username='".$model->username."',image_name='".$model->image_name."',password='".$model->password."' where id='".$model->id."'");
          
         $response['message']="mall has been updated successfully";          
 

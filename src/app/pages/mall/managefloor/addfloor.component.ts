@@ -21,6 +21,7 @@ export class AddfloorComponent implements OnInit {
   malllist:Array<Object>;
   model: any = {};
   malltypeid:any;
+  floorid:any;
   select:any;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
@@ -33,6 +34,7 @@ export class AddfloorComponent implements OnInit {
     // this.loginService.malllocalStorageData();
     
     this.malltypeid = localStorage.getItem('malltypeid');
+    this.floorid=localStorage.getItem('floorid'); 
     this.model.usergroup=localStorage.getItem('currentUsergroup');  
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
@@ -77,6 +79,24 @@ export class AddfloorComponent implements OnInit {
         this.router.navigate(['/mall/managefloor']); 
     });
   }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+
+          const fileSelected: File = event.target.files[i];
+          
+              this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+              .subscribe( (response) => {
+                // this.urls.push(response.data);
+                this.model.image_name=response.data;
+                 
+               })
+        }
+    }
+  }
+
   back(){
     this.router.navigate(['/mall/managefloor']);
   }

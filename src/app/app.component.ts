@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'adminpanel';
   constructor(public translate:TranslateService)
   {
-    translate.addLangs(['English', 'Persian']);
+    translate.addLangs(['English', 'Persian','Turkish','Korean','German']);
       translate.setDefaultLang('English');
   }
   ngOnInit() {

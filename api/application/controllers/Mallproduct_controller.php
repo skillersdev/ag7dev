@@ -17,8 +17,6 @@ class Mallproduct_controller extends CI_Controller {
         
         $this->db->insert('mallproduct_master', $model);
 
-        
-
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
@@ -80,7 +78,7 @@ class Mallproduct_controller extends CI_Controller {
             $value['mall_name']=$mall_data[0]['mall_name'];
 
             $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'mall_name'=>$value['mall_name'],
-              'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
+              'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'mall_id'=>$value['mall_id'],'floor_id'=>$value['floor_id'],'shop_id'=>$value['shop_id'],'category_id'=>$value['category_id']);
           }
         }else{
             $response['status']="failure";
@@ -123,7 +121,7 @@ class Mallproduct_controller extends CI_Controller {
 
         if (isset($model)) {
               
-           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."'  where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',category_id='".$model->category_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."'  where id='".$model->id."'");
            
           $response['message']="mallproduct has been updated successfully";          
 
@@ -241,7 +239,14 @@ class Mallproduct_controller extends CI_Controller {
           if($res->num_rows()>0){
               $in_array=$res->result_array();
               $response['shop']=$shop=$in_array[0];
-              $res=$this->db->query("select  product_name,mall_id,floor_id,shop_id,image_name,created_by from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$shop['id']."'");
+              $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$shop['id']."'");
+
+              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." where shop_id='".$shop['id']."'");
+              if($cat_res->num_rows()>0){
+                $cat_array=$cat_res->result_array();
+                $response['categorylist']=$cat_array;
+              }
+
 
               if($res->num_rows()>0){
                   $in_array=$res->result_array();

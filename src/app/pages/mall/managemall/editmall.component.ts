@@ -64,20 +64,6 @@ export class EditmallComponent implements OnInit {
           this.model = resultdata.result;         
         });
   }
-  updatemalllist()
-  {
-     //this.model.is_deleted=1
-     this.CommonService.updatedata(this.updatemallRestApiUrl,this.model)
-    .subscribe(package_det =>{       
-         swal(
-          package_det.status,
-          package_det.message,
-          package_det.status
-        )
-         this.router.navigate(['/mall/managemall']);
-        
-    });
-  }
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
@@ -89,19 +75,30 @@ export class EditmallComponent implements OnInit {
               .subscribe( (response) => {
                 // this.urls.push(response.data);
                 this.model.image_name=response.data;
+                console.log("onSelectFile-->",this.model.image_name);
                  
                })
-                // var reader = new FileReader();
-                // this.msgfileEvent(event);
-                // reader.onload = (event:any) => {
-                //   console.log(event.target.result);
-                //    this.urls.push(event.target.result); 
-                // }
-                
-                // reader.readAsDataURL(event.target.files[i]);
+               
         }
     }
   }
+
+  updatemalllist()
+  {
+     //this.model.is_deleted=1
+     console.log("updatemalllist-->",this.model);
+     this.CommonService.updatedata(this.updatemallRestApiUrl,this.model)
+    .subscribe(package_det =>{       
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.router.navigate(['/mall/managemall']);
+        
+    });
+  }
+ 
   back(){
     this.router.navigate(['/mall/managemall']);
   }

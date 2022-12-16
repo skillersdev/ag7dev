@@ -90,6 +90,25 @@ export class EditfloorComponent implements OnInit {
         
     });
   }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+        var filesAmount = event.target.files.length;
+        for (let i = 0; i < filesAmount; i++) {
+
+          const fileSelected: File = event.target.files[i];
+          
+              this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
+              .subscribe( (response) => {
+                this.model.image_name=response.data;
+                 
+               })
+                
+        }
+    }
+  }
+
+
   back(){
     this.router.navigate(['/mall/managefloor']);
   }

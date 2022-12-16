@@ -42,6 +42,27 @@ class Shop_controller extends CI_Controller {
          die();
   }
 
+  public function getshopbymallidfloorid()
+  {
+    $model = json_decode($this->input->post('model',FALSE));
+
+     $res=$this->db->select("id,shop_name,logo,banner,mall_id,floor_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'floor_id'=>$model->floorid])->get('shop_master'); 
+     $floorres=$this->db->select("id,floor_name,image_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'id'=>$model->floorid])->get('floor_master')->result_array(); 
+     $result=array();
+     
+      if($res->num_rows()>0)
+        {
+          $result= $res->result_array();
+        }else{
+            $response['status']="failure";
+            $response['message']="No shop records found..";
+        }
+        $response['result']=$result;
+        $response["floorDetail"]=$floorres;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+
   public function get_shop_list()
   {
      $this->output->set_content_type('application/json');
@@ -56,7 +77,9 @@ class Shop_controller extends CI_Controller {
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('shop_master');
         }else{
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('shop_master');
+          // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->or_where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
+
         }
 
         if($res->num_rows()>0)
@@ -180,6 +203,106 @@ class Shop_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
+
+
+  public function add_order(){
+    $this->output->set_content_type('application/json');
+   
+     $response=array('status'=>"success",'message'=>"Order Placed successfully");
+
+     $model = json_decode($this->input->post('model',FALSE));
+     
+     $this->db->insert('order_items', $model);
+
+     echo json_encode($response,JSON_UNESCAPED_SLASHES);
+     die();
+ }
+
+
+
+ public function getOrdersbyShopid()
+  {
+      $model = json_decode($this->input->post('model',FALSE));
+
+      // print_r($model);
+      // die();
+
+      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','shopname'=>$model->shopname])->get('order_items'); 
+      $result=array();
+      if($res->num_rows()>0)
+        {
+          $result=$res->result_array(); 
+          
+        }else{
+            $response['status']="failure";
+            $response['message']="No Orders Found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
   
+
+
+public function add_product_category(){
+  $this->output->set_content_type('application/json');
+ 
+   $response=array('status'=>"success",'message'=>"Category Added successfully");
+
+   $model = json_decode($this->input->post('model',FALSE));
+
+  //  print_r($this->input->post()); die();
+   
+   $this->db->insert('shop_product_category', $model);
+
+   echo json_encode($response,JSON_UNESCAPED_SLASHES);
+   die();
+}
+
+public function getCategorybyShopid()
+  {
+      $model = json_decode($this->input->post('model',FALSE));
+
+      $res=$this->db->select("*")->where(['delete_status'=>'0','shop_id'=>$model->shop_id])->get('shop_product_category'); 
+      $result=array();
+      if($res->num_rows()>0)
+        {
+          $result=$res->result_array(); 
+          
+        }else{
+            $response['status']="failure";
+            $response['message']="No category Found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+
+  
+  public function deleteshopcategory($id)
+  {
+    $this->output->set_content_type('application/json');
+      $response=array();
+      $response['status']="success";
+      
+
+      $res_chk=$this->db->query("select id from ".$this->db->dbprefix('shop_product_category')." where id='".$id."' ");
+      //print_r($res_chk);die;
+      if($res_chk->num_rows()>0){
+
+          $data=array('delete_status'=>'1');
+          $this->db->where('id',$id);
+          $this->db->update($this->db->dbprefix('shop_product_category'),$data);
+
+          $response['status']="success";
+          $response['message']="Category record has been deleted successfully";
+          
+      }else{
+          $response['status']="failure";
+          $response['message']="Invalid Attempt!!.. Access denied..";    
+      }
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
+       die();
+  }
 
 }

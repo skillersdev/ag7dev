@@ -51,7 +51,7 @@
                                                 <p><b>{{'Shop' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.shop_id" #shop_id="ngModel" name="shop_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.shop_id" (change)="getshopcategorylists()" #shop_id="ngModel" name="shop_id" required>
                                                             <option [ngValue]="select">select Shop</option>    
                                                             <option *ngFor="let model of shoplist" value="{{model.id}}">{{model.shop_name}}</option>
                                                         </select>
@@ -59,6 +59,30 @@
                                                         </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6" *ngIf="(malltypeid==null) || (malltypeid==1) || (malltypeid==2) || (malltypeid==3)">
+                                                <p><b>{{'Category' | translate}}</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.category_id"  #category_id="ngModel" name="category_id" >
+                                                            <option [ngValue]="select">select Category</option>    
+                                                            <option *ngFor="let model of shopcategorylist" value="{{model.id}}">{{model.category_name}}</option>
+                                                        </select>
+                                                        <!-- <span [hidden]="category_id.valid || category_id.pristine" class="text-danger">Category is required</span> -->
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <p><b>{{'Product Code' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="{{'Product Code' | translate}}" [(ngModel)]="model.product_code" name="product_code" #product_code="ngModel" required>
+                                                    </div>
+                                                      <span [hidden]="product_code.valid || product_code.pristine" class="text-danger">Product Code is required</span>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-6">
                                                 <p><b>{{'Product' | translate}}{{'Name' | translate}}</b></p>
                                                 <div class="form-group">
@@ -69,12 +93,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><b>{{'Paypal Email' | translate}}</b></p>
+                                                <p><b>{{'Product Price' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Paypal Email' | translate}}" [(ngModel)]="model.paypal_email" name="paypal_email" #paypal_email="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Product Price' | translate}}" [(ngModel)]="model.product_price" name="product_price" #product_price="ngModel" required>
                                                     </div>
-                                                      <span [hidden]="paypal_email.valid || paypal_email.pristine" class="text-danger">Paypal Email id is required</span>
+                                                      <span [hidden]="product_price.valid || product_price.pristine" class="text-danger">Product Price is required</span>
                                                 </div>
                                             </div>
                                            

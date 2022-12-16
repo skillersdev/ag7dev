@@ -4,7 +4,8 @@ import { CommonService } from '../../../services/common.service';
 import { AppSettings } from '../../../appSettings';
 
 import { LoginService } from '../../../services/login.service';
-
+declare var jquery:any;
+declare var $ :any;
 @Component({
   selector: 'app-managefloor',
   templateUrl: './managefloor.component.html',
@@ -16,14 +17,17 @@ export class ManagefloorComponent implements OnInit {
   getfloorbyUserRestApiUrl:string = AppSettings.floorbyid; 
   floorlist:Array<Object>;
   malltypeid:any;
+  floorid:any;
   model:any={};
+  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
     // this.loginService.malllocalStorageData();
     this.loginService.viewsActivate();
 
-    this.malltypeid = localStorage.getItem('malltypeid');  
+    this.malltypeid = localStorage.getItem('malltypeid');
+    this.floorid=localStorage.getItem('floorid');  
     this.model.usergroup=localStorage.getItem('currentUsergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');     

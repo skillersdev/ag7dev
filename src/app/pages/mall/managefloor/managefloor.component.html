@@ -11,7 +11,7 @@
                       <div class="header">
                           <h2>
                             {{'Floor' | translate}} {{'List' | translate}}
-                              <button type="button" (click)="navigateAddfloor()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Floor' | translate}}</button>                 
+                              <button type="button" *ngIf="malltypeid!=2 && malltypeid!=3 && malltypeid!=4" (click)="navigateAddfloor()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}} {{'Floor' | translate}}</button>                 
                           </h2>
                       </div>
                       <div class="body">
@@ -35,8 +35,8 @@
                                       <td>{{data.created_date}}</td>
                                       <td>{{data.created_by}}</td>
                                       <td>
-                                        <a href="javascript:void(0);" (click)="editfloor(data.id)"><i class="material-icons">edit</i></a>
-                                        <a href="javascript:void(0);" (click)="deletefloor(data.id)"><i class="material-icons">delete</i></a>
+                                        <a href="javascript:void(0);" *ngIf="(malltypeid==2 && floorid==data.id) || malltypeid==1" (click)="editfloor(data.id)"><i class="material-icons">edit</i></a>
+                                        <a href="javascript:void(0);" *ngIf="malltypeid!=2 && malltypeid!=3 && malltypeid!=4" (click)="deletefloor(data.id)"><i class="material-icons">delete</i></a>
                                     </td>
                                   </tr>
                                  

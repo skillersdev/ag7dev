@@ -23,7 +23,7 @@ export class SidemenuComponent implements OnInit {
     this.model.email = localStorage.getItem('email');
     this.model.name = localStorage.getItem('user_fname');
     
-    this.loginService.sidemenuActive();
+     this.loginService.sidemenuActive();
   }
 
     logout(){

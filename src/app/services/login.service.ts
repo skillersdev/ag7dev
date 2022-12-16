@@ -43,8 +43,20 @@ export class LoginService {
       localStorage.removeItem('currentUsergroup');
       localStorage.removeItem('currentUserStatus');
       localStorage.removeItem('chatcode');
+      localStorage.clear();
       this.router.navigate(['./login']);
-  }   
+  }  
+  
+  logout2(){
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserID');
+    localStorage.removeItem('currentUsername');
+    localStorage.removeItem('currentUsergroup');
+    localStorage.removeItem('currentUserStatus');
+    localStorage.removeItem('chatcode');
+    localStorage.clear();
+    this.router.navigate(['./mall/login']);
+} 
 
   sidemenuActive(){
     $.AdminBSB.browser.activate();
@@ -63,7 +75,7 @@ export class LoginService {
     $.AdminBSB.select.activate(); 
     $.AdminBSB.search.activate();
     setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
-
+    // this.sidemenuActive();
 
     $(function () {
         $('.js-basic-example').DataTable({
