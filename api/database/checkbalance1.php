@@ -66,6 +66,8 @@ if($array1[0]['username'])
 		$query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt FROM affiliateuser WHERE username = '$username'");
 		$row4=$query4->fetch_array(MYSQLI_ASSOC);
 		$tot_amt=$row4['TotalAmt']-$pay_via_voucher;
+
+		// print_r($row4); exit;
 		/* Code by karthikeyan starts */
 		$pcktaken = $row4['pcktaken'];
 		$querypackage="SELECT minimum_voucher,maximum_register FROM  packages where id = $pcktaken";

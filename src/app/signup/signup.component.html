@@ -7,12 +7,26 @@
             <div class="body">
                 <form id="sign_up" #signup="ngForm">
                     <!-- <div class="msg">Signup as a new marketer</div> -->
+
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">view_comfys</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="{{'Enter' | translate}}{{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
+                                <option [ngValue]="select">Select Package</option>    
+                                <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
+                            </select>
+                        </div>
+                        <span [hidden]="pcktaken.valid || pcktaken.pristine" class="text-danger">Package  is required</span>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">view_comfys</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                          <div *ngIf="website.errors && (website.dirty || website.touched)" class="">
                             <span [hidden]="website.errors.required" class="text-danger">website is required</span>
@@ -36,27 +50,14 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="{{'Enter' | translate}}{{'Website' | translate}} {{'Lock'|translate}}" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Lock'|translate}}" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                         <div *ngIf="username.errors && (username.dirty || username.touched)" class="">
                             <span [hidden]="username.errors.required" class="text-danger">username is required</span>
                              <span [hidden]="!username.errors.pattern" class="text-danger">username accepts alpha numeric value only</span>
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                           <i class="material-icons">account_circle</i>
-                        </span>
-                        <div class="form-line">
-                       <input name="group5" type="radio" id="radio_30" value="male" class="with-gap radio-col-red" checked="" [(ngModel)]="model.gender">
-                       <label for="radio_30">Male</label>
-
-                        <input name="group5" type="radio" id="radio_31" value="female" class="with-gap radio-col-red" [(ngModel)]="model.gender">
-                       <label for="radio_31">Female</label>
-                        </div>
-                       
-                    </div>
-                      
+                                         
                     
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -84,6 +85,20 @@
                         <div *ngIf="model.passwordmatch">
                             <span class="text-danger"> *Passwors and confirm password is not match. </span>
                         </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                           <i class="material-icons">account_circle</i>
+                        </span>
+                        <div class="form-line">
+                       <input name="group5" type="radio" id="radio_30" value="male" class="with-gap radio-col-red" checked="" [(ngModel)]="model.gender">
+                       <label for="radio_30">Male</label>
+
+                        <input name="group5" type="radio" id="radio_31" value="female" class="with-gap radio-col-red" [(ngModel)]="model.gender">
+                       <label for="radio_31">Female</label>
+                        </div>
+                       
                     </div>
 
                     <div class="input-group">
@@ -345,25 +360,14 @@
                         </div>
                     </div>
 
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">view_comfys</i>
-                        </span>
-                        <div class="form-line">
-                            <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
-                                <option [ngValue]="select">select package</option>    
-                                <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
-                            </select>
-                        </div>
-                        <span [hidden]="pcktaken.valid || pcktaken.pristine" class="text-danger">Package  is required</span>
-                    </div>
+                    
 
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">group</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Creator/Website Name" required autofocus>
+                            <input type="text" class="form-control" name="referedby" [(ngModel)]="model.referedby" #referedby="ngModel" placeholder="Enter Creator Name" required autofocus>
                         </div>
                     </div>
                     

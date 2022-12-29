@@ -31,8 +31,11 @@ class Package_controller extends CI_Controller {
         $stage_field_column=implode(',',$stage_column);
         $stage_field_value=implode(',',$stage_column_value);
         //$this->db->insert('package_info', $model);
-        $this->db->query("insert into ".$this->db->dbprefix('packages')." (name,price,currency,details,tax,sbonus,minimum_voucher,maximum_transfer,cdate,active,".$level_field.",".$stage_field_column.",validity,indirect_ref_amt,pay_via_voucher) values (
-                '".$model->package_name."','".$model->package_price."','".$model->currency."',
+        $this->db->query("insert into ".$this->db->dbprefix('packages')." (name,pck_type,price,currency,details,tax,sbonus,minimum_voucher,maximum_transfer,cdate,active,".$level_field.",".$stage_field_column.",validity,indirect_ref_amt,pay_via_voucher) values (
+                '".$model->package_name."',
+                '".$model->pck_type."',
+                '".$model->package_price."',
+                '".$model->currency."',
                 '".$model->package_details."',
                 '".$model->package_tax."',
                 '".$model->sign_up_bonus."',
@@ -89,7 +92,13 @@ class Package_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('pck_type != ',3,FALSE)->where('pck_type != ',2,FALSE)->get('packages');
+        $res=$this->db->select("*,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')
+        ->where('pck_type != ',3,FALSE)
+        ->where('pck_type != ',2,FALSE)
+        ->where('pck_type != ',6,FALSE)
+        ->where('pck_type != ',7,FALSE)
+        ->where('pck_type != ',8,FALSE)
+        ->get('packages');
 
 
         if($res->num_rows()>0)
@@ -349,8 +358,7 @@ class Package_controller extends CI_Controller {
                 {
                     $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$value['package_id']."'");
                     $in_array_1=$res1->result_array(); 
-
-                    $user_det=$this->db->select("username,tamount,eamount,elearn_user_id,instructor_amount")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
+                    $user_det=$this->db->select("username,tamount,eamount,elearn_user_id,instructor_amount,tamount_renewal,instructor_amount_renewal,eamount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal")->where(['is_deleted'=>'0','id'=>$value['user_id']])->get('affiliateuser'); 
                     $data =$user_det->result_array();  
                     
                     //echo "<pre>";print_r($data);die;
@@ -370,6 +378,22 @@ class Package_controller extends CI_Controller {
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
                     $package['eamount']= $data[0]['eamount'];
+
+                    $package['instructor_amount']= $data[0]['instructor_amount'];
+                    $package['tamount_renewal']= $data[0]['tamount_renewal'];
+                    $package['instructor_amount_renewal']= $data[0]['instructor_amount_renewal'];
+                    $package['eamount_renewal']= $data[0]['eamount_renewal'];
+                    $package['pw_amount']= $data[0]['pw_amount'];
+                    $package['pw_amount_renewal']= $data[0]['pw_amount_renewal'];
+                    $package['bw_amount']= $data[0]['bw_amount'];
+                    $package['bw_amount_renewal']= $data[0]['bw_amount_renewal'];
+                    $package['mall_amount']= $data[0]['mall_amount'];
+                    $package['mall_amount_renewal']= $data[0]['mall_amount_renewal'];
+                    $package['floor_amount']= $data[0]['floor_amount'];
+                    $package['floor_amount_renewal']= $data[0]['floor_amount_renewal'];
+                    $package['shop_amount']= $data[0]['shop_amount'];
+                    $package['shop_amount_renewal']= $data[0]['shop_amount_renewal'];
+
                     $package['Instructoramount']= $data[0]['instructor_amount'];
                     $package['elearn_user_id']= $data[0]['elearn_user_id'];
 
@@ -420,7 +444,7 @@ class Package_controller extends CI_Controller {
    {
      $this->output->set_content_type('application/json');
       
-
+        
         $model = json_decode($this->input->post('model',FALSE));
         /*Get package type*/
          $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$model->packuser."' AND is_deleted=0");
@@ -439,9 +463,35 @@ class Package_controller extends CI_Controller {
            
         }
         
-        $response=array('status'=>"1",'message'=>"Package assigned successfully");          
+        $response=array('status'=>"1",'message'=>"Package assigned successfully");   
         
-        $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id) values ('".$model->user_id."','".$model->packuser."')");
+        if($in_array_1[0]['pck_type']==6)
+        {
+          $webType="M";
+        }
+        elseif($in_array_1[0]['pck_type']==7)
+        {
+          $webType="F";
+        }
+        elseif($in_array_1[0]['pck_type']==8)
+        {
+          $webType="S";
+        }
+        elseif($in_array_1[0]['pck_type']==4)
+        {
+          $webType="P";
+        }
+        elseif($in_array_1[0]['pck_type']==5)
+        {
+          $webType="B";
+        }
+
+        else{
+          $webType="E";
+        }
+
+        
+        $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website_type) values ('".$model->user_id."','".$model->packuser."','".$webType."')");
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
@@ -502,10 +552,12 @@ class Package_controller extends CI_Controller {
                     
                 }
                 
-                $ids = implode($pack_vs_usr_ids,',');
+                //print_r($pack_vs_usr_ids);die;
+
+                $ids = implode(',',$pack_vs_usr_ids);
                 
-                // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.")"); //comment by sridhar
-         $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0 AND pck_type!=3");
+                $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.") AND is_deleted=0 AND pck_type!=3 AND pck_type!=4 AND pck_type!=5 "); //comment by sridhar
+                // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0 AND pck_type!=3");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
                   foreach ($in_array_1 as $key => $value1) 
@@ -670,6 +722,13 @@ class Package_controller extends CI_Controller {
       $model = json_decode($this->input->post('model',FALSE));
     
       $response['exist']=0;
+
+      if($model->pcktaken){
+        $selectedPackage=$model->pcktaken;
+       
+        $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id='".$model->pcktaken."' AND is_deleted=0");
+
+      }
     
     if($model->website!=""){
       $website = trim($model->website);

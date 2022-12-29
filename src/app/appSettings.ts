@@ -143,6 +143,7 @@ export class AppSettings {
   public static deleteuser = AppSettings.API_BASE + "/deleteuser/";
   public static checkuserdetail = AppSettings.API_BASE + "/checkuserexist";
   public static checkusercredit = AppSettings.API_BASE + "/checkusercredit";
+  public static checkusercreditbytype = AppSettings.API_BASE + "/checkusercreditbytype";
   public static packageisactivated = AppSettings.API_BASE + "/checkpackage/";
   public static Updatepassword = AppSettings.API_BASE + "/updatepassword";
   public static uploadprofileimage = AppSettings.API_BASE + "/uploadimage";
@@ -180,6 +181,7 @@ export class AppSettings {
     AppSettings.API_BASE + "/addtransferdetails";
   public static trasnferInstructorRestApiUrl =
     AppSettings.API_BASE + "/transferInstructoramount";
+    public static trasnfervoucherRestApiUrl = AppSettings.API_BASE + "/addtransfervoucher";  
   public static gettransferlistDetail =
     AppSettings.API_BASE + "/gettransferlist";
 

@@ -261,7 +261,10 @@
     "order-date":"Order Date",
     "product-code":"Product Code",
     "product-name":"Product Name",
-    "product-price":"Product Price"
+    "product-price":"Product Price",
+    "Entrepreneur":"Entrepreneur",
+    "Business":"Business",
+    "Personal":"Personal"
 
 
 

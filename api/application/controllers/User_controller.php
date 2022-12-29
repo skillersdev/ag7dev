@@ -464,6 +464,191 @@ class User_controller extends CI_Controller {
     echo json_encode($response,JSON_UNESCAPED_SLASHES);
     die();
   }
+
+  public function check_user_credit_by_type(){
+    $model = json_decode($this->input->post('model',FALSE));
+    $user_id = trim($model->user_id);
+    $share_amount_from_user = $model->share_amt;
+    $voucher_type = $model->shareType;
+    $res=$this->db->select("*")->where(['is_deleted'=>'0','id'=>$user_id])->get('affiliateuser');
+    if(count($res->result_array())>0)
+    {
+      $data =$res->result_array(); 
+      switch ($voucher_type) {
+        case '1': //Entrepreneur
+            if($data[0]['tamount']>=$share_amount_from_user){
+                $response['total_amount']=$data[0]['tamount'];
+            }else{
+              $response['status']=1;
+              $response['message']="Shared voucher is greater than current balance:".$data[0]['tamount'];
+              echo json_encode($response,JSON_UNESCAPED_SLASHES);
+              die();
+            }
+          break;
+        case '2': //Entrepreneur Renewal
+          if($data[0]['tamount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['tamount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['tamount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '3': //Instructor
+          if($data[0]['instructor_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['instructor_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['instructor_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;    
+        case '4': //Instructor Renewal
+          if($data[0]['instructor_amount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['instructor_amount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['instructor_amount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '5': //Student
+          if($data[0]['eamount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['eamount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['eamount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '6': //Student Renewal
+          if($data[0]['eamount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['eamount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['eamount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;  
+        case '7': //Personal
+          if($data[0]['pw_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['pw_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['pw_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;  
+        case '8': //Personal Renewal
+          if($data[0]['pw_amount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['pw_amount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['pw_amount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        
+        case '9': //Business
+          if($data[0]['bw_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['bw_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['bw_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '10': //Business Renewal
+            if($data[0]['bw_amount_renewal']>=$share_amount_from_user){
+              $response['total_amount']=$data[0]['bw_amount_renewal'];
+            }else{
+              $response['status']=1;
+              $response['message']="Shared voucher is greater than current balance:".$data[0]['bw_amount_renewal'];
+              echo json_encode($response,JSON_UNESCAPED_SLASHES);
+              die();
+            }
+            break;  
+
+        case '11': //Mall
+          if($data[0]['mall_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['mall_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['mall_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '12': //Mall Renewal
+          if($data[0]['mall_amount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['mall_amount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['mall_amount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '13': //Floor
+          if($data[0]['floor_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['floor_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['floor_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;  
+        case '14': //Floor Renewal
+          if($data[0]['floor_amount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['floor_amount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['floor_amount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;
+        case '15': //Shop
+          if($data[0]['shop_amount']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['shop_amount'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['shop_amount'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;    
+        case '16': //Shop Renewal
+          if($data[0]['shop_amount_renewal']>=$share_amount_from_user){
+            $response['total_amount']=$data[0]['shop_amount_renewal'];
+          }else{
+            $response['status']=1;
+            $response['message']="Shared voucher is greater than current balance:".$data[0]['shop_amount_renewal'];
+            echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+          }
+          break;  
+          
+        default:
+          $response['status']=1;
+          $response['message']="Shared voucher is greater than current balance";
+          echo json_encode($response,JSON_UNESCAPED_SLASHES);
+          die();
+          break;
+      }
+
+    }
+    
+  }
   
    public function edituser($id)
     {

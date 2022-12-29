@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   packagelist:Array<Object>;
   package_vs_user_list:Array<Object>;
   model: any = {};
+  transmodel:any={};
   elearningmodel:any={};
   alldata: any = {};
   payment_data:any={};
@@ -49,6 +50,8 @@ export class DashboardComponent implements OnInit {
   checkUserRestApiUrl:string = AppSettings.checkuserdetail; 
   checkpackageisactivated:string = AppSettings.packageisactivated; 
   checkUserCreditRestApiUrl:string = AppSettings.checkusercredit;
+  checkUserCreditbyTypeRestApiUrl:string = AppSettings.checkusercreditbytype;
+
   inserttrasnfeprocessRestApiUrl:string = AppSettings.inserttransferprocess;
   getpackagevsuserApiUrl:string = AppSettings.getPackageNotbuy;
   insertpackagevsuserApiUrl:string = AppSettings.insertpackagevsuser;
@@ -83,9 +86,22 @@ export class DashboardComponent implements OnInit {
           .subscribe(resultdata =>{   
             this.packagelist=resultdata.result; 
             this.model.tot_amt=resultdata.result[0]['tamount']; 
-            this.model.e_amt=resultdata.result[0]['eamount']; 
-            this.model.instructor_amt=resultdata.result[0]['Instructoramount']; 
-                      });
+            this.model.tamount_renewal=resultdata.result[0]['tamount_renewal'];
+            this.model.instructor_amount=resultdata.result[0]['instructor_amount'];
+            this.model.instructor_amount_renewal=resultdata.result[0]['instructor_amount_renewal'];
+            this.model.e_amt=resultdata.result[0]['eamount'];
+            this.model.eamount_renewal=resultdata.result[0]['eamount_renewal']; 
+            this.model.pw_amount=resultdata.result[0]['pw_amount'];
+            this.model.pw_amount_renewal=resultdata.result[0]['pw_amount_renewal'];
+            this.model.bw_amount=resultdata.result[0]['bw_amount'];
+            this.model.bw_amount_renewal=resultdata.result[0]['bw_amount_renewal'];
+            this.model.mall_amount=resultdata.result[0]['mall_amount'];
+            this.model.mall_amount_renewal=resultdata.result[0]['mall_amount_renewal'];
+            this.model.floor_amount=resultdata.result[0]['floor_amount'];
+            this.model.floor_amount_renewal=resultdata.result[0]['floor_amount_renewal'];
+            this.model.shop_amount=resultdata.result[0]['shop_amount'];
+            this.model.shop_amount_renewal=resultdata.result[0]['shop_amount_renewal'];
+            });
 
       this.CommonService.editdata(this.getpackagevsuserApiUrl,user_id)
           .subscribe(resultdata =>{   
@@ -131,6 +147,72 @@ export class DashboardComponent implements OnInit {
       }       
     });
   }
+
+checkcvmarketer(marketer_name:any)
+ {
+    console.log(this.transmodel);
+    if(this.transmodel.voucher_type==""||this.transmodel.voucher_type==undefined){
+      swal('Oops...','Select Voucher Type', 'error');
+      this.transmodel.cvmname='';
+    }else{
+      this.model.username=marketer_name;
+      this.CommonService.checkexistdata(this.checkUserRestApiUrl,this.model).subscribe(data=>{
+        if(data.exist==0)
+        {                
+          swal('Oops...','Marketer doesnot exists', 'error');
+          this.transmodel.cvmname='';
+        }       
+      });
+    }
+  
+  }
+
+  checkcvbalance()
+  {     
+    this.alldata.user_id=localStorage.getItem('currentUserID');
+    this.alldata.shareType = this.transmodel.voucher_type;
+    this.alldata.share_amt=this.transmodel.cvshare_amt;
+    console.log("checkcvbalance",this.alldata);
+    if((this.transmodel.cvshare_amt!='')&&(this.transmodel.cvshare_amt!=undefined))
+      {
+        this.CommonService.checkexistdata(this.checkUserCreditbyTypeRestApiUrl,this.alldata).subscribe(data=>{
+          
+            if(data.status==1)
+            {
+               swal('Oops...',data.message, 'error');
+               this.transmodel.cvshare_amt=''; 
+            }
+          
+        });
+      }
+  }
+
+  transferCvoucher()
+  {
+    this.alldata.transfer_to=this.transmodel.cvmname;
+    this.alldata.transfer_from=localStorage.getItem('currentUser');
+    this.alldata.shareType = this.transmodel.voucher_type;
+    this.alldata.amt=this.transmodel.cvshare_amt;
+
+    $('.preloader loader-3').show();    
+    
+    this.CommonService.insertdata(AppSettings.trasnfervoucherRestApiUrl,this.alldata)
+    .subscribe(package_det =>{
+      
+        $('.preloader loader-3').hide();      
+         swal(
+          package_det.status,
+          package_det.message,
+          package_det.status
+        )
+         this.transmodel.cvmname = '';
+         this.transmodel.cvshare_amt = '';
+        this.ngOnInit(); 
+    });
+  } 
+
+
+
   pay_via_voucher()
   {
     this.payment_details=true;

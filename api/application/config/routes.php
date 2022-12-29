@@ -127,6 +127,7 @@ $route['reactivatepackage']= 'User_controller/reactivatepackage';
 $route['deleteuser/(:num)'] = 'User_controller/deleteuser/$1';
 $route['checkuserexist'] = 'User_controller/check_user_exist';
 $route['checkusercredit'] = 'User_controller/check_user_credit';
+$route['checkusercreditbytype'] = 'User_controller/check_user_credit_by_type';
 $route['checkpackage/(:num)'] = 'Login_controller/check_user_package/$1';
 $route['updatepassword'] = 'User_controller/updatepassword';
 $route['uploadimage'] = 'User_controller/uploadimage';
@@ -151,6 +152,7 @@ $route['getAllmarketers']= 'User_controller/getallmarketers';
 $route['findmarketers']= 'User_controller/findmarketers';
 /*Trasnfer History*/
  $route['addtransferdetails'] = 'Transferhistory_controller/add_transfer_history';
+ $route['addtransfervoucher'] = 'Transferhistory_controller/addtransfervoucher';
  $route['transferInstructoramount']= 'Transferhistory_controller/transferinstructoramount';
  $route['gettransferlist'] ='Transferhistory_controller/gettransferlist';
 /**/

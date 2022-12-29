@@ -114,7 +114,12 @@ export class SignupComponent implements OnInit {
   }
    checkwebsite()
   {
-    this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
+    console.log("checkwebsite",this.model.pcktaken);
+    if(this.model.pcktaken=="" || this.model.pcktaken==undefined ){
+      swal('','Select Package','error');
+      this.model.website='';
+    }else{
+      this.CommonService.checkexistdata(this.CheckwebsiteExistsRestApiUrl,this.model)
     .subscribe(package_det =>{
       if(package_det.exist==1)
       {
@@ -122,6 +127,8 @@ export class SignupComponent implements OnInit {
         this.model.website='';
       }  
     });
+    }
+    
   }
 
 }
