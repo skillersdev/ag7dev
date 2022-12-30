@@ -163,7 +163,7 @@ public function add_transfer_history(){
   public function addtransfervoucher(){
         $this->output->set_content_type('application/json');
         $tot_amt=0;
-        $instructorModel="";
+        $instructorModel=new stdClass;
         $model = json_decode($this->input->post('model',FALSE));
         $instructorModel->voucher_type = $model->shareType; 
         $voucher_type=$model->shareType; 
