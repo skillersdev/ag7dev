@@ -31,6 +31,7 @@ export class MallloginComponent implements OnInit {
      this.entered = 0;
     this.model.type=1;
     this.loginService.viewsActivate();
+    localStorage.clear();
     //  let translate_url="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     //this.loadScript(translate_url);
      

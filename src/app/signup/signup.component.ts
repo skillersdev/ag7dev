@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
   model: any = {};
   data:any={};
   select: any;
+  selected_pck_type:any;
   entered:any;
   users :any= []; //storing the data from the API
   userRestApiUrl: string = AppSettings.Userlogin; //API common URL
@@ -112,9 +113,25 @@ export class SignupComponent implements OnInit {
       }  
     });
   }
+
+  selectPackage(){
+    this.model.website='';
+    this.model.filteredPackDetails=this.packagelist.filter((pckData: any) => pckData.id == this.model.pcktaken);
+    this.model.selected_pck_type = this.model.filteredPackDetails[0].pck_type;
+    if(this.model.selected_pck_type==4){
+      this.model.selectedwebsite_prefix="p-"
+    }
+    else if(this.model.selected_pck_type==5){
+      this.model.selectedwebsite_prefix="b-"
+    }else{
+      this.model.selectedwebsite_prefix="";
+    }
+    
+    console.log("selectPackage",this.model.selected_pck_type);
+  }
    checkwebsite()
   {
-    console.log("checkwebsite",this.model.pcktaken);
+    
     if(this.model.pcktaken=="" || this.model.pcktaken==undefined ){
       swal('','Select Package','error');
       this.model.website='';

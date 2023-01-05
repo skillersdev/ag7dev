@@ -7,7 +7,7 @@ $tes1=json_decode($array);
 $array1 = json_decode(json_encode($tes1), True);
 $website_name = $array1[0]['website'];
     
-//  print_r($array1);die;
+// print_r($array1);die;
 
 
 if($array1[0]['username'])
@@ -26,7 +26,7 @@ if($array1[0]['username'])
         pck_type==1 => website
         pck_type==2 => Online
     */
-    if($array1[0]['pck_type']==1){
+    if($array1[0]['pck_type']==1 || $array1[0]['pck_type']==5 || $array1[0]['pck_type']==4){
         $checkwebsitesql="SELECT COUNT(*) AS websitecount FROM user_vs_packages where website = '".$website_name."'  AND user_id !='".$userid."'";
         $checkwebsite_result=mysqli_query($con,$checkwebsitesql);
         $website_result = $checkwebsite_result->fetch_array(MYSQLI_ASSOC);
@@ -38,7 +38,7 @@ if($array1[0]['username'])
             die();
         }
     }
-    //print_r($website_result); exit;
+   
     //checking code ends here
     
     
@@ -72,7 +72,7 @@ if (($num['ucount']) == 1) {
         $uaid=$userid;
         $pcktake=$packid;
 
-        $query="SELECT * FROM  packages where id = $pcktake"; 
+        $query="SELECT * FROM  packages where id = $packid"; 
          
         $result = mysqli_query($con,$query);
         
@@ -90,15 +90,53 @@ if (($num['ucount']) == 1) {
             $total=$pprice+$ptax;
         }
         
-        $query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt,eamount FROM affiliateuser WHERE username = '$username'");
+        $query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$username'");
         $row4=$query4->fetch_array(MYSQLI_ASSOC);
         /*Pck type code modified by mani for Online emaount*/
-        if($array1[0]['pck_type']==1)
-        {
-            $tot_amt=$row4['TotalAmt']-$pay_via_voucher;     
-        }else{
-            $tot_amt=$row4['eamount']-$pay_via_voucher;
-        }
+        // if($array1[0]['pck_type']==1)
+        // {
+        //     $tot_amt=$row4['TotalAmt']-$pay_via_voucher;     
+        // }else{
+        //     $tot_amt=$row4['eamount']-$pay_via_voucher;
+        // }
+
+        switch ($array1[0]['pck_type']) {
+            case '1': //Entrepreneur
+                $tot_amt=$row4['TotalAmt']-$pay_via_voucher; 
+                break;
+            case '2': //Student
+                $tot_amt=$row4['eamount']-$pay_via_voucher; 
+                break;
+            case '3': //Instructor
+                $tot_amt=$row4['instructor_amount']-$pay_via_voucher;
+                break;    
+            case '4': //Personal
+                $tot_amt=$row4['pw_amount']-$pay_via_voucher;
+                break;  
+            case '5': //Business
+                $tot_amt=$row4['bw_amount']-$pay_via_voucher;
+                break;
+            case '6': //Mall
+                $tot_amt=$row4['mall_amount']-$pay_via_voucher;
+                break;
+            case '7': //Floor
+                $tot_amt=$row4['floor_amount']-$pay_via_voucher;
+                break;  
+            case '8': //Shop
+                $tot_amt=$row4['shop_amount']-$pay_via_voucher;
+                break; 
+            default:
+                $tot_amt=0;
+                break;
+          }
+
+       
+        // print_r($website_result); 
+        // print_r($array1);
+        // print_r($row4);
+        // print_r($tot_amt);
+        // print_r($pay_via_voucher);
+        // exit;
         
         /* Code by karthikeyan starts */
         $pcktaken = $row4['pcktaken'];
@@ -109,18 +147,49 @@ if (($num['ucount']) == 1) {
              $minimum_voucher="$rowpackage[minimum_voucher]";
              $maximum_register="$rowpackage[maximum_register]";
         }
-       // echo $tot_amt."---".$minimum_voucher.'---'.$pay_via_voucher.'++'.$maximum_register;die;
+        // echo $tot_amt."---".$minimum_voucher.'---'.$pay_via_voucher.'++'.$maximum_register;die;
         if ($tot_amt >= $minimum_voucher && $pay_via_voucher <= $maximum_register)
         {
             $query=mysqli_query($con,"insert into paypalpayments(orderid,transacid,price,currency,date,cod,pckid,gateway) values('$uaid','R.V','$pay_via_voucher','$pcur',NOW(),1,'$pckid','R.B')");
             /* Code by karthikeyan ends */
             /*Pck type code modified by manimaran for Online emaount*/
-            if($array1[0]['pck_type']==1)
-            {
-                $up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'");    
-            }else{
-                $up_query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt."' where username='".$username."'");
-            }
+            // if($array1[0]['pck_type']==1)
+            // {
+            //     $up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'");    
+            // }else{
+            //     $up_query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt."' where username='".$username."'");
+            // }
+
+            switch ($array1[0]['pck_type']) {
+                case '1': //Entrepreneur
+                    $up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'"); 
+                    break;
+                case '2': //Student
+                    $up_query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt."' where username='".$username."'"); 
+                    break;
+                case '3': //Instructor
+                    $up_query=mysqli_query($con,"update affiliateuser set instructor_amount='".$tot_amt."' where username='".$username."'");
+                    break;    
+                case '4': //Personal
+                    $up_query=mysqli_query($con,"update affiliateuser set pw_amount='".$tot_amt."' where username='".$username."'");
+                    break;  
+                case '5': //Business
+                    $up_query=mysqli_query($con,"update affiliateuser set bw_amount='".$tot_amt."' where username='".$username."'");
+                    break;
+                case '6': //Mall
+                    $up_query=mysqli_query($con,"update affiliateuser set mall_amount='".$tot_amt."' where username='".$username."'");
+                    break;
+                case '7': //Floor
+                    $up_query=mysqli_query($con,"update affiliateuser set floor_amount='".$tot_amt."' where username='".$username."'");
+                    break;  
+                case '8': //Shop
+                    $up_query=mysqli_query($con,"update affiliateuser set shop_amount='".$tot_amt."' where username='".$username."'");
+                    break; 
+                default:
+                    $up_query="";
+                    break;
+              }
+
             
             /* Code by karthikeyan starts */
             
@@ -198,18 +267,56 @@ if (($num['ucount']) == 1) {
             $ref=$ref_list11['referedby'];
             $userid=$tomake;
            // print_r($ref_list11);die;
-            //signup bonus
-            $tot_marketer_earning=($array1[0]['pck_type']==1)?$ref_list11['tamount']:$ref_list11['eamount'];
+            
+           //signup bonus
+            // $tot_marketer_earning=($array1[0]['pck_type']==1)?$ref_list11['tamount']:$ref_list11['eamount'];
+
+            switch ($array1[0]['pck_type']) {
+                case '1': //Entrepreneur
+                    $tot_marketer_earning=$ref_list11['tamount']; 
+                    $updatefield="tamount";
+                    break;
+                case '2': //Student
+                    $tot_marketer_earning=$ref_list11['eamount']; 
+                    $updatefield="eamount";
+                    break;
+                case '3': //Instructor
+                    $tot_marketer_earning=$ref_list11['instructor_amount'];
+                    $updatefield="instructor_amount";
+                    break;    
+                case '4': //Personal
+                    $tot_marketer_earning=$ref_list11['pw_amount'];
+                    $updatefield="pw_amount";
+                    break;  
+                case '5': //Business
+                    $tot_marketer_earning=$ref_list11['bw_amount'];
+                    $updatefield="bw_amount";
+                    break;
+                case '6': //Mall
+                    $tot_marketer_earning=$ref_list11['mall_amount'];
+                    $updatefield="mall_amount";
+                    break;
+                case '7': //Floor
+                    $tot_marketer_earning=$ref_list11['floor_amount'];
+                    $updatefield="floor_amount";
+                    break;  
+                case '8': //Shop
+                    $tot_marketer_earning=$ref_list11['shop_amount'];
+                    $updatefield="shop_amount";
+                    break; 
+                default:
+                    $tot_marketer_earning=0;
+                    $updatefield="";
+                    break;
+              }
+
             $sbonus_query="SELECT sbonus FROM packages where id = $package"; //fetching no of days validity from package table from databse
             $sbonus_result=mysqli_query($con,$sbonus_query);
             $sbonus_list = mysqli_fetch_row($sbonus_result);
             $sbonus=$sbonus_list[0];
             $tot_amt9s=$tot_marketer_earning+$sbonus;
-            if($array1[0]['pck_type']==1)
-            {
-                $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt9s."'where username='".$tomake."'");    
-            }else{
-                $query=mysqli_query($con,"update affiliateuser set eamount='".$tot_amt9s."'where username='".$tomake."'");
+            if($updatefield !=""){
+                $query=mysqli_query($con,"update affiliateuser set ".$updatefield."='".$tot_amt9s."'where username='".$tomake."'");
             }
             
             //signup bonus  
@@ -286,14 +393,52 @@ if (($num['ucount']) == 1) {
                         $query2=mysqli_query($con,"insert into affiliate_bonus_history (`bid`,`user_id`,`referedby`,`stage1_ref`,`ref_stage`,`amt`,`created`) values 
                         ('','$luser_id','$ref','$ref','$ref_stage','$stage_amt','$cur')"); //changes made here
                         
-                        $query4=mysqli_query($con,"SELECT  tamount As TotalAmt FROM affiliateuser WHERE username = '$ref'");
+                        $query4=mysqli_query($con,"SELECT  tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$ref'");
                         $row4=$query4->fetch_array(MYSQLI_ASSOC);
-                        $tot_amt=($row4['TotalAmt']+$stage_amt); 
-                        
-                        
-                        $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."',level='".$ref_stage."' where username='".$ref."'");
-                        
-                        
+                        // $tot_amt=($row4['TotalAmt']+$stage_amt); 
+
+                        switch ($array1[0]['pck_type']) {
+                            case '1': //Entrepreneur
+                                $tot_amt=$row4['TotalAmt']+$stage_amt;
+                                $updatefield1="tamount"; 
+                                break;
+                            case '2': //Student
+                                $tot_amt=$row4['eamount']+$stage_amt; 
+                                $updatefield1="eamount";
+                                break;
+                            case '3': //Instructor
+                                $tot_amt=$row4['instructor_amount']+$stage_amt;
+                                $updatefield1="instructor_amount";
+                                break;    
+                            case '4': //Personal
+                                $tot_amt=$row4['pw_amount']+$stage_amt;
+                                $updatefield1="pw_amount";
+                                break;  
+                            case '5': //Business
+                                $tot_amt=$row4['bw_amount']+$stage_amt;
+                                $updatefield1="bw_amount";
+                                break;
+                            case '6': //Mall
+                                $tot_amt=$row4['mall_amount']+$stage_amt;
+                                $updatefield1="mall_amount";
+                                break;
+                            case '7': //Floor
+                                $tot_amt=$row4['floor_amount']+$stage_amt;
+                                $updatefield1="floor_amount";
+                                break;  
+                            case '8': //Shop
+                                $tot_amt=$row4['shop_amount']+$stage_amt;
+                                $updatefield1="shop_amount";
+                                break; 
+                            default:
+                                $tot_amt=0;
+                                $updatefield1="";
+                                break;
+                          }  
+                        if($updatefield1!=""){
+                            $query=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt."',level='".$ref_stage."' where username='".$ref."'");
+                        }                  
+                       
                         //bonus code starts here
                         
                                 
@@ -321,11 +466,48 @@ if (($num['ucount']) == 1) {
                             if($ref_bonus_user2 !=""){
                                 
                                 
-                                $qq2=mysqli_query($con,"SELECT  tamount As TotalAmt FROM affiliateuser WHERE username = '$ref_bonus_user2'");
+                                $qq2=mysqli_query($con,"SELECT  tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$ref_bonus_user2'");
                                 $qrow2=$qq2->fetch_array(MYSQLI_ASSOC);
-                                
-                                
-                                  $tot_amt2=($qrow2['TotalAmt']+$indirect_ref_amt);
+                                // $tot_amt2=($qrow2['TotalAmt']+$indirect_ref_amt);
+                                switch ($array1[0]['pck_type']) {
+                                    case '1': //Entrepreneur
+                                        $tot_amt2=$qrow2['TotalAmt']+$indirect_ref_amt;
+                                        $updatefield1="tamount";  
+                                        break;
+                                    case '2': //Student
+                                        $tot_amt2=$qrow2['eamount']+$indirect_ref_amt; 
+                                        $updatefield1="eamount";
+                                        break;
+                                    case '3': //Instructor
+                                        $tot_amt2=$qrow2['instructor_amount']+$indirect_ref_amt;
+                                        $updatefield1="instructor_amount";
+                                        break;    
+                                    case '4': //Personal
+                                        $tot_amt2=$qrow2['pw_amount']+$indirect_ref_amt;
+                                        $updatefield1="pw_amount";
+                                        break;  
+                                    case '5': //Business
+                                        $tot_amt2=$qrow2['bw_amount']+$indirect_ref_amt;
+                                        $updatefield1="bw_amount";
+                                        break;
+                                    case '6': //Mall
+                                        $tot_amt2=$qrow2['mall_amount']+$indirect_ref_amt;
+                                        $updatefield1="mall_amount";
+                                        break;
+                                    case '7': //Floor
+                                        $tot_amt2=$qrow2['floor_amount']+$indirect_ref_amt;
+                                        $updatefield1="floor_amount";
+                                        break;  
+                                    case '8': //Shop
+                                        $tot_amt2=$qrow2['shop_amount']+$indirect_ref_amt;
+                                        $updatefield1="shop_amount";
+                                        break; 
+                                    default:
+                                        $tot_amt2=0;
+                                        $updatefield1="";
+                                        break;
+                                  }
+
                                 
                                 /* code by karthikeyan starts (20-02-2017) added pcktaken to below query */
                                 $downline_sql1=mysqli_query($con,"SELECT pcktaken,COUNT(referedby) As TotalDownline FROM affiliateuser WHERE referedby = '$ref_bonus_user2'");
@@ -346,7 +528,10 @@ if (($num['ucount']) == 1) {
                                         //echo "next-".$ref_bonus_user2.":-".$tot_amt2;
                                         //echo "<br/>";
                                         //check and and apply here
-                                        $qupdate2=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt2."' where username='".$ref_bonus_user2."'");  
+                                        if($updatefield1!=""){
+                                            $qupdate2=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt2."' where username='".$ref_bonus_user2."'");  
+                                        }
+                                        
                                         //$downline_matched =true;
                                         break;
                                         //till here
@@ -411,11 +596,53 @@ if (($num['ucount']) == 1) {
                         $query2=mysqli_query($con,"insert into affiliate_bonus_history (`bid`,`user_id`,`referedby`,`stage1_ref`,`ref_stage`,`amt`,`created`) values 
                         ('','$luser_id','$ref','$stage1_ref','$ref_stage','$stage_amt','$cur')");
                         
-                        $query4=mysqli_query($con,"SELECT  tamount As TotalAmt FROM affiliateuser WHERE username = '$stage1_ref'");
+                        $query4=mysqli_query($con,"SELECT  tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$stage1_ref'");
                         $row4=$query4->fetch_array(MYSQLI_ASSOC);
-                        $tot_amt=($row4['TotalAmt']+$stage_amt);
-                        
-                        $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."',level='".$ref_stage."' where username='".$stage1_ref."'");
+                        // $tot_amt=($row4['TotalAmt']+$stage_amt);
+
+                        switch ($array1[0]['pck_type']) {
+                            case '1': //Entrepreneur
+                                $tot_amt=$row4['TotalAmt']+$stage_amt;
+                                $updatefield1="tamount";   
+                                break;
+                            case '2': //Student
+                                $tot_amt=$row4['eamount']+$stage_amt; 
+                                $updatefield1="eamount";
+                                break;
+                            case '3': //Instructor
+                                $tot_amt=$row4['instructor_amount']+$stage_amt;
+                                $updatefield1="instructor_amount";
+                                break;    
+                            case '4': //Personal
+                                $tot_amt=$row4['pw_amount']+$stage_amt;
+                                $updatefield1="pw_amount";
+                                break;  
+                            case '5': //Business
+                                $tot_amt=$row4['bw_amount']+$stage_amt;
+                                $updatefield1="bw_amount";
+                                break;
+                            case '6': //Mall
+                                $tot_amt=$row4['mall_amount']+$stage_amt;
+                                $updatefield1="mall_amount";
+                                break;
+                            case '7': //Floor
+                                $tot_amt=$row4['floor_amount']+$stage_amt;
+                                $updatefield1="floor_amount";
+                                break;  
+                            case '8': //Shop
+                                $tot_amt=$row4['shop_amount']+$stage_amt;
+                                $updatefield1="shop_amount";
+                                break; 
+                            default:
+                                $tot_amt=0;
+                                $updatefield1="";
+                                break;
+                          }  
+
+                        if($updatefield1!=""){
+                            $query=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt."',level='".$ref_stage."' where username='".$stage1_ref."'");
+                        }
+                       
                             
                         
                         //upgradation process code starts 
@@ -501,10 +728,53 @@ if (($num['ucount']) == 1) {
                                         $tot=$$pup; 
                                         $query2=mysqli_query($con,"insert into affliate_stage_bonus values ('','$stage1_ref','$curr_ref','$curr_stage','$tot','adminadmin','$cur')");   
                                         
-                                        $query9=mysqli_query($con,"SELECT  SUM(tamount) As TotalAmt FROM affiliateuser WHERE username = '$stage1_ref'");
+                                        $query9=mysqli_query($con,"SELECT  SUM(tamount) As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$stage1_ref'");
                                         $row9=$query9->fetch_array(MYSQLI_ASSOC);
-                                        $tot_amt9=($row9['TotalAmt']-$tot);
-                                        $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt9."'where username='".$stage1_ref."'");
+                                        // $tot_amt9=($row9['TotalAmt']-$tot);
+
+                                        switch ($array1[0]['pck_type']) {
+                                            case '1': //Entrepreneur
+                                                $tot_amt9=($row9['tamount']-$tot); 
+                                                $updatefield1="tamount";
+                                                break;
+                                            case '2': //Student
+                                                $tot_amt9=($row9['eamount']-$tot); 
+                                                $updatefield1="eamount";
+                                                break;
+                                            case '3': //Instructor
+                                                $tot_amt9=($row9['instructor_amount']-$tot);
+                                                $updatefield1="instructor_amount";
+                                                break;    
+                                            case '4': //Personal
+                                                $tot_amt9=($row9['pw_amount']-$tot);
+                                                $updatefield1="pw_amount";
+                                                break;  
+                                            case '5': //Business
+                                                $tot_amt9=($row9['bw_amount']-$tot);
+                                                $updatefield1="bw_amount";
+                                                break;
+                                            case '6': //Mall
+                                                $tot_amt9=($row9['mall_amount']-$tot);
+                                                $updatefield1="mall_amount";
+                                                break;
+                                            case '7': //Floor
+                                                $tot_amt9=($row9['floor_amount']-$tot);
+                                                $updatefield1="floor_amount";
+                                                break;  
+                                            case '8': //Shop
+                                                $tot_amt9=($row9['shop_amount']-$tot);
+                                                $updatefield1="shop_amount";
+                                                break; 
+                                            default:
+                                                $tot_amt9=$tot;
+                                                $updatefield1="";
+                                                break;
+                                          }
+
+                                        if($updatefield1!=""){
+                                            $query=mysqli_query($con,"update affiliateuser set "+$updatefield1+"='".$tot_amt9."'where username='".$stage1_ref."'");
+                                        }  
+                                        
                                         
                                         $current_tot=$tot_amt9;
                                     }   
@@ -524,9 +794,48 @@ if (($num['ucount']) == 1) {
                             $all_list2 = mysqli_fetch_array($q2, MYSQL_ASSOC);
                             $ref_bonus_user2= $all_list2['stage1_ref'];
                             if($ref_bonus_user2 !=""){
-                                $qq2=mysqli_query($con,"SELECT  tamount As TotalAmt FROM affiliateuser WHERE username = '$ref_bonus_user2'");
+                                $qq2=mysqli_query($con,"SELECT  tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$ref_bonus_user2'");
                                 $qrow2=$qq2->fetch_array(MYSQLI_ASSOC);
-                                $tot_amt2=($qrow2['TotalAmt']+$indirect_ref_amt);
+                                // $tot_amt2=($qrow2['TotalAmt']+$indirect_ref_amt);
+
+                                switch ($array1[0]['pck_type']) {
+                                    case '1': //Entrepreneur
+                                        $tot_amt2=$qrow2['TotalAmt']+$indirect_ref_amt; 
+                                        $updatefield1="tamount";
+                                        break;
+                                    case '2': //Student
+                                        $tot_amt2=$qrow2['eamount']+$indirect_ref_amt; 
+                                        $updatefield1="eamount";
+                                        break;
+                                    case '3': //Instructor
+                                        $tot_amt2=$qrow2['instructor_amount']+$indirect_ref_amt;
+                                        $updatefield1="instructor_amount";
+                                        break;    
+                                    case '4': //Personal
+                                        $tot_amt2=$qrow2['pw_amount']+$indirect_ref_amt;
+                                        $updatefield1="pw_amount";
+                                        break;  
+                                    case '5': //Business
+                                        $tot_amt2=$qrow2['bw_amount']+$indirect_ref_amt;
+                                        $updatefield1="bw_amount";
+                                        break;
+                                    case '6': //Mall
+                                        $tot_amt2=$qrow2['mall_amount']+$indirect_ref_amt;
+                                        $updatefield1="mall_amount";
+                                        break;
+                                    case '7': //Floor
+                                        $tot_amt2=$qrow2['floor_amount']+$indirect_ref_amt;
+                                        $updatefield1="floor_amount";
+                                        break;  
+                                    case '8': //Shop
+                                        $tot_amt2=$qrow2['shop_amount']+$indirect_ref_amt;
+                                        $updatefield1="shop_amount";
+                                        break; 
+                                    default:
+                                        $tot_amt2=0;
+                                        $updatefield1="";
+                                        break;
+                                  }
                                 
                                 /* code by karthikeyan starts (20-02-2017) added pcktaken to below query */
                                 $downline_sql=mysqli_query($con,"SELECT pcktaken,COUNT(referedby) As TotalDownline FROM affiliateuser WHERE referedby = '$ref_bonus_user2'");
@@ -542,7 +851,10 @@ if (($num['ucount']) == 1) {
                 
                                     if (($tot_downline >= $earning_row['downline_count']) && ($tot_amt2 <= $earning_row['earning_amt'])){
                                         //check and and apply here
-                                        $qupdate2=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt2."'where username='".$ref_bonus_user2."'");   
+                                        if($updatefield1!=""){
+                                            $qupdate2=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt2."'where username='".$ref_bonus_user2."'");   
+                                        }
+                                        
                                         break;
                                         //till here
                                     }
@@ -657,10 +969,51 @@ if (($num['ucount']) == 1) {
                                                 $tot=$$pup;     
                                                 $query2=mysqli_query($con,"insert into affliate_stage_bonus values ('','$ref','$curr_ref','$curr_stage','$tot','adminadmin','$cur')");  
                                                 
-                                                $query9=mysqli_query($con,"SELECT  SUM(tamount) As TotalAmt FROM affiliateuser WHERE username = '$ref'");
+                                                $query9=mysqli_query($con,"SELECT  SUM(tamount) As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$ref'");
                                                 $row9=$query9->fetch_array(MYSQLI_ASSOC);
-                                                $tot_amt9=($row9['TotalAmt']-$tot);
-                                                $query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt9."'where username='".$ref."'");
+                                                // $tot_amt9=($row9['TotalAmt']-$tot);
+                                                switch ($array1[0]['pck_type']) {
+                                                    case '1': //Entrepreneur
+                                                        $tot_amt9=($row9['tamount']-$tot); 
+                                                        $updatefield1="tamount";
+                                                        break;
+                                                    case '2': //Student
+                                                        $tot_amt9=($row9['eamount']-$tot); 
+                                                        $updatefield1="eamount";
+                                                        break;
+                                                    case '3': //Instructor
+                                                        $tot_amt9=($row9['instructor_amount']-$tot);
+                                                        $updatefield1="instructor_amount";
+                                                        break;    
+                                                    case '4': //Personal
+                                                        $tot_amt9=($row9['pw_amount']-$tot);
+                                                        $updatefield1="pw_amount";
+                                                        break;  
+                                                    case '5': //Business
+                                                        $tot_amt9=($row9['bw_amount']-$tot);
+                                                        $updatefield1="bw_amount";
+                                                        break;
+                                                    case '6': //Mall
+                                                        $tot_amt9=($row9['mall_amount']-$tot);
+                                                        $updatefield1="mall_amount";
+                                                        break;
+                                                    case '7': //Floor
+                                                        $tot_amt9=($row9['floor_amount']-$tot);
+                                                        $updatefield1="floor_amount";
+                                                        break;  
+                                                    case '8': //Shop
+                                                        $tot_amt9=($row9['shop_amount']-$tot);
+                                                        $updatefield1="shop_amount";
+                                                        break; 
+                                                    default:
+                                                        $tot_amt9=$tot;
+                                                        $updatefield1="";
+                                                        break;
+                                                  }
+                                                if($updatefield1!=""){
+                                                    $query=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt9."'where username='".$ref."'");
+                                                }
+                                                
                                                 $current_tot=$tot_amt9;
                                             }   
                                         }

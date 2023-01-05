@@ -93,6 +93,10 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('email',user_det.email);
                 localStorage.setItem('address',user_det.address);
                 localStorage.setItem('tamount',user_det.tamount);
+                localStorage.setItem('pcktaken',user_det.pcktaken);
+                localStorage.setItem('userRole',user_det.packInfo.website_type);
+                
+
                 if((user_det.user_type==1)&&(chatcode==null))
                 {
                   this.router.navigate(['./admindashboard']);

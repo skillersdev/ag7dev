@@ -13,7 +13,7 @@
                             <i class="material-icons">view_comfys</i>
                         </span>
                         <div class="form-line">
-                            <select class="form-control show-tick" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
+                            <select class="form-control show-tick"  (change)="selectPackage()" [(ngModel)]="model.pcktaken" #pcktaken="ngModel" name="pcktaken" required>
                                 <option [ngValue]="select">Select Package</option>    
                                 <option *ngFor="let model of packagelist" value="{{model.id}}">{{model.package_name}}</option>
                             </select>
@@ -24,9 +24,11 @@
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">view_comfys</i>
+                            <span>{{model.selectedwebsite_prefix}}</span>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" name="website" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                           
+                            <input type="text"  class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" (ngModelChange)="model.website = $event.toLowerCase()" name="website" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                          <div *ngIf="website.errors && (website.dirty || website.touched)" class="">
                             <span [hidden]="website.errors.required" class="text-danger">website is required</span>

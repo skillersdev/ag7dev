@@ -23,7 +23,7 @@
                     </a>    
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                         <a href="javascript:void(0);" [routerLink]="['/managemarketers']">
                             <div class="info-box-3 bg-indigo hover-zoom-effect">
                                 <div class="icon">
@@ -37,7 +37,7 @@
                         </a>    
                     </div>
                     <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">Buy Package</button> -->
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                     <a href="javascript:void(0);" data-toggle="modal" data-target="#largeModal">
                     <div class="info-box-3 bg-blue hover-zoom-effect">
                         <div class="icon">
@@ -90,7 +90,7 @@
                     </a>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                     <a href="javascript:void(0);" [routerLink]="['/manageproducts']">
                     <div class="info-box-3 bg-green hover-zoom-effect">
                         <div class="icon">
@@ -116,18 +116,33 @@
                     </a>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a href="javascript:void(0);" [routerLink]="['/manageservices']">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P' && userRole!='B'">
+                        <a href="javascript:void(0);" [routerLink]="['/mall/managemall']">
                         <div class="info-box-3 bg-lime hover-zoom-effect">
                             <div class="icon">
-                                <i class="material-icons">developer_board</i>
+                                <i class="material-icons">local_mall</i>
                             </div>
                             <div class="content">
-                                <h5>{{'Manage' | translate}} {{'Services' | translate}}</h5>
+                                <h5>{{'Manage' | translate}} {{'Mall' | translate}}</h5>
                             </div>
                         </div>
                         </a>
                     </div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P' && userRole!='B'">
+                        <a href="javascript:void(0);" [routerLink]="['/mall/login']">
+                        <div class="info-box-3 bg-amber hover-zoom-effect">
+                            <div class="icon">
+                                <i class="material-icons">login</i>
+                            </div>
+                            <div class="content">
+                                <h5>{{'Mall' | translate}} {{'Login' | translate}}</h5>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    
+
 
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <a href="javascript:void(0);" [routerLink]="['/chat']">
@@ -171,7 +186,7 @@
                         </div>
 
                     
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">business_center</i>
@@ -183,19 +198,8 @@
                             </div>
                         </div>    
                     
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">business_center</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Entrepreneur'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.tamount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div> 
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">business</i>
@@ -210,18 +214,6 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">business</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Business'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.bw_amount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
                                     <i class="material-icons col-blue">person</i>
                                 </div>
                                 <div class="content">
@@ -230,20 +222,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">person</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Personal'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.pw_amount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">library_books</i>
@@ -255,19 +234,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">library_books</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Instructor'| translate}}  {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.instructor_amount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">school</i>
@@ -279,19 +246,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">school</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Student'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.eamount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">local_mall</i>
@@ -303,19 +258,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">local_mall</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Mall'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.mall_amount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">domain</i>
@@ -327,19 +270,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box-4 hover-zoom-effect">
-                                <div class="icon">
-                                    <i class="material-icons col-blue">domain</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">{{'Floor'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
-                                    <div class="number">{{model.floor_amount_renewal}}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">store_mall_directory</i>
@@ -351,7 +282,84 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">business_center</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Entrepreneur'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.tamount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">business</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Business'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.bw_amount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">person</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Personal'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.pw_amount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">library_books</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Instructor'| translate}}  {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.instructor_amount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">school</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Student'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.eamount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">local_mall</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Mall'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.mall_amount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box-4 hover-zoom-effect">
+                                <div class="icon">
+                                    <i class="material-icons col-blue">domain</i>
+                                </div>
+                                <div class="content">
+                                    <div class="text">{{'Floor'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="number">{{model.floor_amount_renewal}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
                                     <i class="material-icons col-blue">store_mall_directory</i>
@@ -658,7 +666,7 @@
 
                    
 
-                    <div class="card">
+                    <div class="card" *ngIf="userRole!='P'">
                         <div class="header">
                             <h2>{{'Transfer' | translate}} {{'Voucher' | translate}}</h2>
                             <span>(to share the balance, you should have more than RV 1)</span>

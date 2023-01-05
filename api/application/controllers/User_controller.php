@@ -13,7 +13,7 @@ class User_controller extends CI_Controller {
         
         $model = json_decode($this->input->post('model',FALSE));
 
-       // print_r($model);die;
+        // print_r($model);exit;
 
         date_default_timezone_set('Asia/Kolkata');
         
@@ -32,7 +32,24 @@ class User_controller extends CI_Controller {
         }else{
             $response=array('status'=>"success");
             $response['message']="User inserted successfully";
-            $this->db->insert('affiliateuser', $model);
+            // $this->db->insert('affiliateuser', $model);
+
+            if($model->selected_pck_type==4){
+              $website=$model->selectedwebsite_prefix.$model->website;
+              $website_type="P";
+            }else if($model->selected_pck_type==5){
+              $website=$model->selectedwebsite_prefix.$model->website;
+              $website_type="B";
+            }
+            else{
+              $website=$model->website;
+              $website_type="E";
+            }
+
+
+            //INSERT INTO `affiliateuser` (website,username,password,pcktaken,gender,country,referedby,user_type,doj) VALUES ('skgs', 'pskgs', '123456', '17', '4', 'p-', 'male', 'India', 'sridhar', 2, '2023-01-02 03:32:14')
+
+            $this->db->query("insert into ".$this->db->dbprefix('affiliateuser')." (website,username,password,pcktaken,gender,country,referedby,user_type,doj) values('".$website."','".$model->username."','".$model->password."','".$model->pcktaken."','".$model->gender."','".$model->country."','".$model->referedby."','".$model->user_type."','".$model->doj."')");
 
              $last_insert_id = $this->db->insert_id();
 
@@ -72,7 +89,18 @@ class User_controller extends CI_Controller {
             {
               $last_inserted_user_id = $this->db->insert_id();
               $package_id =isset($model->pcktaken)?$model->pcktaken:0;
-              $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website) values('".$last_insert_id."','".$package_id."','".$model->website."')");
+              if($model->selected_pck_type==4){
+                $website=$model->selectedwebsite_prefix.$model->website;
+                $website_type="P";
+              }else if($model->selected_pck_type==5){
+                $website=$model->selectedwebsite_prefix.$model->website;
+                $website_type="B";
+              }
+              else{
+                $website=$model->website;
+                $website_type="E";
+              }
+              $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,website,website_type) values('".$last_insert_id."','".$package_id."','".$website."','".$website_type."')");
             }
 
         }

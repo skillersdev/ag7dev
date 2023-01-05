@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
   insertpackagevsuserApiUrl:string = AppSettings.insertpackagevsuser;
   packageActivateApiUrl:string = AppSettings.PACKAGE_ACTIVATE;
   showButton:Boolean=false;
+  userRole:any;
 
   websiteurl:string=AppSettings.USER_TEMPLATE;
  
@@ -70,7 +71,7 @@ export class DashboardComponent implements OnInit {
     this.loginService.viewsActivate();
     this.renew_payment_details=true;
     this.showButton=false;
-
+    this.userRole=localStorage.getItem('userRole');
     let id=localStorage.getItem('currentUserID');
       this.CommonService.editdata(this.checkpackageisactivated,id).subscribe(data=>{
          if(data.exist==2)

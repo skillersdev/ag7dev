@@ -249,6 +249,7 @@ export class PackageinfoComponent implements OnInit {
   {
     this.payment_data.website = this.model.website;
     this.details_array.push(this.payment_data);
+    
      this.CommonService.insertdata(this.packageRenewApiUrl,this.details_array)
     .subscribe(payment_status =>{ 
       if(payment_status.status=='success')

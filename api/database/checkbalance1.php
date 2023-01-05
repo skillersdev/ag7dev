@@ -61,11 +61,56 @@ if($array1[0]['username'])
 			$pay_via_voucher="$row[pay_via_voucher]";// This line was added by karthikeyan
 			$total=$pprice+$ptax;
 			$exp_date="$row[validity]";
+			$pck_type="$row[pck_type]";
+			
 		}
 		
-		$query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt FROM affiliateuser WHERE username = '$username'");
+		$query4=mysqli_query($con,"SELECT  pcktaken,tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$username'");
 		$row4=$query4->fetch_array(MYSQLI_ASSOC);
-		$tot_amt=$row4['TotalAmt']-$pay_via_voucher;
+		// $tot_amt=$row4['TotalAmt']-$pay_via_voucher;
+		// echo "pck_type:".$pck_type;
+		// print_r($row4);
+		// exit;
+
+		
+		switch ($pck_type) {
+            case '1': //Entrepreneur
+                $tot_amt=$row4['tamount_renewal']-$pay_via_voucher;
+			  	$updatefield="tamount_renewal";  
+                break;
+            case '2': //Student
+                $tot_amt=$row4['eamount_renewal']-$pay_via_voucher;
+			  	$updatefield="eamount_renewal"; 
+                break;
+            case '3': //Instructor
+                $tot_amt=$row4['instructor_amount_renewal']-$pay_via_voucher;
+			  	$updatefield="instructor_amount_renewal"; 
+                break;    
+            case '4': //Personal
+                $tot_amt=$row4['pw_amount_renewal']-$pay_via_voucher;
+			  	$updatefield="pw_amount_renewal";
+				break;   
+            case '5': //Business
+                $tot_amt=$row4['bw_amount_renewal']-$pay_via_voucher;
+				$updatefield="bw_amount_renewal";
+                break;
+            case '6': //Mall
+                $tot_amt=$row4['mall_amount_renewal']-$pay_via_voucher;
+			  	$updatefield="mall_amount_renewal";
+                break;
+            case '7': //Floor
+                $tot_amt=$row4['floor_amount_renewal']-$pay_via_voucher;
+			  	$updatefield="floor_amount_renewal";
+                break;  
+            case '8': //Shop
+                $tot_amt=$row4['shop_amount_renewal']-$pay_via_voucher;
+			  	$updatefield="shop_amount_renewal";
+                break; 
+            default:
+                $tot_amt=0;
+				$updatefield="";
+                break;
+          }
 
 		// print_r($row4); exit;
 		/* Code by karthikeyan starts */
@@ -77,12 +122,17 @@ if($array1[0]['username'])
 			 $minimum_voucher="$rowpackage[minimum_voucher]";
 		 	 $maximum_register="$rowpackage[maximum_register]";
 		}
+		// echo $tot_amt .">=". $minimum_voucher ."&&". $pay_via_voucher ."<=". $maximum_register .$updatefield . " packid==".$renewpckid,"pck_type==".$pck_type ; exit;
+
 		if ($tot_amt >= $minimum_voucher && $pay_via_voucher <= $maximum_register)
 		{
 			$query=mysqli_query($con,"insert into paypalpayments(orderid,transacid,price,currency,date,cod,pckid,gateway) values('$uaid','R.V','$pay_via_voucher','$pcur',NOW(),1,'$renewpckid','R.B')");
 			
 				/* Code by karthikeyan ends */
-				$up_query=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt."' where username='".$username."'");
+				if($updatefield!=""){
+					$up_query=mysqli_query($con,"update affiliateuser set ".$updatefield."='".$tot_amt."' where username='".$username."'");
+				}
+				
 				/* Code by karthikeyan starts */
 			
 				/**need change here*/
@@ -157,10 +207,53 @@ if($array1[0]['username'])
 					$all_list2 = mysqli_fetch_array($q2, MYSQL_ASSOC);
 					$ref_bonus_user2= $all_list2['stage1_ref'];
 					if($ref_bonus_user2 !=""){
-						$qq2=mysqli_query($con,"SELECT  tamount As TotalAmt FROM affiliateuser WHERE username = '$ref_bonus_user2'");
+						$qq2=mysqli_query($con,"SELECT  tamount As TotalAmt,eamount,tamount_renewal,eamount_renewal,instructor_amount,instructor_amount_renewal,pw_amount,pw_amount_renewal,bw_amount,bw_amount_renewal,mall_amount,mall_amount_renewal,floor_amount,floor_amount_renewal,shop_amount,shop_amount_renewal FROM affiliateuser WHERE username = '$ref_bonus_user2'");
 						$qrow2=$qq2->fetch_array(MYSQLI_ASSOC);
 						$tot_amt2=($qrow2['TotalAmt']+$indirect_ref_amt);
-						$qupdate2=mysqli_query($con,"update affiliateuser set tamount='".$tot_amt2."'where username='".$ref_bonus_user2."'");	
+
+						switch ($array1[0]['pck_type']) {
+							case '1': //Entrepreneur
+								$tot_amt2=$qrow2['TotalAmt']+$indirect_ref_amt;
+								$updatefield1="tamount";  
+								break;
+							case '2': //Student
+								$tot_amt2=$qrow2['eamount']+$indirect_ref_amt; 
+								$updatefield1="eamount";
+								break;
+							case '3': //Instructor
+								$tot_amt2=$qrow2['instructor_amount']+$indirect_ref_amt;
+								$updatefield1="instructor_amount";
+								break;    
+							case '4': //Personal
+								$tot_amt2=$qrow2['pw_amount']+$indirect_ref_amt;
+								$updatefield1="pw_amount";
+								break;  
+							case '5': //Business
+								$tot_amt2=$qrow2['bw_amount']+$indirect_ref_amt;
+								$updatefield1="bw_amount";
+								break;
+							case '6': //Mall
+								$tot_amt2=$qrow2['mall_amount']+$indirect_ref_amt;
+								$updatefield1="mall_amount";
+								break;
+							case '7': //Floor
+								$tot_amt2=$qrow2['floor_amount']+$indirect_ref_amt;
+								$updatefield1="floor_amount";
+								break;  
+							case '8': //Shop
+								$tot_amt2=$qrow2['shop_amount']+$indirect_ref_amt;
+								$updatefield1="shop_amount";
+								break; 
+							default:
+								$tot_amt2=0;
+								$updatefield1="";
+								break;
+						  }
+
+						if($updatefield1!=""){
+							$qupdate2=mysqli_query($con,"update affiliateuser set ".$updatefield1."='".$tot_amt2."'where username='".$ref_bonus_user2."'");
+						}  
+							
 						
 						//stage update
 						//$st_update2=mysqli_query($con,"update affiliate_bonus_history set stage".$i."_ref='".$ref_bonus_user2."'where user_id='".$luser_id."'");		

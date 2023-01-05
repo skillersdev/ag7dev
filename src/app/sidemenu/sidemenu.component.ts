@@ -14,6 +14,7 @@ declare var $ :any;
 })
 export class SidemenuComponent implements OnInit {
   model: any = {};
+  userRole:any;
   FetchuserRestApiUrl: string = AppSettings.Edituser;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { }
 
@@ -22,6 +23,7 @@ export class SidemenuComponent implements OnInit {
     this.model.id = localStorage.getItem('currentUserID');
     this.model.email = localStorage.getItem('email');
     this.model.name = localStorage.getItem('user_fname');
+    this.userRole=localStorage.getItem('userRole');
     
      this.loginService.sidemenuActive();
   }
