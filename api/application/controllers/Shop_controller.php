@@ -12,12 +12,122 @@ class Shop_controller extends CI_Controller {
        $this->output->set_content_type('application/json');
       
         $response=array('status'=>"success",'message'=>"shop Inserted successfully");
-
+        $tableIsexist = 0;
         $model = json_decode($this->input->post('model',FALSE));
-        
-        $this->db->insert('shop_master', $model);
 
-        
+        $res1=$this->db->select("*")->where(['is_deleted'=>'0','shop_name'=>$model->shop_name])->get('shop_master');
+
+        if(count($res1->result_array())>0){
+           $response['exist']=1;
+           $response['status']="Error";
+           $response['message']="Shop already existed";
+           echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+        }
+
+        $res2=$this->db->select("*")->where(['is_deleted'=>'0','username'=>$model->username])->get('shop_master');
+        if(count($res2->result_array())>0){
+           $response['exist']=1;
+           $response['status']="Error";
+           $response['message']="Shop user already existed";
+           echo json_encode($response,JSON_UNESCAPED_SLASHES);
+            die();
+        }
+
+        /*Check user is existed or not*/
+        if($model->Trasnferusername){
+
+
+          /*Check Pay via type
+            --Enterprenur value as 1
+            --Shop user as 2
+            --no pay through selected by default set as affilate user
+          */
+            if(isset($model->paythrough)){
+              if($model->paythrough==1){
+                $res=$this->db->select("username,shop_amount,id")->where(['is_deleted'=>'0','username'=>$model->Trasnferusername,'password'=>$model->Trasnferpassword])->get('affiliateuser');
+              }else{
+                  $res=$this->db->select("username,shop_amount,id")->where(['is_deleted'=>'0','username'=>$model->Trasnferusername,'password'=>$model->Trasnferpassword])->get('shop_master');
+                  $tableIsexist = 1;
+              }
+            }
+        }
+
+
+         if(count($res->result_array())>0){
+         
+            $userDetails = $res->result_array();
+
+             /*Updation on Shop master table*/ 
+            if($tableIsexist==1){ 
+              if($model->package>$userDetails[0]['shop_amount']) {
+                 $response['exist']=1;
+                 $response['status']="Error";
+                  $response['message']="User have Insufficient Shop ME";
+                   echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                    die();
+              } else{
+                
+                 $balanceamt = $userDetails[0]['shop_amount'] - $model->package; 
+                  $data=array('shop_amount'=>$balanceamt);
+                  $this->db->where('id',$userDetails[0]['id']);
+                  $this->db->update($this->db->dbprefix('shop_master'),$data);
+                 
+              } 
+            }
+             /*Updation on affilate master table*/ 
+            else{
+              
+               if($model->package>$userDetails[0]['shop_amount']) {
+                 $response['exist']=1;
+                 $response['status']="Error";
+                 $response['message']="User have Insufficient shop ME";
+                  echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                  die();
+              } else{
+                 $balanceamt = $userDetails[0]['shop_amount'] - $model->package; 
+                  $data=array('shop_amount'=>$balanceamt);
+                  $this->db->where('id',$userDetails[0]['id']);
+                  $this->db->update($this->db->dbprefix('affiliateuser'),$data);
+                 
+              } 
+            }
+         $pckIdD = $model->package_id;
+
+          unset($model->package);
+          unset($model->package_id);
+          unset($model->paythrough);
+          unset($model->Trasnferusername);
+          unset($model->Trasnferpassword);
+          $this->db->insert('shop_master', $model);
+
+
+          $shop_id = $this->db->insert_id();
+          $current_date=date("Y-m-d H:i:s");
+              
+          /*Check validaity of package*/
+            $val_res=$this->db->select("validity,DATE_FORMAT(cdate,'%Y-%m-%d')as cdate")->where('is_deleted','0')->where('id',$pckIdD)->get('packages');
+
+             if(count($val_res->result_array())>0){
+                $detls = $val_res->result_array() ; 
+                $renew_date = date('Y-m-d', strtotime($detls[0]['validity']."days", strtotime($current_date)));  
+             }else{
+              $renew_date = date('Y-m-d', strtotime("10 days", strtotime($current_date))); 
+             }
+           /*End*/
+
+              $this->db->query("insert into ".$this->db->dbprefix('user_vs_packages')." (user_id,package_id,package_status,website_type,shop_id,activated_date,renew_date) values ('".$model->created_by."','".$pckIdD."','0','S','".$shop_id."','". $current_date."','".$renew_date."')");
+
+               $response['exist']=2;
+                $response['status']="Success";
+               $response['message']="Shop has been created";
+            /**End**/
+
+         }else{
+           $response['exist']=1;
+           $response['status']="Error";
+           $response['message']="Enter valid user credentials";
+        }
 
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
@@ -78,18 +188,65 @@ class Shop_controller extends CI_Controller {
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('shop_master');
         }else{
           // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->or_where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
+          $this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by]);
+          if(isset($model->mall_id)){
+            $this->db->where(['shop_id'=>$model->mall_id]);
+          }
+           $res=$this->db->get('shop_master');
 
         }
-
+        $pack_price=$pack_id=$renewal_date='';
         if($res->num_rows()>0)
         {
+
+
           foreach($res->result_array() as $key=>$value)
           {               
-            // $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
-            // $data =$user_det->result_array();  
+            $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
+            $data =$user_det->result_array();  
 
-            // $value['created_by']=$data[0]['username'];
+            $value['created_by']=$data[0]['username']; 
+
+            $user_vs_pck_det=$this->db->select("package_status,renew_date,package_id")->where(['shop_id'=>$value['id']])->get('user_vs_packages'); 
+            $user_vs_pck_data =$user_vs_pck_det->result_array();
+
+            $package_status=''; 
+
+           
+            if(count($user_vs_pck_data)>0){
+               $package_status=$user_vs_pck_data[0]['package_status']=='1'?'Inactivate':($user_vs_pck_data[0]['package_status']=='0'?'Active':'Expired');
+
+               $pck_res=$this->db->select("price,id")->where('is_deleted','0')->where('id',$user_vs_pck_data[0]['package_id'])->get('packages');
+               $pck_res_data =$pck_res->result_array();
+               
+               $pack_price = $pck_res_data[0]['price'];
+               $pack_id = $pck_res_data[0]['id'];
+
+                 if($user_vs_pck_data[0]['package_status']=='0' || $user_vs_pck_data[0]['package_status']=='2')
+                {
+                      
+                  $today=date("Y-m-d h:i:s");
+                  $pck_end_date_time = strtotime($user_vs_pck_data[0]['renew_date']);
+                  $current_time = strtotime($today);
+
+                  if($current_time>$pck_end_date_time)
+                  {
+                    $package_status='Renewal';
+                    /*Update status as inactive*/
+                     $data=array('package_status'=>2);
+                      $this->db->where('shop_id',$value['id']);
+                      $this->db->update($this->db->dbprefix('user_vs_packages'),$data);
+
+                  }
+
+                
+                }
+                $renewal_date = $user_vs_pck_data[0]['renew_date'];
+            }
+
+
+
+
             
             $mall_det=$this->db->select("mall_name")->where(['is_deleted'=>'0','id'=>$value['mall_id']])->get('mall_master'); 
             $mall_data =$mall_det->result_array();  
@@ -97,7 +254,7 @@ class Shop_controller extends CI_Controller {
             $value['mall_name']=$mall_data[0]['mall_name'];
 
             $result[]=array('id'=>$value['id'],'shop_name'=>$value['shop_name'],'mall_name'=>$value['mall_name'],
-              'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
+              'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'pck_status'=>$package_status,'pack_price'=> $pack_price,'pack_id'=>$pack_id,'expiry_date'=>$renewal_date);
           }
         }else{
             $response['status']="failure";

@@ -95,6 +95,8 @@ $route['getsectionlist'] = 'Section_controller/getsectionlist';
 $route['getdefaultsectionlist']= 'Section_controller/getdefaultsectionlist';
 $route['editsection/(:num)'] = 'Section_controller/editsection/$1';
 $route['editsectionitem/(:num)']= 'Sectionitem_controller/editsectionitem/$1';
+
+
 $route['updatesectiondata'] = 'Section_controller/updatesection';
 $route['updatesectionItem']= 'Sectionitem_controller/updatesectionItem';
 $route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
@@ -180,6 +182,9 @@ $route['getpackagenotbuy/(:num)'] = 'Package_controller/get_package_not_buy/$1';
 $route['getpackagebyinstructor']= 'Package_controller/getpackagebyinstructor';
 $route['addpackagevsuser']= 'Package_controller/addpackagevsuser';
 $route['updatetemplatepackagevsuser']= 'Package_controller/updatetemplatepackagevsuser';
+
+$route['getPackageType/(:num)'] = 'Package_controller/getPackageType/$1';
+$route['getFloorname/(:num)'] = 'Floor_controller/getFloordetails/$1';
 
 /*Product Add*/
 $route['addproduct'] = 'Product_controller/addproduct';
@@ -269,12 +274,14 @@ $route['deletemall/(:num)']='Mall_controller/deletemall/$1';
 $route['fetchmallbyid/(:num)']='Mall_controller/fetchmallbyid/$1';
 $route['useridbymallid'] = 'Mall_controller/useridbymallid';
 $route['getmalllist']='Mall_controller/getmalllist';
+$route['getadminmalllist']='Mall_controller/getadminmalllist';
 $route['getmallshoplist']='Mall_controller/getmallshoplist';
 /*******/
 
 /*** floor****/
 $route['addfloor'] = 'Floor_controller/add_floor';
 $route['getfloor'] = 'Floor_controller/get_floor_list';
+$route['admingetfloor'] = 'Floor_controller/get_admin_floor_list';
 $route['editfloor/(:num)'] = 'Floor_controller/editfloor/$1';
 $route['updatefloor'] = 'Floor_controller/updatefloor';
 $route['deletefloor/(:num)']='Floor_controller/deletefloor/$1';
@@ -343,6 +350,12 @@ $route['deletechanneldata/(:num)']= 'Channel_controller/deletechanneldata/$1';
 $route['checkchannelexist']="Channel_controller/checkchannelexist";
 /*****/
 
+/*Common Api  added by mani 02.01.2023*/
+$route['getcountrylist']="Common_controller/getCountrylist";
+$route['getstatebyCountry/(:num)'] = "Common_controller/getStatelist/$1";
+$route['getCitiesbyState/(:num)']= "Common_controller/getCitieslist/$1";
+$route['renewPackVoucher']="Common_controller/renewPackVoucher";
+/*******/
 /**Became Instructor added by sri 02.08.2020**/
 $route['activateInstructor']="Instructor_controller/check_user_credit";
 

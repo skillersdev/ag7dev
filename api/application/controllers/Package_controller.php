@@ -70,7 +70,7 @@ class Package_controller extends CI_Controller {
           
             $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
 
-            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'pck_type'=>$value['pck_type'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
 
 
           }
@@ -108,7 +108,7 @@ class Package_controller extends CI_Controller {
           
             $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
 
-            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'pck_type'=>$value['pck_type'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
 
 
           }
@@ -142,7 +142,7 @@ class Package_controller extends CI_Controller {
           
             $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
 
-            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'pck_type'=>$value['pck_type'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
 
 
           }
@@ -367,14 +367,8 @@ class Package_controller extends CI_Controller {
                     $elearn_data =$elearn_user_det->result_array(); 
                     
                     $package['marketer']=$data[0]['username']; 
-                    if($elearn_data){
-                      $package['elearn_usert_status'] = $elearn_data[0]['user_type'];    
-                      $package['elearn_user_id'] = $elearn_data[0]['id']; 
-                    }else{
-                      $package['elearn_usert_status'] = "";    
-                    $package['elearn_user_id'] = ""; 
-                    }
-                       
+                    $package['elearn_usert_status'] = $elearn_data[0]['user_type'];    
+                    $package['elearn_user_id'] = $elearn_data[0]['id'];    
                     $package['package_name'] = $in_array_1[0]['name'];
 
                     $package['package_price'] = $in_array_1[0]['price'];
@@ -562,7 +556,7 @@ class Package_controller extends CI_Controller {
 
                 $ids = implode(',',$pack_vs_usr_ids);
                 
-                $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.") AND is_deleted=0 AND pck_type!=1 AND pck_type!=3 AND pck_type!=4 AND pck_type!=5 AND pck_type!=6 AND pck_type!=7 AND pck_type!=8"); //comment by sridhar
+                $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where id NOT IN(".$ids.") AND is_deleted=0 AND pck_type!=3 AND pck_type!=4 AND pck_type!=5 "); //comment by sridhar
                 // $res1=$this->db->query("select * from ".$this->db->dbprefix('packages')." where is_deleted=0 AND pck_type!=3");
                   $in_array_1=$res1->result_array(); 
                   $pack_details=[];
@@ -737,7 +731,7 @@ class Package_controller extends CI_Controller {
       }
     
     if($model->website!=""){
-      $website = trim($model->selectedwebsite_prefix.$model->website);
+      $website = trim($model->website);
       $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
       if(count($res->result_array())>0)
       {         
@@ -926,5 +920,29 @@ class Package_controller extends CI_Controller {
         }
 
         die(json_encode($response, JSON_UNESCAPED_SLASHES));
+    }
+
+    public function getPackageType($type)
+    {
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+
+        $res=$this->db->query("select * from ".$this->db->dbprefix('packages')." where pck_type='".$type."' AND active='1'");
+         if($res->num_rows()>0){
+          foreach($res->result_array() as $key=>$value)
+          {               
+         
+            $result[]=array('id'=>$value['id'],'packagename'=>$value['name'],'pcktype'=>$value['pck_type'],'price'=>$value['price']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']=" No Package found!!";
+        }
+        $response['result']=$result;
+
+        echo json_encode($response,JSON_UNESCAPED_SLASHES);
+        die();
     }
 }

@@ -236,12 +236,25 @@ class Mallproduct_controller extends CI_Controller {
 
           $res=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where shop_name='".$model->shopname."'");
 
+
           if($res->num_rows()>0){
               $in_array=$res->result_array();
-              $response['shop']=$shop=$in_array[0];
-              $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$shop['id']."'");
+                $shop = $in_array[0];
+               $country_det=$this->db->select("name")->where(['id'=>$in_array[0]['country']])->get('countries')->result_array();
 
-              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." where shop_id='".$shop['id']."'");
+              $shop['country'] = $country_det[0]['name'];
+
+              $state_det=$this->db->select("name")->where(['id'=>$in_array[0]['state']])->get('states')->result_array();
+              $shop['state'] = $state_det[0]['name'];
+
+              $city_det=$this->db->select("name")->where(['id'=>$in_array[0]['city']])->get('cities')->result_array();
+              $shop['city'] = $city_det[0]['name'];
+
+
+              $response['shop']=$shop;
+              $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$in_array[0]['id']."'");
+
+              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." where shop_id='".$in_array[0]['id']."'");
               if($cat_res->num_rows()>0){
                 $cat_array=$cat_res->result_array();
                 $response['categorylist']=$cat_array;
