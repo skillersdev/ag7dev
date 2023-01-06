@@ -27,11 +27,55 @@
                                                 <b>{{'Mall' | translate}} {{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" readonly>
                                                     </div>
                                                       <span [hidden]="mall_name.valid || mall_name.pristine" class="text-danger">mall Name is required</span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <p><b>Select country</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.country" #country="ngModel" name="country" required (change)="getstate($event.target.value)">
+                                                            <option [ngValue]="select">select country</option>    
+                                                            <option *ngFor="let model of countrylist" value="{{model.countryId}}">{{model.countryName}}</option>
+                                                        </select>
+                                                        <span [hidden]="country.valid || country.pristine" class="text-danger">Select country</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Select state</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.state" #state="ngModel" name="state" required (change)="getCity($event.target.value)">
+                                                            <option [ngValue]="select">select state</option>    
+                                                            <option *ngFor="let model of statelist" value="{{model.stateId}}">{{model.stateName}}</option>
+                                                        </select>
+                                                        <span [hidden]="state.valid || state.pristine" class="text-danger">Select state</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>Select city</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.city" #city="ngModel" name="city" required >
+                                                            <option [ngValue]="select">select city</option>    
+                                                            <option *ngFor="let model of citylist" value="{{model.cityId}}">{{model.cityName}}</option>
+                                                        </select>
+                                                        <span [hidden]="city.valid || city.pristine" class="text-danger">Select city</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <b>{{'Address' | translate}}</b>
+                                                <div class="form-group">   
+                                                    <div class="form-line">
+                                                       <input type="text" class="form-control" id="address" name="address" [(ngModel)]="model.address"  #address="ngModel" placeholder="{{'Address' | translate}}" required>
+                                                    </div>      
+                                                </div>
+                                       		 </div>
                                             <div class="col-md-6">
                                                 <b>{{'image' | translate}}</b>
                                                 <div class="form-group">
@@ -45,7 +89,7 @@
                                                 <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" readonly class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                                                        <input type="text" readonly class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" readonly>
                                                     </div>
                                                       <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
                                                 </div>
@@ -54,7 +98,7 @@
                                                 <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" readonly>
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>

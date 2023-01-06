@@ -12,9 +12,10 @@ declare var $ :any;
   styleUrls: []
 })
 export class ManagefloorComponent implements OnInit {
-  getfloorlistRestApiUrl:string = AppSettings.getfloorDetail; 
+  getfloorlistRestApiUrl:string = AppSettings.getadminfloor; 
   DeletefloorRestApiUrl:string = AppSettings.deletefloor; 
   getfloorbyUserRestApiUrl:string = AppSettings.floorbyid; 
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Flooruser'}];
   floorlist:Array<Object>;
   malltypeid:any;
   floorid:any;
@@ -94,6 +95,30 @@ export class ManagefloorComponent implements OnInit {
         .subscribe(resultdata =>{
           this.getfloorlists();
       });
+ }
+
+ onGoToPage2(packprice,floor_id,pack_id){
+  this.model.pack_price = packprice;
+  this.model.current_floorId = floor_id;
+  this.model.package_id = pack_id;
+ }
+
+ pay_via_voucher_renew(){
+  this.model.type = '7';
+  this.CommonService.insertdata(AppSettings.renewPackVoucher,this.model)
+    .subscribe(det =>{  
+      swal(
+        det.status,
+        det.message,
+        det.status
+      )   
+      $('#renewModal1').modal('hide');
+      if( det.status=='Success'){
+        this.getfloorlists();
+      }
+      
+    });
+ 
  }
 
 }

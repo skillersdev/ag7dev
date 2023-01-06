@@ -22,6 +22,12 @@ export class AddmallComponent implements OnInit {
   model: any = {};
   select:any;
   malltypeid:any;
+  countrylist:Array<Object>;
+  packageTypeList:Array<Object>;
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Malluser'}];
+  statelist:Array<Object>;
+  citylist:Array<Object>;
+  IsshowOption:Boolean=false;
   insertmallRestApiUrl: string = AppSettings.Addmall; 
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -31,7 +37,7 @@ export class AddmallComponent implements OnInit {
   ngOnInit() {
     
     this.malltypeid = localStorage.getItem('malltypeid');  
-    this.model.usergroup=localStorage.getItem('currentUsergroup');
+    this.model.usergroup=localStorage.getItem('usergroup');
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -40,6 +46,15 @@ export class AddmallComponent implements OnInit {
      
     }
       this.loginService.viewsActivate();
+
+      this.CommonService.getallCountry().subscribe(response=>{
+        this.countrylist =response.result;
+      });
+
+      this.CommonService.editdata(AppSettings.getPackagetype,'6')
+    .subscribe(resultdata =>{   
+      this.packageTypeList=resultdata.result; 
+    });
   }
   
   logout(){
@@ -55,7 +70,10 @@ export class AddmallComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/mall/managemall']); 
+        if( package_det.status=='Success'){
+          this.router.navigate(['/mall/managemall']); 
+        }
+        
     });
   }
   onSelectFile(event) {
@@ -82,9 +100,28 @@ export class AddmallComponent implements OnInit {
         }
     }
   }
-
+  getstate(countryId){    
+    this.CommonService.editdata(AppSettings.getStatelist,countryId)
+    .subscribe(resultdata =>{   
+      this.statelist=resultdata.result; 
+    });
+  }
+  getCity(stateId){    
+    this.CommonService.editdata(AppSettings.getCitieslist,stateId)
+    .subscribe(resultdata =>{   
+      this.citylist=resultdata.result; 
+    });
+  }
+  showOption(){
+    this.IsshowOption = true;
+  }
   back(){
     this.router.navigate(['/mall/managemall']);
+  }
+  getvalue(det:any){
+    let packdet = det.value.split("+");
+    this.model.package = packdet[0];
+    this.model.package_id = packdet[1];
   }
 
 }

@@ -20,6 +20,7 @@ export class ManageshopComponent implements OnInit {
   mallshopurl:any;
   mallshopordersurl:any;
   mallshopcategorysurl:any;
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Shopuser'}];
   malltypeid:any;
   shopid:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
@@ -119,5 +120,26 @@ export class ManageshopComponent implements OnInit {
           this.getshoplists();
       });
  }
-
+ onGoToPage2(packprice,shop_id,pack_id){
+  this.model.pack_price = packprice;
+  this.model.current_shopId = shop_id;
+  this.model.package_id = pack_id;
+ }
+ pay_via_voucher_renew(){
+  this.model.type = '8';
+  this.CommonService.insertdata(AppSettings.renewPackVoucher,this.model)
+    .subscribe(det =>{  
+      swal(
+        det.status,
+        det.message,
+        det.status
+      )   
+      $('#renewModal1').modal('hide');
+      if( det.status=='Success'){
+        this.getshoplists();
+      }
+      
+    });
+ 
+ }
 }

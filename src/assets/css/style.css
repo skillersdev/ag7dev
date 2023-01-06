@@ -677,7 +677,7 @@
   margin-right: 10px;
   margin-left: -10px;
   margin-top: 4px; }
-
+.ft-none{float: none;}
 .col-black .navbar .bars:hover {
   background-color: rgba(0, 0, 0, 0.08); }
 

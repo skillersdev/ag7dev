@@ -25,6 +25,9 @@ export class EditmallComponent implements OnInit {
   id:number;
   select:any;
   malltypeid:any;
+  countrylist:Array<object>;
+  statelist:Array<object>;
+  citylist:Array<object>;
   insertmallRestApiUrl: string = AppSettings.Addmall; 
   FetchmallRestApiUrl: string = AppSettings.editmall; 
   updatemallRestApiUrl: string = AppSettings.updatemall;
@@ -51,6 +54,10 @@ export class EditmallComponent implements OnInit {
         this.id = +params['id']; // (+) converts string 'id' to a number
         this.editmall(this.id);        
         });
+
+        this.CommonService.getallCountry().subscribe(response=>{
+          this.countrylist =response.result;
+        });
   }
   
   logout(){
@@ -61,7 +68,9 @@ export class EditmallComponent implements OnInit {
   {
     this.CommonService.editdata(this.FetchmallRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result;  
+          this.getstate(this.model.country)
+          this.getCity(this.model.state)       
         });
   }
   onSelectFile(event) {
@@ -85,8 +94,7 @@ export class EditmallComponent implements OnInit {
 
   updatemalllist()
   {
-     //this.model.is_deleted=1
-     console.log("updatemalllist-->",this.model);
+     
      this.CommonService.updatedata(this.updatemallRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(
@@ -102,5 +110,16 @@ export class EditmallComponent implements OnInit {
   back(){
     this.router.navigate(['/mall/managemall']);
   }
-
+  getstate(countryId){    
+    this.CommonService.editdata(AppSettings.getStatelist,countryId)
+    .subscribe(resultdata =>{   
+      this.statelist=resultdata.result; 
+    });
+  }
+  getCity(stateId){    
+    this.CommonService.editdata(AppSettings.getCitieslist,stateId)
+    .subscribe(resultdata =>{   
+      this.citylist=resultdata.result; 
+    });
+  }
 }

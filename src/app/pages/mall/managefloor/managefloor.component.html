@@ -22,7 +22,9 @@
                                       <th>#</th>
                                       <th>{{'Floor' | translate}} {{'Name' | translate}}</th>
                                       <th>{{'Mall' | translate}} {{'Name' | translate}}</th>
+                                      <th>{{'Status' | translate}}</th>
                                       <th>{{'created-date' | translate}}</th>
+                                      <th>{{'Expiry-date' | translate}}</th>
                                       <th>{{'created-by' | translate}}</th>
                                       <th>{{'actions' | translate}}</th>
                                   </tr>
@@ -32,7 +34,18 @@
                                       <th scope="row">{{idx+1}}</th>
                                       <td>{{data.floor_name}}</td>
                                       <td>{{data.mall_name}}</td>
+                                      <td>
+                                        <a href="#" (click)="onGoToPage2(data.pack_price,data.id,data.pack_id)" data-toggle="modal" data-target="#renewModal1">
+                                            <span *ngIf="data.pck_status=='Renewal'">{{'Renew' | translate}}</span>
+                                        </a>
+                                        
+                                    
+                                        <span *ngIf="data.pck_status=='Active'">{{'Activated' | translate}}</span>
+                                       
+                                        <span *ngIf="data.pck_status=='Inactivate' || data.pck_status==''">{{'Yet to' | translate}} {{'Activated' | translate}}</span>
+                                    </td>
                                       <td>{{data.created_date}}</td>
+                                      <td>{{data.expiry_date | date: 'dd/MM/yyyy'}}</td>
                                       <td>{{data.created_by}}</td>
                                       <td>
                                         <a href="javascript:void(0);" *ngIf="(malltypeid==2 && floorid==data.id) || malltypeid==1" (click)="editfloor(data.id)"><i class="material-icons">edit</i></a>
@@ -43,6 +56,62 @@
                               </tbody>
                           </table>
                           </div>
+
+                           <!--Renewal modal popup-->
+                           <div class="modal fade" id="renewModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Package' |translate}} {{'Renew' | translate}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="" #addpackage="ngForm">
+                                            <div class="">
+                                                <p><b>Paythrough</b></p>
+                                                <div class="form-group"> 
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.paythrough" #paythrough="ngModel" name="paythrough" required>
+                                                            <option [ngValue]="select">select paythrough</option>    
+                                                            <option *ngFor="let model of Paythrough" value="{{model.id}}">{{model.name}}</option>
+                                                        </select>
+                                                        <span [hidden]="paythrough.valid || paythrough.pristine" class="text-danger">Select type</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <p><b>UserName to renew</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.Trasnferusername" name="username" #Trasnferusername="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="Trasnferusername.valid || Trasnferusername.pristine" class="text-danger">User Name is required</span>
+                                                </div>
+                                            </div>
+                                            <div class="" >
+                                                <p><b>{{'Password' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
+                                                    </div>
+                                                    <span [hidden]="Trasnferpassword.valid || Trasnferpassword.pristine" class="text-danger">Password is required</span>
+                                                </div>
+                                                <input type="hidden"  [(ngModel)]="model.pack_price" name="pack_price" #pack_price="ngModel">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                               <!--  <button type="button" class="btn btn-primary">Pay with paypal</button> -->
+                                                <button type="button" [disabled]="!addpackage.form.valid" (click)="pay_via_voucher_renew()" class="btn btn-primary">{{'Pay via voucher' | translate}}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <!--End-->
                       </div>
                   </div>
               </div>

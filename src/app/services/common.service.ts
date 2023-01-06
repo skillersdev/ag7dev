@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response,  RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import {Observable} from 'rxjs';
 import { map } from "rxjs/operators";
+import { AppSettings } from '../appSettings';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/throw';
@@ -112,4 +113,15 @@ export class CommonService
     
         return this._http.post(apiUrl, body, { headers: headers }).pipe(map((model: Response) => model.json()));
     }   
+    getallCountry() 
+    {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.get(AppSettings.CountryList, options).pipe(map((allusers: Response) => allusers.json()));  
+    }
 }

@@ -15,6 +15,7 @@ export class ManagemallComponent implements OnInit {
   getmalllistRestApiUrl:string = AppSettings.getmallDetail; 
   DeletemallRestApiUrl:string = AppSettings.deletemall; 
   getmallbyUserRestApiUrl:string = AppSettings.mallbyid; 
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Malluser'}];
   malllist:Array<Object>;
   model:any={};
   malltypeid:any;
@@ -92,6 +93,29 @@ export class ManagemallComponent implements OnInit {
         .subscribe(resultdata =>{
           this.getmalllists();
       });
+ }
+ onGoToPage2(packprice,mall_id,pack_id){
+  this.model.pack_price = packprice;
+  this.model.current_mallId = mall_id;
+  this.model.package_id = pack_id;
+ }
+
+ pay_via_voucher_renew(){
+  this.model.type = '6';
+  this.CommonService.insertdata(AppSettings.renewPackVoucher,this.model)
+    .subscribe(det =>{  
+      swal(
+        det.status,
+        det.message,
+        det.status
+      )   
+      $('#renewModal1').modal('hide');
+      if( det.status=='Success'){
+        this.getmalllists();
+      }
+      
+    });
+ 
  }
 
 }

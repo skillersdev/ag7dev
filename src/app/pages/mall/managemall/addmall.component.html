@@ -22,48 +22,140 @@
                                     </div>
                                     <div class="body">
                                         <form class="" #addmall="ngForm">
-                                        <div class="row clearfix">
-                                            
+                                        <div class="row clearfix">                                            
                                             <div class="col-md-6">
                                                 <p><b>{{'Mall' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
                                                     </div>
-                                                      <span [hidden]="mall_name.valid || mall_name.pristine" class="text-danger">Mall Name is required</span>
+                                                      <span [hidden]="mall_name.valid" class="text-danger">Mall Name is required</span>
+                                                </div>
+                                            </div>                                           
+                                            <div class="col-md-6">
+                                                <p><b>Select country</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.country" #country="ngModel" name="country" required (change)="getstate($event.target.value)">
+                                                            <option [ngValue]="select">select country</option>    
+                                                            <option *ngFor="let model of countrylist" value="{{model.countryId}}">{{model.countryName}}</option>
+                                                        </select>
+                                                        <span [hidden]="country.valid || country.pristine" class="text-danger">Select country</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>{{'image' | translate}}</b>
+                                                <p><b>Select state</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                        <select class="form-control show-tick" [(ngModel)]="model.state" #state="ngModel" name="state" required (change)="getCity($event.target.value)">
+                                                            <option [ngValue]="select">select state</option>    
+                                                            <option *ngFor="let model of statelist" value="{{model.stateId}}">{{model.stateName}}</option>
+                                                        </select>
+                                                        <span [hidden]="state.valid || state.pristine" class="text-danger">Select state</span>
                                                     </div>
-                                                     
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>{{'UserName' | translate}}</b>
+                                                <p><b>Select city</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.city" #city="ngModel" name="city" required >
+                                                            <option [ngValue]="select">select city</option>    
+                                                            <option *ngFor="let model of citylist" value="{{model.cityId}}">{{model.cityName}}</option>
+                                                        </select>
+                                                        <span [hidden]="city.valid || city.pristine" class="text-danger">Select city</span>
                                                     </div>
-                                                      <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <b>{{'Password' | translate}}</b>
-                                                <div class="form-group">
+                                                <b>{{'Address' | translate}}</b>
+                                                <div class="form-group">   
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
-                                                    </div>
-                                                      <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                       <input type="text" class="form-control" id="address" name="address" [(ngModel)]="model.address"  #address="ngModel" placeholder="{{'Address' | translate}}" required>
+                                                    </div>      
                                                 </div>
-                                            </div>
-
-                                        </div>       
-                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">{{'Add' | translate}} {{'Mall' | translate}}</button>&nbsp;
-                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
+                                       		 </div>
+                                                <div class="col-md-6">
+                                                    <b>{{'UserName' | translate}}</b>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
+                                                        </div>
+                                                        <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>{{'Password' | translate}}</b>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        </div>
+                                                        <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>{{'Mall image' | translate}}</b>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                        </div>                                                     
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 ft-none">
+                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="showOption()">{{'Pay & Add Mall' | translate}}</button>
+                                                </div>
+                                                
+                                               <ng-container *ngIf="IsshowOption">
+                                                    <div class="col-md-6">
+                                                        <p><b>Select Package</b></p>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <select class="form-control show-tick" [(ngModel)]="model.package" #package="ngModel" name="package" required (change)="getvalue($event.target)">
+                                                                    <option [ngValue]="select">select package</option>    
+                                                                    <option *ngFor="let model of packageTypeList" value="{{model.price}}+{{model.id}}">{{model.packagename}}</option>
+                                                                </select>
+                                                                <span [hidden]="package.valid || package.pristine" class="text-danger">Select package</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><b>Paythrough</b></p>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <select class="form-control show-tick" [(ngModel)]="model.paythrough" #paythrough="ngModel" name="paythrough" required>
+                                                                    <option [ngValue]="select">select paythrough</option>    
+                                                                    <option *ngFor="let model of Paythrough" value="{{model.id}}">{{model.name}}</option>
+                                                                </select>
+                                                                <span [hidden]="paythrough.valid || paythrough.pristine" class="text-danger">Select type</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>UserName to transfer</b>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.Trasnferusername" name="username" #Trasnferusername="ngModel" required>
+                                                            </div>
+                                                            <span [hidden]="Trasnferusername.valid || Trasnferusername.pristine" class="text-danger">User Name is required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <b>{{'Password' | translate}}</b>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
+                                                            </div>
+                                                            <span [hidden]="Trasnferpassword.valid || Trasnferpassword.pristine" class="text-danger">Password is required</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Submit</button>&nbsp;
+                                                        &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
+                                                    </div>
+                                                </ng-container>
+                                        </div>      
+                                     
                                     </form>
                                     </div>
                                 </div>

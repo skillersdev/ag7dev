@@ -23,7 +23,10 @@ export class AddfloorComponent implements OnInit {
   malltypeid:any;
   floorid:any;
   select:any;
+  IsshowOption:Boolean=false;
+  packageTypeList:Array<Object>;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Flooruser'}];
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";
@@ -51,6 +54,10 @@ export class AddfloorComponent implements OnInit {
     }
       this.loginService.viewsActivate();
       this.getmalllists();
+      this.CommonService.editdata(AppSettings.getPackagetype,'7')
+      .subscribe(resultdata =>{   
+        this.packageTypeList=resultdata.result; 
+      });
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
@@ -66,6 +73,12 @@ export class AddfloorComponent implements OnInit {
   logout(){
     this.loginService.logout();
   }
+  getFloorname(mallId){
+    this.CommonService.editdata(AppSettings.getFloorname,mallId)
+    .subscribe(resultdata =>{   
+      this.model.floor_name=resultdata.result.floorname; 
+    });
+  }
   addfloorlist()
   {
     
@@ -76,7 +89,10 @@ export class AddfloorComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/mall/managefloor']); 
+        if( package_det.status=='success'){
+          this.router.navigate(['/mall/managefloor']); 
+        }
+        
     });
   }
 
@@ -96,9 +112,15 @@ export class AddfloorComponent implements OnInit {
         }
     }
   }
-
+  showOption(){
+    this.IsshowOption = true;
+  }
   back(){
     this.router.navigate(['/mall/managefloor']);
   }
-
+  getvalue(det:any){
+    let packdet = det.value.split("+");
+    this.model.package = packdet[0];
+    this.model.package_id = packdet[1];
+  }
 }

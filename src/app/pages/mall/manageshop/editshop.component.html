@@ -27,7 +27,7 @@
                                                 <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel"  (change)="getfloorlists()" name="mall_id" readonly>
                                                             <option [ngValue]="select">select Mall</option>    
                                                             <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
                                                         </select>
@@ -39,7 +39,7 @@
                                                 <p><b>{{'Floor' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" readonly>
                                                             <option [ngValue]="select">select Floor</option>    
                                                             <option *ngFor="let model of floorlist" value="{{model.id}}">{{model.floor_name}}</option>
                                                         </select>
@@ -52,7 +52,7 @@
                                                 <b>{{'Shop' | translate}} {{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Shop' | translate}} {{'Name' | translate}}" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Shop' | translate}} {{'Name' | translate}}" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" readonly>
                                                     </div>
                                                       <span [hidden]="shop_name.valid || shop_name.pristine" class="text-danger">shop Name is required</span>
                                                 </div>
@@ -75,7 +75,51 @@
                                                          
                                                     </div>
                                                 </div>
-                                            <div class="col-md-6">
+                                                <div class="col-md-6">
+                                                    <p><b>Select country</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick" [(ngModel)]="model.country" #country="ngModel" name="country" required (change)="getstate($event.target.value)">
+                                                                <option [ngValue]="select">select country</option>    
+                                                                <option *ngFor="let model of countrylist" value="{{model.countryId}}">{{model.countryName}}</option>
+                                                            </select>
+                                                            <span [hidden]="country.valid || country.pristine" class="text-danger">Select country</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><b>Select state</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick" [(ngModel)]="model.state" #state="ngModel" name="state" required (change)="getCity($event.target.value)">
+                                                                <option [ngValue]="select">select state</option>    
+                                                                <option *ngFor="let model of statelist" value="{{model.stateId}}">{{model.stateName}}</option>
+                                                            </select>
+                                                            <span [hidden]="state.valid || state.pristine" class="text-danger">Select state</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><b>Select city</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control show-tick" [(ngModel)]="model.city" #city="ngModel" name="city" required >
+                                                                <option [ngValue]="select">select city</option>    
+                                                                <option *ngFor="let model of citylist" value="{{model.cityId}}">{{model.cityName}}</option>
+                                                            </select>
+                                                            <span [hidden]="city.valid || city.pristine" class="text-danger">Select city</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>{{'Address' | translate}}</b>
+                                                    <div class="form-group">   
+                                                        <div class="form-line">
+                                                           <input type="text" class="form-control" id="address" name="address" [(ngModel)]="model.address"  #address="ngModel" placeholder="{{'Address' | translate}}" required>
+                                                        </div>      
+                                                    </div>
+                                                    </div>
+                                            <!-- <div class="col-md-6">
                                                 <b>{{'UserName' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
@@ -92,7 +136,7 @@
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>       
                                         <button type="submit" [disabled]="!addshop.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateshoplist()">{{'Update' | translate}} {{'Shop' | translate}}</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>

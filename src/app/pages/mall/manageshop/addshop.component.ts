@@ -24,6 +24,12 @@ export class AddshopComponent implements OnInit {
   select:any;
   malltypeid:any;
   floorid:any;
+  IsshowOption:Boolean=false;
+  packageTypeList:Array<Object>;
+  statelist:Array<Object>;
+  citylist:Array<Object>;
+  countrylist:Array<Object>;
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Shopuser'}];
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  
@@ -59,7 +65,14 @@ export class AddshopComponent implements OnInit {
     }
       this.loginService.viewsActivate();
       this.getmalllists();
+      this.CommonService.editdata(AppSettings.getPackagetype,'8')
+      .subscribe(resultdata =>{   
+        this.packageTypeList=resultdata.result; 
+      });
 
+      this.CommonService.getallCountry().subscribe(response=>{
+        this.countrylist =response.result;
+      });
       // this.getfloorlists();
   }
   getmalllists(){
@@ -91,6 +104,9 @@ export class AddshopComponent implements OnInit {
              
         });
   }
+  showOption(){
+    this.IsshowOption = true;
+  }
   logout(){
     this.loginService.logout();
   }
@@ -104,7 +120,10 @@ export class AddshopComponent implements OnInit {
           package_det.message,
           package_det.status
         )
-        this.router.navigate(['/mall/manageshop']); 
+        if( package_det.status=='Success'){
+          this.router.navigate(['/mall/manageshop']); 
+        }
+      
     });
   }
   onSelectFile(event) {
@@ -121,6 +140,18 @@ export class AddshopComponent implements OnInit {
                })
         }
     }
+  }
+  getstate(countryId){    
+    this.CommonService.editdata(AppSettings.getStatelist,countryId)
+    .subscribe(resultdata =>{   
+      this.statelist=resultdata.result; 
+    });
+  }
+  getCity(stateId){    
+    this.CommonService.editdata(AppSettings.getCitieslist,stateId)
+    .subscribe(resultdata =>{   
+      this.citylist=resultdata.result; 
+    });
   }
    banneronSelectFile(event) {
       if (event.target.files && event.target.files[0]) {
@@ -141,5 +172,9 @@ export class AddshopComponent implements OnInit {
   back(){
     this.router.navigate(['/mall/manageshop']);
   }
-
+  getvalue(det:any){
+    let packdet = det.value.split("+");
+    this.model.package = packdet[0];
+    this.model.package_id = packdet[1];
+  }
 }

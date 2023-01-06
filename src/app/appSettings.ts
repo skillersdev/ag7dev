@@ -13,13 +13,13 @@ export class AppSettings {
 
  public static mallshopurl = "http://localhost:4401/shop/";
  public static URL_BASE = "http://localhost:4200/";
- public static API_BASE = "http://localhost/3abc7dev/ag7dev/api";
- public static USER_TEMPLATE = "http://localhost/3abc7dev/ag7dev/website";
- public static IMAGE_BASE = "http://localhost/3abc7dev/ag7dev/api/";
+ public static API_BASE = "http://localhost/ag7dev/api";
+ public static USER_TEMPLATE = "http://localhost/ag7dev/website";
+ public static IMAGE_BASE = "http://localhost/ag7dev/api/";
  public static IMAGE_BASE_CHAT = "http://localhost:4200/assets/chat/";
- public static PACKAGE_ACTIVATE = "http://localhost/3abc7dev/ag7dev/api/database/checkbalance.php";
- public static WEBSITE_URL = "http://localhost/3abc7dev/ag7dev/website/";
- public static package_renew = "http://localhost/3abc7dev/ag7dev/api/database/checkbalance1.php";
+ public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/api/database/checkbalance.php";
+ public static WEBSITE_URL = "http://localhost/ag7dev/website/";
+ public static package_renew = "http://localhost/ag7dev/api/database/checkbalance1.php";
  public static share_link = "http://localhost:4200/chat/join/";
  public static chatshare = "http://localhost:4200/chat/public/";
  //Dev
@@ -331,6 +331,7 @@ export class AppSettings {
   /*floor add*/
   public static Addfloor = AppSettings.API_BASE + "/addfloor";
   public static getfloorDetail = AppSettings.API_BASE + "/getfloor"; //common api
+  public static getadminfloor = AppSettings.API_BASE + "/admingetfloor";
   public static floorbyid = AppSettings.API_BASE + "/fetchfloorbyid/";
   public static editfloor = AppSettings.API_BASE + "/editfloor/";
   public static updatefloor = AppSettings.API_BASE + "/updatefloor";
@@ -399,5 +400,13 @@ export class AppSettings {
   public static Updateelearnuserpassword =
     AppSettings.API_BASE + "/updateelearnuserpassword";
 
+    public static CountryList  = AppSettings.API_BASE + "/getcountrylist";
+    public static getStatelist = AppSettings.API_BASE + "/getstatebyCountry/";
+    public static getCitieslist= AppSettings.API_BASE + "/getCitiesbyState/";
+
+    public static getPackagetype = AppSettings.API_BASE+"/getPackageType/";
+    public static getFloorname= AppSettings.API_BASE+"/getFloorname/";
   public static pimage = AppSettings.API_BASE + "/pimage";
+  public static renewPackVoucher = AppSettings.API_BASE + "/renewPackVoucher";
+  
 }

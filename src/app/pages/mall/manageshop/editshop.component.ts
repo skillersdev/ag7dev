@@ -27,6 +27,9 @@ export class EditshopComponent implements OnInit {
   select:any;
   malltypeid:any;
   floorlist:Array<Object>;
+  statelist:Array<Object>;
+  citylist:Array<Object>;
+  countrylist:Array<Object>;
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   FetchshopRestApiUrl: string = AppSettings.editshop; 
   updateshopRestApiUrl: string = AppSettings.updateshop;  
@@ -40,6 +43,10 @@ export class EditshopComponent implements OnInit {
   ngOnInit() {
     this.malltypeid = localStorage.getItem('malltypeid');  
     this.model.usergroup=localStorage.getItem('currentUsergroup');
+
+    this.CommonService.getallCountry().subscribe(response=>{
+      this.countrylist =response.result;
+    });
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
     } else{
@@ -77,7 +84,9 @@ export class EditshopComponent implements OnInit {
   {
     this.CommonService.editdata(this.FetchshopRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;      
+          this.model = resultdata.result;  
+          this.getstate(this.model.country)
+          this.getCity(this.model.state)     
           this.getfloorlists();   
         });
   }
@@ -120,6 +129,18 @@ export class EditshopComponent implements OnInit {
                })
         }
     }
+  }
+  getstate(countryId){    
+    this.CommonService.editdata(AppSettings.getStatelist,countryId)
+    .subscribe(resultdata =>{   
+      this.statelist=resultdata.result; 
+    });
+  }
+  getCity(stateId){    
+    this.CommonService.editdata(AppSettings.getCitieslist,stateId)
+    .subscribe(resultdata =>{   
+      this.citylist=resultdata.result; 
+    });
   }
    banneronSelectFile(event) {
       if (event.target.files && event.target.files[0]) {
