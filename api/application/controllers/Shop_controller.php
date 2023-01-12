@@ -190,7 +190,7 @@ class Shop_controller extends CI_Controller {
           // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->or_where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
           $this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by]);
           if(isset($model->mall_id)){
-            $this->db->where(['shop_id'=>$model->mall_id]);
+            $this->db->where(['mall_id'=>$model->mall_id]);
           }
            $res=$this->db->get('shop_master');
 
