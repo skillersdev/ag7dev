@@ -191,6 +191,7 @@ export class LoginComponent implements OnInit {
         // remove user from local storage to log user out
       	// swal('', 'You have Successfully Logged Out', 'success');        
         localStorage.removeItem('currentUser');
+        localStorage.clear();
     }
 
 

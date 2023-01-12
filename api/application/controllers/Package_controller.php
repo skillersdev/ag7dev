@@ -108,7 +108,7 @@ class Package_controller extends CI_Controller {
           
             $renew_date = date('Y-m-d', strtotime($value['validity']."days", strtotime($value['cdate']))); 
 
-            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
+            $result[]=array('id'=>$value['id'],'package_name'=>$value['name'],'pck_type'=>$value['pck_type'],'package_price'=>$value['price'],'currency'=>$value['currency'],'pay_via_voucher'=>$value['pay_via_voucher'],'sign_up_bonus'=>$value['sbonus'],'maximum_transfer'=>$value['maximum_transfer'],'package_details'=>$value['details'],'package_tax'=>$value['tax'],'indirect_ref_amount'=>$value['indirect_ref_amt'],'minimum_voucher'=>$value['minimum_voucher'],'created_date'=>$value['cdate'],'validity'=>$renew_date);
 
 
           }
@@ -732,6 +732,15 @@ class Package_controller extends CI_Controller {
     
     if($model->website!=""){
       $website = trim($model->website);
+      if($model->selectedwebsite_prefix=="p-"){
+        $website = trim($model->selectedwebsite_prefix.$model->website);
+      }
+      else if($model->selectedwebsite_prefix=="b-"){
+        $website = trim($model->selectedwebsite_prefix.$model->website);
+      }else{
+        $website = trim($model->website);
+      }
+      
       $res=$this->db->select("website")->where(['website'=>$website])->get('user_vs_packages');
       if(count($res->result_array())>0)
       {         
