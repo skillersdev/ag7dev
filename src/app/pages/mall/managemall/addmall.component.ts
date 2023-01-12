@@ -63,6 +63,7 @@ export class AddmallComponent implements OnInit {
   addmalllist()
   {
     // this.model.created_by=localStorage.getItem('currentUserID');
+    this.model.usergroup=localStorage.getItem('usergroup');
     this.CommonService.insertdata(this.insertmallRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(

@@ -210,7 +210,7 @@ class Mall_controller extends CI_Controller {
             $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
             $data =$user_det->result_array();  
 
-            $value['created_by']=$data[0]['username']; 
+            $value['created_by']=(count($data)>0)?$data[0]['username']:''; 
 
             $user_vs_pck_det=$this->db->select("package_status,renew_date,package_id,renew_date")->where(['mall_id'=>$value['id']])->get('user_vs_packages'); 
             $user_vs_pck_data =$user_vs_pck_det->result_array();

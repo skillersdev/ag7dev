@@ -73,7 +73,7 @@ export class AddshopComponent implements OnInit {
       this.CommonService.getallCountry().subscribe(response=>{
         this.countrylist =response.result;
       });
-      // this.getfloorlists();
+      this.getfloorlists();
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)

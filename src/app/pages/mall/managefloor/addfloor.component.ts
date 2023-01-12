@@ -38,7 +38,12 @@ export class AddfloorComponent implements OnInit {
     
     this.malltypeid = localStorage.getItem('malltypeid');
     this.floorid=localStorage.getItem('floorid'); 
-    this.model.usergroup=localStorage.getItem('currentUsergroup');  
+    
+    this.model.usergroup=localStorage.getItem('currentUsergroup'); 
+    
+    if(this.model.usergroup==null){
+      this.model.usergroup=localStorage.getItem('usergroup'); 
+    }
     if(this.malltypeid==null){
       this.model.created_by=localStorage.getItem('currentUserID');
       this.model.owner_id=localStorage.getItem('currentUserID');     
@@ -58,6 +63,7 @@ export class AddfloorComponent implements OnInit {
       .subscribe(resultdata =>{   
         this.packageTypeList=resultdata.result; 
       });
+      
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
@@ -66,6 +72,8 @@ export class AddfloorComponent implements OnInit {
             if(det.result!="")
             { 
               this.malllist=det.result;
+
+              this.getFloorname(this.malllist[0]['id']);
             } 
              
         });

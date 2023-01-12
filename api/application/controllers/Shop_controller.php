@@ -205,7 +205,7 @@ class Shop_controller extends CI_Controller {
             $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
             $data =$user_det->result_array();  
 
-            $value['created_by']=$data[0]['username']; 
+           $value['created_by']=(count($data)>0)?$data[0]['username']:''; 
 
             $user_vs_pck_det=$this->db->select("package_status,renew_date,package_id")->where(['shop_id'=>$value['id']])->get('user_vs_packages'); 
             $user_vs_pck_data =$user_vs_pck_det->result_array();
@@ -248,12 +248,15 @@ class Shop_controller extends CI_Controller {
 
 
             
-            $mall_det=$this->db->select("mall_name")->where(['is_deleted'=>'0','id'=>$value['mall_id']])->get('mall_master'); 
+            $mall_det=$this->db->select("id,mall_name")->where(['is_deleted'=>'0','id'=>$value['mall_id']])->get('mall_master'); 
             $mall_data =$mall_det->result_array();  
 
             $value['mall_name']=$mall_data[0]['mall_name'];
 
-            $result[]=array('id'=>$value['id'],'shop_name'=>$value['shop_name'],'mall_name'=>$value['mall_name'],
+            $floor_det=$this->db->select("id,floor_name")->where(['is_deleted'=>'0','id'=>$value['floor_id']])->get('floor_master'); 
+            $floor_data =$floor_det->result_array();  
+
+            $result[]=array('id'=>$value['id'],'shop_name'=>$value['shop_name'],'mall_name'=>$value['mall_name'],'mall_id'=>$mall_data[0]['id'],'floor_id'=>$floor_data[0]['id'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'pck_status'=>$package_status,'pack_price'=> $pack_price,'pack_id'=>$pack_id,'expiry_date'=>$renewal_date);
           }
         }else{

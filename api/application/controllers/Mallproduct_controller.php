@@ -59,12 +59,13 @@ class Mallproduct_controller extends CI_Controller {
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mallproduct_master');
         }else{
-          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('mallproduct_master');
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('mallproduct_master');
         }       
 
 
         if($res->num_rows()>0)
         {
+
           foreach($res->result_array() as $key=>$value)
           {               
             // $user_det=$this->db->select("username")->where(['is_deleted'=>'0','id'=>$value['created_by']])->get('affiliateuser'); 
@@ -79,12 +80,15 @@ class Mallproduct_controller extends CI_Controller {
 
             $result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'mall_name'=>$value['mall_name'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'mall_id'=>$value['mall_id'],'floor_id'=>$value['floor_id'],'shop_id'=>$value['shop_id'],'category_id'=>$value['category_id']);
+
+
           }
         }else{
             $response['status']="failure";
             $response['message']="No User records found..";
         }
         $response['result']=$result;
+        //echo "<pre>";print_r($res->result_array());die;
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
     
