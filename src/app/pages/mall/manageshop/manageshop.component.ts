@@ -78,7 +78,9 @@ export class ManageshopComponent implements OnInit {
   viewCategory(viewshopid:any){
     this.router.navigate([this.mallshopcategorysurl,viewshopid]);
   }
-
+  viewShop(mallId:any,floorId:any,shopdetails:any){
+    this.router.navigate([this.mallshopurl+'mall/'+mallId+'/floor/'+floorId+'/shop/'+shopdetails]);
+  }
   viewOrders(viewshopid:any)
   {
     this.router.navigate([this.mallshopordersurl,viewshopid]);

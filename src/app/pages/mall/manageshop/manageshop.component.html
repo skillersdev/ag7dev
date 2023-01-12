@@ -49,7 +49,7 @@
                                       <td>{{data.expiry_date | date: 'dd/MM/yyyy'}}</td>
                                       <td>{{data.created_by}}</td>
                                       <td>
-                                        <a href="{{mallshopurl}}{{data.shop_name}}" target="_blank">View Shop</a> <br/> <br/>
+                                        <a href="javascript:void(0);" (click)="viewShop(data.mall_id,data.floor_id,data.shop_name)" target="_blank">View Shop</a> <br/> <br/>
                                         <a href="javascript:void(0);" (click)="viewOrders(data.shop_name)" >View Orders</a>
                                       </td>
                                       <td>
