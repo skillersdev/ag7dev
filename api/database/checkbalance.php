@@ -1028,26 +1028,26 @@ if (($num['ucount']) == 1) {
                 }   
     
             
-            $sqlquery="SELECT wlink FROM settings where sno=0"; //fetching website from databse
-            $rec2=mysqli_query($con,$sqlquery);
-            $row2 = mysqli_fetch_row($rec2);
-            $wlink=$row2[0]; //assigning website address
+            // $sqlquery="SELECT wlink FROM settings where sno=0"; //fetching website from databse
+            // $rec2=mysqli_query($con,$sqlquery);
+            // $row2 = mysqli_fetch_row($rec2);
+            // $wlink=$row2[0]; //assigning website address
             
-            $sqlquery222="SELECT email FROM settings where sno=0"; //fetching website from databse
-            $rec3=mysqli_query($con,$sqlquery222);
-            $row222 = mysqli_fetch_row($rec3);
-            $email=$row222[0]; //assigning website address
+            // $sqlquery222="SELECT email FROM settings where sno=0"; //fetching website from databse
+            // $rec3=mysqli_query($con,$sqlquery222);
+            // $row222 = mysqli_fetch_row($rec3);
+            // $email=$row222[0]; //assigning website address
             
-            $sqlquery111="SELECT etext FROM emailtext where code='NEWMEMBER'"; //fetching website from databse
-            $rec2111=mysqli_query($con,$sqlquery111);
-            $row2111 = mysqli_fetch_row($rec2111);
-            $emailtext=$row2111[0]; //assigning email text for email
-                    // More headers
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            $headers .= 'From: <no-reply@'.$wlink.'>' . "\r\n";
-            $to=$email;
-            $subject="New COD Order SignUp | Bingo ";
+            // $sqlquery111="SELECT etext FROM emailtext where code='NEWMEMBER'"; //fetching website from databse
+            // $rec2111=mysqli_query($con,$sqlquery111);
+            // $row2111 = mysqli_fetch_row($rec2111);
+            // $emailtext=$row2111[0]; //assigning email text for email
+            //         // More headers
+            // $headers = "MIME-Version: 1.0" . "\r\n";
+            // $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // $headers .= 'From: <no-reply@'.$wlink.'>' . "\r\n";
+            // $to=$email;
+            // $subject="New COD Order SignUp | Bingo ";
             // $message=$emailtext;
             // mail($to,$subject,$message,$headers);
                         
