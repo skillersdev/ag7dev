@@ -19,6 +19,7 @@ export class ManagemallComponent implements OnInit {
   malllist:Array<Object>;
   model:any={};
   malltypeid:any;
+  select:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {

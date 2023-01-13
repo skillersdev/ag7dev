@@ -21,8 +21,9 @@
                                         
                                     </div>
                                     <div class="body">
-                                        <form class="" #addmall="ngForm">
-                                        <div class="row clearfix">                                            
+                                       
+                                        <div class="row clearfix">   
+                                             <form class="" #addmall="ngForm">                                         
                                             <div class="col-md-6">
                                                 <p><b>{{'Mall' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
@@ -82,16 +83,16 @@
                                                         <div class="form-line">
                                                             <input type="text" class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
                                                         </div>
-                                                        <span [hidden]="username.valid || username.pristine" class="text-danger">User Name is required</span>
+                                                        <span [hidden]="username.valid " class="text-danger">User Name is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <b>{{'Password' | translate}}</b>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                            <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
                                                         </div>
-                                                        <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
+                                                        <span [hidden]="password.valid " class="text-danger">Password is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -102,11 +103,14 @@
                                                         </div>                                                     
                                                     </div>
                                                 </div>
+                                            </form>
                                                 <div class="col-md-6 ft-none">
-                                                    <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="showOption()">{{'Pay & Add Mall' | translate}}</button>
+                                                    <!-- <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="showOption()">{{'Pay & Add Mall' | translate}}</button> -->
+                                                    <a class="btn btn-primary m-t-15 waves-effect" href="javascript:void(0)" (click)="showOption()">{{'Pay & Add Mall' | translate}}</a>
                                                 </div>
                                                 
                                                <ng-container *ngIf="IsshowOption">
+                                                <form class="" #addmall1="ngForm">  
                                                     <div class="col-md-6">
                                                         <p><b>Select Package</b></p>
                                                         <div class="form-group">
@@ -144,19 +148,20 @@
                                                         <b>{{'Password' | translate}}</b>
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
+                                                                <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
                                                             </div>
                                                             <span [hidden]="Trasnferpassword.valid || Trasnferpassword.pristine" class="text-danger">Password is required</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button type="submit" [disabled]="!addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Submit</button>&nbsp;
+                                                        <button type="submit" [disabled]="!addmall1.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Submit</button>&nbsp;
                                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                                     </div>
+                                                    </form>
                                                 </ng-container>
                                         </div>      
                                      
-                                    </form>
+                                   
                                     </div>
                                 </div>
                             </div>

@@ -69,7 +69,7 @@
                                                 <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>

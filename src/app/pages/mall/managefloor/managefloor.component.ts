@@ -20,7 +20,7 @@ export class ManagefloorComponent implements OnInit {
   malltypeid:any;
   floorid:any;
   model:any={};
-  
+  select:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {

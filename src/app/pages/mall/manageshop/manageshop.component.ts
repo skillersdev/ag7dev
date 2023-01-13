@@ -23,6 +23,7 @@ export class ManageshopComponent implements OnInit {
   Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Shopuser'}];
   malltypeid:any;
   shopid:any;
+  select:any;
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {

@@ -121,6 +121,8 @@ export class AddfloorComponent implements OnInit {
     }
   }
   showOption(){
+    this.model.username = this.model.username;
+    this.model.password = this.model.password;
     this.IsshowOption = true;
   }
   back(){

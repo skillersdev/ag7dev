@@ -21,8 +21,9 @@
                                         
                                     </div>
                                     <div class="body">
-                                        <form class="" #addfloor="ngForm">
+                                       
                                         <div class="row clearfix">
+                                            <form class="" #addfloor="ngForm">
                                             <div class="col-md-6" *ngIf="(malltypeid==null) || (malltypeid=='')  || (malltypeid==1)">
                                                 <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
@@ -68,16 +69,19 @@
                                                 <b>{{'Password' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
                                             </div>
+                                            </form>
                                             <div class="col-md-6 ft-none">
-                                                <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="showOption()">{{'Pay & Add Floor' | translate}}</button>
+                                                <!-- <button type="button" class="btn btn-primary m-t-15 waves-effect" (click)="showOption()">{{'Pay & Add Floor' | translate}}</button> -->
+                                                <a class="btn btn-primary m-t-15 waves-effect" href="javascript:void(0)" (click)="showOption()">{{'Pay & Add Floor' | translate}}</a>
                                             </div>
                                             
                                            <ng-container *ngIf="IsshowOption">
+                                            <form class="" #addfloor1="ngForm">
                                                 <div class="col-md-6">
                                                     <p><b>Select Package</b></p>
                                                     <div class="form-group">
@@ -115,22 +119,23 @@
                                                     <b>{{'Password' | translate}}</b>
                                                     <div class="form-group">
                                                         <div class="form-line">
-                                                            <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
+                                                            <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
                                                         </div>
                                                         <span [hidden]="Trasnferpassword.valid || Trasnferpassword.pristine" class="text-danger">Password is required</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">Submit</button>&nbsp;
+                                                    <button type="submit" [disabled]="!addfloor1.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">Submit</button>&nbsp;
                                                     &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                                 </div>
+                                                </form>
                                             </ng-container>
                                             
 
                                         </div>       
                                         <!-- <button type="submit" [disabled]="!addfloor.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addfloorlist()">{{'Add' | translate}} {{'Floor' | translate}}</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button> -->
-                                    </form>
+                                   
                                     </div>
                                 </div>
                             </div>
