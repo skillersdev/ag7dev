@@ -225,7 +225,9 @@ $image_path = $this->config->item('base_path');
 			<section id="contact" >
 				<div class="container">
 					<div class="row">
-						
+						 <?php 
+					     	 if(count($contact_details)>0)
+					      { ?>
 						<div class="sec-title text-center wow animated fadeInDown">
 							<h2>My Contact</h2>
 							
@@ -298,7 +300,7 @@ $image_path = $this->config->item('base_path');
 								</p>
 							</address>
 						</div>
-			
+						<?php } ?>
 					</div>
 				</div>
 			</section>

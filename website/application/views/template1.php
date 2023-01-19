@@ -217,7 +217,7 @@
           </div>           
           <div class="col-lg-6">
      
-            <h2>About Me 
+            <h2>About Us 
       </h2>
       <!-- follow like view button code starts here-->
       <?php if($websitename !=''){ ?>
@@ -277,13 +277,18 @@
                     </address>
                 </div>
               </div>
+              <?php 
+                if(isset($contact_details[0]['phonenumber']) || isset($contact_details[0]['homenumber']) || isset($contact_details[0]['officenumber']) || isset($contact_details[0]['faxnumber'])){
+                ?>
               <div class="col-md-3">
                 <div class="contact-phone">
                   <i class="ion-ios-telephone-outline"></i>
                   <h3>Phone Number</h3>
-                      <p><?php if(isset($contact_details[0]['phonenumber'])){
-                      echo "Phone :".$contact_details[0]['phonenumber'];
-                    } ?></p>
+                      <p>
+                        <?php if(isset($contact_details[0]['phonenumber'])){
+                            echo "Phone :".$contact_details[0]['phonenumber'];
+                          } ?>                            
+                      </p>
                     <p><?php if(isset($contact_details[0]['homenumber'])){
                       echo "Home :".$contact_details[0]['homenumber'];
                     } ?></p>
@@ -295,6 +300,7 @@
                     } ?></p>
                 </div>
               </div>
+            <?php }?>
               <div class="col-md-3">
                 <div class="contact-email">
                   <i class="ion-ios-email-outline"></i>

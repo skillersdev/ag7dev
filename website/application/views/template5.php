@@ -52,7 +52,7 @@
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Me</a></li>
+          <li><a href="#about">About Us</a></li>
           <li><a href="#contact">My Contact</a></li>
           <li><a href="#services">My Services</a></li>
           <li><a href="#portfolio">My Products</a></li>
@@ -97,7 +97,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>About Me</h3>
+          <h3>About Us</h3>
           <p><?php 
                $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
 
@@ -155,6 +155,9 @@
     <!--==========================
       Contact Section
     ============================-->
+     <?php 
+         if(count($contact_details)>0)
+        { ?>
     <section id="contact">
       <div class="container-fluid">
 
@@ -253,7 +256,7 @@
 
       </div>
     </section><!-- #contact -->
-
+  <?php }?>
     <div class="modal fade" id="videomodal" role="dialog">
               <div class="modal-dialog">          
                 <!-- Modal content-->

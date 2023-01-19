@@ -121,10 +121,11 @@ class Website extends CI_Controller {
 
 			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where (website='".$websitename."' OR website='default') AND Issection_show=1  AND is_deleted=0 ORDER BY section_order ASC"); 
 			$section_result_array =$Getsection->result_array();
+			$section_result=[];
 			//echo "<pre>";print_r($section_result_array);die;
 			if(count($section_result_array)>0)
 			{
-				$section_result=[];
+				
 
 				foreach($section_result_array as $key=>$value)
 		          {
@@ -201,9 +202,9 @@ class Website extends CI_Controller {
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			$data['websitename']=$websitename;
-			$data['total_follows'] = $web_follow_count[0]['count'];
+			$data['total_follows'] = (count($web_follow_count)>0)?$web_follow_count[0]['count']:0;
 			$data['total_views'] = $val[0]['total_views'];
-			$data['total_likes'] = $web_like_count[0]['count'];
+			$data['total_likes'] = (count($web_like_count)>0)?$web_like_count[0]['count']:0;
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');

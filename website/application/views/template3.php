@@ -155,7 +155,9 @@ $this->load->view('index.html');
 		<!--
         Contact Us
         ==================================== -->		
-		
+		 <?php 
+	     	 if(count($contact_details)>0)
+	      { ?>
 		<section id="contact" class="contact">
 			<div class="container">
 				<div class="row mb50">
@@ -236,7 +238,7 @@ $this->load->view('index.html');
 			
 			
 		</section>
-		
+		<?php }?>
         <!--
         End Contact Us
         ==================================== -->
