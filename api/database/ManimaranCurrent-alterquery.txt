@@ -1,0 +1,10 @@
+08-Jan-23 by mani
+------------
+ALTER TABLE `user_vs_packages` ADD `floor_id` INT(15) NOT NULL AFTER `mall_id`, ADD `shop_id` INT(15) NOT NULL AFTER `floor_id`;
+
+
+24-01-23
+----------------
+ALTER TABLE `floor_master` ADD `floor_code` VARCHAR(155) NOT NULL AFTER `floor_name`;
+
+ALTER TABLE `shop_master` ADD `shop_code` VARCHAR(155) NOT NULL AFTER `shop_name`;
