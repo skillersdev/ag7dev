@@ -28,9 +28,10 @@
                                                 <p><b>{{'Mall' | translate}} {{'Name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" required>
+                                                        <input type="text" class="form-control" placeholder="{{'Mall' | translate}} {{'Name' | translate}}" [(ngModel)]="model.mall_name" name="mall_name" pattern="[a-zA-Z]+" #mall_name="ngModel" required>
                                                     </div>
-                                                      <span [hidden]="mall_name.valid" class="text-danger">Mall Name is required</span>
+                                                      <span [hidden]="!mall_name.hasError('required')" class="text-danger">Mall Name is required</span>
+                                                      <span [hidden]="!mall_name.hasError('pattern')" class="text-danger">Only alphabets allowed</span>
                                                 </div>
                                             </div>                                           
                                             <div class="col-md-6">
@@ -154,7 +155,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button type="submit" [disabled]="!addmall1.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Submit</button>&nbsp;
+                                                        <button type="submit" [disabled]="!addmall1.form.valid || !addmall.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addmalllist()">Submit</button>&nbsp;
                                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
                                                     </div>
                                                     </form>

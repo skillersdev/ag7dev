@@ -188,9 +188,12 @@ class Shop_controller extends CI_Controller {
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('shop_master');
         }else{
           // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->or_where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('shop_master');
-          $this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','created_by'=>$model->created_by]);
+          $this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date");
           if(isset($model->mall_id)){
             $this->db->where(['mall_id'=>$model->mall_id]);
+          }
+          else{
+            $this->db->where(['is_deleted'=>'0','created_by'=>$model->created_by]);  
           }
            $res=$this->db->get('shop_master');
 
@@ -464,5 +467,30 @@ public function getCategorybyShopid()
        echo json_encode($response,JSON_UNESCAPED_SLASHES);
        die();
   }
+  public function getShopcode(){
+     $this->output->set_content_type('application/json');
+     $model = json_decode($this->input->post('model',FALSE));
 
+
+    $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id])->get('shop_master');
+
+     $result=array();
+     $floorname='';
+     if(count($res->result_array())>0){
+      $tot_cnt = (count($res->result_array()))+1;
+      
+      $Label = "s";
+      $shopcode = $Label . $tot_cnt;
+      
+      $result['shopcode']=$shopcode;
+      
+     }else{
+      $result['shopcode']='s1';
+     }
+
+      $response['result']=$result;
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
+       die();
+
+   }
 }

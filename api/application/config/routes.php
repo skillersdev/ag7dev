@@ -185,6 +185,8 @@ $route['updatetemplatepackagevsuser']= 'Package_controller/updatetemplatepackage
 
 $route['getPackageType/(:num)'] = 'Package_controller/getPackageType/$1';
 $route['getFloorname/(:num)'] = 'Floor_controller/getFloordetails/$1';
+$route['getShopcode']= 'Shop_controller/getShopcode';
+
 
 /*Product Add*/
 $route['addproduct'] = 'Product_controller/addproduct';

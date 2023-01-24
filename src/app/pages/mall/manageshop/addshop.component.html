@@ -40,12 +40,21 @@
                                                 <p><b>{{'Floor' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" required>
+                                                        <select class="form-control show-tick" [(ngModel)]="model.floor_id" #floor_id="ngModel" name="floor_id" required (change)="getShopcode($event.target.value)">
                                                             <option [ngValue]="select">select Floor</option>    
                                                             <option *ngFor="let model of floorlist" value="{{model.id}}">{{model.floor_name}}</option>
                                                         </select>
                                                         <span [hidden]="floor_id.valid || floor_id.pristine" class="text-danger">Floor is required</span>
                                                         </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>{{'Shop' | translate}} {{'Code' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control"  [(ngModel)]="model.shop_code" name="shop_code" #shop_code="ngModel"  readonly>
+                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

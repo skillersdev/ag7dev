@@ -437,14 +437,21 @@ public function get_floor_list()
    public function getFloordetails($mallId){
 
 
-     $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$mallId])->get('floor_master');
+      $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$mallId])->get('floor_master');
      $result=array();
      $floorname='';
      if(count($res->result_array())>0){
-      $tot_cnt = count($res->result_array()) - 1;
-      $result['floorname']='Floor '.($tot_cnt)+1;
+      $tot_cnt = (count($res->result_array()) - 1)+1;
+      $a = "Floor ";
+      $floorLabel = "F";
+      $floorcode = $floorLabel . $tot_cnt;
+      $b = $a . $tot_cnt;
+      $result['floorname']=$b;
+      $result['floorcode']=$floorcode;
+      
      }else{
       $result['floorname']='Ground Floor';
+      $result['floorcode']='gf';
      }
 
       $response['result']=$result;

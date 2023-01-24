@@ -85,6 +85,7 @@ export class AddfloorComponent implements OnInit {
     this.CommonService.editdata(AppSettings.getFloorname,mallId)
     .subscribe(resultdata =>{   
       this.model.floor_name=resultdata.result.floorname; 
+      this.model.floor_code=resultdata.result.floorcode; 
     });
   }
   addfloorlist()

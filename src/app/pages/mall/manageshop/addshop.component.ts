@@ -74,6 +74,7 @@ export class AddshopComponent implements OnInit {
         this.countrylist =response.result;
       });
       this.getfloorlists();
+      this.getShopcode();
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)
@@ -176,5 +177,12 @@ export class AddshopComponent implements OnInit {
     let packdet = det.value.split("+");
     this.model.package = packdet[0];
     this.model.package_id = packdet[1];
+  }
+
+  getShopcode(){
+    this.CommonService.insertdata(AppSettings.getShopcode,this.model)
+    .subscribe(resultdata =>{        
+      this.model.shop_code=resultdata.result.shopcode; 
+    });
   }
 }
