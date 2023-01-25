@@ -256,10 +256,10 @@ class Shop_controller extends CI_Controller {
 
             $value['mall_name']=$mall_data[0]['mall_name'];
 
-            $floor_det=$this->db->select("id,floor_name")->where(['is_deleted'=>'0','id'=>$value['floor_id']])->get('floor_master'); 
+            $floor_det=$this->db->select("id,floor_name,floor_code")->where(['is_deleted'=>'0','id'=>$value['floor_id']])->get('floor_master'); 
             $floor_data =$floor_det->result_array();  
 
-            $result[]=array('id'=>$value['id'],'shop_name'=>$value['shop_name'],'mall_name'=>$value['mall_name'],'mall_id'=>$mall_data[0]['id'],'floor_id'=>$floor_data[0]['id'],
+            $result[]=array('id'=>$value['id'],'shop_name'=>$value['shop_name'],'shop_code'=>$value['shop_code'],'mall_name'=>$value['mall_name'],'mall_id'=>$mall_data[0]['id'],'floor_id'=>$floor_data[0]['id'],'floor_code'=>$floor_data[0]['floor_code'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'pck_status'=>$package_status,'pack_price'=> $pack_price,'pack_id'=>$pack_id,'expiry_date'=>$renewal_date);
           }
         }else{

@@ -238,7 +238,13 @@ class Mallproduct_controller extends CI_Controller {
           $shop=array();
           $result=array();
 
-          $res=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where shop_name='".$model->shopname."'");
+          $mall_det=$this->db->select("id")->where(['mall_name'=>$model->mallName])->get('mall_master')->result_array();
+
+           $floor_det=$this->db->select("id")->where(['floor_code'=>$model->floorCode])->get('floor_master')->result_array();
+
+
+
+          $res=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where shop_code='".$model->shopname."' AND mall_id='".$mall_det[0]['id']."' AND floor_id='".$floor_det[0]['id']."' ");
 
 
           if($res->num_rows()>0){
