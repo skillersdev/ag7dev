@@ -24,7 +24,10 @@ export class AddmallComponent implements OnInit {
   malltypeid:any;
   countrylist:Array<Object>;
   packageTypeList:Array<Object>;
-  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Malluser'}];
+  Paythrough:Array<object>=[
+    {'id':1,'name':'Enterpreneur'}
+    // {'id':2,'name':'Malluser'}
+  ];
   statelist:Array<Object>;
   citylist:Array<Object>;
   IsshowOption:Boolean=false;

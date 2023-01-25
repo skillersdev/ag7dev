@@ -24,8 +24,9 @@ export class AppSettings {
  public static chatshare = "http://localhost:4200/chat/public/";
  //Dev
 */
+
   //Live
-  public static mallshopurl = "https://mall.3abc7.com/shop/";
+  public static mallshopurl = "https://mall.3abc7.com/";
   public static URL_BASE = "https://3abc7.com/";
   public static API_BASE = "https://3abc7.com/api";
   public static USER_TEMPLATE = "https://3abc7.com/website";

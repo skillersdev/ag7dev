@@ -26,7 +26,9 @@ export class AddfloorComponent implements OnInit {
   IsshowOption:Boolean=false;
   packageTypeList:Array<Object>;
   insertfloorRestApiUrl: string = AppSettings.Addfloor; 
-  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Flooruser'}];
+  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'}
+  // ,{'id':2,'name':'Flooruser'}
+];
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router,private http:Http) { 
       document.body.className="theme-red";

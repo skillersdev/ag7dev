@@ -29,7 +29,10 @@ export class AddshopComponent implements OnInit {
   statelist:Array<Object>;
   citylist:Array<Object>;
   countrylist:Array<Object>;
-  Paythrough:Array<object>=[{'id':1,'name':'Enterpreneur'},{'id':2,'name':'Shopuser'}];
+  Paythrough:Array<object>=[
+    {'id':1,'name':'Enterpreneur'}
+    // {'id':2,'name':'Shopuser'}
+  ];
   insertshopRestApiUrl: string = AppSettings.Addshop; 
   getmalllistRestApiUrl:string = AppSettings.getmallDetail;  
   getfloorlistRestApiUrl:string = AppSettings.getfloorbymallid;  

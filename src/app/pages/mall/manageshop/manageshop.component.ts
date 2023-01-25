@@ -81,7 +81,9 @@ export class ManageshopComponent implements OnInit {
   }
   viewShop(mallId:any,floorId:any,shopdetails:any){
     console.log(this.mallshopurl+'mall/'+mallId+'/floor/'+floorId+'/shop/'+shopdetails)
-    this.router.navigate([this.mallshopurl+'mall/'+mallId+'/floor/'+floorId+'/shop/'+shopdetails]);
+
+    window.open(this.mallshopurl+'mall/'+mallId+'/floor/'+floorId+'/shop/'+shopdetails, "_blank");
+    //this.router.navigate([this.mallshopurl+'mall/'+mallId+'/floor/'+floorId+'/shop/'+shopdetails]);
   }
   viewOrders(viewshopid:any)
   {
