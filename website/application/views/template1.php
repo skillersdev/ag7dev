@@ -211,7 +211,7 @@
                  else{
                   $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
                  }          
-              echo '<img align="left" style="width:165px;height:180px;"src="'.$path_url.$image.'"/>'; 
+              echo '<img align="left" style="width:165px;height:180px;border-radius: 56px 12px;"src="'.$path_url.$image.'"/>'; 
               ?>
             </a>
           </div>           
@@ -330,7 +330,7 @@
                       } ?>">Facebook
                     </a>
                   </p>
-                  <p><a target="_blank" href="#">Twitter</a></p>
+                  <!-- <p><a target="_blank" href="#">Twitter</a></p> -->
                   <p>
                     <a target="_blank" href="<?php
                        if(isset($contact_details[0]['linked'])){
@@ -1079,7 +1079,7 @@
         $('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
       }
       else if(type==1 || type==3 || type==4){
-        $('#mimage2_section').html('<img src="'+src_file+'" width="400">');
+        $('#mimage2_section').html('<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">');
       }else{
         $('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
       }
