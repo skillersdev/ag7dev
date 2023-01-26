@@ -128,8 +128,8 @@
                                                         </div>      
                                                     </div>
                                                     </div>
-                                            <!-- <div class="col-md-6">
-                                                <b>{{'UserName' | translate}}</b>
+                                            <div class="col-md-6">
+                                                <b>{{'Shop Lock Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <input type="text" readonly class="form-control" placeholder="{{'UserName' | translate}}" [(ngModel)]="model.username" name="username" #username="ngModel" required>
@@ -138,14 +138,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6"> 
-                                                <b>{{'Password' | translate}}</b>
+                                                <b>{{'Shop Lock Key' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+                                                        <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.password" name="password" #password="ngModel" required>
                                                     </div>
                                                       <span [hidden]="password.valid || password.pristine" class="text-danger">Password is required</span>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>       
                                         <button type="submit" [disabled]="!addshop.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="updateshoplist()">{{'Update' | translate}} {{'Shop' | translate}}</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
