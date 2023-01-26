@@ -430,7 +430,7 @@ class Mall_controller extends CI_Controller {
 
       if (isset($model)) {
             
-         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  country='".$model->country."',state='".$model->state."',city='".$model->city."',address='".$model->address."' where id='".$model->id."'");
+         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set image_name='".$model->image_name."', password='".$model->password."',  country='".$model->country."',state='".$model->state."',city='".$model->city."',address='".$model->address."' where id='".$model->id."'");
          
         $response['message']="mall has been updated successfully";          
 
