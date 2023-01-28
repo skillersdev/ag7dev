@@ -156,19 +156,27 @@ class Shop_controller extends CI_Controller {
   {
     $model = json_decode($this->input->post('model',FALSE));
 
-     $res=$this->db->select("id,shop_name,logo,banner,mall_id,floor_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'floor_id'=>$model->floorid])->get('shop_master'); 
-     $floorres=$this->db->select("id,floor_name,image_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'id'=>$model->floorid])->get('floor_master')->result_array(); 
+     $mall_now_det=$this->db->select("*")->where(['mall_name'=>$model->mallid])->get('mall_master')->result_array();
+
+    
+     $floor_now_det=$this->db->select("*")->where(['floor_code'=>$model->floorid,'mall_id'=>$mall_now_det[0]['id']])->get('floor_master')->result_array();
+      
+     $res=$this->db->select("id,shop_name,shop_code,logo,banner,mall_id,floor_id")->where(['is_deleted'=>'0','mall_id'=>$mall_now_det[0]['id'],'floor_id'=>$floor_now_det[0]['id']])->get('shop_master'); 
+     
+     $floorres=$this->db->select("id,floor_name,floor_code,image_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$mall_now_det[0]['id'],'id'=>$floor_now_det[0]['id']])->get('floor_master')->result_array(); 
      $result=array();
      
       if($res->num_rows()>0)
         {
           $result= $res->result_array();
+
         }else{
             $response['status']="failure";
             $response['message']="No shop records found..";
         }
         $response['result']=$result;
         $response["floorDetail"]=$floorres;
+        $response["mall_name"] = $mall_now_det[0]['mall_name'];
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
@@ -302,8 +310,22 @@ class Shop_controller extends CI_Controller {
         $model = json_decode($this->input->post('model',FALSE));
 
         if (isset($model)) {
-              
-           $result=$this->db->query("update ".$this->db->dbprefix('shop_master')." set  shop_name='".$model->shop_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
+          
+          /*Check shop has been changed or not*/
+         
+          if(strcmp($model->shop_name,$model->beforeEditshopname)!=0){
+
+            $res1=$this->db->select("*")->where(['is_deleted'=>'0','shop_name'=>$model->shop_name])->get('shop_master');
+              if(count($res1->result_array())!=0){
+                 $response['exist']=1;
+                 $response['status']="Error";
+                 $response['message']="Shop already existed";
+                 echo json_encode($response,JSON_UNESCAPED_SLASHES);
+                  die();
+              }
+          }
+ 
+           $result=$this->db->query("update ".$this->db->dbprefix('shop_master')." set  shop_name='".$model->shop_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',username='".$model->username."',password='".$model->password."',country='".$model->country."',city='".$model->city."',state='".$model->state."',address='".$model->address."',logo='".$model->logo."',banner='".$model->banner."' where id='".$model->id."'");
            
           $response['message']="shop has been updated successfully";          
 

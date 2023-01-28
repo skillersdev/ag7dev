@@ -73,7 +73,8 @@ export class EditfloorComponent implements OnInit {
   {
     this.CommonService.editdata(this.FetchfloorRestApiUrl,id)
         .subscribe(resultdata =>{   
-          this.model = resultdata.result;         
+          this.model = resultdata.result[0]; 
+          this.model.mall_name = resultdata.result[0].mall_name;
         });
   }
   updatefloorlist()

@@ -85,6 +85,7 @@ export class EditshopComponent implements OnInit {
     this.CommonService.editdata(this.FetchshopRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result;  
+          this.model.beforeEditshopname = this.model.shop_name;
           this.getstate(this.model.country)
           this.getCity(this.model.state)     
           this.getfloorlists();   

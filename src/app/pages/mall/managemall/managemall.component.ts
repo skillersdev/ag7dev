@@ -51,6 +51,7 @@ export class ManagemallComponent implements OnInit {
             if(det.result!="")
             { 
               this.malllist=det.result;
+              this.loginService.viewCommontdataTable('mall_table','mall_table');
             } 
              
         });

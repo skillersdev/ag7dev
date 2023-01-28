@@ -52,7 +52,7 @@
                                                 <b>{{'Shop' | translate}} {{'Name' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Shop' | translate}} {{'Name' | translate}}" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" readonly>
+                                                        <input type="text" class="form-control" placeholder="{{'Shop' | translate}} {{'Name' | translate}}" [(ngModel)]="model.shop_name" name="shop_name" #shop_name="ngModel" >
                                                     </div>
                                                       <span [hidden]="shop_name.valid || shop_name.pristine" class="text-danger">shop Name is required</span>
                                                 </div>

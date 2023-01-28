@@ -52,6 +52,7 @@ export class ManagefloorComponent implements OnInit {
             if(det.result!="")
             { 
               this.floorlist=det.result;
+              this.loginService.viewCommontdataTable('floor_table','floor_table');
             } 
              
         });

@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mall_controller extends CI_Controller {
 
-	public function index() {
-		$this->output->set_content_type('application/json');
-		die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
-	}
+  public function index() {
+    $this->output->set_content_type('application/json');
+    die(json_encode(array('status'=>"failure", 'error'=>'UN-Authorized access'), JSON_UNESCAPED_SLASHES));
+  }
 
    public function add_mall(){
        $this->output->set_content_type('application/json');
@@ -198,7 +198,7 @@ class Mall_controller extends CI_Controller {
             $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','username'=>$model->username])->get('mall_master');
           }
           
-          
+         // print_r($this->db->last_query());die;
         }        
 
          
@@ -311,9 +311,9 @@ class Mall_controller extends CI_Controller {
 
     $model = json_decode($this->input->post('model',FALSE));
     $mallDetails = array();
-    $mall_det=$this->db->select("id,mall_name,image_name,usergroup,created_by,country,state,city,address")->where(['is_deleted'=>'0','id'=>$model->mallid])->get('mall_master');
+    $mall_det=$this->db->select("id,mall_name,image_name,usergroup,created_by,country,state,city,address")->where(['is_deleted'=>'0','mall_name'=>$model->mallid])->get('mall_master');
 
-      if(count($mall_det->result_array())>0){
+      if(count($mall_det->result_array())>0){ 
 
         foreach($mall_det->result_array() as $key=>$value)
         {
@@ -341,16 +341,16 @@ class Mall_controller extends CI_Controller {
 
     $result["mall_det"]=$mallDetails;
 
+    // echo "<pre>";print_r($result["mall_det"]);die;
 
 
-
-    $floor_det=$this->db->select("id,floor_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$model->mallid])->get('floor_master');
+    $floor_det=$this->db->select("id,floor_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$result["mall_det"]['id']])->get('floor_master');
     if($floor_det->num_rows()>0){
 
       foreach($floor_det->result_array() as $key=>$value)
       {
         //$result[$key]=array("floorData"=>$value);
-        $shop_det=$this->db->select("shop_name,mall_id,floor_id,logo,banner,usergroup")->where(['is_deleted'=>'0','mall_id'=>$model->mallid,'floor_id'=>$value['id'] ])->get('shop_master');
+        $shop_det=$this->db->select("shop_name,mall_id,floor_id,logo,banner,usergroup")->where(['is_deleted'=>'0','mall_id'=>$result["mall_det"]['id'],'floor_id'=>$value['id'] ])->get('shop_master');
         if($shop_det->num_rows()>0){
           // print_r($shop_det->result_array());
           // print_r($value);
@@ -430,7 +430,7 @@ class Mall_controller extends CI_Controller {
 
       if (isset($model)) {
             
-         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set image_name='".$model->image_name."', password='".$model->password."',  country='".$model->country."',state='".$model->state."',city='".$model->city."',address='".$model->address."' where id='".$model->id."'");
+         $result=$this->db->query("update ".$this->db->dbprefix('mall_master')." set  country='".$model->country."',state='".$model->state."',city='".$model->city."',address='".$model->address."',image_name='".$model->image_name."' where id='".$model->id."'");
          
         $response['message']="mall has been updated successfully";          
 

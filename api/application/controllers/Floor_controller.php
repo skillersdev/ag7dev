@@ -208,7 +208,12 @@ public function get_floor_list()
         }else{
          
           if($model->mall_id!=null){
-            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('floor_master');
+
+            $mall_det=$this->db->select("id,mall_name")->where(['is_deleted'=>'0','mall_name'=>$model->mall_id])->get('mall_master'); 
+            $mall_data =$mall_det->result_array(); 
+
+
+            $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$mall_data[0]['id']])->get('floor_master');
           }
           else{
             $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','owner_id'=>$model->created_by])->get('floor_master');
@@ -232,7 +237,7 @@ public function get_floor_list()
 
             $value['mall_name']=$mall_data[0]['mall_name'];
 
-            $result[]=array('id'=>$value['id'],'floor_name'=>$value['floor_name'],'image_name'=>$value['image_name'],'mall_name'=>$value['mall_name'],
+            $result[]=array('id'=>$value['id'],'floor_name'=>$value['floor_name'],'image_name'=>$value['image_name'],'mall_name'=>$value['mall_name'],'floor_code'=>$value['floor_code'],
               'created_date'=>$value['created_date'],'created_by'=>$value['created_by']);
           }
         }else{
@@ -351,8 +356,21 @@ public function get_floor_list()
             $res=$this->db->query("select * from ".$this->db->dbprefix('floor_master')." where id='".$id."'");
 
             if($res->num_rows()>0){
-                $in_array=$res->result_array();
-                $result=$in_array[0];
+                //$in_array=$res->result_array();
+                foreach($res->result_array() as $key=>$value)
+                {              
+                  
+                  $mall_det=$this->db->select("id,mall_name")->where(['is_deleted'=>'0','id'=>$value['mall_id']])->get('mall_master'); 
+                  $mall_data =$mall_det->result_array(); 
+                
+                  
+                  $result[]=array('id'=>$value['id'],'floor_name'=>$value['floor_name'],'floor_amount'=>$value['floor_amount'],'floor_amount_renewal'=>$value['floor_amount_renewal'],'floor_code'=>$value['floor_code'],'floor_code'=>$value['floor_code'],'image_name'=>$value['image_name'],'is_deleted'=>$value['is_deleted'],'mall_id'=>$value['mall_id'],'owner_id'=>$value['owner_id'],
+                    'password'=>$value['password'],'usergroup'=>$value['usergroup'],'username'=>$value['username'],
+                    'created_date'=>$value['created_date'],'created_by'=>$value['created_by'],'mall_name'=>$mall_data[0]['mall_name']);
+                }
+
+               // echo $in_array[0]['mall_id'];die;
+               // $result=$in_array[0];
             }else{
                 $response['status']="failure";
                 $response['message']=" No Package record found!!";

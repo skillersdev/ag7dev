@@ -60,7 +60,7 @@ export class ManagemallproductComponent implements OnInit {
               }else{
                 this.productlist=det.result;
               }
-
+              this.loginService.viewCommontdataTable('mall_product_table','mall_product_table');
 
             } 
              

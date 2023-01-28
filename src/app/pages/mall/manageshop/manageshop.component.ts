@@ -61,11 +61,13 @@ export class ManageshopComponent implements OnInit {
               
               if(this.shopid!="" && this.malltypeid==3 ){
                 this.shoplist=det.result;
+                
                 this.shoplist = det.result.filter(
                   res => res.id === this.shopid);
               }else{
                 this.shoplist=det.result;
               }
+              this.loginService.viewCommontdataTable('shop_table','shop_table');
               console.log("shoplist--->",this.shoplist);
             } 
              

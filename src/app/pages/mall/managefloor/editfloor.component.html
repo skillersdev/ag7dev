@@ -27,11 +27,12 @@
                                                 <p><b>{{'Mall' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel" name="mall_id" required>
+                                                    <input type="text" class="form-control"  [(ngModel)]="model.mall_name" name="mall_name" #mall_name="ngModel" readonly>
+                                                        <!-- <select class="form-control show-tick" [(ngModel)]="model.mall_id" #mall_id="ngModel" name="mall_id" required>
                                                             <option [ngValue]="select">select Mall</option>    
                                                             <option *ngFor="let model of malllist" value="{{model.id}}">{{model.mall_name}}</option>
                                                         </select>
-                                                        <span [hidden]="mall_id.valid || mall_id.pristine" class="text-danger">Mall is required</span>
+                                                        <span [hidden]="mall_id.valid || mall_id.pristine" class="text-danger">Mall is required</span> -->
                                                         </div>
                                                 </div>
                                             </div>
