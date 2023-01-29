@@ -58,7 +58,11 @@ class Mallproduct_controller extends CI_Controller {
         // print_r($model);
         if($model->usergroup==1){
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where('is_deleted','0')->get('mallproduct_master');
-        }else{
+        }
+        elseif($model->mall_id!=null){
+          $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id])->get('mallproduct_master');
+        }
+        else{
           $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->where(['is_deleted'=>'0'])->get('mallproduct_master');
         }       
 
@@ -262,9 +266,9 @@ class Mallproduct_controller extends CI_Controller {
 
 
               $response['shop']=$shop;
-              $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where shop_id='".$in_array[0]['id']."'");
+              $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where is_deleted=0 AND shop_id='".$in_array[0]['id']."'");
 
-              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." where shop_id='".$in_array[0]['id']."'");
+              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." delete_status=0 AND where shop_id='".$in_array[0]['id']."'");
               if($cat_res->num_rows()>0){
                 $cat_array=$cat_res->result_array();
                 $response['categorylist']=$cat_array;
