@@ -25,6 +25,7 @@ export class EditmallproductComponent implements OnInit {
   id:number;
   malllist:Array<Object>;
   floorlist:Array<Object>;
+  currencyList:Array<Object>;
   shoplist:Array<Object>;
   select:any;
   malltypeid:any;
@@ -64,6 +65,9 @@ export class EditmallproductComponent implements OnInit {
         this.editproduct(this.id);        
         });
         this.getmalllists();
+        this.CommonService.getcurrencylist().subscribe(response=>{
+          this.currencyList =response.result;
+        });
       }
       getmalllists(){
         // this.CommonService.getdata(this.getmalllistRestApiUrl)

@@ -101,7 +101,18 @@
                                                       <span [hidden]="product_price.valid || product_price.pristine" class="text-danger">Product Price is required</span>
                                                 </div>
                                             </div>
-
+                                            <div class="col-md-6" >
+                                                <p><b>{{'Currency' | translate}}</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.currency"  #currency="ngModel" name="currency" >
+                                                            <option [ngValue]="select">select currency</option>    
+                                                            <option *ngFor="let model of currencyList" value="{{model.id}}">{{model.currencyName}}</option>
+                                                        </select>
+                                                        <!-- <span [hidden]="category_id.valid || category_id.pristine" class="text-danger">Category is required</span> -->
+                                                        </div>
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-6">
                                                 <b>{{'image' | translate}}</b>

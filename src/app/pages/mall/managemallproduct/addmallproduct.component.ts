@@ -21,6 +21,7 @@ export class AddmallproductComponent implements OnInit {
   malllist:Array<Object>;
   floorlist:Array<Object>;
   shoplist:Array<Object>;
+  currencyList:Array<Object>;
   model: any = {};
   select:any;
   malltypeid:any;
@@ -38,7 +39,12 @@ export class AddmallproductComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.CommonService.getcurrencylist().subscribe(response=>{
+      
+      this.currencyList =response.result;
+      console.log(this.currencyList)
+    });
+
     this.model.usergroup=localStorage.getItem('usergroup');
     this.malltypeid = localStorage.getItem('malltypeid');  
     this.floorid=localStorage.getItem('floorid');
@@ -65,6 +71,7 @@ export class AddmallproductComponent implements OnInit {
       this.getfloorlists();
       this.getshoplists();
       this.getshopcategorylists();
+    
   }
   getmalllists(){
     // this.CommonService.getdata(this.getmalllistRestApiUrl)

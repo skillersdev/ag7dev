@@ -124,4 +124,15 @@ export class CommonService
         });
         return this._http.get(AppSettings.CountryList, options).pipe(map((allusers: Response) => allusers.json()));  
     }
+    getcurrencylist() 
+    {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json; charset=utf-8');
+
+        let params = '';
+        let options = new RequestOptions({
+            params: new URLSearchParams()
+        });
+        return this._http.get(AppSettings.currencylist, options).pipe(map((allusers: Response) => allusers.json()));  
+    }
 }
