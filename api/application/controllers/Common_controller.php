@@ -27,6 +27,27 @@ class Common_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
 	}
+  public function getcurrencylist(){
+    $model = json_decode($this->input->post('model',FALSE));
+
+      $res=$this->db->select("*")->get('currency'); 
+      $result=array();
+       if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+         
+            $result[]=array('id'=>$value['id'],'currencyName'=>$value['name']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No currency found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+  
 	public function getStatelist($Countryid){
 		 $this->output->set_content_type('application/json');
         $response=array();

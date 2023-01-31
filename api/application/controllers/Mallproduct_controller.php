@@ -129,7 +129,7 @@ class Mallproduct_controller extends CI_Controller {
 
         if (isset($model)) {
               
-           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',category_id='".$model->category_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."'  where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('mallproduct_master')." set  product_name='".$model->product_name."',mall_id='".$model->mall_id."',category_id='".$model->category_id."',floor_id='".$model->floor_id."',shop_id='".$model->shop_id."',product_price='".$model->product_price."',currency='".$model->currency."',image_name='".$model->image_name."',description='".$model->description."'  where id='".$model->id."'");
            
           $response['message']="mallproduct has been updated successfully";          
 
@@ -255,7 +255,7 @@ class Mallproduct_controller extends CI_Controller {
               $in_array=$res->result_array();
                 $shop = $in_array[0];
                $country_det=$this->db->select("name")->where(['id'=>$in_array[0]['country']])->get('countries')->result_array();
-
+  
               $shop['country'] = $country_det[0]['name'];
 
               $state_det=$this->db->select("name")->where(['id'=>$in_array[0]['state']])->get('states')->result_array();
@@ -266,9 +266,12 @@ class Mallproduct_controller extends CI_Controller {
 
 
               $response['shop']=$shop;
+
               $res=$this->db->query("select * from ".$this->db->dbprefix('mallproduct_master')." where is_deleted=0 AND shop_id='".$in_array[0]['id']."'");
 
-              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." delete_status=0 AND where shop_id='".$in_array[0]['id']."'");
+              $cat_res=$this->db->query("select * from ".$this->db->dbprefix('shop_product_category')." where delete_status=0 AND  shop_id='".$in_array[0]['id']."'");
+
+              
               if($cat_res->num_rows()>0){
                 $cat_array=$cat_res->result_array();
                 $response['categorylist']=$cat_array;
@@ -277,6 +280,16 @@ class Mallproduct_controller extends CI_Controller {
 
               if($res->num_rows()>0){
                   $in_array=$res->result_array();
+                   foreach($in_array as $key=>$value)
+                    {               
+                      
+                      $curr_det=$this->db->select("*")->where(['id'=>$value['currency']])->get('currency'); 
+                      $data =$curr_det->result_array();
+
+                     $in_array[$key]['currency_symbol'] = $data[0]['symbol'];
+                     $in_array[$key]['currency_name'] = $data[0]['name'];
+                     $in_array[$key]['currency_code'] = $data[0]['code'];
+                    }
                   $result=$in_array;
               }else{
                   $response['status']="failure";
