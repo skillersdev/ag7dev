@@ -50,7 +50,7 @@
                                       <td>{{data.created_by}}</td>
                                       <td>
                                         <a href="javascript:void(0);" (click)="viewShop(data.mall_name,data.floor_code,data.shop_code)" target="_blank">View Shop</a> <br/> <br/>
-                                        <a href="javascript:void(0);" (click)="viewOrders(data.shop_name)" >View Orders</a>
+                                        <a href="javascript:void(0);" (click)="viewOrders(data.shop_name,data.floor_id)" >View Orders</a>
                                       </td>
                                       <td>
                                         <a href="javascript:void(0);" *ngIf="malltypeid!=4" (click)="editshop(data.id)"><i class="material-icons">edit</i></a>

@@ -396,8 +396,13 @@ class Shop_controller extends CI_Controller {
      $response=array('status'=>"success",'message'=>"Order Placed successfully");
 
      $model = json_decode($this->input->post('model',FALSE));
+
+     unset($model->floorCode);
+     unset($model->mallName);
      
      $this->db->insert('order_items', $model);
+
+     echo $this->db->last_query();die;
 
      echo json_encode($response,JSON_UNESCAPED_SLASHES);
      die();
@@ -407,12 +412,15 @@ class Shop_controller extends CI_Controller {
 
  public function getOrdersbyShopid()
   {
-      $model = json_decode($this->input->post('model',FALSE));
+       $model = json_decode($this->input->post('model',FALSE));
 
       // print_r($model);
       // die();
-
-      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','shopname'=>$model->shopname])->get('order_items'); 
+        
+      $shop_res=$this->db->select("*")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id])->get('shop_master');  
+      $shop_det=$shop_res->result_array();
+        
+      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','shopname'=>$shop_det[0]['shop_name']])->get('order_items'); 
       $result=array();
       if($res->num_rows()>0)
         {

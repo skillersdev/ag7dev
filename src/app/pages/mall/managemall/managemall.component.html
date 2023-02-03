@@ -92,7 +92,7 @@
                                                 <p><b>{{'Password' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
+                                                        <input type="password" class="form-control" placeholder="{{'Password' | translate}}" [(ngModel)]="model.Trasnferpassword" name="password" #Trasnferpassword="ngModel" required>
                                                     </div>
                                                     <span [hidden]="Trasnferpassword.valid || Trasnferpassword.pristine" class="text-danger">Password is required</span>
                                                 </div>

@@ -36,7 +36,7 @@ export class ManageshopordersComponent implements OnInit {
     } else{
       
       this.model.mall_id = localStorage.getItem('mallid'); 
-     this.model.floor_id = localStorage.getItem('floorid'); 
+     this.model.floor_id = localStorage.getItem('currentFloorid'); 
      this.loginService.malllocalStorageData();        
      this.model.created_by = localStorage.getItem('mallcurrentUser'); 
     }

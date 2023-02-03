@@ -388,7 +388,7 @@ public function get_floor_list()
 
         if (isset($model)) {
               
-           $result=$this->db->query("update ".$this->db->dbprefix('floor_master')." set  floor_name='".$model->floor_name."',image_name='".$model->image_name."',mall_id='".$model->mall_id."',username='".$model->username."',password='".$model->password."' where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('floor_master')." set  floor_name='".$model->floor_name."',image_name='".$model->image_name."',mall_id='".$model->mall_id."',username='".$model->username."',password='".$model->password."',created_date='".$model->created_date."' where id='".$model->id."'");
            
           $response['message']="floor has been updated successfully";          
 
