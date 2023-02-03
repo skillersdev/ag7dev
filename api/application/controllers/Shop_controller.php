@@ -402,7 +402,6 @@ class Shop_controller extends CI_Controller {
      
      $this->db->insert('order_items', $model);
 
-     echo $this->db->last_query();die;
 
      echo json_encode($response,JSON_UNESCAPED_SLASHES);
      die();
