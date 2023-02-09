@@ -416,10 +416,14 @@ class Shop_controller extends CI_Controller {
       // print_r($model);
       // die();
         
-      $shop_res=$this->db->select("*")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id])->get('shop_master');  
+      $shop_res=$this->db->select("*")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id,'shop_name'=>$model->shopname])->get('shop_master');  
+    //   print_r($this->db->last_query()); die();
       $shop_det=$shop_res->result_array();
+      
+    //   print_r($shop_det);
+    //   die();
         
-      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','shopname'=>$shop_det[0]['shop_name']])->get('order_items'); 
+      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id,'shop_id'=>$shop_det[0]['id']])->get('order_items'); 
       $result=array();
       if($res->num_rows()>0)
         {
