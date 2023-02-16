@@ -22,6 +22,7 @@ export class AddmallComponent implements OnInit {
   model: any = {};
   select:any;
   malltypeid:any;
+  formvalid:Boolean=false;
   countrylist:Array<Object>;
   packageTypeList:Array<Object>;
   Paythrough:Array<object>=[
@@ -81,6 +82,7 @@ export class AddmallComponent implements OnInit {
     });
   }
   onSelectFile(event) {
+    $('.preloader').show();
     if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
         for (let i = 0; i < filesAmount; i++) {
@@ -91,6 +93,7 @@ export class AddmallComponent implements OnInit {
               .subscribe( (response) => {
                 // this.urls.push(response.data);
                 this.model.image_name=response.data;
+                $('.preloader').hide();
                  
                })
                 // var reader = new FileReader();

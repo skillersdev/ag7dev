@@ -105,8 +105,10 @@ export class EditshopComponent implements OnInit {
   updateshoplist()
   {
      //this.model.is_deleted=1
+     $('.preloader').show();
      this.CommonService.updatedata(this.updateshopRestApiUrl,this.model)
-    .subscribe(package_det =>{       
+    .subscribe(package_det =>{   
+      $('.preloader').hide();    
          swal(
           package_det.status,
           package_det.message,

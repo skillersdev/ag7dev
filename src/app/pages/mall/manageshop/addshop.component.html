@@ -120,6 +120,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-md-6">
                                                     <b>{{'Address' | translate}}</b>
                                                     <div class="form-group">   
@@ -127,7 +128,61 @@
                                                            <input type="text" class="form-control" id="address" name="address" [(ngModel)]="model.address"  #address="ngModel" placeholder="{{'Address' | translate}}" required>
                                                         </div>      
                                                     </div>
+                                                </div>                               
+                                                <div class="col-md-6">
+                                                    <b>{{'Mobile Phone Number' | translate}}</b>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'Mobile Phone Number' | translate}}" [(ngModel)]="model.phonenumber" #phonenumber="ngModel" name="phonenumber">
+                                                        </div>                       
                                                     </div>
+                                                </div> 
+                                                <div class="col-md-6">
+                                                    <p><b>{{'Telegram' | translate}}</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'Telegram' | translate}}" [(ngModel)]="model.telegram" #telegram="ngModel" name="telegram">
+                                                        </div>                       
+                                                    </div>
+                                                </div>                               
+                                                <div class="col-md-6">
+                                                    <p><b>{{'WhatsApp' | translate}}</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'WhatsApp' | translate}}" [(ngModel)]="model.whatsapp" #whatsapp="ngModel" name="whatsapp">
+                                                        </div>                      
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-6">
+                                                    <p><b>{{'Facebook Url' | translate}} </b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'Facebook Url' | translate}}" [(ngModel)]="model.fb_link" #fb_link="ngModel" name="fb_link">
+                                                        </div>
+                                                        <span [hidden]="fb_link.valid || fb_link.pristine" class="text-danger">Eacebook link is required</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p><b>{{'Twitter Url' | translate}}</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control" placeholder="{{'Twitter Url' | translate}}" [(ngModel)]="model.twitter_url" #twitter_url="ngModel" name="twitter_url">
+                                                        </div>
+                                                        <span [hidden]="twitter_url.valid || twitter_url.pristine" class="text-danger"> twitter is required</span>
+                                                    </div>
+                                                </div> 
+                                                            
+                                                <div class="col-md-6">
+                                                    <p><b>{{'Shop Contact Email' | translate}}</b></p>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input type="email" class="form-control" id="Email" name="Email" placeholder="{{'Email Label' | translate}}" [(ngModel)]="model.email"  #email="ngModel">
+                                                        </div>                       
+                                                    </div>
+                                                </div> 
+                                                  
+
+
                                             <div class="col-md-6">
                                                 <b>{{'Shop Lock Name' | translate}}</b>
                                                 <div class="form-group">
@@ -199,6 +254,16 @@
                                                 <div class="col-md-6">
                                                     <button type="submit" [disabled]="!addshop1.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addshoplist()">Submit</button>&nbsp;
                                                     &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
+                                                </div>
+                                                <div class="preloader pl-size-xs" style="display:none;">
+                                                    <div class="spinner-layer pl-red-grey">
+                                                        <div class="circle-clipper left">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                        <div class="circle-clipper right">
+                                                            <div class="circle"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                             </ng-container>

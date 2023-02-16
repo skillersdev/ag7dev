@@ -117,8 +117,10 @@ export class AddshopComponent implements OnInit {
   addshoplist()
   {
     // this.model.created_by=localStorage.getItem('currentUserID');
+    $('.preloader').show();
     this.CommonService.insertdata(this.insertshopRestApiUrl,this.model)
-    .subscribe(package_det =>{       
+    .subscribe(package_det =>{   
+      $('.preloader').hide();    
          swal(
           package_det.status,
           package_det.message,
