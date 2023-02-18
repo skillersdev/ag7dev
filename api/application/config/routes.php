@@ -354,6 +354,8 @@ $route['checkchannelexist']="Channel_controller/checkchannelexist";
 
 /*Common Api  added by mani 02.01.2023*/
 $route['getcountrylist']="Common_controller/getCountrylist";
+$route['getcurrencylist']="Common_controller/getcurrencylist";
+
 $route['getstatebyCountry/(:num)'] = "Common_controller/getStatelist/$1";
 $route['getCitiesbyState/(:num)']= "Common_controller/getCitieslist/$1";
 $route['renewPackVoucher']="Common_controller/renewPackVoucher";
@@ -362,6 +364,8 @@ $route['renewPackVoucher']="Common_controller/renewPackVoucher";
 $route['activateInstructor']="Instructor_controller/check_user_credit";
 
 $route['updateelearnuserpassword']="Package_controller/updateelearnuserpassword";
+
+$route['sendcontact']= "Common_controller/sendcontactdetails";
 
 ?>
 

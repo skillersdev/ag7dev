@@ -10,7 +10,7 @@ export class AppSettings {
   // public static share_link= "http://localhost:4200/chat/join/";
   // public static chatshare= "http://localhost:4200/chat/public/";
  //Dev
-/*
+
  public static mallshopurl = "http://localhost:4401/";
  public static URL_BASE = "http://localhost:4200/";
  public static API_BASE = "http://localhost/ag7dev/api";
@@ -23,7 +23,7 @@ export class AppSettings {
  public static share_link = "http://localhost:4200/chat/join/";
  public static chatshare = "http://localhost:4200/chat/public/";
  //Dev
-*/
+
 /*
 public static mallshopurl = "http://localhost:4401/";
  public static URL_BASE = "http://localhost:4200/";
@@ -40,7 +40,7 @@ public static mallshopurl = "http://localhost:4401/";
 */
 
   //Live
-  
+  /*
   public static mallshopurl = "https://mall.3abc7.com/";
   public static URL_BASE = "https://3abc7.com/";
   public static API_BASE = "https://3abc7.com/api";
@@ -54,7 +54,7 @@ public static mallshopurl = "http://localhost:4401/";
     "https://3abc7.com/api/database/checkbalance1.php";
   public static share_link = "https://3abc7.com/chat/join/";
   public static chatshare = "https://3abc7.com/chat/public/";
-  
+  */
   //Live	
 
 

@@ -163,7 +163,7 @@ class Shop_controller extends CI_Controller {
       
      $res=$this->db->select("id,shop_name,shop_code,logo,banner,mall_id,floor_id")->where(['is_deleted'=>'0','mall_id'=>$mall_now_det[0]['id'],'floor_id'=>$floor_now_det[0]['id']])->get('shop_master'); 
      
-     $floorres=$this->db->select("id,floor_name,floor_code,image_name,mall_id")->where(['is_deleted'=>'0','mall_id'=>$mall_now_det[0]['id'],'id'=>$floor_now_det[0]['id']])->get('floor_master')->result_array(); 
+     $floorres=$this->db->select("id,floor_name,floor_code,image_name,floor_detail_banner,mall_id")->where(['is_deleted'=>'0','mall_id'=>$mall_now_det[0]['id'],'id'=>$floor_now_det[0]['id']])->get('floor_master')->result_array(); 
      $result=array();
      
       if($res->num_rows()>0)
@@ -293,7 +293,20 @@ class Shop_controller extends CI_Controller {
 
             if($res->num_rows()>0){
                 $in_array=$res->result_array();
+
+              
+
                 $result=$in_array[0];
+
+                $country_det=$this->db->select("name")->where(['id'=>$in_array[0]['country']])->get('countries')->result_array();
+  
+              $result['countryname'] = $country_det[0]['name'];
+
+              $state_det=$this->db->select("name")->where(['id'=>$in_array[0]['state']])->get('states')->result_array();
+              $result['statename'] = $state_det[0]['name'];
+
+              $city_det=$this->db->select("name")->where(['id'=>$in_array[0]['city']])->get('cities')->result_array();
+              $result['cityname'] = $city_det[0]['name'];
             }else{
                 $response['status']="failure";
                 $response['message']=" No Package record found!!";
@@ -325,7 +338,7 @@ class Shop_controller extends CI_Controller {
               }
           }
  
-           $result=$this->db->query("update ".$this->db->dbprefix('shop_master')." set  shop_name='".$model->shop_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',username='".$model->username."',password='".$model->password."',country='".$model->country."',city='".$model->city."',state='".$model->state."',address='".$model->address."',logo='".$model->logo."',banner='".$model->banner."' where id='".$model->id."'");
+           $result=$this->db->query("update ".$this->db->dbprefix('shop_master')." set  shop_name='".$model->shop_name."',mall_id='".$model->mall_id."',floor_id='".$model->floor_id."',username='".$model->username."',password='".$model->password."',country='".$model->country."',city='".$model->city."',state='".$model->state."',address='".$model->address."',logo='".$model->logo."',banner='".$model->banner."',shop_banner_detail='".$model->shop_banner_detail."',phonenumber='".$model->phonenumber."',telegram='".$model->telegram."',whatsapp='".$model->whatsapp."',fb_link='".$model->fb_link."',twitter_url='".$model->twitter_url."',email='".$model->email."' where id='".$model->id."'");
            
           $response['message']="shop has been updated successfully";          
 
@@ -416,14 +429,10 @@ class Shop_controller extends CI_Controller {
       // print_r($model);
       // die();
         
-      $shop_res=$this->db->select("*")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id,'shop_name'=>$model->shopname])->get('shop_master');  
-    //   print_r($this->db->last_query()); die();
+      $shop_res=$this->db->select("*")->where(['is_deleted'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id])->get('shop_master');  
       $shop_det=$shop_res->result_array();
-      
-    //   print_r($shop_det);
-    //   die();
         
-      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','mall_id'=>$model->mall_id,'floor_id'=>$model->floor_id,'shop_id'=>$shop_det[0]['id']])->get('order_items'); 
+      $res=$this->db->select("*")->order_by("id", "desc")->where(['order_delete_status'=>'0','shop_id'=>$shop_det[0]['id']])->get('order_items'); 
       $result=array();
       if($res->num_rows()>0)
         {

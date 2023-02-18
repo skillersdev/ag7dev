@@ -8,3 +8,10 @@ ALTER TABLE `user_vs_packages` ADD `floor_id` INT(15) NOT NULL AFTER `mall_id`, 
 ALTER TABLE `floor_master` ADD `floor_code` VARCHAR(155) NOT NULL AFTER `floor_name`;
 
 ALTER TABLE `shop_master` ADD `shop_code` VARCHAR(155) NOT NULL AFTER `shop_name`;
+
+18-02-2023
+-------------
+
+ALTER TABLE `floor_master` ADD `floor_detail_banner` VARCHAR(500) NULL DEFAULT NULL AFTER `image_name`;
+
+ALTER TABLE `shop_master` ADD `shop_banner_detail` VARCHAR(500) NULL DEFAULT NULL AFTER `banner`;

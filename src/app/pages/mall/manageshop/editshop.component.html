@@ -75,15 +75,24 @@
                                                      
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                    <b>{{'Banner' | translate}}</b>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input type="file"  name="banner" id="banner"  (change)="banneronSelectFile($event)" class="btn btn-primary disabledsave" name="banner" >
-                                                        </div>
-                                                         
+                                            <div class="col-md-6" *ngIf="(malltypeid==1)">
+                                                <b>{{'Shop Front Banner' | translate}}</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="banner" id="banner"  (change)="banneronSelectFile($event,1)" class="btn btn-primary disabledsave" name="banner" >
                                                     </div>
+                                                     
                                                 </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <b>{{'Shop Banner' | translate}}</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="banner" id="banner"  (change)="banneronSelectFile($event,2)" class="btn btn-primary disabledsave" name="banner" >
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
                                                 <div class="col-md-6">
                                                     <p><b>Select country</b></p>
                                                     <div class="form-group">

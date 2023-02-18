@@ -225,5 +225,39 @@ class Common_controller extends CI_Controller {
             /**End**/
     }
    
+   public function sendcontactdetails(){
+       $this->output->set_content_type('application/json');
+      
+        $response=array('status'=>"success",'message'=>"Mail sent successfully");
+        $tableIsexist = 0;
+        $model = json_decode($this->input->post('model',FALSE));
+
+
+         $to = $model->email;
+         $subject = "SHop request";
+         $message = $model->message;
+         $headers = "From: remote.skillers@gmail.com" . "\r\n" .
+         "CC: support@3abc7.com";
+
+         //SMTP Configuration
+         $host = "mail.3abc7.com";
+         $port = "465";
+         $username = "support@3abc7.com";
+         $password = "3abc7123!@#";
+
+        //Sending the email
+         if(mail($to, $subject, $message, $headers)) {
+             $response['exist']=1;
+            $response['status']="Success";
+            $response['message']=" Mail sent successfully";
+         } else {
+              $response['exist']=2;
+            $response['status']="Fail";
+            $response['message']=" Error while on sent mail";
+         }
+                
+           echo json_encode($response,JSON_UNESCAPED_SLASHES);
+          die();
+    }
 }
 ?>

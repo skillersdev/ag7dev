@@ -107,7 +107,7 @@ export class AddfloorComponent implements OnInit {
     });
   }
 
-  onSelectFile(event) {
+  onSelectFile(event,type) {
     if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
         for (let i = 0; i < filesAmount; i++) {
@@ -117,7 +117,17 @@ export class AddfloorComponent implements OnInit {
               this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
               .subscribe( (response) => {
                 // this.urls.push(response.data);
-                this.model.image_name=response.data;
+                /*
+                 type 1 == floor front banner
+                 type 2 == floor detail banner
+                 */
+                if(type==1){
+                  this.model.image_name=response.data;
+                }
+                if(type==2){
+                  this.model.floor_detail_banner=response.data;
+                }
+               
                  
                })
         }

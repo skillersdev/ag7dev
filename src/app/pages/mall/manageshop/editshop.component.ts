@@ -145,7 +145,7 @@ export class EditshopComponent implements OnInit {
       this.citylist=resultdata.result; 
     });
   }
-   banneronSelectFile(event) {
+   banneronSelectFile(event,type) {
       if (event.target.files && event.target.files[0]) {
           var filesAmount = event.target.files.length;
           for (let i = 0; i < filesAmount; i++) {
@@ -154,7 +154,12 @@ export class EditshopComponent implements OnInit {
             
                 this.CommonService.chatuploadFile(AppSettings.imageupload,fileSelected)
                 .subscribe( (response) => {
-                  this.model.banner=response.data;
+                  if(type==1){
+                    this.model.banner=response.data;
+                  }
+                  if(type==2){
+                    this.model.shop_banner_detail=response.data;
+                  }
                   
                 })
           }

@@ -54,16 +54,24 @@
                                                    
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <b>{{'image' | translate}}</b>
+                                            <div class="col-md-6" *ngIf="(malltypeid==1)">
+                                                <b>{{'Floor front banner' | translate}}</b>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                        <input type="file"  name="chatimage" id="chatimage"  (change)="onSelectFile($event,1)" class="btn btn-primary disabledsave" name="scan_img" >
                                                     </div>
                                                      
                                                 </div>
                                             </div>
-
+                                            <div class="col-md-6">
+                                                <b>{{'Floor banner' | translate}}</b>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="file"  name="floorbanner" id="floorbanner"  (change)="onSelectFile($event,2)" class="btn btn-primary disabledsave" name="scan_img" >
+                                                    </div>
+                                                     
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-6">
                                                 <b>{{'Floor Lock Name' | translate}}</b>
