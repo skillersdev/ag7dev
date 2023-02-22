@@ -307,7 +307,7 @@ $route['createcategory'] = 'Shop_controller/add_product_category';
 $route['getcategory'] = 'Shop_controller/getCategorybyShopid/$1';
 $route['deleteshopcategory/(:num)']='Shop_controller/deleteshopcategory/$1';
 
-
+$route['shopAction'] = 'Shop_controller/shopAction';
 
 
 

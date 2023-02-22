@@ -535,4 +535,53 @@ public function getCategorybyShopid()
        die();
 
    }
+
+   public function shopAction(){
+     $this->output->set_content_type('application/json');
+   
+     $response=array('status'=>"success",'message'=>"Order Placed successfully");
+
+     $model = json_decode($this->input->post('model',FALSE));
+
+    
+        $today =date("Y-m-d");
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+
+        $shop_log=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where id='".$model->shopid."' AND '".$model->type."'=0 AND '".$model->typeCount."' = 0");
+        if($shop_log->num_rows()>0)
+        {   
+          
+          $data=array($model->typeCount=>1,'action_created'=>$today,'ip_address'=>$ip_address);
+                    $this->db->where('id',$model->shopid);
+                   $this->db->update($this->db->dbprefix('shop_master'),$data);
+                   $follow=1;
+          
+        }else{
+
+           $shop_log_with_date=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where id='".$model->shopid."' AND date(action_created)='".$today."' AND ip_address='".$ip_address."' AND '".$model->type."'=0 ");
+
+          if($shop_log_with_date->num_rows()==0)
+          {
+              $shp_det=$this->db->query("select * from ".$this->db->dbprefix('shop_master')." where id='".$model->shopid."' ");
+
+               $follow = $shp_det[0][$model->typeCount]+1 ;
+              $data=array($model->typeCount=>$follow,'action_created'=>$today,'ip_address'=>$ip_address);
+                    $this->db->where('id',$model->shopid);
+                   $this->db->update($this->db->dbprefix('shop_master'),$data);
+           }
+           else
+           {
+            $data = $shop_log_with_date->result_array();
+              $follow = $data[0][$model->typeCount];
+           }
+        }
+
+        $response[$model->type]=$follow;
+        
+     
+
+      $response['result']=$response;
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
+       die();
+   }
 }

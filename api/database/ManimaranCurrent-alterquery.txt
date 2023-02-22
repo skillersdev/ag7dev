@@ -15,3 +15,14 @@ ALTER TABLE `shop_master` ADD `shop_code` VARCHAR(155) NOT NULL AFTER `shop_name
 ALTER TABLE `floor_master` ADD `floor_detail_banner` VARCHAR(500) NULL DEFAULT NULL AFTER `image_name`;
 
 ALTER TABLE `shop_master` ADD `shop_banner_detail` VARCHAR(500) NULL DEFAULT NULL AFTER `banner`;
+
+21-02-2023
+----------
+ALTER TABLE `shop_master` ADD `follow` VARCHAR(155) NOT NULL AFTER `usergroup`, ADD `view` VARCHAR(255) NOT NULL AFTER `follow`, ADD `ip_address` VARCHAR(255) NOT NULL AFTER `view`, ADD `action_created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `ip_address`, ADD `count` INT(15) NOT NULL AFTER `action_created`;
+
+22-02-2023
+------------
+ALTER TABLE `shop_master` CHANGE `view` `view` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '1';
+ALTER TABLE `shop_master` CHANGE `follow` `follow` VARCHAR(155) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '1';
+
+ALTER TABLE `shop_master` CHANGE `follow` `follow` INT(15) NOT NULL DEFAULT '1';
