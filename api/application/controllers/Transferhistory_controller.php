@@ -145,8 +145,33 @@ public function add_transfer_history(){
 
              foreach($res->result_array() as $key=>$value)
               { 
-                //$value['username']=$data[0]['username']; 
-                $voucher_type = ($value['voucher_type']==1)?'Website':'E-Learning';
+                // //$value['username']=$data[0]['username']; 
+                // $voucher_type = ($value['voucher_type']==1)?'Website':'E-Learning';
+
+                switch ($value['voucher_type']) 
+                {
+                    case '1':  $voucher_type = 'Entrepreneur'; break;
+                    case '2':  $voucher_type = 'Student';  break;
+                    case '3':  $voucher_type = 'Instructor';  break;    
+                    case '4':  $voucher_type = 'Instructor Renewal';  break;  
+                    case '5':  $voucher_type = 'Entrepreneur Renewal'; break;
+                    case '6':  $voucher_type = 'Student Renewal'; break;
+                    case '7':  $voucher_type = 'Personal'; break;
+                    case '8':  $voucher_type = 'Personal Renewal'; break;
+                    case '9':  $voucher_type = 'Business'; break;
+                    case '10':  $voucher_type = 'Business Renewal'; break;
+                    case '11':  $voucher_type = 'Mall'; break;
+                    case '12':  $voucher_type = 'Mall Renewal'; break;
+                    case '13':  $voucher_type = 'Floor'; break;
+                    case '14':  $voucher_type = 'Floor Renewal'; break;
+                    case '15':  $voucher_type = 'Shop'; break;
+                    case '16':  $voucher_type = 'Shop Renewal'; break;
+                    default:
+                        $voucher_type ='Website';
+                        break;
+                }
+
+
                 $result[]=array('transfer_from'=>$value['transfer_from'],'transfer_to'=>$value['transfer_to'],'amt'=>$value['amt'],'voucher_type'=>$voucher_type);
               }
             //$response['message']="User name already exists";
