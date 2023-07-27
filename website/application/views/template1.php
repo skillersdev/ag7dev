@@ -81,6 +81,18 @@
   <style type="text/css">    
     .mySlides {display: none;}
     .pimage0{display:block;}
+    #websiteLogo{
+    width: auto;
+    height: 35px;
+    background: #f6f7fd;
+    padding: 5px;
+    padding-right: 50px;
+    border-radius: 12px;
+    font-family: fantasy;
+    color: #060c22;
+    padding-left: 50px;
+    }
+
   </style>
 
 </head>
@@ -94,7 +106,12 @@
     <div class="container">
       <div id="logo" class="pull-left">        
         <a href="#intro" class="scrollto">
-          <img src="<?php echo base_url();?>/assets/img/logo.png" alt="" title="">
+          
+          <?php if($website_logo==""){ ?>
+            <div id="websiteLogo"> <?php echo $website; ?> </div>
+          <?php }else{ ?>
+            <img src="<?php echo base_url();?>/assets/websiteLogos/<?php echo $website_logo; ?>" alt="" title="">
+          <?php } ?>
         </a>
       </div>
       <nav id="nav-menu-container">

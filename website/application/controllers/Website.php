@@ -199,6 +199,7 @@ class Website extends CI_Controller {
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
 			$data['website']=$val[0]['website'];
+			$data['website_logo']="";
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			$data['websitename']=$websitename;
