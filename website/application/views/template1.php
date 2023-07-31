@@ -123,7 +123,7 @@
           <?php if($logo_img=="" && $logo_name=="" ){ ?>
             <div id="websiteLogo"> <?php echo $website; ?> </div>
           <?php }else if($logo_img !=""){ ?>
-            <div id="websiteLogoImg"><img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>"/></div>
+            <div id="websiteLogoImg"><img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>" style="max-width:125px; max-height:40px;"/></div>
           <?php }else{ ?>
             <div id="websiteLogo"> <?php echo $logo_name; ?> </div>
             <?php } ?>

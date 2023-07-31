@@ -152,7 +152,7 @@ export class PackageinfoComponent implements OnInit {
     this.model.p_id = pack_id_user;
   }
   updateLogo(){
-    alert("checcking updateLogo");
+  
     console.log(this.model);
     
     if(this.model){
