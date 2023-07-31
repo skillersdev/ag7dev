@@ -91,6 +91,8 @@
     "Edit":"편집",
     "Update":"업데이트",
     "Section":"섹션",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"재정렬",
     "Save":"저장",
     "order":"주문",
@@ -169,6 +171,7 @@
     "Voucher to Share":"공유 바우처",
     "WEBSITE INFO":"웹사이트 정보",
     "Change Template":"템플릿 변경",
+    "Change Logo":"로고 변경",
     "Slider":"슬라이더",
     "Gallery":"갤러리",
    	"Album":"앨범",
@@ -264,7 +267,9 @@
     "product-price":"Product Price",
     "Entrepreneur":"Entrepreneur",
     "Business":"Business",
-    "Personal":"Personal"
+    "Personal":"Personal",
+    "Grow":"Grow",
+    "Exchangecentre": "Exchange Centre"
 
 
 

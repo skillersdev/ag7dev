@@ -129,8 +129,7 @@ class Website extends CI_Controller {
 
 				foreach($section_result_array as $key=>$value)
 		          {
-					//$section_result['section_name']=$value['section_name'];
-
+				
 					$Getsection_item=$this->db->select("*")->where(['section'=>$value['id'],'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');
 					$Getsection_item_result_array =$Getsection_item->result_array();
 
@@ -147,6 +146,7 @@ class Website extends CI_Controller {
 						$section_result[$value['section_name']][$key_item]['preview_file'] = $item_value['preview_file'];
 						$section_result[$value['section_name']][$key_item]['likes'] = $item_value['total_likes'];
 						$section_result[$value['section_name']][$key_item]['views'] = $item_value['total_views'];
+						$section_result[$value['section_name']][$key_item]['show_menu'] = $value['isSectionMenuShow'];
 					}
 				}
 			}
@@ -199,7 +199,8 @@ class Website extends CI_Controller {
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
 			$data['website']=$val[0]['website'];
-			$data['website_logo']="";
+			$data['logo_name']=$val[0]['logo_name'];	
+			$data['logo_img']=$val[0]['logo_img'];	
 			$data['myvideo_det']=$myvideos_result;
 			$data['slider_image']=$image_array;
 			$data['websitename']=$websitename;

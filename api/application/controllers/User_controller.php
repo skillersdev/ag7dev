@@ -1007,6 +1007,44 @@ class User_controller extends CI_Controller {
          die();
     }
 
+    public function uploadlogoimage()
+    {
+       $path = 'website_logo/';
+        $Response=[];
+       
+        if (isset($_FILES['file'])) 
+          {
+            $originalName = $_FILES['file']['name'];
+            $ext = '.'.pathinfo($originalName, PATHINFO_EXTENSION);
+             
+            // if($ext==".img"||$ext==".jpg"||$ext==".jpeg"||$ext==".png")
+            // {
+
+              $generatedName = md5($_FILES['file']['tmp_name']).$ext;
+
+              $filePath = $path.$generatedName;
+              $logo_image_path=$filePath;
+           
+              if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) 
+              {
+                $Response['status']="success"; 
+                $Response['data']=$logo_image_path;
+              }
+            // }
+            // else 
+            // {
+            //     $Response['status']="fail"; 
+            //     $Response['data']="Upload only valid format images";
+            // }
+          }
+        else {
+            $Response['status']="fail"; 
+            $Response['data']="Error While upload on image";
+         }
+          echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+         die();
+    }
+
     public function resetpassword()
     {
         $model = json_decode($this->input->post('model',FALSE));

@@ -24,6 +24,8 @@ export class PackageinfoComponent implements OnInit {
   appwebsiteurl:string=AppSettings.WEBSITE_URL;
   DeletepackageRestApiUrl:string = AppSettings.deletePackageDetails;
   InstructorPasswordmodel:any={};
+  uploadlogoimageAPI:string=AppSettings.uploadlogoimage;
+  updatelogopackagevsuserAPI:string=AppSettings.updatelogopackagevsuser;
 
   packagelist:Array<Object>;
   model:any={};
@@ -41,6 +43,8 @@ export class PackageinfoComponent implements OnInit {
   Isinstructormodal:Boolean=false;
   isPaid:Boolean=false;
   package_list_byInstructor:Array<Object>;
+  uploadLogofile:any={};
+
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
 
   ngOnInit() {
@@ -139,6 +143,50 @@ export class PackageinfoComponent implements OnInit {
     
     
   }
+
+  onChangeLogo(package_name:any,package_price:any,userid:any,pack_id:any,pack_id_user:any,website:any,template:any,pck_type:any,eusername:any,logo_name:any,logo_img:any)
+  {
+    this.model.website = website;
+    this.model.logo_name = logo_name;
+    this.model.logo_img = logo_img;
+    this.model.p_id = pack_id_user;
+  }
+  updateLogo(){
+    alert("checcking updateLogo");
+    console.log(this.model);
+    
+    if(this.model){
+      this.CommonService.insertdata(this.updatelogopackagevsuserAPI,this.model)
+      .subscribe(package_det =>{       
+        swal('','Logo Updated Successfully','success');  
+
+          $('#clogoModal').modal('toggle');
+          this.ngOnInit();
+      });
+    }
+    
+    // 
+  }
+
+  fileEvent($event) {
+    this.uploadLogofile = $event.target.files[0];
+    $('.preloader').show();
+           this.CommonService.uploadFile(this.uploadlogoimageAPI,this.uploadLogofile)
+          .subscribe( (response) => {
+             if(response.status=='success')
+             {
+              this.model.logo_img = response.data;
+              $('.preloader').hide();
+              
+             }
+              else{
+                swal('',response.data,'Oops!');
+              }
+         });
+   
+    
+  }
+
 
   updatetemplate()
   {

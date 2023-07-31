@@ -92,6 +92,8 @@
     "Edit":"Edit",
     "Update":"Update",
     "Section":"Section",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"Reorder",
     "Save":"Save",
     "order":"Order",
@@ -107,7 +109,7 @@
     "Section Name":"Section Name",
     "Description":"Description",
     "Payment":"Payment",
-    "type":"type",
+    "type":"Type",
     "Upload type":"Upload type",
     "Service Image":"Service Image",
     "My-services":"My Services",
@@ -171,6 +173,7 @@
     "Voucher to Share":"ME to Share",
     "WEBSITE INFO":"WEBSITE INFO",
     "Change Template":"Change Template",
+    "Change Logo":"Change Logo",
     "Slider":"Slider",
     "Gallery":"Gallery",
    	"Album":"Album",
@@ -266,7 +269,9 @@
     "product-price":"Product Price",
     "Entrepreneur":"Entrepreneur",
     "Business":"Business",
-    "Personal":"Personal"
+    "Personal":"Personal",
+    "Grow":"Grow",
+    "Exchangecentre": "Exchange Centre"
 
 
 

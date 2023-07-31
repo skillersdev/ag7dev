@@ -185,6 +185,14 @@
                             </a>
                         </div>
 
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngIf="userRole!='P'">
+                            <div class="info-box bg-blue">
+                                <div class="content" style="margin-left: auto; margin-right: auto; padding: 16px 17px !important;">
+                                    <div class="text col-blue" style="font-size: 18px;">{{'Voucher'| translate }} {{'Exchangecentre'| translate}}</div>
+                                
+                                </div>
+                            </div>
+                        </div>
                     
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
@@ -192,7 +200,7 @@
                                     <i class="material-icons col-blue">business_center</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Entrepreneur'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Entrepreneur'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.tot_amt}}</div>
                                 </div>
                             </div>
@@ -205,7 +213,7 @@
                                     <i class="material-icons col-blue">business</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Business'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Business'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.bw_amount}}</div>
                                 </div>
                             </div>
@@ -217,7 +225,7 @@
                                     <i class="material-icons col-blue">person</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Personal'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Personal'| translate}} {{'Create'|translate}}  {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.pw_amount}}</div>
                                 </div>
                             </div>
@@ -228,7 +236,7 @@
                                     <i class="material-icons col-blue">library_books</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Instructor'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Instructor'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.instructor_amount}}</div>
                                 </div>
                             </div>
@@ -240,7 +248,7 @@
                                     <i class="material-icons col-blue">school</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Student'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Student'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.e_amt}}</div>
                                 </div>
                             </div>
@@ -252,7 +260,7 @@
                                     <i class="material-icons col-blue">local_mall</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Mall'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Mall'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.mall_amount}}</div>
                                 </div>
                             </div>
@@ -264,7 +272,7 @@
                                     <i class="material-icons col-blue">domain</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Floor'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Floor'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.floor_amount}}</div>
                                 </div>
                             </div>
@@ -276,7 +284,7 @@
                                     <i class="material-icons col-blue">store_mall_directory</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Shop'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Shop'| translate}} {{'Create'|translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.shop_amount}}</div>
                                 </div>
                             </div>
@@ -285,10 +293,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">business_center</i>
+                                    <i class="material-icons col-red">business_center</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Entrepreneur'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Entrepreneur'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.tamount_renewal}}</div>
                                 </div>
                             </div>
@@ -296,10 +304,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">business</i>
+                                    <i class="material-icons col-red">business</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Business'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Business'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.bw_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -307,10 +315,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">person</i>
+                                    <i class="material-icons col-red">person</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Personal'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Personal'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.pw_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -318,10 +326,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">library_books</i>
+                                    <i class="material-icons col-red">library_books</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Instructor'| translate}}  {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Instructor'| translate}}  {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.instructor_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -329,10 +337,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">school</i>
+                                    <i class="material-icons col-red">school</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Student'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Student'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.eamount_renewal}}</div>
                                 </div>
                             </div>
@@ -340,10 +348,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">local_mall</i>
+                                    <i class="material-icons col-red">local_mall</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Mall'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Mall'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.mall_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -351,10 +359,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">domain</i>
+                                    <i class="material-icons col-red">domain</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Floor'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Floor'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.floor_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -362,10 +370,10 @@
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngIf="userRole!='P'">
                             <div class="info-box-4 hover-zoom-effect">
                                 <div class="icon">
-                                    <i class="material-icons col-blue">store_mall_directory</i>
+                                    <i class="material-icons col-red">store_mall_directory</i>
                                 </div>
                                 <div class="content">
-                                    <div class="text">{{'Shop'| translate}} {{'Renew'| translate}} {{'Voucher'| translate}}</div>
+                                    <div class="text">{{'Shop'| translate}} {{'Grow'| translate}} {{'Voucher'| translate}}</div>
                                     <div class="number">{{model.shop_amount_renewal}}</div>
                                 </div>
                             </div>
@@ -669,7 +677,7 @@
                     <div class="card" *ngIf="userRole!='P'">
                         <div class="header">
                             <h2>{{'Transfer' | translate}} {{'Voucher' | translate}}</h2>
-                            <span>(to share the balance, you should have more than RV 1)</span>
+                            <span>(to share the balance, you should have more than 1 ME)</span>
                         </div>
                         <div class="body">
                       
@@ -680,22 +688,23 @@
                                     <div class="form-line">
                                        <select class="form-control show-tick" [(ngModel)]="transmodel.voucher_type" #voucher_type="ngModel" name="voucher_type"  required> 
                                             <option value="">{{'Select' | translate}} {{'Voucher' | translate}}</option>
-                                            <option value="1">Entrepreneur {{'Voucher' | translate}}</option>
-                                            <option value="5">Entrepreneur Renewal {{'Voucher' | translate}}</option>
-                                            <option value="3">Instructor {{'Voucher' | translate}}</option>
-                                            <option value="4">Instructor Renewal {{'Voucher' | translate}}</option>
-                                            <option value="2">Student {{'Voucher' | translate}}</option>
-                                            <option value="6">Student Renewal {{'Voucher' | translate}}</option>
-                                            <option value="7">Personal {{'Voucher' | translate}}</option>
-                                            <option value="8">Personal Renewal {{'Voucher' | translate}}</option>
-                                            <option value="9">Business {{'Voucher' | translate}}</option>
-                                            <option value="10">Business Renewal {{'Voucher' | translate}}</option>
-                                            <option value="11">Mall {{'Voucher' | translate}}</option>
-                                            <option value="12">Mall Renewal {{'Voucher' | translate}}</option>
-                                            <option value="13">Floor {{'Voucher' | translate}}</option>
-                                            <option value="14">Floor Renewal {{'Voucher' | translate}}</option>
-                                            <option value="15">Shop {{'Voucher' | translate}}</option>
-                                            <option value="16">Shop Renewal {{'Voucher' | translate}}</option>
+                                            <option value="1">{{'Entrepreneur'| translate}} {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="3">{{'Instructor' | translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="2">{{'Student' | translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="7">{{'Personal' | translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="9">{{'Business' |translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="11">{{'Mall'| translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="13">{{'Floor'| translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            <option value="15">{{'Shop'| translate}}  {{'Create'|translate}} {{'Voucher' | translate}}</option>
+                                            
+                                            <option value="5">{{'Entrepreneur'| translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="4">{{'Instructor' | translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="6">{{'Student' | translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="8">{{'Personal' | translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="10">{{'Business' |translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="12">{{'Mall'| translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="14">{{'Floor'| translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
+                                            <option value="16">{{'Shop'| translate}} {{'Grow'| translate}} {{'Voucher' | translate}}</option>
                                         </select>
                                     </div>  
                                     </div>    

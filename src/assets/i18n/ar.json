@@ -72,6 +72,8 @@
     "Edit":"Edit",
     "Update":"Update",
     "Section":"Section",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"Reorder",
     "Section Item":"Section Item",
     "Website":"Website",
@@ -139,6 +141,8 @@
    	"Channel URL":"Channel URL",
    	"Show Premium videos":"Show Premium videos",
    	"Select Premium days":"Select Premium days",
-   	"Premium Amount":"Premium Amount"
+   	"Premium Amount":"Premium Amount",
+       "Grow":"Grow",
+       "Exchangecentre": "Exchange Centre"
 
 }

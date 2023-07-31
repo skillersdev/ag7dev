@@ -377,6 +377,8 @@ class Package_controller extends CI_Controller {
                     $package['tamount']= $data[0]['tamount'];
                     $package['website']= $value['website'];
                     $package['template']= $value['template'];
+                    $package['logo_name']= $value['logo_name'];
+                    $package['logo_img']= $value['logo_img'];
                     $package['eamount']= $data[0]['eamount'];
 
                     $package['instructor_amount']= $data[0]['instructor_amount'];
@@ -515,6 +517,38 @@ class Package_controller extends CI_Controller {
 
         if ($result) {
             $response['message']="Template updated successfully";
+        }
+        else
+        {
+        $response['status']="failure";
+        $response['message']="Record has not been updated successfully";
+        }
+        
+
+    } else {
+        $response['status']="failure";
+        $response['message']="Record has not been updated successfully";
+    }
+
+    die(json_encode($response, JSON_UNESCAPED_SLASHES));
+   }
+
+   public function updatelogopackagevsuser()
+   {
+    $this->output->set_content_type('application/json');
+    $response=array('status'=>"success");
+    $model = json_decode($this->input->post('model',FALSE));
+    // print_r($model); exit;
+    if (isset($model)) {
+      $data = array(
+        "logo_name" => $model->logo_name,
+        "logo_img" => $model->logo_img
+      );
+        $this->db->where('id',$model->p_id);
+        $result=$this->db->update('user_vs_packages', $data);
+
+        if ($result) {
+            $response['message']="Logo updated successfully";
         }
         else
         {

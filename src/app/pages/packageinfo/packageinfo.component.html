@@ -259,6 +259,61 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="clogoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Change Logo' | translate}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="" #addpackage="ngForm">
+                                            
+                                            
+                                            <div class="">
+                                                <p><b>{{'website-name' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                         readonly="readonly">
+                                                         <!-- <input type="hidden" id="p_id" name="p_id" class="form-control" [(ngModel)]="model.p_id" #p_id="ngModel"> -->
+                                                    </div>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <p><b>{{'Logo' | translate}} {{'Name' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="logo_name" name="logo_name" class="form-control" placeholder="Enter logoName" [(ngModel)]="model.logo_name" #logo_name="ngModel" 
+                                                         >
+                                                    </div>
+                                                    <span [hidden]="logo_name.valid || logo_name.pristine" class="text-danger">Logo Name is required</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <p><b>{{'Upload' | translate}} {{'Logo' | translate}} {{'image' | translate}}</b></p>
+                                                <div class="form-group">
+                                                   <div class="form-line">
+                                                         <input type="file" name="logoimage" (change)=fileEvent($event) required>   
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button"  (click)="updateLogo()" class="btn btn-primary">{{'Change Logo' | translate}}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable packinfo_table" id="dataTable">
                                 <thead>
@@ -266,6 +321,7 @@
                                         <th>#</th>
                                         <th>{{'Website link' | translate}}</th>
                                         <th>{{'Change Template' | translate}}</th>
+                                        <th>{{'Change Logo' | translate}}</th>
                                         <th>{{'actions' | translate}}</th>
                                         <th>{{'Package' | translate}}{{'Taken' | translate}}</th>
                                         <th>{{'Marketers' | translate}}</th>
@@ -297,6 +353,11 @@
                                                     Change Password
                                              </a>                                          
                                         </span>
+                                    </td>
+                                    <td>
+                                        <a *ngIf="data.pck_type==1 || data.pck_type==4 || data.pck_type==5" href="#" (click)="onChangeLogo(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer,data.logo_name,data.logo_img)" data-toggle="modal" data-target="#clogoModal">
+                                        <span>{{'Change Logo' | translate}}</span>
+                                    </a>
                                     </td>
                                         
                                         <td>

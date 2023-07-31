@@ -91,6 +91,8 @@
     "Edit":"Bearbeiten",
     "Update":"Aktualisieren",
     "Section":"Abteilung",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"Neu anordnen",
     "Save":"Speichern",
     "order":"Bestellung",
@@ -169,6 +171,7 @@
     "Voucher to Share":"Gutschein zum Teilen",
     "WEBSITE INFO":"WEBSITE INFO",
     "Change Template":"Vorlage ändern",
+    "Change Logo":"Logo ändern",
     "Slider":"Schieberegler", 
     "Gallery":"Galerie",
    	"Album":"Album",
@@ -264,7 +267,9 @@
     "product-price":"Product Price",
     "Entrepreneur":"Entrepreneur",
     "Business":"Business",
-    "Personal":"Personal"
+    "Personal":"Personal",
+    "Grow":"Grow",
+    "Exchangecentre": "Exchange Centre"
 
 
 

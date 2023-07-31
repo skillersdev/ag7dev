@@ -91,6 +91,8 @@
     "Edit":"Düzenle",
     "Update":"Güncelleme",
     "Section":"Bölüm",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"Yeniden Sırala",
     "Save":"Kaydet",
     "order":"Sipariş",
@@ -169,6 +171,7 @@
     "Voucher to Share":"Paylaşılacak Kupon",
     "WEBSITE INFO":"SİTE BİLGİSİ",
     "Change Template":"Şablonu Değiştir",
+    "Change Logo":"Logoyu Değiştir",
     "Slider":"Kaydırıcı",
     "Gallery":"Galeri",
    	"Album":"Albüm",
@@ -264,7 +267,9 @@
     "product-price":"Product Price",
     "Entrepreneur":"Entrepreneur",
     "Business":"Business",
-    "Personal":"Personal"
+    "Personal":"Personal",
+    "Grow":"Grow",
+    "Exchangecentre": "Exchange Centre"
 
 
 

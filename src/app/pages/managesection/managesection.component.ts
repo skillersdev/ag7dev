@@ -22,6 +22,7 @@ export class ManagesectionComponent implements OnInit {
  allmodel:any={};
  sectionList:Array<Object>;
  buttonlist:Array<Object>;
+ menulist:Array<Object>;
  defaultsectionlist:Array<Object>;
  qtd:any={};
  checked_hide:any={};
@@ -34,6 +35,7 @@ export class ManagesectionComponent implements OnInit {
     .subscribe(resultdata =>{   
       this.sectionList=resultdata.result; 
       this.buttonlist=resultdata.checkedresult; 
+      this.menulist=resultdata.menucheckedresult; 
       this.loginService.viewCommontdataTable('section_table','section_table');
     });
 
@@ -90,6 +92,7 @@ export class ManagesectionComponent implements OnInit {
             .subscribe(resultdata =>{   
               this.sectionList=resultdata.result; 
               this.buttonlist=resultdata.checkedresult; 
+              this.menulist=resultdata.menucheckedresult; 
             });
             // this.ngOnInit();
            
@@ -103,12 +106,27 @@ export class ManagesectionComponent implements OnInit {
  	this.model.Isshow = (event.checked==true)?1:0;
    this.model.secId = id;
    this.model.default=1;
+   console.log(this.model)
  	 this.CommonService.insertdata(AppSettings.updateSectionbytoggle,this.model)
     .subscribe(resultdata =>{   
      // this.ngOnInit();
       $('.preloader').hide();
     });  	
  }
+
+ updateMenusectionData(event:any,id:any)
+ {   
+   $('.preloader').show();   
+ 	this.model.Isshowmenu = (event.checked==true)?1:0;
+   this.model.secId = id;
+   this.model.default=1;
+ 	 this.CommonService.insertdata(AppSettings.updateSectionbytoggle,this.model)
+    .subscribe(resultdata =>{   
+     // this.ngOnInit();
+      $('.preloader').hide();
+    });  	
+ }
+
  updatesectionDefault(eventValue:any,idx:any)
  {
    this.allmodel.section = eventValue;

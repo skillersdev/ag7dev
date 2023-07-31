@@ -137,7 +137,7 @@ $route['uploadVideoswebsite'] = "Videosection_controller/uploadvideoswebsite";
 $route['uploadvideodata'] = 'Videosection_controller/updatevideodata';
 $route['deletevideosection/(:num)'] = 'Videosection_controller/deletevideosection/$1';
 
-
+$route['uploadlogoimage'] = 'User_controller/uploadlogoimage';
 $route['editvideodata/(:num)']= "Videosection_controller/editvideodata/$1";
 $route['uploadcropimage']= 'User_controller/uploadcropimage';
 $route['uploadAdvfile']= 'User_controller/uploadAdvfile';
@@ -182,6 +182,8 @@ $route['getpackagenotbuy/(:num)'] = 'Package_controller/get_package_not_buy/$1';
 $route['getpackagebyinstructor']= 'Package_controller/getpackagebyinstructor';
 $route['addpackagevsuser']= 'Package_controller/addpackagevsuser';
 $route['updatetemplatepackagevsuser']= 'Package_controller/updatetemplatepackagevsuser';
+$route['updatelogopackagevsuser']= 'Package_controller/updatelogopackagevsuser';
+
 
 $route['getPackageType/(:num)'] = 'Package_controller/getPackageType/$1';
 $route['getFloorname/(:num)'] = 'Floor_controller/getFloordetails/$1';

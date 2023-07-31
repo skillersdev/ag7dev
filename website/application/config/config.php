@@ -33,6 +33,8 @@ $config['path_url'] = 'http://localhost/3abc7dev/ag7dev/api/';
 
 $config['website_path']= 'http://localhost/3abc7dev/ag7dev/website/';
 
+$config['logo_img_path']= 'http://localhost/3abc7dev/ag7dev/api/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File

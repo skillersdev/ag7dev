@@ -84,8 +84,10 @@ class Section_controller extends CI_Controller {
           foreach($res->result_array() as $key=>$value)
           {               
             $Ischecked = ($value['Issection_show']==1)?true:false;
+            $isSectionMenuShow = ($value['isSectionMenuShow']==1)?true:false;
             $result[]=array('id'=>$value['id'],'website'=>$value['website'],'section'=>$value['section_name'],'description'=>$value['long_desc'],'created_date'=>$value['cdate'],'Issection_show'=>$value['Issection_show']);
             $checkdresult[]=array('IsEnable'=>$Ischecked);
+            $menucheckedresult[]=array('IsEnable'=>$isSectionMenuShow);
           }
         }else{
             $response['status']="failure";
@@ -93,6 +95,8 @@ class Section_controller extends CI_Controller {
         }
         $response['result']=$result;
         $response['checkedresult']= $checkdresult;
+        $response['menucheckedresult']= $menucheckedresult;
+        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
@@ -121,7 +125,7 @@ class Section_controller extends CI_Controller {
           foreach($res->result_array() as $key=>$value)
           {               
 
-            $result[]=array('id'=>$value['id'],'section'=>$value['section_name'],'section_order'=>$value['section_order']);
+            $result[]=array('id'=>$value['id'],'section'=>$value['section_name'],'isSectionMenuShow'=>$value['isSectionMenuShow'],'section_order'=>$value['section_order']);
           }
         }else{
             $response['status']="failure";
@@ -309,18 +313,23 @@ class Section_controller extends CI_Controller {
           $res_chk=$this->db->query("select id from ".$this->db->dbprefix('manage_section')." where id='".$model->secId."' ");
         //print_r($res_chk);die;
         if($res_chk->num_rows()>0){
-          if($model->Isshow==1)
+          
+          if(isset($model->Isshow))
           {
-            $data=array('Issection_show'=>'1');
+            $data['Issection_show']=$model->Isshow;
           }
-            else{
-            $data=array('Issection_show'=>'0');   
-            }
-            $this->db->where('id',$model->secId );
-            $this->db->update($this->db->dbprefix('manage_section'),$data);
+          
+          if(isset($model->Isshowmenu))
+          {
+            $data['isSectionMenuShow']=$model->Isshowmenu;
+          }
 
-            $response['status']="success";
-            $response['message']="section record has been updated successfully";
+        
+          $this->db->where('id',$model->secId );
+          $this->db->update($this->db->dbprefix('manage_section'),$data);
+
+          $response['status']="success";
+          $response['message']="section record has been updated successfully";
             
         }else{
             $response['status']="failure";
@@ -335,15 +344,23 @@ class Section_controller extends CI_Controller {
             {
               $data=array('Issection_show'=>'0');
             }
-              else{
+            else{
               $data=array('Issection_show'=>'1');   
-              }
-              $this->db->where('id',$model->sectionId );
-              $this->db->update($this->db->dbprefix('manage_section'),$data);
-  
-              $response['status']="success";
-              $response['message']="section record has been updated successfully";
-              
+            }
+            if($model->Isshowmenu==1)
+            {
+              $data=array('isSectionMenuShow'=>'1');
+            }
+            else{
+              $data=array('isSectionMenuShow'=>'0');   
+            }  
+            
+            $this->db->where('id',$model->sectionId );
+            $this->db->update($this->db->dbprefix('manage_section'),$data);
+
+            $response['status']="success";
+            $response['message']="section record has been updated successfully";
+            
           }else{
               $response['status']="failure";
               $response['message']="Invalid Attempt!!.. Access denied..";    

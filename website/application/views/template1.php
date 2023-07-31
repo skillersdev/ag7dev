@@ -5,6 +5,7 @@
 
   $login_url = $this->config->item('login_url');
   $image_path = $this->config->item('base_path');
+  $logo_img_path = $this->config->item('logo_img_path');
 
   $last_slider_image = end($slider_image);
 ?>
@@ -16,10 +17,10 @@
 
 <head>
   <meta charset="utf-8">
-  <title>3ABC7</title>
+  <title><?php echo $website; ?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta content="<?php echo $website; ?>" name="keywords">
+  <meta content="<?php echo $website; ?>" name="description">
   <style>
     .fb-profile img.fb-image-lg{
       z-index: 0;
@@ -87,7 +88,19 @@
     background: #f6f7fd;
     padding: 5px;
     padding-right: 50px;
-    border-radius: 12px;
+    border-radius: 40px 0 40px 0;
+    font-family: fantasy;
+    color: #060c22;
+    padding-left: 50px;
+    }
+
+    #websiteLogoImg{
+    width: auto;
+    height: auto;
+    background: #f6f7fd;
+    padding: 5px;
+    padding-right: 50px;
+    border-radius: 40px 0 40px 0;
     font-family: fantasy;
     color: #060c22;
     padding-left: 50px;
@@ -107,11 +120,13 @@
       <div id="logo" class="pull-left">        
         <a href="#intro" class="scrollto">
           
-          <?php if($website_logo==""){ ?>
+          <?php if($logo_img=="" && $logo_name=="" ){ ?>
             <div id="websiteLogo"> <?php echo $website; ?> </div>
+          <?php }else if($logo_img !=""){ ?>
+            <div id="websiteLogoImg"><img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>"/></div>
           <?php }else{ ?>
-            <img src="<?php echo base_url();?>/assets/websiteLogos/<?php echo $website_logo; ?>" alt="" title="">
-          <?php } ?>
+            <div id="websiteLogo"> <?php echo $logo_name; ?> </div>
+            <?php } ?>
         </a>
       </div>
       <nav id="nav-menu-container">
@@ -141,12 +156,15 @@
             }
             foreach ($all_details as $key => $value) 
             {
+              if($value[0]['show_menu']==1){
               ?>
             <li class=""><a href="#<?php echo $key;?>">
-                <?php echo $key?>
+                <?php echo $key;?>
               </a>
             </li>
-         <?php } ?> 
+         <?php 
+          }
+        } ?> 
           <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
           <li>
             <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 

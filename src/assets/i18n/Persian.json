@@ -93,6 +93,8 @@
     "Edit":"ویرایش",
     "Update":"به روز رسانی",
     "Section":"بخش",
+    "Menu":"Menu",
+    "Show":"Show",
     "Reorder":"ترتیب دوباره",
     "Save":"صرفه جویی",
     "order":"سفارش",
@@ -167,6 +169,7 @@
     "Voucher to Share":"کوپن برای به اشتراک گذاشتن",
     "WEBSITE INFO":"اطلاعات وبسایت",
     "Change Template":"تغییر الگوی",
+    "Change Logo":"تغییر لوگو",
     "Slider":"لغزنده",
     "Gallery":"گالری",
    	"Album":"آلبوم",
@@ -302,5 +305,7 @@
     "product-price":"Product Price",
     "Entrepreneur":"Entrepreneur",
     "Business":"Business",
-    "Personal":"Personal"
+    "Personal":"Personal",
+    "Grow":"Grow",
+    "Exchangecentre": "Exchange Centre"
 }

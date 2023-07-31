@@ -25,9 +25,12 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                       <div class="header">
                           <h2>
                               {{'Manage' | translate}} {{'Section' | translate}}
-                              <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">{{'Reorder' | translate}}</button>
-                               <button type="button" (click)="navigateAddsection()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}}{{'Section' | translate}}</button>
-                          </h2>
+                          </h2><br/>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <button type="button" (click)="managereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">{{'Reorder' | translate}}</button>
+                             <button type="button" (click)="navigateAddsection()" class="btn btn-success waves-effect pull-right">{{'Add' | translate}}{{'Section' | translate}}</button>
+
+                            </div>
                       </div>
                       <div class="body">
                             <div class="table-responsive">
@@ -37,7 +40,10 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                                       <th>#</th>
                                       <th>{{'Section' | translate}}</th>
                                       <th>{{'Website' | translate}}</th>
+                                      <th>{{'Show' | translate}} {{'Section' | translate}}</th>
+                                      <!-- <th>{{'Show' | translate}} {{'Menu' | translate}}</th> -->
                                       <th>{{'actions' | translate}}</th>
+                                      
                                   </tr>
                               </thead>
                               <tbody>
@@ -56,9 +62,15 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                                       <td>{{data.section}}</td>
                                       <td>{{data.website}}</td> 
                                       <td>
+                                        <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="buttonlist[idx].IsEnable" ></p-inputSwitch>
+                                      </td>
+                                      <!-- <td>
+                                        <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updateMenusectionData($event,data.id)" [(ngModel)]="menulist[idx].IsEnable" ></p-inputSwitch>
+                                      </td> -->
+                                      <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>
-                                        <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="buttonlist[idx].IsEnable" ></p-inputSwitch>
+                                     
                                         <!-- <p-inputSwitch styleClass="ui-inputswitch-checked" *ngIf="data.Issection_show==0" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="data.IsEnable" ></p-inputSwitch> -->
                                         <!-- <ui-switch *ngIf="data.Issection_show==1" size="small" (change)="updatesectionData($event,data.id)" [checked]="false" checkedLabel="show"></ui-switch>
                                         <ui-switch *ngIf="data.Issection_show==0" size="small" (change)="updatesectionData($event,data.id)" checked uncheckedLabel="hide"></ui-switch> -->
