@@ -51,18 +51,132 @@
     }
     }
     video {
-  width: 100%;
-  height: auto;
-}
+      width: 100%;
+      height: auto;
+    }
 
-#mimage2 img {
-  width: 100%;
-  height: auto;
-} 
+    #mimage2 img {
+      width: 100%;
+      height: auto;
+    } 
+
+   
+    /* Add custom CSS styles for arrow icons and positioning */
+    .slider {
+      /* position: relative; */
+      /* max-height: 80vh; */
+    }
+
+    .slider {
+      display: flex;
+      /* overflow-x: auto; */
+      position: relative; /* Add position relative to the slider container */
+      max-height:85%;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Center elements vertically and horizontally */
+      position: relative; /* Add position relative to each slide */
+    }
+
+    .slide img {
+      width: 100%; /* Make the image take the full width of the slide */
+      height: 100%; /* Allow the height to adjust automatically based on the image aspect ratio */
+    }
+
+    .slide h1 {
+      margin-top: 10px;
+      color: #f82249; /* Set the color of the title */
+      font-size: 40px; /* Set the font size of the title */
+      font-weight:600;
+      line-height: 28px;
+      position: absolute;
+      top: 50%; /* Position the title 50% from the top of the slide */
+      left: 50%; /* Position the title 50% from the left of the slide */
+      transform: translate(-50%, -50%); /* Center the title within the slide */
+      text-align: center; /* Center the text horizontally */
+      width: 70%; /* Make the title take the full width of the slide */
+      background:#1e243617;
+      padding:10px;
+      transition: opacity 0.5s ease;
+      border-radius:10px 80px 0px 87px;
+    }
+
+    
+    @media (max-width:768px)
+    {
+      .slide h1 {
+        font-size: 30px; 
+      }
+      .sliderdesc{
+        font-size: 15px;
+      }
+    }
+
+    .sliderdesc{
+      margin-top:10px;
+      text-wrap:wrap;
+      font-size: 20px;
+      color: #fff;
+      font-weight: 300;
+      margin-bottom: 20px;
+
+    }
+
+
+
+
+    .slider .slick-arrow {
+      font-size: 0; 
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* border-radius: 50%; */
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .slider .slick-arrow:hover {
+      background:rgb(10 15 36);
+    }
+
+    .slider .slick-prev {
+      left: 10px;
+    }
+
+    .slider .slick-next {
+      right: 10px;
+    }
+
+    /* Hide default slick dots */
+    .slick-dots {
+      display: none;
+    }
+
+    .slider img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit:cover;
+    }
+    .slick-list{
+      background:#070d23;
+    }
+    /* .slick-slide{
+      height:90% !important;
+    } */
+ 
   </style>
  
   <!-- Favicons -->
-  <link href="<?php echo base_url();?>/assets/img/favicon.png" rel="icon">
+  <!-- <link href="<?php //echo base_url();?>/assets/img/favicon.png" rel="icon"> -->
   <link href="<?php echo base_url();?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -108,6 +222,9 @@
 
   </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+  
 </head>
 
 <body>
@@ -132,8 +249,21 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about"></a></li>
+          <!-- <li><a href="#about"></a></li> -->
             <?php 
+            foreach ($all_details as $key => $value) 
+            {
+              if($value[0]['show_menu']==1){
+              ?>
+                <li class="">
+                  <a href="#<?php echo $key;?>">
+                    <?php echo $key;?>
+                  </a>
+                </li>
+              <?php 
+              }
+            }
+
             if(count($contact_details)>0){ ?>
                 <li><a href="#contact">My Contact</a></li>
                 <?php 
@@ -149,22 +279,13 @@
               ?>
               <li><a href="#speakers">My Products</a></li>
               <?php 
-            } if(count($myvideo_det)>0)
+            } 
+            if(count($myvideo_det)>0)
             {  ?>  
                 <li><a href="#videosection">My videos</a></li>
                <?php
             }
-            foreach ($all_details as $key => $value) 
-            {
-              if($value[0]['show_menu']==1){
-              ?>
-            <li class=""><a href="#<?php echo $key;?>">
-                <?php echo $key;?>
-              </a>
-            </li>
-         <?php 
-          }
-        } ?> 
+            ?> 
           <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
           <li>
             <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -184,15 +305,46 @@
       if(count($slider_image)>0)
       { 
         ?>
-        <img src="<?php echo $image_path.$last_slider_image['slider_image']; ?>" style="width:100%; margin-top:70px">
+        <div class="slider">
+          <?php 
+          foreach ($slider_image as $key => $sliderData) 
+          { ?>
+            <div class="slide">
+              <img src="<?php echo $image_path . $sliderData['slider_image']; ?>" alt="<?php echo $website; ?>"/>
+              <?php if($sliderData['slider_title']){ ?>
+                <h1>
+                  <?php echo $sliderData['slider_title']; ?>
+                  <?php if($sliderData['slider_desc']){ ?>
+                    <p class="sliderdesc"><?php echo $sliderData['slider_desc']; ?></p>
+                  <?php } ?>   
+                  <?php if($sliderData['slider_link']){ ?>
+                    <a target="_blank" href="<?php echo $sliderData['slider_link']; ?>"><button type="button" class="btn btn-default">View More</button></a>
+                  <?php } ?>   
+                </h1> 
+              <?php } ?>                            
+            </div>                       
+          <?php }
+          ?>
+        </div>
+        <button class="slick-arrow slick-prev" aria-label=""><i class="fas fa-chevron-left"></i></button>
+        <button class="slick-arrow slick-next" aria-label=""><i class="fas fa-chevron-right"></i></button>
+
         <?php 
       }else{ ?>
-        <img src="assets/img/intro-bg.jpg" style="width:100%; height:60%;margin-top:70px;">
+        <img src="assets/img/stars-g5c8268e1e_1920.jpg" style="width:100%; height:100%;">
+       
+        <!-- <video autoplay muted loop id="myVideo">
+          <source src="assets/img/particle_-_5189 (720p).mp4" type="video/mp4">
+        </video> -->
+
         <?php 
       } ?>
     <div class="intro-container wow fadeIn"></div>
    
   </section>
+
+
+
 
   <main id="main">
     <!--==========================
@@ -209,7 +361,7 @@
                   for($ct=0;$ct<count($contac_log_result);$ct++)
                     { ?>
                       <div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
-                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:80%; height: 400px;">
+                        <img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:100%; max-height: 400px;">
                       </div>
                       <?php
                     }
@@ -291,7 +443,6 @@
             <div class="section-header">
               <h2>My Contact</h2>
               <p><?php echo $website;?></p>
-              <inp
             </div>
             <div class="row contact-info">
               <div class="col-md-3">
@@ -560,18 +711,8 @@
                       </div>
                 <?php } 
             } 
-            else
-            {?>
-              <div class="col-lg-3 col-md-3">
-                <div class="speaker">
-                  <div class="details">
-                    <h4>No Products Found</h4>
-                    <p><?php //echo $product_details['price'];?></p>               
-                  </div>
-                </div>
-              </div>
-              <?php 
-            }?>
+            ?>
+              
           </div>
         </div>
       </section>
@@ -990,6 +1131,32 @@
   <script src="<?php echo base_url();?>/assets/lib/venobox/venobox.min.js"></script>
   <script src="<?php echo base_url();?>/assets/lib/owlcarousel/owl.carousel.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.slider').slick({
+        autoplay: true,
+        autoplaySpeed: 3000, // Change slide every 3 seconds (adjust as needed)
+        arrows: true, // Show navigation arrows
+        dots: false,  // Hide navigation dots
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      });
+
+      $('.slider-prev').on('click', function() {
+        $('.slider').slick('slickPrev');
+      });
+
+      $('.slider-next').on('click', function() {
+        $('.slider').slick('slickNext');
+      });
+
+    });
+
+  </script>
+
+
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url();?>/assets/js/main.js"></script>
   <script>
@@ -1076,10 +1243,7 @@
                 }
             });
    }
-   function galleryPhots(albumcode)
-   {
-      window.open('http://www.smkproduction.eu5.org', '_blank');
-   }
+  
     $("#likeservice").click(function() {      
       var id = $('#service_id').val();
          $.ajax({

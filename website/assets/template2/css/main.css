@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 main > section {
-    padding: 70px 0;
+    padding: 35px 0;
 }
 
 .btn {
@@ -512,7 +512,10 @@ h1.navbar-brand {
 ==================================================================*/
 
 #about {
-    background-color: #009EE3;
+    /* background-color: #009EE3; */
+    /* background: linear-gradient(180deg, #1c2e36, #4d6771, #7e979d); */
+    /* background: linear-gradient(180deg, #3d3d3d, #5a5a5a, #011418); */
+    background: linear-gradient(180deg, #12223b, #0b0c1b, #171b31);
     color: #fff;
 }
 
@@ -523,7 +526,7 @@ h1.navbar-brand {
 }
 
 #about .welcome-block h3 {
-    margin: 0 0 65px;
+    /* margin: 0 0 65px; */
 }
 
 #about .welcome-block img {
@@ -1386,7 +1389,7 @@ textarea.form-control {
 /*about*/
 
     #about .welcome-block h3 {
-        margin: 0 0 35px;
+        margin: 0 ;
     }
 
 /* service */

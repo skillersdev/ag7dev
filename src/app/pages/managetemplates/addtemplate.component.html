@@ -33,7 +33,35 @@
                                             </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+
+                                <div class="col-md-6">
+                                    <p> <b>{{'Slider' | translate}} {{'Title' | translate}}</b></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="slider_title" name="slider_title" [(ngModel)]="model.slider_title"  #slidertitle="ngModel" placeholder="{{'Slider' | translate}} {{'Title' | translate}}">
+                                        </div>
+                                    </div>
+                                </div> 
+                                 <div class="col-md-6">
+                                    <p><b>{{'Slider' | translate}}  {{'Description' | translate}}</b></p>
+                                    <div class="form-group">
+                                       <div class="form-line">                             
+                                            <textarea id="tinymce" class="form-control custom-textarea" [(ngModel)]="model.slider_desc" #slider_desc="ngModel" name="slider_desc">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <p> <b>{{'Slider' | translate}}  {{'link' | translate}}</b></p>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="slider_link" name="slider_link" [(ngModel)]="model.slider_link"  #slider_link="ngModel" placeholder="{{'Slider' | translate}}  {{'link' | translate}}">
+                                        </div>
+                                    </div>
+                                </div> 
+                                    
+                                <div class="col-md-12">
                                    <p><b> {{'Upload' | translate}} {{'image' | translate}}</b></p>
                                     <div class="form-group">
                                        <div class="form-line">

@@ -1,6 +1,7 @@
 <?php 
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
+$logo_img_path = $this->config->item('logo_img_path');
 $this->load->view('index.html');
 ?>
 <!DOCTYPE html>
@@ -14,11 +15,11 @@ $this->load->view('index.html');
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<!-- Page Title -->
-        <title>3ABC7</title>		
+        <title><?php echo $website; ?></title>		
 		<!-- Meta Description -->
-        <meta name="description" content="3ABC7">
-        <meta name="keywords" content="">
-        <meta name="author" content="">
+        <meta name="description" content="<?php echo $website; ?>">
+        <meta name="keywords" content="<?php echo $website; ?>">
+        <meta name="author" content="<?php echo $website; ?>">
 		<!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -43,6 +44,40 @@ $this->load->view('index.html');
 
 		<!-- Modernizer Script for old Browsers -->
         <script src="<?php echo base_url();?>assets/template3/js/modernizr-2.6.2.min.js"></script>
+
+		<style>
+			.mySlides {display: none;}
+    		.pimage0{display:block;}
+			#websiteLogo{
+				width: auto;
+				height: 35px;
+				background: #f6f7fd;
+				padding-top: 7px;
+				padding-bottom: 3px;
+				padding-right: 50px;
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				padding-left: 50px;
+				margin-top:10px;
+			}
+
+			#websiteLogoImg{
+				width: auto;
+				height: auto;
+				background: #f6f7fd;
+				/* padding-top: 3px;
+				padding-bottom: 3px;
+				padding-right: 50px; */
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				/* padding-left: 50px; */
+				margin-top:10px;
+				margin-left:10px;
+			}
+
+		</style>
 
     </head>
 	
@@ -69,9 +104,22 @@ $this->load->view('index.html');
 					
 					<!-- logo -->
                     <a class="navbar-brand" href="#body">
-						<h1 id="logo">
-							<img src="<?php echo base_url();?>assets/template3/img/logo.png" alt="3ABC7" style="width: 123px;">
-						</h1>
+						<!-- <h1 id="logo">
+							<img src="<?php echo base_url();?>assets/template3/img/logo.png" alt="<?php echo $website; ?>" style="width: 123px;">
+						</h1> -->
+
+						<?php if($logo_img=="" && $logo_name=="" ){ ?>
+							<div id="websiteLogo"> <?php echo $website; ?> </div>
+						<?php }else if($logo_img !=""){ ?>
+							<div id="websiteLogoImg">
+							<h1 id="logo" style="margin: 9px;">
+								<img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>" style="max-width:125px; max-height:40px;"/>
+							</h1>
+							</div>
+						<?php }else{ ?>
+								<div id="websiteLogo"> <?php echo $logo_name; ?> </div>
+							<?php } ?>
+
 					</a>
 					<!-- /logo -->
                 </div>
@@ -80,11 +128,33 @@ $this->load->view('index.html');
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
 						<li class="current"><a href="#body">Home</a></li>
-						<li><a href="#contact">My Contact</a></li>
-                        <li><a href="#services">My Services</a></li>
-                        <li><a href="#products">My Products</a></li>
-                        <li><a href="#ads">My Ads</a></li>
-                        <li><a href="#videosection">My videos</a></li> 
+						<?php 
+						foreach ($all_details as $key => $value) 
+						{
+							if($value[0]['show_menu']==1){
+							?>
+								<li class="">
+								<a href="#<?php echo $key;?>">
+									<?php echo $key;?>
+								</a>
+								</li>
+							<?php 
+							}
+						}
+  						if(count($contact_details)>0){ ?>
+							<li><a href="#contact">My Contact</a></li>
+						<?php } ?>
+						<?php   if(count($service_details)>0){ ?>	
+                        	<li><a href="#services">My Services</a></li>
+						<?php } ?>
+						<?php  if(count($product_details)>0){ ?>	
+                        	<li><a href="#products">My Products</a></li>
+						<?php } ?>
+
+                        <!-- <li><a href="#ads">My Ads</a></li> -->
+						<?php   if(count($myvideo_det)>0){ ?>
+						    <li><a href="#videosection">My videos</a></li> 
+						<?php } ?>	
                         <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
                          <li>
 				            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -106,19 +176,28 @@ $this->load->view('index.html');
         <!--
         Home Slider
         ==================================== -->
-		
-		<section id="slider">
+
+	
+		<section id="slider" style="max-height:739px;">
 			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 			
 				<!-- Indicators bullet -->
 				<ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				</ol>
+					<?php 
+						if(count($slider_image)>0){
+							for($j=0;$j<count($slider_image);$j++)
+							{ ?>
+								<li data-target="#carousel-example-generic" data-slide-to="<?php echo $j; ?>" class="active"></li>
+					<?php   } 
+						}else{?>	
+							<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<?php } ?>	
+						</ol>
 				<!-- End Indicators bullet -->				
 				
 				<!-- Wrapper for slides -->
-				<div class="carousel-inner" role="listbox">
+				<div class="carousel-inner" role="listbox" style="max-height:739px;">
 					<?php 
 					if(count($slider_image)>0)
                 	{
@@ -126,7 +205,22 @@ $this->load->view('index.html');
                     	{
                     		?>
 					<!-- single slide -->
-					<div class="item active" style="background-image: url(<?php echo $image_path.$slider_image[$j]['slider_image'];?>);">
+					<div class="item <?php if($j==0){echo 'active'; }?>" style="background-image: url(<?php echo $image_path.$slider_image[$j]['slider_image'];?>); max-height:739px;">
+					<?php if($slider_image[$j]['slider_title']){ ?>	
+						<div class="carousel-caption">
+							<h2 data-wow-duration="400ms" data-wow-delay="500ms" class="wow bounceInDown animated"><?php echo $slider_image[$j]['slider_title']; ?></h2>
+							<?php if( $slider_image[$j]['slider_desc']){ ?>
+								<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">
+								<?php echo $slider_image[$j]['slider_desc']; ?>
+								</span> </h3>
+							<?php } ?>	
+							<?php if($slider_image[$j]['slider_link']){ ?>
+								<p data-wow-duration="600ms" class="wow slideInRight animated">
+									<a target="_blank" href="<?php echo $slider_image[$j]['slider_link']; ?>" style="margin-top:10px">	<button type="button" class="btn btn-default">View More</button></a>
+								</p>
+							<?php } ?>	
+						</div>
+					<?php } ?>	
 					</div>
 					<?php 
 						}	
@@ -151,6 +245,113 @@ $this->load->view('index.html');
         <!--
         End Home SliderEnd
         ==================================== -->
+
+		
+        <!--
+        About Section
+        ==================================== -->
+		<!-- Modal body -->
+		<div class="modal" id="imagemyModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-body">             
+					<div class="form-group m-b-0">
+					<div class="slideshow-container"> 
+						<?php
+						for($ct=0;$ct<count($contac_log_result);$ct++)
+							{ ?>
+							<div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
+								<img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:100%; max-height: 400px;">
+							</div>
+							<?php
+							}
+						?>                
+						<a class="prev" style="cursor: pointer;" onclick="plusSlides(-1, 1);">&#10094;</a>
+						<a class="next" style="cursor: pointer;" onclick="plusSlides(1,1);">&#10095;</a>
+					</div>
+					<div >
+						<?php
+						for($cti=0;$cti<count($contac_log_result);$cti++)
+							{?>
+							<span onclick="currentSlide(<?php echo $cti+1; ?>);">
+							<img src="<?php echo  $image_path.$contac_log_result[$cti]['image_name'];?>" style="cursor:pointer;width:40px; height: 40px;"></span> 
+							<?php
+							}
+						?>  
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<?php if(isset($contact_details[0]['website_image'])){ ?>
+			<section id="services" class="features">
+				<div class="container">
+					<div class="row">
+					
+						<div class="sec-title text-center mb50 wow bounceInDown animated" data-wow-duration="500ms">
+							<h2>About Us</h2>
+							<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+						</div>
+
+						<!-- service item -->
+						<div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms" style="display: flex; justify-content: center;">
+						<a  href="javascript:void(0);"  data-toggle="modal" data-target="#imagemyModal">
+							<?php 
+								if(isset($contact_details[0]['website_image']))
+								{
+									$image = $contact_details[0]['website_image'];
+									echo '<img align="left" style="width:165px;max-height:200px;margin-bottom: 10px;"src="'.$path_url.$image.'"/>';
+								}
+							?>
+						</a>
+						</div>
+						<!-- end service item -->
+						
+						<!-- service item -->
+						<div class="col-md-8 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
+							<div class="service-item">
+														
+								<div class="service-desc">
+									<h3>
+									<?php if($websitename !=''){ ?>
+										<p>
+										<button type="button" class="btn btn-success" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+											Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+										</button>
+										<button type="button" class="btn btn-info" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+											Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+										</button>
+										<button type="button" class="btn btn-primary" >
+											View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+											<input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
+										</button>
+										</p>
+									<?php } ?>
+
+									</h3>
+									<?php 
+								              $about_us=(isset($contact_details[0]['about_website']) && ($contact_details[0]['about_website']!=''))?$contact_details[0]['about_website']:'';
+
+								            ?>
+						       		<p style="margin-top: 15px;"><?php echo $about_us; ?> </p>
+									
+								</div>
+							</div>
+						</div>
+						<!-- end service item -->
+						
+						
+							
+					</div>
+				</div>
+			</section>
+		<?php } ?>
+        <!--
+        End Services
+        ==================================== -->
+
+
 		
 		<!--
         Contact Us
@@ -689,6 +890,54 @@ $this->load->view('index.html');
      function popupimage1(image){
       $('#mimage1').html('<img src="'+image+'" width="400px" height="400px">');
      }
+
+	var slideIndex =1;
+	function plusSlides(n,m){
+		
+		showSlides(slideIndex += n);
+	}
+
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+	function flvwebsite(website,type)
+	{
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/addwebsitefollow"); ?>',
+			data:{'website':website,'type':type},
+			dataType:"JSON",                
+			success:function(data){ 
+			if(type=='like')  
+			{
+				$('#totallike').html(data.totallikes);
+			} else{
+				$('#totalfollow').html(data.totalfollow);
+			}             
+				
+			}
+		});
+	}
+
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("dot");
+		if (n > slides.length) {this.slideIndex = 1}    
+		if (n < 1) {this.slideIndex = slides.length}
+		for (i = 0; i < slides.length; i++) {
+		// slides[i].style.display = "none";  
+			$('.pimage'+i).css('display','none'); 
+		}
+		for (i = 0; i < dots.length; i++) {
+		// dots[i].className = dots[i].className.replace(" active", "");
+		}
+		//slides[this.slideIndex-1].style.display = "block"; 
+		var all_val = this.slideIndex-1; 
+		$('.pimage'+all_val).css('display','block');
+		//dots[this.slideIndex-1].className += " active";
+	}
+	
   </script>
     </body>
 </html>

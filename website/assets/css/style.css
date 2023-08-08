@@ -153,8 +153,10 @@ h6 {
   right: 0;
   transition: all 0.5s;
   z-index: 997;
-  background: rgba(6, 12, 34, 0.98);
+   /* background: rgba(6, 12, 34, 0.98); */
+
 }
+ 
 
 #header.header-scrolled,
 #header.header-fixed {
@@ -657,13 +659,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 
 #about {
-/*  background: url("../img/about-bg.jpg");*/
+ background: url("../img/about-bg.jpg");
   background-size: cover;
   overflow: hidden;
   position: relative;
   color: #fff;
   padding: 60px 0 40px 0;
-  background-color: #63666A;
+  /* background-color: #63666A; */
 }
 
 #about:before {

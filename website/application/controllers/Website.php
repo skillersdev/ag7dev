@@ -29,7 +29,7 @@ class Website extends CI_Controller {
 			$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('product_master'); 
 			$product_det_result =$product_det->result_array();
 
-			$slider_image_res=$this->db->select("slider_image")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('template_settings');
+			$slider_image_res=$this->db->select("slider_image,slider_title,slider_desc,slider_type,slider_link")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('template_settings');
 			$image_array=$slider_image_res->result_array();
 			
 		//echo "<pre>";print_r($product_det_result); exit;

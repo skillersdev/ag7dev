@@ -151,6 +151,9 @@ export class PackageinfoComponent implements OnInit {
     this.model.logo_img = logo_img;
     this.model.p_id = pack_id_user;
   }
+  removelogo(){
+    this.model.logo_img="";
+  }
   updateLogo(){
   
     console.log(this.model);

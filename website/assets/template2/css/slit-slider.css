@@ -21,6 +21,7 @@
 	background-size: cover;
 	height: 100%;
 	width: 100%;
+	background: #1f313a;
 }
 
 /* Custom navigation arrows */
@@ -89,9 +90,12 @@
 }
 
 #nav-arrows > a.sl-next:hover {
-	background-color: #009EE3;
+	/* background-color: #009EE3;
 	border-color: #009EE3;
-	color: #fff;
+	color: #fff; */
+	background-color: #0f192e;
+    border-color: #454545;
+    color: #fff;
 }
 
 /* Custom navigation dots */
@@ -153,7 +157,7 @@
 	border-radius: 50%;
 	background: rgba(255,255,255,0.8);
 }
-
+/* 
 .bg-img-1 {
 	background-image: url(../img/slider/banner.jpg);
 }
@@ -162,7 +166,7 @@
 }
 .bg-img-3 {
 	background-image: url(../img/slider/cinelli.jpeg);
-}
+} */
 
 
 /* Animations for content elements */

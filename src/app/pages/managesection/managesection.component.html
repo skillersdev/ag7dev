@@ -41,7 +41,7 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                                       <th>{{'Section' | translate}}</th>
                                       <th>{{'Website' | translate}}</th>
                                       <th>{{'Show' | translate}} {{'Section' | translate}}</th>
-                                      <!-- <th>{{'Show' | translate}} {{'Menu' | translate}}</th> -->
+                                      <th>{{'Show' | translate}} {{'Menu' | translate}}</th>
                                       <th>{{'actions' | translate}}</th>
                                       
                                   </tr>
@@ -64,9 +64,9 @@ body .ui-inputswitch.ui-inputswitch-checked:not(.ui-state-disabled):hover .ui-in
                                       <td>
                                         <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updatesectionData($event,data.id)" [(ngModel)]="buttonlist[idx].IsEnable" ></p-inputSwitch>
                                       </td>
-                                      <!-- <td>
+                                      <td>
                                         <p-inputSwitch styleClass="ui-inputswitch-checked" class="ui-button-danger color" (onChange)="updateMenusectionData($event,data.id)" [(ngModel)]="menulist[idx].IsEnable" ></p-inputSwitch>
-                                      </td> -->
+                                      </td>
                                       <td>
                                         <a href="javascript:void(0);" (click)="editsection(data.id)"><i class="material-icons">edit</i></a>
                                         <a href="javascript:void(0);" (click)="deletesection(data.id)"><i class="material-icons">delete</i></a>

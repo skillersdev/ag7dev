@@ -4,6 +4,7 @@ $this->load->view('index.html');
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
+$logo_img_path = $this->config->item('logo_img_path');
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -15,11 +16,11 @@ $image_path = $this->config->item('base_path');
         <meta charset="utf-8">
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>3ABC7</title>		
+        <title><?php echo $website; ?></title>		
 		<!-- Meta Description -->
-        <meta name="description" content="3ABC7">
-        <meta name="keywords" content="3ABC7">
-        <meta name="author" content="skillers">
+        <meta name="description" content="<?php echo $website; ?>">
+        <meta name="keywords" content="<?php echo $website; ?>">
+        <meta name="author" content="<?php echo $website; ?>">
 		
 		<!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,6 +47,96 @@ $image_path = $this->config->item('base_path');
 
 		<!-- Modernizer Script for old Browsers -->
         <script src="<?php echo base_url();?>assets/template2/js/modernizr-2.6.2.min.js"></script>
+
+		<style>
+			.mySlides {display: none;}
+    		.pimage0{display:block;}
+			#websiteLogo{
+				width: auto;
+				height: 35px;
+				background: #f6f7fd;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				padding-right: 50px;
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				padding-left: 50px;
+			}
+
+			#websiteLogoImg{
+				width: auto;
+				height: auto;
+				background: #f6f7fd;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				padding-right: 50px;
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				padding-left: 50px;
+			}
+
+			
+			.slide-content {
+			position: absolute;
+			top: 50%; /* Position the content 50% from the top of the slide */
+			left: 50%; /* Position the content 50% from the left of the slide */
+			transform: translate(-50%, -50%); /* Center the content within the slide */
+			text-align: center; /* Center the text horizontally */
+			color: #e5e5e5; /* Text color */
+			width: 100%; /* Make the content span the full width of the slide */
+			z-index: 2; /* Place the content above the image */
+			}
+
+			.slide-content h1 {
+			/* font-size: 24px;
+			margin-bottom: 10px; */
+			
+			margin-top: 10px;
+			color: #e5e5e5;
+			font-size: 40px;
+			font-weight: 600;
+			line-height: 50px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			width: 40%;
+			/* background: #1e243638; */
+			background:#1e2436e8;
+			padding: 10px;
+			transition: opacity 0.5s ease;
+			/* border-radius: 10px 80px 0px 87px;	 */
+			}
+
+			@media (max-width:768px)
+			{
+			.slide-content h1 {
+				font-size: 30px; 
+			}
+			.sliderdesc{
+				font-size: 15px;
+			}
+			}
+
+			.sliderdesc{
+			margin-top:10px;
+			text-wrap:wrap;
+			font-size: 20px;
+			color: #e5e5e5;
+			font-weight: 100;
+			margin-bottom: 20px;
+
+			}
+			
+			.slide-content p.sliderdesc {
+			font-size: 18px;
+			/* margin: 0; */
+			}
+
+		</style>
 
     </head>
 	
@@ -76,7 +167,16 @@ $image_path = $this->config->item('base_path');
 					
 					<!-- logo -->
 					<h1 class="navbar-brand">
-						<a href="#body"><img src="<?php echo base_url();?>assets/template2/img/logo.png" style="width: 134px;" /></a>
+						<a href="#body">
+							<?php if($logo_img=="" && $logo_name=="" ){ ?>
+								<div id="websiteLogo"> <?php echo $website; ?> </div>
+							<?php }else if($logo_img !=""){ ?>
+								<div id="websiteLogoImg"><img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>" style="max-width:125px; max-height:40px;"/></div>
+							<?php }else{ ?>
+								<div id="websiteLogo"> <?php echo $logo_name; ?> </div>
+								<?php } ?>
+						</a>	
+							
 					</h1>
 					<!-- /logo -->
                 </div>
@@ -85,11 +185,48 @@ $image_path = $this->config->item('base_path');
                 <nav class="collapse navbar-collapse navbar-right" role="navigation">
                     <ul id="nav" class="nav navbar-nav">
 						<li><a href="#body">Home</a></li>
-						<li><a href="#contact">My Contact</a></li>
-                        <li><a href="#service">My Service</a></li>
-                        <li><a href="#portfolio">My Products</a></li>
-                        <li><a href="#testimonials">My Ads</a></li> 
-                        <li><a href="#videosection">My videos</a></li> 
+						<?php 
+
+						foreach ($all_details as $key => $value) 
+						{
+							if($value[0]['show_menu']==1){
+						?>
+							<li class="">
+								<a href="#<?php echo $key;?>">
+									<?php echo $key;?>
+								</a>
+							</li>
+						<?php 
+							}
+						}
+
+						if(count($contact_details)>0){ ?>
+							<li><a href="#contact">My Contact</a></li>
+						<?php 
+						} 
+
+						if(count($service_details)>0)
+						{
+						?>
+							<li><a href="#service">My Service</a></li>
+						<?php 
+						} 
+						
+						if(count($product_details)>0)
+						{
+							
+						?>
+							<li><a href="#portfolio">My Products </a></li>
+						<?php 
+						}
+						if(count($myvideo_det)>0)
+						{  ?>  
+							<li><a href="#videosection">My Videos</a></li>
+						<?php
+						}
+						?>
+
+                        <!-- <li><a href="#testimonials">My Ads</a></li>  -->
                         <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li> 
                          <li>
 				            <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -124,7 +261,20 @@ $image_path = $this->config->item('base_path');
                     		?>
                     		<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
 								<div class="bg-img bg-img-1">
-									<img src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+									<img src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" style="width:100%; height: 591px;max-height: 591px;" />
+									<?php if($slider_image[$j]['slider_title']){ ?>
+										<div class="slide-content">
+											<h1>
+												<?php echo $slider_image[$j]['slider_title']; ?>
+												<?php if( $slider_image[$j]['slider_desc']){ ?>
+													<p class="sliderdesc"><?php echo $slider_image[$j]['slider_desc']; ?></p>
+												<?php } ?>
+												<?php if($slider_image[$j]['slider_link']){ ?>
+													<a target="_blank" href="<?php echo $slider_image[$j]['slider_link']; ?>" style="margin-top:10px">	<button type="button" class="btn btn-default">View More</button></a>
+												<?php } ?>   
+											</h1>
+										</div>
+									<?php } ?>			
 								</div>
 							</div>
 						<?php 
@@ -135,13 +285,13 @@ $image_path = $this->config->item('base_path');
 
 					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
 						<div class="bg-img bg-img-1">
-							<img src="<?php //echo base_url();?>assets/template2/img/slider/banner.jpg" style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+							<img src="<?php echo base_url();?>assets/template2/img/slider/39632.jpg" style="width:100%; height: 591px;max-height: 591px;" />
 						</div>
 					</div>
 					
 					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
 						<div class="bg-img bg-img-2">
-							<img src="<?php echo base_url();?>assets/template2/img/slider/affinity.jpeg"  style="width:1349px; height: 591px; max-width: 1349px;max-height: 591px;" />
+							<img src="<?php echo base_url();?>assets/template2/img/slider/sample.jpg"  style="width:100%; height: 591px;max-height: 591px;" />
 						</div>
 					</div>
 				<?php } ?>
@@ -173,6 +323,40 @@ $image_path = $this->config->item('base_path');
         ==================================== -->
 			
 			<!-- about section -->
+			<div class="modal" id="imagemyModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					<div class="modal-body">             
+						<div class="form-group m-b-0">
+						<div class="slideshow-container"> 
+							<?php
+							for($ct=0;$ct<count($contac_log_result);$ct++)
+								{ ?>
+								<div id="pimage<?php echo $ct;?>"  class="mySlides pimage<?php echo $ct;?>">
+									<img src="<?php echo  $image_path.$contac_log_result[$ct]['image_name'];?>" style="width:100%; max-height: 400px;">
+								</div>
+								<?php
+								}
+							?>                
+							<a class="prev" style="cursor: pointer;" onclick="plusSlides(-1, 1);">&#10094;</a>
+							<a class="next" style="cursor: pointer;" onclick="plusSlides(1,1);">&#10095;</a>
+						</div>
+						<div >
+							<?php
+							for($cti=0;$cti<count($contac_log_result);$cti++)
+								{?>
+								<span onclick="currentSlide(<?php echo $cti+1; ?>);">
+								<img src="<?php echo  $image_path.$contac_log_result[$cti]['image_name'];?>" style="cursor:pointer;width:40px; height: 40px;"></span> 
+								<?php
+								}
+							?>  
+						</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+				
 			<section id="about" >
 				<div class="container">
 					<div class="row">
@@ -192,11 +376,13 @@ $image_path = $this->config->item('base_path');
 								</div>
 							</div>
 						</div>-->
+
 						<div class="col-md-12 col-md-offset-1 wow animated fadeInRight">
 							<div class="welcome-block">
 								<h3>Welcome To <?php echo $website;?></h3>								
 						     	 <div class="message-body">
-									 <?php 
+								  	<a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal">
+									 	<?php 
 
 								           if(isset($contact_details[0]['website_image'])&&($contact_details[0]['website_image']!=''))
 									         {
@@ -205,13 +391,29 @@ $image_path = $this->config->item('base_path');
 									         else{
 									          $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
 									         }
-								          echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
+								          echo '<img src="'.$path_url.$image.'" class="pull-left" />';
 								         ?>
+									</a>
+										<?php if($websitename !=''){ ?>
+												<p>
+												<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+													Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+												</button>
+												<button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+													Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+												</button>
+												<button type="button" class="btn btn-primary" >
+													View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+													<input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
+												</button>
+												</p>
+											<?php } ?>
+										 	
 								          <?php 
-								              $about_us=(isset($contact_details[0]['about_website']) && ($contact_details[0]['about_website']!=''))?$contact_details[0]['about_website']:'Welcome to mysite';
+								              $about_us=(isset($contact_details[0]['about_website']) && ($contact_details[0]['about_website']!=''))?$contact_details[0]['about_website']:'';
 
 								            ?>
-						       		<p><?php echo $about_us; ?> </p>
+						       		<p style="margin-top: 15px;"><?php echo $about_us; ?> </p>
 						     	 </div>
 						       	
 						    </div>
@@ -366,6 +568,7 @@ $image_path = $this->config->item('base_path');
 			<!-- end Service section -->
 			
 			<!-- Product section -->
+			<?php  if(count($product_details)>0){ ?>
 			<section id="portfolio">
 				<div class="container">
 					<div class="row">
@@ -427,16 +630,15 @@ $image_path = $this->config->item('base_path');
 									
 								</ul>
 							</li>
-							<?php } 
-						        } else
-						        {?>
-						        	<li class="portfolio-item">No Products found</li>
-							<?php }?>
+							<?php } }
+						       ?>
+						    
 						</ul>
 						
 					</div>
 				</div>
 			</section>
+			<?php } ?>
 			<!-- end product section -->
 			 <div class="modal fade" id="videomodal" role="dialog">
 	          <div class="modal-dialog">          
@@ -623,7 +825,6 @@ $image_path = $this->config->item('base_path');
 			<!-- end Social section -->
 			
 			
-			
 			<section id="google-map">
 				<div id="map-canvas" class="wow animated fadeInUp"></div>
 			</section>
@@ -699,6 +900,54 @@ $image_path = $this->config->item('base_path');
         
       $('#videoimage').html('<video width="280" height="200" controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
     }
+
+	var slideIndex =1;
+	function plusSlides(n,m){
+		
+		showSlides(slideIndex += n);
+	}
+
+	function currentSlide(n) {
+		showSlides(slideIndex = n);
+	}
+	function flvwebsite(website,type)
+	{
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/addwebsitefollow"); ?>',
+			data:{'website':website,'type':type},
+			dataType:"JSON",                
+			success:function(data){ 
+			if(type=='like')  
+			{
+				$('#totallike').html(data.totallikes);
+			} else{
+				$('#totalfollow').html(data.totalfollow);
+			}             
+				
+			}
+		});
+	}
+
+	function showSlides(n) {
+		var i;
+		var slides = document.getElementsByClassName("mySlides");
+		var dots = document.getElementsByClassName("dot");
+		if (n > slides.length) {this.slideIndex = 1}    
+		if (n < 1) {this.slideIndex = slides.length}
+		for (i = 0; i < slides.length; i++) {
+		// slides[i].style.display = "none";  
+			$('.pimage'+i).css('display','none'); 
+		}
+		for (i = 0; i < dots.length; i++) {
+		// dots[i].className = dots[i].className.replace(" active", "");
+		}
+		//slides[this.slideIndex-1].style.display = "block"; 
+		var all_val = this.slideIndex-1; 
+		$('.pimage'+all_val).css('display','block');
+		//dots[this.slideIndex-1].className += " active";
+	}
+	
   </script>
     </body>
 </html>

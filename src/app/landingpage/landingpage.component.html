@@ -5,17 +5,40 @@
 <div class="layer"></div>
 <div class="layer"></div>
 
-
-<div>
-  <a class="navbar-brand page-scroll" href="#home" style="margin-left:0px !important; "><img src="assets/images/ME3ABC7Logo.png"  width="200" style="border-radius: 37px 8px;" id="logo" alt="logo top"></a> </div>
+<style>
+  #title1{
+    color: #0247c6;
+    -webkit-text-stroke: 1px white; /* For Safari and Chrome */
+  text-stroke: 1px white; /* For other browsers */
+  
+  }
+  #title2{
+    color: #fc0001;
+    margin-left: 13px;
+    -webkit-text-stroke: 1px white; /* For Safari and Chrome */
+  text-stroke: 1px white; /* For other browsers */
+  
+  }
+  #title3{
+    color: #0247c6;
+  }
+  #title4{
+    color: #fc0001;
+  }
+</style>
+<!-- <div>
+  <a class="navbar-brand page-scroll" href="#home" style="margin-left:0px !important; "><img src="assets/images/ME3ABC7Logo.png"  width="200" style="border-radius: 37px 8px;" id="logo" alt="logo top"></a> </div> -->
 
 
 <!-- Header -->
 <header id="home">
   <div class="container">
     <div class="intro-text">
-      <p class="intro-heading">{{'welcome text'| translate}}</p>
-      <h1 class="intro-lead-in" >{{'Search Text'| translate}}</h1>
+      <!-- <p class="intro-heading">{{'welcome text'| translate}}</p>
+      <h1 class="intro-lead-in" >{{'Search Text'| translate}}</h1> -->
+      <h1 class="intro-lead-in" ><span id="title1">{{'Search Text'| translate}}</span>  <span id="title2">{{'Search Text2'| translate}}</span></h1>
+      
+
       <!-- <form id="signsignup_up" #signup="ngForm">
         <input type="text" placeholder="{{'search website'|translate}}" [(ngModel)]="model.website" #website="ngModel" name="website"  required>
         <div *ngIf="website.errors && (website.dirty || website.touched)">
@@ -40,7 +63,8 @@
                 bottom: 0px;
                 cursor: pointer;
                 /* top: 0; */
-                background-color: #fb0000;
+                /* background-color: #fb0000; */
+                background: linear-gradient(231deg, #fc0001, #0247c6);
                 color: white;
                 padding: 3px;
                 border-top-left-radius: 15px;
@@ -114,7 +138,17 @@
 
  
 <!-- Copyright -->
-<section _ngcontent-c1="" class="copyright" id="copyright"><div _ngcontent-c1="" class="container"><div _ngcontent-c1="" class="row"><div _ngcontent-c1="" class="col-lg-12"><div _ngcontent-c1="" class="copyright-text">Copyright All Rightes Reserved 3ABC7.</div></div></div></div></section>
+<section _ngcontent-c1="" class="copyright" id="copyright">
+  <div _ngcontent-c1="" class="container">
+    <div _ngcontent-c1="" class="row">
+      <div _ngcontent-c1="" class="col-lg-12">
+        <div _ngcontent-c1="" class="copyright-text" style="color:#c7c7c7">
+          © 2023 <span id="title3">3</span><span id="title4">ABC</span><span id="title3">7</span>. All rights reserved
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- /.Copyright -->
 
 <style>

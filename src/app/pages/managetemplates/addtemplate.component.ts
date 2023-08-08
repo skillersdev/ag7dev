@@ -84,6 +84,7 @@ export class AddtemplateComponent implements OnInit {
        if(response.status=='success')
        {
           this.model.slider_image = response.data;
+          
           this.model.created_by=localStorage.getItem('currentUserID');
           this.CommonService.insertdata(this.AddTemplateRestApiUrl,this.model)
           .subscribe(package_det =>{ 

@@ -1,6 +1,15 @@
 <app-topnav></app-topnav>
 <app-sidemenu></app-sidemenu>
+<style>
+    .text-content {
+  display: inline-block; /* Ensure the text stays on the same line */
+  margin-right: 5px; /* Adjust the margin to create space between text and icon */
+}
+.material-icons {
+  vertical-align: middle; /* Vertically align the icon with the text */
+}
 
+</style>
 <section class="content">
     <div class="container-fluid">
         <div class="block-header"></div>
@@ -299,10 +308,17 @@
                                                 <p><b>{{'Upload' | translate}} {{'Logo' | translate}} {{'image' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
-                                                         <input type="file" name="logoimage" (change)=fileEvent($event) required>   
+                                                         <input type="file" name="logoimage" (change)=fileEvent($event) />  
                                                     </div>
                                                 </div>
+                                               
                                             </div>
+                                            <div class="col-md-12 d-flex align-items-center justify-content-center" *ngIf="model.logo_img != ''">
+                                                <a href="javascript:void(0);" (click)="removelogo()" class="text-center">
+                                                  <span>{{ 'Delete' | translate }} {{ 'Logo' | translate }}</span>
+                                                  <i class="material-icons">delete</i>
+                                                </a>
+                                              </div>
 
                                             <div class="modal-footer">
                                                 <button type="button"  (click)="updateLogo()" class="btn btn-primary">{{'Change Logo' | translate}}</button>

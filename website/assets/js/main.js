@@ -127,12 +127,43 @@ jQuery(document).ready(function( $ ) {
   // Gallery carousel (uses the Owl Carousel library)
   $(".gallery-carousel").owlCarousel({
     autoplay: true,
-    dots: true,
+    dots: false,
     loop: true,
     center:true,
-    responsive: { 0: { items: 1 }, 768: { items: 3 }, 992: { items: 4 }, 1200: {items: 5}
+    responsiveClass: true,
+    autoHeight: true,
+    autoplayTimeout: 7000,
+    smartSpeed: 800,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+  
+      600: {
+        items: 1
+      },
+  
+      1024: {
+        items: 1
+      },
+  
+      1366: {
+        items: 1
+      }
     }
   });
+
+  // items: 1,
+  // autoplay: true,
+  // dots: true,
+  // loop: true,
+  // center: true,
+  // nav: true, // Enable navigation arrows
+  // navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"] // Replace with your preferred icons
+  
+  
+  // responsive: { 0: { items: 1 }, 768: { items: 1 }, 992: { items: 1 }, 1200: {items: 1}}
 
   // Buy tickets select the ticket type on click
   $('#buy-ticket-modal').on('show.bs.modal', function (event) {
