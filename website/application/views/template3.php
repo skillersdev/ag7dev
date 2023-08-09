@@ -295,7 +295,7 @@ $this->load->view('index.html');
 						</div>
 
 						<!-- service item -->
-						<div class="col-md-4 wow fadeInLeft" data-wow-duration="500ms" style="display: flex; justify-content: center;">
+						<div class="col-md-4 col-sm-12 wow fadeInLeft" data-wow-duration="500ms" style="display: flex; justify-content: center;">
 						<a  href="javascript:void(0);"  data-toggle="modal" data-target="#imagemyModal">
 							<?php 
 								if(isset($contact_details[0]['website_image']))
@@ -309,7 +309,7 @@ $this->load->view('index.html');
 						<!-- end service item -->
 						
 						<!-- service item -->
-						<div class="col-md-8 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
+						<div class="col-md-8 col-sm-12 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="500ms">
 							<div class="service-item">
 														
 								<div class="service-desc">
@@ -801,7 +801,7 @@ $this->load->view('index.html');
 				boxClass:     'wow',      // animated element css class (default is wow)
 				animateClass: 'animated', // animation css class (default is animated)
 				offset:       120,          // distance to the element when triggering the animation (default is 0)
-				mobile:       false,       // trigger animations on mobile devices (default is true)
+				mobile:       true,       // trigger animations on mobile devices (default is true)
 				live:         true        // act on asynchronously loaded content (default is true)
 			  }
 			);

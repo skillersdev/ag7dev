@@ -1,9 +1,4 @@
-/*
-  Theme Name: TheEvent
-  Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
+
 
 /*--------------------------------------------------------------
 # General
@@ -361,7 +356,7 @@ h6 {
 
 #mobile-nav-toggle {
   position: fixed;
-  right: 0;
+  right: 19px;
   top: 0;
   z-index: 999;
   margin: 15px 15px 0 0;

@@ -4,6 +4,7 @@
 $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
+$logo_img_path = $this->config->item('logo_img_path');
 $this->load->view('index.html');
  ?>
 
@@ -12,16 +13,16 @@ $this->load->view('index.html');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<?php echo $website; ?>">
+    <meta name="author" content="<?php echo $website; ?>">
 
-    <title>3ABC7</title>
+    <title><?php echo $website; ?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url();?>assets/template4/asset/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/template4/asset/css/bootstrap.min.css" rel="stylesheet"/>
     
     <!-- Font Awesome CSS -->
-    <link href="<?php echo base_url();?>assets/template4/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/template4/css/font-awesome.min.css" rel="stylesheet"/>
     
     
     <!-- Animate CSS -->
@@ -62,6 +63,59 @@ $this->load->view('index.html');
         <script src="<?php echo base_url();?>assets/template4/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+			.mySlides {display: none;}
+    		.pimage0{display:block;}
+			#websiteLogo{
+				width: auto;
+				height: 35px;
+				background: #f6f7fd;
+				padding-top: 7px;
+				padding-bottom: 3px;
+				padding-right: 50px;
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				padding-left: 50px;
+				margin-top:10px;
+			}
+
+			#websiteLogoImg{
+				width: auto;
+				height: auto;
+				background: #f6f7fd;
+				/* padding-top: 3px;
+				padding-bottom: 3px;
+				padding-right: 50px; */
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				/* padding-left: 50px; */
+				/* margin-top:10px;
+				margin-left:10px; */
+                
+			}
+            .navbar-brand{
+                padding:0px !important;
+            }
+
+            @media (max-width:768px)
+			{
+                #websiteLogoImg {
+				    margin-left: 10px;
+			    }
+                #logo{
+                    margin-top:5px !important;
+                }
+			
+			}
+
+            
+
+
+		</style>
+
+
 </head>
 
 <body class="index">
@@ -98,7 +152,19 @@ $this->load->view('index.html');
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-					 <img src="<?php echo base_url();?>assets/template4/images/logo.png" alt="3ABC7" style="width: 123px;">
+                    <?php if($logo_img=="" && $logo_name=="" ){ ?>
+                        <div id="websiteLogo"> <?php echo $website; ?> </div>
+                        <?php }else if($logo_img !=""){ ?>
+                            <div id="websiteLogoImg">
+                                <h1 id="logo" style="margin: 9px;">
+                                    <img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>" style="max-width:125px; max-height:40px;"/>
+                                </h1>
+                            </div>
+                        <?php }else{ ?>
+                            <div id="websiteLogo"> <?php echo $logo_name; ?> </div>
+                        <?php } ?>
+                        
+					
 				</a>
             </div>
 
@@ -108,20 +174,44 @@ $this->load->view('index.html');
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">My Contact</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services">My Service</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#products">My Products</a>
-                    </li>
-                   
-                    <li>
+
+                    <?php 
+						foreach ($all_details as $key => $value) 
+						{
+							if($value[0]['show_menu']==1){
+							?>
+								<li class="">
+								<a href="#<?php echo $key;?>" class="page-scroll">
+									<?php echo $key;?>
+								</a>
+								</li>
+							<?php 
+							}
+						}
+                    ?>    
+
+                    <?php if(count($contact_details)>0){ ?>
+                        <li>
+                            <a class="page-scroll" href="#contact">My Contact</a>
+                        </li>
+                    <?php } ?>
+                    <?php if(count($service_details)>0){ ?>	
+                        <li>
+                            <a class="page-scroll" href="#services">My Service</a>
+                        </li>
+                    <?php } ?>
+                    <?php  if(count($product_details)>0){ ?>    
+                        <li>
+                            <a class="page-scroll" href="#products">My Products</a>
+                        </li>
+                    <?php } ?>
+    
+                    <!-- <li>
                         <a class="page-scroll" href="#ads">My Advertisment</a>
-                    </li>
-                      <li><a href="#videosection">My videos</a></li> 
+                    </li> -->
+                    <?php   if(count($myvideo_det)>0){ ?>
+                      <li><a href="#videosection">My videos</a></li>
+                    <?php } ?>   
                     <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
                      <li>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -145,9 +235,18 @@ $this->load->view('index.html');
 
             <!-- Indicators -->
             <ol class="carousel-indicators">
-                <li data-target="#main-slide" data-slide-to="0" class="active"></li>
-                <li data-target="#main-slide" data-slide-to="1"></li>
-                <li data-target="#main-slide" data-slide-to="2"></li>
+                <?php 
+                    if(count($slider_image)>0){
+                        for($j=0;$j<count($slider_image);$j++)
+                        { ?>
+                            <li data-target="#main-slide" data-slide-to="<?php echo $j; ?>" class="active"></li>
+                    <?php   } 
+					}else{?>	
+                        <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+                        <li data-target="#main-slide" data-slide-to="1"></li>
+				<?php } ?>	
+
+               
             </ol>
             <!--/ Indicators end-->
 
@@ -161,14 +260,34 @@ $this->load->view('index.html');
                     ?>
                         <div class="item <?php if($j==0){echo "active";} ?>">
                             <img class="img-responsive" src="<?php echo $image_path.$slider_image[$j]['slider_image']; ?>" alt="slider">
+                            <div class="slider-content">
+                                <div class="col-md-12 text-center">
+                                    <?php if($slider_image[$j]['slider_title']){ ?>	
+                                        <h1 class="animated3">
+                                            <span><?php echo $slider_image[$j]['slider_title']; ?></span>
+                                        </h1>
+                                    <?php } ?>
+                                    <?php if( $slider_image[$j]['slider_desc']){ ?>    
+                                        <p class="animated2"><?php echo $slider_image[$j]['slider_desc']; ?></p>	
+                                    <?php } ?> 
+                                    <?php if($slider_image[$j]['slider_link']){ ?>   
+                                        <a href="<?php echo $slider_image[$j]['slider_link']; ?>" class="page-scroll btn btn-primary animated1">Read More</a>
+                                    <?php } ?>    
+                                </div>
+                            </div>
                         </div>
                 <?php 
                     } 
                 }else{
                       ?>
-                      <div class="item">
+                      <div class="item active">
+                        <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/galaxy.jpg" alt="slider">
+                     </div>
+
+                     <div class="item">
                         <img class="img-responsive" src="<?php echo base_url();?>assets/template4/images/header-back.png" alt="slider">
                      </div>
+                     
                      <?php
                 }
                 ?>
@@ -192,6 +311,57 @@ $this->load->view('index.html');
         <!-- /carousel -->
     </section>
     <!-- End Home Page Slider -->
+
+     <!-- Start About Us Section -->
+    <section id="about" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="welcome-block">
+                        <h3>Welcome To <?php echo $website;?></h3>								
+                            <div class="message-body">
+                            <a  href="javascript:void(0);" data-toggle="modal" data-target="#imagemyModal">
+                                <?php 
+
+                                    if(isset($contact_details[0]['website_image'])&&($contact_details[0]['website_image']!=''))
+                                        {
+                                        $image = $contact_details[0]['website_image'];
+                                        }
+                                        else{
+                                        $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
+                                        }
+                                    echo '<img src="'.$path_url.$image.'" class="pull-left" style="max-width: 175px;margin: 0 38px 20px 10px;" />';
+                                    ?>
+                            </a>
+                                <?php if($websitename !=''){ ?>
+                                        <p>
+                                        <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+                                            Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+                                            Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+                                        </button>
+                                        <button type="button" class="btn btn-primary" >
+                                            View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+                                            <input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
+                                        </button>
+                                        </p>
+                                    <?php } ?>
+                                    
+                                    <?php 
+                                        $about_us=(isset($contact_details[0]['about_website']) && ($contact_details[0]['about_website']!=''))?$contact_details[0]['about_website']:'';
+
+                                    ?>
+                            <p style="margin-top: 15px; text-align: justify;"><?php echo $about_us; ?> </p>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
 
      
     <section id="contact" class="contact">
@@ -659,6 +829,27 @@ $this->load->view('index.html');
         
       $('#videoimage').html('<video width="280" height="200" controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
     }
+
+    function flvwebsite(website,type)
+	{
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/addwebsitefollow"); ?>',
+			data:{'website':website,'type':type},
+			dataType:"JSON",                
+			success:function(data){ 
+			if(type=='like')  
+			{
+				$('#totallike').html(data.totallikes);
+			} else{
+				$('#totalfollow').html(data.totalfollow);
+			}             
+				
+			}
+		});
+	}
+
+
   </script>
 
 </body>

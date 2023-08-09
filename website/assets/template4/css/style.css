@@ -588,7 +588,8 @@ li {
 }
 
 #main-slide .slider-content p{
-	font-size: 30px;
+	/* font-size: 30px; */
+    font-size: 21px;
     font-weight: 300;
     line-height: 35px;
     letter-spacing: 1px;
@@ -1921,7 +1922,7 @@ iframe {
     background-color:#69D2E7;
 }
 .colors-switcher .colors-list a.green {
-    background-color:#5BB12F;
+    background-color:#2a439c;
 }
 .colors-switcher .colors-list a.light-green {
     background-color:#BCCF02;

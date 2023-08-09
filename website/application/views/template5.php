@@ -4,13 +4,17 @@
   <?php 
   $path_url = $this->config->item('path_url'); 
   $login_url = $this->config->item('login_url');
+  $image_path = $this->config->item('base_path');
+  $logo_img_path = $this->config->item('logo_img_path');
+  $last_slider_image = end($slider_image);
+
   $this->load->view('index.html');
   ?>
   <meta charset="utf-8">
-  <title>3ABC7</title>
+  <title><?php echo $website; ?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta content="<?php echo $website; ?>" name="keywords">
+  <meta content="<?php echo $website; ?>" name="description">
 
   <!-- Favicons -->
   <link href="<?php echo base_url();?>assets/template5/img/favicon.png" rel="icon">
@@ -32,6 +36,54 @@
   <!-- Main Stylesheet File -->
   <link href="<?php echo base_url();?>assets/template5/css/style.css" rel="stylesheet">
 
+  <style>
+			.mySlides {display: none;}
+    		.pimage0{display:block;}
+			#websiteLogo{
+				width: auto;
+				height: 35px;
+				background: #f6f7fd;
+				padding-top: 7px;
+				padding-bottom: 3px;
+				padding-right: 50px;
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				padding-left: 50px;
+				margin-top:10px;
+			}
+
+			#websiteLogoImg{
+				width: auto;
+				height: auto;
+				background: #f6f7fd;
+				/* padding-top: 3px;
+				padding-bottom: 3px;
+				padding-right: 50px; */
+				/* border-radius: 40px 0 40px 0; */
+				font-family: fantasy;
+				color: #060c22;
+				/* padding-left: 50px; */
+				/* margin-top:10px;
+				margin-left:10px; */
+                
+			}
+      .navbar-brand{
+          padding:0px !important;
+      }
+
+      @media (max-width:768px)
+			{
+        #websiteLogoImg {
+          margin-left: 10px;
+        }
+        #logo{
+          margin-top:5px !important;
+        }
+			
+			}
+
+		</style>
 
 </head>
 
@@ -46,18 +98,54 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-        <a href="#intro" class="scrollto"><img src="<?php echo base_url();?>assets/template5/img/logo.png" alt="" class="img-fluid"></a>
+        <a href="#intro" class="scrollto">
+          <!-- <img src="<?php echo base_url();?>assets/template5/img/logo.png" alt="" class="img-fluid"> -->
+          <?php if($logo_img=="" && $logo_name=="" ){ ?>
+                  <div id="websiteLogo"> <?php echo $website; ?> </div>
+          <?php }else if($logo_img !=""){ ?>
+                  <div id="websiteLogoImg">
+                      <h1 id="logo">
+                          <img src="<?php echo $logo_img_path;?><?php echo $logo_img; ?>" alt="<?php echo $website; ?>" title="<?php echo $website; ?>" class="img-fluid"/>
+                      </h1>
+                  </div>
+          <?php }else{ ?>
+                <div id="websiteLogo"> <?php echo $logo_name; ?> </div>
+          <?php } ?>
+    </a>
       </div>
 
       <nav class="main-nav float-right d-none d-lg-block">
         <ul>
           <li class="active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#contact">My Contact</a></li>
-          <li><a href="#services">My Services</a></li>
-          <li><a href="#portfolio">My Products</a></li>
-          <li><a href="#team">My Ads</a></li> 
-          <li><a href="#videosection">My videos</a></li>
+          <?php 
+						foreach ($all_details as $key => $value) 
+						{
+							if($value[0]['show_menu']==1){
+							?>
+								<li>
+								<a href="#<?php echo $key;?>">
+									<?php echo $key;?>
+								</a>
+								</li>
+							<?php 
+							}
+						}
+          ?>    
+
+          <!-- <li><a href="#about">About Us</a></li> -->
+          <?php if(count($contact_details)>0){ ?>
+            <li><a href="#contact">My Contact</a></li>
+          <?php } ?>
+          <?php if(count($service_details)>0){ ?>	  
+            <li><a href="#services">My Services</a></li>
+          <?php } ?>
+          <?php  if(count($product_details)>0){ ?>
+            <li><a href="#portfolio">My Products</a></li>
+          <?php } ?>  
+          <!-- <li><a href="#team">My Ads</a></li>  -->
+          <?php   if(count($myvideo_det)>0){ ?>
+            <li><a href="#videosection">My videos</a></li>
+          <?php } ?>
           <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
            <li>
               <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -70,6 +158,8 @@
     </div>
   </header><!-- #header -->
 
+  
+
   <!--==========================
     Intro Section
   ============================-->
@@ -77,12 +167,24 @@
     <div class="container">
 
       <div class="intro-img">
+        <?php if($last_slider_image['slider_image']){?>
+          <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
+        <?php }else{?>  
         <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
+        <?php } ?>
       </div>
 
       <div class="intro-info">
-        <h2>We provide<br><span>solutions</span><br>for your business!</h2>
-        
+        <?php if($last_slider_image['slider_title']){ ?>
+        <h2><?php echo $last_slider_image['slider_title']; ?></h2>
+        <?php } else {?>
+          <h2>We provide<br><span>solutions</span><br>for your business!</h2>
+        <?php } ?>
+        <?php if($last_slider_image['slider_desc']){ ?>
+          <p style="font-size:20px;text-wrap: wrap;width: 80%;color: blanchedalmond;"><?php echo $last_slider_image['slider_desc']; ?></p>
+        <?php } ?>  
+
+
       </div>
 
     </div>
@@ -99,7 +201,7 @@
         <header class="section-header">
           <h3>About Us</h3>
           <p><?php 
-               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'Welcome to mysite';
+               $about_us=(isset($contact_details[0]['about_website']))?$contact_details[0]['about_website']:'';
 
 
             ?></p>
@@ -107,32 +209,27 @@
 
         <div class="row about-container">
 
-          <div class="col-lg-6 content order-lg-1 order-2">
+          <div class="col-lg-8 content order-lg-1 order-2">
             <p>
             <?php echo $about_us; ?>
             </p>
-
-            <!-- <div class="icon-box wow fadeInUp">
-              <div class="icon"><i class="fa fa-shopping-bag"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-            </div>
-
-            <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
-              <div class="icon"><i class="fa fa-photo"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-
-            <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
-              <div class="icon"><i class="fa fa-bar-chart"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-            </div> -->
-
+            <?php if($websitename !=''){ ?>
+              <p>
+              <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','follow');">
+                  Follows <span class="badge badge-light" id="totalfollow"><?php echo $total_follows;?></span>
+              </button>
+              <button type="button" class="btn btn-primary" onclick="flvwebsite('<?php echo $websitename; ?>','like');">
+                  Like <span class="badge badge-light" id="totallike"><?php echo $total_likes;?></span>
+              </button>
+              <button type="button" class="btn btn-primary" >
+                  View <span class="badge badge-light" id="totalview"><?php echo $total_views;?></span>
+                  <input type="hidden" id="viewweb" name="" value="<?php echo $website; ?>">
+              </button>
+              </p>
+          <?php } ?>
           </div>
 
-          <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+          <div class="col-lg-4  order-lg-1 order-2 wow fadeInUp">
           <?php 
            if(isset($contact_details[0]['website_image']))
              {
@@ -141,7 +238,7 @@
              else{
               $image = ($profile_image!='')?$profile_image:'user_profile/default.png';
              }
-            echo '<img align="left" style="width: 165px; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
+            echo '<img align="left" style="width: auto; height: 180px;" src="'.$path_url.$image.'" alt="Profile image example"/>';
            ?>           
           </div>
         </div>
