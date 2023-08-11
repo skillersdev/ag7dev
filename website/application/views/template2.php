@@ -119,6 +119,9 @@ $logo_img_path = $this->config->item('logo_img_path');
 			.sliderdesc{
 				font-size: 15px;
 			}
+			#showpopupimg{
+				max-width:300px !important;
+			}
 			}
 
 			.sliderdesc{
@@ -360,22 +363,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 			<section id="about" >
 				<div class="container">
 					<div class="row">
-						<!--<div class="col-md-4 wow animated fadeInLeft">
-							<div class="recent-works">
-								<h3>Recent Works</h3>
-								<div id="works">
-									<div class="work-item">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br> <br> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-									</div>
-									<div class="work-item">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br><br> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-									</div>
-									<div class="work-item">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br><br> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-									</div>
-								</div>
-							</div>
-						</div>-->
+						
 
 						<div class="col-md-12 col-md-offset-1 wow animated fadeInRight">
 							<div class="welcome-block">
@@ -422,6 +410,102 @@ $logo_img_path = $this->config->item('logo_img_path');
 				</div>
 			</section>
 			<!-- end about section -->
+
+			<!--==========================
+			Dynamic Section
+			============================-->
+			<?php
+			if(count($all_details)>0){}
+			foreach ($all_details as $key => $value) 
+			{
+				?>
+				<section id="<?php echo $key;?>" class="portfolio">
+					<div class="container">
+					<div class="row">
+							<div class="sec-title text-center">
+								<h2 class="wow animated bounceInLeft"><?php echo $key;?></h2>	
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="myModal_section" role="dialog">
+								<div class="modal-dialog  modal-lg">   
+									<div class="modal-content">           
+										<div class="modal-header">
+											<h4 class="modal-title" id="mtitle2_section"></h4>
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+										</div>
+										<div class="modal-body" id="mimage2_section">                
+										</div>
+										<div class="modal-footer tesdt" id="desc2_section" style="display: block;">
+											<div class="image-container"  style="width:52%;">
+												<img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
+												<span id="viewservicecount_section"></span>
+												<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
+												<span id="likeservicecount"></span>
+											</div>
+										</div>
+									</div>            
+								</div>
+							</div>
+								
+
+							<ul class="project-wrapper wow animated fadeInUp">
+								<?php
+								foreach ($all_details[$key] as $child_key => $child_value) {
+
+									$name = "'".$child_value['section_name']."'";
+									$image = "'".$child_value['preview_file']."'";
+									$desc = "'".$child_value['description']."'";
+									$service_id = "'".$child_value['section_item_id']."'";
+									$weblink = "'".$child_value['file_name']."'";
+									$media_type =$child_value['media_type'];
+									$web_url = "'".$child_value['website_link']."'";
+									// echo $web_url;die;
+							
+									if($child_value['media_type']==1) {
+										$path = $path_url.$child_value['file_name'];
+										$file_name_path = "'".$path_url.$child_value['file_name']."'";
+										$path_src = "'".$path_url.$child_value['file_name']."'";
+									} else{
+										$path = $path_url.$child_value['preview_file'];
+										$file_name_path = "'".$path_url.$child_value['file_name']."'";
+										$path_src = "'".$path_url.$child_value['preview_file']."'";
+									}
+								?>		
+									<li class="portfolio-item">
+										<?php 
+											echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive">'; 
+										?>
+										
+										<figcaption class="mask">
+											<h3><?php echo $child_value['title'];?></h3>
+											<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+										</figcaption>
+										<ul class="external">
+											<li style="color:white;margin: 10px;">
+												<img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+												<span id=""><?php echo $child_value['views']; ?></span>
+												<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+												<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+												<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+											</li>
+											
+										</ul>
+										</a>
+									</li>
+								<?php } ?>
+							</ul>	
+						</div>
+					</div>
+				</section>
+				<?php 
+			} 
+			?>
+
+			<!--==========================
+			Dynamic Section
+			============================-->
+
 			
 			<!-- Contact section -->
 			<section id="contact" >
@@ -456,8 +540,8 @@ $logo_img_path = $this->config->item('logo_img_path');
 						
 						<div class="col-md-12 wow animated fadeInRight">
 							<address class="contact-details">
-								<h3>My Contact</h3>						
-								<p><i class="fa fa-pencil"></i><?php echo $website;?>
+													
+								<p><i class="fa fa-home"></i><?php echo $website;?>
 								<span>
 									 <?php
 						                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
@@ -469,21 +553,21 @@ $logo_img_path = $this->config->item('logo_img_path');
 						                  echo $address;
 						                }
 						             ?>			
-									</span></p><br>
-								<p><i class="fa fa-phone"></i>Phone: <?php echo $mobile;?>,
+									</span></p>
+								<p>
 									<?php 
 									if(isset($contact_details[0]['phonenumber'])&&$contact_details[0]['phonenumber']!='')
 									{
-										echo "Phone :".$contact_details[0]['phonenumber'];
-									} ?>,
+										echo '<i class="fa fa-phone"></i>'."Phone :".$contact_details[0]['phonenumber'];
+									} ?>
 								<?php if(isset($contact_details[0]['homenumber'])){
-								echo "Home :".$contact_details[0]['homenumber'];
-								} ?>,
+								echo '<i class="fa fa-phone"></i>'."Home :".$contact_details[0]['homenumber'];
+								} ?>
 								<?php if(isset($contact_details[0]['officenumber'])){
-								echo "Office :".$contact_details[0]['officenumber'];
-								} ?>,
+								echo '<i class="fa fa-phone"></i>'."Office :".$contact_details[0]['officenumber'];
+								} ?>
 								<?php if(isset($contact_details[0]['faxnumber'])){
-								echo "Fax :".$contact_details[0]['faxnumber'];
+								echo '<i class="fa fa-phone"></i>'."Fax :".$contact_details[0]['faxnumber'];
 								} ?> </p>
 								
 								<p><i class="fa fa-envelope"></i>
@@ -507,8 +591,13 @@ $logo_img_path = $this->config->item('logo_img_path');
 				</div>
 			</section>
 			<!-- end Contact section -->
+
+
+	
+
 			
 			<!-- Service section -->
+			<?php if(count($service_details)>0){?>  
 			<section id="service">
 				<div class="container">
 					<div class="row">
@@ -565,6 +654,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 					</div>
 				</div>
 			</section>
+			<?php } ?>
 			<!-- end Service section -->
 			
 			<!-- Product section -->
@@ -659,6 +749,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 	            </div>            
 	          </div>
 	        </div>
+			<?php if(count($myvideo_det)>0){?> 
 	        <section id="videosection" class="section-with-bg wow fadeInUp">
 
       <div class="container">
@@ -717,8 +808,10 @@ $logo_img_path = $this->config->item('logo_img_path');
       </div>
 
     </section>
+	<?php } ?>
 	
 			<!-- Advertisment section -->
+			<?php if(count($ad_details)>0) {?> 
 			<section id="testimonials" class="parallax">
 				<div class="overlay">
 					<div class="container">
@@ -790,6 +883,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 					</div>
 				</div>
 			</section>
+			<?php } ?>
 			<!-- end Advertisment section -->
 			
 			
@@ -880,7 +974,7 @@ $logo_img_path = $this->config->item('logo_img_path');
   function servicepopupimage(name,image,desc){
       
       $('#mtitle2').html(name);
-      $('#mimage2').html('<img src="'+image+'" width="400px" height="400px">');
+      $('#mimage2').html('<img src="'+image+'" id="showpopupimg" width="400px" height="400px">');
       $('#desc2').html(desc);
      }
 
@@ -947,6 +1041,74 @@ $logo_img_path = $this->config->item('logo_img_path');
 		$('.pimage'+all_val).css('display','block');
 		//dots[this.slideIndex-1].className += " active";
 	}
+
+	function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url)
+  	{
+    	$('#mtitle2_section').html(name);
+      
+		if(type==2)
+		{
+			$('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
+		}
+		else if(type==1 || type==3 || type==4){
+			$('#mimage2_section').html('<img src="'+src_file+'" max-width="400" id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;">');
+		}else{
+			$('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
+		}
+      
+		var Websiteurl="https://"+web_url;
+		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div>');
+
+       	var serviceid = update_id;
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/updateviews"); ?>',
+			data:{'id':serviceid,'field':'view','section':name},
+			dataType:"JSON",                
+			success:function(data){                 
+				$('#viewservicecount_section').html(data.total_views);
+			}
+		});
+  	}
+
+  	function servicepopupimage(name,image,desc,service_id,weblink,type){
+      
+      	$('#mtitle2').html(name);
+		if(type==1)
+		{
+			$('#mimage2').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
+		}else{
+			$('#mimage2').html('<img src="'+image+'" width="400">');
+		}
+      
+      	$('#desc2').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+service_id+'" id="service_id"><br><div><b>WebLink</b>:'+weblink+'</div>');
+
+       	var serviceid = service_id;
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/updateservicemaster"); ?>',
+			data:{'id':serviceid,'field':'view'},
+			dataType:"JSON",                
+			success:function(data){                 
+				$('#viewservicecount').html(data.total_views);
+			}
+		});
+    }
+
+	function likeServicesection(name,id)
+   	{
+      	var id = $('#service_id'+id).val();
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("index.php/website/updatesectionitemlike"); ?>',
+			data:{'id':id,'field':'like','section':name},
+			dataType:"JSON",                
+			success:function(data){                 
+				$('#likeservicecount'+id).html(data.total_likes);
+			}
+		});
+   	}
+
 	
   </script>
     </body>
