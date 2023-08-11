@@ -1051,7 +1051,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 			$('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
 		}
 		else if(type==1 || type==3 || type==4){
-			$('#mimage2_section').html('<img src="'+src_file+'" max-width="400" id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;">');
+			$('#mimage2_section').html('<img src="'+src_file+'"  id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;max-width:80%;">');
 		}else{
 			$('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
 		}
