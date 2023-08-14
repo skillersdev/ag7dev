@@ -203,25 +203,28 @@ $this->load->view('index.html');
 
                     <?php if(count($contact_details)>0){ ?>
                         <li>
-                            <a class="page-scroll" href="#contact">My Contact</a>
+                            <a class="page-scroll" href="#contact">Contact</a>
                         </li>
                     <?php } ?>
-                    <?php if(count($service_details)>0){ ?>	
-                        <li>
-                            <a class="page-scroll" href="#services">My Service</a>
-                        </li>
-                    <?php } ?>
+
                     <?php  if(count($product_details)>0){ ?>    
                         <li>
-                            <a class="page-scroll" href="#products">My Products</a>
+                            <a class="page-scroll" href="#products">Products</a>
                         </li>
                     <?php } ?>
+
+                    <?php if(count($service_details)>0){ ?>	
+                        <li>
+                            <a class="page-scroll" href="#services">Service</a>
+                        </li>
+                    <?php } ?>
+                   
     
                     <!-- <li>
                         <a class="page-scroll" href="#ads">My Advertisment</a>
                     </li> -->
                     <?php   if(count($myvideo_det)>0){ ?>
-                      <li><a href="#videosection">My videos</a></li>
+                      <li><a href="#videosection">Videos</a></li>
                     <?php } ?>   
                     <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
                      <li>
@@ -409,53 +412,56 @@ $this->load->view('index.html');
                                 </div>
                             </div>
                         </div>
-                    </div>		
+                    </div>
+                    
+                    <div class="row">
+                        <?php
+                            foreach ($all_details[$key] as $child_key => $child_value) {
+
+                                $name = "'".$child_value['section_name']."'";
+                                $image = "'".$child_value['preview_file']."'";
+                                $desc = "'".$child_value['description']."'";
+                                $service_id = "'".$child_value['section_item_id']."'";
+                                $weblink = "'".$child_value['file_name']."'";
+                                $media_type =$child_value['media_type'];
+                                $web_url = "'".$child_value['website_link']."'";
+                                // echo $web_url;die;
+                        
+                                if($child_value['media_type']==1) {
+                                    $path = $path_url.$child_value['file_name'];
+                                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                                    $path_src = "'".$path_url.$child_value['file_name']."'";
+                                } else{
+                                    $path = $path_url.$child_value['preview_file'];
+                                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                                    $path_src = "'".$path_url.$child_value['preview_file']."'";
+                                }
+                            ?>	
+                                <div class="col-md-4">
+                                    <div class="welcome-section text-center">
+                                    <?php 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                    ?>
+                                        <h4><?php echo $child_value['title'];?></h4>
+                                        <div class="border"></div>
+                                        <p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+                                        <p>
+                                            <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+                                            <span id=""><?php echo $child_value['views']; ?></span>
+                                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                            <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                            <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+                                        </p>
+                                    </div>
+                                </div> 
+                            <?php } ?>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="row">
-                <?php
-                    foreach ($all_details[$key] as $child_key => $child_value) {
-
-                        $name = "'".$child_value['section_name']."'";
-                        $image = "'".$child_value['preview_file']."'";
-                        $desc = "'".$child_value['description']."'";
-                        $service_id = "'".$child_value['section_item_id']."'";
-                        $weblink = "'".$child_value['file_name']."'";
-                        $media_type =$child_value['media_type'];
-                        $web_url = "'".$child_value['website_link']."'";
-                        // echo $web_url;die;
-                
-                        if($child_value['media_type']==1) {
-                            $path = $path_url.$child_value['file_name'];
-                            $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                            $path_src = "'".$path_url.$child_value['file_name']."'";
-                        } else{
-                            $path = $path_url.$child_value['preview_file'];
-                            $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                            $path_src = "'".$path_url.$child_value['preview_file']."'";
-                        }
-                    ?>	
-                        <div class="col-md-4">
-                            <div class="welcome-section text-center">
-                            <?php 
-                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
-                            ?>
-                                <h4><?php echo $child_value['title'];?></h4>
-                                <div class="border"></div>
-                                <p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
-                                <p>
-                                    <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
-                                    <span id=""><?php echo $child_value['views']; ?></span>
-                                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
-                                    <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
-                                    <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
-
-                                </p>
-                            </div>
-                        </div> 
-                    <?php } ?>
-            </div>
+           
         </section>
         <?php 
     } 
@@ -550,7 +556,7 @@ $this->load->view('index.html');
 
                     <div class="col-md-12 col-sm-12">
                         <div class="section-title text-center">
-                                <h3>My Services</h3>
+                                <h3>Services</h3>
                                 <p>We provides various services</p>
                             </div>
                     </div>
@@ -601,12 +607,12 @@ $this->load->view('index.html');
                 </div>            
               </div>
             </div>
-            <?php if(count($myvideo_det)>0){?>  
-           <section id="videosection" class="section-with-bg wow fadeInUp">
+    <?php if(count($myvideo_det)>0){?>  
+      <section id="videosection" class="section-with-bg wow fadeInUp">
 
       <div class="container">
         <div class="section-header">
-          <h2>My videos</h2>
+          <h2>Videos</h2>
           
         </div>
 
@@ -685,7 +691,7 @@ $this->load->view('index.html');
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-center">
-                            <h3>My Products</h3>
+                            <h3>Products</h3>
                             <p>Various Products</p>
                         </div>                        
                     </div>
@@ -729,25 +735,39 @@ $this->load->view('index.html');
                                     $scname = "'".$product_details[$i]['sub_category_name']."'";
                                     $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
                                     $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
+                                    $total_likes= "'".$product_details[$i]['total_likes']."'";
+									$total_views =  "'".$product_details[$i]['total_views']."'";
+									$prod_desc = "'".$product_details[$i]['long_desc']."'";
+									$prod_short_desc = "'".$product_details[$i]['short_desc']."'";
                                     //echo $product_details[$i]['product_image'];
                                     ?>
                             <li>
                                 <div class="portfolio-item">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+                                        '.$cname.',
+                                        '.$scname.',
+                                        '.$price.',
+                                        '.$total_likes.',
+                                        '.$total_views.',
+                                        '.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
                                         ?>
-                                    <div class="portfolio-caption">
+                                    <div class="portfolio-caption" style="height: 70%;">
                                         <span>Category:<?php echo $product_details[$i]['category_name'];?></span>
-                                       <h3><?php echo $product_details[$i]['product_name'];?></a></h3>
-                                    <p><?php echo $product_details[$i]['price'];?></p>
+                                        <h3><?php echo $product_details[$i]['product_name'];?></a></h3>
+                                        <p><?php echo $product_details[$i]['price'];?></p>
+                                        <div>
+                                            <img src="./assets/img/eye-open1.png" id="viewT" style="width:20px;margin-left:5px;cursor: pointer;">
+                                            <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
+                                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:20px;margin-left:5px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
+                                            <input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
+                                            <span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
                             <?php } 
-                                } else
-                                {?>
-                                    <span class="portfolio-item">No Products found</span>
-                            <?php }?>
+                                }?>
                            
                         </ul>
                         <!-- End Portfolio items -->
@@ -800,7 +820,7 @@ $this->load->view('index.html');
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="section-title text-center">
-                            <h3>My Advertisement</h3>
+                            <h3>Advertisement</h3>
                             <!-- <p>Duis aute irure dolor in reprehenderit in voluptate</p> -->
                         </div>
                 </div>
@@ -876,6 +896,50 @@ $this->load->view('index.html');
     <?php } ?>
     <!-- End Ads Section -->
 
+    <!-- Album Section -->
+		<?php if(count($album_details)>0){ ?>
+			<section id="album">
+				<div class="container">
+
+					
+					<div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
+						<h2>Album</h2>
+						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+					</div>
+			
+					
+					<div class="project-wrapper">
+						<?php 
+						for($m=0;$m<count($album_details);$m++)
+						{
+							$name = "";
+							$image = "'".$path_url.$album_details[$m]['album_image']."'";
+							?>
+							<figure class="mix work-item branding" style="height: 210px;"> 
+								
+								<a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
+									<img src="<?php echo $path_url.$album_details[$m]['album_image']?> " style="height: 210px;" class="img-fluid">
+								</a>
+								<figcaption>
+									<?php 
+										if($album_details[$m]['about']!=""){
+											echo "<p>".$album_details[$m]['about']."</p>"; 
+										}
+									?>
+								</figcaption>
+								
+						
+							</figure>
+							<?php 
+						} 
+						?>
+					</div>
+				</div>
+			</section>	
+			<?php } ?>		
+
+
+
 <section>
 <footer class="style-1">
             <div class="container">
@@ -927,13 +991,35 @@ $this->load->view('index.html');
       $('#desc2').html(desc);
      }
 
-     function popupimage(name,image,cname,scname,price){
+    //  function popupimage(name,image,cname,scname,price){
+      
+    //   $('#mtitle').html(name);
+    //   $('#cname').html(cname);
+    //   $('#scname').html(scname);
+    //   $('#mfooter').html(price);
+    //   $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+    //  }
+
+    function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
       $('#scname').html(scname);
-      $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+      $('#likecount').html(likes);
+      $('#viewcount').html(views);
+      //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
+      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
+      
+      var id = p_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+          data:{'id':id,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#viewcount').html(data.total_views);
+          }
+      });
      }
 
      function popupimage1(image){

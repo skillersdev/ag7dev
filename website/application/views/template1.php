@@ -264,28 +264,31 @@
               }
             }
 
-            if(count($contact_details)>0){ ?>
-                <li><a href="#contact">My Contact</a></li>
-                <?php 
-            } 
+          
             if(count($service_details)>0)
             {
               ?>
-                <li><a href="#hotels">My Services</a></li>
+                <li><a href="#hotels">Services</a></li>
               <?php 
             } 
             if(count($product_details)>0)
             {
               ?>
-              <li><a href="#speakers">My Products</a></li>
+              <li><a href="#speakers">Products</a></li>
               <?php 
             } 
             if(count($myvideo_det)>0)
             {  ?>  
-                <li><a href="#videosection">My videos</a></li>
+                <li><a href="#videosection">Videos</a></li>
                <?php
             }
+
+            if(count($contact_details)>0){ ?>
+              <li><a href="#contact">Contact</a></li>
+              <?php 
+            }
             ?> 
+
           <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>         
           <li>
             <a href="javascript:void(0);" data-toggle="modal" data-target="#searchModal"> 
@@ -432,117 +435,7 @@
       </div>
     </section>
 
-    <!--==========================
-      Contact Section
-    ============================-->
-    <?php 
-      if(count($contact_details)>0)
-      { ?>
-        <section id="contact" class="section-bg wow fadeInUp">
-          <div class="container">
-            <div class="section-header">
-              <h2>My Contact</h2>
-              <p><?php echo $website;?></p>
-            </div>
-            <div class="row contact-info">
-              <div class="col-md-3">
-                <div class="contact-address">
-                  <i class="ion-ios-location-outline"></i>
-                    <h3>Address</h3>
-                    <address>
-                      <?php
-                      if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
-                      {
-                        echo $contact_details[0]['address']; 
-                      }
-                      else
-                      {
-                        echo $address;
-                      }
-                      ?>
-                    </address>
-                </div>
-              </div>
-              <?php 
-                if(isset($contact_details[0]['phonenumber']) || isset($contact_details[0]['homenumber']) || isset($contact_details[0]['officenumber']) || isset($contact_details[0]['faxnumber'])){
-                ?>
-              <div class="col-md-3">
-                <div class="contact-phone">
-                  <i class="ion-ios-telephone-outline"></i>
-                  <h3>Phone Number</h3>
-                      <p>
-                        <?php if(isset($contact_details[0]['phonenumber'])){
-                            echo "Phone :".$contact_details[0]['phonenumber'];
-                          } ?>                            
-                      </p>
-                    <p><?php if(isset($contact_details[0]['homenumber'])){
-                      echo "Home :".$contact_details[0]['homenumber'];
-                    } ?></p>
-                    <p><?php if(isset($contact_details[0]['officenumber'])){
-                      echo "Office :".$contact_details[0]['officenumber'];
-                    } ?></p>
-                    <p><?php if(isset($contact_details[0]['faxnumber'])){
-                      echo "Fax :".$contact_details[0]['faxnumber'];
-                    } ?></p>
-                </div>
-              </div>
-            <?php }?>
-              <div class="col-md-3">
-                <div class="contact-email">
-                  <i class="ion-ios-email-outline"></i>
-                  <h3>Email</h3>
-                  <p><a href="mailto:info@example.com">
-                    <?php 
-                     
-                    if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
-                    {
-                      echo $contact_details[0]['email']; 
-                    }
-                    else
-                    {
-                      echo $mail;
-                    }
-                     
-                    ?></a></p>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="contact-email">
-                  <i class="ion-ios-email-outline"></i>
-                  <h3>Social</h3>
-                  <p><a target="_blank" href="<?php 
-                      if(isset($contact_details[0]['fb'])){
-                        echo $contact_details[0]['fb']; 
-                      } ?>">Facebook
-                    </a>
-                  </p>
-                  <!-- <p><a target="_blank" href="#">Twitter</a></p> -->
-                  <p>
-                    <a target="_blank" href="<?php
-                       if(isset($contact_details[0]['linked'])){
-                          echo $contact_details[0]['linked']; 
-                        }
-                      ?>">LinkedIn
-                    </a>
-                  </p>
-                  <p>
-                    <?php if(isset($contact_details[0]['whatsapp'])){
-                      echo "Whatsapp :".$contact_details[0]['whatsapp'];
-                    } ?>                    
-                  </p>
-                  <p>
-                      <?php if(isset($contact_details[0]['telegram'])){
-                      echo "Telegram :".$contact_details[0]['telegram'];
-                    } ?>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section><!-- #contact -->
-        <?php 
-      } 
-    ?>    
+      
     <!--==========================
       Service Section
     ============================-->
@@ -630,7 +523,7 @@
       <section id="speakers" class="wow fadeInUp">
         <div class="container">
           <div class="section-header">
-            <h2>My Products</h2>
+            <h2>Products</h2>
             <p>Various Products</p>
           </div>
           <!-- Modal -->
@@ -673,14 +566,14 @@
                     $cname = "'".$product_details[$i]['category_name']."'";
                     $scname = "'".$product_details[$i]['sub_category_name']."'";
                     $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
-                    $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
-                    $total_likes=$product_details[$i]['total_likes'];
-                    $total_views = $product_details[$i]['total_views'];
+                    $price = "'".$product_details[$i]['currency'].$product_details[$i]['price']."'";
+                    $total_likes="'".$product_details[$i]['total_likes']."'";
+                    $total_views = "'".$product_details[$i]['total_views']."'";
                     $prod_desc = "'".$product_details[$i]['long_desc']."'";
                     $prod_short_desc = "'".$product_details[$i]['short_desc']."'";
                     ?>
-                      <div class="col-lg-3 col-md-3">
-                        <div class="speaker">
+                      <div class="col-lg-4 col-md-4">
+                        <div class="speaker" style="height: 200px;">
                           <input type="hidden" id="product_id" value="<?php echo $product_details[$i]['id'];?>">
                          <?php 
                             echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
@@ -700,11 +593,11 @@
                             </h4>
                             <p><?php echo $product_details[$i]['price']."(".$product_details[$i]['currency'].")";?></p> 
                             <div>
-                               <img src="./assets/img/eye-open1.png" id="viewT" style="width:32px;cursor: pointer;">
-                              <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
-                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:22px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
-                            <input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
-                            <span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
+                                <img src="./assets/img/eye-open1.png" id="viewT" style="width:20px;cursor: pointer;">
+                                <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
+                                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:20px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
+                                <input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
+                                <span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
                             </div>              
                           </div>
                         </div>
@@ -1098,6 +991,121 @@
 
 </section>
 <?php } ?>
+
+
+ <!--==========================
+      Contact Section
+    ============================-->
+    <?php 
+      if(count($contact_details)>0)
+      { ?>
+        <section id="contact" class="section-bg wow fadeInUp">
+          <div class="container">
+            <div class="section-header">
+              <h2>My Contact</h2>
+              <p><?php echo $website;?></p>
+            </div>
+            <div class="row contact-info">
+              <div class="col-md-3">
+                <div class="contact-address">
+                  <i class="ion-ios-location-outline"></i>
+                    <h3>Address</h3>
+                    <address>
+                      <?php
+                      if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+                      {
+                        echo $contact_details[0]['address']; 
+                      }
+                      else
+                      {
+                        echo $address;
+                      }
+                      ?>
+                    </address>
+                </div>
+              </div>
+              <?php 
+                if(isset($contact_details[0]['phonenumber']) || isset($contact_details[0]['homenumber']) || isset($contact_details[0]['officenumber']) || isset($contact_details[0]['faxnumber'])){
+                ?>
+              <div class="col-md-3">
+                <div class="contact-phone">
+                  <i class="ion-ios-telephone-outline"></i>
+                  <h3>Phone Number</h3>
+                      <p>
+                        <?php if(isset($contact_details[0]['phonenumber'])){
+                            echo "Phone :".$contact_details[0]['phonenumber'];
+                          } ?>                            
+                      </p>
+                    <p><?php if(isset($contact_details[0]['homenumber'])){
+                      echo "Home :".$contact_details[0]['homenumber'];
+                    } ?></p>
+                    <p><?php if(isset($contact_details[0]['officenumber'])){
+                      echo "Office :".$contact_details[0]['officenumber'];
+                    } ?></p>
+                    <p><?php if(isset($contact_details[0]['faxnumber'])){
+                      echo "Fax :".$contact_details[0]['faxnumber'];
+                    } ?></p>
+                </div>
+              </div>
+            <?php }?>
+              <div class="col-md-3">
+                <div class="contact-email">
+                  <i class="ion-ios-email-outline"></i>
+                  <h3>Email</h3>
+                  <p><a href="mailto:info@example.com">
+                    <?php 
+                     
+                    if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+                    {
+                      echo $contact_details[0]['email']; 
+                    }
+                    else
+                    {
+                      echo $mail;
+                    }
+                     
+                    ?></a></p>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="contact-email">
+                  <i class="ion-ios-email-outline"></i>
+                  <h3>Social</h3>
+                  <p><a target="_blank" href="<?php 
+                      if(isset($contact_details[0]['fb'])){
+                        echo $contact_details[0]['fb']; 
+                      } ?>">Facebook
+                    </a>
+                  </p>
+                  <!-- <p><a target="_blank" href="#">Twitter</a></p> -->
+                  <p>
+                    <a target="_blank" href="<?php
+                       if(isset($contact_details[0]['linked'])){
+                          echo $contact_details[0]['linked']; 
+                        }
+                      ?>">LinkedIn
+                    </a>
+                  </p>
+                  <p>
+                    <?php if(isset($contact_details[0]['whatsapp'])){
+                      echo "Whatsapp :".$contact_details[0]['whatsapp'];
+                    } ?>                    
+                  </p>
+                  <p>
+                      <?php if(isset($contact_details[0]['telegram'])){
+                      echo "Telegram :".$contact_details[0]['telegram'];
+                    } ?>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section><!-- #contact -->
+        <?php 
+      } 
+    ?> 
+
+
 
 
   <!--==========================

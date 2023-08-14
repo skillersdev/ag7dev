@@ -203,15 +203,10 @@ $logo_img_path = $this->config->item('logo_img_path');
 							}
 						}
 
-						if(count($contact_details)>0){ ?>
-							<li><a href="#contact">My Contact</a></li>
-						<?php 
-						} 
-
 						if(count($service_details)>0)
 						{
 						?>
-							<li><a href="#service">My Service</a></li>
+							<li><a href="#service">Service</a></li>
 						<?php 
 						} 
 						
@@ -219,14 +214,18 @@ $logo_img_path = $this->config->item('logo_img_path');
 						{
 							
 						?>
-							<li><a href="#portfolio">My Products </a></li>
+							<li><a href="#portfolio">Products </a></li>
 						<?php 
 						}
 						if(count($myvideo_det)>0)
 						{  ?>  
-							<li><a href="#videosection">My Videos</a></li>
+							<li><a href="#videosection">Videos</a></li>
 						<?php
 						}
+						if(count($contact_details)>0){ ?>
+							<li><a href="#contact">Contact</a></li>
+						<?php 
+						} 
 						?>
 
                         <!-- <li><a href="#testimonials">My Ads</a></li>  -->
@@ -472,9 +471,9 @@ $logo_img_path = $this->config->item('logo_img_path');
 										$path_src = "'".$path_url.$child_value['preview_file']."'";
 									}
 								?>		
-									<li class="portfolio-item">
+									<li class="portfolio-item" style="height: 210px;">
 										<?php 
-											echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive">'; 
+											echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 										?>
 										
 										<figcaption class="mask">
@@ -483,9 +482,9 @@ $logo_img_path = $this->config->item('logo_img_path');
 										</figcaption>
 										<ul class="external">
 											<li style="color:white;margin: 10px;">
-												<img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+												<img src="./assets/img/eye-open1.png" id="" style="width:20px;cursor: pointer;">
 												<span id=""><?php echo $child_value['views']; ?></span>
-												<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+												<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:20px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
 												<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
 												<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
 											</li>
@@ -506,91 +505,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 			Dynamic Section
 			============================-->
 
-			
-			<!-- Contact section -->
-			<section id="contact" >
-				<div class="container">
-					<div class="row">
-						 <?php 
-					     	 if(count($contact_details)>0)
-					      { ?>
-						<div class="sec-title text-center wow animated fadeInDown">
-							<h2>My Contact</h2>
-							
-						</div>
-						
-						
-						<!--<div class="col-md-7 contact-form wow animated fadeInLeft">
-							<form action="#" method="post">
-								<div class="input-field">
-									<input type="text" name="name" class="form-control" placeholder="Your Name...">
-								</div>
-								<div class="input-field">
-									<input type="email" name="email" class="form-control" placeholder="Your Email...">
-								</div>
-								<div class="input-field">
-									<input type="text" name="subject" class="form-control" placeholder="Subject...">
-								</div>
-								<div class="input-field">
-									<textarea name="message" class="form-control" placeholder="Messages..."></textarea>
-								</div>
-						       	<button type="submit" id="submit" class="btn btn-blue btn-effect">Send</button>
-							</form>
-						</div>-->
-						
-						<div class="col-md-12 wow animated fadeInRight">
-							<address class="contact-details">
-													
-								<p><i class="fa fa-home"></i><?php echo $website;?>
-								<span>
-									 <?php
-						                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
-						                {
-						                  echo $contact_details[0]['address']; 
-						                }
-						                else
-						                {
-						                  echo $address;
-						                }
-						             ?>			
-									</span></p>
-								<p>
-									<?php 
-									if(isset($contact_details[0]['phonenumber'])&&$contact_details[0]['phonenumber']!='')
-									{
-										echo '<i class="fa fa-phone"></i>'."Phone :".$contact_details[0]['phonenumber'];
-									} ?>
-								<?php if(isset($contact_details[0]['homenumber'])){
-								echo '<i class="fa fa-phone"></i>'."Home :".$contact_details[0]['homenumber'];
-								} ?>
-								<?php if(isset($contact_details[0]['officenumber'])){
-								echo '<i class="fa fa-phone"></i>'."Office :".$contact_details[0]['officenumber'];
-								} ?>
-								<?php if(isset($contact_details[0]['faxnumber'])){
-								echo '<i class="fa fa-phone"></i>'."Fax :".$contact_details[0]['faxnumber'];
-								} ?> </p>
-								
-								<p><i class="fa fa-envelope"></i>
-									 <?php 
-                 
-						                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
-						                {
-						                  echo $contact_details[0]['email']; 
-						                }
-						                else
-						                {
-						                  echo $mail;
-						                }
-						                 
-						                ?>
-								</p>
-							</address>
-						</div>
-						<?php } ?>
-					</div>
-				</div>
-			</section>
-			<!-- end Contact section -->
+		
 
 
 	
@@ -603,25 +518,25 @@ $logo_img_path = $this->config->item('logo_img_path');
 					<div class="row">
 
 					
-          <!-- Modal -->
-		  <div class="modal fade" id="myModal2" role="dialog">
-          <div class="modal-dialog">          
-            <!-- Modal content-->
-            <div class="modal-content">           
-              <div class="modal-header">
-              <h4 class="modal-title" id="mtitle2"></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>               
-              </div>
-              <div class="modal-body" id="mimage2">                
-              </div>
-              <div class="modal-footer" id="desc2">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-              </div>
-            </div>            
-          </div>
-        </div>
-          
-        </div>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal2" role="dialog">
+						<div class="modal-dialog">          
+							<!-- Modal content-->
+							<div class="modal-content">           
+							<div class="modal-header">
+							<h4 class="modal-title" id="mtitle2"></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>               
+							</div>
+							<div class="modal-body" id="mimage2">                
+							</div>
+							<div class="modal-footer" id="desc2">
+								<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+							</div>
+							</div>            
+						</div>
+						</div>
+						
+						</div>
 
 
 					
@@ -688,7 +603,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 						</div>
 					
 						<div class="sec-title text-center wow animated fadeInDown">
-							<h2>My PRODUCTS</h2>
+							<h2>PRODUCTS</h2>
 							<p>Latest Products.</p>
 						</div>
 						
@@ -704,11 +619,21 @@ $logo_img_path = $this->config->item('logo_img_path');
 									$scname = "'".$product_details[$i]['sub_category_name']."'";
 									$product_image = "'".$path_url.$product_details[$i]['product_image']."'";
 									$price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
+									$total_likes= "'".$product_details[$i]['total_likes']."'";
+									$total_views =  "'".$product_details[$i]['total_views']."'";
+									$prod_desc = "'".$product_details[$i]['long_desc']."'";
+									$prod_short_desc = "'".$product_details[$i]['short_desc']."'";
 					                //echo $product_details[$i]['product_image'];
 					                ?>
-							<li class="portfolio-item">
+							<li class="portfolio-item" style="height: 210px;">
 								 <?php 
-			                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
+			                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+									'.$cname.',
+									'.$scname.',
+									'.$price.',
+									'.$total_likes.',
+									'.$total_views.',
+									'.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
 			                        ?>
 								<figcaption class="mask">
 									<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -716,7 +641,15 @@ $logo_img_path = $this->config->item('logo_img_path');
 									<span>Category:<?php echo $product_details[$i]['category_name'];?></span>
 								</figcaption>
 								<ul class="external">
-									<li><a class="fancybox" title="Araund The world" data-fancybox-group="works" href="img/portfolio/item.jpg"><i class="fa fa-search"></i></a></li>
+									<li>
+									<div>
+										<img src="./assets/img/eye-open1.png" id="viewT" style="width:20px;cursor: pointer;">
+										<span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
+										<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:20px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
+										<input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
+										<span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
+									</div>
+									</li>  
 									
 								</ul>
 							</li>
@@ -730,6 +663,50 @@ $logo_img_path = $this->config->item('logo_img_path');
 			</section>
 			<?php } ?>
 			<!-- end product section -->
+
+			<!-- Album Section -->
+			<?php if(count($album_details)>0){ ?>
+			<section id="album" class="wow fadeInUp">
+				<div class="container">
+
+					<div class="sec-title text-center wow animated fadeInDown">
+						<h2>Album</h2>
+					</div>
+			
+					
+					<ul class="project-wrapper wow animated fadeInUp">
+						<?php 
+						for($m=0;$m<count($album_details);$m++)
+						{
+							$name = "";
+							$image = "'".$path_url.$album_details[$m]['album_image']."'";
+							?>
+							<li class="portfolio-item" style="height: 210px;">    
+								<a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
+									<img src="<?php echo $path_url.$album_details[$m]['album_image']?> " class="img-fluid">
+								</a>
+								<figcaption class="mask">
+									<?php 
+										if($album_details[$m]['about']!=""){
+											echo "<p>".$album_details[$m]['about']."</p>"; 
+										}
+									?>
+								</figcaption>
+									
+								</div>
+								</li>
+							<?php 
+						} 
+						?>
+					</ul>
+				</div>
+			</section>	
+			<?php } ?>					
+
+
+
+
+
 			 <div class="modal fade" id="videomodal" role="dialog">
 	          <div class="modal-dialog">          
 	            <!-- Modal content-->
@@ -886,6 +863,91 @@ $logo_img_path = $this->config->item('logo_img_path');
 			<?php } ?>
 			<!-- end Advertisment section -->
 			
+				
+			<!-- Contact section -->
+			<section id="contact" >
+				<div class="container">
+					<div class="row">
+						 <?php 
+					     	 if(count($contact_details)>0)
+					      { ?>
+						<div class="sec-title text-center wow animated fadeInDown">
+							<h2>My Contact</h2>
+							
+						</div>
+						
+						
+						<!--<div class="col-md-7 contact-form wow animated fadeInLeft">
+							<form action="#" method="post">
+								<div class="input-field">
+									<input type="text" name="name" class="form-control" placeholder="Your Name...">
+								</div>
+								<div class="input-field">
+									<input type="email" name="email" class="form-control" placeholder="Your Email...">
+								</div>
+								<div class="input-field">
+									<input type="text" name="subject" class="form-control" placeholder="Subject...">
+								</div>
+								<div class="input-field">
+									<textarea name="message" class="form-control" placeholder="Messages..."></textarea>
+								</div>
+						       	<button type="submit" id="submit" class="btn btn-blue btn-effect">Send</button>
+							</form>
+						</div>-->
+						
+						<div class="col-md-12 wow animated fadeInRight">
+							<address class="contact-details">
+													
+								<p><i class="fa fa-home"></i><?php echo $website;?>
+								<span>
+									 <?php
+						                if(isset($contact_details[0]['address'])&&($contact_details[0]['address']!=''))
+						                {
+						                  echo $contact_details[0]['address']; 
+						                }
+						                else
+						                {
+						                  echo $address;
+						                }
+						             ?>			
+									</span></p>
+								<p>
+									<?php 
+									if(isset($contact_details[0]['phonenumber'])&&$contact_details[0]['phonenumber']!='')
+									{
+										echo '<i class="fa fa-phone"></i>'."Phone :".$contact_details[0]['phonenumber'];
+									} ?>
+								<?php if(isset($contact_details[0]['homenumber'])){
+								echo '<i class="fa fa-phone"></i>'."Home :".$contact_details[0]['homenumber'];
+								} ?>
+								<?php if(isset($contact_details[0]['officenumber'])){
+								echo '<i class="fa fa-phone"></i>'."Office :".$contact_details[0]['officenumber'];
+								} ?>
+								<?php if(isset($contact_details[0]['faxnumber'])){
+								echo '<i class="fa fa-phone"></i>'."Fax :".$contact_details[0]['faxnumber'];
+								} ?> </p>
+								
+								<p><i class="fa fa-envelope"></i>
+									 <?php 
+                 
+						                if(isset($contact_details[0]['email'])&&($contact_details[0]['email']!=''))
+						                {
+						                  echo $contact_details[0]['email']; 
+						                }
+						                else
+						                {
+						                  echo $mail;
+						                }
+						                 
+						                ?>
+								</p>
+							</address>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+			</section>
+			<!-- end Contact section -->
 			
 			
 			<!-- Social section -->
@@ -978,13 +1040,35 @@ $logo_img_path = $this->config->item('logo_img_path');
       $('#desc2').html(desc);
      }
 
-	 function popupimage(name,image,cname,scname,price){
+	//  function popupimage(name,image,cname,scname,price){
+      
+    //   $('#mtitle').html(name);
+    //   $('#cname').html(cname);
+    //   $('#scname').html(scname);
+    //   $('#mfooter').html(price);
+    //   $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+    //  }
+
+	function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
       $('#scname').html(scname);
-      $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+      $('#likecount').html(likes);
+      $('#viewcount').html(views);
+      //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
+      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
+      
+      var id = p_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+          data:{'id':id,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#viewcount').html(data.total_views);
+          }
+      });
      }
 
      function popupimage1(image){

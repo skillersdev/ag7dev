@@ -106,7 +106,8 @@ $image_path = $this->config->item('base_path');
 						
 					</ul>
 					
-					
+					<?php
+           			if(count($gallery_details)>0){?>
 					<h3>Album Videos</h3>
 					
 					<ul class="videoaudio">
@@ -130,8 +131,9 @@ $image_path = $this->config->item('base_path');
 						?>
 						
 					</ul>
+					<?php } ?>
 					
-					
+					<?php if(count($gallery_details)>0){?>
 					<h3>Album Audios</h3>
 					<ul class="videoaudio">
 					<?php
@@ -156,6 +158,7 @@ $image_path = $this->config->item('base_path');
 						?>
 						
 					</ul>
+					<?php } ?>
 					
 					
 

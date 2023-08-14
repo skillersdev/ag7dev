@@ -133,18 +133,19 @@
           ?>    
 
           <!-- <li><a href="#about">About Us</a></li> -->
-          <?php if(count($contact_details)>0){ ?>
-            <li><a href="#contact">My Contact</a></li>
-          <?php } ?>
+          
           <?php if(count($service_details)>0){ ?>	  
-            <li><a href="#services">My Services</a></li>
+            <li><a href="#services">Services</a></li>
           <?php } ?>
           <?php  if(count($product_details)>0){ ?>
-            <li><a href="#portfolio">My Products</a></li>
+            <li><a href="#portfolio">Products</a></li>
           <?php } ?>  
           <!-- <li><a href="#team">My Ads</a></li>  -->
           <?php   if(count($myvideo_det)>0){ ?>
-            <li><a href="#videosection">My videos</a></li>
+            <li><a href="#videosection">Videos</a></li>
+          <?php } ?>
+          <?php if(count($contact_details)>0){ ?>
+            <li><a href="#contact">Contact</a></li>
           <?php } ?>
           <li><a href="<?php echo $login_url; ?>" target="_blank">Website login</a></li>
            <li>
@@ -346,17 +347,368 @@
     ============================-->
     
     
+  
+    <div class="modal fade" id="videomodal" role="dialog">
+              <div class="modal-dialog">          
+                <!-- Modal content-->
+                <div class="modal-content">           
+                  <div class="modal-header">
+                  <h4 class="modal-title" id="mtitle1"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>               
+                  </div>
+                  <div class="modal-body" id="videoimage">                
+                  </div>
+                  <div class="modal-footer" style="display: block;">
+                     <!-- <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
+                    <span id="adviewcount"></span>
+                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
+                    <span id="adlikecount"></span> -->
+                  </div>
+                </div>            
+              </div>
+            </div>
+          <?php  if(count($myvideo_det)>0){?>       
+            <section id="videosection" class="section-with-bg wow fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>Videos</h2>
+          
+        </div>
+
+        <div class="row">
+          <?php 
+
+          for($mv=0;$mv<count($myvideo_det);$mv++)
+          {
+            $name = "";
+            $image = $path_url.$myvideo_det[$mv]['preview_image'];
+            $video = "'".$path_url.$myvideo_det[$mv]['video_file']."'";
+            $id="'".$myvideo_det[$mv]['id']."'"
+          ?>
+          <div class="col-lg-3 col-md-3">
+      
+            <div class="hotel">
+        <div class="hotel-img">
+          <?php 
+             
+              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#videomodal" onclick="videopreviewimage('.$video.','.$id.')"><img src="'.$image.'" class="img-fluid"></a>'; 
+            // }
+            // else{
+            // echo '<video width="280" height="200" controls>
+            //     <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
+            //     </video>';
+            // }
+          ?>
+          <!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
+        </div>
+        <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+        <?php 
+        if($myvideo_det[$mv]['description']!=""){
+          echo "<p>".$myvideo_det[$mv]['description']."</p>"; 
+        }
+       
+        ?>
+        <!--  <div class="image-container"  style="width:52%;">
+              <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+              <span id=""><?php //echo $ad_details[$k]['views']; ?></span>
+              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php //echo $ad_details[$k]['id'];?>)">
+              <input type="hidden" value="<?php //echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
+              <span id="adlikecount<?php //echo $ad_details[$k]['id'];?>"><?php //echo $ad_details[$k]['likes']; ?></span>
+            </div> -->
+      </div>
+
+          </div>
+        <?php } ?>
+      
+
+        </div>
+      </div>
+
+    </section>
+    <?php } ?>
+    
     <!--==========================
+      Services Section
+    ============================-->
+    <?php if(count($service_details)>0){?>   
+    <section id="services" class="section-bg">
+      <div class="container">
+
+       <!-- Modal -->
+       <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h4 class="modal-title" id="mtitle2"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              </div>
+              <div class="modal-body" id="mimage2">                
+              </div>
+              <div class="modal-footer" id="desc2">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
+          
+        </div>
+        
+
+        <header class="section-header">
+          <h3>Services</h3>
+          
+        </header>
+
+        <div class="row">
+        <?php 
+        for($j=0;$j<count($service_details);$j++)
+        {
+        ?>
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-paper-outline" style="color: #ff689b;"></i></div>
+              <h4 class="title"><a href=""><?php echo $service_details[$j]['service_name'];?></a></h4>
+              <p class="description"><?php echo $service_details[$j]['desc'];?></p>
+            </div>
+          </div>
+          <?php } ?>
+
+         
+
+        </div>
+
+      </div>
+    </section><!-- #services -->
+    <?php } ?>
+
+
+   
+    <!--==========================
+      Product Section
+    ============================-->
+    <?php if(count($product_details)>0) {?> 
+    <section id="portfolio" class="section-with-bg wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Products</h3>
+        </header>
+
+         <!-- Modal -->
+         <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h5 class="modal-title" id="mtitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                </div>
+                <div class="modal-header">
+                <h6 >Category Name : </h6><h6 class="modal-title" id="cname"></h6> <br>
+                <!-- <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br>   -->           
+              </div>
+              <div class="modal-body" id="mimage">   
+              <h4 class="modal-title" id="mtitle"></h4>             
+              </div>
+              <div class="modal-footer" id="mfooter">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
+
+
+        <div class="row portfolio-container">
+
+          
+          <?php
+           if(count($product_details)>0)
+            {
+              for($i=0;$i<count($product_details);$i++){
+                $name = "'".$product_details[$i]['product_name']."'";
+                $cname = "'".$product_details[$i]['category_name']."'";
+                $scname = "'".$product_details[$i]['sub_category_name']."'";
+                $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
+                $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
+                $total_likes= "'".$product_details[$i]['total_likes']."'";
+                $total_views =  "'".$product_details[$i]['total_views']."'";
+                $prod_desc = "'".$product_details[$i]['long_desc']."'";
+                $prod_short_desc = "'".$product_details[$i]['short_desc']."'";
+                                  //echo $product_details[$i]['product_image'];
+                ?>
+              <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-wrap" style="height:200px;">
+                  <?php 
+                      echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+                      '.$cname.',
+                      '.$scname.',
+                      '.$price.',
+                      '.$total_likes.',
+                      '.$total_views.',
+                      '.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height:200px;"></a>'; 
+                  ?>
+                  <div class="portfolio-info" style="height: 70%;margin-top: 30%;">
+                    <span style="color: white;">Category:<?php echo $product_details[$i]['category_name'];?></span>
+                    <br><br><h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
+                    <p><?php echo $product_details[$i]['price'];?></p>
+                    <div>
+                        <img src="./assets/img/eye-open1.png" id="viewT" style="width:20px;margin-left:5px;cursor: pointer;">
+                        <span id="viewcount" style="color: white;"><?php echo $product_details[$i]['total_views'];?></span>
+                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likesT1" style="width:20px;margin-left:5px;cursor: pointer;" onclick="likeProduct(<?php echo $product_details[$i]['id'];?>)">
+                        <input type="hidden" value="<?php echo $product_details[$i]['id'];?>" id="product_id<?php echo $product_details[$i]['id'];?>">
+                        <span id="likecount<?php echo $product_details[$i]['id'];?>" style="color: white;"><?php echo $product_details[$i]['total_likes'];?></span>
+                    </div>
+                    
+                  <div>
+                    <?php
+                    echo  '<a href="'.$path_url.$product_details[$i]['product_image'].'" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>';
+                    ?>
+                    <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            <?php } 
+            }?>
+          </div>
+
+        
+
+        
+
+      </div>
+    </section><!-- #Products -->
+    <?php } ?>
+
+    <!--==========================
+      Team Section
+    ============================-->
+    <?php if(count($ad_details)>0) {?> 
+    <section id="team">
+      <div class="container">
+        <div class="section-header">
+          <h3>Advertisment</h3>
+         
+        </div>
+
+        
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" role="dialog">
+          <div class="modal-dialog">          
+            <!-- Modal content-->
+            <div class="modal-content">           
+              <div class="modal-header">
+              <h4 class="modal-title" id="mtitle1"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>               
+              </div>
+              <div class="modal-body" id="mimage1">                
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>            
+          </div>
+        </div>
+
+
+        <div class="row">
+
+
+          <div class="col-lg-3 col-md-6 wow fadeInUp">
+          <?php
+                                      for($k=0;$k<count($ad_details);$k++)
+                                      {
+                                        $image = "'".$path_url.$ad_details[$k]['uploads']."'";
+                                      ?>
+            <div class="member">
+            <?php
+                                         if($ad_details[$k]['ad_type']==1)
+                                              { 
+                                                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;"></a>'; 
+                                              }
+                                              else{
+                                                echo '<video width="280" height="200" controls>
+                                                        <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
+                                                      </video>';
+                                              }
+                                              ?>
+              <!-- <div class="member-info">
+                <div class="member-info-content">
+                  <h4>Ad1</h4>
+                  <span>Ad description</span>
+                 
+                </div>
+              </div> -->
+            </div>
+            <?php } ?>
+          </div>
+
+         
+        </div>
+
+      </div>
+    </section><!-- #team -->
+    <?php } ?>
+    
+    
+   <!-- Album Section -->
+   <?php if(count($album_details)>0){ ?>
+			<section id="album" class="section-with-bg wow fadeInUp">
+				<div class="container">
+
+					
+					
+
+          <div class="section-header">
+            <h3 style="margin-top: 10px;">Album</h3>
+          </div>
+			
+					
+					<div class="project-wrapper">
+						<?php 
+						for($m=0;$m<count($album_details);$m++)
+						{
+							$name = "";
+							$image = "'".$path_url.$album_details[$m]['album_image']."'";
+							?>
+							<figure class="mix work-item branding"> 
+								
+								<a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
+									<img src="<?php echo $path_url.$album_details[$m]['album_image']?> " style="height: 210px;" class="img-fluid">
+								</a>
+								<figcaption>
+									<?php 
+										if($album_details[$m]['about']!=""){
+											echo "<p>".$album_details[$m]['about']."</p>"; 
+										}
+									?>
+								</figcaption>
+								
+						
+							</figure>
+							<?php 
+						} 
+						?>
+					</div>
+				</div>
+			</section>	
+			<?php } ?>		
+
+
+
+      <!--==========================
       Contact Section
     ============================-->
-     <?php 
+    <?php 
          if(count($contact_details)>0)
         { ?>
     <section id="contact">
       <div class="container-fluid">
 
         <div class="section-header">
-          <h3>My Contact</h3>
+          <h3>Contact</h3>
         </div>
 
         <div class="row wow fadeInUp">
@@ -454,295 +806,8 @@
 
       </div>
     </section><!-- #contact -->
-  <?php }?>
-    <div class="modal fade" id="videomodal" role="dialog">
-              <div class="modal-dialog">          
-                <!-- Modal content-->
-                <div class="modal-content">           
-                  <div class="modal-header">
-                  <h4 class="modal-title" id="mtitle1"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>               
-                  </div>
-                  <div class="modal-body" id="videoimage">                
-                  </div>
-                  <div class="modal-footer" style="display: block;">
-                     <!-- <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
-                    <span id="adviewcount"></span>
-                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
-                    <span id="adlikecount"></span> -->
-                  </div>
-                </div>            
-              </div>
-            </div>
-          <?php  if(count($myvideo_det)>0){?>       
-            <section id="videosection" class="section-with-bg wow fadeInUp">
+  <?php }?> 
 
-      <div class="container">
-        <div class="section-header">
-          <h2>My videos</h2>
-          
-        </div>
-
-        <div class="row">
-          <?php 
-
-          for($mv=0;$mv<count($myvideo_det);$mv++)
-          {
-            $name = "";
-            $image = $path_url.$myvideo_det[$mv]['preview_image'];
-            $video = "'".$path_url.$myvideo_det[$mv]['video_file']."'";
-            $id="'".$myvideo_det[$mv]['id']."'"
-          ?>
-          <div class="col-lg-3 col-md-3">
-      
-            <div class="hotel">
-        <div class="hotel-img">
-          <?php 
-             
-              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#videomodal" onclick="videopreviewimage('.$video.','.$id.')"><img src="'.$image.'" class="img-fluid"></a>'; 
-            // }
-            // else{
-            // echo '<video width="280" height="200" controls>
-            //     <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
-            //     </video>';
-            // }
-          ?>
-          <!-- <img src="http://localhost/ag7dev.git/trunk/api/'.$product_details[$i]['product_image'].' " alt="Hotel 1" class="img-fluid"style="height: 205px;"> -->
-        </div>
-        <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
-        <?php 
-        if($myvideo_det[$mv]['description']!=""){
-          echo "<p>".$myvideo_det[$mv]['description']."</p>"; 
-        }
-       
-        ?>
-        <!--  <div class="image-container"  style="width:52%;">
-              <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-              <span id=""><?php //echo $ad_details[$k]['views']; ?></span>
-              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php //echo $ad_details[$k]['id'];?>)">
-              <input type="hidden" value="<?php //echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
-              <span id="adlikecount<?php //echo $ad_details[$k]['id'];?>"><?php //echo $ad_details[$k]['likes']; ?></span>
-            </div> -->
-      </div>
-
-          </div>
-        <?php } ?>
-      
-
-        </div>
-      </div>
-
-    </section>
-    <?php } ?>
-    
-    <!--==========================
-      Services Section
-    ============================-->
-    <?php if(count($service_details)>0){?>   
-    <section id="services" class="section-bg">
-      <div class="container">
-
-       <!-- Modal -->
-       <div class="modal fade" id="myModal2" role="dialog">
-          <div class="modal-dialog">          
-            <!-- Modal content-->
-            <div class="modal-content">           
-              <div class="modal-header">
-              <h4 class="modal-title" id="mtitle2"></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>               
-              </div>
-              <div class="modal-body" id="mimage2">                
-              </div>
-              <div class="modal-footer" id="desc2">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-              </div>
-            </div>            
-          </div>
-        </div>
-          
-        </div>
-        
-
-        <header class="section-header">
-          <h3>My Services</h3>
-          
-        </header>
-
-        <div class="row">
-        <?php 
-        for($j=0;$j<count($service_details);$j++)
-        {
-        ?>
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
-            <div class="box">
-              <div class="icon"><i class="ion-ios-paper-outline" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href=""><?php echo $service_details[$j]['service_name'];?></a></h4>
-              <p class="description"><?php echo $service_details[$j]['desc'];?></p>
-            </div>
-          </div>
-          <?php } ?>
-
-         
-
-        </div>
-
-      </div>
-    </section><!-- #services -->
-    <?php } ?>
-
-
-   
-    <!--==========================
-      Product Section
-    ============================-->
-    <?php if(count($product_details)>0) {?> 
-    <section id="portfolio" class="clearfix">
-      <div class="container">
-
-        <header class="section-header">
-          <h3 class="section-title">My Products</h3>
-        </header>
-
-         <!-- Modal -->
-         <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">          
-            <!-- Modal content-->
-            <div class="modal-content">           
-              <div class="modal-header">
-              <h5 class="modal-title" id="mtitle"></h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                </div>
-                <div class="modal-header">
-                <h6 >Category Name : </h6><h6 class="modal-title" id="cname"></h6> <br>
-                <!-- <h6 >Sub Category : </h6><h6 class="modal-title" id="scname"></h6> <br>   -->           
-              </div>
-              <div class="modal-body" id="mimage">   
-              <h4 class="modal-title" id="mtitle"></h4>             
-              </div>
-              <div class="modal-footer" id="mfooter">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-              </div>
-            </div>            
-          </div>
-        </div>
-
-
-        <div class="row portfolio-container">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <?php
-           if(count($product_details)>0)
-            {
-                for($i=0;$i<count($product_details);$i++){
-                  $name = "'".$product_details[$i]['product_name']."'";
-                $cname = "'".$product_details[$i]['category_name']."'";
-                $scname = "'".$product_details[$i]['sub_category_name']."'";
-                $product_image = "'".$path_url.$product_details[$i]['product_image']."'";
-                $price = "'".$product_details[$i]['currency'].' '.$product_details[$i]['price']."'";
-                                    //echo $product_details[$i]['product_image'];
-            ?>
-
-            <div class="portfolio-wrap">
-            <?php 
-                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$name.','.$product_image.','.$cname.','.$scname.','.$price.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;"></a>'; 
-            ?>
-              <div class="portfolio-info">
-                <span style="color: white;">Category:<?php echo $product_details[$i]['category_name'];?></span>
-                <br><br><h4><a href="#"><?php echo $product_details[$i]['product_name'];?></a></h4>
-                <p><?php echo $product_details[$i]['price'];?></p>
-                <div>
-                 <?php
-                 echo  '<a href="'.$path_url.$product_details[$i]['product_image'].'" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>';
-                 ?>
-                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <?php } 
-                                }?>
-          </div>
-
-        
-
-        </div>
-
-      </div>
-    </section><!-- #Products -->
-    <?php } ?>
-
-    <!--==========================
-      Team Section
-    ============================-->
-    <?php if(count($ad_details)>0) {?> 
-    <section id="team">
-      <div class="container">
-        <div class="section-header">
-          <h3>My Advertisment</h3>
-         
-        </div>
-
-        
-    <!-- Modal -->
-    <div class="modal fade" id="myModal1" role="dialog">
-          <div class="modal-dialog">          
-            <!-- Modal content-->
-            <div class="modal-content">           
-              <div class="modal-header">
-              <h4 class="modal-title" id="mtitle1"></h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>               
-              </div>
-              <div class="modal-body" id="mimage1">                
-              </div>
-              <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-              </div>
-            </div>            
-          </div>
-        </div>
-
-
-        <div class="row">
-
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp">
-          <?php
-                                      for($k=0;$k<count($ad_details);$k++)
-                                      {
-                                        $image = "'".$path_url.$ad_details[$k]['uploads']."'";
-                                      ?>
-            <div class="member">
-            <?php
-                                         if($ad_details[$k]['ad_type']==1)
-                                              { 
-                                                  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid" style="width:100%;height:210px;"></a>'; 
-                                              }
-                                              else{
-                                                echo '<video width="280" height="200" controls>
-                                                        <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
-                                                      </video>';
-                                              }
-                                              ?>
-              <!-- <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Ad1</h4>
-                  <span>Ad description</span>
-                 
-                </div>
-              </div> -->
-            </div>
-            <?php } ?>
-          </div>
-
-         
-        </div>
-
-      </div>
-    </section><!-- #team -->
-    <?php } ?>
-  
-
-     
 
     
   </main>
@@ -788,13 +853,35 @@
       $('#desc2').html(desc);
      }
 
-     function popupimage(name,image,cname,scname,price){
+    //  function popupimage(name,image,cname,scname,price){
+      
+    //   $('#mtitle').html(name);
+    //   $('#cname').html(cname);
+    //   $('#scname').html(scname);
+    //   $('#mfooter').html(price);
+    //   $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+    //  }
+    
+    function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
       $('#scname').html(scname);
-      $('#mfooter').html(price);
-      $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
+      $('#likecount').html(likes);
+      $('#viewcount').html(views);
+      //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
+      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
+      
+      var id = p_id;
+       $.ajax({
+          type:'POST',
+          url:'<?php echo base_url("index.php/website/updateproductmaster"); ?>',
+          data:{'id':id,'field':'view'},
+           dataType:"JSON",                
+          success:function(data){                 
+              $('#viewcount').html(data.total_views);
+          }
+      });
      }
 
      function popupimage1(image){
