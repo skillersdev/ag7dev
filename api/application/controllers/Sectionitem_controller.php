@@ -19,9 +19,10 @@ class Sectionitem_controller extends CI_Controller {
         unset($model->user_id); 
         unset($model->websiteSelected);
         unset($model->IspreviewImage);
-        
+
         $this->db->insert('manage_section_item', $model);
 
+        
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();       
     }
@@ -110,7 +111,7 @@ class Sectionitem_controller extends CI_Controller {
 
         if (isset($model)) 
           {
-            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."' where id='".$model->id."'");
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."',view_type ='".$model->view_type."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Section has been updated successfully";

@@ -140,7 +140,22 @@
                                                     </div>      
                                                 </div>
                                        		 </div>
-                                       		
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                     <label for="NameSurname" class="col-sm-2 control-label">{{'View Style' | translate}}</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-line">
+                                                             <select class="form-control show-tick" [(ngModel)]="model.view_type" #view_type="ngModel" name="view_type" required>
+                                                                <option value="select">select view_type</option> 
+                                                                <option value="1">Pop up</option> 
+                                                                <option value="2">Page view</option>    
+                                                              
+                                                            </select>
+                                                            <span [hidden]="view_type.valid || view_type.pristine" class="text-danger">view is required</span>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div> 
 	                                            <div class="col-md-6"  *ngIf="model.media_type!=1">
 				                                      <p><b>{{'mdeia' | translate}}{{'preview' | translate}} {{'image' | translate}}</b></p>                   
 				                                      <input type="file" (change)="getservicePreviewImage($event)" />
