@@ -117,6 +117,33 @@ class SectionItem extends CI_Controller {
 			$album_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('album_master'); 
 			$album_result =$album_det->result_array();
 
+			/*******Section And Section Item Menu list***********/
+
+			$GetsectionMenu=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where (website='".$websitename."') AND Issection_show=1  AND is_deleted=0 ORDER BY section_order ASC"); 
+			$section_result_array_Menu =$GetsectionMenu->result_array();
+			$section_result_Menu=[];
+			//echo "<pre>";print_r($section_result_array);die;
+			if(count($section_result_array_Menu)>0)
+			{	
+				foreach($section_result_array_Menu as $key=>$value)
+		          {
+					$Getsection_item_menu=$this->db->select("*")->where(['website'=>$websitename,'section'=>$value['id'],'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');
+					$Getsection_item_result_array_menu =$Getsection_item_menu->result_array();
+					foreach($Getsection_item_result_array_menu as $key_item=>$item_value)
+		          	{
+						$section_result_Menu[$value['section_name']][$key_item]['section_name'] = $value['section_name'];
+						$section_result_Menu[$value['section_name']][$key_item]['show_menu'] = $value['isSectionMenuShow'];
+					}
+
+				  }
+
+			}
+				/*******Section And Section Item Menu list***********/
+
+
+
+
+
 
 			/*******Section And Section Item Query************/
 
@@ -187,6 +214,8 @@ class SectionItem extends CI_Controller {
 			$data['channel_array']=$channel_array;
 			$data['group_array']=$group_array;
 			$data['all_details'] = $section_result;
+			$data['section_menu_list'] = $section_result_Menu;
+			
 			$data['album_details'] = $album_result;
 			$data['product_details']=$result;
 			// print_r($contac_result); die;
@@ -208,6 +237,7 @@ class SectionItem extends CI_Controller {
 			$data['total_follows'] = (count($web_follow_count)>0)?$web_follow_count[0]['count']:0;
 			$data['total_views'] = $val[0]['total_views'];
 			$data['total_likes'] = (count($web_like_count)>0)?$web_like_count[0]['count']:0;
+			$data['currentsectionName']=$sectionName;
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');

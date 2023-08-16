@@ -155,16 +155,16 @@
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="<?php echo base_url();?><?php echo $website; ?>#intro">Home</a></li>
+          <li class=""><a href="<?php echo base_url();?><?php echo $website; ?>#intro">Home</a></li>
           <!-- <li><a href="#about"></a></li> -->
             <?php 
-            foreach ($all_details as $key => $value) 
+            foreach ($section_menu_list as $key => $value) 
             {
               if($value[0]['show_menu']==1){
               ?>
-                <li class="">
+                <li  class=<?php echo ($currentsectionName==$key)?"menu-active":""; ?>>
                   <a href="<?php echo base_url();?><?php echo $website; ?>#<?php echo $key;?>">
-                    <?php echo $key;?>
+                    <?php echo $key;?> 
                   </a>
                 </li>
               <?php 
