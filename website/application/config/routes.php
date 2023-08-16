@@ -53,6 +53,9 @@ $route['default_controller'] = 'website';
 $route['individual'] ="individual/index";
 $route['album/(:any)'] ="gallery/index/$1";
 $route['(:any)'] = 'website/index/$1';//this stands for
+$route['(:any)/(:any)/(:any)'] = 'sectionItem/index/$1/$2/$3';//this stands for section Item view page
+
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

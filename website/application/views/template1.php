@@ -6,6 +6,7 @@
   $login_url = $this->config->item('login_url');
   $image_path = $this->config->item('base_path');
   $logo_img_path = $this->config->item('logo_img_path');
+  $sectionItem_path=base_url().$website;
 
   $last_slider_image = end($slider_image);
 ?>
@@ -435,7 +436,129 @@
       </div>
     </section>
 
-      
+    
+     <!--==========================
+      Service Section
+    ============================-->
+    <?php
+      if(count($all_details)>0){
+      foreach ($all_details as $key => $value) 
+      {
+        ?>
+        <section id="<?php echo $key;?>" class="section-with-bg wow fadeInUp">
+          <div class="container">
+            <div class="section-header">
+              <h2><?php echo $key;?></h2>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal_section" role="dialog">
+                <div class="modal-dialog  modal-lg">   
+                  <div class="modal-content">           
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="mtitle2_section"></h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="mimage2_section">                
+                    </div>
+                    <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
+                      <div class="image-container"  style="width:52%;">
+                        <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
+                        <span id="viewservicecount_section"></span>
+                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
+                        <span id="likeservicecount"></span>
+                      </div>
+                    </div>
+                  </div>            
+                </div>
+              </div>
+            </div>
+         
+          <!-- Modal -->
+          <div class="modal fade" id="myModal_section" role="dialog">
+            <div class="modal-dialog  modal-lg">          
+              <!-- Modal content-->
+              <div class="modal-content">           
+                <div class="modal-header">
+                <h4 class="modal-title" id="mtitle2_section"></h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>               
+                </div>
+                <div class="modal-body" id="mimage2_section">                
+                </div>
+                <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
+                  <div class="image-container"  style="width:52%;">
+                    <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
+                    <span id="viewservicecount_section"></span>
+                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
+                    <span id="likeservicecount"></span>
+                  </div>
+                </div>
+              </div>            
+            </div>
+          </div>
+
+          <div class="row">
+            <?php
+           
+              foreach ($all_details[$key] as $child_key => $child_value) {
+
+                $name = "'".$child_value['section_name']."'";
+                $image = "'".$child_value['preview_file']."'";
+                $desc = "'".$child_value['description']."'";
+                $service_id = "'".$child_value['section_item_id']."'";
+                $weblink = "'".$child_value['file_name']."'";
+                $media_type =$child_value['media_type'];
+                $web_url = "'".$child_value['website_link']."'";
+                $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //sectionItem URL
+               // echo $web_url;die;
+                
+                 if($child_value['media_type']==1) {
+                    $path = $path_url.$child_value['file_name'];
+                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                     $path_src = "'".$path_url.$child_value['file_name']."'";
+                 } else{
+                    $path = $path_url.$child_value['preview_file'];
+                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                    $path_src = "'".$path_url.$child_value['preview_file']."'";
+                 }
+                  ?>
+                <div class="col-lg-3 col-md-3">
+                  <div class="hotel">
+                    <div class="hotel-img">
+                     <?php 
+                      //  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
+                      ?>
+                      <?php 
+                       echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'
+
+                      ?>
+                    </div>
+                    <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                    <!-- <p><?php echo $child_value['description'];?></p> -->
+                    <!--<p><?php //echo $web_url;?></p>-->
+                    <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                    <div class="image-container"  style="width:52%;">
+                        <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                        <span id=""><?php echo $child_value['views']; ?></span>
+                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                        <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                        <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+                    </div>
+                  </div>
+                 </div>
+                <?php 
+              } 
+            ?>
+          </div>
+           </div>
+      </section>
+        <?php 
+      } 
+    }
+    ?>
+
+
+
+
     <!--==========================
       Service Section
     ============================-->
@@ -767,125 +890,7 @@
       </div>
     </section>
   <?php } ?>
-    <!--==========================
-      Service Section
-    ============================-->
-    <?php
-      if(count($all_details)>0){}
-      foreach ($all_details as $key => $value) 
-      {
-        ?>
-        <section id="<?php echo $key;?>" class="section-with-bg wow fadeInUp">
-          <div class="container">
-            <div class="section-header">
-              <h2><?php echo $key;?></h2>
-
-              <!-- Modal -->
-              <div class="modal fade" id="myModal_section" role="dialog">
-                <div class="modal-dialog  modal-lg">   
-                  <div class="modal-content">           
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="mtitle2_section"></h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body" id="mimage2_section">                
-                    </div>
-                    <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
-                      <div class="image-container"  style="width:52%;">
-                        <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
-                        <span id="viewservicecount_section"></span>
-                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
-                        <span id="likeservicecount"></span>
-                      </div>
-                    </div>
-                  </div>            
-                </div>
-              </div>
-            </div>
-         
-          <!-- Modal -->
-          <div class="modal fade" id="myModal_section" role="dialog">
-            <div class="modal-dialog  modal-lg">          
-              <!-- Modal content-->
-              <div class="modal-content">           
-                <div class="modal-header">
-                <h4 class="modal-title" id="mtitle2_section"></h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>               
-                </div>
-                <div class="modal-body" id="mimage2_section">                
-                </div>
-                <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
-                  <div class="image-container"  style="width:52%;">
-                    <img src="./assets/img/eye-open.png" id="viewservice" style="width:60px;cursor: pointer;">
-                    <span id="viewservicecount_section"></span>
-                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice" style="width:22px;cursor: pointer;">
-                    <span id="likeservicecount"></span>
-                  </div>
-                </div>
-              </div>            
-            </div>
-          </div>
-
-          <div class="row">
-            <?php
-           
-              foreach ($all_details[$key] as $child_key => $child_value) {
-
-                $name = "'".$child_value['section_name']."'";
-                $image = "'".$child_value['preview_file']."'";
-                $desc = "'".$child_value['description']."'";
-                $service_id = "'".$child_value['section_item_id']."'";
-                $weblink = "'".$child_value['file_name']."'";
-                $media_type =$child_value['media_type'];
-                $web_url = "'".$child_value['website_link']."'";
-               // echo $web_url;die;
-                
-                 if($child_value['media_type']==1) {
-                    $path = $path_url.$child_value['file_name'];
-                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                     $path_src = "'".$path_url.$child_value['file_name']."'";
-                 } else{
-                    $path = $path_url.$child_value['preview_file'];
-                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                    $path_src = "'".$path_url.$child_value['preview_file']."'";
-                 }
-                  ?>
-                <div class="col-lg-3 col-md-3">
-                  <div class="hotel">
-                    <div class="hotel-img">
-                     <?php 
-                       echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
-                      ?>
-                    </div>
-                    <h3><?php echo $child_value['title'];?></h3>              
-                    <p><?php echo $child_value['description'];?></p>
-                    <!--<p><?php //echo $web_url;?></p>-->
-                    <p><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
-                    
-                    <p> <?php
-                        // if($service_details[$j]['weblink']!=""){
-                        //   echo "<p><a href='".$service_details[$j]['weblink']."' target='_blank'>Website Link</a></p>"; 
-                        // }
-                        ?>
-                    </p>
-                    <div class="image-container"  style="width:52%;">
-                        <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-                        <span id=""><?php echo $child_value['views']; ?></span>
-                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
-                        <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
-                        <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
-                    </div>
-                  </div>
-                 </div>
-                <?php 
-              } 
-            ?>
-          </div>
-           </div>
-      </section>
-        <?php 
-      } 
-    ?>
+   
   </div>
   </main>
 

@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Website extends CI_Controller {
+class SectionItem extends CI_Controller {
 	public $global_website;
-
-
 	
-	public function index($websitename)
+	public function index($websitename,$sectionName,$sectionItem)
 	{
-		
+		// echo $websitename."/".$sectionName."/".$sectionItem; exit;
+
 		$data=[];
 		$this->global_website=$websitename;
+		$sectionItemId = $sectionItem;
 		if(isset($websitename))
 		{
 			$res=$this->db->select("*")->where(['website'=>$websitename])->get('user_vs_packages');
@@ -120,7 +120,7 @@ class Website extends CI_Controller {
 
 			/*******Section And Section Item Query************/
 
-			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where (website='".$websitename."' OR website='default') AND Issection_show=1  AND is_deleted=0 ORDER BY section_order ASC"); 
+			$Getsection=$this->db->query("select * from ".$this->db->dbprefix('manage_section')." where (website='".$websitename."' AND section_name='".$sectionName."') AND Issection_show=1  AND is_deleted=0 ORDER BY section_order ASC"); 
 			$section_result_array =$Getsection->result_array();
 			$section_result=[];
 			//echo "<pre>";print_r($section_result_array);die;
@@ -131,7 +131,7 @@ class Website extends CI_Controller {
 				foreach($section_result_array as $key=>$value)
 		          {
 				
-					$Getsection_item=$this->db->select("*")->where(['section'=>$value['id'],'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');
+					$Getsection_item=$this->db->select("*")->where(['website'=>$websitename,'id'=>$sectionItemId,'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');
 					$Getsection_item_result_array =$Getsection_item->result_array();
 
 					foreach($Getsection_item_result_array as $key_item=>$item_value)
@@ -212,19 +212,19 @@ class Website extends CI_Controller {
 
 			$this->load->helper('url');
 			if($val[0]['template']==1){
-				$this->load->view('template1',$data);	
+				$this->load->view('template1-section-item',$data);	
 			}
 			if($val[0]['template']==2){
-				$this->load->view('template2',$data);	
+				$this->load->view('template1-section-item',$data);	
 			}
 			if($val[0]['template']==3){
-				$this->load->view('template3',$data);	
+				$this->load->view('template1-section-item',$data);	
 			}
 			if($val[0]['template']==4){
-				$this->load->view('template4',$data);	
+				$this->load->view('template1-section-item',$data);	
 			}
 			if($val[0]['template']==5){
-				$this->load->view('template5',$data);	
+				$this->load->view('template1-section-item',$data);	
 			}
 		} else{
 			// $data['exist']=0;
