@@ -1,0 +1,1 @@
+ALTER TABLE `manage_section_item` CHANGE `view_type` `view_type` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '2' COMMENT '1=popup; 2=page view';
