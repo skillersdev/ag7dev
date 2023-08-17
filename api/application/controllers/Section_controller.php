@@ -166,7 +166,7 @@ class Section_controller extends CI_Controller {
        
         if (isset($model)) 
           {
-            $result=$this->db->query("update ".$this->db->dbprefix('manage_section')." set  website='".$model->website."',section_name='".$model->section_name."',long_desc='".$model->long_desc."',Issection_show ='".$model->Issection_show."' where id='".$model->id."'");
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section')." set  website='".$model->website."',section_name='".$model->section_name."',long_desc='".$model->long_desc."',Issection_show ='".$model->Issection_show."',section_view='".$model->section_view."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Section has been updated successfully";

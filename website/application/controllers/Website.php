@@ -137,6 +137,7 @@ class Website extends CI_Controller {
 					foreach($Getsection_item_result_array as $key_item=>$item_value)
 		          	{
 						$section_result[$value['section_name']][$key_item]['section_name'] = $value['section_name'];
+						$section_result[$value['section_name']][$key_item]['section_view'] = $value['section_view'];
 						$section_result[$value['section_name']][$key_item]['section_item_id'] = $item_value['id'];
 						$section_result[$value['section_name']][$key_item]['media_type'] = $item_value['media_type'];
 						$section_result[$value['section_name']][$key_item]['title'] = $item_value['title'];

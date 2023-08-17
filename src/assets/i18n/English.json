@@ -272,9 +272,11 @@
     "Business":"Business",
     "Personal":"Personal",
     "Grow":"Grow",
-    "Exchangecentre": "Exchange Centre"
-
-
+    "Exchangecentre": "Exchange Centre",
+    "Grid View":"Grid View",
+    "List View":"List View",
+    "Single Image Left View":"Single Image Left View",
+    "Single Image Right View":"Single Image Right View"
 
     
 

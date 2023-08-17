@@ -44,6 +44,23 @@
                                                 </div>
                                                 </div>
                                             </div> 
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                 <label for="NameSurname" class="col-sm-3 control-label">{{'Section view' | translate}}</label>
+                                                <div class="col-sm-9">
+                                                    <div class="form-line">
+                                                         <select class="form-control show-tick" [(ngModel)]="model.section_view" #section_view="ngModel" name="section_view" required>
+                                                            <option value="select">select view_type</option> 
+                                                            <option value="1">{{ 'Grid View' | translate}}</option> 
+                                                            <option value="2">{{ 'List View' | translate }}</option>
+                                                            <option value="3">{{ 'Single Image Left View' | translate }} </option>
+                                                            <option value="4">{{ 'Single Image Right View' | translate }}</option>
+                                                        </select>
+                                                        <span [hidden]="section_view.valid || section_view.pristine" class="text-danger">view is required</span>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div> 
                                              <div class="col-md-12">
                                                 <p><b>{{'Description' | translate}}</b></p>
                                                 <div class="form-group">

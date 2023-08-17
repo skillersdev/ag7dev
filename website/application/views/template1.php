@@ -502,6 +502,7 @@
               foreach ($all_details[$key] as $child_key => $child_value) {
 
                 $name = "'".$child_value['section_name']."'";
+                $view_type = "'".$child_value['section_view']."'";
                 $image = "'".$child_value['preview_file']."'";
                 $desc = "'".$child_value['description']."'";
                 $service_id = "'".$child_value['section_item_id']."'";
@@ -520,32 +521,132 @@
                     $file_name_path = "'".$path_url.$child_value['file_name']."'";
                     $path_src = "'".$path_url.$child_value['preview_file']."'";
                  }
+                 
                   ?>
-                <div class="col-lg-3 col-md-3">
-                  <div class="hotel">
-                    <div class="hotel-img">
-                     <?php 
-                      //  echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;"></a>'; 
-                      ?>
-                      <?php 
-                       echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'
+                    <!--==========================
+                     Grid View
+                    ============================-->
+                  <?php 
+                    if($child_value['section_view'] ==1) { ?>
+                      <div class="col-lg-3 col-md-3">
+                        <div class="hotel">
+                          <div class="hotel-img">                   
+                            <?php 
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'
+                            ?>
+                          </div>
+                          <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                          <!-- <p><?php echo $child_value['description'];?></p> -->
+                          <!--<p><?php //echo $web_url;?></p>-->
+                          <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                          <div class="image-container"  style="width:52%;">
+                              <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                              <span id=""><?php echo $child_value['views']; ?></span>
+                              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                              <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                              <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+                          </div>
+                        </div>
+                      </div>
+                  <?php 
+                  }?>
+                   <!--==========================
+                     List View
+                    ============================-->
+                 <?php 
+                  if($child_value['section_view'] ==2) { ?>
+                    <div class="col-lg-6 col-md-6 mb-5">
+                      <div class="hotel">
+                        <div class="hotel-img col-lg-6 col-md-6 float-left">                   
+                          <?php 
+                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          ?>
+                        </div>
+                        <div class="hotel-img col-lg-6 col-md-6 float-left"> 
+                            <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                            <!-- <p><?php echo $child_value['description'];?></p> -->
+                            <!--<p><?php //echo $web_url;?></p>-->
+                            <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                            
+                            <!-- Social Icon section-->
+                            <div class="image-container"  >
+                            <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                            <span id=""><?php echo $child_value['views']; ?></span>
+                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                            <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                            <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+                        </div>
+                        </div>
 
-                      ?>
+                        
+                      </div>
                     </div>
-                    <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
-                    <!-- <p><?php echo $child_value['description'];?></p> -->
-                    <!--<p><?php //echo $web_url;?></p>-->
-                    <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
-                    <div class="image-container"  style="width:52%;">
-                        <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-                        <span id=""><?php echo $child_value['views']; ?></span>
-                        <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
-                        <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
-                        <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
-                    </div>
-                  </div>
-                 </div>
+                    <?php 
+                  }?>
+                   <!--==========================
+                     Image left View
+                    ============================-->
                 <?php 
+                  if($child_value['section_view'] ==3) { ?>
+                   <div class="col-lg-12 col-md-12 mb-5">
+                      <div class="hotel">
+                        <div class="hotel-img col-lg-6 col-md-6 float-left">                   
+                          <?php 
+                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          ?>
+                        </div>
+                        <div class="hotel-img col-lg-6 col-md-6 float-left"> 
+                            <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                            <!-- <p><?php echo $child_value['description'];?></p> -->
+                            <!--<p><?php //echo $web_url;?></p>-->
+                            <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                            
+                            <!-- Social Icon section-->
+                            <div class="image-container"  style="margin-top:27%;">
+                            <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                            <span id=""><?php echo $child_value['views']; ?></span>
+                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                            <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                            <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+                        </div>
+                        </div>                        
+                      </div>
+                    </div>
+                <?php 
+                  }?>
+                  <!--==========================
+                     Image right View
+                    ============================-->
+                <?php 
+                  if($child_value['section_view'] ==4) { ?>
+                   <div class="col-lg-12 col-md-12 mb-5">
+                      <div class="hotel">                        
+                        <div class="hotel-img col-lg-6 col-md-6 float-left"> 
+                            <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                            <!-- <p><?php echo $child_value['description'];?></p> -->
+                            <!--<p><?php //echo $web_url;?></p>-->
+                            <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                            
+                            <!-- Social Icon section-->
+                            <div class="image-container"  style="margin-top:27%;">
+                                <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                                <span id=""><?php echo $child_value['views']; ?></span>
+                                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+                            </div>
+                        </div>   
+                        <div class="hotel-img col-lg-6 col-md-6 float-left">                   
+                          <?php 
+                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          ?>
+                        </div>                     
+                      </div>
+                    </div>
+                <?php 
+                  }?>  
+
+               <?php   
               } 
             ?>
           </div>
