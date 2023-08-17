@@ -149,6 +149,8 @@ class Website extends CI_Controller {
 						$section_result[$value['section_name']][$key_item]['likes'] = $item_value['total_likes'];
 						$section_result[$value['section_name']][$key_item]['views'] = $item_value['total_views'];
 						$section_result[$value['section_name']][$key_item]['show_menu'] = $value['isSectionMenuShow'];
+						$section_result[$value['section_name']][$key_item]['view_type'] = $item_value['view_type'];
+						
 					}
 				}
 			}

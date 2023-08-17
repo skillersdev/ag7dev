@@ -447,7 +447,7 @@
         ?>
         <section id="<?php echo $key;?>" class="section-with-bg wow fadeInUp">
           <div class="container">
-            <div class="section-header">
+            <div class="section-header" style=" margin-top: 15px; margin-bottom: 40px;">
               <h2><?php echo $key;?></h2>
 
               <!-- Modal -->
@@ -504,7 +504,7 @@
                 $name = "'".$child_value['section_name']."'";
                 $view_type = "'".$child_value['section_view']."'";
                 $image = "'".$child_value['preview_file']."'";
-                $desc = "'".$child_value['description']."'";
+                $desc = "`".$child_value['description']."`";
                 $service_id = "'".$child_value['section_item_id']."'";
                 $weblink = "'".$child_value['file_name']."'";
                 $media_type =$child_value['media_type'];
@@ -532,7 +532,12 @@
                         <div class="hotel">
                           <div class="hotel-img">                   
                             <?php 
-                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'
+
+                            if($child_value['view_type']==1){
+                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'; 
+                            }else{
+                              echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>';
+                            }
                             ?>
                           </div>
                           <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
@@ -555,11 +560,16 @@
                     ============================-->
                  <?php 
                   if($child_value['section_view'] ==2) { ?>
-                    <div class="col-lg-6 col-md-6 mb-5">
+                    <div class="col-lg-6 col-md-6 mb-5" style="padding-top: 20px;border-radius: 10px;display: flex;align-items: center;">
                       <div class="hotel">
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
-                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          if($child_value['view_type']==1){
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 150px;object-fit: cover;"></a>'; 
+                          }else{
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                          }
+
                           ?>
                         </div>
                         <div class="hotel-img col-lg-6 col-md-6 float-left"> 
@@ -592,17 +602,22 @@
                       <div class="hotel">
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
-                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          if($child_value['view_type']==1){
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
+                          }else{
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                          }
+
                           ?>
                         </div>
                         <div class="hotel-img col-lg-6 col-md-6 float-left"> 
-                            <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
-                            <!-- <p><?php echo $child_value['description'];?></p> -->
+                            <h3 style="font-size: 23px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                            <p><?php echo $child_value['description'];?></p>
                             <!--<p><?php //echo $web_url;?></p>-->
                             <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
                             
                             <!-- Social Icon section-->
-                            <div class="image-container"  style="margin-top:27%;">
+                            <div class="image-container"  style="margin-top:20px;">
                             <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
                             <span id=""><?php echo $child_value['views']; ?></span>
                             <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
@@ -622,13 +637,13 @@
                    <div class="col-lg-12 col-md-12 mb-5">
                       <div class="hotel">                        
                         <div class="hotel-img col-lg-6 col-md-6 float-left"> 
-                            <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
-                            <!-- <p><?php echo $child_value['description'];?></p> -->
+                            <h3 style="font-size: 23px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
+                            <p><?php echo $child_value['description'];?></p>
                             <!--<p><?php //echo $web_url;?></p>-->
                             <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
                             
                             <!-- Social Icon section-->
-                            <div class="image-container"  style="margin-top:27%;">
+                            <div class="image-container"  style="margin-top:20px;">
                                 <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
                                 <span id=""><?php echo $child_value['views']; ?></span>
                                 <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
@@ -638,7 +653,12 @@
                         </div>   
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
-                          echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 100%;"></a>'
+                          if($child_value['view_type']==1){
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
+                          }else{
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                          }
+
                           ?>
                         </div>                     
                       </div>
@@ -1398,7 +1418,7 @@
       }
       
       var Websiteurl="https://"+web_url;
-      $('#desc2_section').html('<div class="description">"'+desc+'"</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div>');
+      $('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div>');
 
        var serviceid = update_id;
        $.ajax({
