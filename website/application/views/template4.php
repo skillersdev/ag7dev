@@ -437,6 +437,9 @@ $this->load->view('index.html');
                                     $path_src = "'".$path_url.$child_value['preview_file']."'";
                                 }
                             ?>	
+                             <?php 
+                                if($child_value['section_view'] ==1) { 
+                            ?>
                                 <div class="col-md-4">
                                     <div class="welcome-section text-center">
                                     <?php 
@@ -455,6 +458,87 @@ $this->load->view('index.html');
                                         </p>
                                     </div>
                                 </div> 
+                            <?php } ?>
+
+                            <?php 
+                                if($child_value['section_view'] ==2) { 
+                            ?>
+                                <div class="col-md-6" style="margin-bottom:12px;">
+                                    <div class="welcome-section text-center">
+                                    <?php 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                    ?>
+                                        <h4><?php echo $child_value['title'];?></h4>
+                                        <div class="border"></div>
+                                        <p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+                                        <p>
+                                            <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+                                            <span id=""><?php echo $child_value['views']; ?></span>
+                                            <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                            <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                            <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+                                        </p>
+                                    </div>
+                                </div> 
+                            <?php } ?>
+                            
+
+                            <?php 
+                                if($child_value['section_view'] ==3) { 
+                            ?>
+                                <div class="col-md-12" style="margin-bottom:12px;">
+                                    <div class="welcome-section text-center">
+                                        <div class="col-lg-6 col-md-6 float-left">
+                                            <?php 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                            ?>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 float-left">
+                                            <h4><?php echo $child_value['title'];?></h4>
+                                            <div class="border"></div>
+                                            <p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+                                            <p>
+                                                <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+                                                <span id=""><?php echo $child_value['views']; ?></span>
+                                                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                                <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                                <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div> 
+                            <?php } ?>
+
+                            <?php 
+                                if($child_value['section_view'] ==4) { 
+                            ?>
+                                <div class="col-md-12" style="margin-bottom:12px;">
+                                    <div class="welcome-section text-center">
+                                      
+                                        <div class="col-lg-6 col-md-6 float-left">
+                                            <h4><?php echo $child_value['title'];?></h4>
+                                            <div class="border"></div>
+                                            <p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+                                            <p>
+                                                <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+                                                <span id=""><?php echo $child_value['views']; ?></span>
+                                                <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                                <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                                <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 float-left">
+                                            <?php 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div> 
+                            <?php } ?>
+
                             <?php } ?>
                     </div>
                     

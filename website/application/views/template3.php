@@ -421,8 +421,12 @@ $this->load->view('index.html');
 											$file_name_path = "'".$path_url.$child_value['file_name']."'";
 											$path_src = "'".$path_url.$child_value['preview_file']."'";
 										}
-									?>		
-										<figure class="mix work-item branding">
+									?>
+									<?php 
+										if($child_value['section_view'] ==1) { 
+									?>
+									<div class="col-md-3">		
+										<figure class="mix work-item branding" style="width:100%;">
 										<?php 
 												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 											?>
@@ -438,9 +442,62 @@ $this->load->view('index.html');
 													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
 
 												</p>
-											</figcaption>
-										
+											</figcaption>										
 										</figure>
+									</div>
+									<?php } ?>
+									
+									<?php 
+										if($child_value['section_view'] ==2) { 
+									?>
+									<div class="col-md-6 float-left">		
+										<figure class="mix work-item branding" style="width:100%;">
+										<?php 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+											?>
+											<figcaption class="overlay">
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<h4><?php echo $child_value['title'];?></h4>
+												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+												<p>
+													<img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+													<span id=""><?php echo $child_value['views']; ?></span>
+													<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+													<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+												</p>
+											</figcaption>										
+										</figure>
+									</div>
+									<?php } ?>
+									
+									<?php 
+										if($child_value['section_view'] ==3 || $child_value['section_view'] ==4) { 
+									?>
+									<div class="col-md-12 float-left">		
+										<figure class="mix work-item branding" style="width:100%;">
+										<?php 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+											?>
+											<figcaption class="overlay">
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<h4><?php echo $child_value['title'];?></h4>
+												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+												<p>
+													<img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+													<span id=""><?php echo $child_value['views']; ?></span>
+													<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+													<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+
+												</p>
+											</figcaption>										
+										</figure>
+									</div>
+									<?php } ?>
+
+
 									<?php } ?>
 							</div>
 						</div>

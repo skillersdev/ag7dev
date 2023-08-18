@@ -470,28 +470,93 @@ $logo_img_path = $this->config->item('logo_img_path');
 										$file_name_path = "'".$path_url.$child_value['file_name']."'";
 										$path_src = "'".$path_url.$child_value['preview_file']."'";
 									}
-								?>		
-									<li class="portfolio-item" style="height: 210px;">
-										<?php 
-											echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
-										?>
-										
-										<figcaption class="mask">
-											<h3><?php echo $child_value['title'];?></h3>
-											<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
-										</figcaption>
-										<ul class="external">
-											<li style="color:white;margin: 10px;">
-												<img src="./assets/img/eye-open1.png" id="" style="width:20px;cursor: pointer;">
-												<span id=""><?php echo $child_value['views']; ?></span>
-												<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:20px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
-												<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
-												<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
-											</li>
+								?>	
+								<?php 
+									if($child_value['section_view'] ==1) { 
+								?>
+									<div class="col-sm-3 col-md-3 col-lg-3">	
+										<li class="portfolio-item" style="height: 210px;width:100%;">
+											<?php 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+											?>
 											
-										</ul>
-										</a>
-									</li>
+											<figcaption class="mask">
+												<h3><?php echo $child_value['title'];?></h3>
+												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+											</figcaption>
+											<ul class="external">
+												<li style="color:white;margin: 10px;">
+													<img src="./assets/img/eye-open1.png" id="" style="width:20px;cursor: pointer;">
+													<span id=""><?php echo $child_value['views']; ?></span>
+													<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:20px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+													<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+												</li>
+												
+											</ul>
+											</a>
+										</li>
+									</div>
+								<?php } ?>
+
+								<?php 
+									if($child_value['section_view'] ==2) { 
+								?>
+									<div class="col-sm-6 col-md-6 col-lg-6">	
+										<li class="portfolio-item" style="height: 210px;width:100%;">
+											<?php 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+											?>
+											
+											<figcaption class="mask">
+												<h3><?php echo $child_value['title'];?></h3>
+												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+											</figcaption>
+											<ul class="external">
+												<li style="color:white;margin: 10px;">
+													<img src="./assets/img/eye-open1.png" id="" style="width:20px;cursor: pointer;">
+													<span id=""><?php echo $child_value['views']; ?></span>
+													<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:20px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+													<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+												</li>
+												
+											</ul>
+											</a>
+										</li>
+									</div>
+								<?php } ?>		
+								
+
+								<?php 
+									if($child_value['section_view'] ==3 || $child_value['section_view'] ==4 ) { 
+								?>
+									<div class="col-sm-12 col-md-12 col-lg-12 mb-5">	
+										<li class="portfolio-item" style="height: 210px;width:100%;">
+											<?php 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+											?>
+											
+											<figcaption class="mask">
+												<h3><?php echo $child_value['title'];?></h3>
+												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+											</figcaption>
+											<ul class="external">
+												<li style="color:white;margin: 10px;">
+													<img src="./assets/img/eye-open1.png" id="" style="width:20px;cursor: pointer;">
+													<span id=""><?php echo $child_value['views']; ?></span>
+													<img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:20px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+													<input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+													<span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
+												</li>
+												
+											</ul>
+											</a>
+										</li>
+									</div>
+								<?php } ?>	
+
+
 								<?php } ?>
 							</ul>	
 						</div>

@@ -311,9 +311,11 @@
                             $path_src = "'".$path_url.$child_value['preview_file']."'";
                         }
                     ?>	
+                    <?php 
+                        if($child_value['section_view'] ==1) { 
+                    ?>
 
-
-                        <div class="col-sm-3 col-md-3 col-lg-3 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s" style="padding-top: 10px;background:white;margin-bottom: 50px;border-radius: 10px;">
+                        <div class="col-sm-3 col-md-3 col-lg-3  wow bounceInUp" data-wow-duration="1.4s" style="padding-top: 10px;background:white;margin-bottom: 50px;border-radius: 10px;">
                           <div class="box" style="margin: 2px;">
                             <?php 
                                 echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
@@ -331,9 +333,31 @@
                                 </p>
                           </div>
                         </div>
+                      <?php } ?>
 
+                      <?php 
+                        if($child_value['section_view'] ==2) { 
+                    ?>
 
+                        <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" data-wow-duration="1.4s" style="padding-top: 10px;background:white;margin-bottom: 50px;border-radius: 10px;">
+                          <div class="box" style="margin: 2px;">
+                            <?php 
+                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
+                            ?>
+                            <h4 class="title" style="font-size: 20px;margin-top: 15px;">
+                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')">';?> <?php echo $child_value['title'];?></a></h4>
+                            <p class="description" style="margin-bottom:18px;font-size: 13px;color:#7f7b7b"><?php echo substr_replace($child_value['description'], "...", 60);?></p>
+                            <p>
+                                    <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
+                                    <span id=""><?php echo $child_value['views']; ?></span>
+                                    <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
+                                    <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
+                                    <span id="likeservicecount<?php echo $child_value['section_item_id'];?>"><?php echo $child_value['likes']; ?></span>
 
+                                </p>
+                          </div>
+                        </div>
+                      <?php } ?>
                        
                     <?php } ?>
             </div>
@@ -466,7 +490,7 @@
         for($j=0;$j<count($service_details);$j++)
         {
         ?>
-          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+          <div class="col-md-6 col-lg-5  wow bounceInUp" data-wow-duration="1.4s">
             <div class="box">
               <div class="icon"><i class="ion-ios-paper-outline" style="color: #ff689b;"></i></div>
               <h4 class="title"><a href=""><?php echo $service_details[$j]['service_name'];?></a></h4>

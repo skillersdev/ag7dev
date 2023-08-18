@@ -572,7 +572,7 @@
 
                           ?>
                         </div>
-                        <div class="hotel-img col-lg-6 col-md-6 float-left"> 
+                        <div class="col-lg-6 col-md-6 float-left"> 
                             <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
                             <!-- <p><?php echo $child_value['description'];?></p> -->
                             <!--<p><?php //echo $web_url;?></p>-->
