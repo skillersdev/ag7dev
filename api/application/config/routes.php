@@ -106,6 +106,7 @@ $route['sectionreordersave']= 'Section_controller/sectionreordersave';
 $route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
 $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
 $route['uploadcropserviceimage']='Section_controller/uploadcropserviceimage';
+$route['uploadMultipleImagesSectionItem']='Section_controller/MultipleUploadsectionItem';
 $route['addsectionitem']= 'Sectionitem_controller/addsectionitem';
 $route['sectionitemvideoupload']= 'Sectionitem_controller/uploadsectionitemvideo';
 $route['deletesectionitem/(:num)']= 'Sectionitem_controller/deletesectionitem/$1';

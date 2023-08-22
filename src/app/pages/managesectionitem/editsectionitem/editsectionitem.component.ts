@@ -24,6 +24,7 @@ export class EditsectionitemComponent implements OnInit {
     private route: ActivatedRoute,private router: Router,private http:Http) { }
   websitelist:Array<Object>;
   sectionlist:Array<Object>;
+  myFiles:string [] = [];
   private sub: any;
   model: any = {};
   alldata:any={};
@@ -75,9 +76,9 @@ export class EditsectionitemComponent implements OnInit {
   {
   	if(this.model.media_type==1)
       {
-        this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
+        this.CommonService.uploadFile1(AppSettings.uploadMultipleImagesSectionItem,this.myFiles)
         .subscribe( (response) => {
-            this.model.file_name = (response.data)?response.data:this.model.file_name;
+            this.model.file_name = (response.data)?response.data.toString():this.model.file_name;
             this.CommonService.insertdata(AppSettings.updatesectionItem,this.model)
             .subscribe(package_det =>{  
               $('.preloader').hide();     
@@ -171,5 +172,10 @@ getDocOrPdf($event)
 {
 this.uploadVideofile = $event.target.files[0];
 }
-
+onFileChange(event) {
+  this.myFiles=[];
+  for (var i = 0; i < event.target.files.length; i++) { 
+      this.myFiles.push(event.target.files[i]);
+  }
+}
 }

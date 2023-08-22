@@ -24,12 +24,13 @@ export class AddsectionitemComponent implements OnInit {
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
   model:any={};
   alldata:any={};
+  myFiles:string [] = [];
   select:any;
   getwebsiteRestApiUrl:string = AppSettings.getwebsitelist; 
   websitelist:Array<Object>;
   sectionlist:Array<Object>;
   ServicePreviewimageChangedEvent:any={};
-  serviceimageChangedEvent:any={};
+  serviceimageChangedEvent:any=[];
   previewcroppedImage:any='';
   sectioncroppedImage:any='';
   uploadVideofile:any={};
@@ -65,11 +66,13 @@ export class AddsectionitemComponent implements OnInit {
       if(this.model.media_type==1)
       {
         this.model.IspreviewImage= true;
-        this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
+       
+        this.CommonService.uploadFile1(AppSettings.uploadMultipleImagesSectionItem,this.myFiles)
+        // this.CommonService.insertdata(AppSettings.uploadcropserviceimage,this.model)
         .subscribe( (response) => {
          if(response.status=='success')
          {
-            this.model.file_name = response.data;
+            this.model.file_name = response.data.toString();
             this.CommonService.insertdata(AppSettings.AddsectionItem,this.model)
             .subscribe(package_det =>{  
               $('.preloader').hide();     
@@ -141,7 +144,11 @@ export class AddsectionitemComponent implements OnInit {
     /**/
     /*Service Image uplad section*/
     getserviceImage(event: any): void {
-        this.serviceimageChangedEvent = event;
+      for (var i = 0; i < event.target.files.length; i++) { 
+        this.serviceimageChangedEvent[i] = event.target.files[i];
+    }
+        //  this.serviceimageChangedEvent[] = event.target.files[0];
+        console.log(this.serviceimageChangedEvent)
     }
     serviceimageCropped(event: ImageCroppedEvent) {
         this.sectioncroppedImage = event.base64;
@@ -169,5 +176,10 @@ export class AddsectionitemComponent implements OnInit {
       this.model.IspreviewImage= true;
       this.uploadVideofile = $event.target.files[0];
     }
-
+    onFileChange(event) {
+      this.myFiles=[];
+      for (var i = 0; i < event.target.files.length; i++) { 
+          this.myFiles.push(event.target.files[i]);
+      }
 }
+} 

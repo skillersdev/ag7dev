@@ -506,20 +506,30 @@
                 $image = "'".$child_value['preview_file']."'";
                 $desc = "`".$child_value['description']."`";
                 $service_id = "'".$child_value['section_item_id']."'";
-                $weblink = "'".$child_value['file_name']."'";
+                
                 $media_type =$child_value['media_type'];
                 $web_url = "'".$child_value['website_link']."'";
                 $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //sectionItem URL
                // echo $web_url;die;
+               if(strpos($child_value['file_name'], ",") !== false) {
+               
+                  $mulp_img = explode (",", $child_value['file_name']);
+                }else{
+                  
+                  $mulp_img = explode (" ", $child_value['file_name']);
+                }
                 
+              
                  if($child_value['media_type']==1) {
-                    $path = $path_url.$child_value['file_name'];
-                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                     $path_src = "'".$path_url.$child_value['file_name']."'";
+                    $path = $path_url.$mulp_img[0];
+                    $file_name_path = "'".$path_url.$mulp_img[0]."'";
+                     $path_src = "'".$path_url.$mulp_img[0]."'";
+                     $weblink = "'".$mulp_img[0]."'";
                  } else{
                     $path = $path_url.$child_value['preview_file'];
-                    $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                    $file_name_path = "'".$path_url.$mulp_img[0]."'";
                     $path_src = "'".$path_url.$child_value['preview_file']."'";
+                    $weblink = "'".$mulp_img[0]."'";
                  }
                  
                   ?>
@@ -532,7 +542,7 @@
                         <div class="hotel">
                           <div class="hotel-img">                   
                             <?php 
-
+                          
                             if($child_value['view_type']==1){
                               echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'; 
                             }else{
@@ -597,6 +607,8 @@
                      Image left View
                     ============================-->
                 <?php 
+               
+
                   if($child_value['section_view'] ==3) { ?>
                    <div class="col-lg-12 col-md-12 mb-5">
                       <div class="hotel">

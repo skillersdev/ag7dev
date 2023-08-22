@@ -235,7 +235,47 @@ class Section_controller extends CI_Controller {
           echo json_encode($Response,JSON_UNESCAPED_SLASHES);
          die();
     }
+    public function MultipleUploadsectionItem(){
+      $path = 'resizeuploads/';
+      $Response=[];
+        
+      if (isset($_FILES['file'])) 
+        {
+          //$originalName = $_FILES['file']['name'];
 
+          $file_names = $_FILES["file"]["name"];
+          for ($i = 0; $i < count($file_names); $i++) {
+
+              
+              $file_name=$file_names[$i];     
+              $ext = '.'.pathinfo($file_name, PATHINFO_EXTENSION);         
+              $generatedName = md5($file_name).$ext;
+
+              $filePath = $path.$generatedName;
+              $product_image=$filePath;
+
+              $file_name=$file_names[$i];
+              $original_file_name = pathinfo($file_name, PATHINFO_FILENAME);
+             
+              if(move_uploaded_file($_FILES["file"]["tmp_name"][$i], $filePath))
+              {
+                $Response['status']="success"; 
+                $Response['data'][]=$product_image;
+              }
+          }
+
+                 
+        
+        }
+      else {
+          $Response['status']="fail"; 
+          $Response['data']="Error While upload on image";
+       }
+      
+        echo json_encode($Response,JSON_UNESCAPED_SLASHES);
+       die();
+        
+    }
    public function uploadcropserviceimage()
    {
     $this->output->set_content_type('application/json');

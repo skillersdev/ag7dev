@@ -35,8 +35,11 @@
 
   <!-- Main Stylesheet File -->
   <link href="<?php echo base_url();?>assets/template5/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
   <style>
+    .slick-slider{width:50% !important;float:right;}
 			.mySlides {display: none;}
     		.pimage0{display:block;}
 			#websiteLogo{
@@ -82,7 +85,9 @@
         }
 			
 			}
-
+       
+   
+ 
 		</style>
 
 </head>
@@ -168,12 +173,25 @@
     <div class="container">
 
       <div class="intro-img">
-        <?php if($last_slider_image['slider_image']){?>
-          <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
-        <?php }else{?>  
-        <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
-        <?php } ?>
-      </div>
+
+      <div class="slider">         
+            <div class="slide">
+            <?php if($last_slider_image['slider_image']){?>
+              <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
+              <?php }else{?>  
+                <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
+        <?php } ?>     
+            </div>  
+            <div class="slide">
+            <?php if($last_slider_image['slider_image']){?>
+              <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
+              <?php }else{?>  
+                <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
+        <?php } ?>     
+            </div>  
+        </div>
+
+
 
       <div class="intro-info">
         <?php if($last_slider_image['slider_title']){ ?>
@@ -296,19 +314,25 @@
                         $image = "'".$child_value['preview_file']."'";
                         $desc = "'".$child_value['description']."'";
                         $service_id = "'".$child_value['section_item_id']."'";
-                        $weblink = "'".$child_value['file_name']."'";
+                        
                         $media_type =$child_value['media_type'];
                         $web_url = "'".$child_value['website_link']."'";
                         // echo $web_url;die;
-                
+                        if(strpos($child_value['file_name'], ",") !== false) {               
+                          $mulp_img = explode (",", $child_value['file_name']);
+                        }else{										
+                            $mulp_img = explode (" ", $child_value['file_name']);
+                        }
                         if($child_value['media_type']==1) {
-                            $path = $path_url.$child_value['file_name'];
-                            $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                            $path_src = "'".$path_url.$child_value['file_name']."'";
+                            $path = $path_url.$mulp_img[0];
+                            $file_name_path = "'".$path_url.$mulp_img[0]."'";
+                            $path_src = "'".$path_url.$mulp_img[0]."'";
+                            $weblink = "'".$mulp_img[0]."'";
                         } else{
                             $path = $path_url.$child_value['preview_file'];
-                            $file_name_path = "'".$path_url.$child_value['file_name']."'";
+                            $file_name_path = "'".$path_url.$mulp_img[0]."'";
                             $path_src = "'".$path_url.$child_value['preview_file']."'";
+                            $weblink = "'".$mulp_img[0]."'";
                         }
                     ?>	
                     <?php 
@@ -866,6 +890,30 @@
   <script src="<?php echo base_url();?>assets/template5/lib/isotope/isotope.pkgd.min.js"></script>
   <script src="<?php echo base_url();?>assets/template5/lib/lightbox/js/lightbox.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.slider').slick({
+        autoplay: true,
+        autoplaySpeed: 1000, // Change slide every 3 seconds (adjust as needed)
+        arrows: true, // Show navigation arrows
+        dots: false,  // Hide navigation dots
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      });
+
+      $('.slider-prev').on('click', function() {
+        $('.slider').slick('slickPrev');
+      });
+
+      $('.slider-next').on('click', function() {
+        $('.slider').slick('slickNext');
+      });
+
+    });
+
+  </script>
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url();?>assets/template5/js/main.js"></script>
   <script>

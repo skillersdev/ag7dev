@@ -179,7 +179,7 @@ h6 {
 }
 
 #intro .intro-img {
-  width: 50%;
+  width: 100% !important;
   float: right;
 }
 

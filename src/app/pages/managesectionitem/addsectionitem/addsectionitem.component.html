@@ -78,15 +78,20 @@
 	                                                <p><b>{{'Service Image' | translate}}</b></p>
 	                                                <div class="form-group">
 	                                                    <div class="form-line">
-	                                                         <input type="file" (change)="getserviceImage($event)" />
-	                                                        <image-cropper
+	                                                        <input                                                              
+                                                                id="file" 
+                                                                type="file" 
+                                                                multiple
+                                                                class="form-control"
+                                                                (change)="onFileChange($event)">
+	                                                        <!-- <image-cropper
 	                                                            [imageChangedEvent]="serviceimageChangedEvent"
 	                                                            [maintainAspectRatio]="false"
 	                                                            [aspectRatio]="4 / 3"
 	                                                            format="png"
 	                                                            (imageCropped)="serviceimageCropped($event)"           
 	                                                        ></image-cropper>
-	                                                        <img [src]="previewcroppedImage" style="width:30%;"/>
+	                                                        <img [src]="previewcroppedImage" style="width:30%;"/> -->
 	                                                    </div>
 	                                                </div>
                                                </div>
