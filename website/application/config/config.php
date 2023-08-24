@@ -27,13 +27,13 @@ $config['base_url'] = '';
 
 $config['login_url'] = 'http://localhost:4200/login';
 
-$config['base_path'] = 'http://localhost/3abc7dev/ag7dev/api/';
+$config['base_path'] = 'http://localhost/ag7dev/api/';
 
-$config['path_url'] = 'http://localhost/3abc7dev/ag7dev/api/';
+$config['path_url'] = 'http://localhost/ag7dev/api/';
 
-$config['website_path']= 'http://localhost/3abc7dev/ag7dev/website/';
+$config['website_path']= 'http://localhost/ag7dev/website/';
 
-$config['logo_img_path']= 'http://localhost/3abc7dev/ag7dev/api/';
+$config['logo_img_path']= 'http://localhost/ag7dev/api/';
 
 /*
 |--------------------------------------------------------------------------

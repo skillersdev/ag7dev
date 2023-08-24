@@ -1,0 +1,1 @@
+ALTER TABLE `manage_section_item` ADD `is_default_img` INT(15) NOT NULL DEFAULT '1' AFTER `file_name`;
