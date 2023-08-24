@@ -144,6 +144,7 @@ class Website extends CI_Controller {
 						$section_result[$value['section_name']][$key_item]['description'] = $item_value['description'];
 						$section_result[$value['section_name']][$key_item]['website_link'] = $item_value['website_link'];
 						$section_result[$value['section_name']][$key_item]['file_name'] = $item_value['file_name'];
+						$section_result[$value['section_name']][$key_item]['is_default_img'] = $item_value['is_default_img'];
 						$section_result[$value['section_name']][$key_item]['attachment_desc'] = $item_value['attachment_desc'];
 						$section_result[$value['section_name']][$key_item]['preview_file'] = $item_value['preview_file'];
 						$section_result[$value['section_name']][$key_item]['likes'] = $item_value['total_likes'];

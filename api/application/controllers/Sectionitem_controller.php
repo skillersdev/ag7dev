@@ -88,18 +88,25 @@ class Sectionitem_controller extends CI_Controller {
         $response=array();
         $response['status']="success";
         $result=array();
-
+        $img_array_list = array();
         $res=$this->db->query("select * from ".$this->db->dbprefix('manage_section_item')." where id='".$id."'");
 
         if($res->num_rows()>0){
             $in_array=$res->result_array();
             $result=$in_array[0];
+           
+            if(strpos($result['file_name'], ",") !== false) {   
+                     
+              $img_array_list = explode (",", $result['file_name']);
+            }else{										
+              $img_array_list = explode (" ", $result['file_name']);
+            }
         }else{
             $response['status']="failure";
             $response['message']=" No Service record found!!";
         }
         $response['result']=$result;
-
+        $response['img_array_list'] = $img_array_list;
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
@@ -108,10 +115,10 @@ class Sectionitem_controller extends CI_Controller {
       $this->output->set_content_type('application/json');
       $response=array('status'=>"success");
        $model = json_decode($this->input->post('model',FALSE));
-
+     
         if (isset($model)) 
           {
-            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."',view_type ='".$model->view_type."' where id='".$model->id."'");
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',is_default_img='".$model->is_default_img."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."',view_type ='".$model->view_type."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Section has been updated successfully";

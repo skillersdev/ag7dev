@@ -127,6 +127,92 @@
     padding-left: 50px;
     }
 
+     /* Add custom CSS styles for arrow icons and positioning */
+     .slider {
+      /* position: relative; */
+      /* max-height: 80vh; */
+    }
+
+    .slider {
+      display: flex;
+      /* overflow-x: auto; */
+      position: relative; /* Add position relative to the slider container */
+      max-height:85%;
+    }
+
+    .slide {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* Center elements vertically and horizontally */
+      position: relative; /* Add position relative to each slide */
+    }
+
+    .slide img {
+      width: 100%; /* Make the image take the full width of the slide */
+      height: 100%; /* Allow the height to adjust automatically based on the image aspect ratio */
+    }
+
+    .slide h1 {
+      margin-top: 10px;
+      color: #f82249; /* Set the color of the title */
+      font-size: 40px; /* Set the font size of the title */
+      font-weight:600;
+      line-height: 28px;
+      position: absolute;
+      top: 50%; /* Position the title 50% from the top of the slide */
+      left: 50%; /* Position the title 50% from the left of the slide */
+      transform: translate(-50%, -50%); /* Center the title within the slide */
+      text-align: center; /* Center the text horizontally */
+      width: 70%; /* Make the title take the full width of the slide */
+      background:#1e243617;
+      padding:10px;
+      transition: opacity 0.5s ease;
+      border-radius:10px 80px 0px 87px;
+    }
+
+
+
+    .slider .slick-arrow {
+      font-size: 0; 
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* border-radius: 50%; */
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .slider .slick-arrow:hover {
+      background:rgb(10 15 36);
+    }
+
+    .slider .slick-prev {
+      left: 10px;
+    }
+
+    .slider .slick-next {
+      right: 10px;
+    }
+
+    /* Hide default slick dots */
+    .slick-dots {
+      display: none;
+    }
+
+    .slider img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit:cover;
+    }
+    .slick-list{
+      background:#070d23;
+    }
   </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
@@ -211,6 +297,7 @@
 
     <!-- Section Item --->
     <?php
+      
       if(count($all_details)>0){
       foreach ($all_details as $key => $value) 
       {?>
@@ -242,11 +329,25 @@
                 $file_name_path = "'".$path_url.$child_value['file_name']."'";
                 $path_src = "'".$path_url.$child_value['preview_file']."'";
               }
+
+              if(strpos($child_value['file_name'], ",") !== false) {
+               
+                $mulp_img = explode (",", $child_value['file_name']);
+              }else{
+                
+                $mulp_img = explode (" ", $child_value['file_name']);
+              }
             ?>
 
             <div class="row">
-              <div class="col-md-6">
-                <?php echo '<img src="'.$path.'" class="img-fluid" style="width:100%;margin-bottom:10px"/>'; ?>
+              <div class="col-md-6">                
+                <div class="slider">    
+                  <?php foreach ($mulp_img as $ckey => $c_value) { ?>     
+                  <div class="slide">                 
+                      <img src="<?php echo $path_url.$c_value;?>" alt="" class="img-fluid">                      
+                  </div> 
+                  <?php } ?>
+                </div>
               </div>
 
               <div class="col-md-6">

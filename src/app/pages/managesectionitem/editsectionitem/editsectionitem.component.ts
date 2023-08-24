@@ -24,7 +24,9 @@ export class EditsectionitemComponent implements OnInit {
     private route: ActivatedRoute,private router: Router,private http:Http) { }
   websitelist:Array<Object>;
   sectionlist:Array<Object>;
+  sectionItemImgList:Array<Object>;
   myFiles:string [] = [];
+  sectionItemImglist:Array<Object>;
   private sub: any;
   model: any = {};
   alldata:any={};
@@ -63,6 +65,7 @@ export class EditsectionitemComponent implements OnInit {
       this.model = resultdata.result; 
       this.getsection(this.model.website);
       this.model.Issection_show = (this.model.Issection_show==1)?true:false;      
+      this.sectionItemImgList =  resultdata.img_array_list;
     });
   }
   getsection(website:any){
@@ -78,7 +81,7 @@ export class EditsectionitemComponent implements OnInit {
       {
         this.CommonService.uploadFile1(AppSettings.uploadMultipleImagesSectionItem,this.myFiles)
         .subscribe( (response) => {
-            this.model.file_name = (response.data)?response.data.toString():this.model.file_name;
+            this.model.file_name = (response.data && response.status!='fail')?response.data.toString():this.sectionItemImgList.toString();
             this.CommonService.insertdata(AppSettings.updatesectionItem,this.model)
             .subscribe(package_det =>{  
               $('.preloader').hide();     
@@ -178,4 +181,28 @@ onFileChange(event) {
       this.myFiles.push(event.target.files[i]);
   }
 }
+deleteItemImg(id:any){
+ 
+    let idx = id;
+    let self = this;
+      swal({
+        title: 'Are you sure?',
+         buttons: {
+            cancel: true,
+            confirm: true,
+          },
+        text: "You won't be able to revert this and don't forgot to update the sections!",
+      }).then(function (result) {
+        if(result)
+        {
+          self.removeImginList(idx);  
+         
+        }        
+      },function(dismiss) {
+    });
+}
+  removeImginList(keyId:any){
+    this.sectionItemImgList.splice(keyId, 1);
+    
+  }
 }

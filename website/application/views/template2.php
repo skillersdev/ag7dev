@@ -456,6 +456,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 									$image = "'".$child_value['preview_file']."'";
 									$desc = "'".$child_value['description']."'";
 									$service_id = "'".$child_value['section_item_id']."'";
+									$is_default_img = $child_value['is_default_img'];
 									
 									$media_type =$child_value['media_type'];
 									$web_url = "'".$child_value['website_link']."'";
@@ -468,15 +469,15 @@ $logo_img_path = $this->config->item('logo_img_path');
 
 
 									if($child_value['media_type']==1) {
-										$path = $path_url.$mulp_img[0];
-										$file_name_path = "'".$path_url.$mulp_img[0]."'";
-										$path_src = "'".$path_url.$mulp_img[0]."'";
-										$weblink = "'".$mulp_img[0]."'";
+										$path = $path_url.$mulp_img[$is_default_img];
+										$file_name_path = "'".$path_url.$mulp_img[$is_default_img]."'";
+										$path_src = "'".$path_url.$mulp_img[$is_default_img]."'";
+										$weblink = "'".$mulp_img[$is_default_img]."'";
 									} else{
 										$path = $path_url.$child_value['preview_file'];
-										$file_name_path = "'".$path_url.$mulp_img[0]."'";
+										$file_name_path = "'".$path_url.$mulp_img[$is_default_img]."'";
 										$path_src = "'".$path_url.$child_value['preview_file']."'";
-										$weblink = "'".$mulp_img[0]."'";
+										$weblink = "'".$mulp_img[$is_default_img]."'";
 									}
 								?>	
 								<?php 
