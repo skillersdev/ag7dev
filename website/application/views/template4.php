@@ -522,7 +522,7 @@ $this->load->view('index.html');
                             <?php 
                                 if($child_value['section_view'] ==4) { 
                             ?>
-                                <div class="col-md-12" style="margin-bottom:12px;">
+                                <div class="col-md-12" style="margin-bottom:12px;padding-top: 10px;background: #f6f6f6;padding-bottom: 10px;">
                                     <div class="welcome-section text-center">
                                       
                                         <div class="col-lg-6 col-md-6 float-left">
