@@ -8,6 +8,7 @@
   $logo_img_path = $this->config->item('logo_img_path');
   $last_slider_image = end($slider_image);
 
+ 
   $this->load->view('index.html');
   ?>
   <meta charset="utf-8">
@@ -174,21 +175,13 @@
 
       <div class="intro-img">
 
-      <div class="slider">         
-            <div class="slide">
-            <?php if($last_slider_image['slider_image']){?>
-              <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
-              <?php }else{?>  
-                <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
-        <?php } ?>     
+      <div class="slider">  
+          <?php foreach($slider_image as $key =>$value){?>       
+            <div class="slide">           
+              <img src="<?php echo $image_path.$value['slider_image'];?>" alt="" class="img-fluid">
+           
             </div>  
-            <div class="slide">
-            <?php if($last_slider_image['slider_image']){?>
-              <img src="<?php echo $image_path.$last_slider_image['slider_image'];?>" alt="" class="img-fluid">
-              <?php }else{?>  
-                <img src="<?php echo base_url();?>assets/template5/img/intro-img.svg" alt="" class="img-fluid">
-        <?php } ?>     
-            </div>  
+            <?php } ?>
         </div>
 
 
@@ -894,7 +887,7 @@
   <script>
     $(document).ready(function() {
       $('.slider').slick({
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 1000, // Change slide every 3 seconds (adjust as needed)
         arrows: true, // Show navigation arrows
         dots: false,  // Hide navigation dots
