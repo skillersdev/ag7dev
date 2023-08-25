@@ -268,7 +268,7 @@
     foreach ($all_details as $key => $value) 
     {
         ?>
-        <section id="<?php echo $key;?>" class="section-bg">
+        <section id="<?php echo $key;?>" class="section-with-bg">
             <div class="container">
               <header class="section-header" id="<?php echo $key;?>">
                 <h3  style="margin-top:10px; padding-top: 10px;"><?php echo $key;?></h3>     
@@ -297,7 +297,7 @@
               </div>
               <!--Modal-->
                       
-            </div>
+          
             
             <div class="row">
                 <?php
@@ -377,6 +377,7 @@
                       <?php } ?>
                        
                     <?php } ?>
+            </div>
             </div>
         </section>
         <?php 
