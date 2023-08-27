@@ -5,6 +5,7 @@ $path_url = $this->config->item('path_url');
 $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
 $logo_img_path = $this->config->item('logo_img_path');
+$sectionItem_path=base_url().$website;
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -460,6 +461,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 									
 									$media_type =$child_value['media_type'];
 									$web_url = "'".$child_value['website_link']."'";
+									$sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
 									// echo $web_url;die;
 									if(strpos($child_value['file_name'], ",") !== false) {               
 										$mulp_img = explode (",", $child_value['file_name']);
@@ -486,7 +488,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 									<div class="col-sm-3 col-md-3 col-lg-3">	
 										<li class="portfolio-item" style="height: 210px;width:100%;">
 											<?php 
-												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 											?>
 											
 											<figcaption class="mask">
@@ -514,7 +516,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 									<div class="col-sm-6 col-md-6 col-lg-6">	
 										<li class="portfolio-item" style="height: 210px;width:100%;">
 											<?php 
-												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 											?>
 											
 											<figcaption class="mask">
@@ -544,7 +546,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 										<div class="col-sm-12 col-md-6 col-lg-6 mb-5">
 											<div class="portfolio-item" style="height: 210px;width:100%;">
 												<?php 
-													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 												?>
 												
 												<ul class="external">
@@ -580,7 +582,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 										<div class="col-sm-12 col-md-6 col-lg-6 mb-5">
 											<div class="portfolio-item" style="height: 210px;width:100%;">
 												<?php 
-													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 												?>
 												
 												
@@ -1236,7 +1238,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 		//dots[this.slideIndex-1].className += " active";
 	}
 
-	function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url)
+	function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,viewUrl)
   	{
     	$('#mtitle2_section').html(name);
       
@@ -1251,7 +1253,7 @@ $logo_img_path = $this->config->item('logo_img_path');
 		}
       
 		var Websiteurl="https://"+web_url;
-		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div>');
+		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div><br><div><a  href='+viewUrl+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
 
        	var serviceid = update_id;
 		$.ajax({

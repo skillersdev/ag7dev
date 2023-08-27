@@ -694,14 +694,16 @@
                                             **Username is missing
                                         </span>
                                         <input type="text" name="email" id="email" placeholder="Email">
-                                        <span id="emailcheck" style="color: red;">
-                                            **Email is missing
-                                        </span>
+                                       
                                         <input type="text" name="mobile"  id="mobile" placeholder="Mobile Number">
                                         <span id="mobilecheck" style="color: red;">
                                             **Mobile is missing
                                         </span>
-                                        <textarea name="description" id=""  placeholder="Comments"></textarea>
+                                        <textarea name="description" id="description"  placeholder="Comments"></textarea>
+                                        <span id="descriptionValue" style="color: red;">
+                                            **Comments is missing
+                                        </span>
+                                        
                                         <div class="button-box">
                                             <button type="button" class="default-btn floatright" id="submitbtn">Register</button>
                                         </div>
@@ -751,7 +753,7 @@
   <script>
    
     $(document).ready(function() {
-      $("#usercheck").hide();$("#emailcheck").hide();$("#mobilecheck").hide();
+      $("#usercheck").hide();$("#descriptionValue").hide();$("#mobilecheck").hide();
       $("#success-alert").hide();
     
       $('.slider').slick({
@@ -777,16 +779,16 @@
       let usernameError = true;      
         
       let nameValue = $("#name").val();
-      let emailValue = $("#email").val();
+      let descriptionValue = $("#description").val();
       let mobileValue = $("#mobile").val();
         
-      $("#usercheck").hide();$("#emailcheck").hide();$("#mobilecheck").hide();
+      $("#usercheck").hide();$("#descriptioncheck").hide();$("#mobilecheck").hide();
        
         if (nameValue.length == "") {
             $("#usercheck").show();
             usernameError = false;  
-        } else if (emailValue.length == "") {
-            $("#emailcheck").show();
+        } else if (descriptionValue.length == "") {
+            $("#descriptioncheck").show();
             usernameError = false;
         } else if (mobileValue.length == "") {
             $("#mobilecheck").show();

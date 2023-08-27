@@ -6,6 +6,7 @@ $login_url = $this->config->item('login_url');
 $image_path = $this->config->item('base_path');
 $logo_img_path = $this->config->item('logo_img_path');
 $this->load->view('index.html');
+$sectionItem_path=base_url().$website;
  ?>
 
 <head>
@@ -444,6 +445,7 @@ $this->load->view('index.html');
                                     $path_src = "'".$path_url.$child_value['preview_file']."'";
                                     $weblink = "'".$mulp_img[$is_default_img]."'";
                                 }
+                                $sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
                             ?>	
                              <?php 
                                 if($child_value['section_view'] ==1) { 
@@ -451,7 +453,7 @@ $this->load->view('index.html');
                                 <div class="col-md-4">
                                     <div class="welcome-section text-center">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                     ?>
                                         <h4><?php echo $child_value['title'];?></h4>
                                         <div class="border"></div>
@@ -474,7 +476,7 @@ $this->load->view('index.html');
                                 <div class="col-md-6" style="margin-bottom:12px;">
                                     <div class="welcome-section text-center">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                     ?>
                                         <h4><?php echo $child_value['title'];?></h4>
                                         <div class="border"></div>
@@ -499,7 +501,7 @@ $this->load->view('index.html');
                                     <div class="welcome-section text-center">
                                         <div class="col-lg-6 col-md-6 float-left">
                                             <?php 
-                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                             ?>
                                         </div>
                                         <div class="col-lg-6 col-md-6 float-left">
@@ -540,7 +542,7 @@ $this->load->view('index.html');
                                         </div>
                                         <div class="col-lg-6 col-md-6 float-left">
                                             <?php 
-                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                             ?>
                                         </div>
                                     </div>
@@ -1142,7 +1144,7 @@ $this->load->view('index.html');
 	}
 
 
-    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url)
+    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,viewUrl)
   	{
     	$('#mtitle2_section').html(name);
       
@@ -1157,7 +1159,7 @@ $this->load->view('index.html');
 		}
       
 		var Websiteurl="https://"+web_url;
-		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank" style="color:black">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank" style="color:black"><b>Website Link</b></a></div>');
+		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank" style="color:black">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank" style="color:black"><b>Website Link</b></a></div><br><div><a  href='+viewUrl+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
 
        	var serviceid = update_id;
 		$.ajax({

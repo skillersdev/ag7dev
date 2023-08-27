@@ -220,7 +220,7 @@
     color: #060c22;
     padding-left: 50px;
     }
-
+  
   </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
@@ -459,7 +459,8 @@
                       <h4 class="modal-title" id="mtitle2_section"></h4>
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-                    <div class="modal-body" id="mimage2_section">                
+                    <div class="modal-body" id="mimage2_section">
+                                     
                     </div>
                     <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
                       <div class="image-container"  style="width:52%;">
@@ -510,7 +511,7 @@
                 $is_default_img = $child_value['is_default_img'];
                 $media_type =$child_value['media_type'];
                 $web_url = "'".$child_value['website_link']."'";
-                $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //sectionItem URL
+                $sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //sectionItem URL
                // echo $web_url;die;
                if(strpos($child_value['file_name'], ",") !== false) {
                
@@ -542,13 +543,16 @@
                     if($child_value['section_view'] ==1) { ?>
                       <div class="col-lg-3 col-md-3">
                         <div class="hotel">
+                        <!---Service Column -->
+                        <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="sectionId">
+
                           <div class="hotel-img">                   
                             <?php 
                           
                             if($child_value['view_type']==1){
-                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$path_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'; 
+                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>'; 
                             }else{
-                              echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$path_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>';
+                              echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 50%;"></a>';
                             }
                             ?>
                           </div>
@@ -577,9 +581,9 @@
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
                           if($child_value['view_type']==1){
-                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 150px;object-fit: cover;"></a>'; 
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;height: 150px;object-fit: cover;"></a>'; 
                           }else{
-                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
                           }
 
                           ?>
@@ -617,9 +621,9 @@
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
                           if($child_value['view_type']==1){
-                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
                           }else{
-                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
                           }
 
                           ?>
@@ -668,9 +672,9 @@
                         <div class="hotel-img col-lg-6 col-md-6 float-left">                   
                           <?php 
                           if($child_value['view_type']==1){
-                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
+                            echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>'; 
                           }else{
-                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
+                            echo '<a href="'.$sectionItem_url.'" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$sectionItem_url.')"><img src="'.$path.'" class="img-fluid" style="width:100%;object-fit: cover;"></a>';
                           }
 
                           ?>
@@ -1309,6 +1313,10 @@
   <script src="<?php echo base_url();?>/assets/js/main.js"></script>
   <script>
     $(document).ready(function(){
+
+      $("#usercheck").hide();$("#emailcheck").hide();$("#mobilecheck").hide();
+      $("#success-alert").hide();
+    
      // $("#totalview").click(function(){
         var web = $('#viewweb').val();
         //alert(web);
@@ -1417,33 +1425,36 @@
                 }
             });
     });
-  function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,img_arr_list)
+  function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,img_arr_list,viewUrl)
   {
     $('#mtitle2_section').html(name);
-      
+     let sectionItemId =  $('#sectionId').val();
       if(type==2)
       {
         $('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
       }
       else if(type==1 || type==3 || type==4){
+        
         // const pathurl = $('#path_url').val();
         // const myArray = img_arr_list.split(",");
-        // let text = "";
-        // text += "<div class='slider'>";
+        let text = "";
+        text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
         // for (let i = 0; i < myArray.length; i++) {
         //   text += "<div class='slide'>";
         //   text += "<img src='"+pathurl+"/"+myArray[i]+"'>";
         //   text += "</div>";
         // }
         // text += "</div>";
-        $('#mimage2_section').html('<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">');
+        $('#mimage2_section').html(text);
         // $('#mimage2_section').html(text);
       }else{
         $('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
       }
       
+
       var Websiteurl="https://"+web_url;
-      $('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div>');
+
+      $('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div><br><div><a  href='+viewUrl+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
 
        var serviceid = update_id;
        $.ajax({
@@ -1564,6 +1575,8 @@
     $('.pimage'+all_val).css('display','block');
     //dots[this.slideIndex-1].className += " active";
   }
+
+  
   </script>
 </body>
 
