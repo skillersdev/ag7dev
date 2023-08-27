@@ -675,47 +675,64 @@
       } 
     ?> 
 
-    <!-- register-area start -->
-    <div class="alert alert-success" role="alert" id="success-alert">
-      Enquiry has been submitted. we will get back to you shortly !!
+    <!-- Enquiry Form start -->
+    <div class="register-area ptb-100 section-bg wow fadeInUp" id="enquirynow1">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12 col-12 col-lg-8 col-xl-8 ml-auto mr-auto" id="enquirynow">
+              
+              <div class="section-header">
+                <h2>Enquiry</h2>
+              </div>
+
+                  <div class="login" style="margin-bottom: 10px;">
+                      <div class="login-form-container">
+                          <div class="login-form">
+                              <form id="enquiryform">
+                                <input type="hidden" value="<?php echo $service_id; ?>" name="section_item" id="section_item">
+                                <div class="row">
+                                  <div class="form-group col-lg-4 col-sm-12 col-xl-4 ">
+                                    <input type="text" name="name" id="name" placeholder="Name*">
+                                    <span id="usercheck" style="color: red;">
+                                        *Name is required
+                                    </span>
+                                  </div>
+                                  
+                                  <div class="form-group col-lg-4 col-xl-4 col-sm-12">  
+                                    <input type="text" name="mobile"  id="mobile" placeholder="Mobile Number*">
+                                    <span id="mobilecheck" style="color: red;">
+                                        *Mobile is required
+                                    </span>
+                                  </div>  
+                                  <div class="form-group col-lg-4 col-xl-4 col-sm-12">  
+                                    <input type="text" name="email" id="email" placeholder="Email">
+                                  </div> 
+                                  <div class="form-group col-lg-12 col-xl-12 col-sm-12"> 
+                                    <textarea name="description" class="form-control" rows="7" id="description"  placeholder="Comments*"></textarea>
+                                    <span id="descriptioncheck" style="color: red;">
+                                        *Comments is required
+                                    </span>
+                                  </div>
+                                  
+                                  <div class="button-box ml-auto mr-auto">
+                                      <button type="button" class="default-btn floatright"  id="submitbtn">Send Enquiry</button>
+                                  </div>
+
+                                </div> 
+                            
+                              </form>
+
+                              <div class="alert alert-success" role="alert" id="success-alert">
+                                Enquiry has been submitted. we will get back to you shortly !!
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
-    <div class="register-area ptb-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 col-12 col-lg-6 col-xl-6 ml-auto mr-auto">
-                    <h2>Business Enquiry</h2>
-                        <div class="login">
-                            <div class="login-form-container">
-                                <div class="login-form">
-                                    <form id="enquiryform">
-                                      <input type="hidden" value="<?php echo $service_id; ?>" name="section_item" id="section_item">
-                                        <input type="text" name="name" id="name" placeholder="Your name">
-                                        <span id="usercheck" style="color: red;">
-                                            **Username is missing
-                                        </span>
-                                        <input type="text" name="email" id="email" placeholder="Email">
-                                       
-                                        <input type="text" name="mobile"  id="mobile" placeholder="Mobile Number">
-                                        <span id="mobilecheck" style="color: red;">
-                                            **Mobile is missing
-                                        </span>
-                                        <textarea name="description" id="description"  placeholder="Comments"></textarea>
-                                        <span id="descriptionValue" style="color: red;">
-                                            **Comments is missing
-                                        </span>
-                                        
-                                        <div class="button-box">
-                                            <button type="button" class="default-btn floatright" id="submitbtn">Register</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- register-area end -->
+    <!-- Enquiry Form end -->
 
 
   <!--==========================
@@ -753,7 +770,7 @@
   <script>
    
     $(document).ready(function() {
-      $("#usercheck").hide();$("#descriptionValue").hide();$("#mobilecheck").hide();
+      $("#usercheck").hide();$("#descriptioncheck").hide();$("#mobilecheck").hide();
       $("#success-alert").hide();
     
       $('.slider').slick({
@@ -777,25 +794,15 @@
     });
     $("#submitbtn").click(function () {
       let usernameError = true;      
-        
       let nameValue = $("#name").val();
       let descriptionValue = $("#description").val();
       let mobileValue = $("#mobile").val();
         
       $("#usercheck").hide();$("#descriptioncheck").hide();$("#mobilecheck").hide();
        
-        if (nameValue.length == "") {
-            $("#usercheck").show();
-            usernameError = false;  
-        } else if (descriptionValue.length == "") {
-            $("#descriptioncheck").show();
-            usernameError = false;
-        } else if (mobileValue.length == "") {
-            $("#mobilecheck").show();
-            usernameError = false;
-        } 
+        
 
-        if ( usernameError == true) {
+        if ( nameValue != "" && descriptionValue!="" &&mobileValue!="") {
           $.ajax({
             type:'POST',
             url:'<?php echo base_url("index.php/website/updateenquiry"); ?>',
@@ -810,6 +817,18 @@
             }
           });
         } else {
+
+          if (nameValue.length == "") {
+              $("#usercheck").show();
+              usernameError = false;  
+          }  else if (mobileValue.length == "") {
+              $("#mobilecheck").show();
+              usernameError = false;
+          } 
+          else if (descriptionValue.length == "") {
+              $("#descriptioncheck").show();
+              usernameError = false;
+          }
           
         }
     });
