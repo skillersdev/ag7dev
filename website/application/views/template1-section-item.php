@@ -79,6 +79,86 @@
     }
 
     
+/*--------- 23. Login page ---------*/
+.login-form-container {
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid #ddd;
+  padding: 60px 40px;
+  text-align: left;
+}
+.login-text {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.login-text h2 {
+  color: #444;
+  font-size: 30px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+.login-text span {
+  font-size: 15px;
+}
+.login-form-container input {
+  background: #ffffff none repeat scroll 0 0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: none;
+  color: #999;
+  font-size: 14px;
+  height: 40px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+.login-form-container input::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+.login-toggle-btn {
+  padding-top: 10px;
+}
+.login-form-container input[type="checkbox"] {
+  height: 15px;
+  margin: 0;
+  position: relative;
+  top: 1px;
+  width: 17px;
+}
+.login-form-container label {
+  color: #777;
+  font-size: 15px;
+  font-weight: 400;
+}
+.login-toggle-btn > a {
+  color: #777;
+  float: right;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.login-toggle-btn > a:hover {
+  color: #000;
+}
+.button-box .default-btn {
+  background: transparent none repeat scroll 0 0;
+  border: 1px solid #ddd;
+  color: #777;
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 25px;
+  padding: 12px 36px 10px;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.button-box .default-btn:hover {
+  background-color: #ee3333;
+  border: 1px solid #ee3333;
+  color: #fff;
+}
+
  
   </style>
  
@@ -294,7 +374,7 @@
   </header><!-- #header -->
 
   <main id="main">
-
+  
     <!-- Section Item --->
     <?php
       
@@ -302,6 +382,7 @@
       foreach ($all_details as $key => $value) 
       {?>
         <section id="speakers-details" class="wow fadeIn">
+        
           <div class="container">
             <div class="section-header">
               <h2><?php echo $key;?></h2>
@@ -315,7 +396,7 @@
               $name = "'".$child_value['section_name']."'";
               $image = "'".$child_value['preview_file']."'";
               $desc = "'".$child_value['description']."'";
-              $service_id = "'".$child_value['section_item_id']."'";
+              $service_id = $child_value['section_item_id'];
               $weblink = "'".$child_value['file_name']."'";
               $media_type =$child_value['media_type'];
               $web_url = "'".$child_value['website_link']."'";
@@ -594,7 +675,45 @@
       } 
     ?> 
 
-
+    <!-- register-area start -->
+    <div class="alert alert-success" role="alert" id="success-alert">
+      Enquiry has been submitted. we will get back to you shortly !!
+    </div>
+    <div class="register-area ptb-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-12 col-lg-6 col-xl-6 ml-auto mr-auto">
+                    <h2>Business Enquiry</h2>
+                        <div class="login">
+                            <div class="login-form-container">
+                                <div class="login-form">
+                                    <form id="enquiryform">
+                                      <input type="hidden" value="<?php echo $service_id; ?>" name="section_item" id="section_item">
+                                        <input type="text" name="name" id="name" placeholder="Your name">
+                                        <span id="usercheck" style="color: red;">
+                                            **Username is missing
+                                        </span>
+                                        <input type="text" name="email" id="email" placeholder="Email">
+                                        <span id="emailcheck" style="color: red;">
+                                            **Email is missing
+                                        </span>
+                                        <input type="text" name="mobile"  id="mobile" placeholder="Mobile Number">
+                                        <span id="mobilecheck" style="color: red;">
+                                            **Mobile is missing
+                                        </span>
+                                        <textarea name="description" id=""  placeholder="Comments"></textarea>
+                                        <div class="button-box">
+                                            <button type="button" class="default-btn floatright" id="submitbtn">Register</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- register-area end -->
 
 
   <!--==========================
@@ -630,7 +749,11 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script>
+   
     $(document).ready(function() {
+      $("#usercheck").hide();$("#emailcheck").hide();$("#mobilecheck").hide();
+      $("#success-alert").hide();
+    
       $('.slider').slick({
         autoplay: true,
         autoplaySpeed: 3000, // Change slide every 3 seconds (adjust as needed)
@@ -650,7 +773,44 @@
       });
 
     });
+    $("#submitbtn").click(function () {
+      let usernameError = true;      
+        
+      let nameValue = $("#name").val();
+      let emailValue = $("#email").val();
+      let mobileValue = $("#mobile").val();
+        
+      $("#usercheck").hide();$("#emailcheck").hide();$("#mobilecheck").hide();
+       
+        if (nameValue.length == "") {
+            $("#usercheck").show();
+            usernameError = false;  
+        } else if (emailValue.length == "") {
+            $("#emailcheck").show();
+            usernameError = false;
+        } else if (mobileValue.length == "") {
+            $("#mobilecheck").show();
+            usernameError = false;
+        } 
 
+        if ( usernameError == true) {
+          $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("index.php/website/updateenquiry"); ?>',
+            data:$("#enquiryform").serialize(),
+            dataType:"JSON",                
+            success:function(data){  
+              $("#success-alert").show();  
+              setTimeout(function(){
+                  window.location.reload(1);
+                }, 5000);
+             
+            }
+          });
+        } else {
+          
+        }
+    });
   </script>
 
 

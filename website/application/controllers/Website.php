@@ -453,6 +453,17 @@ class Website extends CI_Controller {
 			}
 		}
 	}
+	public function updateenquiry(){
+		if(isset($_POST)){
+			$this->db->query("insert into ".$this->db->dbprefix('manage_enquiry')." 
+			(section_item,name,email,mobile,description) values('".$_POST['section_item']."','".$_POST['name']."','".$_POST['email']."','".$_POST['mobile']."','".$_POST['description']."')");
+
+			$response['enquiry_id']=$this->db->insert_id();
+			echo json_encode($response,JSON_UNESCAPED_SLASHES);
+			die();
+		}	
+
+	}
 	public function updateviews()
 	{
 		$res_chk=$this->db->query("select * from ".$this->db->dbprefix('manage_section_item')." where id='".$_POST['id']."' ");	
