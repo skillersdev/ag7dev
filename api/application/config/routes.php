@@ -78,6 +78,9 @@ $route['deletecategory/(:num)']='Category_controller/deletecategory/$1';
 $route['fetchcategorybyid/(:num)']='Category_controller/fetchcategorybyid/$1';
 $route['checkcategorybyweb']='Category_controller/getcategorybyweb';
 /*******/
+$route['fetchenquirylistbyid/(:num)']='Sectionitem_controller/getenquirylistbyuser/$1';
+$route['fetchenquirylist']='Sectionitem_controller/getenquirylist';
+
 
 /***Add subcatgeory****/
 $route['addsubcategory'] = 'Category_controller/add_subcategory';

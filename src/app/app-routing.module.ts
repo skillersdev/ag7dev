@@ -99,6 +99,7 @@ import { EditpremiumpackageComponent } from './pages/premiumpackage/editpremiump
 import { PremiumrequestvideosComponent } from './premiumrequestvideos/premiumrequestvideos.component';
 import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumtransaction.component';
 import { NearbyComponent } from './pages/nearby/nearby.component';
+import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -479,6 +480,9 @@ component:EditmallproductComponent
   },{
     path:'nearby',
     component:NearbyComponent
+  },{
+    path:'manageenquiry',
+    component:ManageenquiryComponent
   }
 
 ];

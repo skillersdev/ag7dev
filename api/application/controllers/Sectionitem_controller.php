@@ -248,5 +248,52 @@ class Sectionitem_controller extends CI_Controller {
       echo json_encode($Response,JSON_UNESCAPED_SLASHES);
      die();
    }
-   
+   public function getenquirylistbyuser($id)
+  {
+
+     $user_det=$this->db->select("website")->where(['is_deleted'=>'0','id'=>$id])->get('affiliateuser'); 
+     $data =$user_det->result_array();
+     
+
+      $res=$this->db->select("*")->where(['status'=>'1','website'=>$data[0]['website']])->get('manage_enquiry'); 
+      $result=array();
+      
+      if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          { 
+            $result[]=array('enquiry_id'=>$value['enquiry_id'],'website'=>$value['website'],
+              'name'=>$value['name'],'email'=>$value['email'],'mobile'=>$value['mobile'],'description'=>$value['description'],'created_date'=>$value['created_date']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No  records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+
+  public function getenquirylist()
+  {
+
+     
+      $res=$this->db->select("*")->where(['status'=>'1'])->get('manage_enquiry'); 
+      $result=array();
+      
+      if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          { 
+            $result[]=array('enquiry_id'=>$value['enquiry_id'],'website'=>$value['website'],
+              'name'=>$value['name'],'email'=>$value['email'],'mobile'=>$value['mobile'],'description'=>$value['description'],'created_date'=>$value['created_date']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No  records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
 }

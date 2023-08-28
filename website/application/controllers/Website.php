@@ -151,6 +151,7 @@ class Website extends CI_Controller {
 						$section_result[$value['section_name']][$key_item]['views'] = $item_value['total_views'];
 						$section_result[$value['section_name']][$key_item]['show_menu'] = $value['isSectionMenuShow'];
 						$section_result[$value['section_name']][$key_item]['view_type'] = $item_value['view_type'];
+						$section_result[$value['section_name']][$key_item]['website'] = $value['website'];
 						
 					}
 				}
@@ -456,7 +457,7 @@ class Website extends CI_Controller {
 	public function updateenquiry(){
 		if(isset($_POST)){
 			$this->db->query("insert into ".$this->db->dbprefix('manage_enquiry')." 
-			(section_item,name,email,mobile,description) values('".$_POST['section_item']."','".$_POST['name']."','".$_POST['email']."','".$_POST['mobile']."','".$_POST['description']."')");
+			(section_item,website,name,email,mobile,description) values('".$_POST['section_item']."','".$_POST['currentweb']."','".$_POST['name']."','".$_POST['email']."','".$_POST['mobile']."','".$_POST['description']."')");
 
 			$response['enquiry_id']=$this->db->insert_id();
 			echo json_encode($response,JSON_UNESCAPED_SLASHES);
