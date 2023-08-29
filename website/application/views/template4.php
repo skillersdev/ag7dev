@@ -445,7 +445,7 @@ $sectionItem_path=base_url().$website;
                                     $path_src = "'".$path_url.$child_value['preview_file']."'";
                                     $weblink = "'".$mulp_img[$is_default_img]."'";
                                 }
-                                $sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
+                                $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //
                             ?>	
                              <?php 
                                 if($child_value['section_view'] ==1) { 

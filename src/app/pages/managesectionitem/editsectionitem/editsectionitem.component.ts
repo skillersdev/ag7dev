@@ -81,7 +81,8 @@ export class EditsectionitemComponent implements OnInit {
       {
         this.CommonService.uploadFile1(AppSettings.uploadMultipleImagesSectionItem,this.myFiles)
         .subscribe( (response) => {
-            this.model.file_name = (response.data && response.status!='fail')?response.data.toString():this.sectionItemImgList.toString();
+            this.model.file_name = (response.data && response.status!='fail')?this.sectionItemImgList.toString().concat(',',response.data.toString()):this.sectionItemImgList.toString();
+
             this.CommonService.insertdata(AppSettings.updatesectionItem,this.model)
             .subscribe(package_det =>{  
               $('.preloader').hide();     

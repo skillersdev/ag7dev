@@ -422,7 +422,7 @@ $sectionItem_path=base_url().$website;
 											$mulp_img = explode (" ", $child_value['file_name']);
 										}
 	
-										$sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
+										$sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //
 
 										if($child_value['media_type']==1) {
 											$path = $path_url.$mulp_img[$is_default_img];

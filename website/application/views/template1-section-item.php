@@ -700,18 +700,16 @@
                                   </div>
                                   
                                   <div class="form-group col-lg-4 col-xl-4 col-sm-12">  
-                                    <input type="text" name="mobile"  id="mobile" placeholder="Mobile Number*">
-                                    <span id="mobilecheck" style="color: red;">
-                                        *Mobile is required
-                                    </span>
+                                    <input type="text" name="country"  id="country" placeholder="Country">
+                                  
                                   </div>  
                                   <div class="form-group col-lg-4 col-xl-4 col-sm-12">  
-                                    <input type="text" name="email" id="email" placeholder="Email">
+                                    <input type="text" name="state" id="state" placeholder="State">
                                   </div> 
                                   <div class="form-group col-lg-12 col-xl-12 col-sm-12"> 
-                                    <textarea name="description" class="form-control" rows="7" id="description"  placeholder="Comments*"></textarea>
+                                    <textarea name="description" class="form-control" rows="7" id="description"  placeholder="Description*"></textarea>
                                     <span id="descriptioncheck" style="color: red;">
-                                        *Comments is required
+                                        *Description is required
                                     </span>
                                   </div>
                                   
@@ -797,13 +795,13 @@
       let usernameError = true;      
       let nameValue = $("#name").val();
       let descriptionValue = $("#description").val();
-      let mobileValue = $("#mobile").val();
-        
+      //let mobileValue = $("#mobile").val();
+       
       $("#usercheck").hide();$("#descriptioncheck").hide();$("#mobilecheck").hide();
        
         
 
-        if ( nameValue != "" && descriptionValue!="" &&mobileValue!="") {
+        if ( nameValue != "" && descriptionValue!="") {
           $.ajax({
             type:'POST',
             url:'<?php echo base_url("index.php/website/updateenquiry"); ?>',
@@ -818,15 +816,12 @@
             }
           });
         } else {
-
+          
           if (nameValue.length == "") {
               $("#usercheck").show();
               usernameError = false;  
-          }  else if (mobileValue.length == "") {
-              $("#mobilecheck").show();
-              usernameError = false;
-          } 
-          else if (descriptionValue.length == "") {
+          }  
+          if (descriptionValue.length == "" || descriptionValue.length == 0) {
               $("#descriptioncheck").show();
               usernameError = false;
           }

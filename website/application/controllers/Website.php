@@ -457,7 +457,7 @@ class Website extends CI_Controller {
 	public function updateenquiry(){
 		if(isset($_POST)){
 			$this->db->query("insert into ".$this->db->dbprefix('manage_enquiry')." 
-			(section_item,website,name,email,mobile,description) values('".$_POST['section_item']."','".$_POST['currentweb']."','".$_POST['name']."','".$_POST['email']."','".$_POST['mobile']."','".$_POST['description']."')");
+			(section_item,website,name,state,country,description) values('".$_POST['section_item']."','".$_POST['currentweb']."','".$_POST['name']."','".$_POST['state']."','".$_POST['country']."','".$_POST['description']."')");
 
 			$response['enquiry_id']=$this->db->insert_id();
 			echo json_encode($response,JSON_UNESCAPED_SLASHES);

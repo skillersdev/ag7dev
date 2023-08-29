@@ -312,7 +312,7 @@
                         $media_type =$child_value['media_type'];
                         $web_url = "'".$child_value['website_link']."'";
 
-                        $sectionItem_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
+                        $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //
                         // echo $web_url;die;
                         if(strpos($child_value['file_name'], ",") !== false) {               
                           $mulp_img = explode (",", $child_value['file_name']);
