@@ -423,6 +423,7 @@ $sectionItem_path=base_url().$website;
 										}
 	
 										$sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //
+										$pop_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
 
 										if($child_value['media_type']==1) {
 											$path = $path_url.$mulp_img[$is_default_img];
@@ -442,10 +443,10 @@ $sectionItem_path=base_url().$website;
 									<div class="col-md-3">		
 										<figure class="mix work-item branding" style="width:100%;">
 										<?php 
-												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 											?>
 											<figcaption class="overlay">
-												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 												<h4><?php echo $child_value['title'];?></h4>
 												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
 												<p>
@@ -467,10 +468,10 @@ $sectionItem_path=base_url().$website;
 									<div class="col-md-6 float-left">		
 										<figure class="mix work-item branding" style="width:100%;left: 0% !important;">
 										<?php 
-												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" style="width:100%;height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="width:100%;height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 											?>
 											<figcaption class="overlay">
-												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 												
 											</figcaption>										
 										</figure>
@@ -507,10 +508,10 @@ $sectionItem_path=base_url().$website;
 										<div class="col-md-6">
 											<figure class="mix work-item branding" style="width:100%;">
 											<?php 
-													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 												?>
 												<figcaption class="overlay">
-													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 													
 												</figcaption>										
 											</figure>
@@ -527,10 +528,10 @@ $sectionItem_path=base_url().$website;
 										<div class="col-md-6">
 											<figure class="mix work-item branding" style="width:100%;">
 											<?php 
-													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 												?>
 												<figcaption class="overlay">
-													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 													
 												</figcaption>										
 											</figure>

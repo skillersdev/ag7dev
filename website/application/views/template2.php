@@ -461,7 +461,8 @@ $sectionItem_path=base_url().$website;
 									
 									$media_type =$child_value['media_type'];
 									$web_url = "'".$child_value['website_link']."'";
-									$sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; //
+									$sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id'];
+									$pop_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; //
 									// echo $web_url;die;
 									if(strpos($child_value['file_name'], ",") !== false) {               
 										$mulp_img = explode (",", $child_value['file_name']);
@@ -488,7 +489,7 @@ $sectionItem_path=base_url().$website;
 									<div class="col-sm-3 col-md-3 col-lg-3">	
 										<li class="portfolio-item" style="height: 210px;width:100%;">
 											<?php 
-												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 											?>
 											
 											<figcaption class="mask">
@@ -516,7 +517,7 @@ $sectionItem_path=base_url().$website;
 									<div class="col-sm-6 col-md-6 col-lg-6">	
 										<li class="portfolio-item" style="height: 210px;width:100%;">
 											<?php 
-												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+												echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 											?>
 											
 											<figcaption class="mask">
@@ -546,7 +547,7 @@ $sectionItem_path=base_url().$website;
 										<div class="col-sm-12 col-md-6 col-lg-6 mb-5">
 											<div class="portfolio-item" style="height: 210px;width:100%;">
 												<?php 
-													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 												?>
 												
 												<ul class="external">
@@ -582,7 +583,7 @@ $sectionItem_path=base_url().$website;
 										<div class="col-sm-12 col-md-6 col-lg-6 mb-5">
 											<div class="portfolio-item" style="height: 210px;width:100%;">
 												<?php 
-													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$sectionItem_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
+													echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height: 210px;width: 100%;">'; 
 												?>
 												
 												
