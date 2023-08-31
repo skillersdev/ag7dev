@@ -6,14 +6,15 @@ import { AppSettings } from '../../appSettings';
 import { LoginService } from '../../services/login.service';
 
 @Component({
-  selector: 'app-manageenquiry',
-  templateUrl: './manageenquiry.component.html',
-  styleUrls: ['./manageenquiry.component.css']
+  selector: 'app-manageproductenquiry',
+  templateUrl: './manageproductenquiry.component.html',
+  styleUrls: ['./manageproductenquiry.component.css']
 })
-export class ManageenquiryComponent implements OnInit {
+export class ManageproductenquiryComponent implements OnInit {
 
-  getenquirylistRestApiUrl:string = AppSettings.getenquirylist; 
-  getenquirybyUserRestApiUrl:string = AppSettings.enquirybyid; 
+ 
+  getproductenquirylistRestApiUrl:string = AppSettings.getproductenquirylist; 
+  getproductenquirybyUserRestApiUrl:string = AppSettings.enquiryproductbyid; 
   enquirylist:Array<Object>;
   model:any={};
   constructor(private loginService: LoginService,private CommonService: CommonService,private router: Router) { }
@@ -28,7 +29,7 @@ export class ManageenquiryComponent implements OnInit {
     if(this.model.usergroup==2)
     {
 
-      this.CommonService.editdata(this.getenquirybyUserRestApiUrl,user_id)
+      this.CommonService.editdata(this.getproductenquirybyUserRestApiUrl,user_id)
         .subscribe(resultdata =>{   
           this.enquirylist=resultdata.result; 
           this.loginService.viewCommontdataTable('category_table','category_table');
@@ -36,7 +37,7 @@ export class ManageenquiryComponent implements OnInit {
     
       }
       else{
-        this.CommonService.getdata(this.getenquirylistRestApiUrl)
+        this.CommonService.getdata(this.getproductenquirylistRestApiUrl)
         .subscribe(det =>{
             if(det.result!="")
             { 
@@ -47,6 +48,7 @@ export class ManageenquiryComponent implements OnInit {
         });
       }      
   }
+
 
 
 }

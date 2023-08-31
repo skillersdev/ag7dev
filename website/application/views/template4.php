@@ -834,6 +834,8 @@ $sectionItem_path=base_url().$website;
 									$total_views =  "'".$product_details[$i]['total_views']."'";
 									$prod_desc = "'".$product_details[$i]['long_desc']."'";
 									$prod_short_desc = "'".$product_details[$i]['short_desc']."'";
+                                    $product_url="'".$sectionItem_path."/products/".$product_details[$i]['id']."'"; //
+                                    
                                     //echo $product_details[$i]['product_image'];
                                     ?>
                             <li>
@@ -845,7 +847,7 @@ $sectionItem_path=base_url().$website;
                                         '.$price.',
                                         '.$total_likes.',
                                         '.$total_views.',
-                                        '.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
+                                        '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
                                         ?>
                                     <div class="portfolio-caption" style="height: 70%;">
                                         <span>Category:<?php echo $product_details[$i]['category_name'];?></span>

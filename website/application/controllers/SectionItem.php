@@ -27,8 +27,14 @@ class SectionItem extends CI_Controller {
 			$user_profile=$this->db->select("*")->where(['id'=>$val[0]['user_id'],'is_deleted'=>'0'])->order_by('id','desc')->get('affiliateuser'); 
 			$user_profile_result =$user_profile->result_array();
 			/*Product list*/
-			$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('product_master'); 
-			$product_det_result =$product_det->result_array();
+			if($sectionName!='products'){
+				$product_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('product_master'); 
+				$product_det_result =$product_det->result_array();
+			}else{
+				$product_det=$this->db->select("*")->where(['id'=>$sectionItem,'is_deleted'=>'0'])->order_by('id','desc')->get('product_master'); 
+				$product_det_result =$product_det->result_array();
+			}
+			
 
 			$slider_image_res=$this->db->select("slider_image,slider_title,slider_desc,slider_type,slider_link")->where(['website'=>$websitename,'is_deleted'=>'0'])->get('template_settings');
 			$image_array=$slider_image_res->result_array();
@@ -241,21 +247,24 @@ class SectionItem extends CI_Controller {
 			//echo "<pre>";print_r($data);die;
 
 			$this->load->helper('url');
-			if($val[0]['template']==1){
+			if($sectionName!='products'){
 				$this->load->view('template1-section-item',$data);	
+			}else{
+				// print_r($result);die;
+				$this->load->view('template1-product-item',$data);	
 			}
-			if($val[0]['template']==2){
-				$this->load->view('template1-section-item',$data);	
-			}
-			if($val[0]['template']==3){
-				$this->load->view('template1-section-item',$data);	
-			}
-			if($val[0]['template']==4){
-				$this->load->view('template1-section-item',$data);	
-			}
-			if($val[0]['template']==5){
-				$this->load->view('template1-section-item',$data);	
-			}
+			// if($val[0]['template']==2){
+			// 	$this->load->view('template1-section-item',$data);	
+			// }
+			// if($val[0]['template']==3){
+			// 	$this->load->view('template1-section-item',$data);	
+			// }
+			// if($val[0]['template']==4){
+			// 	$this->load->view('template1-section-item',$data);	
+			// }
+			// if($val[0]['template']==5){
+			// 	$this->load->view('template1-section-item',$data);	
+			// }
 		} else{
 			// $data['exist']=0;
 		}

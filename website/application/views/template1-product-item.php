@@ -378,81 +378,52 @@
     <!-- Section Item --->
     <?php
       
-      if(count($all_details)>0){
-      foreach ($all_details as $key => $value) 
-      {?>
+      if(count($product_details)>0){
+      foreach ($product_details as $key => $value) 
+      {
+        $service_id = $value['id'];
+        ?>
         <section id="speakers-details" class="wow fadeIn">
         
           <div class="container">
             <div class="section-header">
-              <h2><?php echo $key;?></h2>
+              <h2>Products</h2>
               <p><?php echo $website; ?></p>
             </div>
 
             <?php
            
-            foreach ($all_details[$key] as $child_key => $child_value) {
-
-              $name = "'".$child_value['section_name']."'";
-              $image = "'".$child_value['preview_file']."'";
-              $desc = "'".$child_value['description']."'";
-              $service_id = $child_value['section_item_id'];
-              $weblink = "'".$child_value['file_name']."'";
-              $media_type =$child_value['media_type'];
-              $web_url = "'".$child_value['website_link']."'";
-             
-              if($child_value['media_type']==1) {
-                $path = $path_url.$child_value['file_name'];
-                $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                  $path_src = "'".$path_url.$child_value['file_name']."'";
-              } else{
-                $path = $path_url.$child_value['preview_file'];
-                $file_name_path = "'".$path_url.$child_value['file_name']."'";
-                $path_src = "'".$path_url.$child_value['preview_file']."'";
-              }
-
-              if(strpos($child_value['file_name'], ",") !== false) {
-               
-                $mulp_img = explode (",", $child_value['file_name']);
-              }else{
-                
-                $mulp_img = explode (" ", $child_value['file_name']);
-              }
+           
             ?>
 
             <div class="row">
               <div class="col-md-6">                
                 <div class="slider">    
-                  <?php foreach ($mulp_img as $ckey => $c_value) { ?>     
+               
                   <div class="slide">                 
-                      <img src="<?php echo $path_url.$c_value;?>" alt="" class="img-fluid">                      
+                      <img src="<?php echo $path_url.$value['product_image'];?>" alt="" class="img-fluid">                      
                   </div> 
-                  <?php } ?>
+                  <?php  ?>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="details">
-                  <h2><?php echo $child_value['title'];?></h2>
+                  <h2><?php echo $value['product_name'];?></h2>
                   <div class="social">
-                    <input type="hidden" value="<?php echo $child_value['section_item_id']; ?>" id="service_id<?php echo $child_value['section_item_id']; ?>">
-                    <a href="" style="border-radius: 10%; width: 90px;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $child_value['section_item_id'];?>)">
-                      <i class="fa fa-thumbs-up"></i> <?php echo $child_value['likes']; ?>
-                    </a>
-                    <a href="" style="border-radius: 10%; width: 90px;">
+                    <input type="hidden" value="<?php echo $value['id']; ?>" id="service_id<?php echo $value['id']; ?>">
+                    <!-- <a href="" style="border-radius: 10%; width: 90px;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $value['id'];?>)">
+                      <i class="fa fa-thumbs-up"></i> <?php echo $value['likes']; ?>
+                    </a> -->
+                    <!-- <a href="" style="border-radius: 10%; width: 90px;">
                       <i class="fa fa-eye"></i>
-                      <?php echo $child_value['views']; ?>
+                      <?php //echo $value['views']; ?>
                     </a>
-                    
+                     -->
                   </div>
-                  <p><?php echo $child_value['description'];?></p>
+                  <p><?php echo $value['long_desc'];?></p>
                     <!--<p><?php //echo $web_url;?></p>-->
-                    <div class="social">
-                      <a href="<?php echo "https://".$child_value['website_link']; ?>" target='_blank' style="border-radius: 5%; width: 150px;background:#f82249;color:white;">
-                        <i class="fa fa-globe"></i>
-                        View Link
-                      </a>
-                    </div>
+                  
     
                   
                 </div>
@@ -460,13 +431,13 @@
               
             </div>
             <?php 
-              } 
+              } }
             ?>
 
           </div>
 
         </section>
-    <?php }} ?>    
+     
 
     <!-- section Item ends-->
 
@@ -691,7 +662,7 @@
                               <form id="enquiryform">
                                 <input type="hidden" value="<?php echo $service_id; ?>" name="section_item" id="section_item">
                                 <input type="hidden" id="currentweb" name="currentweb" value="<?php echo $website; ?>">
-                                <input type="hidden" id="type" name="type" value="1">
+                                <input type="hidden" id="type" name="type" value="2">
                                 <div class="row">
                                   <div class="form-group col-lg-4 col-sm-12 col-xl-4 ">
                                     <input type="text" name="name" id="name" placeholder="Name*">

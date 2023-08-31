@@ -27,13 +27,13 @@ export class AppSettings {
 
 // public static mallshopurl = "http://localhost:4401/";
 //  public static URL_BASE = "http://localhost:4200/";
-//  public static API_BASE = "http://localhost/3abc7dev/ag7dev/api";
-//  public static USER_TEMPLATE = "http://localhost/3abc7dev/ag7dev/website";
-//  public static IMAGE_BASE = "http://localhost/3abc7dev/ag7dev/api/";
+//  public static API_BASE = "http://localhost/ag7dev/api";
+//  public static USER_TEMPLATE = "http://localhost/ag7dev/website";
+//  public static IMAGE_BASE = "http://localhost/ag7dev/api/";
 //  public static IMAGE_BASE_CHAT = "http://localhost:4200/assets/chat/";
-//  public static PACKAGE_ACTIVATE = "http://localhost/3abc7dev/ag7dev/api/database/checkbalance.php";
-//  public static WEBSITE_URL = "http://localhost/3abc7dev/ag7dev/website/";
-//  public static package_renew = "http://localhost/3abc7dev/ag7dev/api/database/checkbalance1.php";
+//  public static PACKAGE_ACTIVATE = "http://localhost/ag7dev/api/database/checkbalance.php";
+//  public static WEBSITE_URL = "http://localhost/ag7dev/website/";
+//  public static package_renew = "http://localhost/ag7dev/api/database/checkbalance1.php";
 //  public static share_link = "http://localhost:4200/chat/join/";
 //  public static chatshare = "http://localhost:4200/chat/public/";
 //DEV Sridhar
@@ -85,6 +85,8 @@ export class AppSettings {
   public static enquirybyid = AppSettings.API_BASE + "/fetchenquirylistbyid/";
   public static getenquirylist = AppSettings.API_BASE + "/fetchenquirylist/";
   
+  public static enquiryproductbyid = AppSettings.API_BASE + "/fetchenquiryproductlistbyid/";
+  public static getproductenquirylist = AppSettings.API_BASE + "/fetchenquiryproductlist/";
   /*Subcategory*/
   public static Addsubcategory = AppSettings.API_BASE + "/addsubcategory";
   public static getsubcategoryDetail =

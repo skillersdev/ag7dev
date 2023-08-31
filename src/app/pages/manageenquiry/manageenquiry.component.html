@@ -19,8 +19,8 @@
                                   <tr>
                                       <th>#</th>
                                       <th>{{'Requester Name' | translate}} {{'Name' | translate}}</th>
-                                      <th>{{'Mobile' | translate}}</th>
-                                      <th>{{'Email' | translate}}</th>
+                                      <th>{{'Country' | translate}}</th>
+                                      <th>{{'Steate' | translate}}</th>
                                       <th>{{'Description' | translate}}</th>
                                       <th>{{'Create Date' | translate}}</th>
                                   </tr>
@@ -29,8 +29,8 @@
                                   <tr *ngFor="let data of enquirylist let idx=index">
                                       <th scope="row">{{idx+1}}</th>
                                       <td>{{data.name}}</td>
-                                      <td>{{data.mobile}}</td>
-                                      <td>{{data.email}}</td>
+                                      <td>{{data.country}}</td>
+                                      <td>{{data.state}}</td>
                                       <td>{{data.description}}</td>
                                       <td>{{data.created_date | date:"dd/MM/yyyy" }}</td>                                    
                                   </tr>

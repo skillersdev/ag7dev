@@ -81,6 +81,9 @@ $route['checkcategorybyweb']='Category_controller/getcategorybyweb';
 $route['fetchenquirylistbyid/(:num)']='Sectionitem_controller/getenquirylistbyuser/$1';
 $route['fetchenquirylist']='Sectionitem_controller/getenquirylist';
 
+$route['fetchenquiryproductlistbyid/(:num)']='Sectionitem_controller/getproductenquirylistbyuser/$1';
+$route['fetchenquiryproductlist']='Sectionitem_controller/getproductenquirylist';
+
 
 /***Add subcatgeory****/
 $route['addsubcategory'] = 'Category_controller/add_subcategory';

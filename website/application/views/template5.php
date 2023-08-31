@@ -650,6 +650,7 @@
                 $total_views =  "'".$product_details[$i]['total_views']."'";
                 $prod_desc = "'".$product_details[$i]['long_desc']."'";
                 $prod_short_desc = "'".$product_details[$i]['short_desc']."'";
+                $product_url="'".$sectionItem_path."/products/".$product_details[$i]['id']."'"; //
                                   //echo $product_details[$i]['product_image'];
                 ?>
               <div class="col-lg-4 col-md-6 portfolio-item filter-app">
@@ -661,7 +662,7 @@
                       '.$price.',
                       '.$total_likes.',
                       '.$total_views.',
-                      '.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height:200px;"></a>'; 
+                      '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height:200px;"></a>'; 
                   ?>
                   <div class="portfolio-info" style="height: 70%;margin-top: 30%;">
                     <span style="color: white;">Category:<?php echo $product_details[$i]['category_name'];?></span>

@@ -125,6 +125,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NearbyComponent } from './pages/nearby/nearby.component';
 import {GMapModule} from 'primeng/gmap';
 import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.component';
+import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -219,7 +220,8 @@ import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.comp
     PremiumtransactionComponent,
     NearbyComponent,
     ManageshopCategoryComponent,
-    ManageenquiryComponent
+    ManageenquiryComponent,
+    ManageproductenquiryComponent
 	//ImageCropperComponent
   ],
   imports: [

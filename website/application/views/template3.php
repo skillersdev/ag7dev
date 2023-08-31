@@ -709,6 +709,7 @@ $sectionItem_path=base_url().$website;
 									$total_views =  "'".$product_details[$i]['total_views']."'";
 									$prod_desc = "'".$product_details[$i]['long_desc']."'";
 									$prod_short_desc = "'".$product_details[$i]['short_desc']."'";
+									$product_url="'".$sectionItem_path."/products/".$product_details[$i]['id']."'"; //
 									?>
 							<figure class="mix work-item branding" style="height: 210px;">
 								<?php 
@@ -718,7 +719,7 @@ $sectionItem_path=base_url().$website;
 									'.$price.',
 									'.$total_likes.',
 									'.$total_views.',
-									'.$product_details[$i]['id'].')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
+									'.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
 									?>
 								<figcaption class="overlay" style="height: 70%; !important">
 									<h3 style="margin-top: 10px;"><?php echo $product_details[$i]['product_name'];?></a></h3>
@@ -1173,7 +1174,7 @@ $sectionItem_path=base_url().$website;
     //   $('#mimage').html('<img src="'+image+'" width="100%" height="400px">');
     //  }
 
-	function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id){
+	function popupimage(desc1,short_desc,name,image,cname,scname,price,likes,views,p_id,product_url){
       
       $('#mtitle').html(name);
       $('#cname').html(cname);
@@ -1181,7 +1182,7 @@ $sectionItem_path=base_url().$website;
       $('#likecount').html(likes);
       $('#viewcount').html(views);
       //$('#mfooter').html('<img src="'+image+'"  width="460px" height="400px">');
-      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span>');
+      $('#mimage').html('<img src="'+image+'"  width="100%" height="400px"><input type="hidden" value="'+p_id+'" id="product_id1"><br><span><b>Description</b>: '+desc1+'</span><br><span><b>Short Description</b>: '+short_desc+'</span><div><a  href='+product_url+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
       
       var id = p_id;
        $.ajax({
