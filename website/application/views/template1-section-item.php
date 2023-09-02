@@ -421,14 +421,18 @@
             ?>
 
             <div class="row">
-              <div class="col-md-6">                
-                <div class="slider">    
-                  <?php foreach ($mulp_img as $ckey => $c_value) { ?>     
-                  <div class="slide">                 
-                      <img src="<?php echo $path_url.$c_value;?>" alt="" class="img-fluid">                      
-                  </div> 
-                  <?php } ?>
-                </div>
+              <div class="col-md-6">  
+                 <?php if($media_type==1 || $media_type==3 || $media_type==4){?>             
+                    <div class="slider">    
+                      <?php foreach ($mulp_img as $ckey => $c_value) { ?>     
+                      <div class="slide">                 
+                          <img src="<?php echo $path_url.$c_value;?>" alt="" class="img-fluid">                      
+                      </div> 
+                      <?php } ?>
+                    </div>
+                  <?php }else{?>  
+                    <video width="400" controls><source src=<?php echo $file_name_path;?> type="video/mp4"></video>
+                    <?php } ?>
               </div>
 
               <div class="col-md-6">
