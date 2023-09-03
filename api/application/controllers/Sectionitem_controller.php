@@ -345,4 +345,62 @@ class Sectionitem_controller extends CI_Controller {
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
   }
+
+  public function getsectionitemlistbyshow()
+  {
+     $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $result=array();
+        $html="";
+        global $api_path;  
+        $model = json_decode($this->input->post('model',FALSE));
+        /**Get list by user**/
+        if($model->usergroup==2)
+        {
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section_item')." where created_by='".$model->user_id."' AND is_deleted=0  ORDER BY section_item_order ASC");
+        }
+        /*BY all list*/ 
+        else{
+           $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as cdate from ".$this->db->dbprefix('manage_section_item')." where  is_deleted=0");
+           // $res=$this->db->select("*,DATE_FORMAT(created_at,'%d/%m/%Y')as cdate")->where('is_deleted','0')->get('manage_section');
+        }
+
+        if($res->num_rows()>0)
+        {
+          foreach($res->result_array() as $key=>$value)
+          {               
+
+            $result[]=array('id'=>$value['id'],'section_item'=>$value['title'],'section_item_order'=>$value['section_item_order']);
+          }
+        }else{
+            $response['status']="failure";
+            $response['message']="No records found..";
+        }
+        $response['result']=$result;
+         echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+  }
+
+  public function sectionreordersave()
+   {
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+
+        $id=1;
+         foreach($model->orderlist as $key=>$value)
+          {               
+              $data=array('section_item_order'=>$id);
+              $this->db->where('id', $value->id);
+              $this->db->update($this->db->dbprefix('manage_section_item'),$data);
+               // print_r($value->id);
+              $id++;
+          }
+          //die;
+      //$this->db->update_batch('manage_section', $model->orderlist, 'id');
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+   }
 }

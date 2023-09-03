@@ -1,0 +1,1 @@
+ALTER TABLE `manage_section_item` ADD `section_item_order` INT(15) NOT NULL AFTER `section`;

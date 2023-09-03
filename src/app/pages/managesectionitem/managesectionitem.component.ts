@@ -36,9 +36,9 @@ export class ManagesectionitemComponent implements OnInit {
   {
   	this.router.navigate(['/addsectionitem']);
   }
-  managereorder()
+  managereorderitem()
   {
-  	this.router.navigate(['/reordersection']);	
+  	this.router.navigate(['/reordersectionitem']);	
   }
   editsectionitem(id:any)
   {

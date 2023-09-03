@@ -131,7 +131,7 @@ class Website extends CI_Controller {
 				foreach($section_result_array as $key=>$value)
 		          {
 				
-					$Getsection_item=$this->db->select("*")->where(['section'=>$value['id'],'is_deleted'=>'0'])->order_by('id','desc')->get('manage_section_item');
+					$Getsection_item=$this->db->select("*")->where(['section'=>$value['id'],'is_deleted'=>'0'])->order_by('section_item_order','ASC')->get('manage_section_item');
 					$Getsection_item_result_array =$Getsection_item->result_array();
 
 					foreach($Getsection_item_result_array as $key_item=>$item_value)

@@ -101,6 +101,7 @@ import { PremiumtransactionComponent } from './pages/premiumtransaction/premiumt
 import { NearbyComponent } from './pages/nearby/nearby.component';
 import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.component';
 import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
+import { ReorderitemComponent } from './pages/managesectionitem/reorderitem/reorderitem.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -434,6 +435,11 @@ component:EditmallproductComponent
     path:'reordersection',
     component:ReordersectionComponent
   },
+  {
+    path:'reordersectionitem',
+    component:ReorderitemComponent
+  },
+  
    {
   path:'managesectionitem',
   component:ManagesectionitemComponent  

@@ -126,6 +126,7 @@ import { NearbyComponent } from './pages/nearby/nearby.component';
 import {GMapModule} from 'primeng/gmap';
 import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.component';
 import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
+import { ReorderitemComponent } from './pages/managesectionitem/reorderitem/reorderitem.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -221,7 +222,8 @@ import { ManageproductenquiryComponent } from './pages/manageproductenquiry/mana
     NearbyComponent,
     ManageshopCategoryComponent,
     ManageenquiryComponent,
-    ManageproductenquiryComponent
+    ManageproductenquiryComponent,
+    ReorderitemComponent
 	//ImageCropperComponent
   ],
   imports: [

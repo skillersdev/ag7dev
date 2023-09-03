@@ -108,9 +108,12 @@ $route['updatesectionItem']= 'Sectionitem_controller/updatesectionItem';
 $route['deletesection/(:num)'] = 'Section_controller/deletesection/$1';
 $route['updatesectiontoggle']= 'Section_controller/updatesectionbytoggle';
 $route['sectionreordersave']= 'Section_controller/sectionreordersave';
+$route['sectionItemreordersave']= 'Sectionitem_controller/sectionreordersave';
+
 
 $route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
 $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
+$route['getsectionItemlistbyshow']= 'Sectionitem_controller/getsectionitemlistbyshow';
 $route['uploadcropserviceimage']='Section_controller/uploadcropserviceimage';
 $route['uploadMultipleImagesSectionItem']='Section_controller/MultipleUploadsectionItem';
 $route['addsectionitem']= 'Sectionitem_controller/addsectionitem';

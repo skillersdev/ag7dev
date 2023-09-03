@@ -119,8 +119,13 @@ export class AppSettings {
     AppSettings.API_BASE + "/getsectionitemlist";
   public static GetsectionsListbyshow =
     AppSettings.API_BASE + "/getsectionlistbyshow";
+    public static GetsectionsitemsListbyshow =
+    AppSettings.API_BASE + "/getsectionItemlistbyshow";
+    
   public static sectionreorderinginsert =
     AppSettings.API_BASE + "/sectionreordersave";
+    public static sectionItemreorderinginsert =
+    AppSettings.API_BASE + "/sectionItemreordersave";
   public static Deletesectionitem =
     AppSettings.API_BASE + "/deletesectionitem/";
   /**/
