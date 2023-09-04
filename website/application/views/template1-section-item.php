@@ -451,13 +451,14 @@
                   </div>
                   <p><?php echo $child_value['description'];?></p>
                     <!--<p><?php //echo $web_url;?></p>-->
+                    <?php if($child_value['website_link']!=''){?>
                     <div class="social">
                       <a href="<?php echo "https://".$child_value['website_link']; ?>" target='_blank' style="border-radius: 5%; width: 150px;background:#f82249;color:white;">
                         <i class="fa fa-globe"></i>
                         View Link
                       </a>
                     </div>
-    
+                      <?php } ?>
                   
                 </div>
               </div>

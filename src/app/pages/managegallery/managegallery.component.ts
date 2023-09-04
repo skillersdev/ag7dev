@@ -84,4 +84,8 @@ export class ManagegalleryComponent implements OnInit {
  {
    this.router.navigate(['/addalbumphotos',id]);
  }
+ managereorderitem()
+ {
+   this.router.navigate(['/reorderalbumitem']);	
+ }
 }

@@ -560,7 +560,9 @@
                           <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
                           <!-- <p><?php echo $child_value['description'];?></p> -->
                           <!--<p><?php //echo $web_url;?></p>-->
+                          <?php if($child_value['website_link']!=='') {?>
                           <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                          <?php } ?>
                           <div class="image-container"  style="width:52%;">
                               <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
                               <span id=""><?php echo $child_value['views']; ?></span>
@@ -593,8 +595,9 @@
                             <h3 style="font-size: 20px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
                             <!-- <p><?php echo $child_value['description'];?></p> -->
                             <!--<p><?php //echo $web_url;?></p>-->
+                            <?php if($child_value['website_link']!=='') {?>
                             <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
-                            
+                            <?php } ?>
                             <!-- Social Icon section-->
                             <div class="image-container"  >
                             <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
@@ -633,8 +636,9 @@
                             <h3 style="font-size: 23px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
                             <p><?php echo $child_value['description'];?></p>
                             <!--<p><?php //echo $web_url;?></p>-->
+                            <?php if($child_value['website_link']!=='') {?>
                             <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
-                            
+                            <?php } ?>
                             <!-- Social Icon section-->
                             <div class="image-container"  style="margin-top:20px;">
                             <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
@@ -659,7 +663,9 @@
                             <h3 style="font-size: 23px; margin-top: 10px;"><?php echo $child_value['title'];?></h3>              
                             <p><?php echo $child_value['description'];?></p>
                             <!--<p><?php //echo $web_url;?></p>-->
+                            <?php if($child_value['website_link']!=='') {?>
                             <p style="margin-bottom: 5px;"><a href=<?php echo "https://".$child_value['website_link']; ?> target='_blank'>Website Link</a></p>
+                            <?php } ?>
                             
                             <!-- Social Icon section-->
                             <div class="image-container"  style="margin-top:20px;">
@@ -1456,8 +1462,11 @@
       
 
       var Websiteurl="https://"+web_url;
-
-      $('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank"><b>Website Link</b></a></div><br><div><a  href='+viewUrl+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
+      var webContainer='';
+        if(web_url!=''){
+        webContainer ='<div><a href="'+Websiteurl+'" target="_blank" style="color:black"><b>Website Link</b></a></div>';
+        }
+      $('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank">Click here to view</a></div><br>'+webContainer+'<br><div><a  href='+viewUrl+'#contact'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Business Enquiry</button></a></div>');
 
        var serviceid = update_id;
        $.ajax({

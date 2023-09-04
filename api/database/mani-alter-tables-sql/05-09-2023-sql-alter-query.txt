@@ -1,0 +1,1 @@
+ALTER TABLE `album_master` ADD `album_item_order` INT(15) NOT NULL AFTER `album_code`;

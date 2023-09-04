@@ -115,10 +115,10 @@ class Sectionitem_controller extends CI_Controller {
       $this->output->set_content_type('application/json');
       $response=array('status'=>"success");
        $model = json_decode($this->input->post('model',FALSE));
-     
+       
         if (isset($model)) 
           {
-            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',is_default_img='".$model->is_default_img."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',preview_file ='".$model->preview_file."',view_type ='".$model->view_type."' where id='".$model->id."'");
+            $result=$this->db->query("update ".$this->db->dbprefix('manage_section_item')." set  website='".$model->website."',media_type='".$model->media_type."',title='".$model->title."',description='".$model->description."',file_name='".$model->file_name."',is_default_img='".$model->is_default_img."',attachment_desc='".$model->description."',created_by='".$model->created_by."',section='".$model->section."',website_link='".$model->website_link."',preview_file ='".$model->preview_file."',view_type ='".$model->view_type."' where id='".$model->id."'");
 
             if ($result) {
                 $response['message']="Section has been updated successfully";

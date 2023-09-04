@@ -1046,7 +1046,11 @@
 		}
       
 		var Websiteurl="https://"+web_url;
-		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank" style="color:black">Click here to view</a></div><br><div><a href="'+Websiteurl+'" target="_blank" style="color:black"><b>Website Link</b></a></div><br><div><a  href='+viewUrl+'#enquirynow'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Enquiry</button></a></div>');
+    var webContainer='';
+    if(web_url!=''){
+      webContainer ='<div><a href="'+Websiteurl+'" target="_blank" style="color:black"><b>Website Link</b></a></div>';
+    }
+		$('#desc2_section').html('<div class="description">'+desc+'</div><input type="hidden" value="'+update_id+'" id="service_id"><br><div><a href="'+image+'" target="_blank" style="color:black">Click here to view</a></div><br><br>'+webContainer+'<div><a  href='+viewUrl+'#enquirynow'+' tabindex="-1"><button type="button" class="btn btn-primary" tabindex="-1">Enquiry</button></a></div>');
 
        	var serviceid = update_id;
 		$.ajax({

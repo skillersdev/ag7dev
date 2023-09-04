@@ -114,7 +114,7 @@ class Website extends CI_Controller {
 
 
 			$album_result=[];
-			$album_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('id','desc')->get('album_master'); 
+			$album_det=$this->db->select("*")->where(['website'=>$websitename,'is_deleted'=>'0'])->order_by('album_item_order','ASC')->get('album_master'); 
 			$album_result =$album_det->result_array();
 
 

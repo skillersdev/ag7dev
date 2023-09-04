@@ -102,6 +102,7 @@ import { NearbyComponent } from './pages/nearby/nearby.component';
 import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.component';
 import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
 import { ReorderitemComponent } from './pages/managesectionitem/reorderitem/reorderitem.component';
+import { ReorderalbumComponent } from './pages/managegallery/reorderalbum/reorderalbum.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -444,6 +445,11 @@ component:EditmallproductComponent
   path:'managesectionitem',
   component:ManagesectionitemComponent  
   },
+  {
+    path:'reorderalbumitem',
+    component:ReorderalbumComponent  
+    },
+  
    {
     path:'addsectionitem',
     component:AddsectionitemComponent

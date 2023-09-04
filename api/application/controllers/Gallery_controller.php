@@ -148,9 +148,11 @@ class Gallery_controller extends CI_Controller {
         global $api_path;        
         $model = json_decode($this->input->post('model',FALSE));
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->
-        where(['is_deleted'=>'0','created_by'=>$model->userId])->get('album_master');
+        // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->
+        // where(['is_deleted'=>'0','created_by'=>$model->userId])->get('album_master')->order_by('album_item_order','ASC');
 
+        $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('album_master')." where created_by='".$model->userId."' AND is_deleted=0  ORDER BY album_item_order ASC");
+     // echo $this->db->last_query();die;
 
         if($res->num_rows()>0)
         {
@@ -172,10 +174,11 @@ class Gallery_controller extends CI_Controller {
         $html="";
         global $api_path;        
 
-        $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->
-        where(['is_deleted'=>'0'])->get('album_master');
+        // $res=$this->db->select("*,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date")->
+        // where(['is_deleted'=>'0'])->get('album_master')->order_by("album_item_order","ASC");
 
-
+        $res=$this->db->query("select *,DATE_FORMAT(created_date,'%d/%m/%Y')as created_date from ".$this->db->dbprefix('album_master')." where is_deleted=0  ORDER BY album_item_order ASC");
+       
         if($res->num_rows()>0)
         {
           $result[] = $res->result_array();
@@ -351,6 +354,28 @@ class Gallery_controller extends CI_Controller {
         }
        
          echo json_encode($response,JSON_UNESCAPED_SLASHES);
+         die();
+   }
+
+   public function albumreordersave()
+   {
+        $this->output->set_content_type('application/json');
+        $response=array();
+        $response['status']="success";
+        $model = json_decode($this->input->post('model',FALSE));
+
+        $id=1;
+         foreach($model->orderlist as $key=>$value)
+          {               
+              $data=array('album_item_order'=>$id);
+              $this->db->where('id', $value->id);
+              $this->db->update($this->db->dbprefix('album_master'),$data);
+               // print_r($value->id);
+              $id++;
+          }
+          //die;
+      //$this->db->update_batch('manage_section', $model->orderlist, 'id');
+       echo json_encode($response,JSON_UNESCAPED_SLASHES);
          die();
    }
 

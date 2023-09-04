@@ -6,7 +6,7 @@ class SectionItem extends CI_Controller {
 	
 	public function index($websitename,$sectionName,$sectionItem)
 	{
-		// echo $websitename."/".$sectionName."/".$sectionItem; exit;
+		$sectionName =  urldecode($sectionName); 
 
 		$data=[];
 		$this->global_website=$websitename;

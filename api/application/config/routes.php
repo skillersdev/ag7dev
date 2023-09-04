@@ -113,6 +113,8 @@ $route['sectionItemreordersave']= 'Sectionitem_controller/sectionreordersave';
 
 $route['getsectionitemlist'] = 'Sectionitem_controller/getsectionitemlist';
 $route['getsectionlistbyshow']= 'Section_controller/getsectionlistbyshow';
+$route['getalbumlistbyshow']= 'Gallery_controller/getalbumlistbyshow';
+$route['getalbumlistbyuser']= 'Gallery_controller/getalbumbyuser';
 $route['getsectionItemlistbyshow']= 'Sectionitem_controller/getsectionitemlistbyshow';
 $route['uploadcropserviceimage']='Section_controller/uploadcropserviceimage';
 $route['uploadMultipleImagesSectionItem']='Section_controller/MultipleUploadsectionItem';
@@ -276,6 +278,7 @@ $route['insertvideosectiondata']='Videosection_controller/addvideosection';
 $route['getvideolistbyid']= 'Videosection_controller/getvideolistbyuser';
 $route['getvideopagesearchresult']= 'Videosection_controller/searchvideoresult';
 $route['getchannelpagesearchresult']= 'Channel_controller/searchchannelresult';
+$route['albumItemreordersave']= 'Gallery_controller/albumreordersave';
 
 $route['deletealbumphotos/(:num)']= 'Gallery_controller/deletealbumphotos/$1';
 
