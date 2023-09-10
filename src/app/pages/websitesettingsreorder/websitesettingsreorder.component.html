@@ -8,7 +8,7 @@
                   <div class="card">
                       <div class="header">
                           <h2>
-                            {{'Manage' | translate}} {{'Album' | translate}}                                            
+                            {{'Manage' | translate}} {{'sections' | translate}}                                            
                               <button type="button" (click)="savereorder()" class="btn btn-success waves-effect pull-right" style="margin-left: 10px;">{{'Save' | translate}} {{'order' | translate}}</button>
                               
                                <button type="button" (click)="navigatesection()" class="btn btn-success waves-effect pull-right">{{'back' | translate}}</button>
@@ -16,7 +16,7 @@
                       </div>
                       <div class="body">
                         <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                          <div class="example-box" *ngFor="let data of sectionItemList" cdkDrag>{{data.albumname}}</div>
+                          <div class="example-box" *ngFor="let data of model.defaultsections" cdkDrag>{{data.name}}</div>
                         </div>
                         
                       </div>

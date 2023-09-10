@@ -128,6 +128,8 @@ import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.comp
 import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
 import { ReorderitemComponent } from './pages/managesectionitem/reorderitem/reorderitem.component';
 import { ReorderalbumComponent } from './pages/managegallery/reorderalbum/reorderalbum.component';
+import { WebsitesettingsComponent } from './pages/websitesettings/websitesettings.component';
+import { WebsitesettingsreorderComponent } from './pages/websitesettingsreorder/websitesettingsreorder.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -225,7 +227,9 @@ import { ReorderalbumComponent } from './pages/managegallery/reorderalbum/reorde
     ManageenquiryComponent,
     ManageproductenquiryComponent,
     ReorderitemComponent,
-    ReorderalbumComponent
+    ReorderalbumComponent,
+    WebsitesettingsComponent,
+    WebsitesettingsreorderComponent
 	//ImageCropperComponent
   ],
   imports: [

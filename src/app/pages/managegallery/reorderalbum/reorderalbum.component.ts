@@ -59,7 +59,7 @@ export class ReorderalbumComponent implements OnInit {
      this.CommonService.insertdata(AppSettings.albumitemreorderinginsert,this.model)
      .subscribe(resultdata =>{   
        this.sectionItemList=resultdata.result;
-       swal('Success!','Section Item has been reordered successfully.','success'); 
+       swal('Success!','Album items has been reordered successfully.','success'); 
        this.ngOnInit();
      });
    }

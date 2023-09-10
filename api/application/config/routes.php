@@ -135,6 +135,8 @@ $route['gettemplatelist']= 'User_controller/get_template_list';
 $route['edituser/(:num)'] = 'User_controller/edituser/$1';
 $route['edittemplate/(:num)']= 'User_controller/edittemplate/$1';
 $route['updateuser'] = 'User_controller/updateuser';
+$route['updatedefaultsections'] = 'User_controller/updatedefaultsections';
+
 $route['updatetemp']= 'User_controller/updatetemp';
 $route['updateuserprofile'] = 'User_controller/updateuserprofile';
 $route['reactivatepackage']= 'User_controller/reactivatepackage';

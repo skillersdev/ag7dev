@@ -103,6 +103,9 @@ import { ManageenquiryComponent } from './pages/manageenquiry/manageenquiry.comp
 import { ManageproductenquiryComponent } from './pages/manageproductenquiry/manageproductenquiry.component';
 import { ReorderitemComponent } from './pages/managesectionitem/reorderitem/reorderitem.component';
 import { ReorderalbumComponent } from './pages/managegallery/reorderalbum/reorderalbum.component';
+
+import { WebsitesettingsComponent } from './pages/websitesettings/websitesettings.component';
+import { WebsitesettingsreorderComponent } from './pages/websitesettingsreorder/websitesettingsreorder.component';
 const routes: Routes = [
   {
 	  path: '',
@@ -499,7 +502,15 @@ component:EditmallproductComponent
   },{
     path:'manageproductenquiry',
     component:ManageproductenquiryComponent
-  }
+  },
+  {
+    path:'websitesettings',
+    component:WebsitesettingsComponent
+  },{
+    path:'websitesettingsreorder',
+    component:WebsitesettingsreorderComponent
+  },
+  
 
 ];
 

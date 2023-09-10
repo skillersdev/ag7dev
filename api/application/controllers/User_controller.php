@@ -722,6 +722,43 @@ class User_controller extends CI_Controller {
         echo json_encode($response,JSON_UNESCAPED_SLASHES);
         die();
     }
+    public function updatedefaultsections() {
+      $this->output->set_content_type('application/json');
+      $response=array('status'=>"success");
+
+      $model = json_decode($this->input->post('model',FALSE));
+
+     // print_r($model);die();
+
+      if (isset($model)) {
+        if($model->tempwebsite_default_sections_val){         
+          $data=array('website_default_sections_val'=>implode(",",$model->tempwebsite_default_sections_val));
+        }else{
+          $data=array('website_default_sections'=>$model->defaultsections_val_string);
+        }
+        
+        $this->db->where('id',$model->id);
+        $result=$this->db->update($this->db->dbprefix('affiliateuser'),$data);
+        
+
+          if ($result) {
+              $response['message']="Item has been updated successfully";
+          }
+          else
+          {
+               $response['status']="failure";
+              $response['message']="Error while on updating the Item";
+          }
+          
+
+      } else {
+          $response['status']="failure";
+          $response['message']="Choose User and continue!!..";
+      }
+
+      die(json_encode($response, JSON_UNESCAPED_SLASHES));
+  }
+  
   public function updateuser() {
         $this->output->set_content_type('application/json');
         $response=array('status'=>"success");

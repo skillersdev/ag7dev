@@ -168,6 +168,7 @@ export class AppSettings {
   public static Edituser = AppSettings.API_BASE + "/edituser/";
   public static Edittemplate = AppSettings.API_BASE + "/edittemplate/";
   public static Updateuser = AppSettings.API_BASE + "/updateuser";
+  public static UpdateDefaultsections= AppSettings.API_BASE + "/updatedefaultsections";
   public static Updatetemp = AppSettings.API_BASE + "/updatetemp";
   public static Updateuserprofile = AppSettings.API_BASE + "/updateuserprofile";
   public static deleteuser = AppSettings.API_BASE + "/deleteuser/";

@@ -87,7 +87,31 @@
         }
 			
 			}
-       
+         /* owl nav */
+.owl-prev span, .owl-next span {
+	color: #FFF;
+}
+
+.owl-prev span:hover, 
+.owl-next span:hover {
+	color: #8199A3;
+}
+
+.owl-prev, .owl-next {
+	position: absolute;
+	top: 50% !important;
+  color:#fff !important;
+  font-size:40px !important;
+	/* height: 100%; */
+}
+
+.owl-prev {
+	left: 7px;
+}
+
+.owl-next {
+	right: 7px;
+}  
    
  
 		</style>
@@ -95,7 +119,7 @@
 </head>
 
 <body>
-
+<input type="hidden" id="path_url" value="<?php echo $path_url;?>">
   <!--==========================
   Header
   ============================-->
@@ -331,7 +355,7 @@
                             $path_src = "'".$path_url.$child_value['preview_file']."'";
                             $weblink = "'".$mulp_img[ $is_default_img]."'";
                         }
-                        
+                        $img_list_str =  "'".implode(',',$mulp_img)."'";
                     ?>	
                     <?php 
                         if($child_value['section_view'] ==1) { 
@@ -340,10 +364,10 @@
                         <div class="col-sm-3 col-md-3 col-lg-3  wow bounceInUp" data-wow-duration="1.4s" style="padding-top: 10px;background:white;margin-bottom: 50px;border-radius: 10px;">
                           <div class="box" style="margin: 2px;">
                             <?php 
-                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
+                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
                             ?>
                             <h4 class="title" style="font-size: 20px;margin-top: 15px;">
-                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a></h4>
+                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a></h4>
                             <p class="description" style="margin-bottom:18px;font-size: 13px;color:#7f7b7b"><?php echo substr_replace($child_value['description'], "...", 60);?></p>
                             <p>
                                     <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
@@ -364,10 +388,10 @@
                         <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" data-wow-duration="1.4s" style="padding-top: 10px;background:white;margin-bottom: 50px;border-radius: 10px;">
                           <div class="box" style="margin: 2px;">
                             <?php 
-                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
+                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
                             ?>
                             <h4 class="title" style="font-size: 20px;margin-top: 15px;">
-                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a></h4>
+                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a></h4>
                             <p class="description" style="margin-bottom:18px;font-size: 13px;color:#7f7b7b"><?php echo substr_replace($child_value['description'], "...", 60);?></p>
                             <p>
                                     <img src="./assets/img/eye-open1.png" id="" style="width:24px;cursor: pointer;">
@@ -389,12 +413,12 @@
                           
                           <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" style="float: left;">
                             <?php 
-                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
+                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
                             ?>
                           </div>
                           <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" style="float: left;">
                             <h4 class="title" style="font-size: 20px;margin-top: 15px;">
-                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a>
+                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a>
                             </h4>
                             <p class="description" style="margin-bottom:18px;font-size: 13px;color:#7f7b7b">
                               <?php echo substr_replace($child_value['description'], "...", 60);?>
@@ -420,7 +444,7 @@
                           
                           <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" style="float: left;">
                             <h4 class="title" style="font-size: 20px;margin-top: 15px;">
-                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a>
+                              <?php echo '<a href="javascript:void(0);" style="color:#515152 !important;" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')">';?> <?php echo $child_value['title'];?></a>
                             </h4>
                             <p class="description" style="margin-bottom:18px;font-size: 13px;color:#7f7b7b">
                               <?php echo substr_replace($child_value['description'], "...", 60);?>
@@ -436,7 +460,7 @@
                           </div>
                           <div class="col-sm-6 col-md-6 col-lg-6  wow bounceInUp" style="float: left;">
                             <?php 
-                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
+                              echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style=" width:100%; height:200px; max-height: 200px;"></a>'; 
                             ?>
                           </div>
                           
@@ -958,6 +982,7 @@
   <script src="<?php echo base_url();?>assets/template5/lib/lightbox/js/lightbox.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
   <script>
     $(document).ready(function() {
       $('.slider').slick({
@@ -1031,7 +1056,7 @@
       $('#videoimage').html('<video width="280" height="200" controls><source src="'+video+'" type="video/mp4"></video><input type="hidden" value="'+id+'" id="adv_id">');
     }
 
-    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,viewUrl)
+    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,img_arr_list,viewUrl)
   	{
     	$('#mtitle2_section').html(name);
       
@@ -1040,7 +1065,33 @@
 			$('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
 		}
 		else if(type==1 || type==3 || type==4){
-			$('#mimage2_section').html('<img src="'+src_file+'"  id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;max-width:80%;">');
+			const pathurl = $('#path_url').val();
+        const myArray = img_arr_list.split(",");
+        let text = "";
+       
+        if(myArray.length>1){
+        
+        for (let i = 0; i < myArray.length; i++) {
+         
+          text += "<img src='"+pathurl+"/"+myArray[i]+"' width='400' style='display: block; margin-left: auto; margin-right: auto;'>";
+         
+        }
+        
+        $('#mimage2_section').html('<div id="imgbox" class="owl-carousel owl-theme imgbox"></div>'); 
+        $(".owl-carousel").append(text);
+        $("#imgbox").owlCarousel({
+          loop:true,
+          items:2,
+          margin:10,
+          nav:true,
+          autoplay:true,
+          autoplayTimeout:5000 ,
+          navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+          });
+        }else{
+           text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
+          $('#mimage2_section').html(text);
+        }
 		}else{
 			$('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
 		}

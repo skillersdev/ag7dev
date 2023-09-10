@@ -9,6 +9,8 @@
   $sectionItem_path=base_url().$website;
 
   $last_slider_image = end($slider_image);
+  
+  $Contestants = explode(",",$web_default_sections_order);
 ?>
 
 
@@ -173,7 +175,31 @@
     /* .slick-slide{
       height:90% !important;
     } */
- 
+ /* owl nav */
+.owl-prev span, .owl-next span {
+	color: #FFF;
+}
+
+.owl-prev span:hover, 
+.owl-next span:hover {
+	color: #8199A3;
+}
+
+.owl-prev, .owl-next {
+	position: absolute;
+	top: 50%;
+  color:#fff;
+  font-size:40px;
+	height: 100%;
+}
+
+.owl-prev {
+	left: 7px;
+}
+
+.owl-next {
+	right: 7px;
+}
   </style>
  
   <!-- Favicons -->
@@ -187,7 +213,8 @@
   <link href="<?php echo base_url();?>/assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="<?php echo base_url();?>/assets/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
   <link href="<?php echo base_url();?>/assets/lib/animate/animate.min.css" rel="stylesheet">
   <link href="<?php echo base_url();?>/assets/lib/venobox/venobox.css" rel="stylesheet">
   <link href="<?php echo base_url();?>/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -460,7 +487,7 @@
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body" id="mimage2_section">
-                                     
+                  
                     </div>
                     <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
                       <div class="image-container"  style="width:52%;">
@@ -484,7 +511,8 @@
                 <h4 class="modal-title" id="mtitle2_section"></h4>
                   <button type="button" class="close" data-dismiss="modal">&times;</button>               
                 </div>
-                <div class="modal-body" id="mimage2_section">                
+                <div class="modal-body" id="mimage2_section">   
+               
                 </div>
                 <div class="modal-footer tesdt" id="desc2_section" style="display: block;">
                   <div class="image-container"  style="width:52%;">
@@ -785,8 +813,271 @@
       </section>
     <?php } ?>
   
-    <!--==========================
-      Speakers Section
+    
+    
+    <!-- Modal -->
+      <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">          
+          <!-- Modal content-->
+          <div class="modal-content">           
+            <div class="modal-header">
+            <h4 class="modal-title" id="mtitle1"></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>               
+            </div>
+            <div class="modal-body" id="mimage1">                
+            </div>
+            <div class="modal-footer" style="display: block;">
+               <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
+              <span id="adviewcount"></span>
+              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
+              <span id="adlikecount"></span>
+            </div>
+          </div>            
+        </div>
+      </div>
+      <div class="modal fade" id="videomodal" role="dialog">
+        <div class="modal-dialog">          
+          <!-- Modal content-->
+          <div class="modal-content">           
+            <div class="modal-header">
+            <h4 class="modal-title" id="mtitle1"></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>               
+            </div>
+            <div class="modal-body" id="videoimage">                
+            </div>
+            <div class="modal-footer" style="display: block;">
+            </div>
+          </div>            
+        </div>
+      </div>
+      <!--==========================
+      Advertisement Section
+    ============================-->  
+    <?php if(count($ad_details)>0) {?>
+      <section id="hotels" class="section-with-bg wow fadeInUp">
+        <div class="container">
+          <div class="section-header">
+            <h2>My Advertisements</h2>
+          </div>
+          <div class="row">
+            <?php 
+              for($k=0;$k<count($ad_details);$k++)
+              {
+                $name = "";
+                $image = "'".$path_url.$ad_details[$k]['uploads']."'";
+                ?>
+                <div class="col-lg-3 col-md-3">
+                  <div class="hotel">
+                    <div class="hotel-img">
+                      <?php 
+                        if($ad_details[$k]['ad_type']==1)
+                        { 
+                          echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.','.$ad_details[$k]['id'].')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
+                        }
+                        else{
+                        echo '<video width="400" controls>
+                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
+                            </video>';
+                        }
+                      ?>
+                    </div>
+                    <?php 
+                    if($ad_details[$k]['desc']!=""){
+                      echo "<p>".$ad_details[$k]['desc']."</p>"; 
+                    }
+                    if($ad_details[$k]['weblink']!=""){
+                        $link_var = "https://".$ad_details[$k]['weblink'];
+                      echo "<p><a href='".$link_var."' target='_blank'>Website Link</a></p>"; 
+                    }
+                    ?>
+                    <div class="image-container"  style="width:52%;">
+                      <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                      <span id=""><?php echo $ad_details[$k]['views']; ?></span>
+                      <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php echo $ad_details[$k]['id'];?>)">
+                      <input type="hidden" value="<?php echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
+                      <span id="adlikecount<?php echo $ad_details[$k]['id'];?>"><?php echo $ad_details[$k]['likes']; ?></span>
+                    </div>
+                  </div>
+                </div>
+                <?php 
+              } ?>
+          </div>
+        </div>
+      </section>
+      <?php } ?>
+  
+     
+
+   <!--video section --> 
+  <?php  if(count($myvideo_det)>0){?>
+    <section id="videosection" class="section-with-bg wow fadeInUp">
+      <div class="container">
+          <div class="section-header">
+            <h2>My videos</h2>
+          </div>
+          <div class="row">
+            <?php 
+              for($mv=0;$mv<count($myvideo_det);$mv++)
+              {
+                $name = "";
+                $image = $path_url.$myvideo_det[$mv]['preview_image'];
+                $video = "'".$path_url.$myvideo_det[$mv]['video_file']."'";
+                $id="'".$myvideo_det[$mv]['id']."'"
+                ?>
+                <div class="col-lg-3 col-md-3">
+                  <div class="hotel">
+                    <div class="hotel-img">
+                      <?php 
+                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#videomodal" onclick="videopreviewimage('.$video.','.$id.')"><img src="'.$image.'" class="img-fluid"></a>'; 
+                      ?>
+                    </div>
+                    <?php 
+                      if($myvideo_det[$mv]['description']!=""){
+                        echo "<p>".$myvideo_det[$mv]['description']."</p>"; 
+                      }       
+                    ?>
+                  </div>
+                </div>
+                <?php 
+              } ?>
+          </div>
+      </div>
+    </section>
+  <?php } ?>
+   
+  </div>
+  </main>
+   
+   <!--Group section --> 
+  <?php if(count($group_array)>0){ ?>
+    <section id="videosection2" class="section-with-bg wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>My Group</h2>    
+        </div>
+        <div class="row">
+          <?php 
+            for($mv=0;$mv<count($group_array);$mv++)
+            {
+              $group_name = $group_array[$mv]['group_name'];
+              $group_code = $group_array[$mv]['group_code'];
+              $count_mem = $group_array[$mv]['count_mem'];
+              $image = $path_url.$group_array[$mv]['imagename'];
+            ?>
+            <div class="col-lg-3 col-md-3">
+              <div class="hotel">
+                <div class="hotel-img">
+                  <a target="_blank" href="https://3ABC7.com/chat"><?php echo '<img src="'.$image.'" class="img-fluid">'; ?></a>   
+                </div>
+                <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+                <?php 
+                  if($group_name!=""){
+                    echo "<p>Group Name : ".$group_name."</p>"; 
+                  }
+                  if($count_mem!=""){
+                  ?>
+                    <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">                  
+                    <?php
+                      echo "<span>".$count_mem."</span>"; 
+                      }
+                  ?> 
+              </div>
+            </div>
+            <?php } ?>
+          </div>
+      </div>
+    </section>
+  <?php } ?>
+   <!--End Group section -->                    
+
+  <!--My channel section -->                    
+  <?php if(count($channel_array)>0){ ?>
+    <section id="videosection1" class="section-with-bg wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>My Channel</h2>
+          
+        </div>
+        <div class="row">
+          <?php 
+
+          for($mv=0;$mv<count($channel_array);$mv++)
+          {
+            $group_name = $channel_array[$mv]['group_name'];
+            $group_code = $channel_array[$mv]['group_code'];
+            $count_mem = $channel_array[$mv]['count_mem'];
+            $image = $path_url.$channel_array[$mv]['imagename'];
+          ?>
+          <div class="col-lg-3 col-md-3">
+
+            <div class="hotel">
+        <div class="hotel-img">
+        <?php echo '<img src="'.$image.'" class="img-fluid">'; ?>
+        </div>
+        <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
+        <?php 
+        if($group_name!=""){
+          echo "<p>Group Name : ".$group_name."</p>"; 
+        }
+        if($count_mem!=""){
+          ?>
+          <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
+                        
+                        <?php
+          echo "<span>".$count_mem."</span>"; 
+        }
+        ?>
+        </div>
+      </div>
+      <?php } ?>
+      </div>
+      </div>
+    </section>
+  <?php } ?>
+  <!--My channel End section -->      
+<?php foreach($Contestants as $key1 => $vluec){?>
+
+  <?php if($vluec=='A'){?>
+   <!--==========================
+      Album Section
+    ============================-->
+      <?php  if(count($album_details)>0){ ?>
+     <section id="speakers" class="wow fadeInUp">
+        <div class="container">
+          <div class="section-header">
+            <h2>My Album</h2>
+          </div>
+          <div class="row">
+            <?php 
+              for($m=0;$m<count($album_details);$m++)
+              {
+                $name = "";
+                $image = "'".$path_url.$album_details[$m]['album_image']."'";
+                ?>
+                <div class="col-lg-3 col-md-3">      
+                  <div class="hotel">
+                    <div class="hotel-img">
+                      <a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
+                        <img src="<?php echo $path_url.$album_details[$m]['album_image']?> " class="img-fluid">
+                      </a>
+                    </div>
+                    <?php 
+                      if($album_details[$m]['about']!=""){
+                        echo "<p>".$album_details[$m]['about']."</p>"; 
+                      }
+                    ?>
+                  </div>
+                </div>
+                <?php 
+              } 
+            ?>
+          </div>
+        </div>
+    </section>
+    <?php } ?>    
+    <?php } else if($vluec=='P'){?>
+   <!--==========================
+      Products Section
     ============================-->
     <?php if(count($product_details)>0) {?>
       <section id="speakers" class="wow fadeInUp">
@@ -880,272 +1171,8 @@
           </div>
         </div>
       </section>
-    <?php } ?>
-    <!-- Modal -->
-      <div class="modal fade" id="myModal1" role="dialog">
-        <div class="modal-dialog">          
-          <!-- Modal content-->
-          <div class="modal-content">           
-            <div class="modal-header">
-            <h4 class="modal-title" id="mtitle1"></h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>               
-            </div>
-            <div class="modal-body" id="mimage1">                
-            </div>
-            <div class="modal-footer" style="display: block;">
-               <img src="./assets/img/eye-open.png" id="adview" style="width:60px;cursor: pointer;">
-              <span id="adviewcount"></span>
-              <img src="./assets/img/thumbs-up-circle-blue-512.png" id="adlikes" style="width:22px;cursor: pointer;">
-              <span id="adlikecount"></span>
-            </div>
-          </div>            
-        </div>
-      </div>
-      <div class="modal fade" id="videomodal" role="dialog">
-        <div class="modal-dialog">          
-          <!-- Modal content-->
-          <div class="modal-content">           
-            <div class="modal-header">
-            <h4 class="modal-title" id="mtitle1"></h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>               
-            </div>
-            <div class="modal-body" id="videoimage">                
-            </div>
-            <div class="modal-footer" style="display: block;">
-            </div>
-          </div>            
-        </div>
-      </div>
-      <!--==========================
-      Advertisement Section
-    ============================-->  
-    <?php if(count($ad_details)>0) {?>
-      <section id="hotels" class="section-with-bg wow fadeInUp">
-        <div class="container">
-          <div class="section-header">
-            <h2>My Advertisements</h2>
-          </div>
-          <div class="row">
-            <?php 
-              for($k=0;$k<count($ad_details);$k++)
-              {
-                $name = "";
-                $image = "'".$path_url.$ad_details[$k]['uploads']."'";
-                ?>
-                <div class="col-lg-3 col-md-3">
-                  <div class="hotel">
-                    <div class="hotel-img">
-                      <?php 
-                        if($ad_details[$k]['ad_type']==1)
-                        { 
-                          echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal1" onclick="popupimage1('.$image.','.$ad_details[$k]['id'].')"><img src="'.$path_url.$ad_details[$k]['uploads'].' " class="img-fluid"></a>'; 
-                        }
-                        else{
-                        echo '<video width="400" controls>
-                            <source src="'.$path_url.$ad_details[$k]['uploads'].'" type="video/mp4">
-                            </video>';
-                        }
-                      ?>
-                    </div>
-                    <?php 
-                    if($ad_details[$k]['desc']!=""){
-                      echo "<p>".$ad_details[$k]['desc']."</p>"; 
-                    }
-                    if($ad_details[$k]['weblink']!=""){
-                        $link_var = "https://".$ad_details[$k]['weblink'];
-                      echo "<p><a href='".$link_var."' target='_blank'>Website Link</a></p>"; 
-                    }
-                    ?>
-                    <div class="image-container"  style="width:52%;">
-                      <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-                      <span id=""><?php echo $ad_details[$k]['views']; ?></span>
-                      <img src="./assets/img/thumbs-up-circle-blue-512.png" id="likeservice1" style="width:22px;cursor: pointer;" onclick="likeAd(<?php echo $ad_details[$k]['id'];?>)">
-                      <input type="hidden" value="<?php echo $ad_details[$k]['id']; ?>" id="adv_id<?php echo $ad_details[$k]['id']; ?>">
-                      <span id="adlikecount<?php echo $ad_details[$k]['id'];?>"><?php echo $ad_details[$k]['likes']; ?></span>
-                    </div>
-                  </div>
-                </div>
-                <?php 
-              } ?>
-          </div>
-        </div>
-      </section>
-  <?php } if(count($album_details)>0){ ?>
-     <section id="speakers" class="wow fadeInUp">
-        <div class="container">
-          <div class="section-header">
-            <h2>My Album</h2>
-          </div>
-          <div class="row">
-            <?php 
-              for($m=0;$m<count($album_details);$m++)
-              {
-                $name = "";
-                $image = "'".$path_url.$album_details[$m]['album_image']."'";
-                ?>
-                <div class="col-lg-3 col-md-3">      
-                  <div class="hotel">
-                    <div class="hotel-img">
-                      <a href="<?php echo base_url('album/'.$album_details[$m]['album_code']); ?>" >
-                        <img src="<?php echo $path_url.$album_details[$m]['album_image']?> " class="img-fluid">
-                      </a>
-                    </div>
-                    <?php 
-                      if($album_details[$m]['about']!=""){
-                        echo "<p>".$album_details[$m]['about']."</p>"; 
-                      }
-                    ?>
-                  </div>
-                </div>
-                <?php 
-              } 
-            ?>
-          </div>
-        </div>
-    </section>
-  <?php } if(count($myvideo_det)>0){?>
-    <section id="videosection" class="section-with-bg wow fadeInUp">
-      <div class="container">
-          <div class="section-header">
-            <h2>My videos</h2>
-          </div>
-          <div class="row">
-            <?php 
-              for($mv=0;$mv<count($myvideo_det);$mv++)
-              {
-                $name = "";
-                $image = $path_url.$myvideo_det[$mv]['preview_image'];
-                $video = "'".$path_url.$myvideo_det[$mv]['video_file']."'";
-                $id="'".$myvideo_det[$mv]['id']."'"
-                ?>
-                <div class="col-lg-3 col-md-3">
-                  <div class="hotel">
-                    <div class="hotel-img">
-                      <?php 
-                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#videomodal" onclick="videopreviewimage('.$video.','.$id.')"><img src="'.$image.'" class="img-fluid"></a>'; 
-                      ?>
-                    </div>
-                    <?php 
-                      if($myvideo_det[$mv]['description']!=""){
-                        echo "<p>".$myvideo_det[$mv]['description']."</p>"; 
-                      }       
-                    ?>
-                  </div>
-                </div>
-                <?php 
-              } ?>
-          </div>
-      </div>
-    </section>
-  <?php } ?>
-   
-  </div>
-  </main>
-
-    <?php if(count($channel_array)>0){ ?>
-    <section id="videosection1" class="section-with-bg wow fadeInUp">
-
-<div class="container">
-  <div class="section-header">
-    <h2>My Channel</h2>
-    
-  </div>
-
-  <div class="row">
-    <?php 
-
-    for($mv=0;$mv<count($channel_array);$mv++)
-    {
-      $group_name = $channel_array[$mv]['group_name'];
-      $group_code = $channel_array[$mv]['group_code'];
-      $count_mem = $channel_array[$mv]['count_mem'];
-      $image = $path_url.$channel_array[$mv]['imagename'];
-    ?>
-    <div class="col-lg-3 col-md-3">
-
-      <div class="hotel">
-  <div class="hotel-img">
-  <?php echo '<img src="'.$image.'" class="img-fluid">'; ?>
-   
-  </div>
-  <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
-  <?php 
-  if($group_name!=""){
-    echo "<p>Group Name : ".$group_name."</p>"; 
-  }
-  if($count_mem!=""){
-    ?>
-    <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-                  
-                  <?php
-    echo "<span>".$count_mem."</span>"; 
-  }
-  ?>
- 
-</div>
-
-    </div>
-  <?php } ?>
-
-
-  </div>
-</div>
-
-</section>
-<?php } ?>
-<?php if(count($group_array)>0){ ?>
-<section id="videosection2" class="section-with-bg wow fadeInUp">
-
-<div class="container">
-  <div class="section-header">
-    <h2>My Group</h2>
-    
-  </div>
-
-  <div class="row">
-    <?php 
-
-    for($mv=0;$mv<count($group_array);$mv++)
-    {
-      $group_name = $group_array[$mv]['group_name'];
-      $group_code = $group_array[$mv]['group_code'];
-      $count_mem = $group_array[$mv]['count_mem'];
-      $image = $path_url.$group_array[$mv]['imagename'];
-    ?>
-    <div class="col-lg-3 col-md-3">
-
-      <div class="hotel">
-  <div class="hotel-img">
-  <a target="_blank" href="https://3ABC7.com/chat"><?php echo '<img src="'.$image.'" class="img-fluid">'; ?></a>
-   
-  </div>
-  <!-- <h3><?php //echo $ad_details[$k]['service_name'];?></h3>-->
-  <?php 
-  if($group_name!=""){
-    echo "<p>Group Name : ".$group_name."</p>"; 
-  }
-  if($count_mem!=""){
-    ?>
-    <img src="./assets/img/eye-open.png" id="" style="width:60px;cursor: pointer;">
-                  
-                  <?php
-    echo "<span>".$count_mem."</span>"; 
-  }
-  ?>
- 
-</div>
-
-    </div>
-  <?php } ?>
-
-
-  </div>
-</div>
-
-</section>
-<?php } ?>
-
-
+    <?php } ?> 
+    <?php } else if($vluec=='C'){?>         
  <!--==========================
       Contact Section
     ============================-->
@@ -1257,8 +1284,8 @@
         <?php 
       } 
     ?> 
-
-
+     <?php }?>
+<?php } ?>
 
 
   <!--==========================
@@ -1312,7 +1339,9 @@
       $('.slider-next').on('click', function() {
         $('.slider').slick('slickNext');
       });
-
+      $(".owl-carousel").owlCarousel({
+        autoplay:true
+      });
     });
 
   </script>
@@ -1440,21 +1469,39 @@
      let sectionItemId =  $('#sectionId').val();
       if(type==2)
       {
+       
         $('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
       }
       else if(type==1 || type==3 || type==4){
         
-        // const pathurl = $('#path_url').val();
-        // const myArray = img_arr_list.split(",");
+        const pathurl = $('#path_url').val();
+        const myArray = img_arr_list.split(",");
         let text = "";
-        text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
-        // for (let i = 0; i < myArray.length; i++) {
-        //   text += "<div class='slide'>";
-        //   text += "<img src='"+pathurl+"/"+myArray[i]+"'>";
-        //   text += "</div>";
-        // }
-        // text += "</div>";
-        $('#mimage2_section').html(text);
+       
+        if(myArray.length>1){
+        
+        for (let i = 0; i < myArray.length; i++) {
+         
+          text += "<img src='"+pathurl+"/"+myArray[i]+"'>";
+         
+        }
+        
+        $('#mimage2_section').html('<div id="imgbox" class="owl-carousel owl-theme imgbox"></div>'); 
+        $(".owl-carousel").append(text);
+        $("#imgbox").owlCarousel({
+          loop:true,
+          items:2,
+          margin:10,
+          nav:true,
+          autoplay:true,
+          autoplayTimeout:5000 ,
+          navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+          });
+        }else{
+           text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
+          $('#mimage2_section').html(text);
+        }
+        // $('#mimage2_section').html(text);
         // $('#mimage2_section').html(text);
       }else{
         $('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');

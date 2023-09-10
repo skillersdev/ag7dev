@@ -1,0 +1,1 @@
+ALTER TABLE `affiliateuser` ADD `website_default_sections` VARCHAR(155) NOT NULL AFTER `renew`, ADD `website_default_sections_val` VARCHAR(155) NOT NULL AFTER `website_default_sections`;

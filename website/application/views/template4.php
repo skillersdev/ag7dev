@@ -123,7 +123,31 @@ $sectionItem_path=base_url().$website;
 			}
 
             
+               /* owl nav */
+.owl-prev span, .owl-next span {
+	color: #FFF;
+}
 
+.owl-prev span:hover, 
+.owl-next span:hover {
+	color: #8199A3;
+}
+
+.owl-prev, .owl-next {
+	position: absolute;
+	top: 50%;
+  color:#fff;
+  font-size:40px;
+	height: 100%;
+}
+
+.owl-prev {
+	left: 7px;
+}
+
+.owl-next {
+	right: 7px;
+}  
 
 		</style>
 
@@ -131,7 +155,7 @@ $sectionItem_path=base_url().$website;
 </head>
 
 <body class="index">
-    
+<input type="hidden" id="path_url" value="<?php echo $path_url;?>">
     
     <!-- Styleswitcher
 ================================================== -->
@@ -445,6 +469,9 @@ $sectionItem_path=base_url().$website;
                                     $path_src = "'".$path_url.$child_value['preview_file']."'";
                                     $weblink = "'".$mulp_img[$is_default_img]."'";
                                 }
+
+                                $img_list_str =  "'".implode(',',$mulp_img)."'";
+
                                 $sectionItem_url=$sectionItem_path."/".$key."/".$child_value['section_item_id']; 
                                 $pop_url="'".$sectionItem_path."/".$key."/".$child_value['section_item_id']."'"; ////
                             ?>	
@@ -454,7 +481,7 @@ $sectionItem_path=base_url().$website;
                                 <div class="col-md-4">
                                     <div class="welcome-section text-center">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                     ?>
                                         <h4><?php echo $child_value['title'];?></h4>
                                         <div class="border"></div>
@@ -477,7 +504,7 @@ $sectionItem_path=base_url().$website;
                                 <div class="col-md-6" style="margin-bottom:12px;">
                                     <div class="welcome-section text-center">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                     ?>
                                         <h4><?php echo $child_value['title'];?></h4>
                                         <div class="border"></div>
@@ -502,7 +529,7 @@ $sectionItem_path=base_url().$website;
                                     <div class="welcome-section text-center">
                                         <div class="col-lg-6 col-md-6 float-left">
                                             <?php 
-                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                             ?>
                                         </div>
                                         <div class="col-lg-6 col-md-6 float-left">
@@ -543,7 +570,7 @@ $sectionItem_path=base_url().$website;
                                         </div>
                                         <div class="col-lg-6 col-md-6 float-left">
                                             <?php 
-                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
+                                                echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal_section"   onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" class="img-responsive" style="height:215px; max-height: 215px;"></a>'; 
                                             ?>
                                         </div>
                                     </div>
@@ -1147,7 +1174,7 @@ $sectionItem_path=base_url().$website;
 	}
 
 
-    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,viewUrl)
+    function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,img_arr_list,viewUrl)
   	{
     	$('#mtitle2_section').html(name);
       
@@ -1156,7 +1183,33 @@ $sectionItem_path=base_url().$website;
 			$('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
 		}
 		else if(type==1 || type==3 || type==4){
-			$('#mimage2_section').html('<img src="'+src_file+'"  id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;max-width:80%;">');
+			const pathurl = $('#path_url').val();
+        const myArray = img_arr_list.split(",");
+        let text = "";
+       
+        if(myArray.length>1){
+        
+        for (let i = 0; i < myArray.length; i++) {
+         
+          text += "<img src='"+pathurl+"/"+myArray[i]+"' width='400' style='display: block; margin-left: auto; margin-right: auto;'>";
+         
+        }
+        
+        $('#mimage2_section').html('<div id="imgbox" class="owl-carousel owl-theme imgbox"></div>'); 
+        $(".owl-carousel").append(text);
+        $("#imgbox").owlCarousel({
+          loop:true,
+          items:2,
+          margin:10,
+          nav:true,
+          autoplay:true,
+          autoplayTimeout:5000 ,
+          navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+          });
+        }else{
+           text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
+          $('#mimage2_section').html(text);
+        }
 		}else{
 			$('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
 		}

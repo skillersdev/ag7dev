@@ -187,6 +187,12 @@
                         <span>{{'Manage'|translate}} {{'Gallery'|translate}}</span>                         
                     </a>
                 </li>
+                <li *ngIf="model.usergroup!=1">
+                    <a href="javascript:void(0);"  [routerLink]="['/websitesettings']">
+                        <i class="material-icons col-indigo">contacts</i>
+                        <span>{{'Website'|translate}} {{'Settings'|translate}}</span>                         
+                    </a>
+                </li>
                  <li *ngIf="model.usergroup!=1">
                     <a href="javascript:void(0);" [routerLink]="['/managechannels']">
                        <i class="material-icons">live_tv</i> <span class="icon-name">{{'Manage'|translate}} {{'Channel'|translate}}</span>

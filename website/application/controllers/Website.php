@@ -204,6 +204,7 @@ class Website extends CI_Controller {
 			$data['about_me']=$user_profile_result[0]['about_me'];
 			$data['mobile']=$user_profile_result[0]['mobile'];
 			$data['mail']=$user_profile_result[0]['email'];
+			$data['web_default_sections_order'] = $user_profile_result[0]['website_default_sections_val'];
 			$data['website']=$val[0]['website'];
 			$data['logo_name']=$val[0]['logo_name'];	
 			$data['logo_img']=$val[0]['logo_img'];	

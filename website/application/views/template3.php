@@ -1,5 +1,6 @@
 <?php 
 $login_url = $this->config->item('login_url');
+$path_url = $this->config->item('path_url');
 $image_path = $this->config->item('base_path');
 $logo_img_path = $this->config->item('logo_img_path');
 $this->load->view('index.html');
@@ -43,6 +44,8 @@ $sectionItem_path=base_url().$website;
 		<!-- media-queries -->
         <link rel="stylesheet" href="<?php echo base_url();?>assets/template3/css/media-queries.css">
 
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/template2/css/owl.carousel.css">
+
 		<!-- Modernizer Script for old Browsers -->
         <script src="<?php echo base_url();?>assets/template3/js/modernizr-2.6.2.min.js"></script>
 
@@ -84,12 +87,37 @@ $sectionItem_path=base_url().$website;
 					max-width:300px !important;
 				}
 			}
+			 /* owl nav */
+.owl-prev span, .owl-next span {
+	color: #FFF;
+}
 
+.owl-prev span:hover, 
+.owl-next span:hover {
+	color: #8199A3;
+}
+
+.owl-prev, .owl-next {
+	position: absolute;
+	top: 50%;
+  color:#fff;
+  font-size:40px;
+	height: 100%;
+}
+
+.owl-prev {
+	left: 7px;
+}
+
+.owl-next {
+	right: 7px;
+}
 		</style>
 
     </head>
 	
     <body id="body">
+	<input type="hidden" id="path_url" value="<?php echo $path_url;?>">
 		<?php $path_url = $this->config->item('path_url'); ?>
 		<!-- preloader -->
 		<div id="preloader">
@@ -142,7 +170,7 @@ $sectionItem_path=base_url().$website;
 							if($value[0]['show_menu']==1){
 							?>
 								<li class="">
-								<a href="#<?php echo $key;?>">
+								<a href="#".$key>
 									<?php echo $key;?>
 								</a>
 								</li>
@@ -436,6 +464,7 @@ $sectionItem_path=base_url().$website;
 											$path_src = "'".$path_url.$child_value['preview_file']."'";
 											$weblink = "'".$mulp_img[$is_default_img]."'";
 										}
+										$img_list_str =  "'".implode(',',$mulp_img)."'";
 									?>
 									<?php 
 										if($child_value['section_view'] ==1) { 
@@ -443,10 +472,10 @@ $sectionItem_path=base_url().$website;
 									<div class="col-md-3">		
 										<figure class="mix work-item branding" style="width:100%;">
 										<?php 
-												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 											?>
 											<figcaption class="overlay">
-												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 												<h4><?php echo $child_value['title'];?></h4>
 												<p><?php echo substr_replace($child_value['description'], "...", 60);?></p>
 												<p>
@@ -468,10 +497,10 @@ $sectionItem_path=base_url().$website;
 									<div class="col-md-6 float-left">		
 										<figure class="mix work-item branding" style="width:100%;left: 0% !important;">
 										<?php 
-												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="width:100%;height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+												echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" style="width:100%;height: 253px;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 											?>
 											<figcaption class="overlay">
-												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+												<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 												
 											</figcaption>										
 										</figure>
@@ -508,10 +537,10 @@ $sectionItem_path=base_url().$website;
 										<div class="col-md-6">
 											<figure class="mix work-item branding" style="width:100%;">
 											<?php 
-													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 												?>
 												<figcaption class="overlay">
-													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 													
 												</figcaption>										
 											</figure>
@@ -528,10 +557,10 @@ $sectionItem_path=base_url().$website;
 										<div class="col-md-6">
 											<figure class="mix work-item branding" style="width:100%;">
 											<?php 
-													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
+													echo '<a href="javascript:void(0);" onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"><img src="'.$path.'" style="height: 253px;width:100%;" class="img-responsive"><i class="fa fa-eye fa-lg"></i></a>'; 
 												?>
 												<figcaption class="overlay">
-													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
+													<a class="fancybox"  href="javascript:void(0)" data-toggle="modal" data-target="#myModal_section"  <?php echo 'onclick="servicepopupimage_section('.$name.','.$file_name_path.','.$desc.','.$service_id.','.$weblink.','.$media_type.','.$path_src.','.$web_url.','.$img_list_str.','.$pop_url.')"' ?> ><i class="fa fa-eye fa-lg"></i></a>
 													
 												</figcaption>										
 											</figure>
@@ -1059,6 +1088,7 @@ $sectionItem_path=base_url().$website;
 
 		<!-- Essential jQuery Plugins
 		================================================== -->
+		<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 		<!-- Main jQuery -->
         <script src="<?php echo base_url();?>assets/template3/js/jquery-1.11.1.min.js"></script>
 		<!-- Single Page Nav -->
@@ -1081,6 +1111,8 @@ $sectionItem_path=base_url().$website;
 		
 		<!-- jquery easing -->
         <script src="<?php echo base_url();?>assets/template3/js/jquery.easing.min.js"></script>
+		<!-- Owl Carousel -->
+        <script src="<?php echo base_url();?>assets/template2/js/owl.carousel.min.js"></script>
 		<!-- jquery easing -->
         <script src="<?php echo base_url();?>assets/template3/js/wow.min.js"></script>
 		<script>
@@ -1150,6 +1182,9 @@ $sectionItem_path=base_url().$website;
 							}
 						});
 					}
+				});
+				$(".owl-carousel").owlCarousel({
+					autoplay:true
 				});
 			});
 		</script>
@@ -1248,7 +1283,7 @@ $sectionItem_path=base_url().$website;
 	}
 
 
-	function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,viewUrl)
+	function servicepopupimage_section(name,image,desc,update_id,weblink,type,src_file,web_url,img_arr_list,viewUrl)
   	{
     	$('#mtitle2_section').html(name);
       
@@ -1257,7 +1292,33 @@ $sectionItem_path=base_url().$website;
 			$('#mimage2_section').html('<video width="400" controls><source src="'+image+'" type="video/mp4"></video>'); 
 		}
 		else if(type==1 || type==3 || type==4){
-			$('#mimage2_section').html('<img src="'+src_file+'"  id="showpopupimg" style="display: block; margin-left: auto; margin-right: auto;max-width:80%;">');
+		const pathurl = $('#path_url').val();
+        const myArray = img_arr_list.split(",");
+        let text = "";
+       
+        if(myArray.length>1){
+        
+        for (let i = 0; i < myArray.length; i++) {
+         
+          text += "<img src='"+pathurl+"/"+myArray[i]+"' width='400' style='display: block; margin-left: auto; margin-right: auto;'>";
+         
+        }
+        
+        $('#mimage2_section').html('<div id="imgbox" class="owl-carousel owl-theme imgbox"></div>'); 
+        $(".owl-carousel").append(text);
+        $("#imgbox").owlCarousel({
+          loop:true,
+          items:2,
+          margin:10,
+          nav:true,
+          autoplay:true,
+          autoplayTimeout:5000 ,
+          navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"]
+          });
+        }else{
+           text += '<img src="'+src_file+'" width="400" style="display: block; margin-left: auto; margin-right: auto;">';
+          $('#mimage2_section').html(text);
+        }
 		}else{
 			$('#mimage2_section').html('<audio width="400" controls><source src="'+image+'" type="audio/mpeg"></audio>');
 		}
