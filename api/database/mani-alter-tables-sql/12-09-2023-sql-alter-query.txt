@@ -1,0 +1,3 @@
+ALTER TABLE `affiliateuser` CHANGE `website_default_sections` `website_default_sections` VARCHAR(155) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'Products,MyAlbum,Contacts';
+
+ALTER TABLE `affiliateuser` CHANGE `website_default_sections_val` `website_default_sections_val` VARCHAR(155) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'P,A,C';
