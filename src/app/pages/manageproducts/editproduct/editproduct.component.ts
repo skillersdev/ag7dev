@@ -46,6 +46,10 @@ export class EditproductComponent implements OnInit {
   imageChangedEvent: any = '';
     croppedImage: any = '';
    private sub: any;
+   IsshowSku:boolean=false;
+   attribute_list:Array<Object>=[];
+   variation_list:Array<Object>=[];
+   product_setting_model:any={};
    id:number;
   model: any = {};
   model1:any={};
@@ -101,6 +105,9 @@ export class EditproductComponent implements OnInit {
   	this.CommonService.editdata(this.FetchproductRestApiUrl,id)
         .subscribe(resultdata =>{   
           this.model = resultdata.result;  
+          this.IsshowSku = (this.model.sku=='')?true:false;
+          this.attribute_list =  resultdata.attribute_response;  
+          this.variation_list=  resultdata.variations_response;  
            this.CommonService.editdata(this.getsubcategoryRestApiUrl,this.model.category_id)
               .subscribe(resultdata =>{   
                 this.subcategorylist=resultdata.result; 
@@ -111,6 +118,17 @@ export class EditproductComponent implements OnInit {
   }
   updateproduct()
   {    
+
+    if(this.attribute_list.length>0){
+      this.model.attribute_list = this.attribute_list;
+    }
+    if(this.variation_list.length>0){
+      this.model.variation_list = this.variation_list;
+    }
+    if(this.IsshowSku){
+      this.model.sku = this.model.website+'-'+this.model.sku;
+    }    
+
   	this.CommonService.updatedata(this.updateproductRestApiUrl,this.model)
     .subscribe(package_det =>{       
          swal(package_det.status,package_det.message,package_det.status) 
@@ -158,5 +176,22 @@ export class EditproductComponent implements OnInit {
 
 
     }
+    updateAttribute(){
+      this.attribute_list.push({'name':this.product_setting_model.attribute_name,'value':this.product_setting_model.attribute_value});
+      $('#AttributeModal').modal('hide');
+      this.product_setting_model.attribute_name=this.product_setting_model.attribute_value='';
+    }
+    updateVariation(){
+      this.variation_list.push({'name':this.product_setting_model.variation_name,'value':this.product_setting_model.variation_value});
+      $('#VariationModal').modal('hide');
+      this.product_setting_model.variation_name=this.product_setting_model.variation_value='';
+    }
+    deleteAttribute(index:any){
+      this.attribute_list.splice(index,1);
+    }
+    deleteVariation(index:any){
+      this.variation_list.splice(index,1);
+    }
+
 
 }

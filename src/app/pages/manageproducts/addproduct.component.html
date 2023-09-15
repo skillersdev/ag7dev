@@ -35,21 +35,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                                <div class="col-md-6">
-                                                    <p><b>{{'SubCategory' | translate}}</b></p>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <select class="form-control show-tick" [(ngModel)]="model.sub_category_id" #sub_category_id="ngModel" name="sub_category_id" required>
-                                                            <option [ngValue]="select">select subcategory</option>    
-                                                            <option *ngFor="let model of subcategorylist" value="{{model.id}}">{{model.sub_category_name}}</option>
-                                                        </select>
-                                                        <span [hidden]="sub_category_id.valid || sub_category_id.pristine" class="text-danger">sub Category is required</span>
-                                                        </div>
+                                            <div class="col-md-6">
+                                                <p><b>{{'SubCategory' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" [(ngModel)]="model.sub_category_id" #sub_category_id="ngModel" name="sub_category_id" required>
+                                                        <option [ngValue]="select">select subcategory</option>    
+                                                        <option *ngFor="let model of subcategorylist" value="{{model.id}}">{{model.sub_category_name}}</option>
+                                                    </select>
+                                                    <span [hidden]="sub_category_id.valid || sub_category_id.pristine" class="text-danger">sub Category is required</span>
                                                     </div>
                                                 </div>
-                                            </div>     
+                                            </div>
+                                        </div>
+                                        
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>{{'Product' | translate}}{{'Name' | translate}}</b></p>
@@ -60,7 +59,17 @@
                                                     <span [hidden]="product_name.valid || product_name.pristine" class="text-danger">Product is required</span>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <p><b>{{'SKU' | translate}}</b></p>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control" placeholder="{{'SKU' | translate}}" [(ngModel)]="model.sku" #sku="ngModel" name="sku" required>
+                                                    </div>
+                                                    <span [hidden]="sku.valid || sku.pristine" class="text-danger">SKU is required</span>
+                                                </div>
+                                            </div>
                                         </div>
+                                       
                                         <div class="row clearfix">
                                             <div class="col-md-6">
                                                 <p><b>{{'Product Price' | translate}}</b></p>
@@ -215,9 +224,67 @@
                                                     </textarea>
                                                 </div>
                                             </div>
+                                           
                                         </div>
+                                        <div class="row clearfix"> 
+                                            <div class="col-md-10">
+                                                <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#AttributeModal">Product Attribute</button>
+                                                <button type="button" class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#VariationModal">Product Variations</button>
+                                            </div>
+                                            </div>
                                         </div> 
-                                            
+                                        <div class="row clearfix" > 
+                                            <div class="col-md-6" *ngIf="attribute_list.length>0">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable1">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>{{'Attribute Name' | translate}}</th>
+                                                        <th>{{'Attribute value' | translate}}</th>
+                                                        <th>{{'actions' | translate}}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let data of attribute_list let idx=index">
+                                                        <th scope="row">{{idx+1}}</th>
+                                                        <td>{{data.name}}</td>
+                                                        <td>{{data.value}}</td>
+                                                        <td>                                                
+                                                            <a href="javascript:void(0);" (click)="deleteAttribute(idx)"><i class="material-icons">delete</i>
+                                                            </a> 
+                                                        </td>
+                                                    </tr>                                             
+                                                </tbody>
+                                            </table>
+                                                </div>  
+                                            </div>
+                                            <div class="col-md-6" *ngIf="variation_list.length>0">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-striped table-hover dataTable adsinfo_table" id="dataTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>{{'Variation Name' | translate}}</th>
+                                                        <th>{{'Variation value' | translate}}</th>
+                                                        <th>{{'actions' | translate}}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let data of variation_list let idx=index">
+                                                        <th scope="row">{{idx+1}}</th>
+                                                        <td>{{data.name}}</td>
+                                                        <td>{{data.value}}</td>
+                                                        <td>                                                
+                                                            <a href="javascript:void(0);" (click)="deleteVariation(idx)"><i class="material-icons">delete</i>
+                                                            </a> 
+                                                        </td>
+                                                    </tr>                                             
+                                                </tbody>
+                                            </table>
+                                                </div>  
+                                            </div>
+                                        </div>
                                                                     
                                         <button type="button" [disabled]="!adddproduct.form.valid" class="btn btn-primary m-t-15 waves-effect" (click)="addproduct()"> {{'Add' | translate}} {{'Product' | translate}}</button>&nbsp;
                                         &nbsp;&nbsp;&nbsp;<button type="button" (click)="back()" class="btn btn-primary m-t-15 waves-effect">{{'Cancel' | translate}}</button>
@@ -233,3 +300,81 @@
         <!-- #END# Exportable Table -->
     </div>
 </section>
+
+<div class="modal fade" id="AttributeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="AttributeModalLabel">Product Attribute</h4>
+            </div>
+            <div class="modal-body">
+                <form class="" #Atrribute="ngForm">
+                    <div class="">                        
+                        <div class="form-group"> 
+                            <div class="form-line">
+                                <input type="text" id="attribute_name" name="attribute_name" class="form-control" placeholder="Attribute Name" [(ngModel)]="product_setting_model.attribute_name" #attribute_name="ngModel" required>
+                            </div>
+                            <span [hidden]="attribute_name.valid || attribute_name.pristine" class="text-danger">Attribute Name is required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="">                       
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" id="attribute_value" name="attribute_value" class="form-control" placeholder="Attribute Value" [(ngModel)]="product_setting_model.attribute_value" #attribute_value="ngModel" required>
+                            </div>
+                            <span [hidden]="attribute_value.valid || attribute_value.pristine" class="text-danger">Attribute value is required</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  [disabled]="!Atrribute.form.valid" (click)="updateAttribute()" class="btn btn-primary">{{'Update Product Attribute' | translate}}</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button"  (click)="updateAttribute()" class="btn btn-primary">{{'Update Product Attribute' | translate}}</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="VariationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="AttributeModalLabel">Product Variations</h4>
+            </div>
+            <div class="modal-body">
+                <form class="" #Variation="ngForm">
+                    <div class="">                        
+                        <div class="form-group"> 
+                            <div class="form-line">
+                                <input type="text" id="variation_name" name="variation_name" class="form-control" placeholder="Attribute Name" [(ngModel)]="product_setting_model.variation_name" #variation_name="ngModel" required>
+                            </div>
+                            <span [hidden]="variation_name.valid || variation_name.pristine" class="text-danger">Variation Name is required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="">                       
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" id="variation_value" name="variation_value" class="form-control" placeholder="Attribute Value" [(ngModel)]="product_setting_model.variation_value" #variation_value="ngModel" required>
+                            </div>
+                            <span [hidden]="variation_value.valid || variation_value.pristine" class="text-danger">Variation value is required</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" [disabled]="!Variation.form.valid" (click)="updateVariation()" class="btn btn-primary">{{'Update Product Variation' | translate}}</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div> -->
+        </div>
+    </div>
+</div>

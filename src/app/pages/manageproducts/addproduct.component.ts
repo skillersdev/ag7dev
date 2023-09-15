@@ -41,7 +41,10 @@ export class AddproductComponent implements OnInit {
   subcategorylist:Array<Object>;
   websitelist:Array<Object>;
   product_det:Array<Object>;
+  attribute_list:Array<Object>=[];
+  variation_list:Array<Object>=[];
   model: any = {};
+  product_setting_model:any={};
   model1: any = {};
   alldata: any = {};
   localdata:any={};
@@ -99,6 +102,13 @@ export class AddproductComponent implements OnInit {
        if(response.status=='success')
        {
         this.model.product_image = response.data;
+        if(this.attribute_list.length>0){
+          this.model.attribute_list = this.attribute_list;
+        }
+        if(this.variation_list.length>0){
+          this.model.variation_list = this.variation_list;
+        }
+        this.model.sku = this.model.website+'-'+this.model.sku;
           this.CommonService.insertdata(this.insertproductRestApiUrl,this.model)
           .subscribe(package_det =>{       
                swal(
@@ -152,6 +162,22 @@ export class AddproductComponent implements OnInit {
         this.croppedImage = event.base64;
         this.model1.Imagefile = event.base64;
 
+    }
+    updateAttribute(){
+      this.attribute_list.push({'name':this.product_setting_model.attribute_name,'value':this.product_setting_model.attribute_value});
+      $('#AttributeModal').modal('hide');
+      this.product_setting_model.attribute_name=this.product_setting_model.attribute_value='';
+    }
+    updateVariation(){
+      this.variation_list.push({'name':this.product_setting_model.variation_name,'value':this.product_setting_model.variation_value});
+      $('#VariationModal').modal('hide');
+      this.product_setting_model.variation_name=this.product_setting_model.variation_value='';
+    }
+    deleteAttribute(index:any){
+      this.attribute_list.splice(index,1);
+    }
+    deleteVariation(index:any){
+      this.variation_list.splice(index,1);
     }
 
 }
