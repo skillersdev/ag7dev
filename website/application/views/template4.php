@@ -868,13 +868,14 @@ $sectionItem_path=base_url().$website;
                             <li>
                                 <div class="portfolio-item">
                                     <?php 
-                                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
-                                        '.$cname.',
-                                        '.$scname.',
-                                        '.$price.',
-                                        '.$total_likes.',
-                                        '.$total_views.',
-                                        '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
+                                        // echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+                                        // '.$cname.',
+                                        // '.$scname.',
+                                        // '.$price.',
+                                        // '.$total_likes.',
+                                        // '.$total_views.',
+                                        // '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height: 210px;"></a>'; 
+                                        echo '<a href='.$product_url.'><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
                                         ?>
                                     <div class="portfolio-caption" style="height: 70%;">
                                         <span>Category:<?php echo $product_details[$i]['category_name'];?></span>

@@ -680,13 +680,14 @@
               <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                 <div class="portfolio-wrap" style="height:200px;">
                   <?php 
-                      echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
-                      '.$cname.',
-                      '.$scname.',
-                      '.$price.',
-                      '.$total_likes.',
-                      '.$total_views.',
-                      '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height:200px;"></a>'; 
+                      // echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+                      // '.$cname.',
+                      // '.$scname.',
+                      // '.$price.',
+                      // '.$total_likes.',
+                      // '.$total_views.',
+                      // '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].' " class="img-fluid" style="width:100%;height:200px;"></a>'; 
+                      echo '<a href='.$product_url.'><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
                   ?>
                   <div class="portfolio-info" style="height: 70%;margin-top: 30%;">
                     <span style="color: white;">Category:<?php echo $product_details[$i]['category_name'];?></span>

@@ -59,9 +59,33 @@ class SectionItem extends CI_Controller {
 					if($sub_category_det_result){
 						$sub_category_name = $sub_category_det_result[0]['sub_category_name'];
 					}
+
+					$product_settings_det=$this->db->select("*")->where(['product_id'=>$value['id']])->get('product_settings'); 
+					$product_settings_det_result =$product_settings_det->result_array();
+					$attributeValues =[];$variationValues=[];
+
+					
+					if(count($product_settings_det_result)>0)
+					{	
+						foreach($product_settings_det_result as $setKey => $setVal){
+							if($setVal['attribute_name']!=''){
+								$attributeValues[$setKey]['name'] =$setVal['attribute_name'];
+								$attributeValues[$setKey]['value'] =$setVal['attribute_value'];
+							}
+							if($setVal['variation_name']!=''){
+								$variationValues[$setKey]['name'] =$setVal['variation_name'];
+								$variationValues[$setKey]['value'] =$setVal['variation_value'];
+							}
+							
+						}
+					}
+					
+					// if($sub_category_det_result){
+					// 	$sub_category_name = $sub_category_det_result[0]['sub_category_name'];
+					// }
 					
 					$result[]=array('id'=>$value['id'],'product_name'=>$value['product_name'],'category_name'=>$category_name,'sub_category_name'=>$sub_category_name,'website'=>$value['website'],'currency'=>$value['currency'],'price'=>$value['price'],'product_image'=>$value['product_image'],
-						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'long_desc'=>str_replace("\n","",$value['long_desc']),'short_desc'=>str_replace("\n","",$value['short_desc']));
+						'total_views'=>$value['total_views'],'total_likes'=>$value['total_likes'],'long_desc'=>str_replace("\n","",$value['long_desc']),'short_desc'=>str_replace("\n","",$value['short_desc']),'productSettings'=>$product_settings_det_result);
 		          }
 
 			}
@@ -224,6 +248,8 @@ class SectionItem extends CI_Controller {
 			
 			$data['album_details'] = $album_result;
 			$data['product_details']=$result;
+			$data['product_attribute_settings']=$attributeValues;
+			$data['product_variation_settings']=$variationValues;
 			// print_r($contac_result); die;
 			$data['service_details']=$serv_result;
 			$data['contact_details']=$contac_result;

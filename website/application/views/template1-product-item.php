@@ -381,6 +381,7 @@
       if(count($product_details)>0){
       foreach ($product_details as $key => $value) 
       {
+        // echo "<pre>";print_r($product_variation_settings);
         $service_id = $value['id'];
         ?>
         <section id="speakers-details" class="wow fadeIn">
@@ -410,6 +411,31 @@
               <div class="col-md-6">
                 <div class="details">
                   <h2><?php echo $value['product_name'];?></h2>
+                  <div class="col-md-12" style="margin-bottom:20px;">
+                    <?php if(count($product_attribute_settings)>0){?>
+                      <label for="color"> Attribute:</label>
+                      <select name="color" id="AtrributeId" onchange="AttributeFunction()">
+                      <option value="">--- Choose a item ---</option>
+                        <?php foreach($product_attribute_settings as $varKey => $varVal){?>                    
+                          <option value="<?php echo $product_attribute_settings[$varKey]['value'];?>"><?php echo $product_attribute_settings[$varKey]['name'];?></option>       
+                          <?php } ?>             
+                      </select>
+                      <span id="AttributeValue" class="m-5"></span>
+                      <?php } ?>
+                  </div>
+                  <div class="col-md-12">
+                  <?php if(count($product_variation_settings)>0){?>
+                    <label for="color"> Variations:</label>
+                    <select name="color" id="variationId" onchange="VariationsFunction()">
+                    <option value="">--- Choose a item ---</option>
+                      <?php foreach($product_variation_settings as $varKey => $varVal){?>                    
+                        <option value="<?php echo $product_variation_settings[$varKey]['value'];?>"><?php echo $product_variation_settings[$varKey]['name'];?></option>       
+                        <?php } ?>             
+                    </select>
+                    <span id="variationValue" class="m-5"></span>                  
+                    
+                    <?php } ?>
+                  </div>
                   <div class="social">
                     <input type="hidden" value="<?php echo $value['id']; ?>" id="service_id<?php echo $value['id']; ?>">
                     <!-- <a href="" style="border-radius: 10%; width: 90px;" onclick="likeServicesection(<?php echo $name;?>,<?php echo $value['id'];?>)">
@@ -836,7 +862,15 @@
           }
         });
     });
-
+  
+    function AttributeFunction(){
+      var x = document.getElementById("AtrributeId").value;
+      document.getElementById("AttributeValue").innerHTML = "<label>value :</label><b>" + x +"</b>";
+    }
+    function VariationsFunction(){
+      var x = document.getElementById("variationId").value;
+      document.getElementById("variationValue").innerHTML = "<label>value :</label><b>" + x +"</b>";
+    }
    function likeProduct(id)
    {
       var id = $('#product_id'+id).val();

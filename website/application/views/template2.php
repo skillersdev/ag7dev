@@ -767,13 +767,14 @@ $sectionItem_path=base_url().$website;
 					                ?>
 							<li class="portfolio-item" style="height: 210px;">
 								 <?php 
-			                        echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
-									'.$cname.',
-									'.$scname.',
-									'.$price.',
-									'.$total_likes.',
-									'.$total_views.',
-									'.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
+			                        // echo '<a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" onclick="popupimage('.$prod_desc.','.$prod_short_desc.','.$name.','.$product_image.',
+									// '.$cname.',
+									// '.$scname.',
+									// '.$price.',
+									// '.$total_likes.',
+									// '.$total_views.',
+									// '.$product_details[$i]['id'].','.$product_url.')"><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
+									echo '<a href='.$product_url.'><img src="'.$path_url.$product_details[$i]['product_image'].'" class="img-fluid" style="width:100%;"></a>'; 
 			                        ?>
 								<figcaption class="mask">
 									<h3><?php echo $product_details[$i]['product_name'];?></a></h3>
