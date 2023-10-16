@@ -173,14 +173,14 @@
                                         </div>  
                                         <div class="row clearfix">
                                             <div class="col-md-6">
-                                                <p><b>{{'Select' | translate}} {{'Website' | translate}}</b></p>
+                                                <p><b>{{'Select' | translate}} {{'Life' | translate}}</b></p>
                                                 <div class="form-group">
                                                    <div class="form-line">
                                                         <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
-                                                            <option [ngValue]="select">select website</option>    
+                                                            <option [ngValue]="select">select life</option>    
                                                             <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
                                                         </select>
-                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">life is required</span>
                                                         </div>
                                                 </div>
                                             </div>

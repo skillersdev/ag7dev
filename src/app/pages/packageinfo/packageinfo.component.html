@@ -19,7 +19,7 @@
                     <div class="header">
                         <h2>{{'Package Info' | translate}}
                         </h2>
-                        <span class="col-red">(* Activate your website from any 3ABC7 Worldwide Area Center)</span>
+                        <span class="col-red">(* Activate your life from any 3ABC7 Worldwide Area Center)</span>
                     </div>
                     <div class="body">
                         <!-- Modal -->
@@ -53,16 +53,16 @@
                                                 </div>
                                             </div>
                                             <div class="" *ngIf="model.pck_type==1 || model.pck_type==4 || model.pck_type==5">
-                                                <p><b>{{'website-name' | translate}}</b></p>
+                                                <p><b>{{'life-name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line" *ngIf="checkIswebsite">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website"  #website="ngModel" 
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="model.website"  #website="ngModel" 
                                                          readonly="">
                                                     </div>
                                                     <div class="form-line"  *ngIf="!checkIswebsite">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" >
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="model.website" #website="ngModel" >
                                                     </div>
-                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">life is required</span>
                                                 </div>
                                             </div>
                                             <!--e learing code starts here-->
@@ -156,14 +156,14 @@
                                                 </div>
                                             </div>
                                             <div class="" *ngIf="model.pck_type==1 || model.pck_type==4 || model.pck_type==5">
-                                                <p><b>{{'website-name' |translate}}</b></p>
+                                                <p><b>{{'life-name' |translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="model.website" #website="ngModel" 
                                                          required readonly="">
                                                          <!-- (blur)="checkwebsite()" -->
                                                     </div>
-                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">life is required</span>
                                                 </div>
                                             </div>
 
@@ -227,14 +227,14 @@
                                             </div>
                                             
                                             <div class="">
-                                                <p><b>{{'website-name' | translate}}</b></p>
+                                                <p><b>{{'life-name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="model.website" #website="ngModel" 
                                                          readonly="readonly">
                                                          <!-- <input type="hidden" id="p_id" name="p_id" class="form-control" [(ngModel)]="model.p_id" #p_id="ngModel"> -->
                                                     </div>
-                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">life is required</span>
                                                 </div>
                                             </div>
 
@@ -282,14 +282,14 @@
                                             
                                             
                                             <div class="">
-                                                <p><b>{{'website-name' | translate}}</b></p>
+                                                <p><b>{{'life-name' | translate}}</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="model.website" #website="ngModel" 
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="model.website" #website="ngModel" 
                                                          readonly="readonly">
                                                          <!-- <input type="hidden" id="p_id" name="p_id" class="form-control" [(ngModel)]="model.p_id" #p_id="ngModel"> -->
                                                     </div>
-                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">life is required</span>
                                                 </div>
                                             </div>
 
@@ -335,7 +335,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{'Website link' | translate}}</th>
+                                        <th>{{'Life link' | translate}}</th>
                                         <th>{{'Change Template' | translate}}</th>
                                         <th>{{'Change Logo' | translate}}</th>
                                         <th>{{'actions' | translate}}</th>
@@ -350,7 +350,7 @@
                                 <tbody>
                                     <tr *ngFor="let data of packagelist let i=index">
                                         <th scope="row">{{i+1}}</th>
-                                          <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">{{'website' | translate}}</a></td>
+                                          <td><a *ngIf="data.pck_type==1" href="website/{{data.website}}">{{'life' | translate}}</a></td>
                                         <td>
                                             <a *ngIf="data.pck_type==1 || data.pck_type==4 || data.pck_type==5" href="#" (click)="onGoToPage2(data.package_name,data.package_price,data.pck_user_id,data.pck_id,data.pck_user_master_id,data.website,data.template,data.pck_type,data.marketer)" data-toggle="modal" data-target="#ctemplateModal">
                                             <span>{{'Change Template' | translate}}</span>
@@ -425,16 +425,16 @@
                                     <div class="modal-body">
                                         <form class="" #addpackaged="ngForm">
                                             <div class="">
-                                                <p><b>{{'website-name' | translate}}</b></p>
+                                                <p><b>{{'life-name' | translate}}</b></p>
                                                 <div class="form-group">                            
                                                     <div class="form-line">
-                                                        <input type="text" id="Rwebsite" name="website" class="form-control" placeholder="Enter website" [(ngModel)]="Rmodel.website" (blur)="checkwebsite()" #Rwebsite="ngModel" required="">
+                                                        <input type="text" id="Rwebsite" name="website" class="form-control" placeholder="Enter life" [(ngModel)]="Rmodel.website" (blur)="checkwebsite()" #Rwebsite="ngModel" required="">
                                                     </div>
-                                                    <span [hidden]="Rwebsite.valid || Rwebsite.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="Rwebsite.valid || Rwebsite.pristine" class="text-danger">life is required</span>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" (click)="activateweb()" >{{'Activate' | translate}} {{'Website' | translate}}
+                                                <button type="button" class="btn btn-primary" (click)="activateweb()" >{{'Activate' | translate}} {{'life' | translate}}
                                                 </button>                                               
                                             </div>
                                         </form>
@@ -458,7 +458,7 @@
                                             <div class="">
                                                 <p><b>Select Package</b></p> 
                                                 <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  (change)="getPackagevalue($event)" required>
-                                                    <option [ngValue]="select">select website</option>    
+                                                    <option [ngValue]="select">select Life</option>    
                                                     <option *ngFor="let model of package_list_byInstructor" value="{{model.package_price}}">{{model.package_name}}</option>
                                                 </select>
                                                 <span [hidden]="packuser.valid || packuser.pristine" class="text-danger">Package is required</span>

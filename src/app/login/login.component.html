@@ -8,14 +8,14 @@
     <div class="card">
         <div class="body">
             <form id="sign_in">
-                <div class="msg">{{'website-login'|translate}}</div>
+                <div class="msg">{{'life-login'|translate}}</div>
                 <div class="input-group">
                     <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                     <div class="form-line">
 
-                        <input type="text" id="username" [(ngModel)]="model.user_name" #username="ngModel" name="user_name" class="form-control" placeholder="{{'Website' | translate}} {{'Lock' | translate}}" required autofocus />
+                        <input type="text" id="username" [(ngModel)]="model.user_name" #username="ngModel" name="user_name" class="form-control" placeholder="{{'Life' | translate}} {{'Lock' | translate}}" required autofocus />
                         <div *ngIf="username.errors && (username.dirty || username.touched)">
                             <span [hidden]="!username.errors.required" style="color:white;">
                                   *Username is required
@@ -48,7 +48,7 @@
                 </div>
                 <div class="row m-t-15 m-b--20">
                     <div class="col-xs-6">
-                        <a [routerLink]="['/signup']">{{'Create Website' | translate}}</a>
+                        <a [routerLink]="['/signup']">{{'Create Life' | translate}}</a>
                     </div>
                     <!-- <div class="col-xs-6 align-right">
                         <a [routerLink]="['/forgotpassword']">Forgot Password?</a>

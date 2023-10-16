@@ -1,6 +1,6 @@
  <div class="signup-box">
         <div class="logo">
-            <a href="javascript:void(0);">{{'Create Website'|translate}}<b></b></a>
+            <a href="javascript:void(0);">{{'Create Life'|translate}}<b></b></a>
             <small>fill the information to continue</small>
         </div>
         <div class="card">
@@ -28,11 +28,11 @@
                         </span>
                         <div class="form-line">
                            
-                            <input type="text"  class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" (ngModelChange)="model.website = $event.toLowerCase()" name="website" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text"  class="form-control" autocomplete="off" [(ngModel)]="model.website" #website="ngModel" (ngModelChange)="model.website = $event.toLowerCase()" name="website" placeholder="{{'Enter' | translate}} {{'Life' | translate}} {{'Name'|translate}}" (blur)="checkwebsite()" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                          <div *ngIf="website.errors && (website.dirty || website.touched)" class="">
-                            <span [hidden]="website.errors.required" class="text-danger">website is required</span>
-                             <span [hidden]="!website.errors.pattern" class="text-danger">Website accepts alpha numeric value only</span>
+                            <span [hidden]="website.errors.required" class="text-danger">Life is required</span>
+                             <span [hidden]="!website.errors.pattern" class="text-danger">life accepts alpha numeric value only</span>
                         </div>
                        
                     </div>
@@ -52,7 +52,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="{{'Enter' | translate}} {{'Website' | translate}} {{'Lock'|translate}}" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
+                            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="model.username" #username="ngModel" name="username" placeholder="{{'Enter' | translate}} {{'Life' | translate}} {{'Lock'|translate}}" (blur)="checkUserexist($event)" pattern="^$|^[A-Za-z0-9]+" required autofocus>
                         </div>
                         <div *ngIf="username.errors && (username.dirty || username.touched)" class="">
                             <span [hidden]="username.errors.required" class="text-danger">username is required</span>
@@ -376,10 +376,10 @@
 
                     
 
-                    <button class="btn btn-block btn-lg bg-pink waves-effect" [disabled]="!signup.form.valid || model.passwordmatch" type="submit" (click)="adduser()">{{'Create Website'|translate}}</button>
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" [disabled]="!signup.form.valid || model.passwordmatch" type="submit" (click)="adduser()">{{'Create Life'|translate}}</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <a [routerLink]="['/login']" >{{'I already have a website'|translate}}</a>
+                        <a [routerLink]="['/login']" >{{'I already have a Life account'|translate}}</a>
                     </div>
 
                 </form>

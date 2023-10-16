@@ -413,12 +413,12 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <p><b>Website Name</b></p>
+                                                <p><b>Life Name</b></p>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="text" id="website" name="website" class="form-control" placeholder="{{'Enter' | translate}}{{'Website' | translate}}" [(ngModel)]="model.website" #website="ngModel" required>
+                                                        <input type="text" id="website" name="website" class="form-control" placeholder="{{'Enter' | translate}}{{'Life' | translate}}" [(ngModel)]="model.website" #website="ngModel" required>
                                                     </div>
-                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                    <span [hidden]="website.valid || website.pristine" class="text-danger">Life is required</span>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -757,7 +757,7 @@
 
                     <div class="card">                                             
                         <div class="header">
-                            <h2>{{'WEBSITE INFO'|translate}}</h2>
+                            <h2>{{'LIFE INFO'|translate}}</h2>
                             
                         </div>
                         <div class="body">
@@ -768,7 +768,7 @@
                                             <th>#</th>
                                             <th>{{'Package Name' | translate}}</th>
                                             <th>{{'Status' | translate}}</th>
-                                            <th>{{'Website link' | translate}}</th>
+                                            <th>{{'life link' | translate}}</th>
                                             
                                         </tr>
                                     </thead>
@@ -832,7 +832,7 @@
                            <div class="col-md-6">
                                     <p><b>Select Package</b></p> 
                                     <select class="form-control show-tick" [(ngModel)]="model.packuser" #packuser="ngModel" name="packuser"  required>
-                                        <option [ngValue]="select">select website</option>    
+                                        <option [ngValue]="select">select life</option>    
                                         <option *ngFor="let model of package_vs_user_list" value="{{model.id}}">{{model.package_name}}</option>
                                     </select>
                                     <span [hidden]="packuser.valid || packuser.pristine" class="text-danger">Package is required</span>

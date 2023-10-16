@@ -22,14 +22,14 @@
                                         <form class="" #addsection="ngForm"> 
                                              <div class="col-md-12">
                                                 <div class="form-group">
-                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Website' | translate}}</label>
+                                                 <label for="NameSurname" class="col-sm-2 control-label">{{'Life' | translate}}</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                          <select class="form-control show-tick" [(ngModel)]="model.website" #website="ngModel" name="website" required>
-                                                            <option [ngValue]="select">select website</option>    
+                                                            <option [ngValue]="select">select Life</option>    
                                                             <option *ngFor="let model of websitelist" value="{{model.website}}">{{model.website}}</option>
                                                         </select>
-                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">website is required</span>
+                                                        <span [hidden]="website.valid || website.pristine" class="text-danger">Life account is required</span>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -68,9 +68,7 @@
 	                                                    <!-- <textarea id="tinymce" [(ngModel)]="model.long_desc" #long_desc="ngModel" name="long_desc">
 	                                                    </textarea> -->
                                                         <textarea id="ckeditor">
-                                                            <h2>WYSIWYG Editor</h2>
-                                                            <h2>WYSIWYG Editor</h2>
-                                                          
+                                                           
                                                         </textarea>
 	                                                </div>
                                             	</div>
